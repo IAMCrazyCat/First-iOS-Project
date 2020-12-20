@@ -20,6 +20,8 @@
 		22C23A19258DC5D700D4BEB2 /* QuittingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C23A18258DC5D700D4BEB2 /* QuittingItem.swift */; };
 		22C23A1E258DC5FB00D4BEB2 /* PersistingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C23A1D258DC5FB00D4BEB2 /* PersistingItem.swift */; };
 		22C23A27258DCE4500D4BEB2 /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C23A26258DCE4500D4BEB2 /* AppViewController.swift */; };
+		22C5D967258F3E4400131964 /* SetUpEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5D966258F3E4400131964 /* SetUpEngine.swift */; };
+		22C5D975258F40E800131964 /* SetUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5D974258F40E800131964 /* SetUpPage.swift */; };
 		22FCB1B5258D86BA006A0D39 /* SetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FCB1B4258D86BA006A0D39 /* SetUpViewController.swift */; };
 		22FCB1BA258D907C006A0D39 /* StyleSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FCB1B9258D907C006A0D39 /* StyleSetting.swift */; };
 /* End PBXBuildFile section */
@@ -61,6 +63,8 @@
 		22C23A18258DC5D700D4BEB2 /* QuittingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuittingItem.swift; sourceTree = "<group>"; };
 		22C23A1D258DC5FB00D4BEB2 /* PersistingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistingItem.swift; sourceTree = "<group>"; };
 		22C23A26258DCE4500D4BEB2 /* AppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
+		22C5D966258F3E4400131964 /* SetUpEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpEngine.swift; sourceTree = "<group>"; };
+		22C5D974258F40E800131964 /* SetUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpPage.swift; sourceTree = "<group>"; };
 		22FCB1B4258D86BA006A0D39 /* SetUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewController.swift; sourceTree = "<group>"; };
 		22FCB1B9258D907C006A0D39 /* StyleSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleSetting.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,7 +150,8 @@
 		220B72B4258C68FB00E4BEDC /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				22FCB1B9258D907C006A0D39 /* StyleSetting.swift */,
+				22C5D987258F646700131964 /* Setting */,
+				22C5D954258F3D3E00131964 /* SetUp */,
 				22C23A0E258DC4FA00D4BEB2 /* AppEngine.swift */,
 				22C23A22258DCA3E00D4BEB2 /* Item */,
 			);
@@ -179,6 +184,23 @@
 				22C23A1D258DC5FB00D4BEB2 /* PersistingItem.swift */,
 			);
 			path = Item;
+			sourceTree = "<group>";
+		};
+		22C5D954258F3D3E00131964 /* SetUp */ = {
+			isa = PBXGroup;
+			children = (
+				22C5D966258F3E4400131964 /* SetUpEngine.swift */,
+				22C5D974258F40E800131964 /* SetUpPage.swift */,
+			);
+			path = SetUp;
+			sourceTree = "<group>";
+		};
+		22C5D987258F646700131964 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				22FCB1B9258D907C006A0D39 /* StyleSetting.swift */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,12 +337,14 @@
 				22FCB1B5258D86BA006A0D39 /* SetUpViewController.swift in Sources */,
 				22C23A19258DC5D700D4BEB2 /* QuittingItem.swift in Sources */,
 				220B7286258A288000E4BEDC /* WelcomeViewController.swift in Sources */,
+				22C5D975258F40E800131964 /* SetUpPage.swift in Sources */,
 				220B7282258A288000E4BEDC /* AppDelegate.swift in Sources */,
 				220B7284258A288000E4BEDC /* SceneDelegate.swift in Sources */,
 				22C23A14258DC58F00D4BEB2 /* Item.swift in Sources */,
 				22FCB1BA258D907C006A0D39 /* StyleSetting.swift in Sources */,
 				22C23A1E258DC5FB00D4BEB2 /* PersistingItem.swift in Sources */,
 				22C23A0F258DC4FA00D4BEB2 /* AppEngine.swift in Sources */,
+				22C5D967258F3E4400131964 /* SetUpEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
