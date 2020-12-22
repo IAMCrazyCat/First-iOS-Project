@@ -10,7 +10,7 @@ enum Type {
 }
 
 import Foundation
-class Item {
+class Item: NSObject {
     var name: String
     var days: Int
     var creationDate: Date

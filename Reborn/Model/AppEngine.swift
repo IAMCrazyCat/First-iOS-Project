@@ -10,25 +10,32 @@ class AppEngine {
     var quittingItemArray: Array<QuittingItem> = []
     var persistingItemArray: Array<PersistingItem> = []
     var defaults = UserDefaults.standard
-    
+    var currentDate = Date()
     init() {
         
         if let savedArray = defaults.array(forKey: "SavedQuittingItemArray") as? [QuittingItem] {
             quittingItemArray = savedArray
+            print(quittingItemArray)
         }
         
         if let savedArray = defaults.array(forKey: "SavedPersistingItemArray") as? [PersistingItem] {
             persistingItemArray = savedArray
+            print(persistingItemArray)
         }
     }
     
-    func addNewItem(item: Item) {
+    func saveNewItem(item: Item) {
         if item is QuittingItem {
-            quittingItemArray.append(item as! QuittingItem)
-            defaults.setValue(quittingItemArray, forKey: "SavedQuittingItemArray")
+            
+            self.quittingItemArray.append(item as! QuittingItem)
+            let codedArray = try! NSKeyedArchiver.archivedData(withRootObject: self.quittingItemArray, requiringSecureCoding: true)
+            self.defaults.setValue(codedArray, forKey: "SavedQuittingItemArray")
+            
         } else if item is PersistingItem{
-            persistingItemArray.append(item as! PersistingItem)
-            defaults.setValue(persistingItemArray, forKey: "SavedPersistingItemArray")
+            
+            let codedArray = try! NSKeyedArchiver.archivedData(withRootObject: self.persistingItemArray, requiringSecureCoding: true)
+            self.persistingItemArray.append(item as! PersistingItem)
+            self.defaults.setValue(codedArray, forKey: "SavedPersistingItemArray")
         } else {
             print("Unknown item type")
         }
