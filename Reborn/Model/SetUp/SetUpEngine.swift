@@ -15,8 +15,7 @@ struct SetUpEngine {
         SetUpPage(question: "您想戒多久", buttons: ["1个月", "2个月", "3个月", "半年", "1年", "2年"]),
         SetUpPage(question: "请选择一项您现在最想坚持的事情", buttons: ["跑步", "学英语", "瑜伽", "阅读", "减肥", "健身", "冥想", "自定义"]),
         SetUpPage(question: "您想坚持多久", buttons: ["1个月", "2个月", "3个月", "半年", "1年", "2年"]),
-        SetUpPage(question: "您的性别？", buttons: ["男生", "女生", "其他"]),
-        SetUpPage(question: "测试？", buttons: ["A", "B", "C"])
+        SetUpPage(question: "您的性别？", buttons: ["男生", "女生", "其他"])
     ]
     
     var quittingItemName: String = ""
@@ -70,7 +69,7 @@ struct SetUpEngine {
         return quittingItemDays
     }
     
-    mutating func processSlectedData(buttonTitle: String) {
+    mutating func processSlectedData(buttonTitle: String) { // execute once next button clicked
    
         
         switch progress {
@@ -88,8 +87,11 @@ struct SetUpEngine {
             print("Switching progress Error")
         }
         
-        print("\(quittingItemName), \(quittingItemDays), \(persistingItemName), \(persistingItemDays)")
-        //self.engine.saveNewItem(item: PersistingItem(name: persistingItemName, days: persistingItemDays, creationDate: Date()))
+    }
+    
+    func saveData() {
+        self.engine.saveItem(newItem: QuittingItem(name: quittingItemName, days: quittingItemDays, finishedDays: 0, creationDate: Date()))
+        self.engine.saveItem(newItem: PersistingItem(name: persistingItemName, days: persistingItemDays, finishedDays: 0, creationDate: Date()))
     }
     
 }

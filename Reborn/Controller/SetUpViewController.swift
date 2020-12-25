@@ -17,7 +17,7 @@ class SetUpViewController: UIViewController {
     @IBOutlet weak var skipSetUpButton: UIButton!
     
     var engine = SetUpEngine()
-    var setting = StyleSetting()
+    var setting = SystemStyleSetting()
     
     var middleViewX: CGFloat?
     var middleViewY: CGFloat?
@@ -49,8 +49,10 @@ class SetUpViewController: UIViewController {
     }
     
     @IBAction func nextStepButtonPressed(_ sender: UIButton) {
-    
-    
+        
+        if nextStepButton.currentTitle == setting.finishButtonTitle {
+            self.engine.saveData()
+        }
         self.engine.processSlectedData(buttonTitle: self.selectedButton.currentTitle!)
         self.nextStepButton.isEnabled = false
         self.engine.nextPage()

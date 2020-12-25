@@ -10,13 +10,16 @@ enum Type {
 }
 
 import Foundation
-class Item: NSObject {
+class Item: Codable {
     var name: String
     var days: Int
+    var finishedDays: Int
     var creationDate: Date
-    init(name: String, days: Int, creationDate: Date) {
+
+    init(name: String, days: Int, finishedDays: Int, creationDate: Date) {
         self.name = name
         self.days = days
+        self.finishedDays = finishedDays
         self.creationDate = creationDate
     }
 }

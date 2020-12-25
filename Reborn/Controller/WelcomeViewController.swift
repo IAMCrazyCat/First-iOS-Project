@@ -30,7 +30,7 @@ class WelcomViewController: UIViewController {
     let progressTwoImageArray: Array<UIImage> = [#imageLiteral(resourceName: "Cigratte"), #imageLiteral(resourceName: "Game"), #imageLiteral(resourceName: "Musturbate")]
     var progressTwoImageNum = 0
     
-    var setting = StyleSetting()
+    var setting = SystemStyleSetting()
     
     override func viewDidLoad() {
         

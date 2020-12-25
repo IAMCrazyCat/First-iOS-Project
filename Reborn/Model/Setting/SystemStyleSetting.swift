@@ -8,10 +8,13 @@
 import Foundation
 import UIKit
 
-struct StyleSetting{
-    
+struct SystemStyleSetting{
+    // for welcome page
+
     let FontNormalSize: CGFloat = 21
     let mainButtonCornerRadius: CGFloat = 25
+    let checkButtonCornerRadius: CGFloat = 15
+    
     
     // for set up page buttons
     let optionButtonWidth: CGFloat = 150
@@ -29,6 +32,11 @@ struct StyleSetting{
     
     let nextStepButtonTitle: String = "下一步"
     let finishButtonTitle: String = "完成"
-
+    
+    // for homepage
+    static let itemCardBGImage: UIImage = #imageLiteral(resourceName: "ItemCard")
+    let progressBarLengthOffset: CGFloat = 90
+    let itemCardHeight: CGFloat = 130
+    let centerObjectsOffset: CGFloat = 70
 }
 
