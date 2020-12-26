@@ -7,5 +7,13 @@
 
 import Foundation
 class QuittingItem: Item {
-    var type = Type.quitting
+    
+    init(name: String, days: Int, finishedDays: Int, creationDate: Date) {
+        super.init(name: name, days: days, finishedDays: finishedDays, creationDate: creationDate, type: ItemType.QUITTING)
+    }
+    
+    required init(from decoder: Decoder) throws {
+        fatalError("init(from:) has not been implemented")
+    }
+    
 }

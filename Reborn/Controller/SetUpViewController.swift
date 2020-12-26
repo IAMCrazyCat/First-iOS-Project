@@ -39,7 +39,6 @@ class SetUpViewController: UIViewController {
         middleViewWidth = middleView.frame.width
         middleViewHeight = middleView.frame.height
         
-        
         //questionLabel.font = questionLabel.font.withSize(setting.FontNormalSize)
         questionLabel.font = setting.questionLabelFont
         nextStepButton.layer.cornerRadius = setting.mainButtonCornerRadius
@@ -52,7 +51,9 @@ class SetUpViewController: UIViewController {
         
         if nextStepButton.currentTitle == setting.finishButtonTitle {
             self.engine.saveData()
+            self.performSegue(withIdentifier: "goToHomeView", sender: self)
         }
+        
         self.engine.processSlectedData(buttonTitle: self.selectedButton.currentTitle!)
         self.nextStepButton.isEnabled = false
         self.engine.nextPage()

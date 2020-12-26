@@ -15,6 +15,8 @@
 		220B728E258A288300E4BEDC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 220B728C258A288300E4BEDC /* LaunchScreen.storyboard */; };
 		220B7299258A288300E4BEDC /* RebornTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B7298258A288300E4BEDC /* RebornTests.swift */; };
 		220B72A4258A288300E4BEDC /* RebornUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B72A3258A288300E4BEDC /* RebornUITests.swift */; };
+		224A91842595FA7D00A896BE /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224A91832595FA7D00A896BE /* ItemType.swift */; };
+		224A919225971E9000A896BE /* ItemCardBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224A919125971E9000A896BE /* ItemCardBuilder.swift */; };
 		2279C17E2592ED2F00566CD7 /* UserStyleSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2279C17D2592ED2F00566CD7 /* UserStyleSetting.swift */; };
 		22C23A0F258DC4FA00D4BEB2 /* AppEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C23A0E258DC4FA00D4BEB2 /* AppEngine.swift */; };
 		22C23A14258DC58F00D4BEB2 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C23A13258DC58F00D4BEB2 /* Item.swift */; };
@@ -23,6 +25,7 @@
 		22C23A27258DCE4500D4BEB2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C23A26258DCE4500D4BEB2 /* HomeViewController.swift */; };
 		22C5D967258F3E4400131964 /* SetUpEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5D966258F3E4400131964 /* SetUpEngine.swift */; };
 		22C5D975258F40E800131964 /* SetUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5D974258F40E800131964 /* SetUpPage.swift */; };
+		22C7D5B52595DB0C00B7D0F1 /* ItemProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C7D5B42595DB0C00B7D0F1 /* ItemProtocol.swift */; };
 		22FCB1B5258D86BA006A0D39 /* SetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FCB1B4258D86BA006A0D39 /* SetUpViewController.swift */; };
 		22FCB1BA258D907C006A0D39 /* SystemStyleSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FCB1B9258D907C006A0D39 /* SystemStyleSetting.swift */; };
 /* End PBXBuildFile section */
@@ -59,6 +62,8 @@
 		220B729F258A288300E4BEDC /* RebornUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RebornUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		220B72A3258A288300E4BEDC /* RebornUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebornUITests.swift; sourceTree = "<group>"; };
 		220B72A5258A288300E4BEDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		224A91832595FA7D00A896BE /* ItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
+		224A919125971E9000A896BE /* ItemCardBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCardBuilder.swift; sourceTree = "<group>"; };
 		2279C17D2592ED2F00566CD7 /* UserStyleSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStyleSetting.swift; sourceTree = "<group>"; };
 		22C23A0E258DC4FA00D4BEB2 /* AppEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEngine.swift; sourceTree = "<group>"; };
 		22C23A13258DC58F00D4BEB2 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -67,6 +72,7 @@
 		22C23A26258DCE4500D4BEB2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		22C5D966258F3E4400131964 /* SetUpEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpEngine.swift; sourceTree = "<group>"; };
 		22C5D974258F40E800131964 /* SetUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpPage.swift; sourceTree = "<group>"; };
+		22C7D5B42595DB0C00B7D0F1 /* ItemProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemProtocol.swift; sourceTree = "<group>"; };
 		22FCB1B4258D86BA006A0D39 /* SetUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewController.swift; sourceTree = "<group>"; };
 		22FCB1B9258D907C006A0D39 /* SystemStyleSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemStyleSetting.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -152,6 +158,7 @@
 		220B72B4258C68FB00E4BEDC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				224A919025971E0800A896BE /* Builder */,
 				22AAD46A25922C06005078B6 /* Main */,
 				22C5D987258F646700131964 /* Setting */,
 				22C5D954258F3D3E00131964 /* SetUp */,
@@ -178,6 +185,14 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		224A919025971E0800A896BE /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				224A919125971E9000A896BE /* ItemCardBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
 		22AAD46A25922C06005078B6 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +207,8 @@
 				22C23A13258DC58F00D4BEB2 /* Item.swift */,
 				22C23A18258DC5D700D4BEB2 /* QuittingItem.swift */,
 				22C23A1D258DC5FB00D4BEB2 /* PersistingItem.swift */,
+				22C7D5B42595DB0C00B7D0F1 /* ItemProtocol.swift */,
+				224A91832595FA7D00A896BE /* ItemType.swift */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -346,6 +363,8 @@
 			files = (
 				2279C17E2592ED2F00566CD7 /* UserStyleSetting.swift in Sources */,
 				22C23A27258DCE4500D4BEB2 /* HomeViewController.swift in Sources */,
+				224A919225971E9000A896BE /* ItemCardBuilder.swift in Sources */,
+				224A91842595FA7D00A896BE /* ItemType.swift in Sources */,
 				22FCB1B5258D86BA006A0D39 /* SetUpViewController.swift in Sources */,
 				22C23A19258DC5D700D4BEB2 /* QuittingItem.swift in Sources */,
 				220B7286258A288000E4BEDC /* WelcomeViewController.swift in Sources */,
@@ -356,6 +375,7 @@
 				22FCB1BA258D907C006A0D39 /* SystemStyleSetting.swift in Sources */,
 				22C23A1E258DC5FB00D4BEB2 /* PersistingItem.swift in Sources */,
 				22C23A0F258DC4FA00D4BEB2 /* AppEngine.swift in Sources */,
+				22C7D5B52595DB0C00B7D0F1 /* ItemProtocol.swift in Sources */,
 				22C5D967258F3E4400131964 /* SetUpEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

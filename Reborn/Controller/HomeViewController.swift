@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var overallProgressView: UIView!
@@ -18,6 +18,10 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var overallProgressLabel: UILabel!
     @IBOutlet weak var itemCardView: UIView!
     @IBOutlet weak var itemsTitleLabel: UILabel!
+    @IBOutlet weak var navigationBarTitleLabel: UILabel!
+    
+    @IBOutlet weak var dataLabel: UILabel!
+    @IBOutlet weak var overAllProgressTitleLabel: UILabel!
     
     var setting = SystemStyleSetting()
     let cardBGImage = SystemStyleSetting.itemCardBGImage
@@ -30,6 +34,10 @@ class HomeViewController: UIViewController {
     let trackColor = UserStyleSetting.themeColor?.withAlphaComponent(0.3).cgColor
     let progressWidth: CGFloat = 8
     
+    var scrollViewTopOffset: CGFloat = 0
+    var scrollViewLastOffset: CGFloat = 0
+    let date = Date()
+    let dateFormatter = DateFormatter()
     let engine = AppEngine()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,20 +45,79 @@ class HomeViewController: UIViewController {
         //checkButton.layer.cornerRadius = setting.checkButtonCornerRadius
         mainScrollView.contentSize = CGSize(width: view.frame.width, height: 2000)
         overallProgressView.layer.contents = cardBGImage.cgImage
-        quittingItemView.layer.contents = cardBGImage.cgImage
         
         avatarImageView.layer.masksToBounds = true
         avatarImageView.layer.cornerRadius = avatarImageView.bounds.width / 2
         
-   
+    
         overallProgressView.layoutIfNeeded()
         addProgressCircle()
         excuteCircleAnimation()
         //excuteProgressLabelAnimation()
         updateUI()
         
+        scrollViewTopOffset = overAllProgressTitleLabel.frame.origin.y - 8
+        mainScrollView.setContentOffset(CGPoint(x: 0, y: scrollViewTopOffset), animated: false)
+        mainScrollView.delegate = self // activate delegate
+        
+        dateFormatter.locale = Locale(identifier: "zh")
+        dateFormatter.setLocalizedDateFormatFromTemplate("dd MMMM EEEE")
+        dataLabel.text = dateFormatter.string(from: date)
+        navigationBarTitleLabel.text = self.navigationItem.title
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.tintColor = UIColor.black
         
     }
+   
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        if scrollView.contentOffset.y < self.scrollViewTopOffset / 2 && scrollView.contentOffset.y > 0 { // [0, crollViewTopOffset / 2]
+            
+            if scrollView.contentOffset.y > scrollViewLastOffset { // scroll up
+                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+                    scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+                }, completion: nil)
+                
+            }
+            
+        } else if scrollView.contentOffset.y > self.scrollViewTopOffset / 2 && scrollView.contentOffset.y < self.scrollViewTopOffset { // [crollViewTopOffset / 2, offset]
+            
+            if scrollView.contentOffset.y > scrollViewLastOffset  { // scroll up
+                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+                    scrollView.setContentOffset(CGPoint(x: 0, y: self.scrollViewTopOffset), animated: false)
+                }, completion: nil)
+            } else { // scroll down
+                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+                    scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+                }, completion: nil)
+            }
+        }
+       
+        self.scrollViewLastOffset = scrollView.contentOffset.y
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        let navigationBar = self.navigationController?.navigationBar
+        if scrollView.contentOffset.y < self.scrollViewTopOffset - 10 {
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                navigationBar!.barTintColor = UIColor.white
+                navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navigationBar!.tintColor.withAlphaComponent(0)]
+                navigationBar!.layoutIfNeeded()
+            })
+            
+        } else {
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                navigationBar!.barTintColor = UserStyleSetting.themeColor
+                navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navigationBar!.tintColor.withAlphaComponent(1)]
+                navigationBar!.layoutIfNeeded()
+            })
+            
+        }
+    }
+
     
     func addProgressCircle() { // Circle progress bar
        
@@ -114,12 +181,17 @@ class HomeViewController: UIViewController {
             
             let newItemCardView = UIView()
             newItemCardView.layer.contents = cardBGImage.cgImage
-            newItemCardView.frame = CGRect(x: self.itemsTitleLabel.frame.origin.x, y: self.itemsTitleLabel.frame.origin.y + self.itemsTitleLabel.frame.height + 10 + cordinateY, width: self.view.frame.width - 16, height: setting.itemCardHeight)
+            newItemCardView.frame = CGRect(x: self.itemsTitleLabel.frame.origin.x, y: self.itemsTitleLabel.frame.origin.y + self.itemsTitleLabel.frame.height + 10 + cordinateY, width: self.view.frame.width - self.itemsTitleLabel.frame.origin.x * 2, height: setting.itemCardHeight)
 
             //------------------------------------------------------------------------
             let nameLabel = UILabel()
             
-            nameLabel.text = item.name
+            if item.type == ItemType.QUITTING {
+                nameLabel.text = "戒除" + item.name
+            } else {
+                nameLabel.text = "坚持" + item.name
+            }
+            
             nameLabel.textColor = UIColor.black
             //nameLabel.frame = CGRect(x: 20, y: 20, width: 50, height: 20)
             nameLabel.font = UserStyleSetting.fontSmall
@@ -132,12 +204,8 @@ class HomeViewController: UIViewController {
             
             //------------------------------------------------------------------------
             let typeLabel = UILabel()
-            if let _ = item as? QuittingItem {
-                typeLabel.text = "已戒除"
-            } else {
-                typeLabel.text = "已坚持"
-            }
             
+            typeLabel.text = "已打卡"
             typeLabel.textColor = UIColor.black
             typeLabel.font = UserStyleSetting.fontSmall
             typeLabel.sizeToFit()

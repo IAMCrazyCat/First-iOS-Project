@@ -4,10 +4,7 @@
 //
 //  Created by Christian Liu on 19/12/20.
 //
-enum Type {
-    case quitting
-    case persisting
-}
+
 
 import Foundation
 class Item: Codable {
@@ -15,11 +12,14 @@ class Item: Codable {
     var days: Int
     var finishedDays: Int
     var creationDate: Date
+    var type: ItemType
 
-    init(name: String, days: Int, finishedDays: Int, creationDate: Date) {
+    init(name: String, days: Int, finishedDays: Int, creationDate: Date, type: ItemType) {
         self.name = name
         self.days = days
         self.finishedDays = finishedDays
         self.creationDate = creationDate
+        self.type = type
     }
+    
 }

@@ -22,11 +22,11 @@ struct SystemStyleSetting{
     let optionButtonVerticalDistance: CGFloat = 20
     let optionButtonHorizontalDistance: CGFloat = 20
     let optionButtonTitleColor: UIColor = UIColor.black
-    let optionButtonTitleFont: UIFont = UIFont(name: ".SFUIText-Medium", size: 15)!
+    let optionButtonTitleFont: UIFont = UIFont.systemFont(ofSize: 15)
     let optionButtonBgImage: UIImage = #imageLiteral(resourceName: "OptionButton")
     let optionButtonPressedBgImage: UIImage = #imageLiteral(resourceName: "OptionButtonPressed")
     let optionButtonDisabledBgImage: UIImage = #imageLiteral(resourceName: "OptionButtonDisabled")
-    let questionLabelFont: UIFont = UIFont(name: ".SFUIText-Medium", size: 17)!
+    let questionLabelFont: UIFont = UIFont.systemFont(ofSize: 17)
     let progressBarAnimationSpeed = 0.2
     
     

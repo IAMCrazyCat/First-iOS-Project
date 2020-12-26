@@ -7,5 +7,12 @@
 
 import Foundation
 class PersistingItem: Item {
-    var type = Type.persisting
+    init(name: String, days: Int, finishedDays: Int, creationDate: Date) {
+        super.init(name: name, days: days, finishedDays: finishedDays, creationDate: creationDate, type: ItemType.PERSISTING)
+    }
+    
+    required init(from decoder: Decoder) throws {
+        fatalError("init(from:) has not been implemented")
+    }
+    
 }
