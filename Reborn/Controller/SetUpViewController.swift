@@ -55,32 +55,17 @@ class SetUpViewController: UIViewController{
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow(keyboardShowNotification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         
-        state1.handle1()
     }
     
-    @IBAction func nextStepButtonPressed(_ sender: UIButton) {
+    func addAllPages() {
         
-        if nextStepButton.currentTitle == setting.finishButtonTitle {
-            self.engine.saveData()
-            self.goToHomeView()
+        for _ in 0 ..< engine.getPagesCount() {
+            
+            updateButtons()
+            engine.nextPage()
         }
         
-        self.engine.processSlectedData(buttonTitle: self.selectedButton.currentTitle!)
-        self.nextStepButton.isEnabled = false
-        self.engine.nextPage()
-        self.updateUI()
-    }
-    
-    @IBAction func previousStepButtonPressed(_ sender: UIButton) {
-        
-        self.selectedButton.isSelected = false
-        self.nextStepButton.isEnabled = false
-        self.engine.previousPage()
-        self.updateUI()
-    }
-    
-    @IBAction func skipSetUpButtonPressed(_ sender: UIButton) {
-        self.goToHomeView()
+        engine.progress = 1
     }
     
     func updateButtons() { // Adding a new page to scrollview
@@ -149,7 +134,8 @@ class SetUpViewController: UIViewController{
                 }
             case 4:
                 if buttonName == self.setting.customButtonTitle {
-                    button.tag = self.setting.customItemNameButtonTag
+                    button.tag = self.setting.customTargetButtonTag
+                    
                 }
             default: print("")
             }
@@ -162,59 +148,95 @@ class SetUpViewController: UIViewController{
 
     }
     
-    @objc func popUpViewButtonPressed(_ sender: UIButton!) {
+    @IBAction func nextStepButtonPressed(_ sender: UIButton) {
+        print("NEXT")
+        if nextStepButton.currentTitle == setting.finishButtonTitle {
+            self.engine.saveData()
+            self.goToHomeView()
+        }
         
+        self.engine.processSlectedData(buttonTitle: self.selectedButton.currentTitle!)
+        self.engine.nextPage()
+        print("\(engine.progress) Progress")
+        self.deSelectButton()
+        
+    }
+    
+    @IBAction func previousStepButtonPressed(_ sender: UIButton) {
+        
+        self.engine.previousPage()
+        self.deSelectButton()
+
+    }
+    
+    func updateSelectedButton(button: UIButton) {
+        self.nextStepButton.isEnabled = true
+        self.selectedButton.isSelected = false // old selected button become white
+        self.selectedButton = button
+        button.isSelected = !button.isSelected
+        updateUI()
+  
+    }
+    
+    
+    func deSelectButton() {
+        self.selectedButton.isSelected = false
+        self.nextStepButton.isEnabled = false
+        self.updateUI()
+    }
+    
+    
+    @IBAction func skipSetUpButtonPressed(_ sender: UIButton) {
+        self.goToHomeView()
+    }
+    
+    
+    
+    
+    
+    @objc func popUpViewButtonPressed(_ sender: UIButton!) {
+       
         if sender.tag == setting.popUpBGViewButtonTag || sender.tag == setting.popUpWindowCancelButtonTag { // dismiss buttons pressed
-            print("HERERER")
-            self.selectedButton.isSelected = false
-            self.nextStepButton.isEnabled = false
-            self.popUpView!.disappear(comletion: {_ in
-                sender.superview?.removeFromSuperview()
-            })
+     
+            self.hidePopUpView(sender)
+            self.deSelectButton()
+        
           
         } else if sender.tag == setting.popUpWindowDoneButtonTag { // done button pressed
             
             if self.popUpView?.getTextfieldText() != "" {
-                
+    
                 self.popUpView?.hidePrompLabel(true)
+                self.hidePopUpView(sender)
                 
-                self.popUpView!.disappear(comletion: {_ in
-                    sender.superview?.removeFromSuperview()
-                })
             } else {
+                
                 self.popUpView?.hidePrompLabel(false)
             }
             
             self.selectedButton.setTitle(self.popUpView?.getTextfieldText(), for: .normal)
         }
-
+        
+        
     }
     
 
-    
     @objc func optionButtonPressed(_ sender: UIButton! ) { // option button selected action
         
         if sender.tag == setting.customItemNameButtonTag {
-
+            
             self.showPopUpView()
             
-        } else if sender.currentTitle == setting.skipButtonTitle {
-            
-        } else {
-            
-        
         }
         
-        self.nextStepButton.isEnabled = true
-        self.selectedButton.isSelected = false // old selected button become white
-        self.selectedButton = sender
+        updateSelectedButton(button: sender)
         
-        sender.isSelected = !sender.isSelected
-        
-        print(sender.currentTitle!)
-        updateUI()
         
     }
+    
+   
+  
+    
     
     @objc func keyboardDidShow(keyboardShowNotification notification: Notification) {
         if let userInfo = notification.userInfo, let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
@@ -231,9 +253,9 @@ class SetUpViewController: UIViewController{
     }
     
     
-    func hidePopUpView(_ sender: UIButton) {
-        self.popUpView!.disappear(comletion: {_ in
-            sender.superview?.removeFromSuperview()
+    func hidePopUpView(_ button: UIButton) {
+        self.popUpView?.disappear(comletion: {_ in
+            self.popUpView?.popUpBGView.removeFromSuperview()
         })
     }
     
@@ -246,16 +268,7 @@ class SetUpViewController: UIViewController{
     }
     
     
-    func addAllPages() {
-        
-        for _ in 0 ..< engine.getPagesCount() {
-            
-            updateButtons()
-            engine.nextPage()
-        }
-        
-        engine.progress = 1
-    }
+    
     
     @IBAction func skipButtonPressed(_ sender: UIButton) {
         goToHomeView()

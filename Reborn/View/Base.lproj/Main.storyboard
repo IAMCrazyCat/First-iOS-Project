@@ -1019,7 +1019,7 @@ Cg
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <namedColor name="ThemeColor">
-            <color red="1" green="0.67702574859999998" blue="0.072909565900000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="1" green="0.67699998617172241" blue="0.072999998927116394" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="ThemeColorInvert">
             <color red="0.57700002193450928" green="0.58399999141693115" blue="0.58799999952316284" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

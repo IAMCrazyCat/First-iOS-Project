@@ -38,7 +38,6 @@ struct PopUpView {
         
         
         if let BGViewButton = self.getBGViewSubviewByTag(tag: self.setting.popUpBGViewButtonTag) as? UIButton {
-            print("FIND")
             BGViewButton.addTarget(self, action: action, for: .touchDown)
         }
         
