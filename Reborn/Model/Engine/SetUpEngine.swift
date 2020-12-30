@@ -9,12 +9,12 @@ import Foundation
 import UIKit
 struct SetUpEngine {
     var progress = 1
-    var engine = AppEngine()
+    var engine = AppEngine.shared
     let pages = [
-        SetUpPage(question: "请选择一项您现在最想戒除的瘾", buttons: ["性瘾", "拖延", "吸烟", "熬夜", "喝酒", "蹦迪", "游戏", "赖床", "手机", "奶茶", "自定义", "暂时没有瘾"]),
-        SetUpPage(question: "您想戒多久", buttons: ["1个月", "2个月", "3个月", "半年", "1年", "2年"]),
-        SetUpPage(question: "请选择一项您现在最想坚持的事情", buttons: ["跑步", "学英语", "瑜伽", "阅读", "减肥", "健身", "冥想", "自定义"]),
-        SetUpPage(question: "您想坚持多久", buttons: ["1个月", "2个月", "3个月", "半年", "1年", "2年"]),
+        SetUpPage(question: "请选择一项您现在最想戒除的瘾", buttons: ["性瘾", "拖延", "吸烟", "熬夜", "喝酒", "蹦迪", "游戏", "赖床", "手机", "奶茶", SystemStyleSetting.shared.customButtonTitle, SystemStyleSetting.shared.skipButtonTitle]),
+        SetUpPage(question: "您想戒多久", buttons: ["1个月", "2个月", "3个月", "半年", "1年", "自定义"]),
+        SetUpPage(question: "请选择一项您现在最想坚持的事情", buttons: ["跑步", "学英语", "瑜伽", "阅读", "减肥", "健身", "冥想", "吃早餐", "存钱", "每日自省", SystemStyleSetting.shared.customButtonTitle, SystemStyleSetting.shared.skipButtonTitle]),
+        SetUpPage(question: "您想坚持多久", buttons: ["1个月", "2个月", "3个月", "半年", "1年", "自定义"]),
         SetUpPage(question: "您的性别？", buttons: ["男生", "女生", "其他"])
     ]
     
@@ -90,8 +90,9 @@ struct SetUpEngine {
     }
     
     func saveData() {
-        self.engine.saveItem(newItem: QuittingItem(name: quittingItemName, days: quittingItemDays, finishedDays: 0, creationDate: Date()))
-        self.engine.saveItem(newItem: PersistingItem(name: persistingItemName, days: persistingItemDays, finishedDays: 0, creationDate: Date()))
+        self.engine.addItem(newItem: QuittingItem(name: quittingItemName, days: quittingItemDays, finishedDays: 0, creationDate: Date()))
+        self.engine.addItem(newItem: PersistingItem(name: persistingItemName, days: persistingItemDays, finishedDays: 0, creationDate: Date()))
+        self.engine.saveItems()
     }
     
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 enum ItemType: String, Codable {
-    case QUITTING
-    case PERSISTING
+    case UNDEFINED = "名字"
+    case QUITTING = "戒除"
+    case PERSISTING = "坚持"
 }

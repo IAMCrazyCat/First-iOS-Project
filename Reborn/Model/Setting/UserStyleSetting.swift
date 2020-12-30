@@ -7,9 +7,9 @@
 
 import Foundation
 import UIKit
-struct UserStyleSetting {
+class UserStyleSetting {
     static var themeColor = UIColor(named: "ThemeColor")
     static var fontLarge = UIFont.systemFont(ofSize: 30)
-    static var fontMedium = UIFont.systemFont(ofSize: 15)
+    static var fontMedium = UIFont.systemFont(ofSize: 17)
     static var fontSmall = UIFont.systemFont(ofSize: 14)
 }

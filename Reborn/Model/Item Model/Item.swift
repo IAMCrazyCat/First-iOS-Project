@@ -13,7 +13,9 @@ class Item: Codable {
     var finishedDays: Int
     var creationDate: Date
     var type: ItemType
-
+    var punchInDate: Array<Date> = []
+    var frequency: Array<WeekDay> = []
+    
     init(name: String, days: Int, finishedDays: Int, creationDate: Date, type: ItemType) {
         self.name = name
         self.days = days
@@ -22,4 +24,12 @@ class Item: Codable {
         self.type = type
     }
     
+    func punchIn(punchInDate: Date) {
+        self.punchInDate.append(punchInDate)
+        self.finishedDays += 1
+    }
+    
+    func setFreqency() {
+        
+    }
 }

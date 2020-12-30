@@ -18,6 +18,19 @@
 		224A91842595FA7D00A896BE /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224A91832595FA7D00A896BE /* ItemType.swift */; };
 		224A919225971E9000A896BE /* ItemCardBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224A919125971E9000A896BE /* ItemCardBuilder.swift */; };
 		2279C17E2592ED2F00566CD7 /* UserStyleSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2279C17D2592ED2F00566CD7 /* UserStyleSetting.swift */; };
+		229946FE259AF1D1006D0381 /* ItemCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229946FD259AF1D1006D0381 /* ItemCardView.swift */; };
+		2299470A259AF20C006D0381 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22994709259AF20C006D0381 /* PopUpView.swift */; };
+		22994722259BFF8E006D0381 /* CustomItemNamePopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22994721259BFF8E006D0381 /* CustomItemNamePopUpView.swift */; };
+		2299472A259C9CF4006D0381 /* SetUpViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22994729259C9CF4006D0381 /* SetUpViewState.swift */; };
+		22994730259C9D40006D0381 /* SetUpViewBaseState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2299472F259C9D40006D0381 /* SetUpViewBaseState.swift */; };
+		2299473B259C9D7E006D0381 /* WaitingForSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2299473A259C9D7E006D0381 /* WaitingForSelection.swift */; };
+		22994743259C9DB2006D0381 /* ReadyToGoNextPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22994742259C9DB2006D0381 /* ReadyToGoNextPage.swift */; };
+		22A597EC2598091B008E2A06 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A597EB2598091B008E2A06 /* UIButton.swift */; };
+		22A597F925986685008E2A06 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A597F825986685008E2A06 /* AddItemViewController.swift */; };
+		22A597FE2599C0AF008E2A06 /* WeekDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A597FD2599C0AF008E2A06 /* WeekDay.swift */; };
+		22A598062599E3A8008E2A06 /* CustomTargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A598052599E3A8008E2A06 /* CustomTargetViewController.swift */; };
+		22A5980C259A9C5B008E2A06 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5980B259A9C5A008E2A06 /* Builder.swift */; };
+		22A59811259AA31A008E2A06 /* ButtomPopUpBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A59810259AA31A008E2A06 /* ButtomPopUpBuilder.swift */; };
 		22C23A0F258DC4FA00D4BEB2 /* AppEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C23A0E258DC4FA00D4BEB2 /* AppEngine.swift */; };
 		22C23A14258DC58F00D4BEB2 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C23A13258DC58F00D4BEB2 /* Item.swift */; };
 		22C23A19258DC5D700D4BEB2 /* QuittingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C23A18258DC5D700D4BEB2 /* QuittingItem.swift */; };
@@ -65,6 +78,19 @@
 		224A91832595FA7D00A896BE /* ItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
 		224A919125971E9000A896BE /* ItemCardBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCardBuilder.swift; sourceTree = "<group>"; };
 		2279C17D2592ED2F00566CD7 /* UserStyleSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStyleSetting.swift; sourceTree = "<group>"; };
+		229946FD259AF1D1006D0381 /* ItemCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCardView.swift; sourceTree = "<group>"; };
+		22994709259AF20C006D0381 /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
+		22994721259BFF8E006D0381 /* CustomItemNamePopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomItemNamePopUpView.swift; sourceTree = "<group>"; };
+		22994729259C9CF4006D0381 /* SetUpViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewState.swift; sourceTree = "<group>"; };
+		2299472F259C9D40006D0381 /* SetUpViewBaseState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewBaseState.swift; sourceTree = "<group>"; };
+		2299473A259C9D7E006D0381 /* WaitingForSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForSelection.swift; sourceTree = "<group>"; };
+		22994742259C9DB2006D0381 /* ReadyToGoNextPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyToGoNextPage.swift; sourceTree = "<group>"; };
+		22A597EB2598091B008E2A06 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
+		22A597F825986685008E2A06 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
+		22A597FD2599C0AF008E2A06 /* WeekDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDay.swift; sourceTree = "<group>"; };
+		22A598052599E3A8008E2A06 /* CustomTargetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTargetViewController.swift; sourceTree = "<group>"; };
+		22A5980B259A9C5A008E2A06 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
+		22A59810259AA31A008E2A06 /* ButtomPopUpBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtomPopUpBuilder.swift; sourceTree = "<group>"; };
 		22C23A0E258DC4FA00D4BEB2 /* AppEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEngine.swift; sourceTree = "<group>"; };
 		22C23A13258DC58F00D4BEB2 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		22C23A18258DC5D700D4BEB2 /* QuittingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuittingItem.swift; sourceTree = "<group>"; };
@@ -158,11 +184,14 @@
 		220B72B4258C68FB00E4BEDC /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				224A919025971E0800A896BE /* Builder */,
-				22AAD46A25922C06005078B6 /* Main */,
 				22C5D987258F646700131964 /* Setting */,
-				22C5D954258F3D3E00131964 /* SetUp */,
-				22C23A22258DCA3E00D4BEB2 /* Item */,
+				22994702259AF1D8006D0381 /* PopUp Model */,
+				224A919025971E0800A896BE /* Builder */,
+				22AAD46A25922C06005078B6 /* Engine */,
+				22C5D954258F3D3E00131964 /* SetUp Model */,
+				22C23A22258DCA3E00D4BEB2 /* Item Model */,
+				22A597EB2598091B008E2A06 /* UIButton.swift */,
+				2299472E259C9D01006D0381 /* SeUp State */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -181,6 +210,8 @@
 				220B7285258A288000E4BEDC /* WelcomeViewController.swift */,
 				22FCB1B4258D86BA006A0D39 /* SetUpViewController.swift */,
 				22C23A26258DCE4500D4BEB2 /* HomeViewController.swift */,
+				22A597F825986685008E2A06 /* AddItemViewController.swift */,
+				22A598052599E3A8008E2A06 /* CustomTargetViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -189,19 +220,42 @@
 			isa = PBXGroup;
 			children = (
 				224A919125971E9000A896BE /* ItemCardBuilder.swift */,
+				22A5980B259A9C5A008E2A06 /* Builder.swift */,
+				22A59810259AA31A008E2A06 /* ButtomPopUpBuilder.swift */,
 			);
 			path = Builder;
 			sourceTree = "<group>";
 		};
-		22AAD46A25922C06005078B6 /* Main */ = {
+		22994702259AF1D8006D0381 /* PopUp Model */ = {
 			isa = PBXGroup;
 			children = (
-				22C23A0E258DC4FA00D4BEB2 /* AppEngine.swift */,
+				22994709259AF20C006D0381 /* PopUpView.swift */,
+				22994721259BFF8E006D0381 /* CustomItemNamePopUpView.swift */,
 			);
-			path = Main;
+			path = "PopUp Model";
 			sourceTree = "<group>";
 		};
-		22C23A22258DCA3E00D4BEB2 /* Item */ = {
+		2299472E259C9D01006D0381 /* SeUp State */ = {
+			isa = PBXGroup;
+			children = (
+				22994729259C9CF4006D0381 /* SetUpViewState.swift */,
+				2299472F259C9D40006D0381 /* SetUpViewBaseState.swift */,
+				2299473A259C9D7E006D0381 /* WaitingForSelection.swift */,
+				22994742259C9DB2006D0381 /* ReadyToGoNextPage.swift */,
+			);
+			path = "SeUp State";
+			sourceTree = "<group>";
+		};
+		22AAD46A25922C06005078B6 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				22C5D966258F3E4400131964 /* SetUpEngine.swift */,
+				22C23A0E258DC4FA00D4BEB2 /* AppEngine.swift */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		22C23A22258DCA3E00D4BEB2 /* Item Model */ = {
 			isa = PBXGroup;
 			children = (
 				22C23A13258DC58F00D4BEB2 /* Item.swift */,
@@ -209,17 +263,18 @@
 				22C23A1D258DC5FB00D4BEB2 /* PersistingItem.swift */,
 				22C7D5B42595DB0C00B7D0F1 /* ItemProtocol.swift */,
 				224A91832595FA7D00A896BE /* ItemType.swift */,
+				22A597FD2599C0AF008E2A06 /* WeekDay.swift */,
+				229946FD259AF1D1006D0381 /* ItemCardView.swift */,
 			);
-			path = Item;
+			path = "Item Model";
 			sourceTree = "<group>";
 		};
-		22C5D954258F3D3E00131964 /* SetUp */ = {
+		22C5D954258F3D3E00131964 /* SetUp Model */ = {
 			isa = PBXGroup;
 			children = (
-				22C5D966258F3E4400131964 /* SetUpEngine.swift */,
 				22C5D974258F40E800131964 /* SetUpPage.swift */,
 			);
-			path = SetUp;
+			path = "SetUp Model";
 			sourceTree = "<group>";
 		};
 		22C5D987258F646700131964 /* Setting */ = {
@@ -361,21 +416,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2299472A259C9CF4006D0381 /* SetUpViewState.swift in Sources */,
+				22994730259C9D40006D0381 /* SetUpViewBaseState.swift in Sources */,
+				229946FE259AF1D1006D0381 /* ItemCardView.swift in Sources */,
 				2279C17E2592ED2F00566CD7 /* UserStyleSetting.swift in Sources */,
 				22C23A27258DCE4500D4BEB2 /* HomeViewController.swift in Sources */,
+				22A5980C259A9C5B008E2A06 /* Builder.swift in Sources */,
 				224A919225971E9000A896BE /* ItemCardBuilder.swift in Sources */,
 				224A91842595FA7D00A896BE /* ItemType.swift in Sources */,
+				22A598062599E3A8008E2A06 /* CustomTargetViewController.swift in Sources */,
 				22FCB1B5258D86BA006A0D39 /* SetUpViewController.swift in Sources */,
+				22A597F925986685008E2A06 /* AddItemViewController.swift in Sources */,
+				2299470A259AF20C006D0381 /* PopUpView.swift in Sources */,
 				22C23A19258DC5D700D4BEB2 /* QuittingItem.swift in Sources */,
 				220B7286258A288000E4BEDC /* WelcomeViewController.swift in Sources */,
+				2299473B259C9D7E006D0381 /* WaitingForSelection.swift in Sources */,
 				22C5D975258F40E800131964 /* SetUpPage.swift in Sources */,
 				220B7282258A288000E4BEDC /* AppDelegate.swift in Sources */,
+				22994743259C9DB2006D0381 /* ReadyToGoNextPage.swift in Sources */,
 				220B7284258A288000E4BEDC /* SceneDelegate.swift in Sources */,
 				22C23A14258DC58F00D4BEB2 /* Item.swift in Sources */,
 				22FCB1BA258D907C006A0D39 /* SystemStyleSetting.swift in Sources */,
 				22C23A1E258DC5FB00D4BEB2 /* PersistingItem.swift in Sources */,
 				22C23A0F258DC4FA00D4BEB2 /* AppEngine.swift in Sources */,
+				22A597FE2599C0AF008E2A06 /* WeekDay.swift in Sources */,
+				22994722259BFF8E006D0381 /* CustomItemNamePopUpView.swift in Sources */,
 				22C7D5B52595DB0C00B7D0F1 /* ItemProtocol.swift in Sources */,
+				22A597EC2598091B008E2A06 /* UIButton.swift in Sources */,
+				22A59811259AA31A008E2A06 /* ButtomPopUpBuilder.swift in Sources */,
 				22C5D967258F3E4400131964 /* SetUpEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

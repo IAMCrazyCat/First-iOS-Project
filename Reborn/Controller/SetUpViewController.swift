@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SetUpViewController: UIViewController {
+class SetUpViewController: UIViewController{
 
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var nextStepButton: UIButton!
@@ -30,6 +30,13 @@ class SetUpViewController: UIViewController {
     var backButtonPressed = false
     var numberOfPagedAdded = 0
     var selectedButton: UIButton = UIButton()
+    var popUpView: PopUpView? = nil
+    var keyboardFrame: CGRect? = nil
+    
+    var popUpTextfieldText: String = ""
+    
+    var state1: WaitingForSelection = WaitingForSelection()
+    var state2: ReadyToGoNextPage = ReadyToGoNextPage()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,13 +52,17 @@ class SetUpViewController: UIViewController {
         nextStepButton.isEnabled = false
         addAllPages()
         updateUI()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow(keyboardShowNotification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        state1.handle1()
     }
     
     @IBAction func nextStepButtonPressed(_ sender: UIButton) {
         
         if nextStepButton.currentTitle == setting.finishButtonTitle {
             self.engine.saveData()
-            self.performSegue(withIdentifier: "goToHomeView", sender: self)
+            self.goToHomeView()
         }
         
         self.engine.processSlectedData(buttonTitle: self.selectedButton.currentTitle!)
@@ -69,7 +80,7 @@ class SetUpViewController: UIViewController {
     }
     
     @IBAction func skipSetUpButtonPressed(_ sender: UIButton) {
-        
+        self.goToHomeView()
     }
     
     func updateButtons() { // Adding a new page to scrollview
@@ -78,7 +89,7 @@ class SetUpViewController: UIViewController {
 
         var column = 1
         var buttonX: CGFloat
-        var buttonY: CGFloat = -setting.optionButtonVerticalDistance
+        var buttonY: CGFloat = -setting.optionButtonToTopDistance
 
         self.currentPageX += page.frame.width
         self.scrollViewWidth += page.frame.width
@@ -102,19 +113,46 @@ class SetUpViewController: UIViewController {
            
             button = UIButton(frame: CGRect(x: buttonX, y: buttonY, width: self.setting.optionButtonWidth, height: self.setting.optionButtonHeight))
             // Button's properties
+            button.layer.cornerRadius = self.setting.optionButtonCornerRadius
+            button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
+            button.layer.shadowOffset =  CGSize(width: 0.0, height: 2.0)
+            button.layer.shadowOpacity = 1.0
+            button.layer.masksToBounds = false
+            
             button.setTitle(buttonName, for: .normal)
             button.setTitleColor(self.setting.optionButtonTitleColor, for: .normal)
             button.setTitleColor(UIColor.black, for: .normal)
             button.setTitleColor(UIColor.white, for: .selected)
             
-            button.setBackgroundImage(self.setting.optionButtonBgImage, for: .normal)
-            button.setBackgroundImage(self.setting.optionButtonPressedBgImage, for: .highlighted)
-            button.setBackgroundImage(self.setting.optionButtonPressedBgImage, for: .selected)
+            //button.setBackgroundImage(self.setting.optionButtonBgImage, for: .normal)
+            //button.setBackgroundImage(self.setting.optionButtonPressedBgImage, for: .highlighted)
+            //button.setBackgroundImage(UIImage(), for: .selected)
+            button.setBackgroundColor(UIColor.white, cornerRadius: button.layer.cornerRadius, for: .normal)
+            button.setBackgroundColor(UserStyleSetting.themeColor!, cornerRadius: button.layer.cornerRadius, for: .selected)
+            //button.setBackgroundColor(UIColor.white, for: .normal)
             
             button.titleLabel?.font = self.setting.optionButtonTitleFont
             button.addTarget(self, action: #selector(optionButtonPressed), for: .touchDown)
 
-            
+            switch self.engine.progress {
+            case 1:
+                if buttonName == self.setting.customButtonTitle {
+                button.tag = self.setting.customItemNameButtonTag
+            }
+            case 2:
+                if buttonName == self.setting.customButtonTitle {
+                button.tag = self.setting.customTargetButtonTag
+            }
+            case 3:
+                if buttonName == self.setting.customButtonTitle {
+                    button.tag = self.setting.customItemNameButtonTag
+                }
+            case 4:
+                if buttonName == self.setting.customButtonTitle {
+                    button.tag = self.setting.customItemNameButtonTag
+                }
+            default: print("")
+            }
             page.addSubview(button)
 
         }
@@ -124,18 +162,89 @@ class SetUpViewController: UIViewController {
 
     }
     
-    @objc func optionButtonPressed(sender: UIButton! ) { // option button selected action
+    @objc func popUpViewButtonPressed(_ sender: UIButton!) {
         
+        if sender.tag == setting.popUpBGViewButtonTag || sender.tag == setting.popUpWindowCancelButtonTag { // dismiss buttons pressed
+            print("HERERER")
+            self.selectedButton.isSelected = false
+            self.nextStepButton.isEnabled = false
+            self.popUpView!.disappear(comletion: {_ in
+                sender.superview?.removeFromSuperview()
+            })
+          
+        } else if sender.tag == setting.popUpWindowDoneButtonTag { // done button pressed
+            
+            if self.popUpView?.getTextfieldText() != "" {
+                
+                self.popUpView?.hidePrompLabel(true)
+                
+                self.popUpView!.disappear(comletion: {_ in
+                    sender.superview?.removeFromSuperview()
+                })
+            } else {
+                self.popUpView?.hidePrompLabel(false)
+            }
+            
+            self.selectedButton.setTitle(self.popUpView?.getTextfieldText(), for: .normal)
+        }
 
+    }
+    
+
+    
+    @objc func optionButtonPressed(_ sender: UIButton! ) { // option button selected action
+        
+        if sender.tag == setting.customItemNameButtonTag {
+
+            self.showPopUpView()
+            
+        } else if sender.currentTitle == setting.skipButtonTitle {
+            
+        } else {
+            
+        
+        }
+        
         self.nextStepButton.isEnabled = true
-        self.selectedButton.isSelected = false
+        self.selectedButton.isSelected = false // old selected button become white
         self.selectedButton = sender
         
         sender.isSelected = !sender.isSelected
-       
+        
         print(sender.currentTitle!)
         updateUI()
+        
     }
+    
+    @objc func keyboardDidShow(keyboardShowNotification notification: Notification) {
+        if let userInfo = notification.userInfo, let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+            self.keyboardFrame = keyboardFrame
+            self.popUpView?.moveUp(distance: keyboardFrame.height)
+            
+        }
+        
+    }
+    
+    @objc func textFieldTapped(_ sender: UITextField!) {
+       
+        
+    }
+    
+    
+    func hidePopUpView(_ sender: UIButton) {
+        self.popUpView!.disappear(comletion: {_ in
+            sender.superview?.removeFromSuperview()
+        })
+    }
+    
+    func showPopUpView() {
+        self.popUpView = AppEngine.shared.generateCutomItemNamePopUp()
+        popUpView!.setDismissButtonActions(action: #selector(popUpViewButtonPressed))
+        popUpView!.setTextFieldAction(action: #selector(textFieldTapped))
+        popUpView!.appear()
+        self.view.addSubview(popUpView!.popUpBGView)
+    }
+    
     
     func addAllPages() {
         
@@ -147,7 +256,16 @@ class SetUpViewController: UIViewController {
         
         engine.progress = 1
     }
+    
+    @IBAction func skipButtonPressed(_ sender: UIButton) {
+        goToHomeView()
+    }
+    
+    func goToHomeView() {
         
+        self.performSegue(withIdentifier: "goToHomeView", sender: self)
+    }
+    
     func updateUI() {
     
         questionLabel.text = engine.getCurrentPage().question
@@ -158,11 +276,6 @@ class SetUpViewController: UIViewController {
             self.progressView.setProgress(Float(self.engine.progress) / Float(self.engine.getPagesCount()), animated: true)
         }
         
-//        if nextStepButton.isEnabled {
-//            nextStepButton.backgroundColor = UIColor(named: "ThemeColor")
-//        } else {
-//            nextStepButton.backgroundColor = UIColor(named: "ButtonGray")
-//        }
         
         nextStepButton.backgroundColor = nextStepButton.isEnabled ? UIColor(named: "ThemeColor"): UIColor(named: "ButtonGray") 
         
@@ -176,14 +289,6 @@ class SetUpViewController: UIViewController {
     }
     
 }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+ 
 
 
