@@ -72,6 +72,6 @@ struct SystemStyleSetting{
     let popUpWindowDoneButtonTag: Int = 3
     let popUpWindowTextFieldTag: Int = 4
     let popUpWindowPromptLabelTag: Int = 5
-
+    let popUpWindowPickerView: Int = 6
 }
 

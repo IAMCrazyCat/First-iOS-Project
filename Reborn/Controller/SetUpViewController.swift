@@ -8,6 +8,8 @@
 import UIKit
 
 class SetUpViewController: UIViewController{
+    
+    
 
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var nextStepButton: UIButton!
@@ -40,16 +42,16 @@ class SetUpViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         middleView.frame = CGRect(x: middleView.frame.origin.x, y: middleView.frame.origin.y, width: view.frame.width, height: middleView.frame.height)
         middleViewX = middleView.frame.origin.x
         middleViewY = middleView.frame.origin.y
         middleViewWidth = middleView.frame.width
         middleViewHeight = middleView.frame.height
-        
-        //questionLabel.font = questionLabel.font.withSize(setting.FontNormalSize)
         questionLabel.font = setting.questionLabelFont
         nextStepButton.layer.cornerRadius = setting.mainButtonCornerRadius
         nextStepButton.isEnabled = false
+        
         addAllPages()
         updateUI()
         
@@ -148,6 +150,7 @@ class SetUpViewController: UIViewController{
 
     }
     
+    
     @IBAction func nextStepButtonPressed(_ sender: UIButton) {
         print("NEXT")
         if nextStepButton.currentTitle == setting.finishButtonTitle {
@@ -223,16 +226,19 @@ class SetUpViewController: UIViewController{
 
     @objc func optionButtonPressed(_ sender: UIButton! ) { // option button selected action
         
-        if sender.tag == setting.customItemNameButtonTag {
+        if sender.tag == self.setting.customItemNameButtonTag {
             
-            self.showPopUpView()
+            self.showPopUpView(popUpType: .customItemName)
             
+        } else if sender.tag == self.setting.customTargetButtonTag {
+            self.showPopUpView(popUpType: .customTargetDays)
         }
         
         updateSelectedButton(button: sender)
         
         
     }
+    
     
    
   
@@ -259,8 +265,8 @@ class SetUpViewController: UIViewController{
         })
     }
     
-    func showPopUpView() {
-        self.popUpView = AppEngine.shared.generateCutomItemNamePopUp()
+    func showPopUpView(popUpType: PopUpType) {
+        self.popUpView = AppEngine.shared.generatePopUp(popUpType: popUpType)
         popUpView!.setDismissButtonActions(action: #selector(popUpViewButtonPressed))
         popUpView!.setTextFieldAction(action: #selector(textFieldTapped))
         popUpView!.appear()

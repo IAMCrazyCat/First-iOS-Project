@@ -10,11 +10,9 @@ import UIKit
 
 struct PopUpView {
     let popUpBGView: UIView
-    var popUpWindow: UIView? = nil
+    var popUpWindow: UIView = UIView()
     let setting: SystemStyleSetting
-
-
-
+    var pikerViewDataArray: Array<Int> = []
     
     init(popUpView: UIView) {
         self.popUpBGView = popUpView
@@ -25,11 +23,24 @@ struct PopUpView {
                 self.popUpWindow = subview
             }
         }
-        
-        
     }
     
-    func setDismissButtonActions(action: Selector) {
+    init(popUpView: UIView, pikerViewDataArray: Array<Int>){
+        self.popUpBGView = popUpView
+        self.setting = SystemStyleSetting.shared
+        self.pikerViewDataArray = pikerViewDataArray
+        
+        for subview in popUpView.subviews {
+            if subview.tag == setting.popUpWindowTag {
+                self.popUpWindow = subview
+            }
+        }
+    }
+    
+    
+    
+    
+    public func setDismissButtonActions(action: Selector) {
         
        
         if let cancelButton = self.getWindowSubviewByTag(tag: self.setting.popUpWindowCancelButtonTag) as? UIButton {
@@ -51,7 +62,7 @@ struct PopUpView {
        
     }
     
-    func setTextFieldAction(action: Selector){
+    public func setTextFieldAction(action: Selector){
         
         if let textfield = self.getWindowSubviewByTag(tag: self.setting.popUpWindowTextFieldTag) as? UITextField {
             textfield.addTarget(self, action: action, for: .touchDown)
@@ -61,7 +72,17 @@ struct PopUpView {
 
     }
     
-    func getTextfieldText() -> String {
+    public func setPickerViewAction(controller: UIViewController) {
+        if let pickerView = self.getWindowSubviewByTag(tag: self.setting.popUpWindowPickerView) as? UIPickerView {
+            
+            pickerView.delegate = controller as? UIPickerViewDelegate
+            pickerView.dataSource = controller as? UIPickerViewDataSource
+        }
+    }
+    
+    
+    
+    public func getTextfieldText() -> String {
         var textFieldText = "错误"
         
         if let textfield = self.getWindowSubviewByTag(tag: self.setting.popUpWindowTextFieldTag) as? UITextField{
@@ -71,7 +92,7 @@ struct PopUpView {
         return textFieldText
     }
     
-    func hidePrompLabel(_ isHidden: Bool) {
+    public func hidePrompLabel(_ isHidden: Bool) {
         
         if let promptLabel = self.getWindowSubviewByTag(tag: self.setting.popUpWindowPromptLabelTag) as? UILabel {
             promptLabel.isHidden = isHidden == true ?  true : false
@@ -83,51 +104,51 @@ struct PopUpView {
     
 
     
-    func moveUp(distance: CGFloat) {
+    public func moveUp(distance: CGFloat) {
         
            
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
     
-            self.popUpWindow!.frame.origin.y -= distance
+            self.popUpWindow.frame.origin.y -= distance
         })
         
         
     }
     
-    func appear() {
+    public func appear() {
 
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
             self.popUpBGView.backgroundColor = UIColor.gray.withAlphaComponent(0.7)
-            self.popUpWindow!.frame.origin.y -= self.popUpWindow!.frame.height
+            self.popUpWindow.frame.origin.y -= self.popUpWindow.frame.height
         }, completion: {_ in
                
                UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut, animations: {
-                self.popUpWindow!.frame.origin.y += 15
+                self.popUpWindow.frame.origin.y += 15
                })
 
         })
     }
 
     
-    func disappear(comletion: @escaping ((Bool) -> Void)) {
+    public func disappear(comletion: @escaping ((Bool) -> Void)) {
         
  
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
             self.popUpBGView.backgroundColor = UIColor.gray.withAlphaComponent(0)
-            self.popUpWindow!.frame.origin.y += self.popUpWindow!.frame.height
+            self.popUpWindow.frame.origin.y += self.popUpWindow.frame.height
         }, completion: {_ in
                
                UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut, animations: {
-                self.popUpWindow!.frame.origin.y -= 15
+                self.popUpWindow.frame.origin.y -= 15
                }, completion: comletion)
 
         })
 
     }
     
-    func getWindowSubviewByTag(tag: Int) -> UIView?
+    private func getWindowSubviewByTag(tag: Int) -> UIView?
     {
-        for subview in self.popUpWindow!.subviews {
+        for subview in self.popUpWindow.subviews {
             print(subview.tag)
             if subview.tag == tag {
                 return subview
@@ -136,7 +157,7 @@ struct PopUpView {
         return nil
     }
     
-    func getBGViewSubviewByTag(tag: Int) -> UIView? {
+    private func getBGViewSubviewByTag(tag: Int) -> UIView? {
         for subview in self.popUpBGView.subviews {
    
             if subview.tag == tag {

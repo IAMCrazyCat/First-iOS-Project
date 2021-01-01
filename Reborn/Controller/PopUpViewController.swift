@@ -8,14 +8,12 @@
 import UIKit
 
 
-class CustomTargetViewController: UIViewController {
+class PopUpViewController: UIViewController {
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.view.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.width, height: 250)
     }
+   
     
 
     /*

@@ -826,47 +826,6 @@ Cg
             </objects>
             <point key="canvasLocation" x="2883.6448598130842" y="747.73218142548603"/>
         </scene>
-        <!--Custom Target View Controller-->
-        <scene sceneID="QnO-0E-aMe">
-            <objects>
-                <viewController id="D3q-ay-U9S" customClass="CustomTargetViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="qYD-Pq-tyK">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xdU-Kb-o8e">
-                                <rect key="frame" x="20" y="731" width="374" height="165"/>
-                                <subviews>
-                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o8e-KR-hny">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="165"/>
-                                        <color key="backgroundColor" name="ThemeColor"/>
-                                    </pickerView>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstItem="o8e-KR-hny" firstAttribute="top" secondItem="xdU-Kb-o8e" secondAttribute="top" id="Mbk-Tw-ud9"/>
-                                    <constraint firstItem="o8e-KR-hny" firstAttribute="leading" secondItem="xdU-Kb-o8e" secondAttribute="leading" id="Udr-T8-18N"/>
-                                    <constraint firstAttribute="height" constant="165" id="aPT-fg-uaZ"/>
-                                    <constraint firstAttribute="trailing" secondItem="o8e-KR-hny" secondAttribute="trailing" id="nXq-VX-4G1"/>
-                                    <constraint firstAttribute="bottom" secondItem="o8e-KR-hny" secondAttribute="bottom" id="y6x-Yu-XYB"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="sjp-Jy-1ff"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="sjp-Jy-1ff" firstAttribute="trailing" secondItem="xdU-Kb-o8e" secondAttribute="trailing" constant="20" id="1PC-La-XAe"/>
-                            <constraint firstAttribute="bottom" secondItem="xdU-Kb-o8e" secondAttribute="bottom" id="2m7-Uv-MGD"/>
-                            <constraint firstItem="xdU-Kb-o8e" firstAttribute="leading" secondItem="sjp-Jy-1ff" secondAttribute="leading" constant="20" id="pcX-yd-tcF"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="HGZ-dz-RdT"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="N6Z-O8-VfZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1606.5420560747662" y="747.73218142548603"/>
-        </scene>
         <!--概要-->
         <scene sceneID="9aa-Ko-nlN">
             <objects>

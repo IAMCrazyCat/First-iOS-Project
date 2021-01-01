@@ -24,13 +24,13 @@ class AppEngine {
         print(dataFilePath!)
     }
     
-    func addItem(newItem: Item) {
+    public func addItem(newItem: Item) {
         
         self.itemArray.append(newItem)
         print(itemArray)
     }
     
-    func saveItems() {
+    public func saveItems() {
         let encoder = JSONEncoder()//PropertyListEncoder()
         
         do {
@@ -41,7 +41,7 @@ class AppEngine {
         }
     }
     
-    func loadItems() {
+    public func loadItems() {
         
         if let data = try? Data(contentsOf: dataFilePath!) {
             let decoder = JSONDecoder() //PropertyListDecoder()
@@ -64,12 +64,12 @@ class AppEngine {
     }
     
     
-    func getItemArray() -> Array<Item> {
+    public func getItemArray() -> Array<Item> {
  
         return itemArray
     }
     
-    func addItemCardsToHomeView(controller: HomeViewController) {
+    public func addItemCardsToHomeView(controller: HomeViewController) {
         
         var cordinateY: CGFloat = 0
         var tag: Int = 0
@@ -84,20 +84,20 @@ class AppEngine {
     }
     
     
-    func punchInItem(tag: Int) {
+    public func punchInItem(tag: Int) {
         itemArray[tag].punchIn(punchInDate: currentDate)
         print(itemArray[tag].punchInDate)
     }
     
-    func getFinishedDays(tag: Int) -> Int {
+    public func getFinishedDays(tag: Int) -> Int {
         return itemArray[tag].finishedDays
     }
     
-    func getDays(tag: Int) -> Int {
+    public func getDays(tag: Int) -> Int {
         return itemArray[tag].days
     }
     
-    func getOverAllProgress() -> Double {
+    public func getOverAllProgress() -> Double {
         
         self.overAllProgress = 0
         for item in itemArray {
@@ -109,7 +109,7 @@ class AppEngine {
         return self.overAllProgress
     }
     
-    func generateNewItemCard(name: String, type: String, days: Int) -> UIView {
+    public func generateNewItemCard(name: String, type: String, days: Int) -> UIView {
         
         switch type {
         case "戒除":
@@ -127,10 +127,12 @@ class AppEngine {
         }
     }
     
-    func generateCutomItemNamePopUp() -> PopUpView {
-        let builder = ButtomPopUpBuilder(popUpType: .customItemName)
-        let popUpView = builder.getBuiltItem() as! PopUpView
+    public func generatePopUp(popUpType: PopUpType) -> PopUpView {
+        
+        let popUpView = ButtomPopUpBuilder(popUpType: popUpType).buildPopUpView()
         return popUpView
     }
+    
+  
     
 }

@@ -7,7 +7,7 @@
 import Foundation
 import UIKit
 
-class ItemCardBuilder: Builder {
+class ItemCardBuilder {
 
     let item: Item
     let cordinateX: CGFloat

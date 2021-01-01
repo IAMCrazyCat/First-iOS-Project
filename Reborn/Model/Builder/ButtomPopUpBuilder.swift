@@ -14,32 +14,39 @@ enum PopUpType {
     case customFrequency
 }
 
-class ButtomPopUpBuilder: Builder {
+class ButtomPopUpBuilder {
     
     var popUpBgView: UIView
     var popUpWindow: UIView
     var width: CGFloat
     var setting: SystemStyleSetting
-    
+    let popUpType: PopUpType
     init(popUpType: PopUpType) {
         self.setting = SystemStyleSetting.shared
         self.width = setting.viewFrame.width
         self.popUpBgView = UIView()
         self.popUpWindow = UIView()
+        self.popUpType = popUpType
+      
+        
+    }
+    
+    public func buildPopUpView() -> PopUpView {
         
         switch popUpType {
         case .customTargetDays:
             self.buildCustomTargetDaysView()
+            return PopUpView(popUpView: popUpBgView)
         case .customItemName:
             self.buildCustomItemNameView()
+            return PopUpView(popUpView: popUpBgView, pikerViewDataArray: PickerViewData.customTargetDays)
         case .customFrequency:
             self.buildCustomFrequencyView()
+            return PopUpView(popUpView: popUpBgView)
         }
-        
     }
-   
     
-    func buildStandardView() { // common views for pop up window
+    public func buildStandardView() { // common views for pop up window
         createPopUpUIViews()
         addPopUpBgViewButton()
         addCancelButton()
@@ -47,31 +54,33 @@ class ButtomPopUpBuilder: Builder {
         
     }
     
-    func buildCustomTargetDaysView() {
+    private func buildCustomTargetDaysView(){
         buildStandardView()
+        addTitleLabel(title: "自定义日期")
+        
         addPopUpWindowToBgView()
+  
     }
     
-    func buildCustomItemNameView() {
+    private func buildCustomItemNameView() {
         buildStandardView()
         addTextField()
-        addTitleLabel()
+        addTitleLabel(title: "自定义项目")
         addPromptLabel()
         addPopUpWindowToBgView()
     }
     
-    func buildCustomFrequencyView() {
+    private func buildCustomFrequencyView() {
         createPopUpUIViews()
         addFrequencyOptionButtons()
         addCancelButton()
         addDoneButton()
         
-        
     }
     
     
     // Building common fetures
-    func createPopUpUIViews() {
+    private func createPopUpUIViews() {
         
         popUpBgView.frame = CGRect(x: 0, y: 0, width: setting.viewFrame.width, height: setting.viewFrame.height)
         popUpBgView.backgroundColor = UIColor.gray.withAlphaComponent(0)
@@ -84,7 +93,7 @@ class ButtomPopUpBuilder: Builder {
         popUpWindow.tag = 0
     }
     
-    func addPopUpBgViewButton() { // Tag 1
+    private func addPopUpBgViewButton() { // Tag 1
         let popUpBgViewButton = UIButton()
         popUpBgViewButton.frame = self.popUpBgView.frame
         self.popUpBgView.addSubview(popUpBgViewButton)
@@ -93,7 +102,7 @@ class ButtomPopUpBuilder: Builder {
     
   
     
-    func addCancelButton() { // Tag 2
+    private func addCancelButton() { // Tag 2
         let cancelButton = UIButton()
         cancelButton.setBackgroundImage(#imageLiteral(resourceName: "CancelButton"), for: .normal)
         self.popUpWindow.addSubview(cancelButton)
@@ -106,7 +115,7 @@ class ButtomPopUpBuilder: Builder {
         
     }
     
-    func addDoneButton() { // Tag 3
+    private func addDoneButton() { // Tag 3
         let doneButton = UIButton()
         doneButton.backgroundColor = UserStyleSetting.themeColor
         doneButton.setTitle("确定", for: .normal)
@@ -124,21 +133,20 @@ class ButtomPopUpBuilder: Builder {
     
     
     // ---------------------------------------------------------------------------------
-    func addTargetPiker() {
-        let pickerData = ["A", "B", "C"]
+    private func addTargetPiker() {
         
-        let piker = UIPickerView()
-    
-        popUpWindow.addSubview(piker)
+        let picker = UIPickerView()
+        picker.tag = self.setting.popUpWindowPickerView
+        popUpWindow.addSubview(picker)
     }
     
-    func addFrequencyOptionButtons() {
+    private func addFrequencyOptionButtons() {
         
     }
     
-    func addTitleLabel() {
+    private func addTitleLabel(title: String) {
         let titleLabel = UILabel()
-        titleLabel.text = "项目名字"
+        titleLabel.text = title
         titleLabel.font = UserStyleSetting.fontLarge
         titleLabel.sizeToFit()
         
@@ -148,7 +156,7 @@ class ButtomPopUpBuilder: Builder {
         titleLabel.leftAnchor.constraint(equalTo: popUpWindow.leftAnchor, constant: self.setting.mainDistance).isActive = true
     }
     
-    func addTextField() {
+    private func addTextField() {
         let textField = UITextField()
         textField.backgroundColor = self.setting.greyColor
         textField.layer.cornerRadius = self.setting.textFieldCornerRadius
@@ -163,7 +171,7 @@ class ButtomPopUpBuilder: Builder {
         textField.centerYAnchor.constraint(equalTo: self.popUpWindow.centerYAnchor, constant: -setting.mainButtonHeight).isActive = true
     }
     
-    func addPromptLabel() {
+    private func addPromptLabel() {
         let promptLabel = UILabel()
         promptLabel.text = "请输入项目名字"
         promptLabel.font = UserStyleSetting.fontMedium
@@ -179,11 +187,9 @@ class ButtomPopUpBuilder: Builder {
         
     }
     
-    func addPopUpWindowToBgView() {
+    private func addPopUpWindowToBgView() {
         popUpBgView.addSubview(popUpWindow)
     }
     
-    func getBuiltItem() -> Any {
-        return PopUpView(popUpView: popUpBgView)
-    }
+   
 }

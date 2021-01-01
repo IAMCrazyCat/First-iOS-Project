@@ -28,8 +28,7 @@
 		22A597EC2598091B008E2A06 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A597EB2598091B008E2A06 /* UIButton.swift */; };
 		22A597F925986685008E2A06 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A597F825986685008E2A06 /* AddItemViewController.swift */; };
 		22A597FE2599C0AF008E2A06 /* WeekDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A597FD2599C0AF008E2A06 /* WeekDay.swift */; };
-		22A598062599E3A8008E2A06 /* CustomTargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A598052599E3A8008E2A06 /* CustomTargetViewController.swift */; };
-		22A5980C259A9C5B008E2A06 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A5980B259A9C5A008E2A06 /* Builder.swift */; };
+		22A598062599E3A8008E2A06 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A598052599E3A8008E2A06 /* PopUpViewController.swift */; };
 		22A59811259AA31A008E2A06 /* ButtomPopUpBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A59810259AA31A008E2A06 /* ButtomPopUpBuilder.swift */; };
 		22C23A0F258DC4FA00D4BEB2 /* AppEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C23A0E258DC4FA00D4BEB2 /* AppEngine.swift */; };
 		22C23A14258DC58F00D4BEB2 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C23A13258DC58F00D4BEB2 /* Item.swift */; };
@@ -39,6 +38,8 @@
 		22C5D967258F3E4400131964 /* SetUpEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5D966258F3E4400131964 /* SetUpEngine.swift */; };
 		22C5D975258F40E800131964 /* SetUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5D974258F40E800131964 /* SetUpPage.swift */; };
 		22C7D5B52595DB0C00B7D0F1 /* ItemProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C7D5B42595DB0C00B7D0F1 /* ItemProtocol.swift */; };
+		22E9A855259ED1B40073D432 /* PikerViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E9A854259ED1B40073D432 /* PikerViewData.swift */; };
+		22E9A85D259EDA270073D432 /* PopUpWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22E9A85C259EDA270073D432 /* PopUpWindow.xib */; };
 		22FCB1B5258D86BA006A0D39 /* SetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FCB1B4258D86BA006A0D39 /* SetUpViewController.swift */; };
 		22FCB1BA258D907C006A0D39 /* SystemStyleSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FCB1B9258D907C006A0D39 /* SystemStyleSetting.swift */; };
 /* End PBXBuildFile section */
@@ -88,8 +89,7 @@
 		22A597EB2598091B008E2A06 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		22A597F825986685008E2A06 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		22A597FD2599C0AF008E2A06 /* WeekDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDay.swift; sourceTree = "<group>"; };
-		22A598052599E3A8008E2A06 /* CustomTargetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTargetViewController.swift; sourceTree = "<group>"; };
-		22A5980B259A9C5A008E2A06 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
+		22A598052599E3A8008E2A06 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		22A59810259AA31A008E2A06 /* ButtomPopUpBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtomPopUpBuilder.swift; sourceTree = "<group>"; };
 		22C23A0E258DC4FA00D4BEB2 /* AppEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEngine.swift; sourceTree = "<group>"; };
 		22C23A13258DC58F00D4BEB2 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -99,6 +99,8 @@
 		22C5D966258F3E4400131964 /* SetUpEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpEngine.swift; sourceTree = "<group>"; };
 		22C5D974258F40E800131964 /* SetUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpPage.swift; sourceTree = "<group>"; };
 		22C7D5B42595DB0C00B7D0F1 /* ItemProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemProtocol.swift; sourceTree = "<group>"; };
+		22E9A854259ED1B40073D432 /* PikerViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PikerViewData.swift; sourceTree = "<group>"; };
+		22E9A85C259EDA270073D432 /* PopUpWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopUpWindow.xib; sourceTree = "<group>"; };
 		22FCB1B4258D86BA006A0D39 /* SetUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewController.swift; sourceTree = "<group>"; };
 		22FCB1B9258D907C006A0D39 /* SystemStyleSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemStyleSetting.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -184,13 +186,13 @@
 		220B72B4258C68FB00E4BEDC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				22E9A850259ECDB10073D432 /* Extension */,
 				22C5D987258F646700131964 /* Setting */,
 				22994702259AF1D8006D0381 /* PopUp Model */,
 				224A919025971E0800A896BE /* Builder */,
 				22AAD46A25922C06005078B6 /* Engine */,
 				22C5D954258F3D3E00131964 /* SetUp Model */,
 				22C23A22258DCA3E00D4BEB2 /* Item Model */,
-				22A597EB2598091B008E2A06 /* UIButton.swift */,
 				2299472E259C9D01006D0381 /* SeUp State */,
 			);
 			path = Model;
@@ -200,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				220B7287258A288000E4BEDC /* Main.storyboard */,
+				22E9A85C259EDA270073D432 /* PopUpWindow.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -211,7 +214,7 @@
 				22FCB1B4258D86BA006A0D39 /* SetUpViewController.swift */,
 				22C23A26258DCE4500D4BEB2 /* HomeViewController.swift */,
 				22A597F825986685008E2A06 /* AddItemViewController.swift */,
-				22A598052599E3A8008E2A06 /* CustomTargetViewController.swift */,
+				22A598052599E3A8008E2A06 /* PopUpViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -220,8 +223,8 @@
 			isa = PBXGroup;
 			children = (
 				224A919125971E9000A896BE /* ItemCardBuilder.swift */,
-				22A5980B259A9C5A008E2A06 /* Builder.swift */,
 				22A59810259AA31A008E2A06 /* ButtomPopUpBuilder.swift */,
+				22E9A854259ED1B40073D432 /* PikerViewData.swift */,
 			);
 			path = Builder;
 			sourceTree = "<group>";
@@ -284,6 +287,14 @@
 				2279C17D2592ED2F00566CD7 /* UserStyleSetting.swift */,
 			);
 			path = Setting;
+			sourceTree = "<group>";
+		};
+		22E9A850259ECDB10073D432 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				22A597EB2598091B008E2A06 /* UIButton.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -389,6 +400,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22E9A85D259EDA270073D432 /* PopUpWindow.xib in Resources */,
 				220B728E258A288300E4BEDC /* LaunchScreen.storyboard in Resources */,
 				220B728B258A288300E4BEDC /* Assets.xcassets in Resources */,
 				220B7289258A288000E4BEDC /* Main.storyboard in Resources */,
@@ -417,14 +429,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2299472A259C9CF4006D0381 /* SetUpViewState.swift in Sources */,
+				22E9A855259ED1B40073D432 /* PikerViewData.swift in Sources */,
 				22994730259C9D40006D0381 /* SetUpViewBaseState.swift in Sources */,
 				229946FE259AF1D1006D0381 /* ItemCardView.swift in Sources */,
 				2279C17E2592ED2F00566CD7 /* UserStyleSetting.swift in Sources */,
 				22C23A27258DCE4500D4BEB2 /* HomeViewController.swift in Sources */,
-				22A5980C259A9C5B008E2A06 /* Builder.swift in Sources */,
 				224A919225971E9000A896BE /* ItemCardBuilder.swift in Sources */,
 				224A91842595FA7D00A896BE /* ItemType.swift in Sources */,
-				22A598062599E3A8008E2A06 /* CustomTargetViewController.swift in Sources */,
+				22A598062599E3A8008E2A06 /* PopUpViewController.swift in Sources */,
 				22FCB1B5258D86BA006A0D39 /* SetUpViewController.swift in Sources */,
 				22A597F925986685008E2A06 /* AddItemViewController.swift in Sources */,
 				2299470A259AF20C006D0381 /* PopUpView.swift in Sources */,
