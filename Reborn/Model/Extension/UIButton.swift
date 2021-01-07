@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 extension UIButton {
-    
+
     func setBackgroundColor(_ color: UIColor?, cornerRadius: CGFloat, for state: UIControl.State) {
             
             guard let color = color else {
@@ -37,4 +37,18 @@ extension UIButton {
             
             self.setBackgroundImage(backgroundImage, for: state)
         }
+    
+    
+    
+    func getData() -> Int? {
+        
+        
+        if var title = self.currentTitle {
+            title.removeLast()
+            return Int(title)
+        } else {
+            return nil
+        }
+
+    }
 }

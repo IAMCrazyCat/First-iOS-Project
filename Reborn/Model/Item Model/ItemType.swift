@@ -6,8 +6,8 @@
 //
 
 import Foundation
-enum ItemType: String, Codable {
-    case UNDEFINED = "名字"
+enum ItemType: String, CaseIterable, Codable {
+    case UNDEFINED = ""
     case QUITTING = "戒除"
     case PERSISTING = "坚持"
 }

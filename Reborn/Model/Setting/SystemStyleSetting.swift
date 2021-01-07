@@ -13,17 +13,24 @@ struct SystemStyleSetting{
     static let shared = SystemStyleSetting()
     
     // for whole app use
-    let viewFrame: CGRect = UIScreen.main.bounds
+    let screenFrame: CGRect = UIScreen.main.bounds
     let mainButtonHeight: CGFloat = 50
     let mainButtonCornerRadius: CGFloat = 25
     let checkButtonCornerRadius: CGFloat = 15
     let optionButtonCornerRadius: CGFloat = 25
-
-    let greyColor: UIColor = UIColor(named: "GreyColor")!
+    let itemCardCornerRadius: CGFloat = 25
+    let UIViewShadowColor: CGColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.15).cgColor
+    let UIViewShadowOffset: CGSize = CGSize(width: 0.0, height: 1.5)
+    let UIViewShadowOpacity: Float = 1.0
     
-    let customItemNameButtonTag = 1
-    let customTargetButtonTag = 2
-    let customFrequencyButtonTag = 3
+    let greyColor: UIColor = UIColor(named: "GreyColor")!
+    let whiteAndBlack: UIColor = UIColor(named: "WhiteAndBlack")!
+    
+    var customTargetDaysButtonTag = 10
+    var customItemNameButtonTag = 20
+    var customFrequencyButtonTag = 30
+    
+
     
     // for welcome page
     let mainDistance: CGFloat = 20
@@ -52,9 +59,9 @@ struct SystemStyleSetting{
     // for homepage
     let itemCardBGImage: UIImage = #imageLiteral(resourceName: "ItemCard")
     let progressBarLengthToRightEdgeOffset: CGFloat = 90
-    let itemCardHeight: CGFloat = 130
+    let itemCardHeight: CGFloat = 120
     let itemCardCenterObjectsOffset: CGFloat = 70
-    let itemCardGap: CGFloat = 10
+    let itemCardGap: CGFloat = 20
     
     // for builder
 
@@ -72,6 +79,11 @@ struct SystemStyleSetting{
     let popUpWindowDoneButtonTag: Int = 3
     let popUpWindowTextFieldTag: Int = 4
     let popUpWindowPromptLabelTag: Int = 5
-    let popUpWindowPickerView: Int = 6
+    let popUpWindowPickerViewTag: Int = 6
+    
+    let popUpWindowPresentDuration: Double = 0.2
+    let popUpWindowBounceDuration: Double = 0.25
+    
+    
 }
 

@@ -73,7 +73,7 @@ struct PopUpView {
     }
     
     public func setPickerViewAction(controller: UIViewController) {
-        if let pickerView = self.getWindowSubviewByTag(tag: self.setting.popUpWindowPickerView) as? UIPickerView {
+        if let pickerView = self.getWindowSubviewByTag(tag: self.setting.popUpWindowPickerViewTag) as? UIPickerView {
             
             pickerView.delegate = controller as? UIPickerViewDelegate
             pickerView.dataSource = controller as? UIPickerViewDataSource

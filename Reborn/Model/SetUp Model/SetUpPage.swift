@@ -7,6 +7,14 @@
 
 import Foundation
 struct SetUpPage {
+    var ID = 0
     var question = ""
-    var buttons: Array<String> = []
+    var buttons: Array<DataOption> = []
+    
+    init(ID: Int, question: String, buttons: Array<DataOption>){
+        self.ID = ID
+        self.question = question
+        self.buttons = buttons
+    }
+
 }

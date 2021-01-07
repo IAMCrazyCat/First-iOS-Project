@@ -13,27 +13,30 @@ class ItemCardBuilder {
     let cordinateX: CGFloat
     var cordinateY: CGFloat
     let width: CGFloat
+    let height: CGFloat
     let punchInButtonTag: Int
     
-    let cardBGImage: UIImage
-    let setting: SystemStyleSetting
-    let newItemCardView: UIView
+    let cardBGImage: UIImage = SystemStyleSetting.shared.itemCardBGImage
+    let setting: SystemStyleSetting = SystemStyleSetting.shared
+    let newItemCardView: UIView = UIView()
+    var freqency: DataOption? = nil
     
-    
-    init(item: Item, corninateX: CGFloat, cordinateY: CGFloat, punchInButtonTag: Int){
+    init(item: Item, width: CGFloat, height: CGFloat, corninateX: CGFloat, cordinateY: CGFloat, punchInButtonTag: Int){
 
         self.item = item
         self.cordinateX = corninateX
         self.cordinateY = cordinateY
-        self.setting = SystemStyleSetting.shared
-        self.width = setting.viewFrame.width - 20 * 2
         self.punchInButtonTag = punchInButtonTag
-        self.cardBGImage = setting.itemCardBGImage
-        self.newItemCardView = UIView()
-       
+        self.width = width
+        self.height = height
+        
+        if let freqency = item.frequency {
+            self.freqency = freqency
+        }
     }
     
-    func buildStandardView() {
+    
+    public func buildItemCardView() -> UIView {
         createItemCardUIView() //1
         addNameLabel() //2
         addGoDetailsButton() //3
@@ -42,16 +45,25 @@ class ItemCardBuilder {
         addProgressBar() //5
         addDaysLabel() //6
         addPunInButton() //7
+        
+        if freqency != nil {
+            addFreqencyLabel()
+        }
+        
+        return newItemCardView
     
     }
     
-    func createItemCardUIView() {
+    private func createItemCardUIView() {
    
-        newItemCardView.layer.contents = cardBGImage.cgImage
-        newItemCardView.frame = CGRect(x:cordinateX, y: cordinateY, width: width, height: self.setting.itemCardHeight)
+        //newItemCardView.layer.contents = cardBGImage.cgImage
+        newItemCardView.backgroundColor = setting.whiteAndBlack
+        newItemCardView.layer.cornerRadius = setting.itemCardCornerRadius
+        newItemCardView.setViewShadow()
+        newItemCardView.frame = CGRect(x: cordinateX, y: cordinateY, width: width, height: height)
     }
     
-    func addNameLabel() {
+    private func addNameLabel() {
         let nameLabel = UILabel()
         nameLabel.accessibilityIdentifier = "nameLabel"
         nameLabel.text = item.type.rawValue + item.name
@@ -62,28 +74,59 @@ class ItemCardBuilder {
         newItemCardView.addSubview(nameLabel)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
-        nameLabel.topAnchor.constraint(equalTo: newItemCardView.topAnchor, constant: 20).isActive = true
-        nameLabel.leftAnchor.constraint(equalTo: newItemCardView.leftAnchor, constant: 20).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: newItemCardView.topAnchor, constant: self.setting.mainDistance).isActive = true
+        nameLabel.leftAnchor.constraint(equalTo: newItemCardView.leftAnchor, constant: self.setting.mainDistance).isActive = true
     }
     
-    func addGoDetailsButton() {
+    private func addFreqencyLabel() {
+        let freqencyLabel = UILabel()
+        freqencyLabel.accessibilityIdentifier = "freqencyLabel"
+        
+        freqencyLabel.text = freqency?.title
+        freqencyLabel.textColor = UIColor.black
+        freqencyLabel.font = UserStyleSetting.fontSmall
+        freqencyLabel.sizeToFit()
+        
+        newItemCardView.addSubview(freqencyLabel)
+        
+        
+        for subview in  newItemCardView.subviews {
+            if subview.accessibilityIdentifier == "nameLabel" {
+                let nameLabel = subview
+                freqencyLabel.translatesAutoresizingMaskIntoConstraints = false
+                freqencyLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
+                freqencyLabel.topAnchor.constraint(equalTo: newItemCardView.topAnchor, constant: self.setting.mainDistance).isActive = true
+                freqencyLabel.leftAnchor.constraint(equalTo: nameLabel.rightAnchor, constant: 10).isActive = true
+            }
+        }
+        
+        
+
+    }
+    
+    private func addFrequencyLabel() {
+        
+    }
+    
+    private func addGoDetailsButton() {
         
         let goDetailsButton = UIButton()
         goDetailsButton.accessibilityIdentifier = "goDetailsButton"
+        goDetailsButton.setBackgroundImage(UIImage(named: "DetailsButton"), for: .normal)
         
-        goDetailsButton.setTitle("TEST", for: .normal)
         goDetailsButton.setTitleColor(UIColor.black, for: .normal)
         goDetailsButton.titleLabel!.font = UserStyleSetting.fontSmall
         newItemCardView.addSubview(goDetailsButton)
         
-        goDetailsButton.sizeToFit()
+        goDetailsButton.tintColor = UserStyleSetting.themeColor
         goDetailsButton.translatesAutoresizingMaskIntoConstraints = false
         goDetailsButton.heightAnchor.constraint(equalToConstant: 15).isActive = true
+        goDetailsButton.widthAnchor.constraint(equalToConstant: 15).isActive = true
         goDetailsButton.topAnchor.constraint(equalTo: newItemCardView.topAnchor, constant: 20).isActive = true
         goDetailsButton.rightAnchor.constraint(equalTo: newItemCardView.rightAnchor, constant: -20).isActive = true
     }
     
-    func addTypeLabel() {
+    private func addTypeLabel() {
         let typeLabel = UILabel()
         typeLabel.accessibilityIdentifier = "typeLabel"
         
@@ -98,7 +141,10 @@ class ItemCardBuilder {
         typeLabel.leftAnchor.constraint(equalTo: newItemCardView.leftAnchor, constant: self.setting.itemCardCenterObjectsOffset).isActive = true
     }
     
-    func addFinishedDaysLabel() {
+   
+    
+    
+    private func addFinishedDaysLabel() {
         let finishedDaysLabel = UILabel()
         finishedDaysLabel.accessibilityIdentifier = "finishedDaysLabel"
         
@@ -117,7 +163,8 @@ class ItemCardBuilder {
         finishedDaysLabel.centerXAnchor.constraint(equalTo: newItemCardView.centerXAnchor).isActive = true
     }
     
-    func addProgressBar() {
+    
+    private  func addProgressBar() {
         let barTrackPath = UIBezierPath(roundedRect: CGRect(x: 20, y: newItemCardView.frame.height - 30, width: newItemCardView.frame.width - self.setting.progressBarLengthToRightEdgeOffset, height: 10), cornerRadius: 10)
         let barTrackLayer = CAShapeLayer()
         
@@ -144,7 +191,7 @@ class ItemCardBuilder {
         newItemCardView.layer.addSublayer(barShapeLayer)
     }
     
-    func addDaysLabel() {
+    private func addDaysLabel() {
         let daysLabel = UILabel()
         daysLabel.accessibilityIdentifier = "daysLabel"
         
@@ -163,7 +210,7 @@ class ItemCardBuilder {
         daysLabel.bottomAnchor.constraint(equalTo: newItemCardView.bottomAnchor, constant: -18).isActive = true
     }
     
-    func addPunInButton() {
+    private func addPunInButton() {
         let punchInButton = UIButton()
         punchInButton.accessibilityIdentifier = "punchInButton"
         
@@ -178,12 +225,10 @@ class ItemCardBuilder {
         punchInButton.rightAnchor.constraint(equalTo: newItemCardView.rightAnchor, constant: -self.setting.itemCardCenterObjectsOffset).isActive = true
         punchInButton.centerYAnchor.constraint(equalTo: newItemCardView.centerYAnchor).isActive = true
         
-        //punchInButton.addTarget(self, action: .punchInButtonAction, for: .touchDown)
+        punchInButton.addTarget(self, action: #selector(HomeViewController.shared.punchInButtonPressed(_:)), for: .touchDown)
         punchInButton.tag = self.punchInButtonTag
     }
     
     
-    func getBuiltItem() -> Any {
-        return newItemCardView
-    }
+  
 }

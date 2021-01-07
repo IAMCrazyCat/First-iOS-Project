@@ -9,15 +9,7 @@ import Foundation
 import UIKit
 struct SetUpEngine {
     var progress = 1
-    var engine = AppEngine.shared
-    let pages = [
-        SetUpPage(question: "请选择一项您现在最想戒除的瘾", buttons: ["性瘾", "拖延", "吸烟", "熬夜", "喝酒", "蹦迪", "游戏", "赖床", "手机", "奶茶", SystemStyleSetting.shared.customButtonTitle, SystemStyleSetting.shared.skipButtonTitle]),
-        SetUpPage(question: "您想戒多久", buttons: ["1个月", "2个月", "3个月", "半年", "1年", "自定义"]),
-        SetUpPage(question: "请选择一项您现在最想坚持的事情", buttons: ["跑步", "学英语", "瑜伽", "阅读", "减肥", "健身", "冥想", "吃早餐", "存钱", "每日自省", SystemStyleSetting.shared.customButtonTitle, SystemStyleSetting.shared.skipButtonTitle]),
-        SetUpPage(question: "您想坚持多久", buttons: ["1个月", "2个月", "3个月", "半年", "1年", "自定义"]),
-        SetUpPage(question: "您的性别？", buttons: ["男生", "女生", "其他"])
-    ]
-    
+    let pages = SetUpPageData.data
     var quittingItemName: String = ""
     var quittingItemDays: Int = 0
     var persistingItemName: String = ""
@@ -44,43 +36,24 @@ struct SetUpEngine {
         return pages.count
     }
     
-    func decideDurations(title: String) -> Int {
-        
-        var quittingItemDays: Int
-        
-        switch title {
-        case "1个月":
-            quittingItemDays = 30
-        case "2个月":
-            quittingItemDays = 60
-        case "3个月":
-            quittingItemDays = 90
-        case "半年":
-            quittingItemDays = 180
-        case "1年":
-            quittingItemDays = 365
-        case "2年":
-            quittingItemDays = 730
-        default:
-            print("Swicthing button.currentTitle! Error")
-            quittingItemDays = 0
-        }
-        
-        return quittingItemDays
-    }
     
-    mutating func processSlectedData(buttonTitle: String) { // execute once next button clicked
-   
+    
+    mutating func processSlectedData(pressedButton: UIButton) { // execute once next button clicked
+        
+        var buttonTitle = pressedButton.currentTitle ?? "Error"
         
         switch progress {
         case 1:
             quittingItemName = buttonTitle
         case 2:
-            quittingItemDays = self.decideDurations(title: buttonTitle)
+         
+            buttonTitle.removeLast()
+            quittingItemDays = Int(buttonTitle) ?? 0
         case 3:
             persistingItemName = buttonTitle
         case 4:
-            persistingItemDays = self.decideDurations(title: buttonTitle)
+            buttonTitle.removeLast()
+            persistingItemDays = Int(buttonTitle) ?? 0
         case 5:
             userGender = buttonTitle
         default:
@@ -90,9 +63,35 @@ struct SetUpEngine {
     }
     
     func saveData() {
-        self.engine.addItem(newItem: QuittingItem(name: quittingItemName, days: quittingItemDays, finishedDays: 0, creationDate: Date()))
-        self.engine.addItem(newItem: PersistingItem(name: persistingItemName, days: persistingItemDays, finishedDays: 0, creationDate: Date()))
-        self.engine.saveItems()
+        AppEngine.shared.addItem(newItem: QuittingItem(name: quittingItemName, days: quittingItemDays, finishedDays: 0, creationDate: Date()))
+        AppEngine.shared.addItem(newItem: PersistingItem(name: persistingItemName, days: persistingItemDays, finishedDays: 0, creationDate: Date()))
+        AppEngine.shared.saveItems()
+    }
+    
+    func showPopUp(popUpType: PopUpType, controller: UIViewController) {
+  
+        AppEngine.shared.showPopUp(popUpType: popUpType, controller: controller)
+    }
+    
+    func getStoredDataFromPopUpView() -> Any {
+        return AppEngine.shared.storedDataFromPopUpView ?? "Error"
+    }
+    
+    func loadSetUpPages(controller: SetUpViewController) -> UIView {
+        
+        let layoutGuideView = controller.middleView!
+        var pageNum = 0
+        
+        for page in pages {
+            print(CGFloat(pageNum) * layoutGuideView.frame.width)
+            let builder = SetUpPageBuilder(page: page, pageCordinateX: CGFloat(pageNum) * layoutGuideView.frame.width, layoutGuideView: layoutGuideView)
+            controller.middleScrollView.addSubview(builder.buildSetUpPage())
+            controller.middleScrollView.contentSize = CGSize(width: CGFloat(pages.count) * layoutGuideView.frame.width, height: layoutGuideView.frame.height) // set size
+            pageNum += 1
+            
+        }
+       
+        return layoutGuideView
     }
     
 }

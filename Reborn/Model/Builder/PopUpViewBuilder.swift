@@ -14,41 +14,49 @@ enum PopUpType {
     case customFrequency
 }
 
-class ButtomPopUpBuilder {
+class PopUpViewBuilder {
     
-    var popUpBgView: UIView
     var popUpWindow: UIView
-    var width: CGFloat
     var setting: SystemStyleSetting
     let popUpType: PopUpType
+    var popUpViewController: PopUpViewController?
+    
     init(popUpType: PopUpType) {
         self.setting = SystemStyleSetting.shared
-        self.width = setting.viewFrame.width
-        self.popUpBgView = UIView()
         self.popUpWindow = UIView()
         self.popUpType = popUpType
-      
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if let popUpViewController = storyboard.instantiateViewController(withIdentifier: "popUpView") as? PopUpViewController {
+            self.popUpViewController = popUpViewController
+            self.popUpViewController?.type = popUpType
+        } else {
+            self.popUpViewController = nil
+        }
+       
         
     }
     
-    public func buildPopUpView() -> PopUpView {
+    public func buildPopUpView() -> PopUpViewController? {
+        
+        popUpViewController?.view.addSubview(popUpWindow)
         
         switch popUpType {
         case .customTargetDays:
             self.buildCustomTargetDaysView()
-            return PopUpView(popUpView: popUpBgView)
+            return popUpViewController
         case .customItemName:
             self.buildCustomItemNameView()
-            return PopUpView(popUpView: popUpBgView, pikerViewDataArray: PickerViewData.customTargetDays)
+            return popUpViewController
         case .customFrequency:
             self.buildCustomFrequencyView()
-            return PopUpView(popUpView: popUpBgView)
+            return popUpViewController
         }
     }
     
-    public func buildStandardView() { // common views for pop up window
+    private func buildStandardView() { // common views for pop up window
         createPopUpUIViews()
-        addPopUpBgViewButton()
         addCancelButton()
         addDoneButton()
         
@@ -56,8 +64,8 @@ class ButtomPopUpBuilder {
     
     private func buildCustomTargetDaysView(){
         buildStandardView()
-        addTitleLabel(title: "自定义日期")
-        
+        addTitleLabel(title: "自定义目标")
+        addTargetPiker()
         addPopUpWindowToBgView()
   
     }
@@ -65,16 +73,16 @@ class ButtomPopUpBuilder {
     private func buildCustomItemNameView() {
         buildStandardView()
         addTextField()
-        addTitleLabel(title: "自定义项目")
+        addTitleLabel(title: "自定义项目名")
         addPromptLabel()
         addPopUpWindowToBgView()
     }
     
     private func buildCustomFrequencyView() {
-        createPopUpUIViews()
-        addFrequencyOptionButtons()
-        addCancelButton()
-        addDoneButton()
+        
+        buildStandardView()
+        addTitleLabel(title: "自定义频率")
+        addFrequencyPicker()
         
     }
     
@@ -82,36 +90,28 @@ class ButtomPopUpBuilder {
     // Building common fetures
     private func createPopUpUIViews() {
         
-        popUpBgView.frame = CGRect(x: 0, y: 0, width: setting.viewFrame.width, height: setting.viewFrame.height)
-        popUpBgView.backgroundColor = UIColor.gray.withAlphaComponent(0)
-        
         // Tag 0
-        popUpWindow.backgroundColor = UIColor.white
-        popUpWindow.frame = CGRect(x: 0, y: setting.viewFrame.height, width: self.width, height: setting.popUpWindowHeight)
+        popUpWindow.backgroundColor = setting.whiteAndBlack
+        popUpWindow.frame = CGRect(x: 0, y: 0, width: setting.screenFrame.width, height: setting.popUpWindowHeight)
         popUpWindow.layer.cornerRadius = setting.popUpWindowCornerRadius
         popUpWindow.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         popUpWindow.tag = 0
     }
     
-    private func addPopUpBgViewButton() { // Tag 1
-        let popUpBgViewButton = UIButton()
-        popUpBgViewButton.frame = self.popUpBgView.frame
-        self.popUpBgView.addSubview(popUpBgViewButton)
-        popUpBgViewButton.tag = setting.popUpBGViewButtonTag
-    }
-    
-  
-    
     private func addCancelButton() { // Tag 2
+        
         let cancelButton = UIButton()
+   
         cancelButton.setBackgroundImage(#imageLiteral(resourceName: "CancelButton"), for: .normal)
+        cancelButton.tag = 2
+        cancelButton.addTarget(self, action: #selector(popUpViewController?.cancelButtonPressed(_:)), for: .touchDown)
         self.popUpWindow.addSubview(cancelButton)
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
         cancelButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
         cancelButton.topAnchor.constraint(equalTo: popUpWindow.topAnchor, constant: self.setting.mainDistance).isActive = true
         cancelButton.rightAnchor.constraint(equalTo: popUpWindow.rightAnchor, constant: -self.setting.mainDistance).isActive = true
-        cancelButton.tag = 2
+        
         
     }
     
@@ -120,28 +120,50 @@ class ButtomPopUpBuilder {
         doneButton.backgroundColor = UserStyleSetting.themeColor
         doneButton.setTitle("确定", for: .normal)
         doneButton.layer.cornerRadius = self.setting.mainButtonCornerRadius
+        doneButton.tag = setting.popUpWindowDoneButtonTag
+        doneButton.addTarget(self, action: #selector(popUpViewController?.doneButtonPressed(_:)), for: .touchDown)
         self.popUpWindow.addSubview(doneButton)
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         doneButton.bottomAnchor.constraint(equalTo: self.popUpWindow.bottomAnchor, constant: -self.setting.mainDistance - 20).isActive = true
         doneButton.centerXAnchor.constraint(equalTo: self.popUpWindow.centerXAnchor).isActive = true
         doneButton.heightAnchor.constraint(equalToConstant: self.setting.mainButtonHeight).isActive = true
-        doneButton.widthAnchor.constraint(equalToConstant: self.setting.viewFrame.width - 2 * self.setting.mainDistance).isActive = true
+        doneButton.widthAnchor.constraint(equalToConstant: self.setting.screenFrame.width - 2 * self.setting.mainDistance).isActive = true
         
-        doneButton.tag = setting.popUpWindowDoneButtonTag
+        
     }
     
+
     
     
     // ---------------------------------------------------------------------------------
     private func addTargetPiker() {
         
         let picker = UIPickerView()
-        picker.tag = self.setting.popUpWindowPickerView
+        picker.backgroundColor = SystemStyleSetting.shared.whiteAndBlack
+        picker.tag = self.setting.popUpWindowPickerViewTag
+        picker.delegate = popUpViewController
+        picker.dataSource = popUpViewController
+        popUpViewController?.pikerViewData = PickerViewData.customTargetDays
         popUpWindow.addSubview(picker)
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        picker.widthAnchor.constraint(equalToConstant: self.setting.screenFrame.width - 2 * self.setting.mainDistance).isActive = true
+        picker.centerXAnchor.constraint(equalTo: self.popUpWindow.centerXAnchor).isActive = true
+        picker.centerYAnchor.constraint(equalTo: self.popUpWindow.centerYAnchor).isActive = true
     }
     
-    private func addFrequencyOptionButtons() {
+    private func addFrequencyPicker() {
         
+        let picker = UIPickerView()
+        picker.backgroundColor = SystemStyleSetting.shared.whiteAndBlack
+        picker.tag = self.setting.popUpWindowPickerViewTag
+        picker.delegate = popUpViewController
+        picker.dataSource = popUpViewController
+        popUpViewController?.pikerViewData = PickerViewData.customFrequency
+        popUpWindow.addSubview(picker)
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        picker.widthAnchor.constraint(equalToConstant: self.setting.screenFrame.width - 2 * self.setting.mainDistance).isActive = true
+        picker.centerXAnchor.constraint(equalTo: self.popUpWindow.centerXAnchor).isActive = true
+        picker.centerYAnchor.constraint(equalTo: self.popUpWindow.centerYAnchor).isActive = true
     }
     
     private func addTitleLabel(title: String) {
@@ -156,16 +178,18 @@ class ButtomPopUpBuilder {
         titleLabel.leftAnchor.constraint(equalTo: popUpWindow.leftAnchor, constant: self.setting.mainDistance).isActive = true
     }
     
+    
     private func addTextField() {
         let textField = UITextField()
         textField.backgroundColor = self.setting.greyColor
         textField.layer.cornerRadius = self.setting.textFieldCornerRadius
         textField.placeholder = "  请输入自定义名字"
         textField.tag = self.setting.popUpWindowTextFieldTag
+        textField.addTarget(self, action: #selector(popUpViewController?.textFieldTapped(_:)), for: .touchDown)
         
         self.popUpWindow.addSubview(textField)
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.widthAnchor.constraint(equalToConstant: self.setting.viewFrame.width - 2 * self.setting.mainDistance).isActive = true
+        textField.widthAnchor.constraint(equalToConstant: self.setting.screenFrame.width - 2 * self.setting.mainDistance).isActive = true
         textField.heightAnchor.constraint(equalToConstant: self.setting.textFieldHeight).isActive = true
         textField.centerXAnchor.constraint(equalTo: self.popUpWindow.centerXAnchor).isActive = true
         textField.centerYAnchor.constraint(equalTo: self.popUpWindow.centerYAnchor, constant: -setting.mainButtonHeight).isActive = true
@@ -188,7 +212,7 @@ class ButtomPopUpBuilder {
     }
     
     private func addPopUpWindowToBgView() {
-        popUpBgView.addSubview(popUpWindow)
+        popUpViewController?.view.addSubview(popUpWindow)
     }
     
    

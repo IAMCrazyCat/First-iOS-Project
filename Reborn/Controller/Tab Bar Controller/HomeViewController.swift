@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UIScrollViewDelegate {
+class HomeViewController: UIViewController {
 
     @IBOutlet weak var verticalScrollView: UIScrollView!
     @IBOutlet weak var overallProgressView: UIView!
@@ -22,6 +22,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var overAllProgressTitleLabel: UILabel!
     @IBOutlet weak var itemCardsView: UIView!
     
+    public static var shared = HomeViewController()
     static var view: UIView!
     
     var setting = SystemStyleSetting.shared
@@ -44,8 +45,9 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         //checkButton.layer.cornerRadius = setting.checkButtonCornerRadius
         verticalScrollView.contentSize = CGSize(width: view.frame.width, height: 2000)
-        overallProgressView.layer.contents = setting.itemCardBGImage.cgImage
-        
+//        overallProgressView.layer.contents = setting.itemCardBGImage.cgImage
+        overallProgressView.layer.cornerRadius = setting.itemCardCornerRadius
+        overallProgressView.setViewShadow()
         avatarImageView.layer.masksToBounds = true
         avatarImageView.layer.cornerRadius = avatarImageView.bounds.width / 2
         
@@ -71,54 +73,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
     }
    
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        
-        if scrollView.contentOffset.y < self.scrollViewTopOffset / 2 && scrollView.contentOffset.y > 0 { // [0, crollViewTopOffset / 2]
-            
-            if scrollView.contentOffset.y > scrollViewLastOffset { // scroll up
-                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
-                    scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
-                }, completion: nil)
-                
-            }
-            
-        } else if scrollView.contentOffset.y > self.scrollViewTopOffset / 2 && scrollView.contentOffset.y < self.scrollViewTopOffset { // [crollViewTopOffset / 2, offset]
-            
-            if scrollView.contentOffset.y > scrollViewLastOffset  { // scroll up
-                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
-                    scrollView.setContentOffset(CGPoint(x: 0, y: self.scrollViewTopOffset), animated: false)
-                }, completion: nil)
-            } else { // scroll down
-                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
-                    scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
-                }, completion: nil)
-            }
-        }
-       
-        self.scrollViewLastOffset = scrollView.contentOffset.y
-    }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        let navigationBar = self.navigationController?.navigationBar
-        if scrollView.contentOffset.y < self.scrollViewTopOffset - 10 {
-            
-            UIView.animate(withDuration: 0.2, animations: {
-                navigationBar!.barTintColor = UIColor.white
-                navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navigationBar!.tintColor.withAlphaComponent(0)]
-                navigationBar!.layoutIfNeeded()
-            })
-            
-        } else {
-            
-            UIView.animate(withDuration: 0.2, animations: {
-                navigationBar!.barTintColor = UserStyleSetting.themeColor
-                navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navigationBar!.tintColor.withAlphaComponent(1)]
-                navigationBar!.layoutIfNeeded()
-            })
-            
-        }
-    }
 
     
     func addProgressCircle() { // Circle progress bar
@@ -187,7 +142,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     }
 
     @IBAction func addItemViewController(_ sender: UIBarButtonItem) {
-        self.performSegue(withIdentifier: "goToAddItemView", sender: self)
+        self.engine.showAddItemView(controller: self)
     }
     
     func updateVerticalScrollView(newItemCard: UIView, updatedHeight: CGFloat) {
@@ -206,7 +161,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @objc func punchInButtonPressed(_ sender: UIButton!) {
-        
+        print(sender.tag)
         self.engine.punchInItem(tag: sender.tag)
         updateUI()
     }
@@ -234,9 +189,87 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         excuteProgressLabelAnimation()
         
         removeAllItemCards()
-        engine.addItemCardsToHomeView(controller: self)
+        engine.loadItemCardsToHomeView(controller: self)
        
     }
     
 
+}
+
+extension HomeViewController: AppEngineDelegate, UIScrollViewDelegate { // Delegate extension
+    
+    
+    func didDismissView() {
+
+        self.updateUI()
+    }
+    
+    func didSaveAndDismissPopUpView(type: PopUpType) {
+        
+    }
+    
+    // scrollview delegate functions
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        if scrollView.contentOffset.y < self.scrollViewTopOffset / 2 && scrollView.contentOffset.y > 0 { // [0, crollViewTopOffset / 2]
+            
+            if scrollView.contentOffset.y > scrollViewLastOffset { // scroll up
+                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+                    scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+                }, completion: nil)
+                
+            }
+            
+        } else if scrollView.contentOffset.y > self.scrollViewTopOffset / 2 && scrollView.contentOffset.y < self.scrollViewTopOffset { // [crollViewTopOffset / 2, offset]
+            
+            if scrollView.contentOffset.y > scrollViewLastOffset  { // scroll up
+                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+                    scrollView.setContentOffset(CGPoint(x: 0, y: self.scrollViewTopOffset), animated: false)
+                }, completion: nil)
+            } else { // scroll down
+                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+                    scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+                }, completion: nil)
+            }
+        }
+       
+        self.scrollViewLastOffset = scrollView.contentOffset.y
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        let navigationBar = self.navigationController?.navigationBar
+        if scrollView.contentOffset.y < self.scrollViewTopOffset - 10 {
+
+            UIView.animate(withDuration: 0.2, delay: 0.1, animations: {
+                navigationBar!.barTintColor = UIColor.white
+                navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navigationBar!.tintColor.withAlphaComponent(0)]
+                navigationBar!.layoutIfNeeded()
+            })
+
+        } else {
+
+            UIView.animate(withDuration: 0.2, delay: 0.1, animations: {
+                navigationBar!.barTintColor = UserStyleSetting.themeColor
+                navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navigationBar!.tintColor.withAlphaComponent(1)]
+                navigationBar!.layoutIfNeeded()
+            })
+
+        }
+//        let ratio: CGFloat = scrollView.contentOffset.y / scrollViewTopOffset
+//        let r: CGFloat = 255 - (255 - UserStyleSetting.themeColor!.value.red) * ratio
+//        let g: CGFloat = 255 - (255 - UserStyleSetting.themeColor!.value.red) * ratio
+//        let b: CGFloat = 255 - (255 - UserStyleSetting.themeColor!.value.blue) * ratio
+//        let a: CGFloat = UserStyleSetting.themeColor!.value.alpha
+//
+//        print(UIColor(red: r, green: g, blue: b, alpha: a).value)
+//        navigationBar!.barTintColor = UIColor(red: r, green: g, blue: b, alpha: a)
+//        navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navigationBar!.tintColor.withAlphaComponent(ratio)]
+//        navigationBar!.layoutIfNeeded()
+    }
+    
+
+   
+    
+    
 }

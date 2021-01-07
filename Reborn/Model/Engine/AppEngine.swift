@@ -7,17 +7,24 @@
 
 import Foundation
 import UIKit
+protocol AppEngineDelegate {
+    func didDismissView()
+    func didSaveAndDismissPopUpView(type: PopUpType)
+}
+
 
 class AppEngine {
     
     static let shared = AppEngine()
-    var itemArray = [Item]()
-    var defaults = UserDefaults.standard
-    var currentDate = Date()
-    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("item.plist")
-    let setting = SystemStyleSetting()
-    var overAllProgress = 0.0
-
+    var itemArray: Array<Item> = []
+    var defaults: UserDefaults = UserDefaults.standard
+    var currentDate: Date = Date()
+    let dataFilePath: URL? = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("item.plist")
+    let setting: SystemStyleSetting = SystemStyleSetting()
+    var overAllProgress: Double = 0.0
+    var delegate: AppEngineDelegate?
+    var storedDataFromPopUpView: Any? = nil
+    
     private init() {
         
         //loadItems()
@@ -27,7 +34,7 @@ class AppEngine {
     public func addItem(newItem: Item) {
         
         self.itemArray.append(newItem)
-        print(itemArray)
+
     }
     
     public func saveItems() {
@@ -52,15 +59,7 @@ class AppEngine {
                 print(error)
             }
         }
-        
-//        for index in 0 ..< self.itemArray.count {
-//            let item = self.itemArray[index]
-//            if item.type == ItemType.QUITTING {
-//                self.itemArray[index] = item as! QuittingItem
-//            } else {
-//                self.itemArray[index] = item as! PersistingItem
-//            }
-//        }
+    
     }
     
     
@@ -69,18 +68,28 @@ class AppEngine {
         return itemArray
     }
     
-    public func addItemCardsToHomeView(controller: HomeViewController) {
+    public func loadItemCardsToHomeView(controller: HomeViewController) {
         
         var cordinateY: CGFloat = 0
-        var tag: Int = 0
-        for item in self.itemArray {
+        var tag: Int = itemArray.count - 1
+        
+    
+        if itemArray.count > 0 {
             
-            let builder = ItemCardBuilder(item: item, corninateX: 0, cordinateY: cordinateY, punchInButtonTag: tag)
-            builder.buildStandardView()
-            controller.updateVerticalScrollView(newItemCard: builder.getBuiltItem() as! UIView, updatedHeight: cordinateY)
-            cordinateY += setting.itemCardHeight + setting.itemCardGap
-            tag += 1
+            for itemIndex in (0...self.itemArray.count - 1).reversed() {
+                
+                let item = self.itemArray[itemIndex]
+                let builder = ItemCardBuilder(item: item, width: controller.itemCardsView.frame.width, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: cordinateY, punchInButtonTag: tag)
+                
+                controller.updateVerticalScrollView(newItemCard: builder.buildItemCardView(), updatedHeight: cordinateY)
+                cordinateY += setting.itemCardHeight + setting.itemCardGap
+                tag -= 1
+                print(tag)
+            }
+            
         }
+        
+        print(itemArray)
     }
     
     
@@ -109,30 +118,57 @@ class AppEngine {
         return self.overAllProgress
     }
     
-    public func generateNewItemCard(name: String, type: String, days: Int) -> UIView {
+    public func generateNewItemCard(item: Item) -> UIView {
         
-        switch type {
-        case "戒除":
-            let builder = ItemCardBuilder(item: QuittingItem(name: name, days: days, finishedDays: 0, creationDate: currentDate), corninateX: 0, cordinateY: 0, punchInButtonTag: itemArray.count + 1)
-            builder.buildStandardView()
-            return builder.getBuiltItem() as! UIView
-        case "坚持":
-            let builder = ItemCardBuilder(item: PersistingItem(name: name, days: days, finishedDays: 0, creationDate: currentDate), corninateX: 0, cordinateY: 0, punchInButtonTag: itemArray.count + 1)
-            builder.buildStandardView()
-            return builder.getBuiltItem() as! UIView
-        default:
-            let builder = ItemCardBuilder(item: Item(name: name, days: days, finishedDays: 0, creationDate: currentDate, type: .UNDEFINED), corninateX: 0, cordinateY: 0, punchInButtonTag: itemArray.count + 1)
-            builder.buildStandardView()
-            return builder.getBuiltItem() as! UIView
-        }
+       
+        
+        let builder = ItemCardBuilder(item: item, width: self.setting.screenFrame.width - 2 * self.setting.mainDistance, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: 0, punchInButtonTag: itemArray.count)
+        print("itemArray \(itemArray.count)")
+        return builder.buildItemCardView()
     }
     
-    public func generatePopUp(popUpType: PopUpType) -> PopUpView {
+    public func showPopUp(popUpType: PopUpType, controller: UIViewController) {
+        self.delegate = controller as? AppEngineDelegate
         
-        let popUpView = ButtomPopUpBuilder(popUpType: popUpType).buildPopUpView()
-        return popUpView
+        if let popUpViewController = PopUpViewBuilder(popUpType: popUpType).buildPopUpView() {
+            controller.presentBottom(popUpViewController: popUpViewController)
+        }
+        
+        
+    }
+    
+    public func dismissPopUp(controller: PopUpViewController) {
+        //delegate?.didDismissView()
+        controller.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    public func saveAndDismissPopUp(controller: PopUpViewController) {
+        
+        self.storedDataFromPopUpView = controller.getStoredData()
+ 
+        controller.dismiss(animated: true, completion: nil)
+        self.delegate?.didSaveAndDismissPopUpView(type: controller.type!)
+        
+    }
+    
+    public func showAddItemView(controller: HomeViewController) {
+        self.delegate = controller
+        controller.performSegue(withIdentifier: "goToAddItemView", sender: controller)
+    }
+    
+    public func dismissAddItemView(controller: AddItemViewController) {
+        
+        controller.dismiss(animated: true, completion: nil)
+        self.delegate?.didDismissView()
+    }
+    
+    func getStoredDataFromPopUpView() -> Any {
+        return self.storedDataFromPopUpView ?? "No Stored Data"
     }
     
   
     
 }
+
+
