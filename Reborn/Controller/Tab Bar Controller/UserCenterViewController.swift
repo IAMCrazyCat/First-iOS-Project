@@ -58,9 +58,12 @@ class UserCenterViewController: UIViewController {
 
 }
 
-extension UserCenterViewController: AppEngineDelegate, UIScrollViewDelegate { // Delegate extension
-    
-    
+extension UserCenterViewController: AppEngineDelegate, UIScrollViewDelegate {
+    // Delegate extension
+    func willDismissView() {
+        
+    }
+
     func didDismissView() {
 
     }

@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 protocol AppEngineDelegate {
+    func willDismissView()
     func didDismissView()
     func didSaveAndDismissPopUpView(type: PopUpType)
 }
@@ -24,7 +25,7 @@ class AppEngine {
     var overAllProgress: Double = 0.0
     var delegate: AppEngineDelegate?
     var storedDataFromPopUpView: Any? = nil
-    
+    var itemCardOnTransitionBetweenHomeViewAndAddItemCardView: UIView? = nil
     private init() {
         
         //loadItems()
@@ -158,7 +159,8 @@ class AppEngine {
     }
     
     public func dismissAddItemView(controller: AddItemViewController) {
-        
+        itemCardOnTransitionBetweenHomeViewAndAddItemCardView = controller.preViewItemCard
+        self.delegate?.willDismissView()
         controller.dismiss(animated: true, completion: nil)
         self.delegate?.didDismissView()
     }

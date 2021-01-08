@@ -196,8 +196,16 @@ class HomeViewController: UIViewController {
 
 }
 
-extension HomeViewController: AppEngineDelegate, UIScrollViewDelegate { // Delegate extension
-    
+extension HomeViewController: AppEngineDelegate, UIScrollViewDelegate {
+    // Delegate extension
+    func willDismissView() {
+//        if let topView = UIApplication.getTopViewController(), let itemCardFromAddItemCardView = self.engine.itemCardOnTransitionBetweenHomeViewAndAddItemCardView {
+//            print(topView)
+//
+//            topView.view.addSubview(itemCardFromAddItemCardView)
+//        }
+        
+    }
     
     func didDismissView() {
 

@@ -193,7 +193,12 @@ class SetUpViewController: UIViewController{
     
 }
 
-extension SetUpViewController: AppEngineDelegate { // delegate extension
+extension SetUpViewController: AppEngineDelegate {
+    // delegate extension
+    func willDismissView() {
+        
+    }
+
     
     func didDismissView() {
         print("DISMISS")

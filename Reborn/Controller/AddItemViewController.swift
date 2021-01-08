@@ -39,6 +39,8 @@ class AddItemViewController: UIViewController {
     
     var lastSelectedButton: UIButton? = nil
     
+    var item: Item? = nil
+    var preViewItemCard: UIView? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
         self.itemNameTextfield.delegate = self
@@ -139,23 +141,10 @@ class AddItemViewController: UIViewController {
     
     @IBAction func addItemButtonPressed(_ sender: UIButton) {
         
-        var newItem: Item
-        
-        switch self.itemType {
-        
-        case .QUITTING:
-           newItem = QuittingItem(name: self.itemName, days: self.targetDays, finishedDays: 0, creationDate: self.engine.currentDate)
-           
-        case .PERSISTING:
-            newItem = PersistingItem(name: self.itemName, days: self.targetDays, finishedDays: 0, creationDate: self.engine.currentDate)
-        default:
-            newItem = Item(name: self.itemName, days: self.targetDays, finishedDays: 0, creationDate: self.engine.currentDate, type: .UNDEFINED)
+        if self.frequency != nil {
+            self.item!.setFreqency(frequency: frequency!)
         }
-        
-        if let _ = self.frequency {
-            newItem.setFreqency(frequency: frequency!)
-        }
-        self.engine.addItem(newItem: newItem)
+        self.engine.addItem(newItem: self.item!)
         self.engine.dismissAddItemView(controller: self)
    
     }
@@ -173,74 +162,80 @@ class AddItemViewController: UIViewController {
         selectedFrequencyButton?.isSelected = false
     }
     
-    func updatePreViewItemCard(name: String, type: ItemType, days: Int) {
+    func updatePreViewItemCard() {
         
         if self.previewItemCardTag != nil {
             
-            for subview in view.viewWithTag(2)!.subviews {
+            for subview in self.view.viewWithTag(2)!.subviews {
                 if subview.tag == self.previewItemCardTag {
-                    subview.removeFromSuperview()
+                    subview.removeFromSuperview() // remove old card
                 }
             }
         }
         
-        var item: Item
-        
-        switch type {
+        switch itemType {
         case .QUITTING:
             
-            item = QuittingItem(name: name, days: days, finishedDays: 0, creationDate: self.engine.currentDate)
+            self.item = QuittingItem(name: self.itemName, days: self.targetDays, finishedDays: 0, creationDate: self.engine.currentDate)
 
         case .PERSISTING:
             
-            item = PersistingItem(name: name, days: days, finishedDays: 0, creationDate: self.engine.currentDate)
+            self.item = PersistingItem(name: self.itemName, days: self.targetDays, finishedDays: 0, creationDate: self.engine.currentDate)
 
         default:
             
-            item = Item(name: name, days: days, finishedDays: 0, creationDate: self.engine.currentDate, type: .UNDEFINED)
+            self.item = Item(name: self.itemName, days: self.targetDays, finishedDays: 0, creationDate: self.engine.currentDate, type: .UNDEFINED)
 
         }
         
-        if self.frequency != nil {
-            item.setFreqency(frequency: frequency!)
+        if frequency != nil {
+            item!.setFreqency(frequency: frequency!)
         }
     
-        let preViewItemCard = engine.generateNewItemCard(item: item)
-        self.previewItemCardTag = preViewItemCard.tag
- 
-        preViewItemCard.center = middleContentView.center
-        self.middleContentView.addSubview(preViewItemCard)
+        excuteItemCardAimation()
         
+       
         let generator = UIImpactFeedbackGenerator(style: .light)
         generator.impactOccurred()
+        
+        self.preViewItemCard = self.engine.generateNewItemCard(item: item!)
+        self.previewItemCardTag = preViewItemCard!.tag
+ 
+        self.preViewItemCard!.center = self.middleContentView.center
+        self.middleContentView.addSubview(preViewItemCard!)
+
+    }
+    
+    func excuteItemCardAimation() {
+       
+        
         UIView.animateKeyframes(withDuration: 0.4, delay: 0, options: .calculationModeCubic, animations: {
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.4, animations: {
-                preViewItemCard.layer.transform = CATransform3DMakeScale(0.9, 0.9, 1)
+                self.preViewItemCard?.layer.transform = CATransform3DMakeScale(0.9, 0.9, 1)
             })
             UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.4, animations: {
-                preViewItemCard.layer.transform = CATransform3DMakeScale(1.05, 1.05, 1)
+                self.preViewItemCard?.layer.transform = CATransform3DMakeScale(1.05, 1.05, 1)
             })
             UIView.addKeyframe(withRelativeStartTime: 0.75, relativeDuration: 0.2, animations: {
-                preViewItemCard.layer.transform = CATransform3DMakeScale(1, 1, 1)
+                self.preViewItemCard?.layer.transform = CATransform3DMakeScale(1, 1, 1)
             })
             
             
         }) { _ in
             
         }
-    
-
     }
-    
-    
     
     func updateUI() {
         
-        updatePreViewItemCard(name: self.itemName, type: self.itemType, days: self.targetDays)
+        updatePreViewItemCard()
     }
 }
 
 extension AddItemViewController: AppEngineDelegate, UIScrollViewDelegate, UITextFieldDelegate { // Delegate extension
+    func willDismissView() {
+        
+    }
     
     func didDismissView() {
         print("DISMISS")

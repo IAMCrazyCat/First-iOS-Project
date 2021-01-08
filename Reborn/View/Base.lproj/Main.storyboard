@@ -288,7 +288,7 @@ Cg
             <objects>
                 <viewController id="yhk-VJ-4nb" customClass="AddItemViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5tU-dT-BVc">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="1200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="1146"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eis-9Y-9bk" userLabel="Middle Scroll View">
@@ -739,7 +739,7 @@ Cg
             <objects>
                 <viewController id="5eW-DY-fpx" customClass="HomeViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uAb-zv-xSl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BDY-Xd-Ccc">
@@ -807,6 +807,11 @@ Cg
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QUl-UX-mGH">
+                                                <rect key="frame" x="15" y="399" width="384" height="401"/>
+                                                <viewLayoutGuide key="contentLayoutGuide" id="oBN-N4-9va"/>
+                                                <viewLayoutGuide key="frameLayoutGuide" id="vil-3f-dZG"/>
+                                            </scrollView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="la4-fr-xx5">
                                                 <rect key="frame" x="15" y="399" width="384" height="391"/>
                                                 <subviews>
@@ -832,6 +837,8 @@ Cg
                                             <constraint firstAttribute="height" constant="800" identifier="heightConstraint" id="A94-HB-Kcf"/>
                                             <constraint firstItem="la4-fr-xx5" firstAttribute="top" secondItem="BU0-nc-P3S" secondAttribute="bottom" constant="10" id="ALN-1S-kA4"/>
                                             <constraint firstAttribute="bottom" secondItem="la4-fr-xx5" secondAttribute="bottom" constant="10" id="DyK-EG-5LP"/>
+                                            <constraint firstAttribute="bottom" secondItem="QUl-UX-mGH" secondAttribute="bottom" id="ENl-s8-aFh"/>
+                                            <constraint firstItem="QUl-UX-mGH" firstAttribute="leading" secondItem="efV-kw-weZ" secondAttribute="leading" constant="15" id="GlM-cp-TZl"/>
                                             <constraint firstItem="BU0-nc-P3S" firstAttribute="top" secondItem="rxm-0f-Igg" secondAttribute="bottom" constant="15" id="S03-4X-1OL"/>
                                             <constraint firstItem="yj9-p1-nrD" firstAttribute="leading" secondItem="efV-kw-weZ" secondAttribute="leading" constant="15" id="Sco-3p-aXJ"/>
                                             <constraint firstAttribute="trailing" secondItem="la4-fr-xx5" secondAttribute="trailing" constant="15" id="WzW-PV-Cxm"/>
@@ -839,6 +846,8 @@ Cg
                                             <constraint firstItem="yj9-p1-nrD" firstAttribute="top" secondItem="tK5-Vl-jvU" secondAttribute="bottom" constant="4" id="dpH-rs-WHx"/>
                                             <constraint firstAttribute="trailing" secondItem="rxm-0f-Igg" secondAttribute="trailing" constant="15" id="epf-uy-L4V"/>
                                             <constraint firstItem="tK5-Vl-jvU" firstAttribute="leading" secondItem="efV-kw-weZ" secondAttribute="leading" constant="15" id="gOY-Nt-g1X"/>
+                                            <constraint firstAttribute="trailing" secondItem="QUl-UX-mGH" secondAttribute="trailing" constant="15" id="hs8-ic-ENW"/>
+                                            <constraint firstItem="QUl-UX-mGH" firstAttribute="top" secondItem="BU0-nc-P3S" secondAttribute="bottom" constant="10" id="iwr-jw-eKQ"/>
                                             <constraint firstItem="la4-fr-xx5" firstAttribute="leading" secondItem="efV-kw-weZ" secondAttribute="leading" constant="15" id="mOS-LR-SQz"/>
                                             <constraint firstItem="tK5-Vl-jvU" firstAttribute="top" secondItem="efV-kw-weZ" secondAttribute="top" constant="8" id="nJP-oS-W9h"/>
                                             <constraint firstItem="rxm-0f-Igg" firstAttribute="leading" secondItem="efV-kw-weZ" secondAttribute="leading" constant="15" id="ydC-76-An8"/>
@@ -891,7 +900,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zpd-ju-ZRL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2883.6448598130842" y="747.73218142548603"/>
+            <point key="canvasLocation" x="2882.608695652174" y="747.32142857142856"/>
         </scene>
         <!--概要-->
         <scene sceneID="9aa-Ko-nlN">
@@ -964,7 +973,7 @@ Cg
             <objects>
                 <viewController id="7qU-RC-e4u" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XJ8-ec-9K0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="iOI-gm-T7y"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -980,7 +989,7 @@ Cg
             <objects>
                 <viewController id="xEm-ah-agE" customClass="UserCenterViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Trs-NW-7D2">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2gY-P1-gbC">
@@ -1302,7 +1311,7 @@ Cg
         <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <namedColor name="ThemeColor">
-            <color red="1" green="0.67699998617172241" blue="0.072999998927116394" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.6085362434387207" green="0.81018328666687012" blue="0.14460143446922302" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="ThemeColorInvert">
             <color red="0.57700002193450928" green="0.58399999141693115" blue="0.58799999952316284" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
