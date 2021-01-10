@@ -7,7 +7,7 @@
 
 import Foundation
 enum ItemType: String, CaseIterable, Codable {
-    case UNDEFINED = ""
-    case QUITTING = "戒除"
-    case PERSISTING = "坚持"
+    case undefined = ""
+    case quitting = "戒除"
+    case persisting = "坚持"
 }

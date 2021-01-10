@@ -57,11 +57,12 @@ struct SystemStyleSetting{
     let finishButtonTitle: String = "完成"
     
     // for homepage
+    let itemCardIdentifier = "ItemCard"
     let itemCardBGImage: UIImage = #imageLiteral(resourceName: "ItemCard")
     let progressBarLengthToRightEdgeOffset: CGFloat = 90
     let itemCardHeight: CGFloat = 120
-    let itemCardCenterObjectsOffset: CGFloat = 70
-    let itemCardGap: CGFloat = 20
+    let itemCardCenterObjectsToEdgeOffset: CGFloat = 70
+    let itemCardGap: CGFloat = 15
     
     // for builder
 

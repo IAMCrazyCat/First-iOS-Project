@@ -10,6 +10,7 @@ import UIKit
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var verticalScrollView: UIScrollView!
+    @IBOutlet weak var horizentalScrollView: UIScrollView!
     @IBOutlet weak var overallProgressView: UIView!
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var contentView: UIView!
@@ -17,10 +18,13 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var overallProgressLabel: UILabel!
     @IBOutlet weak var itemsTitleLabel: UILabel!
     @IBOutlet weak var navigationBarTitleLabel: UILabel!
+    @IBOutlet weak var persistingItemsViewPromptLabel: UILabel!
+    @IBOutlet weak var quittingItemsViewPromptLabel: UILabel!
     
     @IBOutlet weak var dataLabel: UILabel!
     @IBOutlet weak var overAllProgressTitleLabel: UILabel!
-    @IBOutlet weak var itemCardsView: UIView!
+    @IBOutlet weak var persistingItemsView: UIView!
+    @IBOutlet weak var quittingItemsView: UIView!
     
     public static var shared = HomeViewController()
     static var view: UIView!
@@ -42,23 +46,24 @@ class HomeViewController: UIViewController {
     var keyboardFrame: CGRect? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        persistingItemsViewPromptLabel.sizeToFit()
+        quittingItemsViewPromptLabel.sizeToFit()
         
-        //checkButton.layer.cornerRadius = setting.checkButtonCornerRadius
+        persistingItemsView.frame.size.height -= 200
+        quittingItemsView.frame.size.height -= 200
+        persistingItemsView.layoutIfNeeded()
+        quittingItemsView.layoutIfNeeded()
+        
         verticalScrollView.contentSize = CGSize(width: view.frame.width, height: 2000)
-//        overallProgressView.layer.contents = setting.itemCardBGImage.cgImage
         overallProgressView.layer.cornerRadius = setting.itemCardCornerRadius
         overallProgressView.setViewShadow()
         avatarImageView.layer.masksToBounds = true
         avatarImageView.layer.cornerRadius = avatarImageView.bounds.width / 2
-        
-    
         overallProgressView.layoutIfNeeded()
-       
-        excuteProgressLabelAnimation()
-        updateUI()
-        
+
         scrollViewTopOffset = overAllProgressTitleLabel.frame.origin.y - 8
-        verticalScrollView.setContentOffset(CGPoint(x: 0, y: scrollViewTopOffset), animated: false)
+        //verticalScrollView.setContentOffset(CGPoint(x: 0, y: scrollViewTopOffset), animated: false)
         verticalScrollView.delegate = self // activate delegate
         
         dateFormatter.locale = Locale(identifier: "zh")
@@ -68,7 +73,8 @@ class HomeViewController: UIViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.tintColor = UIColor.black
         
-        print(itemsTitleLabel.frame)
+        engine.loadUser()
+        updateUI()
         
         
     }
@@ -76,11 +82,11 @@ class HomeViewController: UIViewController {
     
 
     
-    func addProgressCircle() { // Circle progress bar
+    func updateProgressCircle() { // Circle progress bar
        
-        self.overallProgress = self.engine.getOverAllProgress()
+        self.overallProgress = self.engine.getOverAllProgress() ?? 0
+
         let center = CGPoint(x: overallProgressView.frame.width / 2 , y: overallProgressView.frame.height / 2)
-        print(overallProgressView.frame.width)
         let circleTrackPath = UIBezierPath(arcCenter: center, radius: 60, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
 
         let shapeColor = UserStyleSetting.themeColor?.cgColor
@@ -126,18 +132,18 @@ class HomeViewController: UIViewController {
     
     func excuteProgressLabelAnimation() {
 
-        if currentTransitionValue >= 1 {
-            timer?.invalidate()
-        } else {
-            timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(timerEvent), userInfo: nil, repeats: true)
-        }
-
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateProgressLabel), userInfo: nil, repeats: true)
     }
     
-    @objc func timerEvent() {
-        self.overallProgress = self.engine.getOverAllProgress()
+    @objc func updateProgressLabel() {
+
+        if currentTransitionValue >= 1 {
+            print("timer Ivalidsted")
+            timer?.invalidate()
+        }
+        self.overallProgress = self.engine.getOverAllProgress() ?? 0
+        print(overallProgress)
         currentTransitionValue = (circleShapeLayer.presentation()?.value(forKeyPath: "strokeEnd") ?? 0.0) as! Double
-        
         self.overallProgressLabel.text = "已完成: \(String(format: "%.1f", self.currentTransitionValue * self.overallProgress * 100))%"
     }
 
@@ -145,32 +151,30 @@ class HomeViewController: UIViewController {
         self.engine.showAddItemView(controller: self)
     }
     
-    func updateVerticalScrollView(newItemCard: UIView, updatedHeight: CGFloat) {
-        
-        let heightConstraintIndex = self.contentView.constraints.count - 1
-        let tabBarHeight: CGFloat = 200
-        self.itemCardsView.addSubview(newItemCard)
-        
-        let newConstraint = self.itemsTitleLabel.frame.origin.y + tabBarHeight +  updatedHeight
-        if newConstraint > self.contentView.constraints[heightConstraintIndex].constant {
-            self.contentView.constraints[heightConstraintIndex].constant = newConstraint // update height constraint (height is at the last index of constraints array)
-        }
- 
-        self.itemCardsView.layoutIfNeeded()
-
-    }
+  
     
     @objc func punchInButtonPressed(_ sender: UIButton!) {
-        print(sender.tag)
+
         self.engine.punchInItem(tag: sender.tag)
         updateUI()
     }
     
     func removeAllItemCards() {
         
-        for subView in itemCardsView.subviews {
-            subView.removeFromSuperview()
+        for subView in persistingItemsView.subviews {
+            if subView.accessibilityIdentifier == setting.itemCardIdentifier {
+
+                subView.removeFromSuperview()
+            }
+            
         }
+        
+        for subView in quittingItemsView.subviews {
+            if subView.accessibilityIdentifier == setting.itemCardIdentifier {
+                subView.removeFromSuperview()
+            }
+        }
+        
     }
     
     func removeOriginalCircle() {
@@ -181,16 +185,33 @@ class HomeViewController: UIViewController {
         }
     }
     
+    func firstAccessIntialize() {
+        verticalScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+        verticalScrollView.setContentOffset(CGPoint(x: 0, y: scrollViewTopOffset), animated: true)
+        self.horizentalScrollView.setContentOffset(CGPoint(x: self.overallProgressView.frame.width, y: 0), animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // Change `2.0` to the desired number of seconds.
+            self.horizentalScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        }
+    }
+    
+    func loadUserAvatar() {
+        avatarImageView.image = engine.user?.getAvatarImage()
+    }
+    
+    func loadItemCards() {
+        engine.loadItemCardsToHomeView(controller: self)
+    }
+    
     func updateUI() {
         
+        loadUserAvatar()
         removeOriginalCircle()
-        addProgressCircle()
+        updateProgressCircle()
         excuteCircleAnimation()
         excuteProgressLabelAnimation()
-        
         removeAllItemCards()
-        engine.loadItemCardsToHomeView(controller: self)
-       
+        loadItemCards()
+        
     }
     
 
@@ -208,8 +229,15 @@ extension HomeViewController: AppEngineDelegate, UIScrollViewDelegate {
     }
     
     func didDismissView() {
-
-        self.updateUI()
+        
+        if self.engine.itemOnTransitionBetweenHomeViewAndAddItemCardView!.type == .persisting {
+            self.updateUI()
+        } else if self.engine.itemOnTransitionBetweenHomeViewAndAddItemCardView!.type == .quitting {
+            self.updateUI()
+            
+            self.horizentalScrollView.setContentOffset(CGPoint(x: self.persistingItemsView.frame.width, y: 0), animated: true)
+        }
+        
     }
     
     func didSaveAndDismissPopUpView(type: PopUpType) {
@@ -243,6 +271,8 @@ extension HomeViewController: AppEngineDelegate, UIScrollViewDelegate {
        
         self.scrollViewLastOffset = scrollView.contentOffset.y
     }
+    
+    
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         

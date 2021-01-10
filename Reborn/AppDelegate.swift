@@ -13,7 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        AppEngine.shared.loadItems()
         return true
     }
 
@@ -32,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        AppEngine.shared.saveItems()
+        AppEngine.shared.saveUser(user: AppEngine.shared.user)
     }
 
 

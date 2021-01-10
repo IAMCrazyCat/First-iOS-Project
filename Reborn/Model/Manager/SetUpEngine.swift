@@ -7,28 +7,28 @@
 
 import Foundation
 import UIKit
-struct SetUpEngine {
+class SetUpEngine {
     var progress = 1
     let pages = SetUpPageData.data
     var quittingItemName: String = ""
     var quittingItemDays: Int = 0
     var persistingItemName: String = ""
     var persistingItemDays: Int = 0
-    var userGender: String = ""
-    
-    mutating func nextPage() {
+    var userGender: Gender?
+    var items: Array<Item> = []
+    func nextPage() {
         if progress < pages.count {
             progress += 1
         }
     }
     
-    mutating func previousPage() {
+    func previousPage() {
         if progress > 1 {
             progress -= 1
         }
     }
     
-    mutating func getCurrentPage() -> SetUpPage {
+    func getCurrentPage() -> SetUpPage {
         return pages[progress - 1]
     }
     
@@ -38,10 +38,11 @@ struct SetUpEngine {
     
     
     
-    mutating func processSlectedData(pressedButton: UIButton) { // execute once next button clicked
+    func processSlectedData(pressedButton: UIButton) { // execute once next button clicked
         
         var buttonTitle = pressedButton.currentTitle ?? "Error"
         
+
         switch progress {
         case 1:
             quittingItemName = buttonTitle
@@ -52,21 +53,34 @@ struct SetUpEngine {
         case 3:
             persistingItemName = buttonTitle
         case 4:
+
             buttonTitle.removeLast()
             persistingItemDays = Int(buttonTitle) ?? 0
         case 5:
-            userGender = buttonTitle
+            
+            if buttonTitle == Gender.male.rawValue {
+                userGender = .male
+            } else if buttonTitle == Gender.female.rawValue {
+                userGender = .female
+            } else {
+                userGender = .other
+            }
+            
         default:
             print("Switching progress Error")
         }
         
     }
     
-    func saveData() {
-        AppEngine.shared.addItem(newItem: QuittingItem(name: quittingItemName, days: quittingItemDays, finishedDays: 0, creationDate: Date()))
-        AppEngine.shared.addItem(newItem: PersistingItem(name: persistingItemName, days: persistingItemDays, finishedDays: 0, creationDate: Date()))
-        AppEngine.shared.saveItems()
+    func createUser(setUpIsSkipped: Bool) {
+        
+        if !setUpIsSkipped {
+            items.append(QuittingItem(name: quittingItemName, days: quittingItemDays, finishedDays: 0, creationDate: Date()))
+            items.append(PersistingItem(name: persistingItemName, days: persistingItemDays, finishedDays: 0, creationDate: Date()))
+        }
+        AppEngine.shared.saveUser(user: User(name: "没有名字", gender: userGender ?? .undefined, avatar: #imageLiteral(resourceName: "AvatarMale"), keys: 3, items: self.items, vip: false))
     }
+    
     
     func showPopUp(popUpType: PopUpType, controller: UIViewController) {
   
@@ -74,6 +88,7 @@ struct SetUpEngine {
     }
     
     func getStoredDataFromPopUpView() -> Any {
+        
         return AppEngine.shared.storedDataFromPopUpView ?? "Error"
     }
     

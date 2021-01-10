@@ -15,18 +15,19 @@
 		220B728E258A288300E4BEDC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 220B728C258A288300E4BEDC /* LaunchScreen.storyboard */; };
 		220B7299258A288300E4BEDC /* RebornTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B7298258A288300E4BEDC /* RebornTests.swift */; };
 		220B72A4258A288300E4BEDC /* RebornUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B72A3258A288300E4BEDC /* RebornUITests.swift */; };
+		221E0B7C25A9273E00386FE1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E0B7B25A9273E00386FE1 /* User.swift */; };
+		221E0B8825A9A22800386FE1 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E0B8725A9A22800386FE1 /* Gender.swift */; };
+		221E0BA425A9D38100386FE1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E0BA325A9D38100386FE1 /* Image.swift */; };
+		221E0BB825AB19CA00386FE1 /* CalendarBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E0BB725AB19CA00386FE1 /* CalendarBuilder.swift */; };
 		223A777B25A41184004B3324 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223A777A25A41184004B3324 /* UIView.swift */; };
 		224A91842595FA7D00A896BE /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224A91832595FA7D00A896BE /* ItemType.swift */; };
 		224A919225971E9000A896BE /* ItemCardBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224A919125971E9000A896BE /* ItemCardBuilder.swift */; };
 		225AD11625A6C8620040E356 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AD11525A6C8620040E356 /* UIColor.swift */; };
 		225AD12225A80EB30040E356 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AD12125A80EB30040E356 /* UIApplication.swift */; };
+		225AD12A25A848A30040E356 /* Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AD12925A848A30040E356 /* Selector.swift */; };
+		225AD12F25A868F50040E356 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AD12E25A868F50040E356 /* ItemDetailViewController.swift */; };
+		225AD13425A86ED80040E356 /* FadeInSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AD13325A86ED80040E356 /* FadeInSegue.swift */; };
 		2279C17E2592ED2F00566CD7 /* UserStyleSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2279C17D2592ED2F00566CD7 /* UserStyleSetting.swift */; };
-		2299470A259AF20C006D0381 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22994709259AF20C006D0381 /* PopUpView.swift */; };
-		2299472A259C9CF4006D0381 /* SetUpViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22994729259C9CF4006D0381 /* SetUpViewState.swift */; };
-		22994730259C9D40006D0381 /* SetUpViewBaseState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2299472F259C9D40006D0381 /* SetUpViewBaseState.swift */; };
-		2299473B259C9D7E006D0381 /* WaitingForSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2299473A259C9D7E006D0381 /* WaitingForSelection.swift */; };
-		22994743259C9DB2006D0381 /* ReadyToGoNextPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22994742259C9DB2006D0381 /* ReadyToGoNextPage.swift */; };
-		22994748259CA456006D0381 /* GoNextPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22994747259CA456006D0381 /* GoNextPage.swift */; };
 		22A597EC2598091B008E2A06 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A597EB2598091B008E2A06 /* UIButton.swift */; };
 		22A597F925986685008E2A06 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A597F825986685008E2A06 /* AddItemViewController.swift */; };
 		22A597FE2599C0AF008E2A06 /* WeekDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A597FD2599C0AF008E2A06 /* WeekDay.swift */; };
@@ -38,7 +39,6 @@
 		22C23A27258DCE4500D4BEB2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C23A26258DCE4500D4BEB2 /* HomeViewController.swift */; };
 		22C5D967258F3E4400131964 /* SetUpEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5D966258F3E4400131964 /* SetUpEngine.swift */; };
 		22C5D975258F40E800131964 /* SetUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5D974258F40E800131964 /* SetUpPage.swift */; };
-		22C7D5B52595DB0C00B7D0F1 /* ItemProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C7D5B42595DB0C00B7D0F1 /* ItemProtocol.swift */; };
 		22D354B425A595B7004F5667 /* UserCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D354B325A595B7004F5667 /* UserCenterViewController.swift */; };
 		22D6195225A0238E00EC9396 /* PopUpViewPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6195125A0238E00EC9396 /* PopUpViewPresentationController.swift */; };
 		22D6195725A0277B00EC9396 /* PopUpViewPresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6195625A0277B00EC9396 /* PopUpViewPresentAnimationController.swift */; };
@@ -86,18 +86,19 @@
 		220B729F258A288300E4BEDC /* RebornUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RebornUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		220B72A3258A288300E4BEDC /* RebornUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebornUITests.swift; sourceTree = "<group>"; };
 		220B72A5258A288300E4BEDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		221E0B7B25A9273E00386FE1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		221E0B8725A9A22800386FE1 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
+		221E0BA325A9D38100386FE1 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		221E0BB725AB19CA00386FE1 /* CalendarBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarBuilder.swift; sourceTree = "<group>"; };
 		223A777A25A41184004B3324 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		224A91832595FA7D00A896BE /* ItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
 		224A919125971E9000A896BE /* ItemCardBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCardBuilder.swift; sourceTree = "<group>"; };
 		225AD11525A6C8620040E356 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		225AD12125A80EB30040E356 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
+		225AD12925A848A30040E356 /* Selector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selector.swift; sourceTree = "<group>"; };
+		225AD12E25A868F50040E356 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
+		225AD13325A86ED80040E356 /* FadeInSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeInSegue.swift; sourceTree = "<group>"; };
 		2279C17D2592ED2F00566CD7 /* UserStyleSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStyleSetting.swift; sourceTree = "<group>"; };
-		22994709259AF20C006D0381 /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
-		22994729259C9CF4006D0381 /* SetUpViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewState.swift; sourceTree = "<group>"; };
-		2299472F259C9D40006D0381 /* SetUpViewBaseState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewBaseState.swift; sourceTree = "<group>"; };
-		2299473A259C9D7E006D0381 /* WaitingForSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForSelection.swift; sourceTree = "<group>"; };
-		22994742259C9DB2006D0381 /* ReadyToGoNextPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyToGoNextPage.swift; sourceTree = "<group>"; };
-		22994747259CA456006D0381 /* GoNextPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoNextPage.swift; sourceTree = "<group>"; };
 		22A597EB2598091B008E2A06 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		22A597F825986685008E2A06 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		22A597FD2599C0AF008E2A06 /* WeekDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDay.swift; sourceTree = "<group>"; };
@@ -109,7 +110,6 @@
 		22C23A26258DCE4500D4BEB2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		22C5D966258F3E4400131964 /* SetUpEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpEngine.swift; sourceTree = "<group>"; };
 		22C5D974258F40E800131964 /* SetUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpPage.swift; sourceTree = "<group>"; };
-		22C7D5B42595DB0C00B7D0F1 /* ItemProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemProtocol.swift; sourceTree = "<group>"; };
 		22D354B325A595B7004F5667 /* UserCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCenterViewController.swift; sourceTree = "<group>"; };
 		22D6195125A0238E00EC9396 /* PopUpViewPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewPresentationController.swift; sourceTree = "<group>"; };
 		22D6195625A0277B00EC9396 /* PopUpViewPresentAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewPresentAnimationController.swift; sourceTree = "<group>"; };
@@ -179,7 +179,6 @@
 				220B7281258A288000E4BEDC /* AppDelegate.swift */,
 				220B7283258A288000E4BEDC /* SceneDelegate.swift */,
 				220B728A258A288300E4BEDC /* Assets.xcassets */,
-				220B728C258A288300E4BEDC /* LaunchScreen.storyboard */,
 				220B728F258A288300E4BEDC /* Info.plist */,
 			);
 			path = Reborn;
@@ -206,14 +205,12 @@
 		220B72B4258C68FB00E4BEDC /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				22E9A850259ECDB10073D432 /* Extension */,
+				22AAD46A25922C06005078B6 /* Manager */,
+				221E0B8625A9A20A00386FE1 /* Enum */,
+				221E0B7A25A9273300386FE1 /* Model */,
 				22C5D987258F646700131964 /* Setting */,
-				22994702259AF1D8006D0381 /* PopUp Model */,
 				224A919025971E0800A896BE /* Builder */,
-				22AAD46A25922C06005078B6 /* Engine */,
-				22C5D954258F3D3E00131964 /* SetUp Model */,
-				22C23A22258DCA3E00D4BEB2 /* Item Model */,
-				2299472E259C9D01006D0381 /* SeUp State */,
+				22E9A850259ECDB10073D432 /* Extension */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -222,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				220B7287258A288000E4BEDC /* Main.storyboard */,
+				220B728C258A288300E4BEDC /* LaunchScreen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -233,19 +231,44 @@
 				220B7285258A288000E4BEDC /* WelcomeViewController.swift */,
 				22A597F825986685008E2A06 /* AddItemViewController.swift */,
 				22E9A873259F33F50073D432 /* PopUpViewController.swift */,
+				225AD12E25A868F50040E356 /* ItemDetailViewController.swift */,
 				22D354BE25A6B142004F5667 /* Tab Bar Controller */,
 				223A777325A30645004B3324 /* Transition */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		221E0B7A25A9273300386FE1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				221E0BA325A9D38100386FE1 /* Image.swift */,
+				221E0B7B25A9273E00386FE1 /* User.swift */,
+				22D7FBA025A18FE5006B1F28 /* DataOption.swift */,
+				22C5D974258F40E800131964 /* SetUpPage.swift */,
+				22D7FBA525A190E9006B1F28 /* SetUpPageData.swift */,
+				22E9A854259ED1B40073D432 /* PikerViewData.swift */,
+				22C23A13258DC58F00D4BEB2 /* Item.swift */,
+				22C23A18258DC5D700D4BEB2 /* QuittingItem.swift */,
+				22C23A1D258DC5FB00D4BEB2 /* PersistingItem.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		221E0B8625A9A20A00386FE1 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				224A91832595FA7D00A896BE /* ItemType.swift */,
+				221E0B8725A9A22800386FE1 /* Gender.swift */,
+				22A597FD2599C0AF008E2A06 /* WeekDay.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
 		223A777325A30645004B3324 /* Transition */ = {
 			isa = PBXGroup;
 			children = (
-				22D6195125A0238E00EC9396 /* PopUpViewPresentationController.swift */,
-				22D6195625A0277B00EC9396 /* PopUpViewPresentAnimationController.swift */,
-				22D6196625A02FE100EC9396 /* PopUpViewDismissAnimationController.swift */,
-				22D6197625A06B7F00EC9396 /* InteractiveModalTransitioningDelegate.swift */,
+				225AD13825A872180040E356 /* Custom Segue */,
+				225AD13A25A872450040E356 /* Custom Transition */,
 			);
 			path = Transition;
 			sourceTree = "<group>";
@@ -256,61 +279,37 @@
 				224A919125971E9000A896BE /* ItemCardBuilder.swift */,
 				22A59810259AA31A008E2A06 /* PopUpViewBuilder.swift */,
 				22D7FBB025A1E065006B1F28 /* SetUpPageBuilder.swift */,
+				221E0BB725AB19CA00386FE1 /* CalendarBuilder.swift */,
 			);
 			path = Builder;
 			sourceTree = "<group>";
 		};
-		22994702259AF1D8006D0381 /* PopUp Model */ = {
+		225AD13825A872180040E356 /* Custom Segue */ = {
 			isa = PBXGroup;
 			children = (
-				22994709259AF20C006D0381 /* PopUpView.swift */,
-				22E9A854259ED1B40073D432 /* PikerViewData.swift */,
+				225AD13325A86ED80040E356 /* FadeInSegue.swift */,
 			);
-			path = "PopUp Model";
+			path = "Custom Segue";
 			sourceTree = "<group>";
 		};
-		2299472E259C9D01006D0381 /* SeUp State */ = {
+		225AD13A25A872450040E356 /* Custom Transition */ = {
 			isa = PBXGroup;
 			children = (
-				22994729259C9CF4006D0381 /* SetUpViewState.swift */,
-				2299472F259C9D40006D0381 /* SetUpViewBaseState.swift */,
-				2299473A259C9D7E006D0381 /* WaitingForSelection.swift */,
-				22994742259C9DB2006D0381 /* ReadyToGoNextPage.swift */,
-				22994747259CA456006D0381 /* GoNextPage.swift */,
+				22D6195125A0238E00EC9396 /* PopUpViewPresentationController.swift */,
+				22D6195625A0277B00EC9396 /* PopUpViewPresentAnimationController.swift */,
+				22D6196625A02FE100EC9396 /* PopUpViewDismissAnimationController.swift */,
+				22D6197625A06B7F00EC9396 /* InteractiveModalTransitioningDelegate.swift */,
 			);
-			path = "SeUp State";
+			path = "Custom Transition";
 			sourceTree = "<group>";
 		};
-		22AAD46A25922C06005078B6 /* Engine */ = {
+		22AAD46A25922C06005078B6 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				22C5D966258F3E4400131964 /* SetUpEngine.swift */,
 				22C23A0E258DC4FA00D4BEB2 /* AppEngine.swift */,
+				22C5D966258F3E4400131964 /* SetUpEngine.swift */,
 			);
-			path = Engine;
-			sourceTree = "<group>";
-		};
-		22C23A22258DCA3E00D4BEB2 /* Item Model */ = {
-			isa = PBXGroup;
-			children = (
-				22C23A13258DC58F00D4BEB2 /* Item.swift */,
-				22C23A18258DC5D700D4BEB2 /* QuittingItem.swift */,
-				22C23A1D258DC5FB00D4BEB2 /* PersistingItem.swift */,
-				22C7D5B42595DB0C00B7D0F1 /* ItemProtocol.swift */,
-				224A91832595FA7D00A896BE /* ItemType.swift */,
-				22A597FD2599C0AF008E2A06 /* WeekDay.swift */,
-			);
-			path = "Item Model";
-			sourceTree = "<group>";
-		};
-		22C5D954258F3D3E00131964 /* SetUp Model */ = {
-			isa = PBXGroup;
-			children = (
-				22C5D974258F40E800131964 /* SetUpPage.swift */,
-				22D7FBA525A190E9006B1F28 /* SetUpPageData.swift */,
-				22D7FBA025A18FE5006B1F28 /* DataOption.swift */,
-			);
-			path = "SetUp Model";
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		22C5D987258F646700131964 /* Setting */ = {
@@ -339,6 +338,7 @@
 				223A777A25A41184004B3324 /* UIView.swift */,
 				225AD11525A6C8620040E356 /* UIColor.swift */,
 				225AD12125A80EB30040E356 /* UIApplication.swift */,
+				225AD12925A848A30040E356 /* Selector.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -473,15 +473,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2299472A259C9CF4006D0381 /* SetUpViewState.swift in Sources */,
 				22E9A855259ED1B40073D432 /* PikerViewData.swift in Sources */,
-				22994730259C9D40006D0381 /* SetUpViewBaseState.swift in Sources */,
 				2279C17E2592ED2F00566CD7 /* UserStyleSetting.swift in Sources */,
 				223A777B25A41184004B3324 /* UIView.swift in Sources */,
 				22D7FBB125A1E065006B1F28 /* SetUpPageBuilder.swift in Sources */,
 				22D6195C25A0290600EC9396 /* UIViewController.swift in Sources */,
 				22C23A27258DCE4500D4BEB2 /* HomeViewController.swift in Sources */,
+				225AD12F25A868F50040E356 /* ItemDetailViewController.swift in Sources */,
 				225AD12225A80EB30040E356 /* UIApplication.swift in Sources */,
+				225AD12A25A848A30040E356 /* Selector.swift in Sources */,
+				221E0BB825AB19CA00386FE1 /* CalendarBuilder.swift in Sources */,
 				22D6195725A0277B00EC9396 /* PopUpViewPresentAnimationController.swift in Sources */,
 				224A919225971E9000A896BE /* ItemCardBuilder.swift in Sources */,
 				22D6196725A02FE100EC9396 /* PopUpViewDismissAnimationController.swift in Sources */,
@@ -489,27 +490,26 @@
 				22FCB1B5258D86BA006A0D39 /* SetUpViewController.swift in Sources */,
 				22D6195225A0238E00EC9396 /* PopUpViewPresentationController.swift in Sources */,
 				22A597F925986685008E2A06 /* AddItemViewController.swift in Sources */,
-				2299470A259AF20C006D0381 /* PopUpView.swift in Sources */,
 				22C23A19258DC5D700D4BEB2 /* QuittingItem.swift in Sources */,
 				22E9A875259F33F50073D432 /* PopUpViewController.swift in Sources */,
 				220B7286258A288000E4BEDC /* WelcomeViewController.swift in Sources */,
-				2299473B259C9D7E006D0381 /* WaitingForSelection.swift in Sources */,
 				22C5D975258F40E800131964 /* SetUpPage.swift in Sources */,
 				220B7282258A288000E4BEDC /* AppDelegate.swift in Sources */,
 				225AD11625A6C8620040E356 /* UIColor.swift in Sources */,
-				22994748259CA456006D0381 /* GoNextPage.swift in Sources */,
-				22994743259C9DB2006D0381 /* ReadyToGoNextPage.swift in Sources */,
 				220B7284258A288000E4BEDC /* SceneDelegate.swift in Sources */,
 				22C23A14258DC58F00D4BEB2 /* Item.swift in Sources */,
+				221E0BA425A9D38100386FE1 /* Image.swift in Sources */,
 				22D354B425A595B7004F5667 /* UserCenterViewController.swift in Sources */,
+				221E0B7C25A9273E00386FE1 /* User.swift in Sources */,
 				22FCB1BA258D907C006A0D39 /* SystemStyleSetting.swift in Sources */,
 				22C23A1E258DC5FB00D4BEB2 /* PersistingItem.swift in Sources */,
 				22C23A0F258DC4FA00D4BEB2 /* AppEngine.swift in Sources */,
 				22A597FE2599C0AF008E2A06 /* WeekDay.swift in Sources */,
-				22C7D5B52595DB0C00B7D0F1 /* ItemProtocol.swift in Sources */,
+				225AD13425A86ED80040E356 /* FadeInSegue.swift in Sources */,
 				22D7FBA625A190E9006B1F28 /* SetUpPageData.swift in Sources */,
 				22A597EC2598091B008E2A06 /* UIButton.swift in Sources */,
 				22A59811259AA31A008E2A06 /* PopUpViewBuilder.swift in Sources */,
+				221E0B8825A9A22800386FE1 /* Gender.swift in Sources */,
 				22C5D967258F3E4400131964 /* SetUpEngine.swift in Sources */,
 				22D7FBA125A18FE5006B1F28 /* DataOption.swift in Sources */,
 				22D6197725A06B7F00EC9396 /* InteractiveModalTransitioningDelegate.swift in Sources */,

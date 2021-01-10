@@ -9,7 +9,7 @@ import Foundation
 struct PickerViewData {
     public static var customTargetDays: Array<DataOption> {
         var array = [DataOption]()
-        for day in 0...730 {
+        for day in 1...730 {
             array.append(DataOption(data: day))
         }
         return array

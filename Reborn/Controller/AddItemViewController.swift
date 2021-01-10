@@ -27,7 +27,7 @@ class AddItemViewController: UIViewController {
     let engine = AppEngine.shared
     
     var itemName: String = "项目名"
-    var itemType: ItemType = ItemType.UNDEFINED
+    var itemType: ItemType = ItemType.undefined
     var targetDays: Int = 1
     var frequency: DataOption? = nil
     
@@ -44,7 +44,6 @@ class AddItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.itemNameTextfield.delegate = self
-        self.itemNameTextfield.returnKeyType = UIReturnKeyType.done
         self.bottomScrollView.delegate = self
         
         self.customFrequencyButton.setTitle(SystemStyleSetting.shared.customButtonTitle, for: .normal)
@@ -52,12 +51,15 @@ class AddItemViewController: UIViewController {
         self.customTargetDaysButton.tag = SystemStyleSetting.shared.customTargetDaysButtonTag
         self.customFrequencyButton.tag = SystemStyleSetting.shared.customFrequencyButtonTag
         self.itemNameTextfield.addTarget(self, action: #selector(self.textfieldTextChanged(_:)), for: .editingChanged)
+        self.itemNameTextfield.layer.cornerRadius = SystemStyleSetting.shared.textFieldCornerRadius
         
-        for subview in view.viewWithTag(4)!.subviews {
+        for subview in view.viewWithTag(4)!.subviews { // all buttons
             if let button = subview as? UIButton {
                 button.layer.cornerRadius = SystemStyleSetting.shared.optionButtonCornerRadius
                 button.setViewShadow()
                 button.setBackgroundColor(UserStyleSetting.themeColor, cornerRadius: button.layer.cornerRadius, for: .selected)
+                button.setTitleColor(UIColor.white, for: .selected)
+
             }
         }
         
@@ -162,8 +164,7 @@ class AddItemViewController: UIViewController {
         selectedFrequencyButton?.isSelected = false
     }
     
-    func updatePreViewItemCard() {
-        
+    func removeOldPreviewItemCard() {
         if self.previewItemCardTag != nil {
             
             for subview in self.view.viewWithTag(2)!.subviews {
@@ -172,37 +173,41 @@ class AddItemViewController: UIViewController {
                 }
             }
         }
+    }
+    func updatePreViewItemCard() {
+        
+       
         
         switch itemType {
-        case .QUITTING:
+        case .quitting:
             
             self.item = QuittingItem(name: self.itemName, days: self.targetDays, finishedDays: 0, creationDate: self.engine.currentDate)
 
-        case .PERSISTING:
+        case .persisting:
             
             self.item = PersistingItem(name: self.itemName, days: self.targetDays, finishedDays: 0, creationDate: self.engine.currentDate)
 
         default:
             
-            self.item = Item(name: self.itemName, days: self.targetDays, finishedDays: 0, creationDate: self.engine.currentDate, type: .UNDEFINED)
+            self.item = Item(name: self.itemName, days: self.targetDays, finishedDays: 0, creationDate: self.engine.currentDate, type: .undefined)
 
         }
         
         if frequency != nil {
             item!.setFreqency(frequency: frequency!)
         }
-    
         excuteItemCardAimation()
         
-       
-        let generator = UIImpactFeedbackGenerator(style: .light)
-        generator.impactOccurred()
-        
-        self.preViewItemCard = self.engine.generateNewItemCard(item: item!)
-        self.previewItemCardTag = preViewItemCard!.tag
- 
-        self.preViewItemCard!.center = self.middleContentView.center
-        self.middleContentView.addSubview(preViewItemCard!)
+        if let newItemCard = self.engine.generateNewItemCard(item: item!) {
+            let generator = UIImpactFeedbackGenerator(style: .light)
+            generator.impactOccurred()
+            
+            self.preViewItemCard = newItemCard
+            self.previewItemCardTag = preViewItemCard!.tag
+     
+            self.preViewItemCard!.center = self.middleContentView.center
+            self.middleContentView.addSubview(preViewItemCard!)
+        }
 
     }
     
@@ -228,7 +233,11 @@ class AddItemViewController: UIViewController {
     
     func updateUI() {
         
+      
+        
+        removeOldPreviewItemCard()
         updatePreViewItemCard()
+        
     }
 }
 

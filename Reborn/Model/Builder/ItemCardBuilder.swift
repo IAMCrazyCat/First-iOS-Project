@@ -56,11 +56,11 @@ class ItemCardBuilder {
     
     private func createItemCardUIView() {
    
-        //newItemCardView.layer.contents = cardBGImage.cgImage
+        newItemCardView.accessibilityIdentifier = setting.itemCardIdentifier
         newItemCardView.backgroundColor = setting.whiteAndBlack
         newItemCardView.layer.cornerRadius = setting.itemCardCornerRadius
         newItemCardView.setViewShadow()
-        newItemCardView.frame = CGRect(x: cordinateX, y: cordinateY, width: width, height: height)
+        newItemCardView.frame = CGRect(x: cordinateX + 5, y: cordinateY + 5, width: width - 10, height: height)
     }
     
     private func addNameLabel() {
@@ -138,7 +138,7 @@ class ItemCardBuilder {
         newItemCardView.addSubview(typeLabel)
         typeLabel.translatesAutoresizingMaskIntoConstraints = false
         typeLabel.centerYAnchor.constraint(equalTo: newItemCardView.centerYAnchor).isActive = true
-        typeLabel.leftAnchor.constraint(equalTo: newItemCardView.leftAnchor, constant: self.setting.itemCardCenterObjectsOffset).isActive = true
+        typeLabel.leftAnchor.constraint(equalTo: newItemCardView.leftAnchor, constant: self.setting.itemCardCenterObjectsToEdgeOffset).isActive = true
     }
     
    
@@ -222,7 +222,7 @@ class ItemCardBuilder {
         newItemCardView.addSubview(punchInButton)
         punchInButton.translatesAutoresizingMaskIntoConstraints = false
         punchInButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        punchInButton.rightAnchor.constraint(equalTo: newItemCardView.rightAnchor, constant: -self.setting.itemCardCenterObjectsOffset).isActive = true
+        punchInButton.rightAnchor.constraint(equalTo: newItemCardView.rightAnchor, constant: -self.setting.itemCardCenterObjectsToEdgeOffset).isActive = true
         punchInButton.centerYAnchor.constraint(equalTo: newItemCardView.centerYAnchor).isActive = true
         
         punchInButton.addTarget(self, action: #selector(HomeViewController.shared.punchInButtonPressed(_:)), for: .touchDown)

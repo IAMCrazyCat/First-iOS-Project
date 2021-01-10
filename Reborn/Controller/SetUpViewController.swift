@@ -27,11 +27,6 @@ class SetUpViewController: UIViewController{
     var backButtonPressed = false
     var numberOfPagedAdded = 0
     var selectedButton: UIButton = UIButton()
-    var popUpView: PopUpView? = nil
-
-    
-    var state1: WaitingForSelection = WaitingForSelection()
-    var state2: ReadyToGoNextPage = ReadyToGoNextPage()
     
     var itemIsSkipped: Bool = false
     static let optionButtonAction = #selector(optionButtonPressed)
@@ -73,7 +68,8 @@ class SetUpViewController: UIViewController{
     @IBAction func nextStepButtonPressed(_ sender: UIButton) {
 
         if nextStepButton.currentTitle == setting.finishButtonTitle {
-            self.engine.saveData()
+            self.engine.processSlectedData(pressedButton: self.selectedButton)
+            self.engine.createUser(setUpIsSkipped: false)
             self.goToHomeView()
             
         } else if selectedButton.currentTitle == self.setting.skipButtonTitle {
@@ -130,6 +126,8 @@ class SetUpViewController: UIViewController{
     
     
     @IBAction func skipSetUpButtonPressed(_ sender: UIButton) {
+        self.engine.processSlectedData(pressedButton: self.selectedButton)
+        self.engine.createUser(setUpIsSkipped: true)
         self.goToHomeView()
     }
     
