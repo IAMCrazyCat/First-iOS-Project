@@ -78,7 +78,7 @@ class SetUpEngine {
             items.append(QuittingItem(name: quittingItemName, days: quittingItemDays, finishedDays: 0, creationDate: Date()))
             items.append(PersistingItem(name: persistingItemName, days: persistingItemDays, finishedDays: 0, creationDate: Date()))
         }
-        AppEngine.shared.saveUser(user: User(name: "没有名字", gender: userGender ?? .undefined, avatar: #imageLiteral(resourceName: "AvatarMale"), keys: 3, items: self.items, vip: false))
+        AppEngine.shared.saveUser(newUser: User(name: "没有名字", gender: userGender ?? .undefined, avatar: #imageLiteral(resourceName: "AvatarMale"), keys: 3, items: self.items, vip: false))
     }
     
     

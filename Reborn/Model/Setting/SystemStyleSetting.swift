@@ -85,6 +85,8 @@ struct SystemStyleSetting{
     let popUpWindowPresentDuration: Double = 0.2
     let popUpWindowBounceDuration: Double = 0.25
     
+    let calendarHeight: CGFloat = 300
+    
     
 }
 

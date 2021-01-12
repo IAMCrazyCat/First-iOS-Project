@@ -31,8 +31,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        AppEngine.shared.saveUser(user: AppEngine.shared.user)
+        print("TERMINATED")
+        AppEngine.shared.saveUser(newUser: nil)
     }
+    
 
 
 }

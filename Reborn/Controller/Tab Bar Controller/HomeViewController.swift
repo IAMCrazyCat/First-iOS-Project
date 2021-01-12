@@ -50,8 +50,9 @@ class HomeViewController: UIViewController {
         persistingItemsViewPromptLabel.sizeToFit()
         quittingItemsViewPromptLabel.sizeToFit()
         
-        persistingItemsView.frame.size.height -= 200
-        quittingItemsView.frame.size.height -= 200
+//        persistingItemsView.frame.size.height -= 200
+//        quittingItemsView.frame.size.height -= 200
+        
         persistingItemsView.layoutIfNeeded()
         quittingItemsView.layoutIfNeeded()
         
@@ -153,10 +154,26 @@ class HomeViewController: UIViewController {
     
   
     
-    @objc func punchInButtonPressed(_ sender: UIButton!) {
+    @objc func itemPunchInButtonPressed(_ sender: UIButton!) {
 
         self.engine.punchInItem(tag: sender.tag)
         updateUI()
+    }
+    
+    @objc func itemDetailButtonPressed(_ sender: UIButton!) {
+        self.performSegue(withIdentifier: "goItemDetailView", sender: sender)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let destinationViewController = segue.destination as? ItemDetailViewController {
+            
+            if let itemID = (sender as? UIButton)?.tag {
+                destinationViewController.itemID = itemID
+            }
+            
+        }
+        
     }
     
     func removeAllItemCards() {
@@ -232,10 +249,11 @@ extension HomeViewController: AppEngineDelegate, UIScrollViewDelegate {
         
         if self.engine.itemOnTransitionBetweenHomeViewAndAddItemCardView!.type == .persisting {
             self.updateUI()
+            self.horizentalScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true) // scroll to left after item added
         } else if self.engine.itemOnTransitionBetweenHomeViewAndAddItemCardView!.type == .quitting {
             self.updateUI()
             
-            self.horizentalScrollView.setContentOffset(CGPoint(x: self.persistingItemsView.frame.width, y: 0), animated: true)
+            self.horizentalScrollView.setContentOffset(CGPoint(x: self.persistingItemsView.frame.width, y: 0), animated: true) // scroll to right after item added
         }
         
     }
@@ -305,6 +323,11 @@ extension HomeViewController: AppEngineDelegate, UIScrollViewDelegate {
 //        navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navigationBar!.tintColor.withAlphaComponent(ratio)]
 //        navigationBar!.layoutIfNeeded()
     }
+    
+//    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+//        
+//        self.horizentalScrollView.setContentOffset(CGPoint(x: 0, y: self.horizentalScrollView.frame.width), animated: true)
+//    }
     
 
    

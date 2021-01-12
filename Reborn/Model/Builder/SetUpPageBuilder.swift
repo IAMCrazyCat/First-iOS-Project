@@ -10,9 +10,9 @@ import UIKit
 
 class SetUpPageBuilder {
 
-    let page: SetUpPage
-    let pageCordinateX: CGFloat
-    let superView: UIView
+    var page: SetUpPage
+    var pageCordinateX: CGFloat
+    var superView: UIView
     var pageView: UIView?
     let setting: SystemStyleSetting = SystemStyleSetting.shared
     

@@ -35,14 +35,7 @@ class AppEngine {
 
     }
     
-    public func saveUser(user: User?) {
-        
-        //self.defaults.setValue(user, forKey: "user")
-//        self.defaults.setValue(user.name, forKey: "userName")
-//        self.defaults.setValue(user.gender, forKey: "userGender")
-//        self.defaults.setValue(user.avatar, forKey: "userAvater")
-//        self.defaults.setValue(user.keys, forKey: "userKeys")
-//        self.defaults.setValue(user.vip, forKey: "userVip")
+    public func saveUser(newUser user: User?) {
 
         if user != nil {
             let encoder = JSONEncoder()//PropertyListEncoder()
@@ -53,10 +46,19 @@ class AppEngine {
             } catch {
                 print("Error encoding item array, \(error)")
             }
+        } else {
+            let encoder = JSONEncoder()//PropertyListEncoder()
+
+            do {
+                let data = try encoder.encode(self.user!)
+                try data.write(to: self.dataFilePath!)
+            } catch {
+                print("Error encoding item array, \(error)")
+            }
         }
        
-        
     }
+    
     
     public func loadUser() {
         
@@ -74,6 +76,7 @@ class AppEngine {
     public func addItem(newItem: Item) {
         
         self.user?.items.append(newItem)
+        self.saveUser(newUser: nil)
 
     }
     
@@ -208,6 +211,12 @@ class AppEngine {
        
     }
     
+    public func generateCalendar(itemID: Int) -> UIView? {
+        let builder = CalendarBuilder(item: self.user!.items[itemID])
+       
+        return builder.builCalendar()
+    }
+    
     public func showPopUp(popUpType: PopUpType, controller: UIViewController) {
         self.delegate = controller as? AppEngineDelegate
         
@@ -218,6 +227,8 @@ class AppEngine {
         
         
     }
+    
+ 
     
     public func dismissPopUp(controller: PopUpViewController) {
         //delegate?.didDismissView()
