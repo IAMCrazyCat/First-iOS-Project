@@ -55,21 +55,29 @@ class HomeViewController: UIViewController {
         
         persistingItemsView.layoutIfNeeded()
         quittingItemsView.layoutIfNeeded()
-        
-        verticalScrollView.contentSize = CGSize(width: view.frame.width, height: 2000)
+
         overallProgressView.layer.cornerRadius = setting.itemCardCornerRadius
         overallProgressView.setViewShadow()
+        overallProgressView.layoutIfNeeded()
+        
         avatarImageView.layer.masksToBounds = true
         avatarImageView.layer.cornerRadius = avatarImageView.bounds.width / 2
-        overallProgressView.layoutIfNeeded()
-
+       
         scrollViewTopOffset = overAllProgressTitleLabel.frame.origin.y - 8
         //verticalScrollView.setContentOffset(CGPoint(x: 0, y: scrollViewTopOffset), animated: false)
+        
         verticalScrollView.delegate = self // activate delegate
+        verticalScrollView.contentSize = CGSize(width: view.frame.width, height: 2000)
+        verticalScrollView.tag = setting.homeViewVerticalScrollViewTag
+
+        horizentalScrollView.delegate = self
+        horizentalScrollView.tag = setting.homeViewHorizentalScrollViewTag
         
         dateFormatter.locale = Locale(identifier: "zh")
         dateFormatter.setLocalizedDateFormatFromTemplate("dd MMMM EEEE")
+        
         dataLabel.text = dateFormatter.string(from: date)
+        
         navigationBarTitleLabel.text = self.navigationItem.title
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.tintColor = UIColor.black
@@ -264,54 +272,59 @@ extension HomeViewController: AppEngineDelegate, UIScrollViewDelegate {
     
     // scrollview delegate functions
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        
-        if scrollView.contentOffset.y < self.scrollViewTopOffset / 2 && scrollView.contentOffset.y > 0 { // [0, crollViewTopOffset / 2]
-            
-            if scrollView.contentOffset.y > scrollViewLastOffset { // scroll up
-                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
-                    scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
-                }, completion: nil)
+        if scrollView.tag == self.setting.homeViewVerticalScrollViewTag {
+            if scrollView.contentOffset.y < self.scrollViewTopOffset / 2 && scrollView.contentOffset.y > 0 { // [0, crollViewTopOffset / 2]
                 
+                if scrollView.contentOffset.y > scrollViewLastOffset { // scroll up
+                    UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+                        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+                    }, completion: nil)
+                    
+                }
+                
+            } else if scrollView.contentOffset.y > self.scrollViewTopOffset / 2 && scrollView.contentOffset.y < self.scrollViewTopOffset { // [crollViewTopOffset / 2, offset]
+                
+                if scrollView.contentOffset.y > scrollViewLastOffset  { // scroll up
+                    UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+                        scrollView.setContentOffset(CGPoint(x: 0, y: self.scrollViewTopOffset), animated: false)
+                    }, completion: nil)
+                } else { // scroll down
+                    UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+                        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+                    }, completion: nil)
+                }
             }
-            
-        } else if scrollView.contentOffset.y > self.scrollViewTopOffset / 2 && scrollView.contentOffset.y < self.scrollViewTopOffset { // [crollViewTopOffset / 2, offset]
-            
-            if scrollView.contentOffset.y > scrollViewLastOffset  { // scroll up
-                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
-                    scrollView.setContentOffset(CGPoint(x: 0, y: self.scrollViewTopOffset), animated: false)
-                }, completion: nil)
-            } else { // scroll down
-                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
-                    scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
-                }, completion: nil)
-            }
-        }
        
-        self.scrollViewLastOffset = scrollView.contentOffset.y
+            self.scrollViewLastOffset = scrollView.contentOffset.y
+            
+        }
     }
     
     
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        let navigationBar = self.navigationController?.navigationBar
-        if scrollView.contentOffset.y < self.scrollViewTopOffset - 10 {
+        if scrollView.tag == self.setting.homeViewVerticalScrollViewTag {
+            
+            let navigationBar = self.navigationController?.navigationBar
+            if scrollView.contentOffset.y < self.scrollViewTopOffset - 10 {
 
-            UIView.animate(withDuration: 0.2, delay: 0.1, animations: {
-                navigationBar!.barTintColor = UIColor.white
-                navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navigationBar!.tintColor.withAlphaComponent(0)]
-                navigationBar!.layoutIfNeeded()
-            })
+                UIView.animate(withDuration: 0.2, delay: 0.1, animations: {
+                    navigationBar!.barTintColor = UIColor.white
+                    navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navigationBar!.tintColor.withAlphaComponent(0)]
+                    navigationBar!.layoutIfNeeded()
+                })
 
-        } else {
+            } else {
 
-            UIView.animate(withDuration: 0.2, delay: 0.1, animations: {
-                navigationBar!.barTintColor = UserStyleSetting.themeColor
-                navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navigationBar!.tintColor.withAlphaComponent(1)]
-                navigationBar!.layoutIfNeeded()
-            })
+                UIView.animate(withDuration: 0.2, delay: 0.1, animations: {
+                    navigationBar!.barTintColor = UserStyleSetting.themeColor
+                    navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navigationBar!.tintColor.withAlphaComponent(1)]
+                    navigationBar!.layoutIfNeeded()
+                })
 
+            }
         }
+       
 //        let ratio: CGFloat = scrollView.contentOffset.y / scrollViewTopOffset
 //        let r: CGFloat = 255 - (255 - UserStyleSetting.themeColor!.value.red) * ratio
 //        let g: CGFloat = 255 - (255 - UserStyleSetting.themeColor!.value.red) * ratio
@@ -324,10 +337,13 @@ extension HomeViewController: AppEngineDelegate, UIScrollViewDelegate {
 //        navigationBar!.layoutIfNeeded()
     }
     
-//    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-//        
-//        self.horizentalScrollView.setContentOffset(CGPoint(x: 0, y: self.horizentalScrollView.frame.width), animated: true)
-//    }
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+//        if scrollView.tag == self.setting.homeViewHorizentalScrollViewTag {
+//            self.horizentalScrollView.setContentOffset(CGPoint(x: 0, y: self.horizentalScrollView.frame.width), animated: true)
+//        }
+      
+    }
     
 
    

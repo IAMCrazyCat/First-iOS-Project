@@ -34,6 +34,7 @@ struct SystemStyleSetting{
     
     // for welcome page
     let mainDistance: CGFloat = 20
+    let mainPadding: CGFloat = 15
     let FontNormalSize: CGFloat = 21
 
     
@@ -57,12 +58,17 @@ struct SystemStyleSetting{
     let finishButtonTitle: String = "完成"
     
     // for homepage
+    
+    let homeViewVerticalScrollViewTag: Int = -1
+    let homeViewHorizentalScrollViewTag: Int = -2
     let itemCardIdentifier = "ItemCard"
     let itemCardBGImage: UIImage = #imageLiteral(resourceName: "ItemCard")
     let progressBarLengthToRightEdgeOffset: CGFloat = 90
     let itemCardHeight: CGFloat = 120
     let itemCardCenterObjectsToEdgeOffset: CGFloat = 70
     let itemCardGap: CGFloat = 15
+    
+    
     
     // for builder
 
@@ -87,6 +93,7 @@ struct SystemStyleSetting{
     
     let calendarHeight: CGFloat = 300
     
-    
+    // for details view
+    let calendarFunctionButtonCornerRadius: CGFloat = 15
 }
 

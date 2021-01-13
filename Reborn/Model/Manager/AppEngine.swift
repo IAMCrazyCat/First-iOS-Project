@@ -202,7 +202,7 @@ class AppEngine {
         
         if user != nil {
             
-            let builder = ItemCardBuilder(item: item, width: self.setting.screenFrame.width - 2 * self.setting.mainDistance, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: 0, punchInButtonTag: self.user!.items.count)
+            let builder = ItemCardBuilder(item: item, width: self.setting.screenFrame.width - 2 * self.setting.mainPadding, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: 0, punchInButtonTag: self.user!.items.count)
 
             return builder.buildItemCardView()
         }
