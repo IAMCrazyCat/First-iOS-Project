@@ -20,8 +20,8 @@ class ItemDetailViewController: UIViewController {
         super.viewDidLoad()
     
      
-        print(engine.generateCalendar(itemID: itemID)!)
-        if let calendar = engine.generateCalendar(itemID: itemID) {
+        //print(engine.buildCalendar(itemID: itemID)!)
+        if let calendar = engine.buildCalendar(itemID: itemID) {
             
             topView.addSubview(calendar)
         }

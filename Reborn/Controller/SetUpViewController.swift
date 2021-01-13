@@ -46,21 +46,11 @@ class SetUpViewController: UIViewController{
        
     }
     
-//    func addAllPages() {
-//
-//        for _ in 0 ..< engine.getPagesCount() {
-//
-//            updateButtons()
-//            engine.nextPage()
-//        }
-//
-//        engine.progress = 1
-//    }
     
     func updateButtons() { // Adding a new page to scrollview
         
         middleView = engine.loadSetUpPages(controller: self)
-       
+        
     }
     
    

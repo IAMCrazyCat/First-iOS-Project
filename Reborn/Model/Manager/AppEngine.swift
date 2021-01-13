@@ -198,7 +198,7 @@ class AppEngine {
        
     }
     
-    public func generateNewItemCard(item: Item) -> UIView? {
+    public func buildItemCard(item: Item) -> UIView? {
         
         if user != nil {
             
@@ -211,10 +211,10 @@ class AppEngine {
        
     }
     
-    public func generateCalendar(itemID: Int) -> UIView? {
-        let builder = CalendarBuilder(item: self.user!.items[itemID])
+    public func buildCalendar(itemID: Int) -> UIView? {
+        //let builder = CalendarPageBuilder(item: self.user!.items[itemID])
        
-        return builder.builCalendar()
+        return nil //builder.builCalendar()
     }
     
     public func showPopUp(popUpType: PopUpType, controller: UIViewController) {
@@ -261,6 +261,8 @@ class AppEngine {
     func getStoredDataFromPopUpView() -> Any {
         return self.storedDataFromPopUpView ?? "No Stored Data"
     }
+    
+    
     
     
     

@@ -13,6 +13,15 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var nextMonthButton: UIButton!
     @IBOutlet weak var startDayButton: UIButton!
     @IBOutlet weak var todayButton: UIButton!
+    @IBOutlet weak var currentMonthLabel: UILabel!
+    
+    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var middleView: UIView!
+    @IBOutlet weak var middleStackView: UIStackView!
+    @IBOutlet weak var bottomView: UIView!
+    
+    @IBOutlet weak var buttomScrollView: UIScrollView!
+    
     
     let setting: SystemStyleSetting = SystemStyleSetting.shared
     override func viewDidLoad() {
@@ -29,6 +38,8 @@ class CalendarViewController: UIViewController {
         startDayButton.setViewShadow()
         todayButton.layer.cornerRadius = setting.calendarFunctionButtonCornerRadius
         todayButton.setViewShadow()
+        
+        
     }
 
 

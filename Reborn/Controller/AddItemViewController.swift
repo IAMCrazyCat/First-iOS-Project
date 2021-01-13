@@ -198,7 +198,7 @@ class AddItemViewController: UIViewController {
         }
         excuteItemCardAimation()
         
-        if let newItemCard = self.engine.generateNewItemCard(item: item!) {
+        if let newItemCard = self.engine.buildItemCard(item: item!) {
             let generator = UIImpactFeedbackGenerator(style: .light)
             generator.impactOccurred()
             
