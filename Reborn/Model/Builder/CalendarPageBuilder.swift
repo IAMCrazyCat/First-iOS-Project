@@ -25,14 +25,14 @@ class CalendarPageBuilder {
     
     
     public func builCalendar() -> UIView {
+        createContentView()
         createCenterCalendarPage()
-        addMonthLabel()
-        return calendarView!
+        return contentView!
     }
     
-    private func addContentView() {
+    private func createContentView() {
         contentView = UIView()
-        contentView?.frame = CGRect(x: -width, y: 0, width: width * 3, height: height)
+        contentView?.frame = CGRect(x: 0, y: 0, width: width * 3, height: height)
     }
     
     
@@ -42,9 +42,14 @@ class CalendarPageBuilder {
     }
     
     private func createCenterCalendarPage() {
-        self.calendarView = UIView()
-        self.calendarView?.frame = CGRect(x: 0, y: 0, width: SystemStyleSetting.shared.screenFrame.width - 2 * SystemStyleSetting.shared.mainDistance, height: SystemStyleSetting.shared.calendarHeight)
-        //self.horizentalScrollView.addSubview(<#T##view: UIView##UIView#>)
+        let dates: Array<Date> = []
+        
+        
+        let centerCalendarPage = UIView()
+        centerCalendarPage.frame = CGRect(x: width, y: 0, width: width, height: height)
+        centerCalendarPage.backgroundColor = UIColor.red
+        contentView?.addSubview(centerCalendarPage)
+        
     }
     
     

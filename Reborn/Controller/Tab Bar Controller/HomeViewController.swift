@@ -174,12 +174,15 @@ class HomeViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if let destinationViewController = segue.destination as? ItemDetailViewController {
+        if let item = self.engine.user?.items[(sender as? UIButton)?.tag ?? 0] {
             
-            if let itemID = (sender as? UIButton)?.tag {
-                destinationViewController.itemID = itemID
+            if let destinationViewController = segue.destination as? ItemDetailViewController, segue.identifier == "goItemDetailView" {
+                
+                destinationViewController.item = item
+                
+            } else if let destinationViewController = segue.destination as? CalendarViewController, segue.identifier == "embeddedCalendarContainer" {
+                destinationViewController.item = item
             }
-            
         }
         
     }

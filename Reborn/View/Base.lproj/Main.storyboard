@@ -288,7 +288,7 @@ Cg
             <objects>
                 <viewController id="yhk-VJ-4nb" customClass="AddItemViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5tU-dT-BVc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eis-9Y-9bk" userLabel="Middle Scroll View">
@@ -706,7 +706,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zsl-RN-1KK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1846" y="1512"/>
+            <point key="canvasLocation" x="1686" y="1701"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="NUu-Nu-zAg">
@@ -721,7 +721,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yc2-3N-qUW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2950" y="1511"/>
+            <point key="canvasLocation" x="5367" y="1701"/>
         </scene>
         <!--项目名-->
         <scene sceneID="mE3-UO-mLP">
@@ -747,7 +747,7 @@ Cg
                                                             <constraint firstAttribute="height" constant="400" id="4Sy-st-wtQ"/>
                                                         </constraints>
                                                         <connections>
-                                                            <segue destination="cr2-6I-Rrh" kind="embed" id="XZJ-WO-7s9"/>
+                                                            <segue destination="cr2-6I-Rrh" kind="embed" identifier="embeddedCalendarContainer" id="XZJ-WO-7s9"/>
                                                         </connections>
                                                     </containerView>
                                                 </subviews>
@@ -820,7 +820,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HgK-x9-47n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1986.9565217391305" y="746.65178571428567"/>
+            <point key="canvasLocation" x="2883" y="1701"/>
         </scene>
         <!--Pop Up View Controller-->
         <scene sceneID="QDS-Zj-y7Z">
@@ -1137,8 +1137,26 @@ Cg
                     <view key="view" contentMode="scaleToFill" id="XJ8-ec-9K0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bp0-Xk-cma" userLabel="Calendar View">
+                                <rect key="frame" x="15" y="248" width="384" height="400"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="400" id="Gg1-uP-5W8"/>
+                                    <constraint firstAttribute="width" constant="384" id="SJm-y5-1iH"/>
+                                    <constraint firstAttribute="height" constant="400" id="yPI-WZ-ZOF"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="cr2-6I-Rrh" kind="embed" id="PMl-Ex-sJd"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="iOI-gm-T7y"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Bp0-Xk-cma" firstAttribute="centerY" secondItem="XJ8-ec-9K0" secondAttribute="centerY" id="EUu-p5-F6d"/>
+                            <constraint firstItem="Bp0-Xk-cma" firstAttribute="centerX" secondItem="XJ8-ec-9K0" secondAttribute="centerX" id="Ve4-3f-YpA"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="TpJ-5e-ah0"/>
                 </viewController>
@@ -1589,7 +1607,7 @@ Cg
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CyJ-kQ-0F2" userLabel="Bottom View">
                                 <rect key="frame" x="0.0" y="140" width="384" height="260"/>
                                 <subviews>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PYO-Uy-Oef" userLabel="Bottom Scroll View">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PYO-Uy-Oef" userLabel="Bottom Scroll View">
                                         <rect key="frame" x="20" y="0.0" width="344" height="260"/>
                                     </scrollView>
                                 </subviews>
@@ -1602,6 +1620,7 @@ Cg
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="f7g-te-UXB"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="1uJ-r9-mDY" secondAttribute="trailing" id="0Ty-Gh-mpN"/>
@@ -1617,8 +1636,8 @@ Cg
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomScrollView" destination="PYO-Uy-Oef" id="CYb-e8-v4E"/>
                         <outlet property="bottomView" destination="CyJ-kQ-0F2" id="2RG-YG-MUZ"/>
-                        <outlet property="buttomScrollView" destination="PYO-Uy-Oef" id="CYb-e8-v4E"/>
                         <outlet property="currentMonthLabel" destination="NdA-gx-XZ9" id="L5j-jz-ZiQ"/>
                         <outlet property="middleStackView" destination="Vlj-yU-YBI" id="ffZ-6I-TD3"/>
                         <outlet property="middleView" destination="1uJ-r9-mDY" id="ckT-ZL-4Lx"/>
@@ -1631,9 +1650,12 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0yh-h8-X9z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1292.753623188406" y="675"/>
+            <point key="canvasLocation" x="4177" y="1701"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="XZJ-WO-7s9"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="AvatarMale" width="256" height="256"/>
         <image name="FeedbackIcon" width="28" height="28"/>

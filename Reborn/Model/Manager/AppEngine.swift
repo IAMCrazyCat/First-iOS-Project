@@ -211,10 +211,11 @@ class AppEngine {
        
     }
     
-    public func buildCalendar(itemID: Int) -> UIView? {
-        //let builder = CalendarPageBuilder(item: self.user!.items[itemID])
+    public func loadCalendar(controller: CalendarViewController) -> UIView? {
+        
+        let builder = CalendarPageBuilder(item: controller.item!, width: controller.bottomScrollView.frame.width, height: controller.bottomScrollView.frame.height)
        
-        return nil //builder.builCalendar()
+        return builder.builCalendar()
     }
     
     public func showPopUp(popUpType: PopUpType, controller: UIViewController) {

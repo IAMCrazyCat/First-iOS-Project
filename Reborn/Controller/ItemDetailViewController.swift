@@ -14,18 +14,23 @@ class ItemDetailViewController: UIViewController {
     
     let setting: SystemStyleSetting = SystemStyleSetting.shared
     let engine: AppEngine = AppEngine.shared
-    var itemID: Int = 0
+    var item: Item? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
      
         //print(engine.buildCalendar(itemID: itemID)!)
-        if let calendar = engine.buildCalendar(itemID: itemID) {
-            
-            topView.addSubview(calendar)
-        }
+    
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print(segue.identifier)
+        if let destinationViewController = segue.destination as? CalendarViewController {
+            destinationViewController.item = item
+            
+        }
     }
     
 
