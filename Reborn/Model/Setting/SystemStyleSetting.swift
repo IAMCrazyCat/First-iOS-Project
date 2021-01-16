@@ -95,5 +95,10 @@ struct SystemStyleSetting{
     
     // for details view
     let calendarFunctionButtonCornerRadius: CGFloat = 15
+    
+    // for calendar view
+    let carlendarDaySelectionButtonSize: CGFloat = 40
+    let calendarDaySelectionButtonCornerRadius: CGFloat = 0
+    let calendarYearsInterval: Int = 10 // 5 years (It is expensive to load)
 }
 

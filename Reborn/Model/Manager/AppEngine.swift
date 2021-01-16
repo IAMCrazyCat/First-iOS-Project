@@ -19,7 +19,6 @@ class AppEngine {
     static let shared = AppEngine()
     var user: User?
     var defaults: UserDefaults = UserDefaults.standard
-    var currentDate: Date = Date()
     let dataFilePath: URL? = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("item.plist")
     let setting: SystemStyleSetting = SystemStyleSetting()
     var overAllProgress: Double = 0.0
@@ -27,6 +26,14 @@ class AppEngine {
     var storedDataFromPopUpView: Any? = nil
     var itemCardOnTransitionBetweenHomeViewAndAddItemCardView: UIView? = nil
     var itemOnTransitionBetweenHomeViewAndAddItemCardView: Item? = nil
+    
+    var currentDate: CustomDate {
+        let date = Date()
+        let currentYear: Int = Calendar.current.component(.year, from: date)
+        let currentMonth: Int = Calendar.current.component(.month, from: date)
+        let currentDay: Int = Calendar.current.component(.day, from: date)
+        return CustomDate(year: currentYear, month: currentMonth, day: currentDay)
+    }
 
     private init() {
         
@@ -85,81 +92,31 @@ class AppEngine {
         return self.user?.items
     }
     
-    public func loadItemCardsToHomeView(controller: HomeViewController) {
-        
-        var persistingCordinateY: CGFloat = 0
-        var quittingCordinateY: CGFloat = 0
-        
-        
-        if let items = self.user?.items {
-            var tag: Int = self.user!.items.count - 1
-            if items.count > 0 {
-                
-                
-                for itemIndex in (0...items.count - 1).reversed() {
-                    
-                    let item = items[itemIndex]
-                    
-                  
-                    if item.type == .persisting {
-                        
-                        controller.persistingItemsViewPromptLabel.isHidden = true
-                        let builder = ItemCardBuilder(item: item, width: controller.persistingItemsView.frame.width, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: persistingCordinateY, punchInButtonTag: tag)
-                        let newItemCard = builder.buildItemCardView()
-                        
-                        let heightConstraintIndex = controller.contentView.constraints.count - 1
-                        let tabBarHeight: CGFloat = 200
-                        controller.persistingItemsView.addSubview(newItemCard)
-                        
-                        let newConstraint = controller.itemsTitleLabel.frame.origin.y + tabBarHeight + persistingCordinateY
-                        if newConstraint > controller.contentView.constraints[heightConstraintIndex].constant {
-                            controller.contentView.constraints[heightConstraintIndex].constant = newConstraint // update height constraint (height is at the last index of constraints array)
-                        }
-                 
-                        controller.persistingItemsView.layoutIfNeeded()
-                        persistingCordinateY += setting.itemCardHeight + setting.itemCardGap
-                        
-                    } else if item.type == .quitting {
-                        
-                        controller.quittingItemsViewPromptLabel.isHidden = true
-                        let builder = ItemCardBuilder(item: item, width: controller.quittingItemsView.frame.width, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: quittingCordinateY, punchInButtonTag: tag)
-                        let newItemCard = builder.buildItemCardView()
-                        
-                        let heightConstraintIndex = controller.contentView.constraints.count - 1
-                        let tabBarHeight: CGFloat = 200
-                        controller.quittingItemsView.addSubview(newItemCard)
-                        
-                        let newConstraint = controller.itemsTitleLabel.frame.origin.y + tabBarHeight + quittingCordinateY
-                        if newConstraint > controller.contentView.constraints[heightConstraintIndex].constant {
-                            controller.contentView.constraints[heightConstraintIndex].constant = newConstraint // update height constraint (height is at the last index of constraints array)
-                        }
-                 
-                        controller.persistingItemsView.layoutIfNeeded()
-                        quittingCordinateY += setting.itemCardHeight + setting.itemCardGap
-                    }
-                    
-                    
-                    
-                    tag -= 1
-          
-                }
-                
-            } else {
-                
-                controller.persistingItemsViewPromptLabel.isHidden = false
-                controller.quittingItemsViewPromptLabel.isHidden = false
-            }
     
-        
-            
-        }
-        
-
-    }
     
     
     public func punchInItem(tag: Int) {
-        self.user?.items[tag].punchIn(punchInDate: currentDate)
+        
+        let currentYear: Int = Calendar.current.component(.year, from: Date())
+        let currentMonth: Int = Calendar.current.component(.month, from: Date())
+        let currentDay: Int = Calendar.current.component(.day, from: Date())
+        self.user?.items[tag].punchIn(punchInDate: CustomDate(year: currentYear, month: currentMonth, day: currentDay))
+        
+        // test
+//        let currentYear: Int = Calendar.current.component(.year, from: Date())
+//        let currentMonth: Int = Calendar.current.component(.month, from: Date())
+//        let currentDay: Int = Calendar.current.component(.day, from: Date())
+//
+//        for i in 1 ... 100 {
+//            for j in 1 ... 12 {
+//                for k in 1 ... 31 {
+//                    self.user?.items[tag].punchIn(punchInDate: CustomDate(year: currentYear, month: j, day: k))
+//                }
+//            }
+//
+//        }
+        
+        
 
     }
     
@@ -198,26 +155,7 @@ class AppEngine {
        
     }
     
-    public func buildItemCard(item: Item) -> UIView? {
-        
-        if user != nil {
-            
-            let builder = ItemCardBuilder(item: item, width: self.setting.screenFrame.width - 2 * self.setting.mainPadding, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: 0, punchInButtonTag: self.user!.items.count)
 
-            return builder.buildItemCardView()
-        }
-        
-        return nil
-       
-    }
-    
-    public func loadCalendar(controller: CalendarViewController) -> UIView? {
-        
-        let builder = CalendarPageBuilder(item: controller.item!, width: controller.bottomScrollView.frame.width, height: controller.bottomScrollView.frame.height)
-       
-        return builder.builCalendar()
-    }
-    
     public func showPopUp(popUpType: PopUpType, controller: UIViewController) {
         self.delegate = controller as? AppEngineDelegate
         
@@ -240,7 +178,6 @@ class AppEngine {
     public func saveAndDismissPopUp(controller: PopUpViewController) {
         
         self.storedDataFromPopUpView = controller.getStoredData()
- 
         controller.dismiss(animated: true, completion: nil)
         self.delegate?.didSaveAndDismissPopUpView(type: controller.type!)
         

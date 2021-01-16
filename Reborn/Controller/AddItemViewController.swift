@@ -24,8 +24,8 @@ class AddItemViewController: UIViewController {
     @IBOutlet weak var bottomScrollView: UIScrollView!
     
     
-    let engine = AppEngine.shared
-    
+    let engine: AppEngine = AppEngine.shared
+    let setting: SystemStyleSetting = SystemStyleSetting.shared
     var itemName: String = "项目名"
     var itemType: ItemType = ItemType.undefined
     var targetDays: Int = 1
@@ -46,16 +46,16 @@ class AddItemViewController: UIViewController {
         self.itemNameTextfield.delegate = self
         self.bottomScrollView.delegate = self
         
-        self.customFrequencyButton.setTitle(SystemStyleSetting.shared.customButtonTitle, for: .normal)
-        self.customTargetDaysButton.setTitle(SystemStyleSetting.shared.customButtonTitle, for: .normal)
-        self.customTargetDaysButton.tag = SystemStyleSetting.shared.customTargetDaysButtonTag
-        self.customFrequencyButton.tag = SystemStyleSetting.shared.customFrequencyButtonTag
+        self.customFrequencyButton.setTitle(setting.customButtonTitle, for: .normal)
+        self.customTargetDaysButton.setTitle(setting.customButtonTitle, for: .normal)
+        self.customTargetDaysButton.tag = setting.customTargetDaysButtonTag
+        self.customFrequencyButton.tag = setting.customFrequencyButtonTag
         self.itemNameTextfield.addTarget(self, action: #selector(self.textfieldTextChanged(_:)), for: .editingChanged)
-        self.itemNameTextfield.layer.cornerRadius = SystemStyleSetting.shared.textFieldCornerRadius
+        self.itemNameTextfield.layer.cornerRadius = setting.textFieldCornerRadius
         
         for subview in view.viewWithTag(4)!.subviews { // all buttons
             if let button = subview as? UIButton {
-                button.layer.cornerRadius = SystemStyleSetting.shared.optionButtonCornerRadius
+                button.layer.cornerRadius = setting.optionButtonCornerRadius
                 button.setViewShadow()
                 button.setBackgroundColor(UserStyleSetting.themeColor, cornerRadius: button.layer.cornerRadius, for: .selected)
                 button.setTitleColor(UIColor.white, for: .selected)
@@ -105,7 +105,7 @@ class AddItemViewController: UIViewController {
         self.selectedTargetDaysButton = sender
         self.lastSelectedButton = sender
         selectButton()
-        if sender.tag == SystemStyleSetting.shared.customTargetDaysButtonTag {
+        if sender.tag == setting.customTargetDaysButtonTag {
             
             self.engine.showPopUp(popUpType: .customTargetDays, controller: self)
             
@@ -121,7 +121,7 @@ class AddItemViewController: UIViewController {
         deSelectButton()
         self.selectedFrequencyButton = sender
         self.lastSelectedButton = sender
-        if sender.tag == SystemStyleSetting.shared.customFrequencyButtonTag {
+        if sender.tag == setting.customFrequencyButtonTag {
             self.engine.showPopUp(popUpType: .customFrequency, controller: self)
         }
         selectButton()
@@ -194,20 +194,23 @@ class AddItemViewController: UIViewController {
         }
         
         if frequency != nil {
-            item!.setFreqency(frequency: frequency!)
+            self.item!.setFreqency(frequency: frequency!)
         }
         excuteItemCardAimation()
         
-        if let newItemCard = self.engine.buildItemCard(item: item!) {
-            let generator = UIImpactFeedbackGenerator(style: .light)
-            generator.impactOccurred()
+       
             
-            self.preViewItemCard = newItemCard
-            self.previewItemCardTag = preViewItemCard!.tag
-     
-            self.preViewItemCard!.center = self.middleContentView.center
-            self.middleContentView.addSubview(preViewItemCard!)
-        }
+        let builder = ItemCardBuilder(item: self.item!, width: self.setting.screenFrame.width - 2 * self.setting.mainPadding, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: 0, punchInButtonTag: self.engine.user!.items.count)
+        
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.impactOccurred()
+        
+        self.preViewItemCard = builder.buildItemCardView()
+        self.previewItemCardTag = preViewItemCard!.tag
+ 
+        self.preViewItemCard!.center = self.middleContentView.center
+        self.middleContentView.addSubview(preViewItemCard!)
+
 
     }
     
@@ -233,8 +236,6 @@ class AddItemViewController: UIViewController {
     
     func updateUI() {
         
-      
-        
         removeOldPreviewItemCard()
         updatePreViewItemCard()
         
@@ -252,11 +253,11 @@ extension AddItemViewController: AppEngineDelegate, UIScrollViewDelegate, UIText
     
     func didSaveAndDismissPopUpView(type: PopUpType) {
         
-        if self.lastSelectedButton?.tag == SystemStyleSetting.shared.customTargetDaysButtonTag {
+        if self.lastSelectedButton?.tag == setting.customTargetDaysButtonTag {
             self.selectedTargetDaysButton?.setTitle((self.engine.getStoredDataFromPopUpView() as? DataOption)?.title, for: .normal)
             self.targetDays = (self.engine.getStoredDataFromPopUpView() as? DataOption)?.data ?? 1
             
-        } else if self.lastSelectedButton?.tag == SystemStyleSetting.shared.customFrequencyButtonTag {
+        } else if self.lastSelectedButton?.tag == setting.customFrequencyButtonTag {
             
             print(self.engine.getStoredDataFromPopUpView())
             self.selectedFrequencyButton?.setTitle((self.engine.getStoredDataFromPopUpView() as? DataOption)?.title, for: .normal)

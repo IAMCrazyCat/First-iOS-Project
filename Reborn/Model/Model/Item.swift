@@ -11,12 +11,12 @@ class Item: Codable {
     var name: String
     var days: Int
     var finishedDays: Int
-    var creationDate: Date
+    var creationDate: CustomDate
     var type: ItemType
-    var punchInDate: Array<Date> = []
+    var punchInDate: Array<CustomDate> = []
     var frequency: DataOption? = nil
     
-    init(name: String, days: Int, finishedDays: Int, creationDate: Date, type: ItemType) {
+    init(name: String, days: Int, finishedDays: Int, creationDate: CustomDate, type: ItemType) {
         self.name = name
         self.days = days
         self.finishedDays = finishedDays
@@ -24,7 +24,7 @@ class Item: Codable {
         self.type = type
     }
     
-    func punchIn(punchInDate: Date) {
+    func punchIn(punchInDate: CustomDate) {
         self.punchInDate.append(punchInDate)
         self.finishedDays += 1
     }

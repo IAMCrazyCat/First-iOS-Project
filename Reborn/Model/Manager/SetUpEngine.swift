@@ -75,8 +75,8 @@ class SetUpEngine {
     func createUser(setUpIsSkipped: Bool) {
         
         if !setUpIsSkipped {
-            items.append(QuittingItem(name: quittingItemName, days: quittingItemDays, finishedDays: 0, creationDate: Date()))
-            items.append(PersistingItem(name: persistingItemName, days: persistingItemDays, finishedDays: 0, creationDate: Date()))
+            items.append(QuittingItem(name: quittingItemName, days: quittingItemDays, finishedDays: 0, creationDate: AppEngine.shared.currentDate))
+            items.append(PersistingItem(name: persistingItemName, days: persistingItemDays, finishedDays: 0, creationDate: AppEngine.shared.currentDate))
         }
         AppEngine.shared.saveUser(newUser: User(name: "没有名字", gender: userGender ?? .undefined, avatar: #imageLiteral(resourceName: "AvatarMale"), keys: 3, items: self.items, vip: false))
     }

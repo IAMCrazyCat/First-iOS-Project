@@ -9,9 +9,11 @@ import Foundation
 
 extension Date {
     
+ 
     var date: Date? {
         let components = Calendar.current.dateComponents([.month, .day], from: self)
         return Calendar.current.date(from: components)
     }
+    
     
 }

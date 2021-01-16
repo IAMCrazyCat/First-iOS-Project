@@ -39,7 +39,7 @@ class HomeViewController: UIViewController {
     
     
     var scrollViewTopOffset: CGFloat = 0
-    var scrollViewLastOffset: CGFloat = 0
+    var scrollViewLastOffsetY: CGFloat = 0
     let date = Date()
     let dateFormatter = DateFormatter()
     let engine = AppEngine.shared
@@ -147,11 +147,10 @@ class HomeViewController: UIViewController {
     @objc func updateProgressLabel() {
 
         if currentTransitionValue >= 1 {
-            print("timer Ivalidsted")
+            print("timer Ivalidated")
             timer?.invalidate()
         }
         self.overallProgress = self.engine.getOverAllProgress() ?? 0
-        print(overallProgress)
         currentTransitionValue = (circleShapeLayer.presentation()?.value(forKeyPath: "strokeEnd") ?? 0.0) as! Double
         self.overallProgressLabel.text = "已完成: \(String(format: "%.1f", self.currentTransitionValue * self.overallProgress * 100))%"
     }
@@ -173,14 +172,17 @@ class HomeViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print(segue.identifier)
         
-        if let item = self.engine.user?.items[(sender as? UIButton)?.tag ?? 0] {
             
-            if let destinationViewController = segue.destination as? ItemDetailViewController, segue.identifier == "goItemDetailView" {
-                
+        if let destinationViewController = segue.destination as? ItemDetailViewController, segue.identifier == "goItemDetailView" {
+            if let item = self.engine.user?.items[(sender as? UIButton)?.tag ?? 0] {
                 destinationViewController.item = item
-                
-            } else if let destinationViewController = segue.destination as? CalendarViewController, segue.identifier == "embeddedCalendarContainer" {
+            }
+            
+            
+        } else if let destinationViewController = segue.destination as? CalendarViewController, segue.identifier == "embeddedCalendarContainer" {
+            if let item = self.engine.user?.items[(sender as? UIButton)?.tag ?? 0] {
                 destinationViewController.item = item
             }
         }
@@ -227,7 +229,73 @@ class HomeViewController: UIViewController {
     }
     
     func loadItemCards() {
-        engine.loadItemCardsToHomeView(controller: self)
+
+            
+        var persistingCordinateY: CGFloat = 0
+        var quittingCordinateY: CGFloat = 0
+        
+        
+        if let items = self.engine.user?.items, self.engine.user != nil {
+            var tag: Int = self.engine.user!.items.count - 1
+            if items.count > 0 {
+                
+                
+                for itemIndex in (0...items.count - 1).reversed() {
+                    
+                    let item = items[itemIndex]
+                    
+                  
+                    if item.type == .persisting {
+                        
+                        self.persistingItemsViewPromptLabel.isHidden = true
+                        let builder = ItemCardBuilder(item: item, width: self.persistingItemsView.frame.width, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: persistingCordinateY, punchInButtonTag: tag)
+                        let newItemCard = builder.buildItemCardView()
+                        
+                        let heightConstraintIndex = self.contentView.constraints.count - 1
+                        let tabBarHeight: CGFloat = 200
+                        self.persistingItemsView.addSubview(newItemCard)
+                        
+                        let newConstraint = self.itemsTitleLabel.frame.origin.y + tabBarHeight + persistingCordinateY
+                        if newConstraint > self.contentView.constraints[heightConstraintIndex].constant {
+                            self.contentView.constraints[heightConstraintIndex].constant = newConstraint // update height constraint (height is at the last index of constraints array)
+                        }
+                 
+                        self.persistingItemsView.layoutIfNeeded()
+                        persistingCordinateY += setting.itemCardHeight + setting.itemCardGap
+                        
+                    } else if item.type == .quitting {
+                        
+                        self.quittingItemsViewPromptLabel.isHidden = true
+                        let builder = ItemCardBuilder(item: item, width: self.quittingItemsView.frame.width, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: quittingCordinateY, punchInButtonTag: tag)
+                        let newItemCard = builder.buildItemCardView()
+                        
+                        let heightConstraintIndex = self.contentView.constraints.count - 1
+                        let tabBarHeight: CGFloat = 200
+                        self.quittingItemsView.addSubview(newItemCard)
+                        
+                        let newConstraint = self.itemsTitleLabel.frame.origin.y + tabBarHeight + quittingCordinateY
+                        if newConstraint > self.contentView.constraints[heightConstraintIndex].constant {
+                            self.contentView.constraints[heightConstraintIndex].constant = newConstraint // update height constraint (height is at the last index of constraints array)
+                        }
+                 
+                        self.persistingItemsView.layoutIfNeeded()
+                        quittingCordinateY += setting.itemCardHeight + setting.itemCardGap
+                    }
+                    
+                    
+                    
+                    tag -= 1
+          
+                }
+                
+            } else {
+                
+                self.persistingItemsViewPromptLabel.isHidden = false
+                self.quittingItemsViewPromptLabel.isHidden = false
+            }
+            
+        }
+
     }
     
     func updateUI() {
@@ -278,7 +346,7 @@ extension HomeViewController: AppEngineDelegate, UIScrollViewDelegate {
         if scrollView.tag == self.setting.homeViewVerticalScrollViewTag {
             if scrollView.contentOffset.y < self.scrollViewTopOffset / 2 && scrollView.contentOffset.y > 0 { // [0, crollViewTopOffset / 2]
                 
-                if scrollView.contentOffset.y > scrollViewLastOffset { // scroll up
+                if scrollView.contentOffset.y > scrollViewLastOffsetY { // scroll up
                     UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
                         scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
                     }, completion: nil)
@@ -287,7 +355,7 @@ extension HomeViewController: AppEngineDelegate, UIScrollViewDelegate {
                 
             } else if scrollView.contentOffset.y > self.scrollViewTopOffset / 2 && scrollView.contentOffset.y < self.scrollViewTopOffset { // [crollViewTopOffset / 2, offset]
                 
-                if scrollView.contentOffset.y > scrollViewLastOffset  { // scroll up
+                if scrollView.contentOffset.y > scrollViewLastOffsetY  { // scroll up
                     UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
                         scrollView.setContentOffset(CGPoint(x: 0, y: self.scrollViewTopOffset), animated: false)
                     }, completion: nil)
@@ -298,7 +366,7 @@ extension HomeViewController: AppEngineDelegate, UIScrollViewDelegate {
                 }
             }
        
-            self.scrollViewLastOffset = scrollView.contentOffset.y
+            self.scrollViewLastOffsetY = scrollView.contentOffset.y
             
         }
     }

@@ -7,7 +7,7 @@
 
 import Foundation
 class PersistingItem: Item {
-    init(name: String, days: Int, finishedDays: Int, creationDate: Date) {
+    init(name: String, days: Int, finishedDays: Int, creationDate: CustomDate) {
         super.init(name: name, days: days, finishedDays: finishedDays, creationDate: creationDate, type: .persisting)
     }
     
