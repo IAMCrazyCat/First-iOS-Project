@@ -64,7 +64,7 @@ class HomeViewController: UIViewController {
         avatarImageView.layer.cornerRadius = avatarImageView.bounds.width / 2
        
         scrollViewTopOffset = overAllProgressTitleLabel.frame.origin.y - 8
-        //verticalScrollView.setContentOffset(CGPoint(x: 0, y: scrollViewTopOffset), animated: false)
+        verticalScrollView.setContentOffset(CGPoint(x: 0, y: scrollViewTopOffset), animated: false)
         
         verticalScrollView.delegate = self // activate delegate
         verticalScrollView.contentSize = CGSize(width: view.frame.width, height: 2000)

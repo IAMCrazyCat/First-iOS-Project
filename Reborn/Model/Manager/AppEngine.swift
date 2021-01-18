@@ -59,6 +59,7 @@ class AppEngine {
             do {
                 let data = try encoder.encode(self.user!)
                 try data.write(to: self.dataFilePath!)
+                print("User saved")
             } catch {
                 print("Error encoding item array, \(error)")
             }
@@ -83,7 +84,8 @@ class AppEngine {
     public func addItem(newItem: Item) {
         
         self.user?.items.append(newItem)
-        self.saveUser(newUser: nil)
+        
+        //self.saveUser(newUser: nil)
 
     }
     
@@ -100,8 +102,9 @@ class AppEngine {
         let currentYear: Int = Calendar.current.component(.year, from: Date())
         let currentMonth: Int = Calendar.current.component(.month, from: Date())
         let currentDay: Int = Calendar.current.component(.day, from: Date())
-        self.user?.items[tag].punchIn(punchInDate: CustomDate(year: currentYear, month: currentMonth, day: currentDay))
+        self.user!.items[tag].punchIn(punchInDate: CustomDate(year: currentYear, month: currentMonth, day: currentDay))
         
+        //self.saveUser(newUser: nil)
         // test
 //        let currentYear: Int = Calendar.current.component(.year, from: Date())
 //        let currentMonth: Int = Calendar.current.component(.month, from: Date())

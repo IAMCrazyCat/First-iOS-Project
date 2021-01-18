@@ -22,8 +22,14 @@ struct CalendarPage {
     var weekdayOfFirstDay: Int {
         let formatter  = DateFormatter()
         formatter.dateFormat = "yyyy MM dd"
-        let firstDayDate =  formatter.date(from: "\(year) \(month) 1")
-        return calendar.component(.weekday, from: firstDayDate!)
+        
+        if let firstDayDate = formatter.date(from: "\(year) \(month) 1") {
+            return calendar.component(.weekday, from: firstDayDate)
+        } else {
+            print("Wrong year or/and month data inlitialized! Year: \(year) Month: \(month), the calendar is set to 1997/4")
+            return calendar.component(.weekday, from: formatter.date(from: "\(1997) \(4) 9")!)
+        }
+       
     }
     
     var currentYearAndMonthInString: String {

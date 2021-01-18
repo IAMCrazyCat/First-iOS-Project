@@ -82,44 +82,81 @@ class CalendarViewController: UIViewController {
     
     public func loadCalendar() {// -> UIView? {
             
-        let currentYear: Int = Calendar.current.component(.year, from: Date())
         var cordinateX: CGFloat = 0
         
+        var centerPageYear = self.engine.currentDate.year
+        var centerPageMonth = self.engine.currentDate.month
 
+        var punchedInDays: Array<Int> = []
         
-        for year in currentYear - self.setting.calendarYearsInterval / 2 ... currentYear + self.setting.calendarYearsInterval / 2 {
-            
-            for month in 1 ... 12 { // 12 months
-                
-                var punchedInDays: Array<Int> = []
-                
-                if self.item != nil { // Ensure thgat item is not nil
-                    
-                    for punchInDate in self.item!.punchInDate { // add all punched in date into punchedInDays array
-                        if punchInDate.year == year && punchInDate.month == month {
-                            punchedInDays.append(punchInDate.day)
-                        }
-                    }
-                }
-              
-                let calendarPage = CalendarPage(year: year, month: month, punchedInDays: punchedInDays)
-
-                let builder = CalendarPageBuilder(calendarPage: calendarPage, width: self.bottomScrollView.frame.width, height: self.bottomScrollView.frame.height, cordinateX: cordinateX, cordinateY: 0 )
-                
-                self.calendarPages.append(calendarPage)
-                self.bottomScrollView.addSubview(builder.builCalendarPage())
-                
-                let date = Date()
-                if year == Calendar.current.component(.year, from: date) && month == Calendar.current.component(.month, from: date) {
-                    todayCordinateX = cordinateX
-                }
-                
-                cordinateX += self.bottomScrollView.frame.width
-
+        var leftPageYear: Int {
+            if centerPageMonth - 1 < 1 {
+                return centerPageYear - 1
+            } else {
+                return centerPageYear
             }
+        }
+        
+        var leftPageMonth: Int {
+            if centerPageMonth - 1 < 1 {
+                return 12
+            } else {
+                return centerPageMonth - 1
+            }
+        }
+        
+        var rightPageYear: Int {
+            if centerPageMonth + 1 > 12 {
+                return centerPageYear + 1
+            } else {
+                return centerPageYear
+            }
+        }
+        
+        
+        var rightPageMonth: Int {
+            if centerPageMonth + 1 > 12 {
+                return 1
+            } else {
+                return centerPageMonth + 1
+            }
+        }
+        
+//        if self.item != nil { // Ensure thgat item is not nil
+//
+//            for punchInDate in self.item!.punchInDate { // add all punched in date into punchedInDays array
+//                if punchInDate.year == year && punchInDate.month == month {
+//                    punchedInDays.append(punchInDate.day)
+//                }
+//            }
+//        }
+        
+        let leftCalendarPage = CalendarPage(year: leftPageYear, month: leftPageMonth, punchedInDays: punchedInDays)
+        let centerCalendarPage = CalendarPage(year: centerPageYear, month: centerPageMonth, punchedInDays: punchedInDays)
+        let rightCalendarPage =  CalendarPage(year: rightPageYear, month: rightPageMonth, punchedInDays: punchedInDays)
+        
+        self.calendarPages.append(leftCalendarPage)
+        self.calendarPages.append(centerCalendarPage)
+        self.calendarPages.append(rightCalendarPage)
+        
+        for calendarPage in self.calendarPages {
+            
+            let builder = CalendarPageBuilder(calendarPage: calendarPage, width: self.bottomScrollView.frame.width, height: self.bottomScrollView.frame.height, cordinateX: cordinateX, cordinateY: 0 )
+            
+            self.bottomScrollView.addSubview(builder.builCalendarPage())
+            
+//            let date = Date()
+//            if year == Calendar.current.component(.year, from: date) && month == Calendar.current.component(.month, from: date) {
+//                todayCordinateX = cordinateX
+//            }
+            
+            cordinateX += self.bottomScrollView.frame.width
+        }
+       
+
             
           
-        }
+
     
         self.bottomScrollView.contentSize = CGSize(width: cordinateX, height: self.bottomScrollView.frame.height)
         self.bottomScrollView.setContentOffset(CGPoint(x: todayCordinateX, y: 0), animated: false)
@@ -154,7 +191,16 @@ class CalendarViewController: UIViewController {
         self.updateUI()
     }
     
-        
+    @IBAction func prviousMonthButtonPressed(_ sender: Any) {
+        let currentOffsetX = self.bottomScrollView.contentOffset.x
+        self.bottomScrollView.setContentOffset(CGPoint(x: currentOffsetX - self.bottomScrollView.frame.width, y: 0) , animated: true)
+    }
+    
+    @IBAction func nextMonthButtonPressed(_ sender: Any) {
+        let currentOffsetX = self.bottomScrollView.contentOffset.x
+        self.bottomScrollView.setContentOffset(CGPoint(x: currentOffsetX + self.bottomScrollView.frame.width, y: 0) , animated: true)
+    }
+    
     func updateUI() {
         
         currentMonthLabel.text = calendarPages[currentPageIndex].currentYearAndMonthInString
@@ -187,15 +233,15 @@ extension CalendarViewController: UIScrollViewDelegate {
     }
     
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        scrollViewLastOffsetX = scrollView.contentOffset.x
-        currentPageIndexDidChange = false
-
-        print("END")
+//        scrollViewLastOffsetX = scrollView.contentOffset.x
+//        currentPageIndexDidChange = false
+//
+//        print("END")
     }
     
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        scrollViewLastOffsetX = scrollView.contentOffset.x
-        currentPageIndexDidChange = false
-        print("??")
-    }
+//    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+//        scrollViewLastOffsetX = scrollView.contentOffset.x
+//        currentPageIndexDidChange = false
+//        print("??")
+//    }
 }
