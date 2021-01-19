@@ -19,7 +19,7 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var middleView: UIView!
     @IBOutlet weak var middleStackView: UIStackView!
     @IBOutlet weak var bottomView: UIView!
-    @IBOutlet weak var bottomScrollView: UIScrollView!
+    @IBOutlet weak var bottomCollectionView: UICollectionView!
     
     var item: Item? = nil
     let setting: SystemStyleSetting = SystemStyleSetting.shared
@@ -29,10 +29,19 @@ class CalendarViewController: UIViewController {
     var startDayCordinateX: CGFloat = 0
     var calendarPages: Array<CalendarPage> = []
     var currentPageIndex: Int = 0
+    var numberOfBottomCollectionViewCells: Int = 3
+    var indexPath: IndexPath? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        bottomScrollView.delegate = self
+        bottomCollectionView.delegate = self
+        bottomCollectionView.dataSource = self
+        bottomCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        
+        if let layout = bottomCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .vertical
+        }
+        
         //bottomScrollView.widthAnchor.constraint(equalToConstant: view.frame.width - 2 * setting.mainPadding).isActive = true
       
         view.layer.cornerRadius = setting.itemCardCornerRadius
@@ -53,25 +62,17 @@ class CalendarViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() { // this method will be called multiple times
-        bottomScrollView.layoutIfNeeded() // layout bottomScrollViewFirst
+        bottomCollectionView.layoutIfNeeded() // layout bottomScrollViewFirst
         if !calendarLoaded { // Ensure that calendar only be called once
             
             DispatchQueue.main.asyncAfter(deadline: .now()) { // 
-                self.loadCalendar()
+                //self.loadCalendar()
             }
 
         }
         calendarLoaded = true
-        
-     
-//        if let calendar = engine.loadCalendar(controller: self) {
-//
-//            bottomScrollView.addSubview(calendar)
-//            bottomScrollView.contentSize = CGSize(width: bottomScrollView.frame.width * 3, height: bottomScrollView.frame.height)
-//            bottomScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
-//        }
+
     }
-    
     override func viewDidAppear(_ animated: Bool) {
         
     }
@@ -80,7 +81,7 @@ class CalendarViewController: UIViewController {
       
     }
     
-    public func loadCalendar() {// -> UIView? {
+    public func buildCalendarPage(index: Int) -> UIView {
             
         var cordinateX: CGFloat = 0
         
@@ -139,27 +140,23 @@ class CalendarViewController: UIViewController {
         self.calendarPages.append(centerCalendarPage)
         self.calendarPages.append(rightCalendarPage)
         
-        for calendarPage in self.calendarPages {
             
-            let builder = CalendarPageBuilder(calendarPage: calendarPage, width: self.bottomScrollView.frame.width, height: self.bottomScrollView.frame.height, cordinateX: cordinateX, cordinateY: 0 )
-            
-            self.bottomScrollView.addSubview(builder.builCalendarPage())
-            
+        let builder = CalendarPageBuilder(calendarPage: calendarPages[index], width: self.bottomCollectionView.frame.width, height: self.bottomCollectionView.frame.height, cordinateX: cordinateX, cordinateY: 0 )
+        
+        
+        
 //            let date = Date()
 //            if year == Calendar.current.component(.year, from: date) && month == Calendar.current.component(.month, from: date) {
 //                todayCordinateX = cordinateX
 //            }
-            
-            cordinateX += self.bottomScrollView.frame.width
-        }
-       
-
+        
+        return builder.builCalendarPage()
             
           
 
     
-        self.bottomScrollView.contentSize = CGSize(width: cordinateX, height: self.bottomScrollView.frame.height)
-        self.bottomScrollView.setContentOffset(CGPoint(x: todayCordinateX, y: 0), animated: false)
+        self.bottomCollectionView.contentSize = CGSize(width: cordinateX, height: self.bottomCollectionView.frame.height)
+        self.bottomCollectionView.setContentOffset(CGPoint(x: todayCordinateX, y: 0), animated: false)
         
         
         var index = 0
@@ -180,32 +177,40 @@ class CalendarViewController: UIViewController {
         
         let currentDay = self.engine.currentDate
         let monthInterval = (currentDay.year - startDay.year) * 12 + (currentDay.month - startDay.month)
-        self.startDayCordinateX = self.todayCordinateX - CGFloat(monthInterval) * self.bottomScrollView.frame.width
+        self.startDayCordinateX = self.todayCordinateX - CGFloat(monthInterval) * self.bottomCollectionView.frame.width
         
-        self.bottomScrollView.setContentOffset(CGPoint(x: self.startDayCordinateX, y: 0), animated: true)
+        self.bottomCollectionView.setContentOffset(CGPoint(x: self.startDayCordinateX, y: 0), animated: true)
         self.updateUI()
     }
     
     @IBAction func todayButtonPressed(_ sender: UIButton!) {
-        self.bottomScrollView.setContentOffset(CGPoint(x: self.todayCordinateX, y: 0), animated: true)
+        self.bottomCollectionView.setContentOffset(CGPoint(x: self.todayCordinateX, y: 0), animated: true)
         self.updateUI()
     }
     
     @IBAction func prviousMonthButtonPressed(_ sender: Any) {
-        let currentOffsetX = self.bottomScrollView.contentOffset.x
-        self.bottomScrollView.setContentOffset(CGPoint(x: currentOffsetX - self.bottomScrollView.frame.width, y: 0) , animated: true)
+    
+//        if indexPath != nil {
+//            self.bottomCollectionView.scrollToItem(at: IndexPath(item: self.indexPath!.row - 1, section: 0), at: .centeredHorizontally, animated: true)
+//        }
+        
+        self.bottomCollectionView.setContentOffset(CGPoint(x: 0, y: self.bottomCollectionView.contentOffset.y - self.bottomCollectionView.frame.height), animated: true)
+       
     }
     
     @IBAction func nextMonthButtonPressed(_ sender: Any) {
-        let currentOffsetX = self.bottomScrollView.contentOffset.x
-        self.bottomScrollView.setContentOffset(CGPoint(x: currentOffsetX + self.bottomScrollView.frame.width, y: 0) , animated: true)
+    
+//        if indexPath != nil {
+//            self.bottomCollectionView.scrollToItem(at: self.indexPath!, at: .centeredHorizontally, animated: true)
+//        }
+        self.bottomCollectionView.setContentOffset(CGPoint(x: 0, y: self.bottomCollectionView.contentOffset.y + self.bottomCollectionView.frame.height), animated: true)
     }
     
     func updateUI() {
         
         currentMonthLabel.text = calendarPages[currentPageIndex].currentYearAndMonthInString
         
-        print(Int(Double(bottomScrollView.contentOffset.x / bottomScrollView.contentSize.width) * Double(self.setting.calendarYearsInterval * 12)))
+        print(Int(Double(bottomCollectionView.contentOffset.x / bottomCollectionView.contentSize.width) * Double(self.setting.calendarYearsInterval * 12)))
     }
     
     
@@ -213,35 +218,64 @@ class CalendarViewController: UIViewController {
     var currentPageIndexDidChange: Bool = false
 }
 
-extension CalendarViewController: UIScrollViewDelegate {
+extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        if scrollView.contentOffset.x > scrollViewLastOffsetX && !currentPageIndexDidChange { // To right
-            print("RIGHT")
-            currentPageIndex += 1
-            currentPageIndexDidChange = true
-        } else if scrollView.contentOffset.x < scrollViewLastOffsetX && !currentPageIndexDidChange { // to left
-            print("LEFT")
-            currentPageIndex -= 1
-            currentPageIndexDidChange = true
-        }
-        
-        self.updateUI()
-        
-        
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.numberOfBottomCollectionViewCells
     }
     
-    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        self.indexPath = indexPath
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        //cell.backgroundColor = UIColor.blue
+        //cell.frame.size = self.bottomCollectionView.frame.size
+        cell.addSubview(self.buildCalendarPage(index: indexPath.row))
+        CalendarPageViewController.shared.currentPage += 1
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+      }
+
+    
+    
+}
+
+//extension CalendarViewController: UIScrollViewDelegate {
+//
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//
+//        if scrollView.contentOffset.x > scrollViewLastOffsetX && !currentPageIndexDidChange { // To right
+//            print("RIGHT")
+//            currentPageIndex += 1
+//            currentPageIndexDidChange = true
+//        } else if scrollView.contentOffset.x < scrollViewLastOffsetX && !currentPageIndexDidChange { // to left
+//            print("LEFT")
+//            currentPageIndex -= 1
+//            currentPageIndexDidChange = true
+//        }
+//
+//        self.updateUI()
+//
+//
+//    }
+//
+//    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
 //        scrollViewLastOffsetX = scrollView.contentOffset.x
 //        currentPageIndexDidChange = false
 //
 //        print("END")
-    }
-    
+//    }
+//
 //    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
 //        scrollViewLastOffsetX = scrollView.contentOffset.x
 //        currentPageIndexDidChange = false
 //        print("??")
 //    }
-}
+//}
+
+
