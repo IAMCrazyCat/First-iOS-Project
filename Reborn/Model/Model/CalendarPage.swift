@@ -24,10 +24,10 @@ struct CalendarPage {
         formatter.dateFormat = "yyyy MM dd"
         
         if let firstDayDate = formatter.date(from: "\(year) \(month) 1") {
-            return calendar.component(.weekday, from: firstDayDate)
+            return calendar.component(.weekday, from: firstDayDate) - 1
         } else {
             print("Wrong year or/and month data inlitialized! Year: \(year) Month: \(month), the calendar is set to 1997/4")
-            return calendar.component(.weekday, from: formatter.date(from: "\(1997) \(4) 9")!)
+            return calendar.component(.weekday, from: formatter.date(from: "\(1997) \(4) 9")!) - 1
         }
        
     }

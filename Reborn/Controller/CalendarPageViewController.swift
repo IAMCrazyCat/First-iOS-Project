@@ -10,37 +10,40 @@ import UIKit
 class CalendarPageViewController: UIViewController {
     
     public static var shared: CalendarPageViewController = CalendarPageViewController()
-    public var calendarPages: Array<CalendarPage> = []
+    public var calendarPage: CalendarPage? = nil
     private var day: Int = 1
-    public var currentPage: Int = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
     
-    public func addPage(newCalendarPage calendarPage: CalendarPage) {
-        self.calendarPages.append(calendarPage)
+    public func initialize(calendarPage: CalendarPage) {
+        self.calendarPage = calendarPage
         self.day = 1
     }
     
 }
 
 extension CalendarPageViewController: UICollectionViewDataSource {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-      
-        return calendarPages[currentPage].days + calendarPages[currentPage].weekdayOfFirstDay // How many cells to display
+        if calendarPage != nil {
+            let days = calendarPage!.days + calendarPage!.weekdayOfFirstDay // How many cells to display
+            print(days)
+            return days
+        } else {
+            return 0
+        }
+        
+        
     }
-        
-        
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
        
+
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DayCell", for: indexPath)
         
-        
-        if indexPath.row < self.calendarPages[self.currentPage].weekdayOfFirstDay {
+        if indexPath.row < self.calendarPage?.weekdayOfFirstDay ?? 0 {
             
             cell.backgroundColor = UIColor.clear
             
@@ -57,11 +60,16 @@ extension CalendarPageViewController: UICollectionViewDataSource {
             dayLabel.layer.cornerRadius = dayLabel.frame.size.width / 2
             dayLabel.clipsToBounds = true
             
-            if indexPath.row == self.calendarPages[self.currentPage].weekdayOfFirstDay + 1 {
+           
+            let dayNumber = indexPath.row - (self.calendarPage?.weekdayOfFirstDay ?? 0) + 1
+            //print(self.calendarPage!.punchedInDays)
+            if let _ = self.calendarPage, self.calendarPage!.punchedInDays.contains(dayNumber) {
                 dayLabel.backgroundColor = UserStyleSetting.themeColor
+                dayLabel.textColor = UIColor.white
               
             } else {
                 dayLabel.backgroundColor = SystemStyleSetting.shared.whiteAndBlack
+                dayLabel.textColor = UIColor.black
             }
             
             cell.addSubview(dayLabel)
@@ -84,7 +92,7 @@ extension CalendarPageViewController: UICollectionViewDataSource {
 extension CalendarPageViewController: UICollectionViewDelegate {
  
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("User tapped on day \(indexPath.row - self.calendarPages[self.currentPage].weekdayOfFirstDay + 1)")
+        print("User tapped on day \(indexPath.row - self.calendarPage!.weekdayOfFirstDay + 1)")
        print()
     }
     

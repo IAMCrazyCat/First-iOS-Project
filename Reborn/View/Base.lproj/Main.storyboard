@@ -1539,7 +1539,7 @@ Cg
                                             <color key="titleColor" systemColor="labelColor"/>
                                         </state>
                                         <connections>
-                                            <action selector="prviousMonthButtonPressed:" destination="cr2-6I-Rrh" eventType="touchUpInside" id="LYP-Mo-uxx"/>
+                                            <action selector="lastMonthButtonPressed:" destination="cr2-6I-Rrh" eventType="touchUpInside" id="LYP-Mo-uxx"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1662,10 +1662,10 @@ Cg
                         <outlet property="bottomCollectionView" destination="zYE-Pq-52Y" id="0s3-wF-cmF"/>
                         <outlet property="bottomView" destination="CyJ-kQ-0F2" id="2RG-YG-MUZ"/>
                         <outlet property="currentMonthLabel" destination="NdA-gx-XZ9" id="L5j-jz-ZiQ"/>
+                        <outlet property="lastMonthButton" destination="UnO-dN-eLE" id="mSg-4T-dMW"/>
                         <outlet property="middleStackView" destination="Vlj-yU-YBI" id="ffZ-6I-TD3"/>
                         <outlet property="middleView" destination="1uJ-r9-mDY" id="ckT-ZL-4Lx"/>
                         <outlet property="nextMonthButton" destination="UGA-qj-SB4" id="k6U-cv-5LJ"/>
-                        <outlet property="previousMonthButton" destination="UnO-dN-eLE" id="mSg-4T-dMW"/>
                         <outlet property="startDayButton" destination="4yp-mE-jGG" id="psf-h6-csZ"/>
                         <outlet property="todayButton" destination="djk-JB-I2X" id="Z0K-DV-oE9"/>
                         <outlet property="topView" destination="RwH-pK-cja" id="YLy-qL-yPX"/>

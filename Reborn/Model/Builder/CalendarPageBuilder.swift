@@ -19,6 +19,7 @@ class CalendarPageBuilder {
     var calendarPageView: UICollectionView? = nil
     var horizentalScrollView: UIScrollView = UIScrollView()
     let calendatPageViewController: CalendarPageViewController = CalendarPageViewController.shared
+    
     init(calendarPage: CalendarPage, width: CGFloat, height: CGFloat, cordinateX: CGFloat, cordinateY: CGFloat) {
         self.calendarPage = calendarPage
         self.width = width
@@ -55,7 +56,7 @@ class CalendarPageBuilder {
         calendarPageView?.dataSource = calendatPageViewController
         calendarPageView?.tag = 11607
         
-        calendatPageViewController.addPage(newCalendarPage: self.calendarPage)
+        calendatPageViewController.initialize(calendarPage: self.calendarPage)
     }
     
 //    private func addDayButtons() {
