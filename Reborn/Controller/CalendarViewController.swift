@@ -13,6 +13,7 @@ enum NewCalendarPage {
 }
 class CalendarViewController: UIViewController {
     
+    public static var shared: CalendarViewController = CalendarViewController()
     @IBOutlet weak var lastMonthButton: UIButton!
     @IBOutlet weak var nextMonthButton: UIButton!
     @IBOutlet weak var startDayButton: UIButton!
@@ -32,34 +33,17 @@ class CalendarViewController: UIViewController {
     var todayCordinateX: CGFloat = 0
     var startDayCordinateX: CGFloat = 0
     var calendarPages: Array<CalendarPage> = []
-    var currentPageIndex: Int = 1
-    
-    var currentPage: CalendarPage {
-        print(currentPageIndex)
-        return calendarPages[currentPageIndex]
-    }
-    
-    
-    var currentPagePunchedInDays: Array<Int> {
-        var days: Array<Int> = []
-        
-        if self.item != nil { // Ensure thgat item is not nil
+    var currentPageIndex: Int = 0
 
-            for punchInDate in self.item!.punchInDate { // add all punched in date into punchedInDays array
-                if punchInDate.year == currentPage.year && punchInDate.month == currentPage.month {
-                    days.append(punchInDate.day)
-                }
-            }
-        }
-        return days
-    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
         bottomCollectionView.delegate = self
         bottomCollectionView.dataSource = self
-        bottomCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        bottomCollectionView.register(CalendarCell.self, forCellWithReuseIdentifier: "cell")
         
         if let layout = bottomCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .vertical
@@ -79,13 +63,25 @@ class CalendarViewController: UIViewController {
         todayButton.layer.cornerRadius = setting.calendarFunctionButtonCornerRadius
         todayButton.setViewShadow()
         
+       
+        var days: Array<Int> = []
+        if self.item != nil { // Ensure thgat item is not nil
+            for punchInDate in self.item!.punchInDate { // add all punched in date into punchedInDays array
+                if punchInDate.year == self.engine.currentDate.year && punchInDate.month == self.engine.currentDate.month {
+                    days.append(punchInDate.day)
+                }
+            }
+        }
         
-        initializeBasicCalendarPages()
+        calendarPages.append(CalendarPage(year: self.engine.currentDate.year, month: self.engine.currentDate.month, punchedInDays: days))
+    
+        //self.addNewCalendarPage(type: .lastMonth)
+        //self.addNewCalendarPage(type: .nextMonth)
+    
+       
         
-        addNewCalendarPage(type: .currentMonth)
-        addNewCalendarPage(type: .lastMonth)
-        addNewCalendarPage(type: .nextMonth)
         updateUI()
+    
         
     }
     
@@ -110,150 +106,89 @@ class CalendarViewController: UIViewController {
     override func viewLayoutMarginsDidChange() {
       
     }
-    
-    private func initializeBasicCalendarPages() {
-      
-        
-//        let centerPageYear = self.engine.currentDate.year
-//        let centerPageMonth = self.engine.currentDate.month
-//
-//        var leftPagePunchedInDays: Array<Int> = []
-//        var centerPagePunchedInDays: Array<Int> = []
-//        var rightPagePunchedInDays: Array<Int> = []
-//
-//        var leftPageYear: Int {
-//            if centerPageMonth - 1 < 1 {
-//                return centerPageYear - 1
-//            } else {
-//                return centerPageYear
-//            }
-//        }
-//
-//        var leftPageMonth: Int {
-//            if centerPageMonth - 1 < 1 {
-//                return 12
-//            } else {
-//                return centerPageMonth - 1
-//            }
-//        }
-//
-//        var rightPageYear: Int {
-//            if centerPageMonth + 1 > 12 {
-//                return centerPageYear + 1
-//            } else {
-//                return centerPageYear
-//            }
-//        }
-//
-//
-//        var rightPageMonth: Int {
-//            if centerPageMonth + 1 > 12 {
-//                return 1
-//            } else {
-//                return centerPageMonth + 1
-//            }
-//        }
-//
-//
-//        if self.item != nil { // Ensure thgat item is not nil
-//
-//            for punchInDate in self.item!.punchInDate { // add all punched in date into punchedInDays array
-//                if punchInDate.year == leftPageYear && punchInDate.month == leftPageMonth {
-//                    leftPagePunchedInDays.append(punchInDate.day)
-//                }
-//            }
-//
-//            for punchInDate in self.item!.punchInDate { // add all punched in date into punchedInDays array
-//                if punchInDate.year == centerPageYear && punchInDate.month == centerPageMonth {
-//                    centerPagePunchedInDays.append(punchInDate.day)
-//                }
-//            }
-//
-//            for punchInDate in self.item!.punchInDate { // add all punched in date into punchedInDays array
-//                if punchInDate.year == rightPageYear && punchInDate.month == rightPageMonth {
-//                    rightPagePunchedInDays.append(punchInDate.day)
-//                }
-//            }
-//
-//        }
-//
-//        let leftCalendarPage = CalendarPage(year: leftPageYear, month: leftPageMonth, punchedInDays: leftPagePunchedInDays)
-//        let centerCalendarPage = CalendarPage(year: centerPageYear, month: centerPageMonth, punchedInDays: centerPagePunchedInDays)
-//        let rightCalendarPage =  CalendarPage(year: rightPageYear, month: rightPageMonth, punchedInDays: rightPagePunchedInDays)
-//
-//        self.calendarPages.append(leftCalendarPage)
-//        self.calendarPages.append(centerCalendarPage)
-//        self.calendarPages.append(rightCalendarPage)
+
+    public func getCurrentCalendarPage() -> CalendarPage {
+        return self.calendarPages[currentPageIndex]
     }
     
-    public func buildCalendarPage(index: Int) -> UIView {
+    public func buildCalendarPage(index: Int, frame: CGRect) -> UIView {
   
-        let builder = CalendarPageBuilder(calendarPage: self.calendarPages[index], width: self.bottomCollectionView.frame.width, height: self.bottomCollectionView.frame.height, cordinateX: 0, cordinateY: 0 )
+        let builder = CalendarPageBuilder(calendarPage: self.calendarPages[index], width: frame.width, height: frame.height, cordinateX: 0, cordinateY: 0 )
 
-        return builder.builCalendarPage()
+        return builder.buildCalendarPage()
         
     }
     
     func addNewCalendarPage(type: NewCalendarPage) {
          
         var lastPageYear: Int {
-            if self.currentPage.month - 1 < 1 {
-                return self.currentPage.year - 1
+            if self.calendarPages[currentPageIndex].month - 1 < 1 {
+                return self.calendarPages[currentPageIndex].year - 1
             } else {
-                return self.currentPage.year
+                return self.calendarPages[currentPageIndex].year
             }
         }
         
         var lastPageMonth: Int {
-            if self.currentPage.month - 1 < 1 {
+            if self.calendarPages[currentPageIndex].month - 1 < 1 {
                 return 12
             } else {
-                return self.currentPage.month - 1
+                return self.calendarPages[currentPageIndex].month - 1
             }
         }
         
         var nextPageYear: Int {
-            if self.currentPage.month + 1 > 12 {
-                return self.currentPage.year + 1
+            if self.calendarPages[currentPageIndex].month + 1 > 12 {
+                return self.calendarPages[currentPageIndex].year + 1
             } else {
-                return self.currentPage.year
+                return self.calendarPages[currentPageIndex].year
             }
         }
         
         
         var nextPageMonth: Int {
-            if self.currentPage.month + 1 > 12 {
+            if self.calendarPages[currentPageIndex].month + 1 > 12 {
                 return 1
             } else {
-                return self.currentPage.month + 1
+                return self.calendarPages[currentPageIndex].month + 1
             }
         }
         
         let newCalendarPage: CalendarPage
         
+        var nextPagePunchedInDays: Array<Int> = []
+        var lastPagePunchedInDays: Array<Int> = []
+        
+        if self.item != nil { // Ensure thgat item is not nil
+
+            for punchInDate in self.item!.punchInDate { // add all punched in date into punchedInDays array
+                if punchInDate.year == nextPageYear && punchInDate.month == nextPageMonth {
+                    nextPagePunchedInDays.append(punchInDate.day)
+                }
+            }
+            
+            for punchInDate in self.item!.punchInDate { // add all punched in date into punchedInDays array
+                if punchInDate.year == lastPageYear && punchInDate.month == lastPageMonth {
+                    lastPagePunchedInDays.append(punchInDate.day)
+                }
+            }
+        }
+        
+    
+        
         if type == .lastMonth {
-            newCalendarPage = CalendarPage(year: lastPageYear, month: lastPageMonth, punchedInDays: self.currentPagePunchedInDays)
+            newCalendarPage = CalendarPage(year: lastPageYear, month: lastPageMonth, punchedInDays: lastPagePunchedInDays)
             let newIndexPath = IndexPath(item: 0, section: 0)
             calendarPages.insert(newCalendarPage, at: 0)
             bottomCollectionView.insertItems(at: [newIndexPath])
            
         } else if type == .nextMonth {
-            newCalendarPage = CalendarPage(year: nextPageYear, month: nextPageMonth, punchedInDays: self.currentPagePunchedInDays)
-            let newIndexPath = IndexPath(item: calendarPages.count, section: 0)
-            calendarPages.append(newCalendarPage)
-            bottomCollectionView.insertItems(at: [newIndexPath])
-        } else {
-            newCalendarPage = CalendarPage(year: self.currentPage.year, month: self.currentPage.month, punchedInDays: self.currentPagePunchedInDays)
+            newCalendarPage = CalendarPage(year: nextPageYear, month: nextPageMonth, punchedInDays: nextPagePunchedInDays)
             let newIndexPath = IndexPath(item: calendarPages.count, section: 0)
             calendarPages.append(newCalendarPage)
             bottomCollectionView.insertItems(at: [newIndexPath])
         }
             
-        
-        
-        
-        
-        
     }
     
     @IBAction func startDayButtonPressed(_ sender: UIButton!) {
@@ -275,7 +210,7 @@ class CalendarViewController: UIViewController {
     
     @IBAction func lastMonthButtonPressed(_ sender: Any) {
 
-        if currentPageIndex <= 1 {
+        if currentPageIndex <= 0 {
             self.addNewCalendarPage(type: .lastMonth)
         } else {
             self.currentPageIndex -= 1
@@ -288,6 +223,7 @@ class CalendarViewController: UIViewController {
     @IBAction func nextMonthButtonPressed(_ sender: Any) {
     
         if currentPageIndex >= self.calendarPages.count - 1 {
+            
             self.addNewCalendarPage(type: .nextMonth)
         } else {
             
@@ -298,34 +234,38 @@ class CalendarViewController: UIViewController {
     }
     
     func updateUI() {
-        print(currentPageIndex)
+        print(calendarPages)
+        print("current page Index \(currentPageIndex)")
+        CalendarCell.shared.initialize(calendarPage: self.calendarPages[currentPageIndex])
         self.bottomCollectionView.scrollToItem(at: IndexPath(item: self.currentPageIndex, section: 0), at: .centeredVertically, animated: true)
-        currentMonthLabel.text = currentPage.currentYearAndMonthInString
+        currentMonthLabel.text = self.calendarPages[currentPageIndex].currentYearAndMonthInString
         
-        CalendarPageViewController.shared.initialize(calendarPage: currentPage)
+        
     
     }
     
     
-    var scrollViewLastOffsetX: CGFloat = 0
-    var currentPageIndexDidChange: Bool = false
+
 }
 
 extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(self.calendarPages.count)
         return self.calendarPages.count
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+    
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CalendarCell
+        //cell.calendarPage = self.calendarPages[currentPageIndex]
         //cell.backgroundColor = UIColor.blue
-        //cell.frame.size = self.bottomCollectionView.frame.size
-        cell.addSubview(self.buildCalendarPage(index: indexPath.row))
-        //CalendarPageViewController.shared.currentPage += 1
         
+        //cell.contentView.addSubview(self.buildCalendarPage(index: indexPath.row, frame: cell.contentView.frame))
+        //cell.automaticallyUpdatesContentConfiguration = true
+        //CalendarPageViewController.shared.currentPage += 1
+        print("cell called")
         return cell
     }
     
@@ -333,10 +273,11 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
         
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
       }
-
+    
     
     
 }
+
 
 //extension CalendarViewController: UIScrollViewDelegate {
 //

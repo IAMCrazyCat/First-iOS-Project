@@ -19,14 +19,12 @@ class ItemDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-     
         //print(engine.buildCalendar(itemID: itemID)!)
     
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print(segue.identifier)
         if let destinationViewController = segue.destination as? CalendarViewController {
             destinationViewController.item = item
             

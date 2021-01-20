@@ -7,29 +7,57 @@
 
 import UIKit
 
-class CalendarPageViewController: UIViewController {
+class CalendarCell: UICollectionViewCell {
     
-    public static var shared: CalendarPageViewController = CalendarPageViewController()
+    public static var shared: CalendarCell = CalendarCell()
     public var calendarPage: CalendarPage? = nil
     private var day: Int = 1
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        print("cell inited")
         
+        let test = UILabel()
+        test.text = "test"
+        test.sizeToFit()
+        
+        self.contentView.addSubview(test)
+        print("CurrentPageIndex \(CalendarViewController.shared.currentPageIndex)")
+        self.calendarPage = CalendarViewController.shared.calendarPages[CalendarViewController.shared.currentPageIndex]
+        let builder = CalendarPageBuilder(calendarPage: self.calendarPage!, width: self.frame.width, height: self.frame.height, cordinateX: 0, cordinateY: 0 )
+        self.addSubview(builder.buildCalendarPage())
+
     }
     
+    
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     public func initialize(calendarPage: CalendarPage) {
+        print("initialized")
         self.calendarPage = calendarPage
+        self.day = 1
+
+    }
+    
+    override func prepareForReuse() {
+        print("Cell Reused")
+        super.prepareForReuse()
         self.day = 1
     }
     
 }
 
-extension CalendarPageViewController: UICollectionViewDataSource {
+
+extension CalendarCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if calendarPage != nil {
             let days = calendarPage!.days + calendarPage!.weekdayOfFirstDay // How many cells to display
-            print(days)
+            print("total days \(days)")
             return days
         } else {
             return 0
@@ -40,7 +68,7 @@ extension CalendarPageViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
        
-
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DayCell", for: indexPath)
         
         if indexPath.row < self.calendarPage?.weekdayOfFirstDay ?? 0 {
@@ -48,10 +76,7 @@ extension CalendarPageViewController: UICollectionViewDataSource {
             cell.backgroundColor = UIColor.clear
             
         } else {
-            
-            
-            
-            
+ 
             let dayLabel = UILabel()
             dayLabel.text = String(day)
             dayLabel.sizeToFit()
@@ -74,9 +99,11 @@ extension CalendarPageViewController: UICollectionViewDataSource {
             
             cell.addSubview(dayLabel)
         
+            if self.day > self.calendarPage!.days {
+                self.day = 1
+            }
             
-            self.day += 1
-
+            print(self.day)
         }
         
        
@@ -89,7 +116,7 @@ extension CalendarPageViewController: UICollectionViewDataSource {
     
 }
 
-extension CalendarPageViewController: UICollectionViewDelegate {
+extension CalendarCell: UICollectionViewDelegate {
  
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("User tapped on day \(indexPath.row - self.calendarPage!.weekdayOfFirstDay + 1)")
