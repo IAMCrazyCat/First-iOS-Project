@@ -16,9 +16,9 @@ class CalendarPageBuilder {
     let height: CGFloat
     let cordinateX: CGFloat
     let cordinateY: CGFloat
-    var calendarPageView: UICollectionView? = nil
+    var calendarPageView: UIView? = nil
     var horizentalScrollView: UIScrollView = UIScrollView()
-    let calendatPageViewController: CalendarCell = CalendarCell.shared
+    let calendatPageViewController: CalendarPageViewController = CalendarPageViewController.shared
     
     init(calendarPage: CalendarPage, width: CGFloat, height: CGFloat, cordinateX: CGFloat, cordinateY: CGFloat) {
         self.calendarPage = calendarPage
@@ -30,8 +30,10 @@ class CalendarPageBuilder {
     
     
     public func buildCalendarPage() -> UIView {
-        createCalendarPageView()
-        addDayButtons()
+        createCalendarPageCellView()
+        
+        //reateCalendarPageView()
+        //addDayButtons()
         
         return calendarPageView!
     }
@@ -41,7 +43,7 @@ class CalendarPageBuilder {
 //        contentView?.frame = CGRect(x: 0, y: 0, width: width * 3, height: height)
 //    }
     
-    private func createCalendarPageView() {
+    private func createCalendarPageCellView() {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.itemSize = CGSize(width: self.width / 7, height: self.height / 6)
@@ -50,14 +52,18 @@ class CalendarPageBuilder {
         
         calendatPageViewController.initialize(calendarPage: self.calendarPage)
         calendarPageView = UICollectionView(frame: CGRect(x: cordinateX, y: cordinateY, width: width, height: height), collectionViewLayout: layout)
-//        calendarPageView?.backgroundColor = SystemStyleSetting.shared.whiteAndBlack
-//        calendarPageView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "DayCell")
-//
-//        calendarPageView?.delegate = calendatPageViewController
-//        calendarPageView?.dataSource = calendatPageViewController
-//        calendarPageView?.tag = 11607
+        (calendarPageView! as! UICollectionView).backgroundColor = SystemStyleSetting.shared.whiteAndBlack
+        (calendarPageView! as! UICollectionView).register(UICollectionViewCell.self, forCellWithReuseIdentifier: "DayCell")
+
+        (calendarPageView! as! UICollectionView).delegate = calendatPageViewController
+        (calendarPageView! as! UICollectionView).dataSource = calendatPageViewController
+        (calendarPageView! as! UICollectionView).tag = 11607
         
         
+    }
+    
+    private func createCalendarPageView() {
+        calendarPageView? = UIView(frame: CGRect(x: cordinateX, y: cordinateY, width: width, height: height))
     }
     
     private func addDayButtons() {

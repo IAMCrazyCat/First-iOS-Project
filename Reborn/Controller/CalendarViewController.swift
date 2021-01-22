@@ -30,11 +30,12 @@ class CalendarViewController: UIViewController {
     let setting: SystemStyleSetting = SystemStyleSetting.shared
     let engine: AppEngine = AppEngine.shared
     var calendarLoaded: Bool = false
-    var todayCordinateX: CGFloat = 0
-    var startDayCordinateX: CGFloat = 0
     var calendarPages: Array<CalendarPage> = []
     var currentPageIndex: Int = 0
-
+    
+    var startDayCellIndex: Int = 0
+    var todayCellIndex: Int = 0
+    
     
     
     
@@ -43,8 +44,8 @@ class CalendarViewController: UIViewController {
     
         bottomCollectionView.delegate = self
         bottomCollectionView.dataSource = self
-        bottomCollectionView.register(CalendarCell.self, forCellWithReuseIdentifier: "cell")
-        
+        bottomCollectionView.register(CalendarCell.self, forCellWithReuseIdentifier: CalendarCell.identifier)
+       
         if let layout = bottomCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .vertical
         }
@@ -75,8 +76,8 @@ class CalendarViewController: UIViewController {
         
         calendarPages.append(CalendarPage(year: self.engine.currentDate.year, month: self.engine.currentDate.month, punchedInDays: days))
     
-        //self.addNewCalendarPage(type: .lastMonth)
-        //self.addNewCalendarPage(type: .nextMonth)
+//        self.addNewCalendarPage(type: .lastMonth)
+//        self.addNewCalendarPage(type: .nextMonth)
     
        
         
@@ -192,19 +193,30 @@ class CalendarViewController: UIViewController {
     }
     
     @IBAction func startDayButtonPressed(_ sender: UIButton!) {
-        item!.creationDate = CustomDate(year: 2018, month: 12, day: 12)
-        let startDay = item!.creationDate
+        self.item!.creationDate = CustomDate(year: 2018, month: 12, day: 12)
         
-        let currentDay = self.engine.currentDate
-        let monthInterval = (currentDay.year - startDay.year) * 12 + (currentDay.month - startDay.month)
-        self.startDayCordinateX = self.todayCordinateX - CGFloat(monthInterval) * self.bottomCollectionView.frame.width
-        
-        self.bottomCollectionView.setContentOffset(CGPoint(x: self.startDayCordinateX, y: 0), animated: true)
-        self.updateUI()
+        if item != nil {
+            
+            let startDay = item!.creationDate
+            
+            let currentDay = self.engine.currentDate
+            let monthInterval = (currentDay.year - startDay.year) * 12 + (currentDay.month - startDay.month)
+            print("Date interval: \(monthInterval)")
+            
+            for _ in 1 ... monthInterval {
+                self.addNewCalendarPage(type: .lastMonth)
+            }
+            
+            self.currentPageIndex = self.startDayCellIndex
+            self.todayCellIndex += monthInterval
+            self.updateUI()
+        }
+       
     }
     
     @IBAction func todayButtonPressed(_ sender: UIButton!) {
-        self.bottomCollectionView.setContentOffset(CGPoint(x: self.todayCordinateX, y: 0), animated: true)
+        
+        self.currentPageIndex = self.todayCellIndex
         self.updateUI()
     }
     
@@ -212,11 +224,12 @@ class CalendarViewController: UIViewController {
 
         if currentPageIndex <= 0 {
             self.addNewCalendarPage(type: .lastMonth)
+            self.todayCellIndex += 1
         } else {
             self.currentPageIndex -= 1
         }
-        
-        updateUI()
+    
+        self.updateUI()
        
     }
     
@@ -236,8 +249,8 @@ class CalendarViewController: UIViewController {
     func updateUI() {
         print(calendarPages)
         print("current page Index \(currentPageIndex)")
-        CalendarCell.shared.initialize(calendarPage: self.calendarPages[currentPageIndex])
-        self.bottomCollectionView.scrollToItem(at: IndexPath(item: self.currentPageIndex, section: 0), at: .centeredVertically, animated: true)
+        CalendarPageViewController.shared.initialize(calendarPage: self.calendarPages[currentPageIndex])
+        self.bottomCollectionView.scrollToItem(at: IndexPath(item: self.currentPageIndex, section: 0), at: .centeredVertically, animated: false)
         currentMonthLabel.text = self.calendarPages[currentPageIndex].currentYearAndMonthInString
         
         
@@ -248,24 +261,24 @@ class CalendarViewController: UIViewController {
 
 }
 
+
+
 extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(self.calendarPages.count)
+        
         return self.calendarPages.count
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CalendarCell
-        //cell.calendarPage = self.calendarPages[currentPageIndex]
-        //cell.backgroundColor = UIColor.blue
         
-        //cell.contentView.addSubview(self.buildCalendarPage(index: indexPath.row, frame: cell.contentView.frame))
-        //cell.automaticallyUpdatesContentConfiguration = true
-        //CalendarPageViewController.shared.currentPage += 1
-        print("cell called")
+
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarCell.identifier, for: indexPath) as! CalendarCell
+       
+        cell.calendarPage = calendarPages[currentPageIndex]
+        //cell.calendarPageView = self.buildCalendarPage(index: indexPath.item, frame: cell.contentView.frame)
+        cell.myLabel.text = "\(indexPath.row)"
         return cell
     }
     
@@ -275,7 +288,7 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
       }
     
     
-    
+   
 }
 
 
