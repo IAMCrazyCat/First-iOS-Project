@@ -11,33 +11,42 @@ class CalendarCell: UICollectionViewCell {
 
     static var identifier: String = "CalendarCell"
     
-    var calendarPage: CalendarPage = {
-        return CalendarPage(year: 1997, month: 4, punchedInDays: [9])
-    } ()
+    var calendarPageView: UICollectionView? = nil
     
     let setting: SystemStyleSetting = SystemStyleSetting.shared
     
-    var myLabel: UILabel = {
-        let label = UILabel()
-        label.text = "CUSTOM"
-        label.backgroundColor = .green
-        label.textAlignment = .center
-        return label
-    } ()
-    
-    
+    var calendarPage: CalendarPage? {
+        didSet {
+            CalendarPageViewController.shared.calendarPage = self.calendarPage
+        }
+    }
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         self.contentView.backgroundColor = UIColor.red
-        addDayButtons()
-        print(calendarPage)
-        print(myLabel.text)
-        self.contentView.addSubview(myLabel)
+        self.setUpUI()
+        self.contentView.addSubview(calendarPageView!)
         
     }
     
-  
+    private func setUpUI() {
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.itemSize = CGSize(width: self.contentView.frame.width / 7, height: self.contentView.frame.height / 6)
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        
+        calendarPageView = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.contentView.frame.width, height: self.contentView.frame.height), collectionViewLayout: layout)
+        calendarPageView!.backgroundColor = UIColor.green//SystemStyleSetting.shared.whiteAndBlack
+        calendarPageView!.register(CalendarPageCell.self, forCellWithReuseIdentifier: CalendarPageCell.identifier)
+        calendarPageView!.delegate = CalendarPageViewController.shared
+        calendarPageView!.dataSource = CalendarPageViewController.shared
+     
+        calendarPageView!.tag = 11607
+        
+    }
+    
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -46,21 +55,11 @@ class CalendarCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        
-//        let subviews = self.contentView.subviews
-//        for subview in subviews {
-//            if subview.tag == 11607 {
-//                for subview in subview.subviews {
-//                    subview.removeFromSuperview()
-//                }
-//            }
-//
-//        }
-
+    
     }
     
     override func layoutSubviews() {
-        myLabel.frame = CGRect(x: 0, y: 0, width: contentView.frame.size.width - 50, height: 50)
+        
     }
     
     

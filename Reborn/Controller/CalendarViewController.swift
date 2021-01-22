@@ -223,7 +223,10 @@ class CalendarViewController: UIViewController {
     @IBAction func lastMonthButtonPressed(_ sender: Any) {
 
         if currentPageIndex <= 0 {
-            self.addNewCalendarPage(type: .lastMonth)
+            self.bottomCollectionView.performBatchUpdates({
+                self.addNewCalendarPage(type: .lastMonth)
+            }, completion: nil)
+            
             self.todayCellIndex += 1
         } else {
             self.currentPageIndex -= 1
@@ -236,8 +239,10 @@ class CalendarViewController: UIViewController {
     @IBAction func nextMonthButtonPressed(_ sender: Any) {
     
         if currentPageIndex >= self.calendarPages.count - 1 {
+            self.bottomCollectionView.performBatchUpdates({
+                self.addNewCalendarPage(type: .nextMonth)
+            }, completion: nil)
             
-            self.addNewCalendarPage(type: .nextMonth)
         } else {
             
         }
@@ -249,8 +254,8 @@ class CalendarViewController: UIViewController {
     func updateUI() {
         print(calendarPages)
         print("current page Index \(currentPageIndex)")
-        CalendarPageViewController.shared.initialize(calendarPage: self.calendarPages[currentPageIndex])
-        self.bottomCollectionView.scrollToItem(at: IndexPath(item: self.currentPageIndex, section: 0), at: .centeredVertically, animated: false)
+        
+        self.bottomCollectionView.scrollToItem(at: IndexPath(item: self.currentPageIndex, section: 0), at: .centeredVertically, animated: true)
         currentMonthLabel.text = self.calendarPages[currentPageIndex].currentYearAndMonthInString
         
         
@@ -276,9 +281,9 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarCell.identifier, for: indexPath) as! CalendarCell
        
-        cell.calendarPage = calendarPages[currentPageIndex]
-        //cell.calendarPageView = self.buildCalendarPage(index: indexPath.item, frame: cell.contentView.frame)
-        cell.myLabel.text = "\(indexPath.row)"
+        // 在这里改 cell
+        
+        cell.calendarPage = calendarPages[indexPath.row]
         return cell
     }
     

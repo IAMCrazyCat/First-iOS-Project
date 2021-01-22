@@ -50,7 +50,7 @@ class CalendarPageBuilder {
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         
-        calendatPageViewController.initialize(calendarPage: self.calendarPage)
+       
         calendarPageView = UICollectionView(frame: CGRect(x: cordinateX, y: cordinateY, width: width, height: height), collectionViewLayout: layout)
         (calendarPageView! as! UICollectionView).backgroundColor = SystemStyleSetting.shared.whiteAndBlack
         (calendarPageView! as! UICollectionView).register(UICollectionViewCell.self, forCellWithReuseIdentifier: "DayCell")
