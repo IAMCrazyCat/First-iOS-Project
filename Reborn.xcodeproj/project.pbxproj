@@ -18,7 +18,6 @@
 		221E0B7C25A9273E00386FE1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E0B7B25A9273E00386FE1 /* User.swift */; };
 		221E0B8825A9A22800386FE1 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E0B8725A9A22800386FE1 /* Gender.swift */; };
 		221E0BA425A9D38100386FE1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E0BA325A9D38100386FE1 /* Image.swift */; };
-		221E0BB825AB19CA00386FE1 /* CalendarPageBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E0BB725AB19CA00386FE1 /* CalendarPageBuilder.swift */; };
 		223A777B25A41184004B3324 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223A777A25A41184004B3324 /* UIView.swift */; };
 		224A91842595FA7D00A896BE /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224A91832595FA7D00A896BE /* ItemType.swift */; };
 		224A919225971E9000A896BE /* ItemCardBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224A919125971E9000A896BE /* ItemCardBuilder.swift */; };
@@ -28,9 +27,7 @@
 		225AD12F25A868F50040E356 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AD12E25A868F50040E356 /* ItemDetailViewController.swift */; };
 		225AD13425A86ED80040E356 /* FadeInSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AD13325A86ED80040E356 /* FadeInSegue.swift */; };
 		2279C17E2592ED2F00566CD7 /* UserStyleSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2279C17D2592ED2F00566CD7 /* UserStyleSetting.swift */; };
-		227BA02B25B6918800E7A1F5 /* CalendarPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227BA02A25B6918800E7A1F5 /* CalendarPageViewController.swift */; };
 		228ED3E625B94D630054591F /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228ED3E525B94D630054591F /* CalendarCell.swift */; };
-		228ED3EE25BA5CAF0054591F /* CalendarPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228ED3ED25BA5CAF0054591F /* CalendarPageCell.swift */; };
 		22A597EC2598091B008E2A06 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A597EB2598091B008E2A06 /* UIButton.swift */; };
 		22A597F925986685008E2A06 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A597F825986685008E2A06 /* AddItemViewController.swift */; };
 		22A597FE2599C0AF008E2A06 /* WeekDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A597FD2599C0AF008E2A06 /* WeekDay.swift */; };
@@ -96,7 +93,6 @@
 		221E0B7B25A9273E00386FE1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		221E0B8725A9A22800386FE1 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		221E0BA325A9D38100386FE1 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
-		221E0BB725AB19CA00386FE1 /* CalendarPageBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPageBuilder.swift; sourceTree = "<group>"; };
 		223A777A25A41184004B3324 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		224A91832595FA7D00A896BE /* ItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
 		224A919125971E9000A896BE /* ItemCardBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCardBuilder.swift; sourceTree = "<group>"; };
@@ -106,9 +102,7 @@
 		225AD12E25A868F50040E356 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		225AD13325A86ED80040E356 /* FadeInSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeInSegue.swift; sourceTree = "<group>"; };
 		2279C17D2592ED2F00566CD7 /* UserStyleSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStyleSetting.swift; sourceTree = "<group>"; };
-		227BA02A25B6918800E7A1F5 /* CalendarPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPageViewController.swift; sourceTree = "<group>"; };
 		228ED3E525B94D630054591F /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
-		228ED3ED25BA5CAF0054591F /* CalendarPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPageCell.swift; sourceTree = "<group>"; };
 		22A597EB2598091B008E2A06 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		22A597F825986685008E2A06 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		22A597FD2599C0AF008E2A06 /* WeekDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDay.swift; sourceTree = "<group>"; };
@@ -247,9 +241,7 @@
 				22E9A873259F33F50073D432 /* PopUpViewController.swift */,
 				225AD12E25A868F50040E356 /* ItemDetailViewController.swift */,
 				22AACA3025AE98B40098D920 /* CalendarViewController.swift */,
-				227BA02A25B6918800E7A1F5 /* CalendarPageViewController.swift */,
 				228ED3E525B94D630054591F /* CalendarCell.swift */,
-				228ED3ED25BA5CAF0054591F /* CalendarPageCell.swift */,
 				22D354BE25A6B142004F5667 /* Tab Bar Controller */,
 				223A777325A30645004B3324 /* Transition */,
 			);
@@ -299,7 +291,6 @@
 				224A919125971E9000A896BE /* ItemCardBuilder.swift */,
 				22A59810259AA31A008E2A06 /* PopUpViewBuilder.swift */,
 				22D7FBB025A1E065006B1F28 /* SetUpPageBuilder.swift */,
-				221E0BB725AB19CA00386FE1 /* CalendarPageBuilder.swift */,
 			);
 			path = Builder;
 			sourceTree = "<group>";
@@ -504,8 +495,6 @@
 				225AD12F25A868F50040E356 /* ItemDetailViewController.swift in Sources */,
 				225AD12225A80EB30040E356 /* UIApplication.swift in Sources */,
 				225AD12A25A848A30040E356 /* Selector.swift in Sources */,
-				221E0BB825AB19CA00386FE1 /* CalendarPageBuilder.swift in Sources */,
-				228ED3EE25BA5CAF0054591F /* CalendarPageCell.swift in Sources */,
 				22D6195725A0277B00EC9396 /* PopUpViewPresentAnimationController.swift in Sources */,
 				224A919225971E9000A896BE /* ItemCardBuilder.swift in Sources */,
 				22AACA3225AE98B40098D920 /* CalendarViewController.swift in Sources */,
@@ -528,7 +517,6 @@
 				22D354B425A595B7004F5667 /* UserCenterViewController.swift in Sources */,
 				221E0B7C25A9273E00386FE1 /* User.swift in Sources */,
 				22FCB1BA258D907C006A0D39 /* SystemStyleSetting.swift in Sources */,
-				227BA02B25B6918800E7A1F5 /* CalendarPageViewController.swift in Sources */,
 				22C23A1E258DC5FB00D4BEB2 /* PersistingItem.swift in Sources */,
 				22C23A0F258DC4FA00D4BEB2 /* AppEngine.swift in Sources */,
 				22A597FE2599C0AF008E2A06 /* WeekDay.swift in Sources */,
