@@ -7,7 +7,7 @@
 import Foundation
 import UIKit
 
-class ItemRelatedInfoBuilder {
+class ItemViewBuilder {
 
     let item: Item
     let punchInButtonTag: Int
@@ -59,7 +59,7 @@ class ItemRelatedInfoBuilder {
       
         createItemCardView() //1
         addNameLabel() //2
-        addDetailsButton() //3
+        addGoDetailsButton() //3
         addTypeLabel() //4
         addFinishedDaysLabel() //5
         addProgressBar(barFrame: CGRect(x: self.setting.mainDistance, y: outPutView.frame.height - 30, width: outPutView.frame.width - self.setting.progressBarLengthToRightEdgeOffset, height: 10)) //5
@@ -138,7 +138,7 @@ class ItemRelatedInfoBuilder {
         let freqencyLabel = UILabel()
 
         freqencyLabel.accessibilityIdentifier = "freqencyLabel"
-        freqencyLabel.text = "频率: \(freqency?.title ?? "加载错误")"
+        freqencyLabel.text = "频率: \(freqency?.title ?? "任意")"
         freqencyLabel.textColor = UIColor.black
         freqencyLabel.font = UserStyleSetting.fontMedium
         freqencyLabel.sizeToFit()
@@ -155,32 +155,32 @@ class ItemRelatedInfoBuilder {
     }
     
     
-    private func addDetailsButton() {
+    private func addGoDetailsButton() {
+        
         
         let goDetailsButton = UIButton()
         goDetailsButton.accessibilityIdentifier = "goDetailsButton"
         goDetailsButton.setBackgroundImage(UIImage(named: "DetailsButton"), for: .normal)
-        
         goDetailsButton.setTitleColor(UIColor.black, for: .normal)
         goDetailsButton.titleLabel!.font = UserStyleSetting.fontSmall
+        goDetailsButton.tintColor = UserStyleSetting.themeColor
         outPutView.addSubview(goDetailsButton)
         
-        goDetailsButton.tintColor = UserStyleSetting.themeColor
         goDetailsButton.translatesAutoresizingMaskIntoConstraints = false
         goDetailsButton.heightAnchor.constraint(equalToConstant: 15).isActive = true
         goDetailsButton.widthAnchor.constraint(equalToConstant: 15).isActive = true
         goDetailsButton.topAnchor.constraint(equalTo: outPutView.topAnchor, constant: 20).isActive = true
         goDetailsButton.rightAnchor.constraint(equalTo: outPutView.rightAnchor, constant: -20).isActive = true
         
-        let actionButton = UIButton()
-        actionButton.frame = self.outPutView.frame
-        actionButton.layer.zPosition = 2
-        actionButton.tag = self.punchInButtonTag
-        
+        let fullViewButton = UIButton()
+        fullViewButton.frame = CGRect(x: 0, y: 0, width: self.outPutView.frame.width, height: self.outPutView.frame.height)
+        fullViewButton.layer.zPosition = 2
+        fullViewButton.tag = self.punchInButtonTag
+        print("DetailsButtonAdded, item: \(item)")
         if detailsButtonAction != nil {
-            actionButton.addTarget(self, action: detailsButtonAction!, for: .touchDown)
+            fullViewButton.addTarget(self, action: detailsButtonAction!, for: .touchDown)
         }
-        outPutView.addSubview(actionButton)
+        outPutView.addSubview(fullViewButton)
     }
     
     private func addTypeLabel() {

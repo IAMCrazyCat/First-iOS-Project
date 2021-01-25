@@ -70,7 +70,7 @@ class ItemDetailViewController: UIViewController, CalendarViewDegelagte {
     func setUpUI() {
         if item != nil {
             self.verticallyScrollContentView.layoutIfNeeded()
-            let builder = ItemRelatedInfoBuilder(item: item!, width: self.mediumView.frame.width, height: self.setting.itemDetailsViewHeight, corninateX: 0, cordinateY: 0)
+            let builder = ItemViewBuilder(item: item!, width: self.mediumView.frame.width, height: self.setting.itemDetailsViewHeight, corninateX: 0, cordinateY: 0)
             let detailsView = builder.buildDetailsView()
             self.mediumView.addSubview(detailsView)
             print(detailsView)

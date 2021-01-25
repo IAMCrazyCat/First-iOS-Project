@@ -250,7 +250,7 @@ class HomeViewController: UIViewController {
                     if item.type == .persisting {
                         
                         self.persistingItemsViewPromptLabel.isHidden = true
-                        let builder = ItemRelatedInfoBuilder(item: item, width: self.persistingItemsView.frame.width, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: persistingCordinateY, punchInButtonTag: tag, punchInButtonAction: #selector(self.itemPunchInButtonPressed(_:)), detailsButtonAction: #selector(self.itemDetailsButtonPressed(_:)))
+                        let builder = ItemViewBuilder(item: item, width: self.persistingItemsView.frame.width, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: persistingCordinateY, punchInButtonTag: tag, punchInButtonAction: #selector(self.itemPunchInButtonPressed(_:)), detailsButtonAction: #selector(self.itemDetailsButtonPressed(_:)))
                         let newItemCard = builder.buildItemCardView()
                         
                         let heightConstraintIndex = self.contentView.constraints.count - 1
@@ -268,7 +268,7 @@ class HomeViewController: UIViewController {
                     } else if item.type == .quitting {
                         
                         self.quittingItemsViewPromptLabel.isHidden = true
-                        let builder = ItemRelatedInfoBuilder(item: item, width: self.quittingItemsView.frame.width, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: quittingCordinateY, punchInButtonTag: tag, punchInButtonAction: #selector(self.itemPunchInButtonPressed(_:)), detailsButtonAction: #selector(self.itemDetailsButtonPressed(_:)))
+                        let builder = ItemViewBuilder(item: item, width: self.quittingItemsView.frame.width, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: quittingCordinateY, punchInButtonTag: tag, punchInButtonAction: #selector(self.itemPunchInButtonPressed(_:)), detailsButtonAction: #selector(self.itemDetailsButtonPressed(_:)))
                         let newItemCard = builder.buildItemCardView()
                         
                         let heightConstraintIndex = self.contentView.constraints.count - 1

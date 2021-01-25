@@ -208,7 +208,7 @@ class AddItemViewController: UIViewController {
         
        
             
-        let builder = ItemRelatedInfoBuilder(item: self.item!, width: self.setting.screenFrame.width - 2 * self.setting.mainPadding, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: 0)
+        let builder = ItemViewBuilder(item: self.item!, width: self.setting.screenFrame.width - 2 * self.setting.mainPadding, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: 0)
         
         let generator = UIImpactFeedbackGenerator(style: .light)
         generator.impactOccurred()
