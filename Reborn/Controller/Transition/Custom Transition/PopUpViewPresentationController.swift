@@ -105,7 +105,7 @@ final class PopUpViewPresentationController: UIPresentationController {
             case 0...maxPresentedY:
                 changeScale(to: .interaction)
             default:
-                AppEngine.shared.dismissPopUp(controller: presentedViewController as! PopUpViewController)
+                AppEngine.shared.dismissPopUpWithoutSave(controller: presentedViewController as! PopUpViewController)
             }
         default:
             break
@@ -113,7 +113,7 @@ final class PopUpViewPresentationController: UIPresentationController {
     }
     
     @objc func didTap(tap: UITapGestureRecognizer) {
-        AppEngine.shared.dismissPopUp(controller: presentedViewController as! PopUpViewController)
+        AppEngine.shared.dismissPopUpWithoutSave(controller: presentedViewController as! PopUpViewController)
     }
     
     func changeScale(to state: ModalScaleState) {

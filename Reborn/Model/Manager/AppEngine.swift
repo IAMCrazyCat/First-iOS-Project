@@ -22,11 +22,12 @@ class AppEngine {
     let dataFilePath: URL? = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("item.plist")
     let setting: SystemStyleSetting = SystemStyleSetting()
     var overAllProgress: Double = 0.0
-    var delegate: AppEngineDelegate?
     var storedDataFromPopUpView: Any? = nil
-    var itemCardOnTransitionBetweenHomeViewAndAddItemCardView: UIView? = nil
-    var itemOnTransitionBetweenHomeViewAndAddItemCardView: Item? = nil
+    var itemCardFromController: UIView? = nil
+    var itemFromController: Item? = nil
     
+    var delegate: AppEngineDelegate?
+    var currentViewController: UIViewController? = nil
     var currentDate: CustomDate {
         let date = Date()
         let currentYear: Int = Calendar.current.component(.year, from: date)
@@ -34,6 +35,7 @@ class AppEngine {
         let currentDay: Int = Calendar.current.component(.day, from: date)
         return CustomDate(year: currentYear, month: currentMonth, day: currentDay)
     }
+    
 
     private init() {
         
@@ -172,13 +174,13 @@ class AppEngine {
     
  
     
-    public func dismissPopUp(controller: PopUpViewController) {
+    public func dismissPopUpWithoutSave(controller: PopUpViewController) {
         //delegate?.didDismissView()
         controller.dismiss(animated: true, completion: nil)
         
     }
     
-    public func saveAndDismissPopUp(controller: PopUpViewController) {
+    public func dismissAndSavePopUp(controller: PopUpViewController) {
         
         self.storedDataFromPopUpView = controller.getStoredData()
         controller.dismiss(animated: true, completion: nil)
@@ -191,19 +193,32 @@ class AppEngine {
         controller.performSegue(withIdentifier: "goToAddItemView", sender: controller)
     }
     
-    public func dismissAddItemView(controller: AddItemViewController) {
-        self.itemCardOnTransitionBetweenHomeViewAndAddItemCardView = controller.preViewItemCard
-        self.itemOnTransitionBetweenHomeViewAndAddItemCardView = controller.item
+    public func dismissAddItemViewWithoutSave(controller: AddItemViewController) {
+        
         self.delegate?.willDismissView()
         controller.dismiss(animated: true, completion: nil)
+        self.delegate?.didDismissView()
+    }
+    
+    
+    public func dismissAndSaveAddItemView(controller: AddItemViewController) {
+        self.itemCardFromController = controller.preViewItemCard
+        self.itemFromController = controller.item
+        
+        if self.itemFromController != nil {
+            self.addItem(newItem: itemFromController!)
+        }
+        
+        //self.delegate = 
+        self.delegate?.willDismissView()
+        controller.dismiss(animated: true, completion: nil)
+
         self.delegate?.didDismissView()
     }
     
     func getStoredDataFromPopUpView() -> Any {
         return self.storedDataFromPopUpView ?? "No Stored Data"
     }
-    
-    
     
     
     

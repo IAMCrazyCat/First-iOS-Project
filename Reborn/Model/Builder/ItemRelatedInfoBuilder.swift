@@ -7,7 +7,7 @@
 import Foundation
 import UIKit
 
-class ItemCardBuilder {
+class ItemRelatedInfoBuilder {
 
     let item: Item
     let punchInButtonTag: Int
@@ -15,14 +15,15 @@ class ItemCardBuilder {
     var cordinateY: CGFloat
     var width: CGFloat
     var height: CGFloat
-
+    var punchInButtonAction: Selector?
+    var detailsButtonAction: Selector?
     
     let cardBGImage: UIImage = SystemStyleSetting.shared.itemCardBGImage
     let setting: SystemStyleSetting = SystemStyleSetting.shared
-    let itemCardView: UIView = UIView()
+    let outPutView: UIView = UIView()
     var freqency: DataOption? = nil
     
-    init(item: Item, width: CGFloat, height: CGFloat, corninateX: CGFloat, cordinateY: CGFloat, punchInButtonTag: Int){
+    init(item: Item, width: CGFloat, height: CGFloat, corninateX: CGFloat, cordinateY: CGFloat, punchInButtonTag: Int, punchInButtonAction: Selector, detailsButtonAction: Selector){
 
         self.item = item
         self.cordinateX = corninateX
@@ -30,6 +31,23 @@ class ItemCardBuilder {
         self.punchInButtonTag = punchInButtonTag
         self.width = width
         self.height = height
+        self.punchInButtonAction = punchInButtonAction
+        self.detailsButtonAction = detailsButtonAction
+        if let freqency = item.frequency {
+            self.freqency = freqency
+        }
+    }
+    
+    init(item: Item, width: CGFloat, height: CGFloat, corninateX: CGFloat, cordinateY: CGFloat){
+
+        self.item = item
+        self.cordinateX = corninateX
+        self.cordinateY = cordinateY
+        self.punchInButtonTag = 11607
+        self.width = width
+        self.height = height
+        self.punchInButtonAction = nil
+        self.detailsButtonAction = nil
         
         if let freqency = item.frequency {
             self.freqency = freqency
@@ -38,32 +56,43 @@ class ItemCardBuilder {
     
     
     public func buildItemCardView() -> UIView {
-        createItemCardUIView() //1
+      
+        createItemCardView() //1
         addNameLabel() //2
         addDetailsButton() //3
         addTypeLabel() //4
         addFinishedDaysLabel() //5
-        addProgressBar() //5
+        addProgressBar(barFrame: CGRect(x: self.setting.mainDistance, y: outPutView.frame.height - 30, width: outPutView.frame.width - self.setting.progressBarLengthToRightEdgeOffset, height: 10)) //5
         addDaysLabel() //6
         addPunInButton() //7
-
+        addItemCardFreqencyLabel()
         
-        if freqency != nil {
-            addFreqencyLabel()
-        }
-        
-        return itemCardView
+        return outPutView
     
     }
     
-    private func createItemCardUIView() {
+    public func buildDetailsView() -> UIView {
+        //freqency = DataOption(data: 1)
+        createItemDetailsView()
+        addProgressBar(barFrame: CGRect(x: self.setting.mainPadding, y: outPutView.frame.height - 30, width: outPutView.frame.width - self.setting.mainPadding * 2, height: 15))
+        addItemDetailsFreqencyLabel()
+        return outPutView
+    }
+    
+    private func createItemCardView() {
    
-        itemCardView.accessibilityIdentifier = setting.itemCardIdentifier
-        itemCardView.backgroundColor = setting.whiteAndBlack
-        itemCardView.layer.cornerRadius = setting.itemCardCornerRadius
-        itemCardView.setViewShadow()
-        itemCardView.frame = CGRect(x: cordinateX, y: cordinateY, width: width, height: height)
+        outPutView.accessibilityIdentifier = setting.itemCardIdentifier
+        outPutView.backgroundColor = setting.whiteAndBlack
+        outPutView.layer.cornerRadius = setting.itemCardCornerRadius
+        outPutView.setViewShadow()
+        outPutView.frame = CGRect(x: cordinateX, y: cordinateY, width: width, height: height)
         
+    }
+    
+    private func createItemDetailsView() {
+        outPutView.backgroundColor = setting.whiteAndBlack
+        outPutView.layer.cornerRadius = setting.itemCardCornerRadius
+        outPutView.frame = CGRect(x: cordinateX, y: cordinateY, width: width, height: height)
     }
     
     private func addNameLabel() {
@@ -74,14 +103,14 @@ class ItemCardBuilder {
         nameLabel.textColor = UIColor.black
         nameLabel.font = UserStyleSetting.fontSmall
         
-        itemCardView.addSubview(nameLabel)
+        outPutView.addSubview(nameLabel)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
-        nameLabel.topAnchor.constraint(equalTo: itemCardView.topAnchor, constant: self.setting.mainDistance).isActive = true
-        nameLabel.leftAnchor.constraint(equalTo: itemCardView.leftAnchor, constant: self.setting.mainDistance).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: outPutView.topAnchor, constant: self.setting.mainDistance).isActive = true
+        nameLabel.leftAnchor.constraint(equalTo: outPutView.leftAnchor, constant: self.setting.mainDistance).isActive = true
     }
     
-    private func addFreqencyLabel() {
+    private func addItemCardFreqencyLabel() {
         let freqencyLabel = UILabel()
         freqencyLabel.accessibilityIdentifier = "freqencyLabel"
         
@@ -90,18 +119,36 @@ class ItemCardBuilder {
         freqencyLabel.font = UserStyleSetting.fontSmall
         freqencyLabel.sizeToFit()
         
-        itemCardView.addSubview(freqencyLabel)
+        outPutView.addSubview(freqencyLabel)
         
         
-        for subview in  itemCardView.subviews {
+        for subview in  outPutView.subviews {
             if subview.accessibilityIdentifier == "nameLabel" {
                 let nameLabel = subview
                 freqencyLabel.translatesAutoresizingMaskIntoConstraints = false
                 freqencyLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
-                freqencyLabel.topAnchor.constraint(equalTo: itemCardView.topAnchor, constant: self.setting.mainDistance).isActive = true
+                freqencyLabel.topAnchor.constraint(equalTo: outPutView.topAnchor, constant: self.setting.mainDistance).isActive = true
                 freqencyLabel.leftAnchor.constraint(equalTo: nameLabel.rightAnchor, constant: 10).isActive = true
             }
         }
+
+    }
+    
+    private func addItemDetailsFreqencyLabel() {
+        let freqencyLabel = UILabel()
+
+        freqencyLabel.accessibilityIdentifier = "freqencyLabel"
+        freqencyLabel.text = "频率: \(freqency?.title ?? "加载错误")"
+        freqencyLabel.textColor = UIColor.black
+        freqencyLabel.font = UserStyleSetting.fontMedium
+        freqencyLabel.sizeToFit()
+        
+        outPutView.addSubview(freqencyLabel)
+
+        freqencyLabel.topAnchor.constraint(equalTo: outPutView.topAnchor, constant: 20).isActive = true
+        freqencyLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
+        freqencyLabel.rightAnchor.constraint(equalTo: outPutView.rightAnchor, constant: self.setting.mainPadding).isActive = true
+        
         
         
 
@@ -116,21 +163,24 @@ class ItemCardBuilder {
         
         goDetailsButton.setTitleColor(UIColor.black, for: .normal)
         goDetailsButton.titleLabel!.font = UserStyleSetting.fontSmall
-        itemCardView.addSubview(goDetailsButton)
+        outPutView.addSubview(goDetailsButton)
         
         goDetailsButton.tintColor = UserStyleSetting.themeColor
         goDetailsButton.translatesAutoresizingMaskIntoConstraints = false
         goDetailsButton.heightAnchor.constraint(equalToConstant: 15).isActive = true
         goDetailsButton.widthAnchor.constraint(equalToConstant: 15).isActive = true
-        goDetailsButton.topAnchor.constraint(equalTo: itemCardView.topAnchor, constant: 20).isActive = true
-        goDetailsButton.rightAnchor.constraint(equalTo: itemCardView.rightAnchor, constant: -20).isActive = true
+        goDetailsButton.topAnchor.constraint(equalTo: outPutView.topAnchor, constant: 20).isActive = true
+        goDetailsButton.rightAnchor.constraint(equalTo: outPutView.rightAnchor, constant: -20).isActive = true
         
         let actionButton = UIButton()
-        actionButton.frame = self.itemCardView.frame
+        actionButton.frame = self.outPutView.frame
         actionButton.layer.zPosition = 2
-        actionButton.addTarget(self, action: #selector(HomeViewController.shared.itemDetailButtonPressed(_:)), for: .touchDown)
         actionButton.tag = self.punchInButtonTag
-        itemCardView.addSubview(actionButton)
+        
+        if detailsButtonAction != nil {
+            actionButton.addTarget(self, action: detailsButtonAction!, for: .touchDown)
+        }
+        outPutView.addSubview(actionButton)
     }
     
     private func addTypeLabel() {
@@ -142,10 +192,10 @@ class ItemCardBuilder {
         typeLabel.font = UserStyleSetting.fontSmall
         typeLabel.sizeToFit()
         
-        itemCardView.addSubview(typeLabel)
+        outPutView.addSubview(typeLabel)
         typeLabel.translatesAutoresizingMaskIntoConstraints = false
-        typeLabel.centerYAnchor.constraint(equalTo: itemCardView.centerYAnchor).isActive = true
-        typeLabel.leftAnchor.constraint(equalTo: itemCardView.leftAnchor, constant: self.setting.itemCardCenterObjectsToEdgeOffset).isActive = true
+        typeLabel.centerYAnchor.constraint(equalTo: outPutView.centerYAnchor).isActive = true
+        typeLabel.leftAnchor.constraint(equalTo: outPutView.leftAnchor, constant: self.setting.itemCardCenterObjectsToEdgeOffset).isActive = true
     }
     
    
@@ -164,19 +214,19 @@ class ItemCardBuilder {
         finishedDaysLabel.attributedText = finishedDaysString
         finishedDaysLabel.sizeToFit()
         
-        itemCardView.addSubview(finishedDaysLabel)
+        outPutView.addSubview(finishedDaysLabel)
         finishedDaysLabel.translatesAutoresizingMaskIntoConstraints = false
-        finishedDaysLabel.centerYAnchor.constraint(equalTo: itemCardView.centerYAnchor, constant: -3).isActive = true
-        finishedDaysLabel.centerXAnchor.constraint(equalTo: itemCardView.centerXAnchor).isActive = true
+        finishedDaysLabel.centerYAnchor.constraint(equalTo: outPutView.centerYAnchor, constant: -3).isActive = true
+        finishedDaysLabel.centerXAnchor.constraint(equalTo: outPutView.centerXAnchor).isActive = true
     }
     
     
-    private  func addProgressBar() {
-        let barTrackPath = UIBezierPath(roundedRect: CGRect(x: 20, y: itemCardView.frame.height - 30, width: itemCardView.frame.width - self.setting.progressBarLengthToRightEdgeOffset, height: 10), cornerRadius: 10)
+    private  func addProgressBar(barFrame: CGRect) {
+        let barTrackPath = UIBezierPath(roundedRect: barFrame, cornerRadius: 10)
         let barTrackLayer = CAShapeLayer()
         
-        let shapeColor = UserStyleSetting.themeColor?.cgColor
-        let trackColor = UserStyleSetting.themeColor?.withAlphaComponent(0.3).cgColor
+        let shapeColor = UserStyleSetting.themeColor.cgColor
+        let trackColor = UserStyleSetting.themeColor.withAlphaComponent(0.3).cgColor
         let progressWidth: CGFloat = 10
 
         barTrackLayer.name = "progressTrack"
@@ -185,9 +235,9 @@ class ItemCardBuilder {
         barTrackLayer.fillColor = trackColor
         barTrackLayer.lineCap = CAShapeLayerLineCap.round
         barTrackLayer.strokeEnd = 0
-        itemCardView.layer.addSublayer(barTrackLayer)
+        outPutView.layer.addSublayer(barTrackLayer)
         
-        let barShapePath = UIBezierPath(roundedRect: CGRect(x: 20, y: itemCardView.frame.height - 30, width: CGFloat(self.item.finishedDays) / CGFloat(self.item.days) * (itemCardView.frame.width - self.setting.progressBarLengthToRightEdgeOffset), height: 10), cornerRadius: 10)
+        let barShapePath = UIBezierPath(roundedRect: CGRect(x: barFrame.origin.x, y: barFrame.origin.y, width: CGFloat(self.item.finishedDays) / CGFloat(self.item.days) * barFrame.width, height: barFrame.height), cornerRadius: 10)
         let barShapeLayer = CAShapeLayer()
         barShapeLayer.name = "progressBar"
         barShapeLayer.path = barShapePath.cgPath
@@ -195,7 +245,7 @@ class ItemCardBuilder {
         barShapeLayer.fillColor = shapeColor
         barShapeLayer.lineCap = CAShapeLayerLineCap.round
         barShapeLayer.strokeEnd = 0
-        itemCardView.layer.addSublayer(barShapeLayer)
+        outPutView.layer.addSublayer(barShapeLayer)
     }
     
     private func addDaysLabel() {
@@ -211,10 +261,10 @@ class ItemCardBuilder {
         daysLabel.attributedText = daysString
         daysLabel.sizeToFit()
         
-        itemCardView.addSubview(daysLabel)
+        outPutView.addSubview(daysLabel)
         daysLabel.translatesAutoresizingMaskIntoConstraints = false
-        daysLabel.rightAnchor.constraint(equalTo: itemCardView.rightAnchor, constant: -20).isActive = true
-        daysLabel.bottomAnchor.constraint(equalTo: itemCardView.bottomAnchor, constant: -18).isActive = true
+        daysLabel.rightAnchor.constraint(equalTo: outPutView.rightAnchor, constant: -20).isActive = true
+        daysLabel.bottomAnchor.constraint(equalTo: outPutView.bottomAnchor, constant: -18).isActive = true
     }
     
     private func addPunInButton() {
@@ -227,14 +277,16 @@ class ItemCardBuilder {
         punchInButton.layer.cornerRadius = self.setting.checkButtonCornerRadius
         punchInButton.layer.zPosition = 3
         
-        itemCardView.addSubview(punchInButton)
+        outPutView.addSubview(punchInButton)
         punchInButton.translatesAutoresizingMaskIntoConstraints = false
         punchInButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        punchInButton.rightAnchor.constraint(equalTo: itemCardView.rightAnchor, constant: -self.setting.itemCardCenterObjectsToEdgeOffset).isActive = true
-        punchInButton.centerYAnchor.constraint(equalTo: itemCardView.centerYAnchor).isActive = true
-        
-        punchInButton.addTarget(self, action: #selector(HomeViewController.shared.itemPunchInButtonPressed(_:)), for: .touchDown)
+        punchInButton.rightAnchor.constraint(equalTo: outPutView.rightAnchor, constant: -self.setting.itemCardCenterObjectsToEdgeOffset).isActive = true
+        punchInButton.centerYAnchor.constraint(equalTo: outPutView.centerYAnchor).isActive = true
         punchInButton.tag = self.punchInButtonTag
+        
+        if punchInButtonAction != nil {
+            punchInButton.addTarget(self, action: punchInButtonAction!, for: .touchDown)
+        }
     }
     
 

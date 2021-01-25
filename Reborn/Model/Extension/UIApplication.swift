@@ -24,5 +24,15 @@ extension UIApplication {
         return nil
     }
     
+    class func getPresentedViewController() -> UIViewController? {
+        var presentViewController = UIApplication.shared.keyWindow?.rootViewController
+        while let pVC = presentViewController?.presentedViewController
+        {
+            presentViewController = pVC
+        }
+
+        return presentViewController
+      }
+    
 }
 

@@ -140,14 +140,21 @@ class AddItemViewController: UIViewController {
     }
     
     
+    @IBAction func cancelButtonPressed(_ sender: UIButton) {
+        self.engine.dismissAddItemViewWithoutSave(controller: self)
+    }
     
     @IBAction func addItemButtonPressed(_ sender: UIButton) {
         
-        if self.frequency != nil {
-            self.item!.setFreqency(frequency: frequency!)
+        if item != nil {
+            
+            if self.frequency != nil {
+                self.item!.setFreqency(frequency: frequency!)
+            }
+            
+            self.engine.dismissAndSaveAddItemView(controller: self)
         }
-        self.engine.addItem(newItem: self.item!)
-        self.engine.dismissAddItemView(controller: self)
+        
    
     }
     
@@ -196,11 +203,12 @@ class AddItemViewController: UIViewController {
         if frequency != nil {
             self.item!.setFreqency(frequency: frequency!)
         }
+        print(self.item!.frequency)
         excuteItemCardAimation()
         
        
             
-        let builder = ItemCardBuilder(item: self.item!, width: self.setting.screenFrame.width - 2 * self.setting.mainPadding, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: 0, punchInButtonTag: self.engine.user!.items.count)
+        let builder = ItemRelatedInfoBuilder(item: self.item!, width: self.setting.screenFrame.width - 2 * self.setting.mainPadding, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: 0)
         
         let generator = UIImpactFeedbackGenerator(style: .light)
         generator.impactOccurred()
@@ -248,7 +256,7 @@ extension AddItemViewController: AppEngineDelegate, UIScrollViewDelegate, UIText
     }
     
     func didDismissView() {
-        print("DISMISS")
+        print("PopUpDidDismiss")
     }
     
     func didSaveAndDismissPopUpView(type: PopUpType) {

@@ -26,7 +26,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var persistingItemsView: UIView!
     @IBOutlet weak var quittingItemsView: UIView!
     
-    public static var shared = HomeViewController()
+
     static var view: UIView!
     
     var setting = SystemStyleSetting.shared
@@ -98,8 +98,8 @@ class HomeViewController: UIViewController {
         let center = CGPoint(x: overallProgressView.frame.width / 2 , y: overallProgressView.frame.height / 2)
         let circleTrackPath = UIBezierPath(arcCenter: center, radius: 60, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
 
-        let shapeColor = UserStyleSetting.themeColor?.cgColor
-        let trackColor = UserStyleSetting.themeColor?.withAlphaComponent(0.3).cgColor
+        let shapeColor = UserStyleSetting.themeColor.cgColor
+        let trackColor = UserStyleSetting.themeColor.withAlphaComponent(0.3).cgColor
         let progressWidth: CGFloat = 8
 
         circleTrackLayer.path = circleTrackPath.cgPath
@@ -154,26 +154,26 @@ class HomeViewController: UIViewController {
         currentTransitionValue = (circleShapeLayer.presentation()?.value(forKeyPath: "strokeEnd") ?? 0.0) as! Double
         self.overallProgressLabel.text = "已完成: \(String(format: "%.1f", self.currentTransitionValue * self.overallProgress * 100))%"
     }
+    
+    @objc func itemPunchInButtonPressed(_ sender: UIButton!) {
+        
+        self.engine.punchInItem(tag: sender.tag)
+        self.updateUI()
+    }
+    
+    @objc func itemDetailsButtonPressed(_ sender: UIButton!) {
+        print("willGoDetailsView")
+        self.performSegue(withIdentifier: "goItemDetailView", sender: sender)
+    }
+    
 
     @IBAction func addItemViewController(_ sender: UIBarButtonItem) {
+    
         self.engine.showAddItemView(controller: self)
     }
     
   
-    
-    @objc func itemPunchInButtonPressed(_ sender: UIButton!) {
-
-        self.engine.punchInItem(tag: sender.tag)
-        updateUI()
-    }
-    
-    @objc func itemDetailButtonPressed(_ sender: UIButton!) {
-        self.performSegue(withIdentifier: "goItemDetailView", sender: sender)
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print(segue.identifier)
-        
             
         if let destinationViewController = segue.destination as? ItemDetailViewController, segue.identifier == "goItemDetailView" {
             if let item = self.engine.user?.items[(sender as? UIButton)?.tag ?? 0] {
@@ -188,6 +188,8 @@ class HomeViewController: UIViewController {
         }
         
     }
+    
+   
     
     func removeAllItemCards() {
         
@@ -248,7 +250,7 @@ class HomeViewController: UIViewController {
                     if item.type == .persisting {
                         
                         self.persistingItemsViewPromptLabel.isHidden = true
-                        let builder = ItemCardBuilder(item: item, width: self.persistingItemsView.frame.width, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: persistingCordinateY, punchInButtonTag: tag)
+                        let builder = ItemRelatedInfoBuilder(item: item, width: self.persistingItemsView.frame.width, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: persistingCordinateY, punchInButtonTag: tag, punchInButtonAction: #selector(self.itemPunchInButtonPressed(_:)), detailsButtonAction: #selector(self.itemDetailsButtonPressed(_:)))
                         let newItemCard = builder.buildItemCardView()
                         
                         let heightConstraintIndex = self.contentView.constraints.count - 1
@@ -266,7 +268,7 @@ class HomeViewController: UIViewController {
                     } else if item.type == .quitting {
                         
                         self.quittingItemsViewPromptLabel.isHidden = true
-                        let builder = ItemCardBuilder(item: item, width: self.quittingItemsView.frame.width, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: quittingCordinateY, punchInButtonTag: tag)
+                        let builder = ItemRelatedInfoBuilder(item: item, width: self.quittingItemsView.frame.width, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: quittingCordinateY, punchInButtonTag: tag, punchInButtonAction: #selector(self.itemPunchInButtonPressed(_:)), detailsButtonAction: #selector(self.itemDetailsButtonPressed(_:)))
                         let newItemCard = builder.buildItemCardView()
                         
                         let heightConstraintIndex = self.contentView.constraints.count - 1
@@ -299,7 +301,7 @@ class HomeViewController: UIViewController {
     }
     
     func updateUI() {
-        
+        print("HomeViewUIDidUpdate")
         loadUserAvatar()
         removeOriginalCircle()
         updateProgressCircle()
@@ -325,13 +327,12 @@ extension HomeViewController: AppEngineDelegate, UIScrollViewDelegate {
     }
     
     func didDismissView() {
+        print("AddItemViewDidDismiss")
+        self.updateUI()
         
-        if self.engine.itemOnTransitionBetweenHomeViewAndAddItemCardView!.type == .persisting {
-            self.updateUI()
+        if self.engine.itemFromController?.type == .persisting {
             self.horizentalScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true) // scroll to left after item added
-        } else if self.engine.itemOnTransitionBetweenHomeViewAndAddItemCardView!.type == .quitting {
-            self.updateUI()
-            
+        } else if self.engine.itemFromController?.type == .quitting {
             self.horizentalScrollView.setContentOffset(CGPoint(x: self.persistingItemsView.frame.width, y: 0), animated: true) // scroll to right after item added
         }
         

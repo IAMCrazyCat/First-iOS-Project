@@ -7,16 +7,17 @@
 
 import Foundation
 import UIKit
+
+
 class CalendarCell: UICollectionViewCell {
 
+    
     static var identifier: String = "DayCell"
     let dayLabel: UILabel = UILabel()
-    
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        
         self.setUpUI()
         self.contentView.addSubview(dayLabel)
     }
@@ -24,10 +25,10 @@ class CalendarCell: UICollectionViewCell {
     private func setUpUI() {
         dayLabel.text = nil
         dayLabel.sizeToFit()
-        dayLabel.backgroundColor = .green
+        dayLabel.backgroundColor = .white
         dayLabel.textAlignment = .center
-        dayLabel.layer.cornerRadius = dayLabel.frame.size.width / 2
         dayLabel.clipsToBounds = true
+        
     }
     
     required init?(coder: NSCoder) {
@@ -36,12 +37,15 @@ class CalendarCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         dayLabel.frame = self.contentView.frame
+        dayLabel.layer.cornerRadius = dayLabel.frame.width / 2
+
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         setUpUI()
     }
+    
     
    
     

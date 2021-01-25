@@ -73,7 +73,7 @@ class SetUpPageBuilder {
             button.setTitleColor(UIColor.white, for: .selected)
             
             button.setBackgroundColor(UIColor.white, cornerRadius: button.layer.cornerRadius, for: .normal)
-            button.setBackgroundColor(UserStyleSetting.themeColor!, cornerRadius: button.layer.cornerRadius, for: .selected)
+            button.setBackgroundColor(UserStyleSetting.themeColor, cornerRadius: button.layer.cornerRadius, for: .selected)
             
             button.titleLabel?.font = self.setting.optionButtonTitleFont
             button.addTarget(self, action: SetUpViewController.optionButtonAction, for: .touchDown)
