@@ -130,7 +130,7 @@ class AppEngine {
     }
     
     public func getDays(tag: Int) -> Int? {
-        return self.user?.items[tag].days
+        return self.user?.items[tag].targetDays
     }
     
     public func getOverAllProgress() -> Double? {
@@ -140,8 +140,8 @@ class AppEngine {
         if user != nil {
             for item in self.user!.items {
                
-                if item.days != 0 {
-                    let itemProgress = Double(item.finishedDays) / Double(item.days)
+                if item.targetDays != 0 {
+                    let itemProgress = Double(item.finishedDays) / Double(item.targetDays)
         
                     self.overAllProgress += itemProgress
                 }
@@ -195,9 +195,7 @@ class AppEngine {
     
     public func dismissAddItemViewWithoutSave(controller: AddItemViewController) {
         
-        self.delegate?.willDismissView()
         controller.dismiss(animated: true, completion: nil)
-        self.delegate?.didDismissView()
     }
     
     

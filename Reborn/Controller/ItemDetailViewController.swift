@@ -7,10 +7,9 @@
 
 import UIKit
 
-class ItemDetailViewController: UIViewController, CalendarViewDegelagte {
-    
-    
-    
+class ItemDetailViewController: UIViewController {
+
+
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var calendarView: UIView!
     @IBOutlet weak var mediumView: UIView!
@@ -25,6 +24,8 @@ class ItemDetailViewController: UIViewController, CalendarViewDegelagte {
     let setting: SystemStyleSetting = SystemStyleSetting.shared
     let engine: AppEngine = AppEngine.shared
     var item: Item? = nil
+    var embeddedCalendarViewController: CalendarViewController? = nil
+    
     
     var dayCellFrame: CGRect? {
         didSet {
@@ -41,12 +42,7 @@ class ItemDetailViewController: UIViewController, CalendarViewDegelagte {
         topView.setViewShadow()
         
         calendarView.layer.cornerRadius = setting.itemCardCornerRadius
-        calendarView.setViewShadow()
-        calendarView.layer.masksToBounds = true
-    
-//        mediumView.layer.cornerRadius  = setting.itemCardCornerRadius
-//        mediumView.setViewShadow()
-        
+
         absentLabel.backgroundColor = .white
         notInPlanLabel.backgroundColor = UserStyleSetting.themeColor.withAlphaComponent(0.5)
         presentLabel.backgroundColor = UserStyleSetting.themeColor
@@ -57,15 +53,37 @@ class ItemDetailViewController: UIViewController, CalendarViewDegelagte {
         
     }
     
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if let destinationViewController = segue.destination as? CalendarViewController {
+        
+        if segue.identifier == "embeddedCalendarContainer", let destinationViewController = segue.destination as? CalendarViewController  {
+            
             destinationViewController.item = item
-            destinationViewController.delegate = self
+            destinationViewController.delegate = self // calendar view delegate = self to render instruction labels
+            destinationViewController.superViewController = self
+            embeddedCalendarViewController = destinationViewController
+  
+        } else if segue.identifier == "goTimeMachineView", let desitinationViewController = segue.destination as? TimeMachineViewController {
+            
+            if embeddedCalendarViewController != nil {
+                embeddedCalendarViewController!.delegate = desitinationViewController // calendar view delegate switched to TimeMachineViewController
+            }
+            let navBarheight = (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0) + (self.navigationController?.navigationBar.frame.height ?? 0.0)
+            desitinationViewController.calendarView = self.calendarView
+            desitinationViewController.calendarViewPosition = CGPoint(x: self.topView.frame.origin.x, y:  self.topView.frame.origin.y + navBarheight)
+
         }
         
         
     }
+    
+    func goTimeMachineView() {
+        self.performSegue(withIdentifier: "goTimeMachineView", sender: self)
+        
+    }
+    
+ 
     
     func setUpUI() {
         if item != nil {
@@ -78,7 +96,14 @@ class ItemDetailViewController: UIViewController, CalendarViewDegelagte {
         
     }
     
-    func setUpInstructionLabelsSize(size: CGSize) {
+   
+    
+  
+}
+
+extension ItemDetailViewController: CalendarViewDegelagte {
+    
+    func calendarCellDidLayout(size: CGSize) {
         
 
         self.absentLabel.widthAnchor.constraint(equalToConstant: size.width).isActive = true
@@ -108,14 +133,22 @@ class ItemDetailViewController: UIViewController, CalendarViewDegelagte {
         
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func calendarPageDidGoLastMonth() {
+        
     }
-    */
-
+    
+    func calendarPageDidGoNextMonth() {
+        
+    }
+    
+    func calendarPageDidGoStartMonth() {
+        
+    }
+    
+    func calendarPageDidGoThisMonth() {
+        
+    }
+    
+   
+    
 }

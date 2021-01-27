@@ -23,12 +23,21 @@ class CalendarCell: UICollectionViewCell {
     }
     
     private func setUpUI() {
+        contentView.layer.cornerRadius = contentView.frame.width / 2
+        contentView.clipsToBounds = true
+        contentView.backgroundColor = .white // or orange, whatever
+
         dayLabel.text = nil
-        dayLabel.sizeToFit()
-        dayLabel.backgroundColor = .white
+        dayLabel.backgroundColor = .clear
+        //dayLabel.layer.borderWidth = 0.5
+        dayLabel.textColor = .black
         dayLabel.textAlignment = .center
-        dayLabel.clipsToBounds = true
-        
+        dayLabel.translatesAutoresizingMaskIntoConstraints = false
+       
+        contentView.addSubview(dayLabel)
+
+        dayLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        dayLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }
     
     required init?(coder: NSCoder) {
@@ -38,7 +47,6 @@ class CalendarCell: UICollectionViewCell {
     override func layoutSubviews() {
         dayLabel.frame = self.contentView.frame
         dayLabel.layer.cornerRadius = dayLabel.frame.width / 2
-
     }
     
     override func prepareForReuse() {

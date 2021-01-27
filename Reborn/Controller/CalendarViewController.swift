@@ -18,16 +18,23 @@ enum AnimationDeriction {
 }
 
 protocol CalendarViewDegelagte {
-    func setUpInstructionLabelsSize(size: CGSize)
+    func calendarCellDidLayout(size: CGSize)
+    
+    func calendarPageDidGoLastMonth()
+    func calendarPageDidGoNextMonth()
+    func calendarPageDidGoStartMonth()
+    func calendarPageDidGoThisMonth()
 }
+
+
 
 class CalendarViewController: UIViewController {
     
     public static var shared: CalendarViewController = CalendarViewController()
     @IBOutlet weak var lastMonthButton: UIButton!
     @IBOutlet weak var nextMonthButton: UIButton!
-    @IBOutlet weak var startDayButton: UIButton!
-    @IBOutlet weak var todayButton: UIButton!
+    @IBOutlet weak var startMonthButton: UIButton!
+    @IBOutlet weak var thisMonthButton: UIButton!
     @IBOutlet weak var currentMonthLabel: UILabel!
     
     @IBOutlet weak var topView: UIView!
@@ -37,17 +44,16 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var bottomCollectionView: UICollectionView!
     var monthLabelOriginalCordinateX: CGFloat = 0
     
-    var item: Item? = nil
+    var item: Item?
     let setting: SystemStyleSetting = SystemStyleSetting.shared
     let engine: AppEngine = AppEngine.shared
     var calendarLoaded: Bool = false
     
-    var currentCalendarPage: CalendarPage? = nil
-    var startDayCellIndex: Int = 0
-    var todayCellIndex: Int = 0
+    var currentCalendarPage: CalendarPage?
     var monthLabelAnimationDeriction: AnimationDeriction = .left
     
     var delegate: CalendarViewDegelagte?
+    var superViewController: UIViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,16 +67,20 @@ class CalendarViewController: UIViewController {
             layout.minimumInteritemSpacing = 10
             layout.minimumLineSpacing = 10
         }
+        
+        view.layer.cornerRadius = setting.itemCardCornerRadius
     
+        view.clipsToBounds = true
         
         lastMonthButton.layer.cornerRadius = setting.calendarFunctionButtonCornerRadius
-        lastMonthButton.setViewShadow()
+        //lastMonthButton.setViewShadow()
         nextMonthButton.layer.cornerRadius = setting.calendarFunctionButtonCornerRadius
-        nextMonthButton.setViewShadow()
-        startDayButton.layer.cornerRadius = setting.calendarFunctionButtonCornerRadius
-        startDayButton.setViewShadow()
-        todayButton.layer.cornerRadius = setting.calendarFunctionButtonCornerRadius
-        todayButton.setViewShadow()
+    
+        //nextMonthButton.setViewShadow()
+        startMonthButton.layer.cornerRadius = setting.calendarFunctionButtonCornerRadius
+        //startDayButton.setViewShadow()
+        thisMonthButton.layer.cornerRadius = setting.calendarFunctionButtonCornerRadius
+        //todayButton.setViewShadow()
         
         
        
@@ -90,7 +100,7 @@ class CalendarViewController: UIViewController {
         if !calendarLoaded { // Ensure that calendar only be called once
             
             let cellLayout = bottomCollectionView.layoutAttributesForItem(at: IndexPath(row: 0, section: 0))
-            delegate?.setUpInstructionLabelsSize(size: cellLayout?.size ?? CGSize(width: 20, height: 20)) // Give the cell's frame back to Details VC to make the instruction label's frame is the same
+            delegate?.calendarCellDidLayout(size: cellLayout?.size ?? CGSize(width: 20, height: 20)) // Give the cell's frame back to Details VC to make the instruction label's frame is the same
             
             DispatchQueue.main.asyncAfter(deadline: .now()) { // 
                 //self.loadCalendar()
@@ -111,6 +121,8 @@ class CalendarViewController: UIViewController {
     override func viewLayoutMarginsDidChange() {
       
     }
+    
+ 
 
 
     
@@ -179,7 +191,7 @@ class CalendarViewController: UIViewController {
             
     }
     
-    @IBAction func startDayButtonPressed(_ sender: UIButton!) {
+    @IBAction func startMonthButtonPressed(_ sender: UIButton!) {
         self.item!.creationDate = CustomDate(year: 2018, month: 12, day: 12)
         
         if item != nil {
@@ -188,14 +200,17 @@ class CalendarViewController: UIViewController {
             self.currentCalendarPage! = CalendarPage(year: startDate.year, month: startDate.month, punchedInDays: getPunchedInDays(pageYear: startDate.year, pageMonth: startDate.month))
     
             self.updateUI()
+            self.delegate?.calendarPageDidGoStartMonth()
         }
        
     }
     
-    @IBAction func todayButtonPressed(_ sender: UIButton!) {
+    @IBAction func thisMonthButtonPressed(_ sender: UIButton!) {
+        
         
         self.currentCalendarPage! = CalendarPage(year: self.engine.currentDate.year, month: self.engine.currentDate.month, punchedInDays: self.getPunchedInDays(pageYear: self.engine.currentDate.year, pageMonth: self.engine.currentDate.month))
         self.updateUI()
+        self.delegate?.calendarPageDidGoThisMonth()
     }
     
     @IBAction func lastMonthButtonPressed(_ sender: Any) {
@@ -203,6 +218,7 @@ class CalendarViewController: UIViewController {
         self.monthLabelAnimationDeriction = .right
         self.updateCalendarPage(type: .lastMonth)
         self.updateUI()
+        self.delegate?.calendarPageDidGoLastMonth()
        
     }
     
@@ -210,9 +226,16 @@ class CalendarViewController: UIViewController {
         self.monthLabelAnimationDeriction = .left
         self.updateCalendarPage(type: .nextMonth)
         updateUI()
+        self.delegate?.calendarPageDidGoNextMonth()
     }
     
-
+    @IBAction func timeMachineButtonPressed(_ sender: Any) {
+        if let viewController = superViewController as? ItemDetailViewController {
+            viewController.goTimeMachineView()
+        }
+       
+    }
+    
     
     func updateUI() {
         
@@ -271,10 +294,10 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarCell.identifier, for: indexPath) as! CalendarCell
        
-        // 在这里改 cell
+
         if indexPath.row < (self.currentCalendarPage!.weekdayOfFirstDay) - 1 { //Before the first day
 
-            cell.dayLabel.backgroundColor = UIColor.clear
+            cell.contentView.backgroundColor = .clear
 
         } else if indexPath.row >  self.currentCalendarPage!.weekdayOfFirstDay - 1 && indexPath.row < self.currentCalendarPage!.days + self.currentCalendarPage!.weekdayOfFirstDay { // Between the firstday And Last Day
 
@@ -282,12 +305,13 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
 
             cell.dayLabel.text = String(dayNumber)
             
-            if self.currentCalendarPage!.punchedInDays.contains(dayNumber) {
-                cell.dayLabel.backgroundColor = UserStyleSetting.themeColor
+            if self.currentCalendarPage!.punchedInDays.contains(dayNumber) { // punchedIn day UI
+                cell.contentView.backgroundColor = UserStyleSetting.themeColor
+                cell.dayLabel.textColor = .white
             }
 
         } else { // After lastday
-            cell.dayLabel.backgroundColor = UIColor.clear
+            cell.contentView.backgroundColor = .clear
         }
         
         
@@ -303,6 +327,11 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
     
    
 }
+
+
+
+
+
 
 
 //extension CalendarViewController: UIScrollViewDelegate {

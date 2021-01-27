@@ -58,7 +58,7 @@ class AddItemViewController: UIViewController {
                 button.layer.cornerRadius = setting.optionButtonCornerRadius
                 button.setViewShadow()
                 button.setBackgroundColor(UserStyleSetting.themeColor, cornerRadius: button.layer.cornerRadius, for: .selected)
-                button.setTitleColor(UIColor.white, for: .selected)
+                button.setTitleColor(.white, for: .selected)
 
             }
         }

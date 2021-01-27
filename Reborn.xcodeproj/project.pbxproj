@@ -28,6 +28,8 @@
 		225AD13425A86ED80040E356 /* FadeInSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AD13325A86ED80040E356 /* FadeInSegue.swift */; };
 		2279C17E2592ED2F00566CD7 /* UserStyleSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2279C17D2592ED2F00566CD7 /* UserStyleSetting.swift */; };
 		228ED3E625B94D630054591F /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228ED3E525B94D630054591F /* CalendarCell.swift */; };
+		22916DA925BFE34C004A3EC4 /* TimeMachineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22916DA825BFE34C004A3EC4 /* TimeMachineViewController.swift */; };
+		22916DB525C05F0D004A3EC4 /* PresentTimeMachineSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22916DB425C05F0D004A3EC4 /* PresentTimeMachineSegue.swift */; };
 		22A597EC2598091B008E2A06 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A597EB2598091B008E2A06 /* UIButton.swift */; };
 		22A597F925986685008E2A06 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A597F825986685008E2A06 /* AddItemViewController.swift */; };
 		22A597FE2599C0AF008E2A06 /* WeekDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A597FD2599C0AF008E2A06 /* WeekDay.swift */; };
@@ -103,6 +105,8 @@
 		225AD13325A86ED80040E356 /* FadeInSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeInSegue.swift; sourceTree = "<group>"; };
 		2279C17D2592ED2F00566CD7 /* UserStyleSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStyleSetting.swift; sourceTree = "<group>"; };
 		228ED3E525B94D630054591F /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		22916DA825BFE34C004A3EC4 /* TimeMachineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineViewController.swift; sourceTree = "<group>"; };
+		22916DB425C05F0D004A3EC4 /* PresentTimeMachineSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentTimeMachineSegue.swift; sourceTree = "<group>"; };
 		22A597EB2598091B008E2A06 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		22A597F825986685008E2A06 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		22A597FD2599C0AF008E2A06 /* WeekDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDay.swift; sourceTree = "<group>"; };
@@ -242,6 +246,7 @@
 				225AD12E25A868F50040E356 /* ItemDetailViewController.swift */,
 				22AACA3025AE98B40098D920 /* CalendarViewController.swift */,
 				228ED3E525B94D630054591F /* CalendarCell.swift */,
+				22916DA825BFE34C004A3EC4 /* TimeMachineViewController.swift */,
 				22D354BE25A6B142004F5667 /* Tab Bar Controller */,
 				223A777325A30645004B3324 /* Transition */,
 			);
@@ -299,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				225AD13325A86ED80040E356 /* FadeInSegue.swift */,
+				22916DB425C05F0D004A3EC4 /* PresentTimeMachineSegue.swift */,
 			);
 			path = "Custom Segue";
 			sourceTree = "<group>";
@@ -489,6 +495,7 @@
 				228ED3E625B94D630054591F /* CalendarCell.swift in Sources */,
 				2279C17E2592ED2F00566CD7 /* UserStyleSetting.swift in Sources */,
 				223A777B25A41184004B3324 /* UIView.swift in Sources */,
+				22916DA925BFE34C004A3EC4 /* TimeMachineViewController.swift in Sources */,
 				22D7FBB125A1E065006B1F28 /* SetUpPageBuilder.swift in Sources */,
 				22D6195C25A0290600EC9396 /* UIViewController.swift in Sources */,
 				22C23A27258DCE4500D4BEB2 /* HomeViewController.swift in Sources */,
@@ -510,6 +517,7 @@
 				22C5D975258F40E800131964 /* SetUpPage.swift in Sources */,
 				220B7282258A288000E4BEDC /* AppDelegate.swift in Sources */,
 				225AD11625A6C8620040E356 /* UIColor.swift in Sources */,
+				22916DB525C05F0D004A3EC4 /* PresentTimeMachineSegue.swift in Sources */,
 				220B7284258A288000E4BEDC /* SceneDelegate.swift in Sources */,
 				22BC454525B04ED000516F75 /* CalendarPage.swift in Sources */,
 				22C23A14258DC58F00D4BEB2 /* Item.swift in Sources */,

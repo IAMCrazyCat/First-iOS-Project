@@ -61,9 +61,9 @@ class ItemViewBuilder {
         addNameLabel() //2
         addGoDetailsButton() //3
         addTypeLabel() //4
-        addFinishedDaysLabel() //5
-        addProgressBar(barFrame: CGRect(x: self.setting.mainDistance, y: outPutView.frame.height - 30, width: outPutView.frame.width - self.setting.progressBarLengthToRightEdgeOffset, height: 10)) //5
-        addDaysLabel() //6
+        addFinishedDaysLabel(labelFrame: nil, withTypeLabel: false) //5
+        addProgressBar(barFrame: CGRect(x: self.setting.mainDistance, y: outPutView.frame.height - 30, width: outPutView.frame.width - self.setting.progressBarLengthToRightEdgeOffset, height: 10), withProgressLabel: false) //5
+        addTargetDaysLabel(labelFrame: nil, withTypeLabel: false) //6
         addPunInButton() //7
         addItemCardFreqencyLabel()
         
@@ -74,8 +74,11 @@ class ItemViewBuilder {
     public func buildDetailsView() -> UIView {
         //freqency = DataOption(data: 1)
         createItemDetailsView()
-        addProgressBar(barFrame: CGRect(x: self.setting.mainPadding, y: outPutView.frame.height - 30, width: outPutView.frame.width - self.setting.mainPadding * 2, height: 15))
+        addProgressBar(barFrame: CGRect(x: self.setting.mainPadding, y: outPutView.frame.height - 30, width: outPutView.frame.width - self.setting.mainPadding * 2, height: 15), withProgressLabel: true)
         addItemDetailsFreqencyLabel()
+        addFinishedDaysLabel(labelFrame: CGRect(x: 100, y: 100, width: 0, height: 0), withTypeLabel: true)
+        addTargetDaysLabel(labelFrame: CGRect(x: 220, y: 100, width: 0, height: 0), withTypeLabel: true)
+        
         return outPutView
     }
     
@@ -100,7 +103,7 @@ class ItemViewBuilder {
         nameLabel.accessibilityIdentifier = "nameLabel"
         nameLabel.text = item.type.rawValue + item.name
 
-        nameLabel.textColor = UIColor.black
+        nameLabel.textColor = .black
         nameLabel.font = UserStyleSetting.fontSmall
         
         outPutView.addSubview(nameLabel)
@@ -115,7 +118,7 @@ class ItemViewBuilder {
         freqencyLabel.accessibilityIdentifier = "freqencyLabel"
         
         freqencyLabel.text = freqency?.title
-        freqencyLabel.textColor = UIColor.black
+        freqencyLabel.textColor = .black
         freqencyLabel.font = UserStyleSetting.fontSmall
         freqencyLabel.sizeToFit()
         
@@ -138,16 +141,16 @@ class ItemViewBuilder {
         let freqencyLabel = UILabel()
 
         freqencyLabel.accessibilityIdentifier = "freqencyLabel"
-        freqencyLabel.text = "频率: \(freqency?.title ?? "任意")"
-        freqencyLabel.textColor = UIColor.black
+        freqencyLabel.text = "频率: \(freqency?.title ?? "自由打卡")"
+        freqencyLabel.textColor = .black
         freqencyLabel.font = UserStyleSetting.fontMedium
         freqencyLabel.sizeToFit()
         
         outPutView.addSubview(freqencyLabel)
-
+        freqencyLabel.translatesAutoresizingMaskIntoConstraints = false
         freqencyLabel.topAnchor.constraint(equalTo: outPutView.topAnchor, constant: 20).isActive = true
         freqencyLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
-        freqencyLabel.rightAnchor.constraint(equalTo: outPutView.rightAnchor, constant: self.setting.mainPadding).isActive = true
+        freqencyLabel.rightAnchor.constraint(equalTo: outPutView.rightAnchor, constant: -self.setting.mainPadding).isActive = true
         
         
         
@@ -161,7 +164,7 @@ class ItemViewBuilder {
         let goDetailsButton = UIButton()
         goDetailsButton.accessibilityIdentifier = "goDetailsButton"
         goDetailsButton.setBackgroundImage(UIImage(named: "DetailsButton"), for: .normal)
-        goDetailsButton.setTitleColor(UIColor.black, for: .normal)
+        goDetailsButton.setTitleColor(.black, for: .normal)
         goDetailsButton.titleLabel!.font = UserStyleSetting.fontSmall
         goDetailsButton.tintColor = UserStyleSetting.themeColor
         outPutView.addSubview(goDetailsButton)
@@ -188,7 +191,7 @@ class ItemViewBuilder {
         typeLabel.accessibilityIdentifier = "typeLabel"
         
         typeLabel.text = "已打卡"
-        typeLabel.textColor = UIColor.black
+        typeLabel.textColor = .black
         typeLabel.font = UserStyleSetting.fontSmall
         typeLabel.sizeToFit()
         
@@ -198,30 +201,49 @@ class ItemViewBuilder {
         typeLabel.leftAnchor.constraint(equalTo: outPutView.leftAnchor, constant: self.setting.itemCardCenterObjectsToEdgeOffset).isActive = true
     }
     
-   
     
-    
-    private func addFinishedDaysLabel() {
-        let finishedDaysLabel = UILabel()
-        finishedDaysLabel.accessibilityIdentifier = "finishedDaysLabel"
+    private func addFinishedDaysLabel(labelFrame: CGRect?, withTypeLabel: Bool) {
         
+        let finishedDaysLabel = UILabel()
         let attrs1 = [NSAttributedString.Key.font: UserStyleSetting.fontLarge]
         let attrs2 = [NSAttributedString.Key.font: UserStyleSetting.fontSmall, NSAttributedString.Key.foregroundColor: UIColor.gray]
+        finishedDaysLabel.accessibilityIdentifier = "finishedDaysLabel"
+        finishedDaysLabel.sizeToFit()
+        
         let finishedDaysString = NSMutableAttributedString(string: "\(self.item.finishedDays)", attributes: attrs1)
         let unit = NSMutableAttributedString(string: "  天", attributes: attrs2)
         
-        finishedDaysString.append(unit)
-        finishedDaysLabel.attributedText = finishedDaysString
-        finishedDaysLabel.sizeToFit()
+        if withTypeLabel {
+            if labelFrame != nil {
+                
+                finishedDaysLabel.frame.origin = labelFrame!.origin
+                let attrs0 = [NSAttributedString.Key.font: UserStyleSetting.fontSmall, NSAttributedString.Key.foregroundColor: UIColor.gray]
+                let typeString = NSMutableAttributedString(string: "已打卡:  ", attributes: attrs0)
+                
+                finishedDaysString.append(unit)
+                typeString.append(finishedDaysString)
+                
+                finishedDaysLabel.attributedText = typeString
+                finishedDaysLabel.sizeToFit()
+                outPutView.addSubview(finishedDaysLabel)
+            }
+    
+        } else {
         
-        outPutView.addSubview(finishedDaysLabel)
-        finishedDaysLabel.translatesAutoresizingMaskIntoConstraints = false
-        finishedDaysLabel.centerYAnchor.constraint(equalTo: outPutView.centerYAnchor, constant: -3).isActive = true
-        finishedDaysLabel.centerXAnchor.constraint(equalTo: outPutView.centerXAnchor).isActive = true
+            finishedDaysString.append(unit)
+            finishedDaysLabel.attributedText = finishedDaysString
+
+            outPutView.addSubview(finishedDaysLabel)
+            finishedDaysLabel.translatesAutoresizingMaskIntoConstraints = false
+            finishedDaysLabel.centerYAnchor.constraint(equalTo: outPutView.centerYAnchor, constant: -3).isActive = true
+            finishedDaysLabel.centerXAnchor.constraint(equalTo: outPutView.centerXAnchor).isActive = true
+        }
+        
+      
     }
     
     
-    private  func addProgressBar(barFrame: CGRect) {
+    private  func addProgressBar(barFrame: CGRect, withProgressLabel: Bool) {
         let barTrackPath = UIBezierPath(roundedRect: barFrame, cornerRadius: 10)
         let barTrackLayer = CAShapeLayer()
         
@@ -237,7 +259,7 @@ class ItemViewBuilder {
         barTrackLayer.strokeEnd = 0
         outPutView.layer.addSublayer(barTrackLayer)
         
-        let barShapePath = UIBezierPath(roundedRect: CGRect(x: barFrame.origin.x, y: barFrame.origin.y, width: CGFloat(self.item.finishedDays) / CGFloat(self.item.days) * barFrame.width, height: barFrame.height), cornerRadius: 10)
+        let barShapePath = UIBezierPath(roundedRect: CGRect(x: barFrame.origin.x, y: barFrame.origin.y, width: CGFloat(self.item.progress) * barFrame.width, height: barFrame.height), cornerRadius: 10)
         let barShapeLayer = CAShapeLayer()
         barShapeLayer.name = "progressBar"
         barShapeLayer.path = barShapePath.cgPath
@@ -246,25 +268,64 @@ class ItemViewBuilder {
         barShapeLayer.lineCap = CAShapeLayerLineCap.round
         barShapeLayer.strokeEnd = 0
         outPutView.layer.addSublayer(barShapeLayer)
+        
+        if withProgressLabel {
+            let progressLabel = UILabel()
+            progressLabel.frame.origin = CGPoint(x: CGFloat(self.item.progress) * barFrame.width - 10, y: barFrame.origin.y - barFrame.height - 10)
+            progressLabel.font = UserStyleSetting.fontSmall
+            progressLabel.text = self.item.progressInPercentageString
+            progressLabel.sizeToFit()
+            outPutView.addSubview(progressLabel)
+        }
     }
     
-    private func addDaysLabel() {
-        let daysLabel = UILabel()
-        daysLabel.accessibilityIdentifier = "daysLabel"
-        
-        let atr1 = [NSAttributedString.Key.font: UserStyleSetting.fontSmall]
-        let atr2 = [NSAttributedString.Key.font: UserStyleSetting.fontSmall, NSAttributedString.Key.foregroundColor: UIColor.black]
-        let daysString = NSMutableAttributedString(string: "\(self.item.days)", attributes: atr1)
-        let daysUnit = NSMutableAttributedString(string: "天", attributes: atr2)
-        
-        daysString.append(daysUnit)
-        daysLabel.attributedText = daysString
-        daysLabel.sizeToFit()
-        
-        outPutView.addSubview(daysLabel)
-        daysLabel.translatesAutoresizingMaskIntoConstraints = false
-        daysLabel.rightAnchor.constraint(equalTo: outPutView.rightAnchor, constant: -20).isActive = true
-        daysLabel.bottomAnchor.constraint(equalTo: outPutView.bottomAnchor, constant: -18).isActive = true
+    private func addTargetDaysLabel(labelFrame: CGRect?, withTypeLabel: Bool) {
+        if withTypeLabel {
+            
+            if labelFrame != nil {
+                let daysLabel = UILabel()
+                daysLabel.accessibilityIdentifier = "daysLabel"
+                daysLabel.frame.origin = labelFrame!.origin
+                
+                let atr0 = [NSAttributedString.Key.font: UserStyleSetting.fontSmall]
+                let atr1 = [NSAttributedString.Key.font: UserStyleSetting.fontLarge]
+                let atr2 = [NSAttributedString.Key.font: UserStyleSetting.fontSmall, NSAttributedString.Key.foregroundColor: UIColor.black]
+                
+                let typeString = NSMutableAttributedString(string: "目标:  ", attributes: atr0)
+                let daysString = NSMutableAttributedString(string: "\(self.item.targetDays)", attributes: atr1)
+                let daysUnit = NSMutableAttributedString(string: " 天", attributes: atr2)
+                
+                daysString.append(daysUnit)
+                typeString.append(daysString)
+                
+                daysLabel.attributedText = typeString
+                daysLabel.sizeToFit()
+                
+                outPutView.addSubview(daysLabel)
+    
+            }
+           
+            
+        } else {
+            
+            let daysLabel = UILabel()
+            daysLabel.accessibilityIdentifier = "daysLabel"
+            
+            let atr1 = [NSAttributedString.Key.font: UserStyleSetting.fontSmall]
+            let atr2 = [NSAttributedString.Key.font: UserStyleSetting.fontSmall, NSAttributedString.Key.foregroundColor: UIColor.black]
+            let daysString = NSMutableAttributedString(string: "\(self.item.targetDays)", attributes: atr1)
+            let daysUnit = NSMutableAttributedString(string: "天", attributes: atr2)
+            
+            daysString.append(daysUnit)
+            daysLabel.attributedText = daysString
+            daysLabel.sizeToFit()
+            
+            outPutView.addSubview(daysLabel)
+            daysLabel.translatesAutoresizingMaskIntoConstraints = false
+            daysLabel.rightAnchor.constraint(equalTo: outPutView.rightAnchor, constant: -20).isActive = true
+            daysLabel.bottomAnchor.constraint(equalTo: outPutView.bottomAnchor, constant: -18).isActive = true
+        }
+      
     }
     
     private func addPunInButton() {

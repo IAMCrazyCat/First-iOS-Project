@@ -9,16 +9,24 @@
 import Foundation
 class Item: Codable {
     var name: String
-    var days: Int
+    var targetDays: Int
     var finishedDays: Int
     var creationDate: CustomDate
     var type: ItemType
     var punchInDates: Array<CustomDate> = []
     var frequency: DataOption? = nil
     
+    var progress: Double {
+        return Double(self.finishedDays) / Double(self.targetDays)
+    }
+    
+    var progressInPercentageString: String {
+        return String(format: "%.1f", progress * 100) + " %"
+    }
+    
     init(name: String, days: Int, finishedDays: Int, creationDate: CustomDate, type: ItemType) {
         self.name = name
-        self.days = days
+        self.targetDays = days
         self.finishedDays = finishedDays
         self.creationDate = creationDate
         self.type = type

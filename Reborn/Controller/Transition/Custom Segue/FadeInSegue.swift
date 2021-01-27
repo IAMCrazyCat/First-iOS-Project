@@ -48,7 +48,7 @@ class FadeInPresentAnimationController: NSObject, UIViewControllerAnimatedTransi
         UIView.animate(withDuration: 0.8, animations: {
             toView.alpha = 1.0
         }) { _ in
-            
+
             transitionContext.completeTransition(true)
             homeViewController.firstAccessIntialize()
         }

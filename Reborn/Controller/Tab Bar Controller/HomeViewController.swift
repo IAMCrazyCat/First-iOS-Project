@@ -31,7 +31,6 @@ class HomeViewController: UIViewController {
     
     var setting = SystemStyleSetting.shared
  
-    var overallProgress = 0.0
     
     let circleTrackLayer = CAShapeLayer()
     let circleShapeLayer = CAShapeLayer()
@@ -93,7 +92,6 @@ class HomeViewController: UIViewController {
     
     func updateProgressCircle() { // Circle progress bar
        
-        self.overallProgress = self.engine.getOverAllProgress() ?? 0
 
         let center = CGPoint(x: overallProgressView.frame.width / 2 , y: overallProgressView.frame.height / 2)
         let circleTrackPath = UIBezierPath(arcCenter: center, radius: 60, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
@@ -110,7 +108,7 @@ class HomeViewController: UIViewController {
         overallProgressView.layer.addSublayer(circleTrackLayer)
    
 
-        let circleShapePath = UIBezierPath(arcCenter: center, radius: 60, startAngle: -CGFloat.pi / 2, endAngle: CGFloat(self.overallProgress) * 2 * CGFloat.pi - CGFloat.pi / 2, clockwise: true)
+        let circleShapePath = UIBezierPath(arcCenter: center, radius: 60, startAngle: -CGFloat.pi / 2, endAngle: CGFloat(self.engine.getOverAllProgress() ?? 0) * 2 * CGFloat.pi - CGFloat.pi / 2, clockwise: true)
         
         circleShapeLayer.path = circleShapePath.cgPath
         circleShapeLayer.strokeColor = shapeColor
@@ -141,7 +139,27 @@ class HomeViewController: UIViewController {
     
     func excuteProgressLabelAnimation() {
 
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateProgressLabel), userInfo: nil, repeats: true)
+        //timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateProgressLabel), userInfo: nil, repeats: true)
+        
+        let animation:CATransition = CATransition()
+        animation.timingFunction = CAMediaTimingFunction(name:
+            CAMediaTimingFunctionName.easeInEaseOut)
+        animation.type = CATransitionType.fade
+        animation.subtype = CATransitionSubtype.fromTop
+        currentTransitionValue = (circleShapeLayer.presentation()?.value(forKeyPath: "strokeEnd") ?? 0.0) as! Double
+        self.overallProgressLabel.text = "已完成: \(String(format: "%.1f", (self.engine.getOverAllProgress() ?? 0) * 100))%"
+        animation.duration = 0.5
+        self.overallProgressLabel.layer.add(animation, forKey: CATransitionType.fade.rawValue)
+        
+//        UIView.animate(withDuration: 0.2, animations: { () -> Void in
+//            self.overallProgressLabel.transform = .init(scaleX: 1.25, y: 1.25)
+//        }) { (finished: Bool) -> Void in
+//            self.overallProgressLabel.text = "已完成: \(String(format: "%.1f", (self.engine.getOverAllProgress() ?? 0) * 100))%"
+//            UIView.animate(withDuration: 0.25, animations: { () -> Void in
+//                self.overallProgressLabel.transform = .identity
+//            })
+//        }
+        
     }
     
     @objc func updateProgressLabel() {
@@ -149,10 +167,12 @@ class HomeViewController: UIViewController {
         if currentTransitionValue >= 1 {
             print("timer Ivalidated")
             timer?.invalidate()
+            currentTransitionValue = 0
         }
-        self.overallProgress = self.engine.getOverAllProgress() ?? 0
+
         currentTransitionValue = (circleShapeLayer.presentation()?.value(forKeyPath: "strokeEnd") ?? 0.0) as! Double
-        self.overallProgressLabel.text = "已完成: \(String(format: "%.1f", self.currentTransitionValue * self.overallProgress * 100))%"
+        print(currentTransitionValue)
+        self.overallProgressLabel.text = "已完成: \(String(format: "%.1f", self.currentTransitionValue * (self.engine.getOverAllProgress() ?? 0) * 100))%"
     }
     
     @objc func itemPunchInButtonPressed(_ sender: UIButton!) {
@@ -302,6 +322,7 @@ class HomeViewController: UIViewController {
     
     func updateUI() {
         print("HomeViewUIDidUpdate")
+        
         loadUserAvatar()
         removeOriginalCircle()
         updateProgressCircle()
