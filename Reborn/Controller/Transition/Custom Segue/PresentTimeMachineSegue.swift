@@ -50,7 +50,7 @@ class TimeMachineViewPresentAnimationController: NSObject, UIViewControllerAnima
 
             //toViewController.view.addSubview(toViewController.calendarView!)
             containerView.addSubview(toViewController.view)
-            toViewController.updateUI()
+            toViewController.inlitializeUI()
         }
         
         toViewController.view.backgroundColor = UIColor.white.withAlphaComponent(0)
