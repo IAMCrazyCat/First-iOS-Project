@@ -14,7 +14,7 @@ class TimeMachineViewController: UIViewController {
     var calendarViewController: CalendarViewController?
     
     let setting: SystemStyleSetting = SystemStyleSetting.shared
-    var backCalendarPages: Array<UIView> = []
+    var calendarPages: Array<UIView> = []
     var userDidGo: NewCalendarPage = .noWhere
     
     override func viewDidLoad() {
@@ -23,7 +23,70 @@ class TimeMachineViewController: UIViewController {
         
     }
     
-   
+    func updateCalendarPagesColor() {
+        var r: CGFloat = 1
+        var g: CGFloat = 1
+        var b: CGFloat = 1
+        
+        if userDidGo == .noWhere || userDidGo == .nextMonth  {
+            for index in 0 ... calendarPages.count - 1 {
+                
+                let calendarPage = calendarPages[index]
+                calendarPage.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1)
+                
+                r -= self.setting.calendarPageColorDifference
+                g -= self.setting.calendarPageColorDifference
+                b -= self.setting.calendarPageColorDifference
+               
+            }
+        }
+        
+        if userDidGo == .lastMonth {
+            
+            for index in 1 ... calendarPages.count - 1 {
+                
+                let calendarPage = calendarPages[index]
+                calendarPage.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1)
+                
+                r -= self.setting.calendarPageColorDifference
+                g -= self.setting.calendarPageColorDifference
+                b -= self.setting.calendarPageColorDifference
+               
+            }
+        }
+ 
+    }
+    
+    func addCalendarPages() {
+        var scale: CGFloat = 1
+        var cordinateYDifference = self.setting.newCalendarPageCordiateYDifference
+        
+        for index in 0 ... self.setting.numberOfCalendarPages - 2 {
+            
+           
+            
+            scale *= self.setting.newCalendarPageSizeDifference
+            let newCalendarPage = UIView()
+            newCalendarPage.backgroundColor = self.setting.calendarPageColor
+            newCalendarPage.frame = self.calendarPages[0].frame
+            newCalendarPage.transform = CGAffineTransform(scaleX: scale, y: scale)
+            newCalendarPage.layer.cornerRadius = self.setting.itemCardCornerRadius
+            newCalendarPage.setViewShadow()
+            
+            
+            self.view.insertSubview(newCalendarPage, belowSubview: self.calendarPages[index])
+            
+            UIView.animate(withDuration: 1, delay: 0, options: .curveEaseOut, animations: {
+                newCalendarPage.frame.origin.y -= cordinateYDifference
+            
+            })
+            
+            self.calendarPages.append(newCalendarPage)
+            cordinateYDifference += self.setting.newCalendarPageCordiateYDifference
+            
+
+        }
+    }
     
     
     func inlitializeUI() {
@@ -35,50 +98,17 @@ class TimeMachineViewController: UIViewController {
             self.calendarView!.layer.cornerRadius = self.setting.itemCardCornerRadius
             self.calendarView!.layer.masksToBounds = true
             self.calendarView!.setViewShadow()
-            self.backCalendarPages.append(calendarView!)
+            self.calendarPages.append(calendarView!)
             
-            var cordinateYDifference = self.setting.newCalendarPageCordiateYDifference
+           
             
-            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: 0.8, delay: 0, options: .curveEaseOut, animations: {
 
-                self.calendarView!.frame.origin.y += self.setting.newCalendarPageCordiateYDifference
+                self.calendarView!.frame.origin.y = self.setting.screenFrame.height / 2 -  self.calendarView!.frame.height / 2
             }) { _ in
                 
-                var scale: CGFloat = 1
-    
-                var r: CGFloat = 1
-                var g: CGFloat = 1
-                var b: CGFloat = 1
-                
-                for index in 0 ... self.setting.numberOfCalendarPages - 2 {
-                    
-                    r -= self.setting.calendarPageColorDifference
-                    g -= self.setting.calendarPageColorDifference
-                    b -= self.setting.calendarPageColorDifference
-                    
-                    scale *= self.setting.newCalendarPageSizeDifference
-                    let newCalendarPage = UIView()
-                    
-                    newCalendarPage.frame = self.backCalendarPages[0].frame
-                    newCalendarPage.transform = CGAffineTransform(scaleX: scale, y: scale)
-                    newCalendarPage.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1)
-                    newCalendarPage.layer.cornerRadius = self.setting.itemCardCornerRadius
-                    newCalendarPage.setViewShadow()
-                    
-                    
-                    self.view.insertSubview(newCalendarPage, belowSubview: self.backCalendarPages[index])
-                    UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut, animations: {
-                        newCalendarPage.frame.origin.y -= cordinateYDifference
-                    
-                    })
-                    
-                    self.backCalendarPages.append(newCalendarPage)
-                    cordinateYDifference += self.setting.newCalendarPageCordiateYDifference
-                    
-
-                }
-                
-            
+                self.addCalendarPages()
+                self.updateCalendarPagesColor()
             }
         }
         
@@ -90,62 +120,71 @@ class TimeMachineViewController: UIViewController {
         
         if userDidGo == .lastMonth {
             let newCalendarPage = UIView()
-            let scale = CGFloat(pow(Double(self.setting.newCalendarPageSizeDifference), Double(self.backCalendarPages.count)))
-            let r = self.backCalendarPages.last!.backgroundColor!.value.red - self.setting.calendarPageColorDifference
-            let g = self.backCalendarPages.last!.backgroundColor!.value.green - self.setting.calendarPageColorDifference
-            let b = self.backCalendarPages.last!.backgroundColor!.value.blue - self.setting.calendarPageColorDifference
+            let scale = CGFloat(pow(Double(self.setting.newCalendarPageSizeDifference), Double(self.calendarPages.count)))
+
             
-            newCalendarPage.frame = self.backCalendarPages.first!.frame // new calendar page frame equals to the first page
-            newCalendarPage.frame.origin.y =  self.backCalendarPages.first!.frame.origin.y - self.setting.newCalendarPageCordiateYDifference * CGFloat(self.backCalendarPages.count) // move up the new calendar page to its proper position Y
+            newCalendarPage.frame = self.calendarPages.first!.frame // new calendar page frame equals to the first page
+            newCalendarPage.frame.origin.y =  self.calendarPages.first!.frame.origin.y - self.setting.newCalendarPageCordiateYDifference * CGFloat(self.calendarPages.count) // move up the new calendar page to its proper position Y
             newCalendarPage.transform =  CGAffineTransform(scaleX: scale, y: scale) // scale it accroding to first page to its proper size
             
             // set style
-            newCalendarPage.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: self.backCalendarPages.last!.backgroundColor!.value.alpha)
-            //newCalendarPage.alpha = 0
+            newCalendarPage.backgroundColor = self.setting.calendarPageColor
+            newCalendarPage.alpha = 0
             newCalendarPage.layer.cornerRadius = self.setting.itemCardCornerRadius
             newCalendarPage.setViewShadow()
 
-            self.view.insertSubview(newCalendarPage, belowSubview: self.backCalendarPages.last!)
-            self.backCalendarPages.append(newCalendarPage)
+            self.view.insertSubview(newCalendarPage, belowSubview: self.calendarPages.last!)
+            self.calendarPages.append(newCalendarPage)
             
         } else if userDidGo == .nextMonth {
             
             let newCalendarPage = UIView()
             let scale = 1 / self.setting.newCalendarPageSizeDifference // new page is one unit larger than first page
-            let r = self.backCalendarPages.last!.backgroundColor!.value.red + self.setting.calendarPageColorDifference
-            let g = self.backCalendarPages.last!.backgroundColor!.value.green + self.setting.calendarPageColorDifference
-            let b = self.backCalendarPages.last!.backgroundColor!.value.blue + self.setting.calendarPageColorDifference
-            let a = self.backCalendarPages.first!.backgroundColor!.value.alpha
-            newCalendarPage.frame = self.backCalendarPages.first!.frame
-            newCalendarPage.frame.origin.y =  self.backCalendarPages.first!.frame.origin.y + self.setting.newCalendarPageCordiateYDifference
+            newCalendarPage.backgroundColor = self.setting.calendarPageColor
+            newCalendarPage.frame = self.calendarPages.first!.frame
+            newCalendarPage.frame.origin.y =  self.calendarPages.first!.frame.origin.y + self.setting.newCalendarPageCordiateYDifference
             newCalendarPage.transform =  CGAffineTransform(scaleX: scale, y: scale) // scale it accroding to first page to its proper size
             
-            newCalendarPage.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: a)
-            
-            newCalendarPage.alpha = 1
+            newCalendarPage.alpha = 0
             newCalendarPage.layer.cornerRadius = self.setting.itemCardCornerRadius
             newCalendarPage.setViewShadow()
             
-            self.view.insertSubview(newCalendarPage, aboveSubview: self.backCalendarPages.first!)
-            self.backCalendarPages.insert(newCalendarPage, at: 0)
+            self.view.insertSubview(newCalendarPage, aboveSubview: self.calendarPages.first!)
+            self.calendarPages.insert(newCalendarPage, at: 0)
         }
        
     }
     
-    func addTempCalendatPage() {
+    func removeOldTempCalendarPage(superview: UIView) {
+        for subview in superview.subviews {
+            if subview.accessibilityIdentifier == "TempCalendarPageView" {
+                subview.removeFromSuperview()
+            }
+           
+        }
+    }
+    
+    func addTempCalendarPage() {
         
         if calendarViewController != nil {
            
             
             if userDidGo == .lastMonth {
                 
-                let builder = TimeMachineCalendarPageBuilder(interactableCalendarView: self.backCalendarPages.first!.subviews.first!, calendarViewController: self.calendarViewController!, userDidGo: userDidGo)
-                self.backCalendarPages.first!.addSubview(builder.buildCalendarPage()) // add temp calendar page to that will disapear
+                let builder = TimeMachineCalendarPageBuilder(interactableCalendarView: self.calendarPages.first!.subviews.first!, calendarViewController: self.calendarViewController!, userDidGo: userDidGo)
+                let tempCalendarPage = builder.buildCalendarPage()
+                tempCalendarPage.accessibilityIdentifier = "TempCalendarPageView"
+                
+                self.removeOldTempCalendarPage(superview: self.calendarPages.first!)
+                self.calendarPages.first!.addSubview(tempCalendarPage) // add temp calendar page to that will disapear
                 
             } else if userDidGo == .nextMonth {
                 
-                let builder = TimeMachineCalendarPageBuilder(interactableCalendarView: self.backCalendarPages[1].subviews.first!, calendarViewController: self.calendarViewController!, userDidGo: userDidGo)
-                self.backCalendarPages[1].addSubview(builder.buildCalendarPage()) // add temp calendar page to that will disapear
+                let builder = TimeMachineCalendarPageBuilder(interactableCalendarView: self.calendarPages[1].subviews.first!, calendarViewController: self.calendarViewController!, userDidGo: userDidGo)
+                let tempCalendarPage = builder.buildCalendarPage()
+                tempCalendarPage.accessibilityIdentifier = "TempCalendarPageView"
+                self.removeOldTempCalendarPage(superview: self.calendarPages[1])
+                self.calendarPages[1].addSubview(tempCalendarPage) // add temp calendar page to that will disapear
             }
             
            
@@ -155,14 +194,12 @@ class TimeMachineViewController: UIViewController {
     func updateOtherCalendarPages() {
         
         
-     
-        
-        UIView.animate(withDuration: 3.35, delay: 0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.35, delay: 0, options: .curveEaseOut, animations: {
             
    
-            for index in 0 ... self.backCalendarPages.count - 1 {
+            for index in 0 ... self.calendarPages.count - 1 {
                 
-                let backCalendarPage = self.backCalendarPages[index]
+                let backCalendarPage = self.calendarPages[index]
                 let scale: CGFloat = self.setting.newCalendarPageSizeDifference
                 backCalendarPage.alpha = 1
                 
@@ -175,10 +212,9 @@ class TimeMachineViewController: UIViewController {
                         backCalendarPage.alpha = 0
                         
                     } else if self.userDidGo == .nextMonth {
-                        print("AL")
-                        print(self.backCalendarPages[1].subviews.first!.alpha)
-                        let interactableCalendarView = self.backCalendarPages[1].subviews.first!
-                        backCalendarPage.addSubview(interactableCalendarView)
+                       
+                        let interactableCalendarView = self.calendarPages[1].subviews.first!
+                        backCalendarPage.insertSubview(interactableCalendarView, at: backCalendarPage.subviews.count)
             
                         backCalendarPage.transform = CGAffineTransform(scaleX: CGFloat(backCalendarPage.transform.currentScale) * scale , y:   CGFloat(backCalendarPage.transform.currentScale) * scale)
                         backCalendarPage.frame.origin.y -= self.setting.newCalendarPageCordiateYDifference
@@ -192,9 +228,10 @@ class TimeMachineViewController: UIViewController {
                         
                         if self.userDidGo == .lastMonth {
                             // send interacable calendar view to second calendar page
-                            let interactableCalendarView = self.backCalendarPages.first!.subviews.first!
-                            backCalendarPage.addSubview(interactableCalendarView)
-                            
+                            let interactableCalendarView = self.calendarPages.first!.subviews.first!
+                            //backCalendarPage.addSubview(interactableCalendarView)
+                       
+                            backCalendarPage.insertSubview(interactableCalendarView, at: backCalendarPage.subviews.count)
                         } else if self.userDidGo == .nextMonth {
 
                            
@@ -205,27 +242,22 @@ class TimeMachineViewController: UIViewController {
                         
                         if self.userDidGo == .lastMonth {
                             
-                            let r = backCalendarPage.backgroundColor!.value.red + self.setting.calendarPageColorDifference
-                            let g = backCalendarPage.backgroundColor!.value.green + self.setting.calendarPageColorDifference
-                            let b = backCalendarPage.backgroundColor!.value.blue + self.setting.calendarPageColorDifference
-                            backCalendarPage.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1)
+
+            
                             backCalendarPage.transform = CGAffineTransform(scaleX: CGFloat(backCalendarPage.transform.currentScale) / scale , y: CGFloat(backCalendarPage.transform.currentScale) / scale)
                             backCalendarPage.frame.origin.y += self.setting.newCalendarPageCordiateYDifference
                             
                         } else if self.userDidGo == .nextMonth {
                             
-                            let r = backCalendarPage.backgroundColor!.value.red - self.setting.calendarPageColorDifference
-                            let g = backCalendarPage.backgroundColor!.value.green - self.setting.calendarPageColorDifference
-                            let b = backCalendarPage.backgroundColor!.value.blue - self.setting.calendarPageColorDifference
-                            backCalendarPage.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1)
-                          
+
+
                             backCalendarPage.transform = CGAffineTransform(scaleX: CGFloat(backCalendarPage.transform.currentScale) * scale , y:   CGFloat(backCalendarPage.transform.currentScale) * scale)
                             backCalendarPage.frame.origin.y -= self.setting.newCalendarPageCordiateYDifference
                         }
                     
                     
                     
-                    if index == self.backCalendarPages.count - 1 {
+                    if index == self.calendarPages.count - 1 {
                         
                         if self.userDidGo == .nextMonth {
                             backCalendarPage.alpha = 0 // last calendar page disappear
@@ -238,13 +270,13 @@ class TimeMachineViewController: UIViewController {
             
             if self.userDidGo == .lastMonth {
                 // remove the first calendar page
-                self.backCalendarPages.first!.removeFromSuperview()
-                self.backCalendarPages.remove(at: 0)
+                self.calendarPages.first!.removeFromSuperview()
+                self.calendarPages.remove(at: 0)
                 
             } else if self.userDidGo == .nextMonth {
                 //self.backCalendarPages[1].subviews.first!.removeFromSuperview()
-                self.backCalendarPages.last!.removeFromSuperview()
-                self.backCalendarPages.remove(at: self.backCalendarPages.count - 1)
+                self.calendarPages.last!.removeFromSuperview()
+                self.calendarPages.remove(at: self.calendarPages.count - 1)
             }
            
         }
@@ -254,8 +286,9 @@ class TimeMachineViewController: UIViewController {
     func updateUI() {
 
         addNewCalendarPage()
-        //addTempCalendatPage()
+        addTempCalendarPage()
         updateOtherCalendarPages()
+        updateCalendarPagesColor()
         
     }
     
