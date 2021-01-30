@@ -18,4 +18,14 @@ extension UIColor {
 
            return (red, green, blue, alpha)
        }
+    
+    var absoluteValue: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+        
+        var red: CGFloat = value.red * 255
+        var green: CGFloat = value.green * 255
+        var blue: CGFloat = value.blue * 255
+        var alpha: CGFloat = value.alpha
+        //getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        return (red, green, blue, alpha)
+    }
 }

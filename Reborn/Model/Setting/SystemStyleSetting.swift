@@ -102,8 +102,10 @@ struct SystemStyleSetting{
     let calendarDaySelectionButtonCornerRadius: CGFloat = 15
     
     // for time machine
-    let newCalendarPageCordiateYDifference: CGFloat = 10
-    let newCalendarPageSizeDifference: CGFloat = 50
+    let newCalendarPageCordiateYDifference: CGFloat = 50
+    let newCalendarPageSizeDifference: CGFloat = 0.9
+    let calendarPageColorDifference: CGFloat = 0.02
+    let numberOfCalendarPages: Int = 4 // at least 2
     
 }
 

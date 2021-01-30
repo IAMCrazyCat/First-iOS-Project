@@ -8,13 +8,15 @@
 import UIKit
 enum NewCalendarPage {
     case lastMonth
-    case currentMonth
+    case startMonth
+    case noWhere
+    case thisMonth
     case nextMonth
 }
 
-enum AnimationDeriction {
-    case left
-    case right
+enum CalendarState {
+    case normal
+    case timeMachine
 }
 
 protocol CalendarViewDegelagte {
@@ -30,7 +32,7 @@ protocol CalendarViewDegelagte {
 
 class CalendarViewController: UIViewController {
     
-    public static var shared: CalendarViewController = CalendarViewController()
+    //public static var shared: CalendarViewController = CalendarViewController()
     @IBOutlet weak var lastMonthButton: UIButton!
     @IBOutlet weak var nextMonthButton: UIButton!
     @IBOutlet weak var startMonthButton: UIButton!
@@ -42,6 +44,8 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var middleStackView: UIStackView!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var bottomCollectionView: UICollectionView!
+    @IBOutlet weak var timeMachineButton: UIButton!
+    
     var monthLabelOriginalCordinateX: CGFloat = 0
     
     var item: Item?
@@ -50,14 +54,61 @@ class CalendarViewController: UIViewController {
     var calendarLoaded: Bool = false
     
     var currentCalendarPage: CalendarPage?
-    var monthLabelAnimationDeriction: AnimationDeriction = .left
     
     var delegate: CalendarViewDegelagte?
     var superViewController: UIViewController?
+    private var storedState: CalendarState = .normal
     
+    var state: CalendarState {
+        get {
+            return storedState
+        }
+        
+        set {
+            storedState = newValue
+            updateUI()
+        }
+        
+    }
+    
+    
+    var lastPageYear: Int {
+        if self.currentCalendarPage!.month - 1 < 1 {
+            return self.currentCalendarPage!.year - 1
+        } else {
+            return self.currentCalendarPage!.year
+        }
+    }
+    
+    var lastPageMonth: Int {
+        if self.currentCalendarPage!.month - 1 < 1 {
+            return 12
+        } else {
+            return self.currentCalendarPage!.month - 1
+        }
+    }
+    
+    var nextPageYear: Int {
+        if self.currentCalendarPage!.month + 1 > 12 {
+            return self.currentCalendarPage!.year + 1
+        } else {
+            return self.currentCalendarPage!.year
+        }
+    }
+    
+    
+    var nextPageMonth: Int {
+        if self.currentCalendarPage!.month + 1 > 12 {
+            return 1
+        } else {
+            return self.currentCalendarPage!.month + 1
+        }
+    }
+    
+    var userDidGo: NewCalendarPage = .noWhere
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-    
         bottomCollectionView.delegate = self
         bottomCollectionView.dataSource = self
         bottomCollectionView.register(CalendarCell.self, forCellWithReuseIdentifier: CalendarCell.identifier)
@@ -142,38 +193,7 @@ class CalendarViewController: UIViewController {
     
     func updateCalendarPage(type: NewCalendarPage) {
          
-        var lastPageYear: Int {
-            if self.currentCalendarPage!.month - 1 < 1 {
-                return self.currentCalendarPage!.year - 1
-            } else {
-                return self.currentCalendarPage!.year
-            }
-        }
-        
-        var lastPageMonth: Int {
-            if self.currentCalendarPage!.month - 1 < 1 {
-                return 12
-            } else {
-                return self.currentCalendarPage!.month - 1
-            }
-        }
-        
-        var nextPageYear: Int {
-            if self.currentCalendarPage!.month + 1 > 12 {
-                return self.currentCalendarPage!.year + 1
-            } else {
-                return self.currentCalendarPage!.year
-            }
-        }
-        
-        
-        var nextPageMonth: Int {
-            if self.currentCalendarPage!.month + 1 > 12 {
-                return 1
-            } else {
-                return self.currentCalendarPage!.month + 1
-            }
-        }
+       
         
         let newCalendarPage: CalendarPage
   
@@ -194,16 +214,30 @@ class CalendarViewController: UIViewController {
     @IBAction func startMonthButtonPressed(_ sender: UIButton!) {
         self.item!.creationDate = CustomDate(year: 2018, month: 12, day: 12)
         
+        
         if item != nil {
             
-            let startDate = item!.creationDate
-            self.currentCalendarPage! = CalendarPage(year: startDate.year, month: startDate.month, punchedInDays: getPunchedInDays(pageYear: startDate.year, pageMonth: startDate.month))
-    
-            self.updateUI()
-            self.delegate?.calendarPageDidGoStartMonth()
+            if state == .normal {
+                
+                let startDate = item!.creationDate
+                self.currentCalendarPage! = CalendarPage(year: startDate.year, month: startDate.month, punchedInDays: getPunchedInDays(pageYear: startDate.year, pageMonth: startDate.month))
+        
+                self.updateUI()
+                self.delegate?.calendarPageDidGoStartMonth()
+            } else if state == .timeMachine {
+                
+            }
+            
+          
         }
        
     }
+    
+    @objc func clickLastMonth() {
+        self.lastMonthButtonPressed(UIButton())
+    }
+    
+    
     
     @IBAction func thisMonthButtonPressed(_ sender: UIButton!) {
         
@@ -214,8 +248,8 @@ class CalendarViewController: UIViewController {
     }
     
     @IBAction func lastMonthButtonPressed(_ sender: Any) {
+        self.userDidGo = .lastMonth
 
-        self.monthLabelAnimationDeriction = .right
         self.updateCalendarPage(type: .lastMonth)
         self.updateUI()
         self.delegate?.calendarPageDidGoLastMonth()
@@ -223,7 +257,8 @@ class CalendarViewController: UIViewController {
     }
     
     @IBAction func nextMonthButtonPressed(_ sender: Any) {
-        self.monthLabelAnimationDeriction = .left
+        self.userDidGo = .nextMonth
+
         self.updateCalendarPage(type: .nextMonth)
         updateUI()
         self.delegate?.calendarPageDidGoNextMonth()
@@ -236,17 +271,20 @@ class CalendarViewController: UIViewController {
        
     }
     
-    
-    func updateUI() {
-        
-        self.bottomCollectionView.reloadData()
+    private func updateMonthLabelWithAnimation() {
         
         var directionAttribute: Int
-        switch monthLabelAnimationDeriction {
-        case .left:
+        switch userDidGo {
+        case .lastMonth:
             directionAttribute = 1
-        case .right:
+        case .startMonth:
+            directionAttribute = 1
+        case .thisMonth:
             directionAttribute = -1
+        case .nextMonth:
+            directionAttribute = -1
+        case .noWhere:
+            directionAttribute = 0
         }
         
         UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseOut, animations: {
@@ -265,14 +303,29 @@ class CalendarViewController: UIViewController {
                 }
             }
         }
-        
-        
+    }
     
-
-        
-        
-        
+    private func updateMonthLabelWithoutAnimation() {
+        self.currentMonthLabel.text = self.currentCalendarPage!.currentYearAndMonthInString
+    }
     
+    private func excuteTimeMachineButtonAnimation() {
+        UIView.animate(withDuration: 5, delay: 0, options: .curveLinear, animations: {
+            self.timeMachineButton.transform = CGAffineTransform(rotationAngle: -CGFloat.pi )
+        })
+    }
+    
+    func updateUI() {
+        
+        self.bottomCollectionView.reloadData()
+        
+        if self.state == .normal {
+            updateMonthLabelWithAnimation()
+        } else if self.state == .timeMachine {
+            updateMonthLabelWithoutAnimation()
+            //excuteTimeMachineButtonAnimation()
+        }
+       
     }
     
     

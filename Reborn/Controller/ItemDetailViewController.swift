@@ -70,9 +70,11 @@ class ItemDetailViewController: UIViewController {
                 embeddedCalendarViewController!.delegate = desitinationViewController // calendar view delegate switched to TimeMachineViewController
             }
             let navBarheight = (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0) + (self.navigationController?.navigationBar.frame.height ?? 0.0)
+
             desitinationViewController.calendarView = self.calendarView
             desitinationViewController.calendarViewPosition = CGPoint(x: self.topView.frame.origin.x, y:  self.topView.frame.origin.y + navBarheight)
-
+            desitinationViewController.calendarViewController = embeddedCalendarViewController
+            embeddedCalendarViewController?.state = .timeMachine
         }
         
         

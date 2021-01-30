@@ -1564,6 +1564,7 @@ Cg
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2021年1月" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NdA-gx-XZ9">
                                         <rect key="frame" x="30" y="20" width="324" height="20.5"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="MonthLabel"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1571,6 +1572,7 @@ Cg
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UGA-qj-SB4">
                                         <rect key="frame" x="324" y="60.5" width="40" height="20"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="NextMonthButton"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="fJ1-ru-gOG"/>
                                             <constraint firstAttribute="width" constant="40" id="mI9-JM-0t6"/>
@@ -1586,6 +1588,7 @@ Cg
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="djk-JB-I2X">
                                         <rect key="frame" x="92" y="60.5" width="80" height="20"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="StartMonthButton"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="HKc-mv-psR"/>
                                             <constraint firstAttribute="width" constant="80" id="L8G-IO-02A"/>
@@ -1601,6 +1604,7 @@ Cg
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UnO-dN-eLE">
                                         <rect key="frame" x="20" y="60.5" width="40" height="20"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="LastMonthButton"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="onH-bJ-SzS"/>
                                             <constraint firstAttribute="width" constant="40" id="ywr-bk-SCm"/>
@@ -1616,6 +1620,7 @@ Cg
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4yp-mE-jGG">
                                         <rect key="frame" x="212" y="60.5" width="80" height="20"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="ThisMonthButton"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="GGq-jH-MJN"/>
                                             <constraint firstAttribute="height" constant="20" id="GfK-uZ-ggb"/>
@@ -1631,6 +1636,7 @@ Cg
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WWW-ka-0QZ">
                                         <rect key="frame" x="330" y="16" width="28" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="TimeMachineButton"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="TimeMachine1"/>
                                         <connections>
@@ -1639,6 +1645,7 @@ Cg
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <accessibility key="accessibilityConfiguration" identifier="TopView"/>
                                 <constraints>
                                     <constraint firstItem="djk-JB-I2X" firstAttribute="top" secondItem="NdA-gx-XZ9" secondAttribute="bottom" constant="20" id="0pp-Ry-MOe"/>
                                     <constraint firstItem="UnO-dN-eLE" firstAttribute="top" secondItem="NdA-gx-XZ9" secondAttribute="bottom" constant="20" id="4cW-At-cBQ"/>
@@ -1657,7 +1664,7 @@ Cg
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1uJ-r9-mDY" userLabel="Middle View">
                                 <rect key="frame" x="0.0" y="100" width="384" height="40"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="Vlj-yU-YBI" userLabel="Week Stack View">
+                                    <stackView opaque="NO" tag="7" contentMode="scaleToFill" distribution="fillEqually" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="Vlj-yU-YBI" userLabel="Week Stack View">
                                         <rect key="frame" x="40" y="11" width="304" height="18"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="天" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64d-ZX-7pC">
@@ -1706,6 +1713,7 @@ Cg
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration" identifier="MiddleView"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Hni-M4-Kg5"/>
                                     <constraint firstAttribute="trailing" secondItem="Vlj-yU-YBI" secondAttribute="trailing" constant="40" id="Tl1-uB-pS3"/>
@@ -1729,6 +1737,7 @@ Cg
                                     </collectionView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <accessibility key="accessibilityConfiguration" identifier="BottomView"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="zYE-Pq-52Y" secondAttribute="bottom" constant="20" id="Mg1-zX-7MG"/>
                                     <constraint firstItem="zYE-Pq-52Y" firstAttribute="top" secondItem="CyJ-kQ-0F2" secondAttribute="top" id="VY7-lu-4Fl"/>
@@ -1763,6 +1772,7 @@ Cg
                         <outlet property="nextMonthButton" destination="UGA-qj-SB4" id="k6U-cv-5LJ"/>
                         <outlet property="startMonthButton" destination="4yp-mE-jGG" id="psf-h6-csZ"/>
                         <outlet property="thisMonthButton" destination="djk-JB-I2X" id="Z0K-DV-oE9"/>
+                        <outlet property="timeMachineButton" destination="WWW-ka-0QZ" id="IHt-vu-FTo"/>
                         <outlet property="topView" destination="RwH-pK-cja" id="YLy-qL-yPX"/>
                     </connections>
                 </viewController>
