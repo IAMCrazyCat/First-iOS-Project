@@ -288,7 +288,7 @@ Cg
             <objects>
                 <viewController id="yhk-VJ-4nb" customClass="AddItemViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5tU-dT-BVc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eis-9Y-9bk" userLabel="Middle Scroll View">
@@ -714,6 +714,14 @@ Cg
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZk-IF-fVK">
+                                <rect key="frame" x="40" y="89" width="31" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="取消"/>
+                                <connections>
+                                    <action selector="dismissButtonPressed:" destination="Mvo-e2-cGd" eventType="touchUpInside" id="jrE-XH-p5q"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1qh-oX-I6h"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -751,7 +759,7 @@ Cg
                                                             <segue destination="cr2-6I-Rrh" kind="embed" identifier="embeddedCalendarContainer" id="XZJ-WO-7s9"/>
                                                         </connections>
                                                     </containerView>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3mS-th-jQR" userLabel="Instruction View">
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3mS-th-jQR" userLabel="Instruction View">
                                                         <rect key="frame" x="0.0" y="450" width="384" height="100"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N1o-Fm-9M8">
@@ -888,7 +896,6 @@ Cg
                     <connections>
                         <outlet property="absentLabel" destination="e0z-u3-R5E" id="1d6-Zn-wDX"/>
                         <outlet property="calendarView" destination="rPK-k0-tHl" id="cBC-LO-awm"/>
-                        <outlet property="instructionView" destination="3mS-th-jQR" id="6VX-P4-Ufo"/>
                         <outlet property="mediumView" destination="NaE-mY-8uJ" id="wkX-Xm-RMS"/>
                         <outlet property="notInPlanLabel" destination="N1o-Fm-9M8" id="jh0-Ud-T74"/>
                         <outlet property="presentLabel" destination="liq-xP-jsz" id="TYH-bI-GfO"/>

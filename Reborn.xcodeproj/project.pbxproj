@@ -45,6 +45,7 @@
 		22C23A19258DC5D700D4BEB2 /* QuittingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C23A18258DC5D700D4BEB2 /* QuittingItem.swift */; };
 		22C23A1E258DC5FB00D4BEB2 /* PersistingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C23A1D258DC5FB00D4BEB2 /* PersistingItem.swift */; };
 		22C23A27258DCE4500D4BEB2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C23A26258DCE4500D4BEB2 /* HomeViewController.swift */; };
+		22C4971D25C635BD00007984 /* DismissTimeMachineSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4971C25C635BD00007984 /* DismissTimeMachineSegue.swift */; };
 		22C5D967258F3E4400131964 /* SetUpEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5D966258F3E4400131964 /* SetUpEngine.swift */; };
 		22C5D975258F40E800131964 /* SetUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5D974258F40E800131964 /* SetUpPage.swift */; };
 		22D354B425A595B7004F5667 /* UserCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D354B325A595B7004F5667 /* UserCenterViewController.swift */; };
@@ -124,6 +125,7 @@
 		22C23A18258DC5D700D4BEB2 /* QuittingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuittingItem.swift; sourceTree = "<group>"; };
 		22C23A1D258DC5FB00D4BEB2 /* PersistingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistingItem.swift; sourceTree = "<group>"; };
 		22C23A26258DCE4500D4BEB2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		22C4971C25C635BD00007984 /* DismissTimeMachineSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissTimeMachineSegue.swift; sourceTree = "<group>"; };
 		22C5D966258F3E4400131964 /* SetUpEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpEngine.swift; sourceTree = "<group>"; };
 		22C5D974258F40E800131964 /* SetUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpPage.swift; sourceTree = "<group>"; };
 		22D354B325A595B7004F5667 /* UserCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCenterViewController.swift; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 			children = (
 				225AD13325A86ED80040E356 /* FadeInSegue.swift */,
 				22916DB425C05F0D004A3EC4 /* PresentTimeMachineSegue.swift */,
+				22C4971C25C635BD00007984 /* DismissTimeMachineSegue.swift */,
 			);
 			path = "Custom Segue";
 			sourceTree = "<group>";
@@ -522,6 +525,7 @@
 				220B7286258A288000E4BEDC /* WelcomeViewController.swift in Sources */,
 				22C5D975258F40E800131964 /* SetUpPage.swift in Sources */,
 				220B7282258A288000E4BEDC /* AppDelegate.swift in Sources */,
+				22C4971D25C635BD00007984 /* DismissTimeMachineSegue.swift in Sources */,
 				225AD11625A6C8620040E356 /* UIColor.swift in Sources */,
 				22916DB525C05F0D004A3EC4 /* PresentTimeMachineSegue.swift in Sources */,
 				220B7284258A288000E4BEDC /* SceneDelegate.swift in Sources */,

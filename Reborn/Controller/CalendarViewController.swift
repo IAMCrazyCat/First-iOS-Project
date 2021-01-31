@@ -213,34 +213,49 @@ class CalendarViewController: UIViewController {
     
     @IBAction func startMonthButtonPressed(_ sender: UIButton!) {
         self.item!.creationDate = CustomDate(year: 2018, month: 12, day: 12)
-        
+
         
         if item != nil {
             
             if state == .normal {
                 
-                let startDate = item!.creationDate
-                self.currentCalendarPage! = CalendarPage(year: startDate.year, month: startDate.month, punchedInDays: getPunchedInDays(pageYear: startDate.year, pageMonth: startDate.month))
-        
+                let startDate = self.item!.creationDate
+                self.currentCalendarPage! = CalendarPage(year: startDate.year, month: startDate.month, punchedInDays: self.getPunchedInDays(pageYear: startDate.year, pageMonth: startDate.month))
                 self.updateUI()
-                self.delegate?.calendarPageDidGoStartMonth()
+                
             } else if state == .timeMachine {
                 
+//                var times: Int = 0
+//                Timer.scheduledTimer(withTimeInterval: 0.35, repeats: true) { timer in
+//                    
+//                    if times >= 5 {
+//                        timer.invalidate()
+//                        let startDate = self.item!.creationDate
+//                        self.currentCalendarPage! = CalendarPage(year: startDate.year, month: startDate.month, punchedInDays: self.getPunchedInDays(pageYear: startDate.year, pageMonth: startDate.month))
+//                
+//                        self.updateUI()
+//
+//                        
+//                    }
+//                    self.lastMonthButtonPressed(UIButton())
+//                    times += 1
+//                }
             }
-            
           
         }
+        self.delegate?.calendarPageDidGoStartMonth()
        
     }
     
+    
+  
     @objc func clickLastMonth() {
-        self.lastMonthButtonPressed(UIButton())
+       
     }
     
     
     
     @IBAction func thisMonthButtonPressed(_ sender: UIButton!) {
-        
         
         self.currentCalendarPage! = CalendarPage(year: self.engine.currentDate.year, month: self.engine.currentDate.month, punchedInDays: self.getPunchedInDays(pageYear: self.engine.currentDate.year, pageMonth: self.engine.currentDate.month))
         self.updateUI()

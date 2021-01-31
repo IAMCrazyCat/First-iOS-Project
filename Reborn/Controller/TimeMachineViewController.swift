@@ -16,11 +16,16 @@ class TimeMachineViewController: UIViewController {
     let setting: SystemStyleSetting = SystemStyleSetting.shared
     var calendarPages: Array<UIView> = []
     var userDidGo: NewCalendarPage = .noWhere
+    var animationSpeed: TimeInterval = 0.0
     
+    var animationThredIsFinished: Bool = true
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        animationSpeed = self.setting.timeMachineAnimationNormalSpeed
+    }
+    
+    @IBAction func dismissButtonPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func updateCalendarPagesColor() {
@@ -76,7 +81,7 @@ class TimeMachineViewController: UIViewController {
             
             self.view.insertSubview(newCalendarPage, belowSubview: self.calendarPages[index])
             
-            UIView.animate(withDuration: 1, delay: 0, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: self.animationSpeed, delay: 0, options: .curveEaseOut, animations: {
                 newCalendarPage.frame.origin.y -= cordinateYDifference
             
             })
@@ -193,11 +198,11 @@ class TimeMachineViewController: UIViewController {
     
     func updateOtherCalendarPages() {
         
-        
-        UIView.animate(withDuration: 0.35, delay: 0, options: .curveEaseOut, animations: {
+        self.animationThredIsFinished = false
+        print(self.animationSpeed)
+        UIView.animate(withDuration: self.animationSpeed, delay: 0, options: .curveLinear, animations: {
             
-   
-            for index in 0 ... self.calendarPages.count - 1 {
+               for index in 0 ... self.calendarPages.count - 1 {
                 
                 let backCalendarPage = self.calendarPages[index]
                 let scale: CGFloat = self.setting.newCalendarPageSizeDifference
@@ -278,17 +283,26 @@ class TimeMachineViewController: UIViewController {
                 self.calendarPages.last!.removeFromSuperview()
                 self.calendarPages.remove(at: self.calendarPages.count - 1)
             }
+            
+            self.animationThredIsFinished = true
            
         }
     }
     
     
     func updateUI() {
-
-        addNewCalendarPage()
-        addTempCalendarPage()
-        updateOtherCalendarPages()
-        updateCalendarPagesColor()
+        
+        if calendarViewController != nil {
+            userDidGo = calendarViewController!.userDidGo
+        }
+        
+        if animationThredIsFinished {
+            addNewCalendarPage()
+            addTempCalendarPage()
+            updateOtherCalendarPages()
+            updateCalendarPagesColor()
+        }
+       
         
     }
     
@@ -299,23 +313,19 @@ extension TimeMachineViewController: CalendarViewDegelagte {
     }
     
     func calendarPageDidGoLastMonth() {
-        if calendarViewController != nil {
-            userDidGo = calendarViewController!.userDidGo
-        }
         
         updateUI()
         
     }
     
     func calendarPageDidGoNextMonth() {
-        if calendarViewController != nil {
-            userDidGo = calendarViewController!.userDidGo
-        }
+       
         updateUI()
     }
     
     func calendarPageDidGoStartMonth() {
-        
+        //self.animationSpeed = self.setting.timeMachineAnimationFastSpeed
+        updateUI()
     }
     
     func calendarPageDidGoThisMonth() {
