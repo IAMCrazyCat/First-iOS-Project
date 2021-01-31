@@ -14,13 +14,13 @@ class TimeMachineCalendarPageBuilder {
     var calendarViewController: CalendarViewController
     var outputCalendarpageView: UIView? = nil
     var calendarView: UIView
-    var userDidGo: NewCalendarPage
+    var monthDifference: Int
     
-    init(interactableCalendarView calendarView: UIView, calendarViewController: CalendarViewController, userDidGo: NewCalendarPage) {
+    init(interactableCalendarView calendarView: UIView, calendarViewController: CalendarViewController, monthDifference: Int) {
         
         self.calendarView = calendarView
         self.calendarViewController = calendarViewController
-        self.userDidGo = userDidGo
+        self.monthDifference = monthDifference
     }
     
     public func buildCalendarPage() -> UIView {
@@ -52,11 +52,10 @@ class TimeMachineCalendarPageBuilder {
                 let dateLabel = UILabel()
                 dateLabel.frame = referenceLabel.frame
                 
-                if userDidGo == .lastMonth {
-                    dateLabel.text = "\(self.calendarViewController.nextPageYear)年 \(self.calendarViewController.nextPageMonth)月"
-                } else if userDidGo == .nextMonth {
-                    dateLabel.text = "\(self.calendarViewController.lastPageYear)年 \(self.calendarViewController.lastPageMonth)月"
+                if let currentYear = self.calendarViewController.currentCalendarPage?.year, let currentMonth = self.calendarViewController.currentCalendarPage?.month {
+                    dateLabel.text = "\(DateCalculator(currentYear: currentYear, currentMonth: currentMonth, monthDifference: self.monthDifference).yearResult)年 \(DateCalculator(currentYear: currentYear, currentMonth: currentMonth, monthDifference: self.monthDifference).monthResult)月"
                 }
+                
                 
                 topView.addSubview(dateLabel)
             }

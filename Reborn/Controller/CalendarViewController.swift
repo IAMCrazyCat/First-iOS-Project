@@ -73,36 +73,19 @@ class CalendarViewController: UIViewController {
     
     
     var lastPageYear: Int {
-        if self.currentCalendarPage!.month - 1 < 1 {
-            return self.currentCalendarPage!.year - 1
-        } else {
-            return self.currentCalendarPage!.year
-        }
+        return DateCalculator(currentYear: self.currentCalendarPage!.year, currentMonth: self.currentCalendarPage!.month, monthDifference: -1).yearResult
     }
     
     var lastPageMonth: Int {
-        if self.currentCalendarPage!.month - 1 < 1 {
-            return 12
-        } else {
-            return self.currentCalendarPage!.month - 1
-        }
+        return DateCalculator(currentYear: self.currentCalendarPage!.year, currentMonth: self.currentCalendarPage!.month, monthDifference: -1).monthResult
     }
     
     var nextPageYear: Int {
-        if self.currentCalendarPage!.month + 1 > 12 {
-            return self.currentCalendarPage!.year + 1
-        } else {
-            return self.currentCalendarPage!.year
-        }
+        return DateCalculator(currentYear: self.currentCalendarPage!.year, currentMonth: self.currentCalendarPage!.month, monthDifference: 1).yearResult
     }
     
-    
     var nextPageMonth: Int {
-        if self.currentCalendarPage!.month + 1 > 12 {
-            return 1
-        } else {
-            return self.currentCalendarPage!.month + 1
-        }
+        return DateCalculator(currentYear: self.currentCalendarPage!.year, currentMonth: self.currentCalendarPage!.month, monthDifference: 1).monthResult
     }
     
     var userDidGo: NewCalendarPage = .noWhere
@@ -217,30 +200,11 @@ class CalendarViewController: UIViewController {
         
         if item != nil {
             
-            if state == .normal {
-                
-                let startDate = self.item!.creationDate
-                self.currentCalendarPage! = CalendarPage(year: startDate.year, month: startDate.month, punchedInDays: self.getPunchedInDays(pageYear: startDate.year, pageMonth: startDate.month))
-                self.updateUI()
-                
-            } else if state == .timeMachine {
-                
-//                var times: Int = 0
-//                Timer.scheduledTimer(withTimeInterval: 0.35, repeats: true) { timer in
-//                    
-//                    if times >= 5 {
-//                        timer.invalidate()
-//                        let startDate = self.item!.creationDate
-//                        self.currentCalendarPage! = CalendarPage(year: startDate.year, month: startDate.month, punchedInDays: self.getPunchedInDays(pageYear: startDate.year, pageMonth: startDate.month))
-//                
-//                        self.updateUI()
-//
-//                        
-//                    }
-//                    self.lastMonthButtonPressed(UIButton())
-//                    times += 1
-//                }
-            }
+            
+            let startDate = self.item!.creationDate
+            self.currentCalendarPage! = CalendarPage(year: startDate.year, month: startDate.month, punchedInDays: self.getPunchedInDays(pageYear: startDate.year, pageMonth: startDate.month))
+            self.updateUI()
+ 
           
         }
         self.delegate?.calendarPageDidGoStartMonth()
