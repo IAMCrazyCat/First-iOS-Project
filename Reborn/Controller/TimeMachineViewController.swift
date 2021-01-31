@@ -19,6 +19,8 @@ class TimeMachineViewController: UIViewController {
     var animationSpeed: TimeInterval = 0.0
     
     var animationThredIsFinished: Bool = true
+    @IBOutlet weak var timeMachineLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         animationSpeed = self.setting.timeMachineAnimationNormalSpeed
@@ -95,6 +97,9 @@ class TimeMachineViewController: UIViewController {
     
     
     func inlitializeUI() {
+        for constraint in self.timeMachineLabel.constraints {
+            constraint.isActive = true
+        }
         
         if calendarView != nil {
             

@@ -21,6 +21,11 @@
 		223A777B25A41184004B3324 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223A777A25A41184004B3324 /* UIView.swift */; };
 		224A91842595FA7D00A896BE /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224A91832595FA7D00A896BE /* ItemType.swift */; };
 		224A919225971E9000A896BE /* ItemViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224A919125971E9000A896BE /* ItemViewBuilder.swift */; };
+		224E663525C6457900B71E8A /* TimeMachineStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E663425C6457900B71E8A /* TimeMachineStrategy.swift */; };
+		224E663D25C6465D00B71E8A /* LastMonthStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E663C25C6465D00B71E8A /* LastMonthStrategy.swift */; };
+		224E664225C6467100B71E8A /* StartMonthStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E664125C6467100B71E8A /* StartMonthStrategy.swift */; };
+		224E664725C6468D00B71E8A /* ThisMonthStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E664625C6468D00B71E8A /* ThisMonthStrategy.swift */; };
+		224E664C25C6469B00B71E8A /* NextMonthStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E664B25C6469B00B71E8A /* NextMonthStrategy.swift */; };
 		225AD11625A6C8620040E356 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AD11525A6C8620040E356 /* UIColor.swift */; };
 		225AD12225A80EB30040E356 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AD12125A80EB30040E356 /* UIApplication.swift */; };
 		225AD12A25A848A30040E356 /* Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AD12925A848A30040E356 /* Selector.swift */; };
@@ -101,6 +106,11 @@
 		223A777A25A41184004B3324 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		224A91832595FA7D00A896BE /* ItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
 		224A919125971E9000A896BE /* ItemViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewBuilder.swift; sourceTree = "<group>"; };
+		224E663425C6457900B71E8A /* TimeMachineStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineStrategy.swift; sourceTree = "<group>"; };
+		224E663C25C6465D00B71E8A /* LastMonthStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastMonthStrategy.swift; sourceTree = "<group>"; };
+		224E664125C6467100B71E8A /* StartMonthStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartMonthStrategy.swift; sourceTree = "<group>"; };
+		224E664625C6468D00B71E8A /* ThisMonthStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThisMonthStrategy.swift; sourceTree = "<group>"; };
+		224E664B25C6469B00B71E8A /* NextMonthStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextMonthStrategy.swift; sourceTree = "<group>"; };
 		225AD11525A6C8620040E356 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		225AD12125A80EB30040E356 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		225AD12925A848A30040E356 /* Selector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selector.swift; sourceTree = "<group>"; };
@@ -223,6 +233,7 @@
 		220B72B4258C68FB00E4BEDC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				224E663325C6454100B71E8A /* Strategy */,
 				22AAD46A25922C06005078B6 /* Manager */,
 				221E0B8625A9A20A00386FE1 /* Enum */,
 				221E0B7A25A9273300386FE1 /* Model */,
@@ -305,6 +316,18 @@
 				22BABF2325C3ECBA00168AE1 /* TimeMachineCalendarPageBuilder.swift */,
 			);
 			path = Builder;
+			sourceTree = "<group>";
+		};
+		224E663325C6454100B71E8A /* Strategy */ = {
+			isa = PBXGroup;
+			children = (
+				224E663425C6457900B71E8A /* TimeMachineStrategy.swift */,
+				224E663C25C6465D00B71E8A /* LastMonthStrategy.swift */,
+				224E664125C6467100B71E8A /* StartMonthStrategy.swift */,
+				224E664625C6468D00B71E8A /* ThisMonthStrategy.swift */,
+				224E664B25C6469B00B71E8A /* NextMonthStrategy.swift */,
+			);
+			path = Strategy;
 			sourceTree = "<group>";
 		};
 		225AD13825A872180040E356 /* Custom Segue */ = {
@@ -500,7 +523,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				224E663D25C6465D00B71E8A /* LastMonthStrategy.swift in Sources */,
 				22E9A855259ED1B40073D432 /* PikerViewData.swift in Sources */,
+				224E664C25C6469B00B71E8A /* NextMonthStrategy.swift in Sources */,
 				228ED3E625B94D630054591F /* CalendarCell.swift in Sources */,
 				2279C17E2592ED2F00566CD7 /* UserStyleSetting.swift in Sources */,
 				223A777B25A41184004B3324 /* UIView.swift in Sources */,
@@ -521,8 +546,10 @@
 				22D6195225A0238E00EC9396 /* PopUpViewPresentationController.swift in Sources */,
 				22A597F925986685008E2A06 /* AddItemViewController.swift in Sources */,
 				22C23A19258DC5D700D4BEB2 /* QuittingItem.swift in Sources */,
+				224E664225C6467100B71E8A /* StartMonthStrategy.swift in Sources */,
 				22E9A875259F33F50073D432 /* PopUpViewController.swift in Sources */,
 				220B7286258A288000E4BEDC /* WelcomeViewController.swift in Sources */,
+				224E663525C6457900B71E8A /* TimeMachineStrategy.swift in Sources */,
 				22C5D975258F40E800131964 /* SetUpPage.swift in Sources */,
 				220B7282258A288000E4BEDC /* AppDelegate.swift in Sources */,
 				22C4971D25C635BD00007984 /* DismissTimeMachineSegue.swift in Sources */,
@@ -538,6 +565,7 @@
 				221E0B7C25A9273E00386FE1 /* User.swift in Sources */,
 				22FCB1BA258D907C006A0D39 /* SystemStyleSetting.swift in Sources */,
 				22C23A1E258DC5FB00D4BEB2 /* PersistingItem.swift in Sources */,
+				224E664725C6468D00B71E8A /* ThisMonthStrategy.swift in Sources */,
 				22C23A0F258DC4FA00D4BEB2 /* AppEngine.swift in Sources */,
 				22A597FE2599C0AF008E2A06 /* WeekDay.swift in Sources */,
 				225AD13425A86ED80040E356 /* FadeInSegue.swift in Sources */,

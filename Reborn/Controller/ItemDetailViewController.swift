@@ -14,10 +14,7 @@ class ItemDetailViewController: UIViewController {
     @IBOutlet weak var calendarView: UIView!
     @IBOutlet weak var mediumView: UIView!
     
-    @IBOutlet weak var instructionView: UIView!
-    @IBOutlet weak var notInPlanLabel: UILabel!
-    @IBOutlet weak var absentLabel: UILabel!
-    @IBOutlet weak var presentLabel: UILabel!
+
     
     @IBOutlet weak var verticallyScrollContentView: UIView!
     
@@ -29,8 +26,7 @@ class ItemDetailViewController: UIViewController {
     
     var dayCellFrame: CGRect? {
         didSet {
-            self.notInPlanLabel.frame = dayCellFrame!
-            self.notInPlanLabel.layoutIfNeeded()
+
         }
         
     }
@@ -43,9 +39,7 @@ class ItemDetailViewController: UIViewController {
         
         calendarView.layer.cornerRadius = setting.itemCardCornerRadius
 
-        absentLabel.backgroundColor = .white
-        notInPlanLabel.backgroundColor = UserStyleSetting.themeColor.withAlphaComponent(0.5)
-        presentLabel.backgroundColor = UserStyleSetting.themeColor
+
         setUpUI()
     }
     
@@ -106,32 +100,6 @@ class ItemDetailViewController: UIViewController {
 extension ItemDetailViewController: CalendarViewDegelagte {
     
     func calendarCellDidLayout(size: CGSize) {
-        
-
-        self.absentLabel.widthAnchor.constraint(equalToConstant: size.width).isActive = true
-        self.absentLabel.heightAnchor.constraint(equalToConstant: size.height).isActive = true
-        self.absentLabel.layoutIfNeeded()
-        self.instructionView.layoutIfNeeded()
-        self.absentLabel.layer.cornerRadius = self.absentLabel.frame.width / 2
-        self.absentLabel.layer.borderWidth = 0.1
-        self.absentLabel.layer.masksToBounds = true
-        
-
-        self.notInPlanLabel.centerXAnchor.constraint(equalTo: self.instructionView.centerXAnchor).isActive = true
-        self.notInPlanLabel.widthAnchor.constraint(equalToConstant: size.width).isActive = true
-        self.notInPlanLabel.heightAnchor.constraint(equalToConstant: size.height).isActive = true
-        self.instructionView.layoutIfNeeded()
-        self.notInPlanLabel.layer.cornerRadius = self.notInPlanLabel.frame.width / 2
-        self.notInPlanLabel.layer.masksToBounds = true
-        
-
-        self.presentLabel.widthAnchor.constraint(equalToConstant: size.width).isActive = true
-        self.presentLabel.heightAnchor.constraint(equalToConstant: size.height).isActive = true
-        self.instructionView.layoutIfNeeded()
-        self.presentLabel.layer.cornerRadius = self.presentLabel.frame.width / 2
-        self.presentLabel.layer.masksToBounds = true
-        
-        
         
     }
     
