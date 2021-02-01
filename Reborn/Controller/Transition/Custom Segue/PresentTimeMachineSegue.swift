@@ -42,27 +42,25 @@ class TimeMachineViewPresentAnimationController: NSObject, UIViewControllerAnima
         
         //let fromViewController = transitionContext.viewController(forKey: .from) as! CalendarViewController
         let containerView = transitionContext.containerView
-        let toViewController = transitionContext.viewController(forKey: .to) as! TimeMachineViewController
-        
-
-        print("transition")
-        if toViewController.calendarView != nil {
-
+        if let toViewController = transitionContext.viewController(forKey: .to) as? TimeMachineViewController {
+            
+            
             //toViewController.view.addSubview(toViewController.calendarView!)
             containerView.addSubview(toViewController.view)
+            toViewController.view.backgroundColor = UIColor.white.withAlphaComponent(0)
             toViewController.inlitialize()
-        }
-        
-        toViewController.view.backgroundColor = UIColor.white.withAlphaComponent(0)
-        
-        UIView.animate(withDuration: 0.8, animations: {
-            toViewController.view.backgroundColor = UIColor.white.withAlphaComponent(1)
-        }) { _ in
             
-            transitionContext.completeTransition(true)
- 
+            UIView.animate(withDuration: 0.8, animations: {
+                toViewController.view.backgroundColor = UIColor.white.withAlphaComponent(1)
+            }) { _ in
+                
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+     
+            }
+            
         }
         
+       
         
     }
     

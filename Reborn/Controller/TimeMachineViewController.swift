@@ -18,8 +18,8 @@ class TimeMachineViewController: UIViewController {
     var userDidGo: NewCalendarPage = .noWhere
     var animationSpeed: TimeInterval = 0.0
     
-    var animationThredIsFinished: Bool = true
-    var strategy: TimeMachinePagesBehaviorStrategy? = nil
+   
+    var strategy: TimeMachineAnimationStrategy? = nil
     
     @IBOutlet weak var timeMachineLabel: UILabel!
     
@@ -67,27 +67,32 @@ class TimeMachineViewController: UIViewController {
         self.strategy = StillStrategy(viewController: self)
         
         for constraint in self.timeMachineLabel.constraints {
-            constraint.isActive = true
+            constraint.isActive = false
         }
         
         if calendarView != nil {
+            let newCalendarPage = UIView()
+            newCalendarPage.backgroundColor = self.setting.calendarPageColor
+            newCalendarPage.frame = self.calendarView!.frame
+            newCalendarPage.layer.cornerRadius = self.setting.itemCardCornerRadius
+            newCalendarPage.setViewShadow()
             
-            self.view.addSubview(calendarView!)
-            self.calendarView!.frame.origin = calendarViewPosition!
-            self.calendarView!.layer.cornerRadius = self.setting.itemCardCornerRadius
-            self.calendarView!.layer.masksToBounds = true
-            self.calendarView!.setViewShadow()
-            self.calendarPages.append(calendarView!)
+            //newCalendarPage.addSubview(calendarView!)
             
-           
-            
+            self.view.addSubview(newCalendarPage)
+//            self.calendarView!.frame.origin = calendarViewPosition!
+//            self.calendarView!.layer.cornerRadius = self.setting.itemCardCornerRadius
+//            self.calendarView!.layer.masksToBounds = true
+//            self.calendarView!.setViewShadow()
+            self.calendarPages.append(newCalendarPage)
+   
             UIView.animate(withDuration: 0.8, delay: 0, options: .curveEaseOut, animations: {
 
                 self.calendarView!.frame.origin.y = self.setting.screenFrame.height / 2 -  self.calendarView!.frame.height / 2
             }) { _ in
                 
                 self.initializeCalendarPages()
-                self.strategy?.updateCalendarPages()
+                self.strategy?.excuteCalendarPagesAnimation()
             }
         }
         
@@ -96,39 +101,50 @@ class TimeMachineViewController: UIViewController {
     
    
     func updateUI() {
-        
-        if animationThredIsFinished {
-            strategy?.updateCalendarPages()
-        }
-       
-        
+        self.strategy?.excuteCalendarPagesAnimation()
     }
     
 }
+
 extension TimeMachineViewController: CalendarViewDegelagte {
     func calendarCellDidLayout(size: CGSize) {
         
     }
     
     func calendarPageDidGoLastMonth() {
+        self.animationSpeed = self.setting.timeMachineAnimationNormalSpeed
         self.strategy = ForwardForOneStrategy(viewController: self)
         updateUI()
         
     }
     
     func calendarPageDidGoNextMonth() {
+        self.animationSpeed = self.setting.timeMachineAnimationNormalSpeed
         self.strategy = BackwardForOneStrategy(viewController: self)
         updateUI()
     }
     
     func calendarPageDidGoStartMonth() {
-        self.strategy = ForwardForManyStrategy(viewController: self)
+        self.animationSpeed = self.setting.timeMachineAnimationFastSpeed
+        if let monthInterval = self.calendarViewController?.storedMonthInterval, monthInterval < 0 {
+            self.strategy = ForwardForManyStrategy(viewController: self)
+            
+        } else if let monthInterval = self.calendarViewController?.storedMonthInterval, monthInterval > 0 {
+            self.strategy = BackwardForManyStrategy(viewController: self)
+        }
+        
         updateUI()
     }
     
     func calendarPageDidGoThisMonth() {
-        self.strategy = ForwardForManyStrategy(viewController: self)
-
+        self.animationSpeed = self.setting.timeMachineAnimationFastSpeed
+        if let monthInterval = self.calendarViewController?.storedMonthInterval, monthInterval < 0 {
+            self.strategy = ForwardForManyStrategy(viewController: self)
+            
+        } else if let monthInterval = self.calendarViewController?.storedMonthInterval, monthInterval > 0 {
+            self.strategy = BackwardForManyStrategy(viewController: self)
+        }
+        updateUI()
     }
     
     

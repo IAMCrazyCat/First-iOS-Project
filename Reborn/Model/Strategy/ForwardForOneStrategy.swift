@@ -47,24 +47,25 @@ class ForwardForOneStrategy: PagesBehaviorStrategy {
         self.viewController.calendarPages.append(newCalendarPage)
     }
     
-    override func addTempCalendarPage() {
+    override func updateTempCalendarPage() {
         
         if self.viewController.calendarViewController != nil {
 
-            let builder = TimeMachineCalendarPageBuilder(interactableCalendarView: self.viewController.calendarPages.first!.subviews.first!, calendarViewController: self.viewController.calendarViewController!, monthDifference: 1)
-            let tempCalendarPage = builder.buildCalendarPage()
-            tempCalendarPage.accessibilityIdentifier = "TempCalendarPageView"
-            
-            self.removeOldTempCalendarPage(superview: self.viewController.calendarPages.first!)
-            self.viewController.calendarPages.first!.addSubview(tempCalendarPage) // add temp calendar page to that will disapear
+            for index in 0 ... self.viewController.calendarPages.count - 1 {
+                let builder = TimeMachineCalendarPageBuilder(interactableCalendarView: self.viewController.calendarPages.first!.subviews.first!, calendarViewController: self.viewController.calendarViewController!, monthDifference: -index + 1)
+                let tempCalendarPage = builder.buildCalendarPage()
+                tempCalendarPage.accessibilityIdentifier = "TempCalendarPageView"
                 
-            
+                self.removeOldTempCalendarPage(superview: self.viewController.calendarPages[index])
+                self.viewController.calendarPages[index].addSubview(tempCalendarPage) // add temp calendar page to that will disapear
+            }
+               
+    
            
         }
     }
     
-    override func updateOtherCalendarPages() {
-        self.viewController.animationThredIsFinished = false
+    override func updateCalendarPages() {
 
         UIView.animate(withDuration: self.viewController.animationSpeed, delay: 0, options: .curveLinear, animations: {
             
@@ -109,8 +110,7 @@ class ForwardForOneStrategy: PagesBehaviorStrategy {
             // remove the first calendar page
             self.viewController.calendarPages.first?.removeFromSuperview()
             self.viewController.calendarPages.remove(at: 0)
-            self.viewController.animationThredIsFinished = true
-           
+
         }
     }
     

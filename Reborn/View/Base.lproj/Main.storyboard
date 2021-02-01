@@ -288,7 +288,7 @@ Cg
             <objects>
                 <viewController id="yhk-VJ-4nb" customClass="AddItemViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5tU-dT-BVc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eis-9Y-9bk" userLabel="Middle Scroll View">
@@ -714,17 +714,36 @@ Cg
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZk-IF-fVK">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZk-IF-fVK">
                                 <rect key="frame" x="29" y="80" width="48" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Cancel"/>
                                 <connections>
                                     <action selector="dismissButtonPressed:" destination="Mvo-e2-cGd" eventType="touchUpInside" id="jrE-XH-p5q"/>
                                 </connections>
                             </button>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eMM-e1-NFx" userLabel="Calendar View">
+                                <rect key="frame" x="15" y="248" width="384" height="400"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="66T-BL-AnF"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="400" id="jaW-Ua-s0d"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="400" id="tww-n4-KP0"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="cr2-6I-Rrh" kind="embed" id="c56-WA-1tn"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1qh-oX-I6h"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="1qh-oX-I6h" firstAttribute="trailing" secondItem="eMM-e1-NFx" secondAttribute="trailing" constant="15" id="9em-X3-aKI"/>
+                            <constraint firstItem="eMM-e1-NFx" firstAttribute="centerY" secondItem="5lr-0C-ef3" secondAttribute="centerY" id="GBd-BP-nnX"/>
+                            <constraint firstItem="sZk-IF-fVK" firstAttribute="leading" secondItem="1qh-oX-I6h" secondAttribute="leading" constant="29" id="XMf-KJ-RRL"/>
+                            <constraint firstItem="eMM-e1-NFx" firstAttribute="centerX" secondItem="5lr-0C-ef3" secondAttribute="centerX" id="akY-UV-mVF"/>
+                            <constraint firstItem="eMM-e1-NFx" firstAttribute="leading" secondItem="1qh-oX-I6h" secondAttribute="leading" constant="15" id="s0n-gj-pSv"/>
+                            <constraint firstItem="sZk-IF-fVK" firstAttribute="top" secondItem="1qh-oX-I6h" secondAttribute="top" constant="36" id="st3-TC-FLf"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="t6j-P3-uLL"/>
                     <connections>
@@ -733,7 +752,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yc2-3N-qUW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2882.608695652174" y="2452.9017857142858"/>
+            <point key="canvasLocation" x="4130" y="2453"/>
         </scene>
         <!--项目名-->
         <scene sceneID="mE3-UO-mLP">
@@ -753,10 +772,10 @@ Cg
                                                 <rect key="frame" x="15" y="43" width="384" height="450"/>
                                                 <subviews>
                                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rPK-k0-tHl" userLabel="Calendar View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="384" height="450"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="384" height="430"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="450" id="AF9-H6-ena"/>
+                                                            <constraint firstAttribute="height" constant="430" id="AF9-H6-ena"/>
                                                         </constraints>
                                                         <connections>
                                                             <segue destination="cr2-6I-Rrh" kind="embed" identifier="embeddedCalendarContainer" id="XZJ-WO-7s9"/>
@@ -837,7 +856,6 @@ Cg
                         <outlet property="mediumView" destination="NaE-mY-8uJ" id="wkX-Xm-RMS"/>
                         <outlet property="topView" destination="bQ8-um-Suf" id="VRJ-pb-aSQ"/>
                         <outlet property="verticallyScrollContentView" destination="fhM-A8-SwE" id="pSw-vl-EcR"/>
-                        <segue destination="Mvo-e2-cGd" kind="custom" identifier="goTimeMachineView" customClass="PresentTimeMachineSegue" customModule="Reborn" customModuleProvider="target" id="WNi-O5-bPO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HgK-x9-47n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1499,7 +1517,7 @@ Cg
             <objects>
                 <viewController id="cr2-6I-Rrh" customClass="CalendarViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jX3-MM-9D0">
-                        <rect key="frame" x="0.0" y="0.0" width="384" height="450"/>
+                        <rect key="frame" x="0.0" y="0.0" width="384" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RwH-pK-cja" userLabel="Top View">
@@ -1665,10 +1683,10 @@ Cg
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CyJ-kQ-0F2" userLabel="Bottom View">
-                                <rect key="frame" x="0.0" y="140" width="384" height="310"/>
+                                <rect key="frame" x="0.0" y="140" width="384" height="260"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zYE-Pq-52Y">
-                                        <rect key="frame" x="30" y="0.0" width="324" height="290"/>
+                                        <rect key="frame" x="30" y="0.0" width="324" height="240"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="mXR-mX-f4e">
                                             <size key="itemSize" width="128" height="128"/>
@@ -1717,6 +1735,7 @@ Cg
                         <outlet property="thisMonthButton" destination="djk-JB-I2X" id="Z0K-DV-oE9"/>
                         <outlet property="timeMachineButton" destination="WWW-ka-0QZ" id="IHt-vu-FTo"/>
                         <outlet property="topView" destination="RwH-pK-cja" id="YLy-qL-yPX"/>
+                        <segue destination="Mvo-e2-cGd" kind="custom" identifier="goTimeMachineView" customClass="PresentTimeMachineSegue" customModule="Reborn" customModuleProvider="target" id="uhl-kh-ZNW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0yh-h8-X9z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1740,7 +1759,7 @@ Cg
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="XZJ-WO-7s9"/>
+        <segue reference="c56-WA-1tn"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="AvatarMale" width="256" height="256"/>

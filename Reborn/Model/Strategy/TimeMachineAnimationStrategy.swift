@@ -6,9 +6,7 @@
 //
 
 import Foundation
-protocol TimeMachinePagesBehaviorStrategy {
+protocol TimeMachineAnimationStrategy {
     
-    func updateCalendarPages()
-
-
+    func excuteCalendarPagesAnimation()
 }

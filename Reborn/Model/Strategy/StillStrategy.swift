@@ -10,8 +10,9 @@ import UIKit
 class StillStrategy: PagesBehaviorStrategy {
     
     
-    override func updateCalendarPages() {
+    override func excuteCalendarPagesAnimation() {
         updateCalendarPagesColor()
+        updateTempCalendarPage()
     }
     
     override func updateCalendarPagesColor() {
@@ -36,11 +37,24 @@ class StillStrategy: PagesBehaviorStrategy {
 
     }
     
-    override func addTempCalendarPage() {
+    override func updateTempCalendarPage() {
+        
+        if self.viewController.calendarViewController != nil {
+
+            for index in 1 ... 3 {
+                let builder = TimeMachineCalendarPageBuilder(interactableCalendarView: self.viewController.calendarPages.first!.subviews.first!, calendarViewController: self.viewController.calendarViewController!, monthDifference: -index)
+                let tempCalendarPage = builder.buildCalendarPage()
+                tempCalendarPage.accessibilityIdentifier = "TempCalendarPageView"
+                
+                self.removeOldTempCalendarPage(superview: self.viewController.calendarPages[index])
+                self.viewController.calendarPages[index].addSubview(tempCalendarPage) // add temp calendar page to that will disapear
+            }
+           
+        }
         
     }
     
-    override func updateOtherCalendarPages() {
+    override func updateCalendarPages() {
         
     }
     

@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 class BackwardForOneStrategy: PagesBehaviorStrategy {
+    
     override func updateCalendarPagesColor() {
         var r: CGFloat = 1
         var g: CGFloat = 1
@@ -45,21 +46,33 @@ class BackwardForOneStrategy: PagesBehaviorStrategy {
         self.viewController.calendarPages.insert(newCalendarPage, at: 0)
     }
     
-    override func addTempCalendarPage() {
+    override func updateTempCalendarPage() {
+        
         
         if self.viewController.calendarViewController != nil {
- 
-            let builder = TimeMachineCalendarPageBuilder(interactableCalendarView: self.viewController.calendarPages[1].subviews.first!, calendarViewController: self.viewController.calendarViewController!, monthDifference: -1)
+            
+            
+            let builder = TimeMachineCalendarPageBuilder(interactableCalendarView: self.viewController.calendarPages[1].subviews.first!, calendarViewController: self.viewController.calendarViewController!, monthDifference: 0)
             let tempCalendarPage = builder.buildCalendarPage()
             tempCalendarPage.accessibilityIdentifier = "TempCalendarPageView"
             self.removeOldTempCalendarPage(superview: self.viewController.calendarPages[1])
             self.viewController.calendarPages[1].addSubview(tempCalendarPage) // add temp calendar page to that will disapear
-
+            print(self.viewController.calendarPages[1].subviews)
+            
+            
+            for index in 0 ... self.viewController.calendarPages.count - 1 {
+                
+                let builder = TimeMachineCalendarPageBuilder(interactableCalendarView: self.viewController.calendarPages[1].subviews.first!, calendarViewController: self.viewController.calendarViewController!, monthDifference: -index)
+                let tempCalendarPage = builder.buildCalendarPage()
+                tempCalendarPage.accessibilityIdentifier = "TempCalendarPageView"
+                self.removeOldTempCalendarPage(superview: self.viewController.calendarPages[index])
+                self.viewController.calendarPages[index].addSubview(tempCalendarPage) // add temp calendar page to that will disapear
+                print(self.viewController.calendarPages[index].subviews)
+            }
         }
     }
     
-    override func updateOtherCalendarPages() {
-        self.viewController.animationThredIsFinished = false
+    override func updateCalendarPages() {
 
         UIView.animate(withDuration: self.viewController.animationSpeed, delay: 0, options: .curveLinear, animations: {
             
@@ -98,10 +111,10 @@ class BackwardForOneStrategy: PagesBehaviorStrategy {
                 }
             }
         }) { _ in
-            //self.backCalendarPages[1].subviews.first!.removeFromSuperview()
+
             self.viewController.calendarPages.last!.removeFromSuperview()
             self.viewController.calendarPages.remove(at: self.viewController.calendarPages.count - 1)
-            self.viewController.animationThredIsFinished = true
+
            
         }
     

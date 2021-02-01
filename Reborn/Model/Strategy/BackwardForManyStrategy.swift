@@ -9,43 +9,98 @@ import Foundation
 import UIKit
 class BackwardForManyStrategy: PagesBehaviorStrategy {
     
-    override func updateCalendarPagesColor() {
-        
-    }
+    var timesOfAnimationExcuted: Int = 0
+    var numberOfMovingPages = 1
     
-    override func addNewCalendarPage() {
+    override func excuteCalendarPagesAnimation() {
         
-    }
-    
-    override func addTempCalendarPage() {
-        if self.viewController.calendarViewController != nil {
-           
+        if let numberOfMovingPages = self.viewController.calendarViewController?.storedMonthInterval {
+            self.numberOfMovingPages = abs(numberOfMovingPages)
             
-            if self.viewController.userDidGo == .lastMonth {
-                
-                let builder = TimeMachineCalendarPageBuilder(interactableCalendarView: self.viewController.calendarPages.first!.subviews.first!, calendarViewController: self.viewController.calendarViewController!, monthDifference: 1)
-                let tempCalendarPage = builder.buildCalendarPage()
-                tempCalendarPage.accessibilityIdentifier = "TempCalendarPageView"
-                
-                self.removeOldTempCalendarPage(superview: self.viewController.calendarPages.first!)
-                self.viewController.calendarPages.first!.addSubview(tempCalendarPage) // add temp calendar page to that will disapear
-                
-            } else if self.viewController.userDidGo == .nextMonth {
-                
-                let builder = TimeMachineCalendarPageBuilder(interactableCalendarView: self.viewController.calendarPages[1].subviews.first!, calendarViewController: self.viewController.calendarViewController!, monthDifference: 1)
-                let tempCalendarPage = builder.buildCalendarPage()
-                tempCalendarPage.accessibilityIdentifier = "TempCalendarPageView"
-                self.removeOldTempCalendarPage(superview: self.viewController.calendarPages[1])
-                self.viewController.calendarPages[1].addSubview(tempCalendarPage) // add temp calendar page to that will disapear
+            if self.numberOfMovingPages > self.viewController.calendarPages.count {
+                self.numberOfMovingPages = self.viewController.calendarPages.count
             }
             
+        }
+       
+        if numberOfMovingPages > 0 { // if its current month, dont excute animation
+            updateCalendarPages()
+            updateCalendarPagesColor()
+        }
+        
+      
+    }
+    
+    
+    override func updateCalendarPagesColor() {
+        var r: CGFloat = 1
+        var g: CGFloat = 1
+        var b: CGFloat = 1
+        
+
+        for index in 0 ... self.viewController.calendarPages.count - 1 {
+            
+            let calendarPage = self.viewController.calendarPages[index]
+            calendarPage.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1)
+            
+            r -= self.setting.calendarPageColorDifference
+            g -= self.setting.calendarPageColorDifference
+            b -= self.setting.calendarPageColorDifference
            
+        }
+
+    }
+    
+    
+    
+    override func addNewCalendarPage() {
+        let newCalendarPage = UIView()
+        let scale = 1 / self.setting.newCalendarPageSizeDifference // new page is one unit larger than first page
+        newCalendarPage.backgroundColor = self.setting.calendarPageColor
+        newCalendarPage.frame = self.viewController.calendarPages.first!.frame
+        newCalendarPage.frame.origin.y =  self.viewController.calendarPages.first!.frame.origin.y + self.setting.newCalendarPageCordiateYDifference
+        newCalendarPage.transform =  CGAffineTransform(scaleX: scale, y: scale) // scale it accroding to first page to its proper size
+        
+        newCalendarPage.alpha = 0
+        newCalendarPage.layer.cornerRadius = self.setting.itemCardCornerRadius
+        newCalendarPage.setViewShadow()
+        
+        self.viewController.view.insertSubview(newCalendarPage, aboveSubview: self.viewController.calendarPages.first!)
+        self.viewController.calendarPages.insert(newCalendarPage, at: 0)
+    }
+    
+    override func updateTempCalendarPage() {
+        
+        
+        if self.viewController.calendarViewController != nil {
+            
+            
+            let builder = TimeMachineCalendarPageBuilder(interactableCalendarView: self.viewController.calendarPages[1].subviews.first!, calendarViewController: self.viewController.calendarViewController!, monthDifference: 0)
+            let tempCalendarPage = builder.buildCalendarPage()
+            tempCalendarPage.accessibilityIdentifier = "TempCalendarPageView"
+            self.removeOldTempCalendarPage(superview: self.viewController.calendarPages[1])
+            self.viewController.calendarPages[1].addSubview(tempCalendarPage) // add temp calendar page to that will disapear
+            
+            
+            for index in 0 ... self.viewController.calendarPages.count - 1 {
+                
+                let builder = TimeMachineCalendarPageBuilder(interactableCalendarView: self.viewController.calendarPages[1].subviews.first!, calendarViewController: self.viewController.calendarViewController!, monthDifference: -index)
+                let tempCalendarPage = builder.buildCalendarPage()
+                tempCalendarPage.accessibilityIdentifier = "TempCalendarPageView"
+                self.removeOldTempCalendarPage(superview: self.viewController.calendarPages[index])
+                self.viewController.calendarPages[index].addSubview(tempCalendarPage) // add temp calendar page to that will disapear
+            }
         }
     }
     
-    override func updateOtherCalendarPages() {
-        self.viewController.animationThredIsFinished = false
+    
+    override func updateCalendarPages() {
 
+        self.timesOfAnimationExcuted += 1
+        
+        self.addNewCalendarPage()
+        self.updateCalendarPagesColor()
+        self.updateTempCalendarPage()
         UIView.animate(withDuration: self.viewController.animationSpeed, delay: 0, options: .curveLinear, animations: {
             
                for index in 0 ... self.viewController.calendarPages.count - 1 {
@@ -56,82 +111,42 @@ class BackwardForManyStrategy: PagesBehaviorStrategy {
                 
                 if index == 0 {
                     
-                    if self.viewController.userDidGo == .lastMonth {
-                        // first calendar page disapear
-                        backCalendarPage.transform = CGAffineTransform(scaleX: 1 / scale, y: 1 / scale)
-                        backCalendarPage.frame.origin.y += self.setting.newCalendarPageCordiateYDifference
-                        backCalendarPage.alpha = 0
-                        
-                    } else if self.viewController.userDidGo == .nextMonth {
-                       
-                        let interactableCalendarView = self.viewController.calendarPages[1].subviews.first!
+                    
+                    if let interactableCalendarView = self.viewController.calendarPages[1].subviews.first
+                    {
                         backCalendarPage.insertSubview(interactableCalendarView, at: backCalendarPage.subviews.count)
-            
                         backCalendarPage.transform = CGAffineTransform(scaleX: CGFloat(backCalendarPage.transform.currentScale) * scale , y:   CGFloat(backCalendarPage.transform.currentScale) * scale)
                         backCalendarPage.frame.origin.y -= self.setting.newCalendarPageCordiateYDifference
-                        
-                        
                     }
-                   
+                    
+  
                 } else {
                     
                     if index == 1 {
-                        
-                        if self.viewController.userDidGo == .lastMonth {
-                            // send interacable calendar view to second calendar page
-                            let interactableCalendarView = self.viewController.calendarPages.first!.subviews.first!
-                            //backCalendarPage.addSubview(interactableCalendarView)
-                       
-                            backCalendarPage.insertSubview(interactableCalendarView, at: backCalendarPage.subviews.count)
-                        } else if self.viewController.userDidGo == .nextMonth {
-
-                           
-                        }
-                        
-                        
+ 
                     }
-                        
-                        if self.viewController.userDidGo == .lastMonth {
-                            
-
-            
-                            backCalendarPage.transform = CGAffineTransform(scaleX: CGFloat(backCalendarPage.transform.currentScale) / scale , y: CGFloat(backCalendarPage.transform.currentScale) / scale)
-                            backCalendarPage.frame.origin.y += self.setting.newCalendarPageCordiateYDifference
-                            
-                        } else if self.viewController.userDidGo == .nextMonth {
-                        
-                            backCalendarPage.transform = CGAffineTransform(scaleX: CGFloat(backCalendarPage.transform.currentScale) * scale , y:   CGFloat(backCalendarPage.transform.currentScale) * scale)
-                            backCalendarPage.frame.origin.y -= self.setting.newCalendarPageCordiateYDifference
-                        }
-                    
-                    
+                          
+                        backCalendarPage.transform = CGAffineTransform(scaleX: CGFloat(backCalendarPage.transform.currentScale) * scale , y:   CGFloat(backCalendarPage.transform.currentScale) * scale)
+                        backCalendarPage.frame.origin.y -= self.setting.newCalendarPageCordiateYDifference
                     
                     if index == self.viewController.calendarPages.count - 1 {
-                        
-                        if self.viewController.userDidGo == .nextMonth {
-                            backCalendarPage.alpha = 0 // last calendar page disappear
-                        }
+
+                        backCalendarPage.alpha = 0 // last calendar page disappear
+
                     }
                    
                 }
             }
         }) { _ in
+
+            self.viewController.calendarPages.last!.removeFromSuperview()
+            self.viewController.calendarPages.remove(at: self.viewController.calendarPages.count - 1)
             
-            if self.viewController.userDidGo == .lastMonth {
-                // remove the first calendar page
-                self.viewController.calendarPages.first?.removeFromSuperview()
-                self.viewController.calendarPages.remove(at: 0)
-                
-            } else if self.viewController.userDidGo == .nextMonth {
-                //self.backCalendarPages[1].subviews.first!.removeFromSuperview()
-                self.viewController.calendarPages.last?.removeFromSuperview()
-                self.viewController.calendarPages.remove(at: self.viewController.calendarPages.count - 1)
+            if self.timesOfAnimationExcuted < self.numberOfMovingPages {
+                    self.updateCalendarPages()
             }
-            
-            self.viewController.animationThredIsFinished = true
            
         }
-    
     }
     
 }

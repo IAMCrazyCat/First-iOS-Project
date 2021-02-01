@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-class PagesBehaviorStrategy: TimeMachinePagesBehaviorStrategy {
+class PagesBehaviorStrategy: TimeMachineAnimationStrategy {
 
     let viewController: TimeMachineViewController
     let setting: SystemStyleSetting = SystemStyleSetting.shared
@@ -16,10 +16,10 @@ class PagesBehaviorStrategy: TimeMachinePagesBehaviorStrategy {
         self.viewController = viewController
     }
     
-    public func updateCalendarPages() {
+    public func excuteCalendarPagesAnimation() {
         addNewCalendarPage()
-        addTempCalendarPage()
-        updateOtherCalendarPages()
+        updateTempCalendarPage()
+        updateCalendarPages()
         updateCalendarPagesColor()
     }
     
@@ -40,11 +40,11 @@ class PagesBehaviorStrategy: TimeMachinePagesBehaviorStrategy {
         
     }
     
-    internal func addTempCalendarPage() {
+    internal func updateTempCalendarPage() {
         
     }
     
-    internal func updateOtherCalendarPages() {
+    internal func updateCalendarPages() {
         
     }
     

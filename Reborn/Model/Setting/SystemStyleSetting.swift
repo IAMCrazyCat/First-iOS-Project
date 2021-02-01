@@ -107,7 +107,7 @@ struct SystemStyleSetting{
     let newCalendarPageSizeDifference: CGFloat = 0.95
     let calendarPageColorDifference: CGFloat = 0.02
     let numberOfCalendarPages: Int = 4 // at least 2
-    let timeMachineAnimationFastSpeed: TimeInterval = 0.1
+    let timeMachineAnimationFastSpeed: TimeInterval = 0.2
     let timeMachineAnimationNormalSpeed: TimeInterval = 0.35
     
     

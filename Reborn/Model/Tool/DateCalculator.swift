@@ -7,13 +7,15 @@
 
 import Foundation
 class DateCalculator {
-    private var currentYear: Int
-    private var currentMonth: Int
-    private var monthDifference: Int
+    private var currentYear: Int = 1997
+    private var currentMonth: Int = 4
+    open var monthInterval: Int = 0
+    private var newYear: Int = 2077
+    private var newMonth: Int = 4
     
     open var monthResult: Int {
-        if monthDifference < 0 {
-            var month = self.currentMonth + self.monthDifference
+        if monthInterval < 0 {
+            var month = self.currentMonth + self.monthInterval
             while month < 0 {
                 month = 12 + month
 
@@ -24,9 +26,9 @@ class DateCalculator {
             }
             return month
             
-        } else if monthDifference > 0 {
+        } else if monthInterval > 0 {
             
-            var month = monthDifference % 12 + self.currentMonth
+            var month = monthInterval % 12 + self.currentMonth
             
             if month > 12 {
                 month = month - 12
@@ -42,8 +44,8 @@ class DateCalculator {
     }
     
     open var yearResult: Int {
-        if monthDifference < 0 {
-            var month = self.currentMonth + self.monthDifference
+        if monthInterval < 0 {
+            var month = self.currentMonth + self.monthInterval
             var year = 0
             while month < 0 {
 
@@ -59,11 +61,11 @@ class DateCalculator {
             year = self.currentYear - year
             return year
             
-        } else if monthDifference > 0 {
+        } else if monthInterval > 0 {
             
-            let month = monthDifference % 12 + self.currentMonth
+            let month = monthInterval % 12 + self.currentMonth
             
-            var year = Int(monthDifference / 12) + self.currentYear
+            var year = Int(monthInterval / 12) + self.currentYear
             if month > 12 {
                 year += 1
                 
@@ -79,10 +81,21 @@ class DateCalculator {
       
     }
     
-    init(currentYear: Int, currentMonth: Int, monthDifference: Int) {
+    init(currentYear: Int, currentMonth: Int, monthInterval: Int) {
         self.currentYear = currentYear
         self.currentMonth = currentMonth
-        self.monthDifference = monthDifference
+        self.monthInterval = monthInterval
+    }
+    
+    init(currentYear: Int, currentMonth: Int, newYear: Int, newMonth: Int) {
+        self.currentYear = currentYear
+        self.currentMonth = currentMonth
+        self.newYear = newYear
+        self.newMonth = newMonth
+        
+        let yearInterval = newYear - currentYear
+        self.monthInterval = newMonth - currentMonth
+        self.monthInterval = yearInterval * 12 + self.monthInterval
     }
     
     

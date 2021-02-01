@@ -52,9 +52,10 @@ class TimeMachineCalendarPageBuilder {
                 let dateLabel = UILabel()
                 dateLabel.frame = referenceLabel.frame
                 
-                if let currentYear = self.calendarViewController.currentCalendarPage?.year, let currentMonth = self.calendarViewController.currentCalendarPage?.month {
-                    dateLabel.text = "\(DateCalculator(currentYear: currentYear, currentMonth: currentMonth, monthDifference: self.monthDifference).yearResult)年 \(DateCalculator(currentYear: currentYear, currentMonth: currentMonth, monthDifference: self.monthDifference).monthResult)月"
-                }
+                let currentYear = self.calendarViewController.currentCalendarPage.year
+                let currentMonth = self.calendarViewController.currentCalendarPage.month
+                dateLabel.text = "\(DateCalculator(currentYear: currentYear, currentMonth: currentMonth, monthInterval: self.monthDifference).yearResult)年 \(DateCalculator(currentYear: currentYear, currentMonth: currentMonth, monthInterval: self.monthDifference).monthResult)月"
+                
                 
                 
                 topView.addSubview(dateLabel)
