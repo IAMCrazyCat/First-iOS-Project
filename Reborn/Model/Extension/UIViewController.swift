@@ -10,12 +10,12 @@ import UIKit
 
 extension UIViewController: UIViewControllerTransitioningDelegate  {
     
-    func presentBottom(to toViewController: PopUpViewController) {
+    func presentBottom(to presenting: PopUpViewController) {
   
-        let detailsTransitioningDelegate = InteractiveModalTransitioningDelegate(from: self, to: toViewController)
-        toViewController.modalPresentationStyle = .custom
-        toViewController.transitioningDelegate = detailsTransitioningDelegate
-        self.present(toViewController, animated:true, completion: nil)
+        let detailsTransitioningDelegate = PopUpViewTransitioningDelegate(from: self, to: presenting)
+        presenting.modalPresentationStyle = .custom
+        presenting.transitioningDelegate = detailsTransitioningDelegate
+        self.present(presenting, animated:true, completion: nil)
      }
     
         

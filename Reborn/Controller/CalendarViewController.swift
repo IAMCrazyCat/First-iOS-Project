@@ -231,11 +231,7 @@ class CalendarViewController: UIViewController {
     }
     
     @IBAction func timeMachineButtonPressed(_ sender: Any) {
-//        if let viewController = superViewController as? ItemDetailViewController {
-//            viewController.goTimeMachineView()
-//        }
-        
-        self.performSegue(withIdentifier: "goTimeMachineView", sender: self)
+        self.presentTimeMachineView()
        
     }
     
@@ -298,6 +294,29 @@ class CalendarViewController: UIViewController {
         })
     }
     
+    
+    func presentTimeMachineView() {
+        //self.performSegue(withIdentifier: "goTimeMachineView", sender: self)
+        if let destinationViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TimeMachineViewController") as? TimeMachineViewController {
+            
+            let transitioningDeletage = TimeMachineTransitioningDelegate(from: self, to: destinationViewController)
+            
+            self.removeFromParent() // remove its original parent controler: ItemDetailViewController
+            let navBarheight = (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0) + (self.navigationController?.navigationBar.frame.height ?? 0.0)
+            destinationViewController.calendarView = self.view
+            destinationViewController.calendarViewPosition = CGPoint(x: self.topView.frame.origin.x, y:  self.topView.frame.origin.y + navBarheight)
+            destinationViewController.calendarViewController = self
+            self.delegate = destinationViewController
+            self.state = .timeMachine
+    
+            destinationViewController.calendarView = self.view
+            destinationViewController.transitioningDelegate = transitioningDeletage
+            destinationViewController.modalPresentationStyle = .fullScreen
+            present(destinationViewController, animated: true)
+        }
+       
+    }
+    
     func updateUI() {
         
         self.bottomCollectionView.reloadData()
@@ -306,10 +325,11 @@ class CalendarViewController: UIViewController {
             updateMonthLabelWithAnimation()
         } else if self.state == .timeMachine {
             updateMonthLabelWithoutAnimation()
-            //excuteTimeMachineButtonAnimation()
         }
        
     }
+    
+    
     
     
 
@@ -360,11 +380,9 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
         return CGSize(width: (collectionView.frame.width - 2) / 9, height: (collectionView.frame.width - 2) / 9)
       }
     
-    
+   
    
 }
-
-
 
 
 

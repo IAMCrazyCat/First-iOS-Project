@@ -702,7 +702,7 @@ Cg
         <!--Time Machine View Controller-->
         <scene sceneID="NUu-Nu-zAg">
             <objects>
-                <viewController id="Mvo-e2-cGd" customClass="TimeMachineViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TimeMachineViewController" id="Mvo-e2-cGd" customClass="TimeMachineViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5lr-0C-ef3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -853,7 +853,7 @@ Cg
         <!--Pop Up View Controller-->
         <scene sceneID="QDS-Zj-y7Z">
             <objects>
-                <viewController storyboardIdentifier="popUpView" id="u3C-CX-GQX" customClass="PopUpViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PopUpViewController" id="u3C-CX-GQX" customClass="PopUpViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZIG-S4-PcO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

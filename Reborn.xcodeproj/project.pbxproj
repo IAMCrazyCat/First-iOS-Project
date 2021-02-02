@@ -38,6 +38,9 @@
 		228ED3E625B94D630054591F /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228ED3E525B94D630054591F /* CalendarCell.swift */; };
 		22916DA925BFE34C004A3EC4 /* TimeMachineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22916DA825BFE34C004A3EC4 /* TimeMachineViewController.swift */; };
 		22916DB525C05F0D004A3EC4 /* PresentTimeMachineSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22916DB425C05F0D004A3EC4 /* PresentTimeMachineSegue.swift */; };
+		22A2EC6E25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A2EC6D25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift */; };
+		22A2EC7925C9862A00E97787 /* TimeMachineViewPresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A2EC7825C9862A00E97787 /* TimeMachineViewPresentAnimationController.swift */; };
+		22A2EC8425C9868C00E97787 /* TimeMachineViewDissmissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A2EC8325C9868C00E97787 /* TimeMachineViewDissmissAnimationController.swift */; };
 		22A597EC2598091B008E2A06 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A597EB2598091B008E2A06 /* UIButton.swift */; };
 		22A597F925986685008E2A06 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A597F825986685008E2A06 /* AddItemViewController.swift */; };
 		22A597FE2599C0AF008E2A06 /* WeekDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A597FD2599C0AF008E2A06 /* WeekDay.swift */; };
@@ -53,7 +56,6 @@
 		22C23A19258DC5D700D4BEB2 /* QuittingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C23A18258DC5D700D4BEB2 /* QuittingItem.swift */; };
 		22C23A1E258DC5FB00D4BEB2 /* PersistingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C23A1D258DC5FB00D4BEB2 /* PersistingItem.swift */; };
 		22C23A27258DCE4500D4BEB2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C23A26258DCE4500D4BEB2 /* HomeViewController.swift */; };
-		22C4971D25C635BD00007984 /* DismissTimeMachineSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4971C25C635BD00007984 /* DismissTimeMachineSegue.swift */; };
 		22C5D967258F3E4400131964 /* SetUpEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5D966258F3E4400131964 /* SetUpEngine.swift */; };
 		22C5D975258F40E800131964 /* SetUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5D974258F40E800131964 /* SetUpPage.swift */; };
 		22D354B425A595B7004F5667 /* UserCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D354B325A595B7004F5667 /* UserCenterViewController.swift */; };
@@ -61,7 +63,7 @@
 		22D6195725A0277B00EC9396 /* PopUpViewPresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6195625A0277B00EC9396 /* PopUpViewPresentAnimationController.swift */; };
 		22D6195C25A0290600EC9396 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6195B25A0290600EC9396 /* UIViewController.swift */; };
 		22D6196725A02FE100EC9396 /* PopUpViewDismissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6196625A02FE100EC9396 /* PopUpViewDismissAnimationController.swift */; };
-		22D6197725A06B7F00EC9396 /* InteractiveModalTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6197625A06B7F00EC9396 /* InteractiveModalTransitioningDelegate.swift */; };
+		22D6197725A06B7F00EC9396 /* PopUpViewTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6197625A06B7F00EC9396 /* PopUpViewTransitioningDelegate.swift */; };
 		22D7FBA125A18FE5006B1F28 /* DataOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7FBA025A18FE5006B1F28 /* DataOption.swift */; };
 		22D7FBA625A190E9006B1F28 /* SetUpPageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7FBA525A190E9006B1F28 /* SetUpPageData.swift */; };
 		22D7FBB125A1E065006B1F28 /* SetUpPageBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7FBB025A1E065006B1F28 /* SetUpPageBuilder.swift */; };
@@ -126,6 +128,9 @@
 		228ED3E525B94D630054591F /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		22916DA825BFE34C004A3EC4 /* TimeMachineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineViewController.swift; sourceTree = "<group>"; };
 		22916DB425C05F0D004A3EC4 /* PresentTimeMachineSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentTimeMachineSegue.swift; sourceTree = "<group>"; };
+		22A2EC6D25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineTransitioningDelegate.swift; sourceTree = "<group>"; };
+		22A2EC7825C9862A00E97787 /* TimeMachineViewPresentAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineViewPresentAnimationController.swift; sourceTree = "<group>"; };
+		22A2EC8325C9868C00E97787 /* TimeMachineViewDissmissAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineViewDissmissAnimationController.swift; sourceTree = "<group>"; };
 		22A597EB2598091B008E2A06 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		22A597F825986685008E2A06 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		22A597FD2599C0AF008E2A06 /* WeekDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDay.swift; sourceTree = "<group>"; };
@@ -141,7 +146,6 @@
 		22C23A18258DC5D700D4BEB2 /* QuittingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuittingItem.swift; sourceTree = "<group>"; };
 		22C23A1D258DC5FB00D4BEB2 /* PersistingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistingItem.swift; sourceTree = "<group>"; };
 		22C23A26258DCE4500D4BEB2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		22C4971C25C635BD00007984 /* DismissTimeMachineSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissTimeMachineSegue.swift; sourceTree = "<group>"; };
 		22C5D966258F3E4400131964 /* SetUpEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpEngine.swift; sourceTree = "<group>"; };
 		22C5D974258F40E800131964 /* SetUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpPage.swift; sourceTree = "<group>"; };
 		22D354B325A595B7004F5667 /* UserCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCenterViewController.swift; sourceTree = "<group>"; };
@@ -149,7 +153,7 @@
 		22D6195625A0277B00EC9396 /* PopUpViewPresentAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewPresentAnimationController.swift; sourceTree = "<group>"; };
 		22D6195B25A0290600EC9396 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		22D6196625A02FE100EC9396 /* PopUpViewDismissAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewDismissAnimationController.swift; sourceTree = "<group>"; };
-		22D6197625A06B7F00EC9396 /* InteractiveModalTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveModalTransitioningDelegate.swift; sourceTree = "<group>"; };
+		22D6197625A06B7F00EC9396 /* PopUpViewTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewTransitioningDelegate.swift; sourceTree = "<group>"; };
 		22D7FBA025A18FE5006B1F28 /* DataOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataOption.swift; sourceTree = "<group>"; };
 		22D7FBA525A190E9006B1F28 /* SetUpPageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpPageData.swift; sourceTree = "<group>"; };
 		22D7FBB025A1E065006B1F28 /* SetUpPageBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpPageBuilder.swift; sourceTree = "<group>"; };
@@ -352,7 +356,6 @@
 			children = (
 				225AD13325A86ED80040E356 /* FadeInSegue.swift */,
 				22916DB425C05F0D004A3EC4 /* PresentTimeMachineSegue.swift */,
-				22C4971C25C635BD00007984 /* DismissTimeMachineSegue.swift */,
 			);
 			path = "Custom Segue";
 			sourceTree = "<group>";
@@ -360,12 +363,31 @@
 		225AD13A25A872450040E356 /* Custom Transition */ = {
 			isa = PBXGroup;
 			children = (
+				22A2EC9025C9870300E97787 /* PopUpView */,
+				22A2EC8925C986E300E97787 /* Time Machine View */,
+			);
+			path = "Custom Transition";
+			sourceTree = "<group>";
+		};
+		22A2EC8925C986E300E97787 /* Time Machine View */ = {
+			isa = PBXGroup;
+			children = (
+				22A2EC6D25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift */,
+				22A2EC7825C9862A00E97787 /* TimeMachineViewPresentAnimationController.swift */,
+				22A2EC8325C9868C00E97787 /* TimeMachineViewDissmissAnimationController.swift */,
+			);
+			path = "Time Machine View";
+			sourceTree = "<group>";
+		};
+		22A2EC9025C9870300E97787 /* PopUpView */ = {
+			isa = PBXGroup;
+			children = (
 				22D6195125A0238E00EC9396 /* PopUpViewPresentationController.swift */,
 				22D6195625A0277B00EC9396 /* PopUpViewPresentAnimationController.swift */,
 				22D6196625A02FE100EC9396 /* PopUpViewDismissAnimationController.swift */,
-				22D6197625A06B7F00EC9396 /* InteractiveModalTransitioningDelegate.swift */,
+				22D6197625A06B7F00EC9396 /* PopUpViewTransitioningDelegate.swift */,
 			);
-			path = "Custom Transition";
+			path = PopUpView;
 			sourceTree = "<group>";
 		};
 		22AAD46A25922C06005078B6 /* Manager */ = {
@@ -541,6 +563,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				224E663D25C6465D00B71E8A /* ForwardForOneStrategy.swift in Sources */,
+				22A2EC8425C9868C00E97787 /* TimeMachineViewDissmissAnimationController.swift in Sources */,
 				22E9A855259ED1B40073D432 /* PikerViewData.swift in Sources */,
 				224E664C25C6469B00B71E8A /* BackwardForOneStrategy.swift in Sources */,
 				224E665925C64F5F00B71E8A /* InitializeStrategy.swift in Sources */,
@@ -559,6 +582,7 @@
 				22AACA3225AE98B40098D920 /* CalendarViewController.swift in Sources */,
 				22D6196725A02FE100EC9396 /* PopUpViewDismissAnimationController.swift in Sources */,
 				224E668A25C6A76600B71E8A /* DateCalculator.swift in Sources */,
+				22A2EC6E25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift in Sources */,
 				22AACA1125AD910D0098D920 /* Date.swift in Sources */,
 				224A91842595FA7D00A896BE /* ItemType.swift in Sources */,
 				22FCB1B5258D86BA006A0D39 /* SetUpViewController.swift in Sources */,
@@ -571,7 +595,6 @@
 				224E663525C6457900B71E8A /* TimeMachineAnimationStrategy.swift in Sources */,
 				22C5D975258F40E800131964 /* SetUpPage.swift in Sources */,
 				220B7282258A288000E4BEDC /* AppDelegate.swift in Sources */,
-				22C4971D25C635BD00007984 /* DismissTimeMachineSegue.swift in Sources */,
 				225AD11625A6C8620040E356 /* UIColor.swift in Sources */,
 				22916DB525C05F0D004A3EC4 /* PresentTimeMachineSegue.swift in Sources */,
 				220B7284258A288000E4BEDC /* SceneDelegate.swift in Sources */,
@@ -586,6 +609,7 @@
 				22FCB1BA258D907C006A0D39 /* SystemStyleSetting.swift in Sources */,
 				22C23A1E258DC5FB00D4BEB2 /* PersistingItem.swift in Sources */,
 				224E664725C6468D00B71E8A /* ForwardForManyStrategy.swift in Sources */,
+				22A2EC7925C9862A00E97787 /* TimeMachineViewPresentAnimationController.swift in Sources */,
 				22C23A0F258DC4FA00D4BEB2 /* AppEngine.swift in Sources */,
 				22A597FE2599C0AF008E2A06 /* WeekDay.swift in Sources */,
 				225AD13425A86ED80040E356 /* FadeInSegue.swift in Sources */,
@@ -595,7 +619,7 @@
 				221E0B8825A9A22800386FE1 /* Gender.swift in Sources */,
 				22C5D967258F3E4400131964 /* SetUpEngine.swift in Sources */,
 				22D7FBA125A18FE5006B1F28 /* DataOption.swift in Sources */,
-				22D6197725A06B7F00EC9396 /* InteractiveModalTransitioningDelegate.swift in Sources */,
+				22D6197725A06B7F00EC9396 /* PopUpViewTransitioningDelegate.swift in Sources */,
 				22BC455025B1C92100516F75 /* CustomDate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -23,47 +23,12 @@ extension PresentTimeMachineSegue: UIViewControllerTransitioningDelegate {
     }
         
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return TimeMachineViewPresentAnimationController()
+        print("TimeMachineDissmissed")
+        return TimeMachineViewDissmissAnimationController()
     }
 }
 
-class TimeMachineViewPresentAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
-    
-   
-    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.5
-    }
-    
-    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-//        let tabBarController = transitionContext.viewController(forKey: .to) as! UITabBarController
-//        let navigationController = tabBarController.viewControllers![0] as! UINavigationController
-//        let toViewController = navigationController.viewControllers.first as! TimeMachineViewController
-    
-        
-        //let fromViewController = transitionContext.viewController(forKey: .from) as! CalendarViewController
-        let containerView = transitionContext.containerView
-        if let toViewController = transitionContext.viewController(forKey: .to) as? TimeMachineViewController {
-            
-            
-            //toViewController.view.addSubview(toViewController.calendarView!)
-            containerView.addSubview(toViewController.view)
-            toViewController.view.backgroundColor = UIColor.white.withAlphaComponent(0)
-            toViewController.initialize()
-            
-            UIView.animate(withDuration: 0.8, animations: {
-                toViewController.view.backgroundColor = UIColor.white.withAlphaComponent(1)
-            }) { _ in
-                
-                transitionContext.completeTransition(true)
-                toViewController.calendarPages.first?.addSubview(toViewController.calendarView!)
-            }
-            
-        }
-        
-       
-        
-    }
-    
-    
-}
+
+
+
 

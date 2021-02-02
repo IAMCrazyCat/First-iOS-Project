@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class InteractiveModalTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
+final class PopUpViewTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
     
     var interactiveDismiss = true
     

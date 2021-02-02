@@ -35,6 +35,8 @@ class FadeInPresentAnimationController: NSObject, UIViewControllerAnimatedTransi
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        
+        print("Is Transistioning")
         let tabBarController = transitionContext.viewController(forKey: .to) as! UITabBarController
         let navigationController = tabBarController.viewControllers![0] as! UINavigationController
         let homeViewController = navigationController.viewControllers.first as! HomeViewController
