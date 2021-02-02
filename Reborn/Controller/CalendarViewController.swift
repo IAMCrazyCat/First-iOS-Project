@@ -105,7 +105,8 @@ class CalendarViewController: UIViewController {
         view.layer.cornerRadius = setting.itemCardCornerRadius
     
         view.clipsToBounds = true
-        
+        print("I Still love u")
+        print(view.frame)
         lastMonthButton.layer.cornerRadius = setting.calendarFunctionButtonCornerRadius
         //lastMonthButton.setViewShadow()
         nextMonthButton.layer.cornerRadius = setting.calendarFunctionButtonCornerRadius
@@ -150,8 +151,7 @@ class CalendarViewController: UIViewController {
     }
     
  
-
-
+ 
     
     private func getPunchedInDays(pageYear year: Int, pageMonth month: Int) -> Array<Int> {
         var punchedInDays: Array<Int> = []
@@ -234,6 +234,7 @@ class CalendarViewController: UIViewController {
 //        if let viewController = superViewController as? ItemDetailViewController {
 //            viewController.goTimeMachineView()
 //        }
+        
         self.performSegue(withIdentifier: "goTimeMachineView", sender: self)
        
     }
@@ -241,10 +242,13 @@ class CalendarViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if let desitinationViewController = segue.destination as? TimeMachineViewController {
+            self.removeFromParent() // remove its original parent controler: ItemDetailViewController
+            
             let navBarheight = (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0) + (self.navigationController?.navigationBar.frame.height ?? 0.0)
             desitinationViewController.calendarView = self.view
             desitinationViewController.calendarViewPosition = CGPoint(x: self.topView.frame.origin.x, y:  self.topView.frame.origin.y + navBarheight)
             desitinationViewController.calendarViewController = self
+            self.delegate = desitinationViewController
             self.state = .timeMachine
         }
        

@@ -27,7 +27,7 @@
 		224E664725C6468D00B71E8A /* ForwardForManyStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E664625C6468D00B71E8A /* ForwardForManyStrategy.swift */; };
 		224E664C25C6469B00B71E8A /* BackwardForOneStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E664B25C6469B00B71E8A /* BackwardForOneStrategy.swift */; };
 		224E665125C6483E00B71E8A /* PagesBehaviorStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E665025C6483E00B71E8A /* PagesBehaviorStrategy.swift */; };
-		224E665925C64F5F00B71E8A /* StillStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E665825C64F5F00B71E8A /* StillStrategy.swift */; };
+		224E665925C64F5F00B71E8A /* InitializeStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E665825C64F5F00B71E8A /* InitializeStrategy.swift */; };
 		224E668A25C6A76600B71E8A /* DateCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E668925C6A76600B71E8A /* DateCalculator.swift */; };
 		225AD11625A6C8620040E356 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AD11525A6C8620040E356 /* UIColor.swift */; };
 		225AD12225A80EB30040E356 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AD12125A80EB30040E356 /* UIApplication.swift */; };
@@ -115,7 +115,7 @@
 		224E664625C6468D00B71E8A /* ForwardForManyStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForwardForManyStrategy.swift; sourceTree = "<group>"; };
 		224E664B25C6469B00B71E8A /* BackwardForOneStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackwardForOneStrategy.swift; sourceTree = "<group>"; };
 		224E665025C6483E00B71E8A /* PagesBehaviorStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagesBehaviorStrategy.swift; sourceTree = "<group>"; };
-		224E665825C64F5F00B71E8A /* StillStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StillStrategy.swift; sourceTree = "<group>"; };
+		224E665825C64F5F00B71E8A /* InitializeStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitializeStrategy.swift; sourceTree = "<group>"; };
 		224E668925C6A76600B71E8A /* DateCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCalculator.swift; sourceTree = "<group>"; };
 		225AD11525A6C8620040E356 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		225AD12125A80EB30040E356 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
@@ -334,7 +334,7 @@
 				224E664125C6467100B71E8A /* BackwardForManyStrategy.swift */,
 				224E664625C6468D00B71E8A /* ForwardForManyStrategy.swift */,
 				224E664B25C6469B00B71E8A /* BackwardForOneStrategy.swift */,
-				224E665825C64F5F00B71E8A /* StillStrategy.swift */,
+				224E665825C64F5F00B71E8A /* InitializeStrategy.swift */,
 			);
 			path = Strategy;
 			sourceTree = "<group>";
@@ -543,7 +543,7 @@
 				224E663D25C6465D00B71E8A /* ForwardForOneStrategy.swift in Sources */,
 				22E9A855259ED1B40073D432 /* PikerViewData.swift in Sources */,
 				224E664C25C6469B00B71E8A /* BackwardForOneStrategy.swift in Sources */,
-				224E665925C64F5F00B71E8A /* StillStrategy.swift in Sources */,
+				224E665925C64F5F00B71E8A /* InitializeStrategy.swift in Sources */,
 				228ED3E625B94D630054591F /* CalendarCell.swift in Sources */,
 				2279C17E2592ED2F00566CD7 /* UserStyleSetting.swift in Sources */,
 				223A777B25A41184004B3324 /* UIView.swift in Sources */,

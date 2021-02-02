@@ -29,14 +29,11 @@ struct SystemStyleSetting{
     var customTargetDaysButtonTag = 10
     var customItemNameButtonTag = 20
     var customFrequencyButtonTag = 30
-    
 
-    
     // for welcome page
     let mainDistance: CGFloat = 20
     let mainPadding: CGFloat = 15
     let FontNormalSize: CGFloat = 21
-
     
     // for set up page buttons
     let optionButtonToTopDistance: CGFloat = 50
@@ -68,8 +65,6 @@ struct SystemStyleSetting{
     let itemCardCenterObjectsToEdgeOffset: CGFloat = 70
     let itemCardGap: CGFloat = 15
     
-    
-    
     // for builder
 
     
@@ -79,7 +74,6 @@ struct SystemStyleSetting{
     
     let popUpWindowCornerRadius: CGFloat = 30
     let popUpWindowHeight: CGFloat = 400
-    
     let popUpWindowTag: Int = 0
     let popUpBGViewButtonTag: Int = 1
     let popUpWindowCancelButtonTag: Int = 2
@@ -87,7 +81,6 @@ struct SystemStyleSetting{
     let popUpWindowTextFieldTag: Int = 4
     let popUpWindowPromptLabelTag: Int = 5
     let popUpWindowPickerViewTag: Int = 6
-    
     let popUpWindowPresentDuration: Double = 0.2
     let popUpWindowBounceDuration: Double = 0.25
     

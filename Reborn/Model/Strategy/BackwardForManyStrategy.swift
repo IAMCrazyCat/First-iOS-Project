@@ -12,7 +12,7 @@ class BackwardForManyStrategy: PagesBehaviorStrategy {
     var timesOfAnimationExcuted: Int = 0
     var numberOfMovingPages = 1
     
-    override func excuteCalendarPagesAnimation() {
+    override func performStrategy() {
         
         if let numberOfMovingPages = self.viewController.calendarViewController?.storedMonthInterval {
             self.numberOfMovingPages = abs(numberOfMovingPages)

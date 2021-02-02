@@ -288,7 +288,7 @@ Cg
             <objects>
                 <viewController id="yhk-VJ-4nb" customClass="AddItemViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5tU-dT-BVc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eis-9Y-9bk" userLabel="Middle Scroll View">
@@ -707,41 +707,29 @@ Cg
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBC-dZ-hSy">
-                                <rect key="frame" x="174" y="74" width="66.5" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时间机器" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBC-dZ-hSy">
+                                <rect key="frame" x="150" y="69" width="114" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZk-IF-fVK">
-                                <rect key="frame" x="29" y="80" width="48" height="30"/>
-                                <state key="normal" title="Cancel"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZk-IF-fVK">
+                                <rect key="frame" x="29" y="80" width="12.5" height="22"/>
+                                <color key="tintColor" name="ThemeColor"/>
+                                <state key="normal" image="chevron.left" catalog="system">
+                                    <color key="titleColor" name="ThemeColor"/>
+                                </state>
                                 <connections>
                                     <action selector="dismissButtonPressed:" destination="Mvo-e2-cGd" eventType="touchUpInside" id="jrE-XH-p5q"/>
                                 </connections>
                             </button>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eMM-e1-NFx" userLabel="Calendar View">
-                                <rect key="frame" x="15" y="248" width="384" height="400"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="66T-BL-AnF"/>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="400" id="jaW-Ua-s0d"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="400" id="tww-n4-KP0"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="cr2-6I-Rrh" kind="embed" id="c56-WA-1tn"/>
-                                </connections>
-                            </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1qh-oX-I6h"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="1qh-oX-I6h" firstAttribute="trailing" secondItem="eMM-e1-NFx" secondAttribute="trailing" constant="15" id="9em-X3-aKI"/>
-                            <constraint firstItem="eMM-e1-NFx" firstAttribute="centerY" secondItem="5lr-0C-ef3" secondAttribute="centerY" id="GBd-BP-nnX"/>
                             <constraint firstItem="sZk-IF-fVK" firstAttribute="leading" secondItem="1qh-oX-I6h" secondAttribute="leading" constant="29" id="XMf-KJ-RRL"/>
-                            <constraint firstItem="eMM-e1-NFx" firstAttribute="centerX" secondItem="5lr-0C-ef3" secondAttribute="centerX" id="akY-UV-mVF"/>
-                            <constraint firstItem="eMM-e1-NFx" firstAttribute="leading" secondItem="1qh-oX-I6h" secondAttribute="leading" constant="15" id="s0n-gj-pSv"/>
+                            <constraint firstItem="TBC-dZ-hSy" firstAttribute="top" secondItem="1qh-oX-I6h" secondAttribute="top" constant="25" id="fz7-nq-TBR"/>
+                            <constraint firstItem="TBC-dZ-hSy" firstAttribute="centerX" secondItem="5lr-0C-ef3" secondAttribute="centerX" id="hDe-ah-fhL"/>
                             <constraint firstItem="sZk-IF-fVK" firstAttribute="top" secondItem="1qh-oX-I6h" secondAttribute="top" constant="36" id="st3-TC-FLf"/>
                         </constraints>
                     </view>
@@ -752,7 +740,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yc2-3N-qUW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4130" y="2453"/>
+            <point key="canvasLocation" x="4152" y="2453"/>
         </scene>
         <!--项目名-->
         <scene sceneID="mE3-UO-mLP">
@@ -1594,9 +1582,8 @@ Cg
                                             <action selector="thisMonthButtonPressed:" destination="cr2-6I-Rrh" eventType="touchUpInside" id="mpK-Su-jcG"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WWW-ka-0QZ">
-                                        <rect key="frame" x="330" y="16" width="28" height="28"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WWW-ka-0QZ">
+                                        <rect key="frame" x="326" y="15" width="28" height="28"/>
                                         <accessibility key="accessibilityConfiguration" identifier="TimeMachineButton"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="TimeMachine1"/>
@@ -1612,8 +1599,10 @@ Cg
                                     <constraint firstItem="UnO-dN-eLE" firstAttribute="top" secondItem="NdA-gx-XZ9" secondAttribute="bottom" constant="20" id="4cW-At-cBQ"/>
                                     <constraint firstItem="NdA-gx-XZ9" firstAttribute="leading" secondItem="RwH-pK-cja" secondAttribute="leading" constant="30" id="LnF-db-IFL"/>
                                     <constraint firstItem="NdA-gx-XZ9" firstAttribute="top" secondItem="RwH-pK-cja" secondAttribute="top" constant="20" id="NLK-vd-RYC"/>
+                                    <constraint firstAttribute="trailing" secondItem="WWW-ka-0QZ" secondAttribute="trailing" constant="30" id="NNx-wu-neB"/>
                                     <constraint firstAttribute="trailing" secondItem="UGA-qj-SB4" secondAttribute="trailing" constant="20" id="X0E-kI-35n"/>
                                     <constraint firstAttribute="trailing" secondItem="NdA-gx-XZ9" secondAttribute="trailing" constant="30" id="XEd-Ni-muM"/>
+                                    <constraint firstItem="WWW-ka-0QZ" firstAttribute="top" secondItem="RwH-pK-cja" secondAttribute="top" constant="15" id="c9m-5N-gIo"/>
                                     <constraint firstItem="djk-JB-I2X" firstAttribute="centerX" secondItem="RwH-pK-cja" secondAttribute="centerX" constant="-60" id="ckB-n2-0nj"/>
                                     <constraint firstItem="4yp-mE-jGG" firstAttribute="centerX" secondItem="RwH-pK-cja" secondAttribute="centerX" constant="60" id="fmF-aj-inV"/>
                                     <constraint firstItem="UnO-dN-eLE" firstAttribute="leading" secondItem="RwH-pK-cja" secondAttribute="leading" constant="20" id="gR2-dM-FZu"/>
@@ -1712,7 +1701,6 @@ Cg
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="1uJ-r9-mDY" secondAttribute="trailing" id="0Ty-Gh-mpN"/>
                             <constraint firstAttribute="trailing" secondItem="CyJ-kQ-0F2" secondAttribute="trailing" id="3d3-7v-igk"/>
-                            <constraint firstItem="CyJ-kQ-0F2" firstAttribute="width" secondItem="jX3-MM-9D0" secondAttribute="width" id="Fug-Ve-HeV"/>
                             <constraint firstItem="1uJ-r9-mDY" firstAttribute="leading" secondItem="jX3-MM-9D0" secondAttribute="leading" id="IXr-fL-F2c"/>
                             <constraint firstAttribute="bottom" secondItem="CyJ-kQ-0F2" secondAttribute="bottom" id="KXW-Rh-xqI"/>
                             <constraint firstItem="CyJ-kQ-0F2" firstAttribute="top" secondItem="1uJ-r9-mDY" secondAttribute="bottom" id="ShV-aw-jij"/>
@@ -1740,7 +1728,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0yh-h8-X9z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4154" y="1701"/>
+            <point key="canvasLocation" x="4153.623188405797" y="1700.8928571428571"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="3UM-Ss-dT5">
@@ -1759,7 +1747,7 @@ Cg
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="c56-WA-1tn"/>
+        <segue reference="PMl-Ex-sJd"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="AvatarMale" width="256" height="256"/>

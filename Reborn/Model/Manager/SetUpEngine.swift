@@ -84,7 +84,7 @@ class SetUpEngine {
     
     func showPopUp(popUpType: PopUpType, controller: UIViewController) {
   
-        AppEngine.shared.showPopUp(popUpType: popUpType, controller: controller)
+        AppEngine.shared.showPopUp(popUpType, from: controller)
     }
     
     func getStoredDataFromPopUpView() -> Any {

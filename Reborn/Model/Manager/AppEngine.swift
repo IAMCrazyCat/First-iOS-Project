@@ -17,7 +17,7 @@ protocol AppEngineDelegate {
 class AppEngine {
     
     static let shared = AppEngine()
-    var user: User?
+    var user: User = User(name: "颠猫", gender: .undefined, avatar: #imageLiteral(resourceName: "AvatarMale"), keys: 3, items: [Item](), vip: false)
     var defaults: UserDefaults = UserDefaults.standard
     let dataFilePath: URL? = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("item.plist")
     let setting: SystemStyleSetting = SystemStyleSetting()
@@ -46,26 +46,15 @@ class AppEngine {
     
     public func saveUser(newUser user: User?) {
 
-        if user != nil {
-            let encoder = JSONEncoder()//PropertyListEncoder()
+        let encoder = JSONEncoder()//PropertyListEncoder()
 
-            do {
-                let data = try encoder.encode(user!)
-                try data.write(to: self.dataFilePath!)
-            } catch {
-                print("Error encoding item array, \(error)")
-            }
-        } else {
-            let encoder = JSONEncoder()//PropertyListEncoder()
-
-            do {
-                let data = try encoder.encode(self.user!)
-                try data.write(to: self.dataFilePath!)
-                print("User saved")
-            } catch {
-                print("Error encoding item array, \(error)")
-            }
+        do {
+            let data = try encoder.encode(self.user)
+            try data.write(to: self.dataFilePath!)
+        } catch {
+            print("Error encoding item array, \(error)")
         }
+    
        
     }
     
@@ -85,7 +74,7 @@ class AppEngine {
     
     public func addItem(newItem: Item) {
         
-        self.user?.items.append(newItem)
+        self.user.items.append(newItem)
         
         //self.saveUser(newUser: nil)
 
@@ -93,7 +82,7 @@ class AppEngine {
     
     public func getItems() -> Array<Item>? {
  
-        return self.user?.items
+        return self.user.items
     }
     
     
@@ -104,7 +93,7 @@ class AppEngine {
         let currentYear: Int = Calendar.current.component(.year, from: Date())
         let currentMonth: Int = Calendar.current.component(.month, from: Date())
         let currentDay: Int = Calendar.current.component(.day, from: Date())
-        self.user!.items[tag].punchIn(punchInDate: CustomDate(year: currentYear, month: currentMonth, day: currentDay))
+        self.user.items[tag].punchIn(punchInDate: CustomDate(year: currentYear, month: currentMonth, day: currentDay))
         
         //self.saveUser(newUser: nil)
         // test
@@ -126,48 +115,51 @@ class AppEngine {
     }
     
     public func getFinishedDays(tag: Int) -> Int? {
-        return self.user?.items[tag].finishedDays
+        return self.user.items[tag].finishedDays
     }
     
     public func getDays(tag: Int) -> Int? {
-        return self.user?.items[tag].targetDays
+        return self.user.items[tag].targetDays
     }
     
-    public func getOverAllProgress() -> Double? {
+    public func getOverAllProgress() -> Double {
         
         self.overAllProgress = 0.0
         
-        if user != nil {
-            for item in self.user!.items {
-               
-                if item.targetDays != 0 {
-                    let itemProgress = Double(item.finishedDays) / Double(item.targetDays)
-        
-                    self.overAllProgress += itemProgress
-                }
 
+        for item in self.user.items {
+           
+            if item.targetDays != 0 {
+                let itemProgress = Double(item.finishedDays) / Double(item.targetDays)
+    
+                self.overAllProgress += itemProgress
             }
-            
-            if self.user!.items.count != 0 {
-                self.overAllProgress /= Double(self.user!.items.count)
-            }
-            
-            
-            return self.overAllProgress
+
         }
         
-        return nil
+        if self.user.items.count != 0 {
+            self.overAllProgress /= Double(self.user.items.count)
+        }
+        
+        
+        return self.overAllProgress
        
     }
     
 
-    public func showPopUp(popUpType: PopUpType, controller: UIViewController) {
-        self.delegate = controller as? AppEngineDelegate
+    public func showPopUp(_ popUpType: PopUpType, from fromViewController: UIViewController) {
+        self.delegate = fromViewController as? AppEngineDelegate
         
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        if let popUpViewController = PopUpViewBuilder(popUpType: popUpType).buildPopUpView() {
-            controller.presentBottom(popUpViewController: popUpViewController)
+        if let popUpViewController = storyboard.instantiateViewController(withIdentifier: "popUpView") as? PopUpViewController {
+            let popUpWindow = PopUpViewBuilder(popUpType: popUpType, popUpViewController: popUpViewController).buildPopUpView()
+            popUpViewController.type = popUpType
+            popUpViewController.view.addSubview(popUpWindow)
+            fromViewController.presentBottom(to: popUpViewController)
         }
+        
+
         
         
     }

@@ -196,15 +196,14 @@ class HomeViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             
         if let destinationViewController = segue.destination as? ItemDetailViewController, segue.identifier == "goItemDetailView" {
-            if let item = self.engine.user?.items[(sender as? UIButton)?.tag ?? 0] {
-                destinationViewController.item = item
-            }
+            let item = self.engine.user.items[(sender as? UIButton)?.tag ?? 0]
+            destinationViewController.item = item
+        
             
             
         } else if let destinationViewController = segue.destination as? CalendarViewController, segue.identifier == "embeddedCalendarContainer" {
-            if let item = self.engine.user?.items[(sender as? UIButton)?.tag ?? 0] {
-                destinationViewController.item = item
-            }
+            let item = self.engine.user.items[(sender as? UIButton)?.tag ?? 0]
+            destinationViewController.item = item
         }
         
     }
@@ -247,7 +246,7 @@ class HomeViewController: UIViewController {
     }
     
     func loadUserAvatar() {
-        avatarImageView.image = engine.user?.getAvatarImage()
+        avatarImageView.image = engine.user.getAvatarImage()
     }
     
     func loadItemCards() {
@@ -257,66 +256,66 @@ class HomeViewController: UIViewController {
         var quittingCordinateY: CGFloat = 0
         
         
-        if let items = self.engine.user?.items, self.engine.user != nil {
-            var tag: Int = self.engine.user!.items.count - 1
+        let items = self.engine.user.items
+            var tag: Int = self.engine.user.items.count - 1
             if items.count > 0 {
                 
                 
-                for itemIndex in (0...items.count - 1).reversed() {
+            for itemIndex in (0...items.count - 1).reversed() {
+                
+                let item = items[itemIndex]
+                
+              
+                if item.type == .persisting {
                     
-                    let item = items[itemIndex]
+                    self.persistingItemsViewPromptLabel.isHidden = true
+                    let builder = ItemViewBuilder(item: item, width: self.persistingItemsView.frame.width, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: persistingCordinateY, punchInButtonTag: tag, punchInButtonAction: #selector(self.itemPunchInButtonPressed(_:)), detailsButtonAction: #selector(self.itemDetailsButtonPressed(_:)))
+                    let newItemCard = builder.buildItemCardView()
                     
-                  
-                    if item.type == .persisting {
-                        
-                        self.persistingItemsViewPromptLabel.isHidden = true
-                        let builder = ItemViewBuilder(item: item, width: self.persistingItemsView.frame.width, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: persistingCordinateY, punchInButtonTag: tag, punchInButtonAction: #selector(self.itemPunchInButtonPressed(_:)), detailsButtonAction: #selector(self.itemDetailsButtonPressed(_:)))
-                        let newItemCard = builder.buildItemCardView()
-                        
-                        let heightConstraintIndex = self.contentView.constraints.count - 1
-                        let tabBarHeight: CGFloat = 200
-                        self.persistingItemsView.addSubview(newItemCard)
-                        
-                        let newConstraint = self.itemsTitleLabel.frame.origin.y + tabBarHeight + persistingCordinateY
-                        if newConstraint > self.contentView.constraints[heightConstraintIndex].constant {
-                            self.contentView.constraints[heightConstraintIndex].constant = newConstraint // update height constraint (height is at the last index of constraints array)
-                        }
-                 
-                        self.persistingItemsView.layoutIfNeeded()
-                        persistingCordinateY += setting.itemCardHeight + setting.itemCardGap
-                        
-                    } else if item.type == .quitting {
-                        
-                        self.quittingItemsViewPromptLabel.isHidden = true
-                        let builder = ItemViewBuilder(item: item, width: self.quittingItemsView.frame.width, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: quittingCordinateY, punchInButtonTag: tag, punchInButtonAction: #selector(self.itemPunchInButtonPressed(_:)), detailsButtonAction: #selector(self.itemDetailsButtonPressed(_:)))
-                        let newItemCard = builder.buildItemCardView()
-                        
-                        let heightConstraintIndex = self.contentView.constraints.count - 1
-                        let tabBarHeight: CGFloat = 200
-                        self.quittingItemsView.addSubview(newItemCard)
-                        
-                        let newConstraint = self.itemsTitleLabel.frame.origin.y + tabBarHeight + quittingCordinateY
-                        if newConstraint > self.contentView.constraints[heightConstraintIndex].constant {
-                            self.contentView.constraints[heightConstraintIndex].constant = newConstraint // update height constraint (height is at the last index of constraints array)
-                        }
-                 
-                        self.persistingItemsView.layoutIfNeeded()
-                        quittingCordinateY += setting.itemCardHeight + setting.itemCardGap
+                    let heightConstraintIndex = self.contentView.constraints.count - 1
+                    let tabBarHeight: CGFloat = 200
+                    self.persistingItemsView.addSubview(newItemCard)
+                    
+                    let newConstraint = self.itemsTitleLabel.frame.origin.y + tabBarHeight + persistingCordinateY
+                    if newConstraint > self.contentView.constraints[heightConstraintIndex].constant {
+                        self.contentView.constraints[heightConstraintIndex].constant = newConstraint // update height constraint (height is at the last index of constraints array)
                     }
+             
+                    self.persistingItemsView.layoutIfNeeded()
+                    persistingCordinateY += setting.itemCardHeight + setting.itemCardGap
                     
+                } else if item.type == .quitting {
                     
+                    self.quittingItemsViewPromptLabel.isHidden = true
+                    let builder = ItemViewBuilder(item: item, width: self.quittingItemsView.frame.width, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: quittingCordinateY, punchInButtonTag: tag, punchInButtonAction: #selector(self.itemPunchInButtonPressed(_:)), detailsButtonAction: #selector(self.itemDetailsButtonPressed(_:)))
+                    let newItemCard = builder.buildItemCardView()
                     
-                    tag -= 1
-          
+                    let heightConstraintIndex = self.contentView.constraints.count - 1
+                    let tabBarHeight: CGFloat = 200
+                    self.quittingItemsView.addSubview(newItemCard)
+                    
+                    let newConstraint = self.itemsTitleLabel.frame.origin.y + tabBarHeight + quittingCordinateY
+                    if newConstraint > self.contentView.constraints[heightConstraintIndex].constant {
+                        self.contentView.constraints[heightConstraintIndex].constant = newConstraint // update height constraint (height is at the last index of constraints array)
+                    }
+             
+                    self.persistingItemsView.layoutIfNeeded()
+                    quittingCordinateY += setting.itemCardHeight + setting.itemCardGap
                 }
                 
-            } else {
                 
-                self.persistingItemsViewPromptLabel.isHidden = false
-                self.quittingItemsViewPromptLabel.isHidden = false
+                
+                tag -= 1
+      
             }
             
+        } else {
+            
+            self.persistingItemsViewPromptLabel.isHidden = false
+            self.quittingItemsViewPromptLabel.isHidden = false
         }
+        
+        
 
     }
     

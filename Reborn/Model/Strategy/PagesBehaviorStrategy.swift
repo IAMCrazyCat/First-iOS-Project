@@ -16,7 +16,7 @@ class PagesBehaviorStrategy: TimeMachineAnimationStrategy {
         self.viewController = viewController
     }
     
-    public func excuteCalendarPagesAnimation() {
+    public func performStrategy() {
         addNewCalendarPage()
         updateTempCalendarPage()
         updateCalendarPages()

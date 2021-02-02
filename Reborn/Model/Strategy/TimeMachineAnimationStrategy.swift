@@ -8,5 +8,5 @@
 import Foundation
 protocol TimeMachineAnimationStrategy {
     
-    func excuteCalendarPagesAnimation()
+    func performStrategy()
 }

@@ -48,14 +48,14 @@ class TimeMachineViewPresentAnimationController: NSObject, UIViewControllerAnima
             //toViewController.view.addSubview(toViewController.calendarView!)
             containerView.addSubview(toViewController.view)
             toViewController.view.backgroundColor = UIColor.white.withAlphaComponent(0)
-            toViewController.inlitialize()
+            toViewController.initialize()
             
             UIView.animate(withDuration: 0.8, animations: {
                 toViewController.view.backgroundColor = UIColor.white.withAlphaComponent(1)
             }) { _ in
                 
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-     
+                transitionContext.completeTransition(true)
+                toViewController.calendarPages.first?.addSubview(toViewController.calendarView!)
             }
             
         }

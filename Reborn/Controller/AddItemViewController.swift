@@ -107,7 +107,7 @@ class AddItemViewController: UIViewController {
         selectButton()
         if sender.tag == setting.customTargetDaysButtonTag {
             
-            self.engine.showPopUp(popUpType: .customTargetDays, controller: self)
+            self.engine.showPopUp(.customTargetDays, from: self)
             
         } else {
             self.targetDays = sender.getData() ?? 1
@@ -122,7 +122,7 @@ class AddItemViewController: UIViewController {
         self.selectedFrequencyButton = sender
         self.lastSelectedButton = sender
         if sender.tag == setting.customFrequencyButtonTag {
-            self.engine.showPopUp(popUpType: .customFrequency, controller: self)
+            self.engine.showPopUp(.customFrequency, from: self)
         }
         selectButton()
     }
@@ -203,7 +203,6 @@ class AddItemViewController: UIViewController {
         if frequency != nil {
             self.item!.setFreqency(frequency: frequency!)
         }
-        print(self.item!.frequency)
         excuteItemCardAimation()
         
        

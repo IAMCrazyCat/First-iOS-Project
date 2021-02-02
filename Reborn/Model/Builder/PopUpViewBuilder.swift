@@ -21,38 +21,28 @@ class PopUpViewBuilder {
     let popUpType: PopUpType
     var popUpViewController: PopUpViewController?
     
-    init(popUpType: PopUpType) {
+    init(popUpType: PopUpType, popUpViewController: PopUpViewController) {
         self.setting = SystemStyleSetting.shared
         self.popUpWindow = UIView()
         self.popUpType = popUpType
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        if let popUpViewController = storyboard.instantiateViewController(withIdentifier: "popUpView") as? PopUpViewController {
-            self.popUpViewController = popUpViewController
-            self.popUpViewController?.type = popUpType
-        } else {
-            self.popUpViewController = nil
-        }
-       
-        
+        self.popUpViewController = popUpViewController
     }
     
-    public func buildPopUpView() -> PopUpViewController? {
+    public func buildPopUpView() -> UIView {
         
-        popUpViewController?.view.addSubview(popUpWindow)
+        
         
         switch popUpType {
         case .customTargetDays:
             self.buildCustomTargetDaysView()
-            return popUpViewController
         case .customItemName:
             self.buildCustomItemNameView()
-            return popUpViewController
         case .customFrequency:
             self.buildCustomFrequencyView()
-            return popUpViewController
+
         }
+        
+        return popUpWindow
     }
     
     private func buildStandardView() { // common views for pop up window
