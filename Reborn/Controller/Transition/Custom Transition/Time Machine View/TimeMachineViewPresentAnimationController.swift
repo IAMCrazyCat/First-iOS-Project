@@ -17,10 +17,9 @@ class TimeMachineViewPresentAnimationController: NSObject, UIViewControllerAnima
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         
-       
         
         guard
-            let fromViewConroller =  transitionContext.viewController(forKey: .from) as? CalendarViewController,
+            let fromViewController =  transitionContext.viewController(forKey: .from) as? CalendarViewController,
             let toViewController = transitionContext.viewController(forKey: .to) as? TimeMachineViewController,
             let fromView = transitionContext.view(forKey: .from),
             let toView = transitionContext.view(forKey: .to)
@@ -30,18 +29,14 @@ class TimeMachineViewPresentAnimationController: NSObject, UIViewControllerAnima
             return
         }
         
-        let navBarheight = (fromViewConroller.view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0) + (fromViewConroller.navigationController?.navigationBar.frame.height ?? 0.0)
- 
         toViewController.calendarView = fromView
-        toViewController.calendarViewController = fromViewConroller
-        toViewController.calendarViewPosition = CGPoint(x: fromViewConroller.topView.frame.origin.x, y: fromViewConroller.topView.frame.origin.y + navBarheight)
-        
-        
+        toViewController.calendarViewController = fromViewController
+
         let containerView = transitionContext.containerView
         containerView.addSubview(toView)
         
         toViewController.view.backgroundColor = UIColor.white.withAlphaComponent(0)
-        toViewController.initialize()
+        toViewController.presentCalendarPages()
         
         UIView.animate(withDuration: 0.8, animations: {
             toViewController.view.backgroundColor = UIColor.white.withAlphaComponent(1)

@@ -17,27 +17,37 @@ class TimeMachineViewDissmissAnimationController: NSObject, UIViewControllerAnim
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         
-        let containerView = transitionContext.containerView
+        print("DISMISS")
         
-        let toViewController = transitionContext.viewController(forKey: .to) as! ItemDetailViewController
-        
-        if let toViewController = transitionContext.viewController(forKey: .to) as? ItemDetailViewController {
-            
-            
-//            //toViewController.view.addSubview(toViewController.calendarView!)
-//            containerView.addSubview(toViewController.view)
-//            toViewController.view.backgroundColor = UIColor.white.withAlphaComponent(0)
-//            toViewController.initialize()
-//
-//            UIView.animate(withDuration: 0.8, animations: {
-//                toViewController.view.backgroundColor = UIColor.white.withAlphaComponent(1)
-//            }) { _ in
-//
-//                transitionContext.completeTransition(true)
-//                toViewController.calendarPages.first?.addSubview(toViewController.calendarView!)
-//            }
-            
+        guard
+            let fromViewController =  transitionContext.viewController(forKey: .from) as? TimeMachineViewController,
+            let toViewController = transitionContext.viewController(forKey: .to) as? CalendarViewController,
+            let originalParentViewController = toViewController.originalParentViewController as? ItemDetailViewController,
+            let fromView = transitionContext.view(forKey: .from),
+            let toView = transitionContext.view(forKey: .to)
+        else {
+            print("Found nil when unwrapping guard attributes, location: 'TimeMachineViewPresentAnimation Line \(#line)'")
+            transitionContext.completeTransition(false)
+            return
         }
+        
+       
+        
+        fromViewController.dississCalendarPages()
+        originalParentViewController.topView.alpha = 0
+        
+        UIView.animate(withDuration: 0.8, animations: {
+            fromViewController.view.backgroundColor = UIColor.white.withAlphaComponent(0)
+        }) { _ in
+            let containerView = transitionContext.containerView
+            containerView.addSubview(toView)
+            originalParentViewController.topView.alpha = 1
+            originalParentViewController.addChild(toViewController)
+            originalParentViewController.topView.addSubview(toView)
+            transitionContext.completeTransition(true)
+
+        }
+        
 
     }
     

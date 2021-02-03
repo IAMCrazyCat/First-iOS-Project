@@ -7,13 +7,11 @@
 
 import Foundation
 import UIKit
-class InitializeStrategy: PagesBehaviorStrategy {
+class PresentStrategy: PagesBehaviorStrategy {
     
     
     override func performStrategy() {
         moveDownCalendarView()
-       
-        
     }
     
     override func updateCalendarPagesColor() {
@@ -22,9 +20,9 @@ class InitializeStrategy: PagesBehaviorStrategy {
         var b: CGFloat = 1
         
 
-        for index in 0 ... self.viewController.calendarPages.count - 1 {
+        for index in 0 ... self.timeMachineViewController.calendarPages.count - 1 {
             
-            let calendarPage = self.viewController.calendarPages[index]
+            let calendarPage = self.timeMachineViewController.calendarPages[index]
             calendarPage.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1)
             
             r -= self.setting.calendarPageColorDifference
@@ -36,15 +34,15 @@ class InitializeStrategy: PagesBehaviorStrategy {
     
     override func updateTempCalendarPage() {
         
-        if self.viewController.calendarViewController != nil {
+        if self.timeMachineViewController.calendarViewController != nil {
 
             for index in 1 ... 3 {
-                let builder = TimeMachineCalendarPageBuilder(interactableCalendarView: self.viewController.calendarPages.first!.subviews.first!, calendarViewController: self.viewController.calendarViewController!, monthDifference: -index)
+                let builder = TimeMachineCalendarPageBuilder(interactableCalendarView: self.timeMachineViewController.calendarPages.first!.subviews.first!, calendarViewController: self.timeMachineViewController.calendarViewController!, monthDifference: -index)
                 let tempCalendarPage = builder.buildCalendarPage()
                 tempCalendarPage.accessibilityIdentifier = "TempCalendarPageView"
                 
-                self.removeOldTempCalendarPage(superview: self.viewController.calendarPages[index])
-                self.viewController.calendarPages[index].addSubview(tempCalendarPage) // add temp calendar page to that will disapear
+                self.removeOldTempCalendarPage(superview: self.timeMachineViewController.calendarPages[index])
+                self.timeMachineViewController.calendarPages[index].addSubview(tempCalendarPage) // add temp calendar page to that will disapear
             }
            
         }
@@ -52,22 +50,23 @@ class InitializeStrategy: PagesBehaviorStrategy {
     }
     
     func moveDownCalendarView() {
-        if let calendarView = self.viewController.calendarView{
+        if let calendarView = self.timeMachineViewController.calendarView{
             
             let newCalendarPage = UIView()
             newCalendarPage.backgroundColor = self.setting.calendarPageColor
-            newCalendarPage.frame = self.viewController.calendarView!.frame
+            newCalendarPage.frame = self.timeMachineViewController.calendarView!.frame
             newCalendarPage.layer.cornerRadius = self.setting.itemCardCornerRadius
             newCalendarPage.setViewShadow()
             newCalendarPage.addSubview(calendarView)
             
-            self.viewController.calendarView?.frame.origin = .zero
-            self.viewController.view.addSubview(newCalendarPage)
-            self.viewController.calendarPages.append(newCalendarPage)
-   
-            UIView.animate(withDuration: self.viewController.animationSpeed, delay: 0, options: .curveEaseOut, animations: {
+            self.timeMachineViewController.calendarView?.frame.origin = .zero
+            self.timeMachineViewController.view.addSubview(newCalendarPage)
+            self.timeMachineViewController.calendarPages.append(newCalendarPage)
+            self.timeMachineViewController.calendarViewOriginalPosition = self.timeMachineViewController.calendarPages.first?.frame.origin
+            
+            UIView.animate(withDuration: self.timeMachineViewController.animationSpeed, delay: 0, options: .curveEaseOut, animations: {
 
-                self.viewController.calendarPages.first?.frame.origin.y = self.setting.screenFrame.height / 2 -  calendarView.frame.height / 2
+                self.timeMachineViewController.calendarPages.first?.frame.origin.y = self.setting.screenFrame.height / 2 -  calendarView.frame.height / 2
             }) { _ in
 
                 self.addOtherCalendarPagesAndMoveThemUp()
@@ -87,20 +86,20 @@ class InitializeStrategy: PagesBehaviorStrategy {
             scale *= self.setting.newCalendarPageSizeDifference
             let newCalendarPage = UIView()
             newCalendarPage.backgroundColor = self.setting.calendarPageColor
-            newCalendarPage.frame = self.viewController.calendarPages[0].frame
+            newCalendarPage.frame = self.timeMachineViewController.calendarPages[0].frame
             newCalendarPage.transform = CGAffineTransform(scaleX: scale, y: scale)
             newCalendarPage.layer.cornerRadius = self.setting.itemCardCornerRadius
             newCalendarPage.setViewShadow()
             
             
-            self.viewController.view.insertSubview(newCalendarPage, belowSubview: self.viewController.calendarPages[index])
+            self.timeMachineViewController.view.insertSubview(newCalendarPage, belowSubview: self.timeMachineViewController.calendarPages[index])
             
-            UIView.animate(withDuration: self.viewController.animationSpeed, delay: 0, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: self.timeMachineViewController.animationSpeed, delay: 0, options: .curveEaseOut, animations: {
                 newCalendarPage.frame.origin.y -= cordinateYDifference
             
             })
             
-            self.viewController.calendarPages.append(newCalendarPage)
+            self.timeMachineViewController.calendarPages.append(newCalendarPage)
             cordinateYDifference += self.setting.newCalendarPageCordiateYDifference
 
         }

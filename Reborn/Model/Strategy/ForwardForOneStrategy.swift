@@ -15,9 +15,9 @@ class ForwardForOneStrategy: PagesBehaviorStrategy {
         var g: CGFloat = 1
         var b: CGFloat = 1
 
-        for index in 1 ... self.viewController.calendarPages.count - 1 {
+        for index in 1 ... self.timeMachineViewController.calendarPages.count - 1 {
             
-            let calendarPage = self.viewController.calendarPages[index]
+            let calendarPage = self.timeMachineViewController.calendarPages[index]
             calendarPage.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1)
             
             r -= self.setting.calendarPageColorDifference
@@ -30,11 +30,11 @@ class ForwardForOneStrategy: PagesBehaviorStrategy {
     
     override func addNewCalendarPage() {
         let newCalendarPage = UIView()
-        let scale = CGFloat(pow(Double(self.setting.newCalendarPageSizeDifference), Double(self.viewController.calendarPages.count)))
+        let scale = CGFloat(pow(Double(self.setting.newCalendarPageSizeDifference), Double(self.timeMachineViewController.calendarPages.count)))
 
         
-        newCalendarPage.frame = viewController.calendarPages.first!.frame // new calendar page frame equals to the first page
-        newCalendarPage.frame.origin.y =  viewController.calendarPages.first!.frame.origin.y - self.setting.newCalendarPageCordiateYDifference * CGFloat(self.viewController.calendarPages.count) // move up the new calendar page to its proper position Y
+        newCalendarPage.frame = timeMachineViewController.calendarPages.first!.frame // new calendar page frame equals to the first page
+        newCalendarPage.frame.origin.y =  timeMachineViewController.calendarPages.first!.frame.origin.y - self.setting.newCalendarPageCordiateYDifference * CGFloat(self.timeMachineViewController.calendarPages.count) // move up the new calendar page to its proper position Y
         newCalendarPage.transform =  CGAffineTransform(scaleX: scale, y: scale) // scale it accroding to first page to its proper size
         
         // set style
@@ -43,21 +43,21 @@ class ForwardForOneStrategy: PagesBehaviorStrategy {
         newCalendarPage.layer.cornerRadius = self.setting.itemCardCornerRadius
         newCalendarPage.setViewShadow()
 
-        self.viewController.view.insertSubview(newCalendarPage, belowSubview: self.viewController.calendarPages.last!)
-        self.viewController.calendarPages.append(newCalendarPage)
+        self.timeMachineViewController.view.insertSubview(newCalendarPage, belowSubview: self.timeMachineViewController.calendarPages.last!)
+        self.timeMachineViewController.calendarPages.append(newCalendarPage)
     }
     
     override func updateTempCalendarPage() {
         
-        if self.viewController.calendarViewController != nil {
+        if self.timeMachineViewController.calendarViewController != nil {
 
-            for index in 0 ... self.viewController.calendarPages.count - 1 {
-                let builder = TimeMachineCalendarPageBuilder(interactableCalendarView: self.viewController.calendarPages.first!.subviews.first!, calendarViewController: self.viewController.calendarViewController!, monthDifference: -index + 1)
+            for index in 0 ... self.timeMachineViewController.calendarPages.count - 1 {
+                let builder = TimeMachineCalendarPageBuilder(interactableCalendarView: self.timeMachineViewController.calendarPages.first!.subviews.first!, calendarViewController: self.timeMachineViewController.calendarViewController!, monthDifference: -index + 1)
                 let tempCalendarPage = builder.buildCalendarPage()
                 tempCalendarPage.accessibilityIdentifier = "TempCalendarPageView"
                 
-                self.removeOldTempCalendarPage(superview: self.viewController.calendarPages[index])
-                self.viewController.calendarPages[index].addSubview(tempCalendarPage) // add temp calendar page to that will disapear
+                self.removeOldTempCalendarPage(superview: self.timeMachineViewController.calendarPages[index])
+                self.timeMachineViewController.calendarPages[index].addSubview(tempCalendarPage) // add temp calendar page to that will disapear
             }
                
     
@@ -67,11 +67,11 @@ class ForwardForOneStrategy: PagesBehaviorStrategy {
     
     override func updateCalendarPages() {
 
-        UIView.animate(withDuration: self.viewController.animationSpeed, delay: 0, options: .curveLinear, animations: {
+        UIView.animate(withDuration: self.timeMachineViewController.animationSpeed, delay: 0, options: .curveLinear, animations: {
             
-               for index in 0 ... self.viewController.calendarPages.count - 1 {
+               for index in 0 ... self.timeMachineViewController.calendarPages.count - 1 {
                 
-                let backCalendarPage = self.viewController.calendarPages[index]
+                let backCalendarPage = self.timeMachineViewController.calendarPages[index]
                 let scale: CGFloat = self.setting.newCalendarPageSizeDifference
                 backCalendarPage.alpha = 1
                 
@@ -88,7 +88,7 @@ class ForwardForOneStrategy: PagesBehaviorStrategy {
                     if index == 1 {
                     
                         // send interacable calendar view to second calendar page
-                        if let interactableCalendarView = self.viewController.calendarPages.first?.subviews.first {
+                        if let interactableCalendarView = self.timeMachineViewController.calendarPages.first?.subviews.first {
                             backCalendarPage.insertSubview(interactableCalendarView, at: backCalendarPage.subviews.count)
                         }
 
@@ -98,7 +98,7 @@ class ForwardForOneStrategy: PagesBehaviorStrategy {
                         backCalendarPage.frame.origin.y += self.setting.newCalendarPageCordiateYDifference
 
                     
-                    if index == self.viewController.calendarPages.count - 1 {
+                    if index == self.timeMachineViewController.calendarPages.count - 1 {
                         
                         
                     }
@@ -108,8 +108,8 @@ class ForwardForOneStrategy: PagesBehaviorStrategy {
         }) { _ in
             
             // remove the first calendar page
-            self.viewController.calendarPages.first?.removeFromSuperview()
-            self.viewController.calendarPages.remove(at: 0)
+            self.timeMachineViewController.calendarPages.first?.removeFromSuperview()
+            self.timeMachineViewController.calendarPages.remove(at: 0)
 
         }
     }

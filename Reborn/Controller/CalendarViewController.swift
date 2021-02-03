@@ -242,7 +242,7 @@ class CalendarViewController: UIViewController {
             
             let navBarheight = (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0) + (self.navigationController?.navigationBar.frame.height ?? 0.0)
             desitinationViewController.calendarView = self.view
-            desitinationViewController.calendarViewPosition = CGPoint(x: self.topView.frame.origin.x, y:  self.topView.frame.origin.y + navBarheight)
+            desitinationViewController.calendarViewOriginalPosition = CGPoint(x: self.topView.frame.origin.x, y:  self.topView.frame.origin.y + navBarheight)
             desitinationViewController.calendarViewController = self
             self.delegate = desitinationViewController
             self.state = .timeMachine
@@ -294,23 +294,27 @@ class CalendarViewController: UIViewController {
         })
     }
     
+    var transitioningDeletage: TimeMachineTransitioningDelegate? = nil
+    var originalParentViewController: UIViewController? = nil
     
     func presentTimeMachineView() {
         //self.performSegue(withIdentifier: "goTimeMachineView", sender: self)
         if let toViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TimeMachineViewController") as? TimeMachineViewController {
             
-            let transitioningDeletage = TimeMachineTransitioningDelegate(from: self, to: toViewController)
+            transitioningDeletage = TimeMachineTransitioningDelegate(from: self, to: toViewController)
+            originalParentViewController = self.parent
             self.removeFromParent() // remove its original parent controler: ItemDetailViewController
-            toViewController.transitioningDelegate = transitioningDeletage
+            toViewController.transitioningDelegate = transitioningDeletage!
             toViewController.modalPresentationStyle = .fullScreen
   
             self.delegate = toViewController
             self.state = .timeMachine
             self.present(toViewController, animated: true)
-            
         }
        
     }
+    
+
     
     func updateUI() {
         

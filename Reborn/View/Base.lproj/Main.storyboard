@@ -1505,7 +1505,7 @@ Cg
             <objects>
                 <viewController id="cr2-6I-Rrh" customClass="CalendarViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jX3-MM-9D0">
-                        <rect key="frame" x="0.0" y="0.0" width="384" height="400"/>
+                        <rect key="frame" x="0.0" y="0.0" width="384" height="430"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RwH-pK-cja" userLabel="Top View">
@@ -1672,10 +1672,10 @@ Cg
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CyJ-kQ-0F2" userLabel="Bottom View">
-                                <rect key="frame" x="0.0" y="140" width="384" height="260"/>
+                                <rect key="frame" x="0.0" y="140" width="384" height="290"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zYE-Pq-52Y">
-                                        <rect key="frame" x="30" y="0.0" width="324" height="240"/>
+                                        <rect key="frame" x="30" y="0.0" width="324" height="270"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="mXR-mX-f4e">
                                             <size key="itemSize" width="128" height="128"/>
@@ -1747,7 +1747,7 @@ Cg
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="PMl-Ex-sJd"/>
+        <segue reference="XZJ-WO-7s9"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="AvatarMale" width="256" height="256"/>

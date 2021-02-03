@@ -10,7 +10,7 @@ import UIKit
 class TimeMachineViewController: UIViewController {
     
     var calendarView: UIView? = nil
-    var calendarViewPosition: CGPoint?
+    var calendarViewOriginalPosition: CGPoint?
     var calendarViewController: CalendarViewController?
     
     let setting: SystemStyleSetting = SystemStyleSetting.shared
@@ -32,10 +32,16 @@ class TimeMachineViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
 
-    func initialize() {
-        self.strategy = InitializeStrategy(viewController: self)
+    func presentCalendarPages() {
+        self.strategy = PresentStrategy(viewController: self)
         updateUI()
     
+    }
+    
+    func dississCalendarPages() {
+        print("dississCalendarPages()")
+        self.strategy = DismissStrategy(viewController: self)
+        updateUI()
     }
     
     func updateUI() {
