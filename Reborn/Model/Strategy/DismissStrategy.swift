@@ -26,13 +26,14 @@ class DismissStrategy: PagesBehaviorStrategy {
             UIView.animate(withDuration: self.timeMachineViewController.animationSpeed, delay: 0, options: .curveEaseOut, animations: {
                 calendarPage.transform = CGAffineTransform(scaleX: scale, y: scale)
                 calendarPage.frame.origin.y += cordinateYDifference
+                calendarPage.alpha = 0
                 
             }) { _ in
+                
                 calendarPage.removeFromSuperview()
                 self.moveUpCalendarView()
+                self.fadeOutOtherSubviews()
             }
-            
-            //self.timeMachineViewController.calendarPages.remove(at: index)
             
             cordinateYDifference += self.setting.newCalendarPageCordiateYDifference
 
@@ -43,9 +44,24 @@ class DismissStrategy: PagesBehaviorStrategy {
     func moveUpCalendarView() {
         if let calendarView = self.timeMachineViewController.calendarPages.first, let originalPosition = self.timeMachineViewController.calendarViewOriginalPosition {
             UIView.animate(withDuration: self.timeMachineViewController.animationSpeed, delay: 0, options: .curveEaseOut, animations: {
-                print(originalPosition.y)
                 calendarView.frame.origin.y = originalPosition.y
             })
         }
+    }
+    
+    func fadeOutOtherSubviews() {
+        
+        UIView.animate(withDuration: self.timeMachineViewController.animationSpeed, delay: 0, options: .curveEaseOut, animations: {
+            for subview in self.timeMachineViewController.view.subviews {  // fade out all subvies except calendar view
+                if let calendarView = subview.subviews.first,
+                   let identifier = calendarView.accessibilityIdentifier,
+                   identifier == "InteractableCalendarView" {
+
+                } else {
+                    subview.alpha = 0
+                }
+            }
+        })
+        
     }
 }

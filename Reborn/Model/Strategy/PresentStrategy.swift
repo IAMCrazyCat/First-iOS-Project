@@ -12,6 +12,7 @@ class PresentStrategy: PagesBehaviorStrategy {
     
     override func performStrategy() {
         moveDownCalendarView()
+        fadeInOtherSubviews()
     }
     
     override func updateCalendarPagesColor() {
@@ -49,8 +50,34 @@ class PresentStrategy: PagesBehaviorStrategy {
         
     }
     
+    func fadeInOtherSubviews() {
+        for subview in self.timeMachineViewController.view.subviews {  // fade out all subvies except calendar view
+            if let calendarView = subview.subviews.first,
+               let identifier = calendarView.accessibilityIdentifier,
+               identifier == "InteractableCalendarView" {
+
+            } else {
+                subview.alpha = 0
+            }
+        }
+        
+        UIView.animate(withDuration: self.timeMachineViewController.animationSpeed, delay: 0, options: .curveEaseOut, animations: {
+            for subview in self.timeMachineViewController.view.subviews {  // fade out all subvies except calendar view
+                if let calendarView = subview.subviews.first,
+                   let identifier = calendarView.accessibilityIdentifier,
+                   identifier == "InteractableCalendarView" {
+
+                } else {
+                    subview.alpha = 1
+                }
+            }
+        })
+        
+    }
+    
     func moveDownCalendarView() {
         if let calendarView = self.timeMachineViewController.calendarView{
+            calendarView.accessibilityIdentifier = "InteractableCalendarView"
             
             let newCalendarPage = UIView()
             newCalendarPage.backgroundColor = self.setting.calendarPageColor
@@ -58,7 +85,6 @@ class PresentStrategy: PagesBehaviorStrategy {
             newCalendarPage.layer.cornerRadius = self.setting.itemCardCornerRadius
             newCalendarPage.setViewShadow()
             newCalendarPage.addSubview(calendarView)
-            
             self.timeMachineViewController.calendarView?.frame.origin = .zero
             self.timeMachineViewController.view.addSubview(newCalendarPage)
             self.timeMachineViewController.calendarPages.append(newCalendarPage)

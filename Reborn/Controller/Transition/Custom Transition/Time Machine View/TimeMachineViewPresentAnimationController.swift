@@ -21,6 +21,7 @@ class TimeMachineViewPresentAnimationController: NSObject, UIViewControllerAnima
         guard
             let fromViewController =  transitionContext.viewController(forKey: .from) as? CalendarViewController,
             let toViewController = transitionContext.viewController(forKey: .to) as? TimeMachineViewController,
+            let originalParentViewController = fromViewController.originalParentViewController as? ItemDetailViewController,
             let fromView = transitionContext.view(forKey: .from),
             let toView = transitionContext.view(forKey: .to)
         else {
@@ -35,10 +36,14 @@ class TimeMachineViewPresentAnimationController: NSObject, UIViewControllerAnima
         let containerView = transitionContext.containerView
         containerView.addSubview(toView)
         
+        originalParentViewController.topView.alpha = 0
         toViewController.view.backgroundColor = UIColor.white.withAlphaComponent(0)
         toViewController.presentCalendarPages()
         
+       
+        
         UIView.animate(withDuration: 0.8, animations: {
+            
             toViewController.view.backgroundColor = UIColor.white.withAlphaComponent(1)
         }) { _ in
             

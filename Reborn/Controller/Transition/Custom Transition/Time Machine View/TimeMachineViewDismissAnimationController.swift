@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class TimeMachineViewDissmissAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
+class TimeMachineViewDismissAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
     
    
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
@@ -30,14 +30,15 @@ class TimeMachineViewDissmissAnimationController: NSObject, UIViewControllerAnim
             transitionContext.completeTransition(false)
             return
         }
-        
-       
-        
-        fromViewController.dississCalendarPages()
+
+        fromViewController.dismissCalendarPages()
         originalParentViewController.topView.alpha = 0
-        
+      
         UIView.animate(withDuration: 0.8, animations: {
             fromViewController.view.backgroundColor = UIColor.white.withAlphaComponent(0)
+            
+           
+            
         }) { _ in
             let containerView = transitionContext.containerView
             containerView.addSubview(toView)

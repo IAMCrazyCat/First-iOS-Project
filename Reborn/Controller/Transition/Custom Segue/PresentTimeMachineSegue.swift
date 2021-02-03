@@ -24,7 +24,7 @@ extension PresentTimeMachineSegue: UIViewControllerTransitioningDelegate {
         
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         print("TimeMachineDissmissed")
-        return TimeMachineViewDissmissAnimationController()
+        return TimeMachineViewDismissAnimationController()
     }
 }
 

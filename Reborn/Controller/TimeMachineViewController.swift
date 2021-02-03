@@ -25,6 +25,7 @@ class TimeMachineViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         animationSpeed = self.setting.timeMachineAnimationNormalSpeed
     }
     
@@ -33,13 +34,13 @@ class TimeMachineViewController: UIViewController {
     }
 
     func presentCalendarPages() {
+      
         self.strategy = PresentStrategy(viewController: self)
         updateUI()
     
     }
     
-    func dississCalendarPages() {
-        print("dississCalendarPages()")
+    func dismissCalendarPages() {
         self.strategy = DismissStrategy(viewController: self)
         updateUI()
     }
