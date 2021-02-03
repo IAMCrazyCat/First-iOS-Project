@@ -41,6 +41,7 @@
 		22A2EC6E25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A2EC6D25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift */; };
 		22A2EC7925C9862A00E97787 /* TimeMachineViewPresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A2EC7825C9862A00E97787 /* TimeMachineViewPresentAnimationController.swift */; };
 		22A2EC8425C9868C00E97787 /* TimeMachineViewDissmissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A2EC8325C9868C00E97787 /* TimeMachineViewDissmissAnimationController.swift */; };
+		22A2EC9525CA2AAB00E97787 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A2EC9425CA2AAB00E97787 /* Array.swift */; };
 		22A597EC2598091B008E2A06 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A597EB2598091B008E2A06 /* UIButton.swift */; };
 		22A597F925986685008E2A06 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A597F825986685008E2A06 /* AddItemViewController.swift */; };
 		22A597FE2599C0AF008E2A06 /* WeekDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A597FD2599C0AF008E2A06 /* WeekDay.swift */; };
@@ -131,6 +132,7 @@
 		22A2EC6D25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineTransitioningDelegate.swift; sourceTree = "<group>"; };
 		22A2EC7825C9862A00E97787 /* TimeMachineViewPresentAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineViewPresentAnimationController.swift; sourceTree = "<group>"; };
 		22A2EC8325C9868C00E97787 /* TimeMachineViewDissmissAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineViewDissmissAnimationController.swift; sourceTree = "<group>"; };
+		22A2EC9425CA2AAB00E97787 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		22A597EB2598091B008E2A06 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		22A597F825986685008E2A06 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		22A597FD2599C0AF008E2A06 /* WeekDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDay.swift; sourceTree = "<group>"; };
@@ -428,6 +430,7 @@
 				225AD12925A848A30040E356 /* Selector.swift */,
 				22AACA1025AD910D0098D920 /* Date.swift */,
 				22BABF2825C42ABB00168AE1 /* CGAffineTransform.swift */,
+				22A2EC9425CA2AAB00E97787 /* Array.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -583,6 +586,7 @@
 				22D6196725A02FE100EC9396 /* PopUpViewDismissAnimationController.swift in Sources */,
 				224E668A25C6A76600B71E8A /* DateCalculator.swift in Sources */,
 				22A2EC6E25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift in Sources */,
+				22A2EC9525CA2AAB00E97787 /* Array.swift in Sources */,
 				22AACA1125AD910D0098D920 /* Date.swift in Sources */,
 				224A91842595FA7D00A896BE /* ItemType.swift in Sources */,
 				22FCB1B5258D86BA006A0D39 /* SetUpViewController.swift in Sources */,

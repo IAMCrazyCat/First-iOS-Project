@@ -297,22 +297,17 @@ class CalendarViewController: UIViewController {
     
     func presentTimeMachineView() {
         //self.performSegue(withIdentifier: "goTimeMachineView", sender: self)
-        if let destinationViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TimeMachineViewController") as? TimeMachineViewController {
+        if let toViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TimeMachineViewController") as? TimeMachineViewController {
             
-            let transitioningDeletage = TimeMachineTransitioningDelegate(from: self, to: destinationViewController)
-            
+            let transitioningDeletage = TimeMachineTransitioningDelegate(from: self, to: toViewController)
             self.removeFromParent() // remove its original parent controler: ItemDetailViewController
-            let navBarheight = (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0) + (self.navigationController?.navigationBar.frame.height ?? 0.0)
-            destinationViewController.calendarView = self.view
-            destinationViewController.calendarViewPosition = CGPoint(x: self.topView.frame.origin.x, y:  self.topView.frame.origin.y + navBarheight)
-            destinationViewController.calendarViewController = self
-            self.delegate = destinationViewController
+            toViewController.transitioningDelegate = transitioningDeletage
+            toViewController.modalPresentationStyle = .fullScreen
+  
+            self.delegate = toViewController
             self.state = .timeMachine
-    
-            destinationViewController.calendarView = self.view
-            destinationViewController.transitioningDelegate = transitioningDeletage
-            destinationViewController.modalPresentationStyle = .fullScreen
-            present(destinationViewController, animated: true)
+            self.present(toViewController, animated: true)
+            
         }
        
     }

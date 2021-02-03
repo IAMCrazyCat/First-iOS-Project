@@ -16,26 +16,28 @@ class TimeMachineViewPresentAnimationController: NSObject, UIViewControllerAnima
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-//        let tabBarController = transitionContext.viewController(forKey: .to) as! UITabBarController
-//        let navigationController = tabBarController.viewControllers![0] as! UINavigationController
-//        let toViewController = navigationController.viewControllers.first as! TimeMachineViewController
-    
         
-        
-
        
+        
         guard
+            let fromViewConroller =  transitionContext.viewController(forKey: .from) as? CalendarViewController,
             let toViewController = transitionContext.viewController(forKey: .to) as? TimeMachineViewController,
+            let fromView = transitionContext.view(forKey: .from),
             let toView = transitionContext.view(forKey: .to)
-            //let fromViewController = transitionContext.viewController(forKey: .from) as? CalendarViewController
-            //let fromView = transitionContext.view(forKey: .from)
         else {
+            print("Found nil when unwrapping guard attributes, location: 'TimeMachineViewPresentAnimation Line \(#line)'")
             transitionContext.completeTransition(false)
             return
         }
-          
+        
+        let navBarheight = (fromViewConroller.view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0) + (fromViewConroller.navigationController?.navigationBar.frame.height ?? 0.0)
+ 
+        toViewController.calendarView = fromView
+        toViewController.calendarViewController = fromViewConroller
+        toViewController.calendarViewPosition = CGPoint(x: fromViewConroller.topView.frame.origin.x, y: fromViewConroller.topView.frame.origin.y + navBarheight)
+        
+        
         let containerView = transitionContext.containerView
-        //toViewController.view.addSubview(toViewController.calendarView!)
         containerView.addSubview(toView)
         
         toViewController.view.backgroundColor = UIColor.white.withAlphaComponent(0)
@@ -46,7 +48,7 @@ class TimeMachineViewPresentAnimationController: NSObject, UIViewControllerAnima
         }) { _ in
             
             transitionContext.completeTransition(true)
-            toViewController.calendarPages.first?.addSubview(toViewController.calendarView!)
+            toViewController.calendarPages.first?.addSubview(fromView)
         }
  
         

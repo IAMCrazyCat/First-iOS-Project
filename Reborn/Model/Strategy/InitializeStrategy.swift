@@ -36,10 +36,11 @@ class InitializeStrategy: PagesBehaviorStrategy {
     
     override func updateTempCalendarPage() {
         
-        if self.viewController.calendarViewController != nil {
+        if let calendarView = self.viewController.calendarPages.first?.subviews.first,
+        let calendarViewController = self.viewController.calendarViewController {
 
             for index in 1 ... 3 {
-                let builder = TimeMachineCalendarPageBuilder(interactableCalendarView: self.viewController.calendarPages.first!.subviews.first!, calendarViewController: self.viewController.calendarViewController!, monthDifference: -index)
+                let builder = TimeMachineCalendarPageBuilder(interactableCalendarView: calendarView, calendarViewController: calendarViewController, monthDifference: -index)
                 let tempCalendarPage = builder.buildCalendarPage()
                 tempCalendarPage.accessibilityIdentifier = "TempCalendarPageView"
                 
