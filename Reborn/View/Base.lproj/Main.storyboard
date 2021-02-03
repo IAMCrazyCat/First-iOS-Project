@@ -723,6 +723,14 @@ Cg
                                     <action selector="dismissButtonPressed:" destination="Mvo-e2-cGd" eventType="touchUpInside" id="jrE-XH-p5q"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hC6-oy-S3E">
+                                <rect key="frame" x="164" y="726" width="62" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="回到过去"/>
+                                <connections>
+                                    <action selector="goBackToThePastButtonPressed:" destination="Mvo-e2-cGd" eventType="touchUpInside" id="SET-s9-oxo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1qh-oX-I6h"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -735,6 +743,7 @@ Cg
                     </view>
                     <navigationItem key="navigationItem" id="t6j-P3-uLL"/>
                     <connections>
+                        <outlet property="goBackToThePastButton" destination="hC6-oy-S3E" id="qNp-Nf-JEH"/>
                         <outlet property="timeMachineLabel" destination="TBC-dZ-hSy" id="2k7-J0-WQZ"/>
                     </connections>
                 </viewController>
@@ -1586,9 +1595,27 @@ Cg
                                         <rect key="frame" x="326" y="15" width="28" height="28"/>
                                         <accessibility key="accessibilityConfiguration" identifier="TimeMachineButton"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="TimeMachine1"/>
+                                        <state key="normal" image="TimeMachineFrame"/>
                                         <connections>
                                             <action selector="timeMachineButtonPressed:" destination="cr2-6I-Rrh" eventType="touchUpInside" id="PAg-hu-gkN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TcB-6z-XPK" userLabel="Time Machine Hour Hand Button ">
+                                        <rect key="frame" x="326" y="15" width="28" height="28"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="TimeMachineButton"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="TimeMachineHourHand.png"/>
+                                        <connections>
+                                            <action selector="timeMachineButtonPressed:" destination="cr2-6I-Rrh" eventType="touchUpInside" id="Yjh-FW-qE1"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aI3-2L-jGE" userLabel="Time Machine Minute Hand Button">
+                                        <rect key="frame" x="326" y="15" width="28" height="28"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="TimeMachineButton"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="TimeMachineMinuteHand"/>
+                                        <connections>
+                                            <action selector="timeMachineButtonPressed:" destination="cr2-6I-Rrh" eventType="touchUpInside" id="vKp-fF-YRd"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1597,6 +1624,7 @@ Cg
                                 <constraints>
                                     <constraint firstItem="djk-JB-I2X" firstAttribute="top" secondItem="NdA-gx-XZ9" secondAttribute="bottom" constant="20" id="0pp-Ry-MOe"/>
                                     <constraint firstItem="UnO-dN-eLE" firstAttribute="top" secondItem="NdA-gx-XZ9" secondAttribute="bottom" constant="20" id="4cW-At-cBQ"/>
+                                    <constraint firstItem="aI3-2L-jGE" firstAttribute="top" secondItem="RwH-pK-cja" secondAttribute="top" constant="15" id="8uR-Jp-eel"/>
                                     <constraint firstItem="NdA-gx-XZ9" firstAttribute="leading" secondItem="RwH-pK-cja" secondAttribute="leading" constant="30" id="LnF-db-IFL"/>
                                     <constraint firstItem="NdA-gx-XZ9" firstAttribute="top" secondItem="RwH-pK-cja" secondAttribute="top" constant="20" id="NLK-vd-RYC"/>
                                     <constraint firstAttribute="trailing" secondItem="WWW-ka-0QZ" secondAttribute="trailing" constant="30" id="NNx-wu-neB"/>
@@ -1604,9 +1632,12 @@ Cg
                                     <constraint firstAttribute="trailing" secondItem="NdA-gx-XZ9" secondAttribute="trailing" constant="30" id="XEd-Ni-muM"/>
                                     <constraint firstItem="WWW-ka-0QZ" firstAttribute="top" secondItem="RwH-pK-cja" secondAttribute="top" constant="15" id="c9m-5N-gIo"/>
                                     <constraint firstItem="djk-JB-I2X" firstAttribute="centerX" secondItem="RwH-pK-cja" secondAttribute="centerX" constant="-60" id="ckB-n2-0nj"/>
+                                    <constraint firstItem="TcB-6z-XPK" firstAttribute="top" secondItem="RwH-pK-cja" secondAttribute="top" constant="15" id="f3H-97-mzH"/>
                                     <constraint firstItem="4yp-mE-jGG" firstAttribute="centerX" secondItem="RwH-pK-cja" secondAttribute="centerX" constant="60" id="fmF-aj-inV"/>
                                     <constraint firstItem="UnO-dN-eLE" firstAttribute="leading" secondItem="RwH-pK-cja" secondAttribute="leading" constant="20" id="gR2-dM-FZu"/>
+                                    <constraint firstAttribute="trailing" secondItem="aI3-2L-jGE" secondAttribute="trailing" constant="30" id="hSb-gu-gyY"/>
                                     <constraint firstItem="UGA-qj-SB4" firstAttribute="top" secondItem="NdA-gx-XZ9" secondAttribute="bottom" constant="20" id="pEf-eU-6mK"/>
+                                    <constraint firstAttribute="trailing" secondItem="TcB-6z-XPK" secondAttribute="trailing" constant="30" id="q84-lV-aKa"/>
                                     <constraint firstItem="4yp-mE-jGG" firstAttribute="top" secondItem="NdA-gx-XZ9" secondAttribute="bottom" constant="20" id="sPV-Zt-pbh"/>
                                     <constraint firstAttribute="height" constant="100" id="xV9-76-0mq"/>
                                 </constraints>
@@ -1722,6 +1753,8 @@ Cg
                         <outlet property="startMonthButton" destination="4yp-mE-jGG" id="psf-h6-csZ"/>
                         <outlet property="thisMonthButton" destination="djk-JB-I2X" id="Z0K-DV-oE9"/>
                         <outlet property="timeMachineButton" destination="WWW-ka-0QZ" id="IHt-vu-FTo"/>
+                        <outlet property="timeMachineHourHandButton" destination="TcB-6z-XPK" id="umW-1N-3qj"/>
+                        <outlet property="timeMachineMinuteHandButton" destination="aI3-2L-jGE" id="ksl-FY-Uai"/>
                         <outlet property="topView" destination="RwH-pK-cja" id="YLy-qL-yPX"/>
                         <segue destination="Mvo-e2-cGd" kind="custom" identifier="goTimeMachineView" customClass="PresentTimeMachineSegue" customModule="Reborn" customModuleProvider="target" id="uhl-kh-ZNW"/>
                     </connections>
@@ -1764,7 +1797,9 @@ Cg
         <image name="RestoreIcon" width="28" height="28"/>
         <image name="ShareIcon" width="28" height="28"/>
         <image name="Test" width="195" height="196"/>
-        <image name="TimeMachine1" width="28" height="28"/>
+        <image name="TimeMachineFrame" width="28" height="28"/>
+        <image name="TimeMachineHourHand.png" width="28" height="28"/>
+        <image name="TimeMachineMinuteHand" width="28" height="28"/>
         <image name="Welcome2Icon1" width="512" height="512"/>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
@@ -1772,7 +1807,7 @@ Cg
         <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <namedColor name="ThemeColor">
-            <color red="1" green="0.6600000262260437" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.67000001668930054" green="0.80199998617172241" blue="0.93000000715255737" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="ThemeColorInvert">
             <color red="0.57700002193450928" green="0.58399999141693115" blue="0.58799999952316284" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

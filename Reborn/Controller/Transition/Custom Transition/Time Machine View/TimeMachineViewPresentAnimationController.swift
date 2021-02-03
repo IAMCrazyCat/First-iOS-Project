@@ -12,7 +12,7 @@ class TimeMachineViewPresentAnimationController: NSObject, UIViewControllerAnima
     
    
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.5
+        return SystemStyleSetting.shared.timeMachineAnimationSlowSpeed
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -42,7 +42,7 @@ class TimeMachineViewPresentAnimationController: NSObject, UIViewControllerAnima
         
        
         
-        UIView.animate(withDuration: 0.8, animations: {
+        UIView.animate(withDuration: SystemStyleSetting.shared.timeMachineAnimationSlowSpeed, animations: {
             
             toViewController.view.backgroundColor = UIColor.white.withAlphaComponent(1)
         }) { _ in

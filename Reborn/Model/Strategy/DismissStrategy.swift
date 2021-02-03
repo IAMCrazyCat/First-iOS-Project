@@ -43,7 +43,7 @@ class DismissStrategy: PagesBehaviorStrategy {
     
     func moveUpCalendarView() {
         if let calendarView = self.timeMachineViewController.calendarPages.first, let originalPosition = self.timeMachineViewController.calendarViewOriginalPosition {
-            UIView.animate(withDuration: self.timeMachineViewController.animationSpeed, delay: 0, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: SystemStyleSetting.shared.timeMachineAnimationNormalSpeed, delay: 0, options: .curveEaseOut, animations: {
                 calendarView.frame.origin.y = originalPosition.y
             })
         }
@@ -51,7 +51,7 @@ class DismissStrategy: PagesBehaviorStrategy {
     
     func fadeOutOtherSubviews() {
         
-        UIView.animate(withDuration: self.timeMachineViewController.animationSpeed, delay: 0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: SystemStyleSetting.shared.timeMachineAnimationSlowSpeed, delay: 0, options: .curveEaseOut, animations: {
             for subview in self.timeMachineViewController.view.subviews {  // fade out all subvies except calendar view
                 if let calendarView = subview.subviews.first,
                    let identifier = calendarView.accessibilityIdentifier,

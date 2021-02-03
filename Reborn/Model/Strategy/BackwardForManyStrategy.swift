@@ -23,7 +23,9 @@ class BackwardForManyStrategy: PagesBehaviorStrategy {
             
         }
        
-        if numberOfMovingPages > 0 { // if its current month, dont excute animation
+        if numberOfMovingPages <= 0 { // if its current month, dont excute animation
+           
+        } else {
             updateCalendarPages()
             updateCalendarPagesColor()
         }

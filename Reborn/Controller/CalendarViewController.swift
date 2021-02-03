@@ -45,6 +45,8 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var bottomCollectionView: UICollectionView!
     @IBOutlet weak var timeMachineButton: UIButton!
+    @IBOutlet weak var timeMachineHourHandButton: UIButton!
+    @IBOutlet weak var timeMachineMinuteHandButton: UIButton!
     
     var monthLabelOriginalCordinateX: CGFloat = 0
     
@@ -263,7 +265,8 @@ class CalendarViewController: UIViewController {
         case .nextMonth:
             directionAttribute = -1
         case .noWhere:
-            directionAttribute = 0
+            self.updateMonthLabelWithoutAnimation()
+            return
         }
         
         UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseOut, animations: {
@@ -298,7 +301,9 @@ class CalendarViewController: UIViewController {
     var originalParentViewController: UIViewController? = nil
     
     func presentTimeMachineView() {
-        //self.performSegue(withIdentifier: "goTimeMachineView", sender: self)
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+       
         if let toViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TimeMachineViewController") as? TimeMachineViewController {
             
             transitioningDeletage = TimeMachineTransitioningDelegate(from: self, to: toViewController)

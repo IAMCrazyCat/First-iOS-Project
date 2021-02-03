@@ -24,6 +24,7 @@ class ForwardForManyStrategy: PagesBehaviorStrategy {
             
         }
        
+        print("AAA \(numberOfMovingPages)")
         if numberOfMovingPages > 0 {
             updateTempCalendarPage()
             updateCalendarPages()

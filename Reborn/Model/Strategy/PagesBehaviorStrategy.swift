@@ -12,12 +12,15 @@ class PagesBehaviorStrategy: TimeMachineAnimationStrategy {
     let timeMachineViewController: TimeMachineViewController
     let setting: SystemStyleSetting = SystemStyleSetting.shared
     
-    init(viewController: TimeMachineViewController) {
-        self.timeMachineViewController = viewController
+    init(timeMachineViewController: TimeMachineViewController) {
+        self.timeMachineViewController = timeMachineViewController 
     }
     
     public func performStrategy() {
-        
+        addNewCalendarPage()
+        updateTempCalendarPage()
+        updateCalendarPages()
+        updateCalendarPagesColor()
     }
     
     internal func removeOldTempCalendarPage(superview: UIView) {

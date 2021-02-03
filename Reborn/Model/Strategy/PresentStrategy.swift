@@ -11,6 +11,7 @@ class PresentStrategy: PagesBehaviorStrategy {
     
     
     override func performStrategy() {
+        
         moveDownCalendarView()
         fadeInOtherSubviews()
     }
@@ -76,7 +77,7 @@ class PresentStrategy: PagesBehaviorStrategy {
     }
     
     func moveDownCalendarView() {
-        if let calendarView = self.timeMachineViewController.calendarView{
+        if let calendarView = self.timeMachineViewController.calendarView {
             calendarView.accessibilityIdentifier = "InteractableCalendarView"
             
             let newCalendarPage = UIView()
@@ -90,9 +91,12 @@ class PresentStrategy: PagesBehaviorStrategy {
             self.timeMachineViewController.calendarPages.append(newCalendarPage)
             self.timeMachineViewController.calendarViewOriginalPosition = self.timeMachineViewController.calendarPages.first?.frame.origin
             
-            UIView.animate(withDuration: self.timeMachineViewController.animationSpeed, delay: 0, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: self.setting.timeMachineAnimationSlowSpeed, delay: 0, options: .curveEaseOut, animations: {
 
                 self.timeMachineViewController.calendarPages.first?.frame.origin.y = self.setting.screenFrame.height / 2 -  calendarView.frame.height / 2
+                
+                self.timeMachineViewController.calendarViewController?.timeMachineHourHandButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+                self.timeMachineViewController.calendarViewController?.timeMachineMinuteHandButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
             }) { _ in
 
                 self.addOtherCalendarPagesAndMoveThemUp()
@@ -121,9 +125,13 @@ class PresentStrategy: PagesBehaviorStrategy {
             self.timeMachineViewController.view.insertSubview(newCalendarPage, belowSubview: self.timeMachineViewController.calendarPages[index])
             
             UIView.animate(withDuration: self.timeMachineViewController.animationSpeed, delay: 0, options: .curveEaseOut, animations: {
+
                 newCalendarPage.frame.origin.y -= cordinateYDifference
             
-            })
+            }) { _ in
+                
+                
+            }
             
             self.timeMachineViewController.calendarPages.append(newCalendarPage)
             cordinateYDifference += self.setting.newCalendarPageCordiateYDifference
@@ -131,7 +139,20 @@ class PresentStrategy: PagesBehaviorStrategy {
         }
     }
     
-   
+//    var timer: Timer?
+//
+//    func viberateDevice(calendarView: UIView, targetPosition: CGPoint) {
+//        timer = Timer.scheduledTimer(withTimeInterval: self.setting.timeMachineAnimationFastSpeed / 10, repeats: true) { timer in
+//
+//            if calendarView.frame.origin == targetPosition {
+//                let generator = UIImpactFeedbackGenerator(style: .light)
+//                generator.impactOccurred()
+//                timer.invalidate()
+//            }
+//
+//        }
+//
+//    }
     
     
 }
