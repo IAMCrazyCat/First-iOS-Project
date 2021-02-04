@@ -13,7 +13,7 @@ class CalendarCell: UICollectionViewCell {
 
     
     static var identifier: String = "DayCell"
-    let dayButton: UILabel = UILabel()
+    let dayButton: UIButton = UIButton()
 
     
     override init(frame: CGRect) {
@@ -28,11 +28,10 @@ class CalendarCell: UICollectionViewCell {
         contentView.backgroundColor = .white // or orange, whatever
         
         
-        dayButton.text = nil
+        dayButton.setTitle(nil, for: .normal)
         dayButton.backgroundColor = .clear
-        //dayLabel.layer.borderWidth = 0.5
-        dayButton.textColor = .black
-        dayButton.textAlignment = .center
+        dayButton.setTitleColor(.black, for: .normal)
+        dayButton.titleLabel?.textAlignment = .center
         dayButton.translatesAutoresizingMaskIntoConstraints = false
        
         contentView.addSubview(dayButton)

@@ -236,6 +236,10 @@ class CalendarViewController: UIViewController {
        
     }
     
+    @objc func cellButtonPressed(_ sender: UIButton) {
+        print(sender.currentTitle)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if let desitinationViewController = segue.destination as? TimeMachineViewController {
@@ -362,11 +366,13 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
 
             let dayNumber = indexPath.row - self.currentCalendarPage.weekdayOfFirstDay + 1
 
-            cell.dayButton.text = String(dayNumber)
+            cell.dayButton.setTitle(String(dayNumber), for: .normal)
+            cell.dayButton.addTarget(self, action: #selector(self.cellButtonPressed(_:)), for: .touchUpInside)
             
             if self.currentCalendarPage.punchedInDays.contains(dayNumber) { // punchedIn day UI
                 cell.contentView.backgroundColor = UserStyleSetting.themeColor
-                cell.dayButton.textColor = .white
+                cell.dayButton.setTitleColor(.white, for: .normal)
+                
             }
 
         } else { // After lastday
