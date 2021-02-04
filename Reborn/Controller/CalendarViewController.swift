@@ -47,20 +47,21 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var timeMachineButton: UIButton!
 
     
-    var monthLabelOriginalCordinateX: CGFloat = 0
-    
-    var item: Item?
-    let setting: SystemStyleSetting = SystemStyleSetting.shared
-    let engine: AppEngine = AppEngine.shared
-    var calendarLoaded: Bool = false
-    
-    lazy var currentCalendarPage: CalendarPage = CalendarPage(year: self.engine.currentDate.year, month: self.engine.currentDate.month, punchedInDays: self.getPunchedInDays(pageYear: self.engine.currentDate.year, pageMonth: self.engine.currentDate.month))
-    
-    var delegate: CalendarViewDegelagte?
-    var superViewController: UIViewController?
+    private let setting: SystemStyleSetting = SystemStyleSetting.shared
+    private let engine: AppEngine = AppEngine.shared
     private var storedState: CalendarState = .normal
     
-    var state: CalendarState {
+    public lazy var currentCalendarPage: CalendarPage = CalendarPage(year: self.engine.currentDate.year, month: self.engine.currentDate.month, punchedInDays: self.getPunchedInDays(pageYear: self.engine.currentDate.year, pageMonth: self.engine.currentDate.month))
+    public var monthLabelOriginalCordinateX: CGFloat = 0
+    public var item: Item?
+    public var calendarLoaded: Bool = false
+    public var delegate: CalendarViewDegelagte?
+    public var superViewController: UIViewController?
+    public var storedMonthInterval: Int = 0
+    public var userDidGo: NewCalendarPage = .noWhere
+    public var punchInMakingUpDates: Array<CustomDate> = []
+
+    public var state: CalendarState {
         get {
             return storedState
         }
@@ -71,26 +72,25 @@ class CalendarViewController: UIViewController {
         }
         
     }
-    
-    
-    var lastPageYear: Int {
+
+    private var lastPageYear: Int {
         return DateCalculator(currentYear: self.currentCalendarPage.year, currentMonth: self.currentCalendarPage.month, monthInterval: -1).yearResult
     }
     
-    var lastPageMonth: Int {
+    private var lastPageMonth: Int {
         return DateCalculator(currentYear: self.currentCalendarPage.year, currentMonth: self.currentCalendarPage.month, monthInterval: -1).monthResult
     }
     
-    var nextPageYear: Int {
+    private var nextPageYear: Int {
         return DateCalculator(currentYear: self.currentCalendarPage.year, currentMonth: self.currentCalendarPage.month, monthInterval: 1).yearResult
     }
     
-    var nextPageMonth: Int {
+    private var nextPageMonth: Int {
         return DateCalculator(currentYear: self.currentCalendarPage.year, currentMonth: self.currentCalendarPage.month, monthInterval: 1).monthResult
     }
-    var storedMonthInterval: Int = 0
-    var userDidGo: NewCalendarPage = .noWhere
-        
+    
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         bottomCollectionView.delegate = self
@@ -362,11 +362,11 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
 
             let dayNumber = indexPath.row - self.currentCalendarPage.weekdayOfFirstDay + 1
 
-            cell.dayLabel.text = String(dayNumber)
+            cell.dayButton.text = String(dayNumber)
             
             if self.currentCalendarPage.punchedInDays.contains(dayNumber) { // punchedIn day UI
                 cell.contentView.backgroundColor = UserStyleSetting.themeColor
-                cell.dayLabel.textColor = .white
+                cell.dayButton.textColor = .white
             }
 
         } else { // After lastday

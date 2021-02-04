@@ -13,31 +13,32 @@ class CalendarCell: UICollectionViewCell {
 
     
     static var identifier: String = "DayCell"
-    let dayLabel: UILabel = UILabel()
+    let dayButton: UILabel = UILabel()
 
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setUpUI()
-        self.contentView.addSubview(dayLabel)
+        self.contentView.addSubview(dayButton)
     }
     
     private func setUpUI() {
         contentView.layer.cornerRadius = contentView.frame.width / 2
         contentView.clipsToBounds = true
         contentView.backgroundColor = .white // or orange, whatever
-
-        dayLabel.text = nil
-        dayLabel.backgroundColor = .clear
+        
+        
+        dayButton.text = nil
+        dayButton.backgroundColor = .clear
         //dayLabel.layer.borderWidth = 0.5
-        dayLabel.textColor = .black
-        dayLabel.textAlignment = .center
-        dayLabel.translatesAutoresizingMaskIntoConstraints = false
+        dayButton.textColor = .black
+        dayButton.textAlignment = .center
+        dayButton.translatesAutoresizingMaskIntoConstraints = false
        
-        contentView.addSubview(dayLabel)
+        contentView.addSubview(dayButton)
 
-        dayLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        dayLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        dayButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        dayButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }
     
     required init?(coder: NSCoder) {
@@ -45,8 +46,8 @@ class CalendarCell: UICollectionViewCell {
     }
     
     override func layoutSubviews() {
-        dayLabel.frame = self.contentView.frame
-        dayLabel.layer.cornerRadius = dayLabel.frame.width / 2
+        dayButton.frame = self.contentView.frame
+        dayButton.layer.cornerRadius = dayButton.frame.width / 2
     }
     
     override func prepareForReuse() {
