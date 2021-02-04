@@ -36,11 +36,13 @@ class TimeMachineViewDismissAnimationController: NSObject, UIViewControllerAnima
         originalParentViewController.topView.alpha = 0
         
         UIView.animate(withDuration: SystemStyleSetting.shared.timeMachineAnimationSlowSpeed, animations: {
-            fromViewController.view.backgroundColor = UIColor.white.withAlphaComponent(0)
-            
-           
+            fromViewController.view.backgroundColor = fromViewController.view.backgroundColor?.withAlphaComponent(0)
+            fromViewController.topView.alpha = 0
+            fromViewController.middleView.backgroundColor = fromViewController.middleView.backgroundColor?.withAlphaComponent(0)
+            fromViewController.bottomView.alpha = 0
             
         }) { _ in
+            
             let containerView = transitionContext.containerView
             containerView.addSubview(toView)
             originalParentViewController.topView.alpha = 1

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 class ForwardForManyStrategy: PagesBehaviorStrategy {
     var timesOfAnimationExcuted: Int = 0
-    var numberOfMovingPages = 1
+    var numberOfMovingPages: Int = 1
         
        
     
@@ -23,8 +23,7 @@ class ForwardForManyStrategy: PagesBehaviorStrategy {
             }
             
         }
-       
-        print("AAA \(numberOfMovingPages)")
+    
         if numberOfMovingPages > 0 {
             updateTempCalendarPage()
             updateCalendarPages()
@@ -68,7 +67,7 @@ class ForwardForManyStrategy: PagesBehaviorStrategy {
         newCalendarPage.layer.cornerRadius = self.setting.itemCardCornerRadius
         newCalendarPage.setViewShadow()
 
-        self.timeMachineViewController.view.insertSubview(newCalendarPage, belowSubview: self.timeMachineViewController.calendarPages.last!)
+        self.timeMachineViewController.middleView.insertSubview(newCalendarPage, belowSubview: self.timeMachineViewController.calendarPages.last!)
         self.timeMachineViewController.calendarPages.append(newCalendarPage)
     }
     

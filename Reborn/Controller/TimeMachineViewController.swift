@@ -19,21 +19,34 @@ class TimeMachineViewController: UIViewController {
     var animationSpeed: TimeInterval = 0.0
     var strategy: TimeMachineAnimationStrategy? = nil
     
+    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var middleView: UIView!
+    @IBOutlet weak var bottomView: UIView!
+    
     @IBOutlet weak var goBackToThePastButton: UIButton!
     @IBOutlet weak var timeMachineLabel: UILabel!
+    @IBOutlet weak var cancelButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         animationSpeed = self.setting.timeMachineAnimationNormalSpeed
+        
+        goBackToThePastButton.layer.cornerRadius = self.setting.mainButtonCornerRadius
+        goBackToThePastButton.setViewShadow()
+        goBackToThePastButton.setBackgroundColor(UserStyleSetting.themeColor, cornerRadius: goBackToThePastButton.layer.cornerRadius, for: .normal)
+        goBackToThePastButton.setBackgroundColor(.gray, cornerRadius: goBackToThePastButton.layer.cornerRadius, for: .disabled)
+ 
     }
     
-    @IBAction func dismissButtonPressed(_ sender: Any) {
+    @IBAction func cancelButtonPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func goBackToThePastButtonPressed(_ sender: UIButton) {
-        
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
+        self.dismiss(animated: true, completion: nil)
     }
     
 

@@ -13,7 +13,6 @@ class PresentStrategy: PagesBehaviorStrategy {
     override func performStrategy() {
         
         moveDownCalendarView()
-        fadeInOtherSubviews()
     }
     
     override func updateCalendarPagesColor() {
@@ -51,54 +50,28 @@ class PresentStrategy: PagesBehaviorStrategy {
         
     }
     
-    func fadeInOtherSubviews() {
-        for subview in self.timeMachineViewController.view.subviews {  // fade out all subvies except calendar view
-            if let calendarView = subview.subviews.first,
-               let identifier = calendarView.accessibilityIdentifier,
-               identifier == "InteractableCalendarView" {
-
-            } else {
-                subview.alpha = 0
-            }
-        }
-        
-        UIView.animate(withDuration: self.timeMachineViewController.animationSpeed, delay: 0, options: .curveEaseOut, animations: {
-            for subview in self.timeMachineViewController.view.subviews {  // fade out all subvies except calendar view
-                if let calendarView = subview.subviews.first,
-                   let identifier = calendarView.accessibilityIdentifier,
-                   identifier == "InteractableCalendarView" {
-
-                } else {
-                    subview.alpha = 1
-                }
-            }
-        })
-        
-    }
     
     func moveDownCalendarView() {
         if let calendarView = self.timeMachineViewController.calendarView {
             calendarView.accessibilityIdentifier = "InteractableCalendarView"
+            calendarView.frame.origin = .zero
             
             let newCalendarPage = UIView()
             newCalendarPage.backgroundColor = self.setting.calendarPageColor
-            newCalendarPage.frame = self.timeMachineViewController.calendarView!.frame
+            newCalendarPage.frame.size = calendarView.frame.size
+            newCalendarPage.frame.origin = self.timeMachineViewController.calendarViewOriginalPosition ?? .zero
             newCalendarPage.layer.cornerRadius = self.setting.itemCardCornerRadius
             newCalendarPage.setViewShadow()
             newCalendarPage.addSubview(calendarView)
-            self.timeMachineViewController.calendarView?.frame.origin = .zero
-            self.timeMachineViewController.view.addSubview(newCalendarPage)
+            self.timeMachineViewController.middleView.addSubview(newCalendarPage)
             self.timeMachineViewController.calendarPages.append(newCalendarPage)
-            self.timeMachineViewController.calendarViewOriginalPosition = self.timeMachineViewController.calendarPages.first?.frame.origin
+            self.timeMachineViewController.view.layoutIfNeeded()
             
             UIView.animate(withDuration: self.setting.timeMachineAnimationSlowSpeed, delay: 0, options: .curveEaseOut, animations: {
-
-                self.timeMachineViewController.calendarPages.first?.frame.origin.y = self.setting.screenFrame.height / 2 -  calendarView.frame.height / 2
+              
+                self.timeMachineViewController.calendarPages.first?.frame.origin.y = self.timeMachineViewController.middleView.frame.height / 2  - self.timeMachineViewController.calendarPages.first!.frame.height / 2
                 
-                self.timeMachineViewController.calendarViewController?.timeMachineHourHandButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
-                self.timeMachineViewController.calendarViewController?.timeMachineMinuteHandButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
             }) { _ in
-
                 self.addOtherCalendarPagesAndMoveThemUp()
                 self.updateTempCalendarPage()
                 self.updateCalendarPagesColor()
@@ -116,13 +89,13 @@ class PresentStrategy: PagesBehaviorStrategy {
             scale *= self.setting.newCalendarPageSizeDifference
             let newCalendarPage = UIView()
             newCalendarPage.backgroundColor = self.setting.calendarPageColor
-            newCalendarPage.frame = self.timeMachineViewController.calendarPages[0].frame
+            newCalendarPage.frame = self.timeMachineViewController.calendarPages.first!.frame
             newCalendarPage.transform = CGAffineTransform(scaleX: scale, y: scale)
             newCalendarPage.layer.cornerRadius = self.setting.itemCardCornerRadius
             newCalendarPage.setViewShadow()
             
             
-            self.timeMachineViewController.view.insertSubview(newCalendarPage, belowSubview: self.timeMachineViewController.calendarPages[index])
+            self.timeMachineViewController.middleView.insertSubview(newCalendarPage, belowSubview: self.timeMachineViewController.calendarPages[index])
             
             UIView.animate(withDuration: self.timeMachineViewController.animationSpeed, delay: 0, options: .curveEaseOut, animations: {
 
@@ -138,21 +111,5 @@ class PresentStrategy: PagesBehaviorStrategy {
 
         }
     }
-    
-//    var timer: Timer?
-//
-//    func viberateDevice(calendarView: UIView, targetPosition: CGPoint) {
-//        timer = Timer.scheduledTimer(withTimeInterval: self.setting.timeMachineAnimationFastSpeed / 10, repeats: true) { timer in
-//
-//            if calendarView.frame.origin == targetPosition {
-//                let generator = UIImpactFeedbackGenerator(style: .light)
-//                generator.impactOccurred()
-//                timer.invalidate()
-//            }
-//
-//        }
-//
-//    }
-    
     
 }

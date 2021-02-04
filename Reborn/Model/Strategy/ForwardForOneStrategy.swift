@@ -43,7 +43,7 @@ class ForwardForOneStrategy: PagesBehaviorStrategy {
         newCalendarPage.layer.cornerRadius = self.setting.itemCardCornerRadius
         newCalendarPage.setViewShadow()
 
-        self.timeMachineViewController.view.insertSubview(newCalendarPage, belowSubview: self.timeMachineViewController.calendarPages.last!)
+        self.timeMachineViewController.middleView.insertSubview(newCalendarPage, belowSubview: self.timeMachineViewController.calendarPages.last!)
         self.timeMachineViewController.calendarPages.append(newCalendarPage)
     }
     
@@ -55,7 +55,6 @@ class ForwardForOneStrategy: PagesBehaviorStrategy {
                 let builder = TimeMachineCalendarPageBuilder(interactableCalendarView: self.timeMachineViewController.calendarPages.first!.subviews.first!, calendarViewController: self.timeMachineViewController.calendarViewController!, monthDifference: -index + 1)
                 let tempCalendarPage = builder.buildCalendarPage()
                 tempCalendarPage.accessibilityIdentifier = "TempCalendarPageView"
-                
                 self.removeOldTempCalendarPage(superview: self.timeMachineViewController.calendarPages[index])
                 self.timeMachineViewController.calendarPages[index].addSubview(tempCalendarPage) // add temp calendar page to that will disapear
             }

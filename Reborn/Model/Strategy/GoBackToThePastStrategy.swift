@@ -8,17 +8,13 @@
 import Foundation
 import UIKit
 
-class GoBackToThePastStrategy: PagesBehaviorStrategy {
+class GoBackToThePastStrategy: DismissStrategy {
+    
     override func performStrategy() {
-        
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
+
+        dismissOtherCalendarPagesAndMoveThemDown()
     }
-    
-    
-    override func updateTempCalendarPage() {
-        
-    }
-    
-    override func updateCalendarPages() {
-        
-    }
+  
 }

@@ -45,8 +45,7 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var bottomCollectionView: UICollectionView!
     @IBOutlet weak var timeMachineButton: UIButton!
-    @IBOutlet weak var timeMachineHourHandButton: UIButton!
-    @IBOutlet weak var timeMachineMinuteHandButton: UIButton!
+
     
     var monthLabelOriginalCordinateX: CGFloat = 0
     
@@ -155,7 +154,7 @@ class CalendarViewController: UIViewController {
  
  
     
-    private func getPunchedInDays(pageYear year: Int, pageMonth month: Int) -> Array<Int> {
+    public func getPunchedInDays(pageYear year: Int, pageMonth month: Int) -> Array<Int> {
         var punchedInDays: Array<Int> = []
         if self.item != nil {
             for punchedInDate in self.item!.punchInDates { // add all punched in date into punchedInDays array

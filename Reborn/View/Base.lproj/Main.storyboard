@@ -707,49 +707,125 @@ Cg
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时间机器" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBC-dZ-hSy">
-                                <rect key="frame" x="150" y="69" width="114" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZk-IF-fVK">
-                                <rect key="frame" x="29" y="80" width="12.5" height="22"/>
-                                <color key="tintColor" name="ThemeColor"/>
-                                <state key="normal" image="chevron.left" catalog="system">
-                                    <color key="titleColor" name="ThemeColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="dismissButtonPressed:" destination="Mvo-e2-cGd" eventType="touchUpInside" id="jrE-XH-p5q"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hC6-oy-S3E">
-                                <rect key="frame" x="164" y="726" width="62" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="回到过去"/>
-                                <connections>
-                                    <action selector="goBackToThePastButtonPressed:" destination="Mvo-e2-cGd" eventType="touchUpInside" id="SET-s9-oxo"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AmU-5F-f6n" userLabel="Middle View">
+                                <rect key="frame" x="0.0" y="100" width="414" height="612"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wHS-8t-ghg" userLabel="Top View">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6u9-Hm-mjt" userLabel="Safe View">
+                                        <rect key="frame" x="0.0" y="44" width="414" height="56"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZk-IF-fVK" userLabel="Cancel Button">
+                                                <rect key="frame" x="15" y="18" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="20" id="Rq2-sd-ghi"/>
+                                                    <constraint firstAttribute="height" constant="20" id="eSV-Go-Cao"/>
+                                                </constraints>
+                                                <color key="tintColor" name="ThemeColor"/>
+                                                <state key="normal" image="CancelButton">
+                                                    <color key="titleColor" name="ThemeColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="cancelButtonPressed:" destination="Mvo-e2-cGd" eventType="touchUpInside" id="jrE-XH-p5q"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时间机器" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBC-dZ-hSy">
+                                                <rect key="frame" x="150" y="11" width="114" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="TBC-dZ-hSy" firstAttribute="centerY" secondItem="6u9-Hm-mjt" secondAttribute="centerY" id="AsF-2X-fBa"/>
+                                            <constraint firstItem="sZk-IF-fVK" firstAttribute="centerY" secondItem="6u9-Hm-mjt" secondAttribute="centerY" id="gly-gJ-hgA"/>
+                                            <constraint firstItem="sZk-IF-fVK" firstAttribute="leading" secondItem="6u9-Hm-mjt" secondAttribute="leading" constant="15" id="ltC-xw-HHW"/>
+                                            <constraint firstItem="TBC-dZ-hSy" firstAttribute="centerX" secondItem="6u9-Hm-mjt" secondAttribute="centerX" id="uAL-ho-kwY"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="6u9-Hm-mjt" secondAttribute="trailing" id="Ps4-ya-Cyi"/>
+                                    <constraint firstAttribute="bottom" secondItem="6u9-Hm-mjt" secondAttribute="bottom" id="Rob-i5-lVc"/>
+                                    <constraint firstItem="6u9-Hm-mjt" firstAttribute="leading" secondItem="wHS-8t-ghg" secondAttribute="leading" id="YGr-4B-66v"/>
+                                    <constraint firstAttribute="height" constant="100" placeholder="YES" id="fH0-hm-P3J"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ylm-aW-HG0" userLabel="Bottom View">
+                                <rect key="frame" x="0.0" y="712" width="414" height="150"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hC6-oy-S3E">
+                                        <rect key="frame" x="15" y="90" width="384" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="kGn-9m-rTt"/>
+                                        </constraints>
+                                        <state key="normal" title="回到过去">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="goBackToThePastButtonPressed:" destination="Mvo-e2-cGd" eventType="touchUpInside" id="SET-s9-oxo"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择您想补打卡的日子" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgh-l2-8hx">
+                                        <rect key="frame" x="111.5" y="21.5" width="191" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eyW-12-NFP">
+                                        <rect key="frame" x="178.5" y="52" width="57" height="28"/>
+                                        <state key="normal" title=" x 3" image="KeyIcon">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemTealColor"/>
+                                <constraints>
+                                    <constraint firstItem="eyW-12-NFP" firstAttribute="top" secondItem="vgh-l2-8hx" secondAttribute="bottom" constant="10" id="Cy6-4C-CMa"/>
+                                    <constraint firstItem="hC6-oy-S3E" firstAttribute="leading" secondItem="Ylm-aW-HG0" secondAttribute="leading" constant="15" id="Ngd-UQ-99X"/>
+                                    <constraint firstItem="eyW-12-NFP" firstAttribute="centerX" secondItem="Ylm-aW-HG0" secondAttribute="centerX" id="Qs6-F6-MfO"/>
+                                    <constraint firstItem="hC6-oy-S3E" firstAttribute="top" secondItem="eyW-12-NFP" secondAttribute="bottom" constant="10" id="guB-iU-AaB"/>
+                                    <constraint firstAttribute="height" constant="150" id="jcC-S8-LHZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="hC6-oy-S3E" secondAttribute="bottom" constant="10" id="oAB-sA-iUc"/>
+                                    <constraint firstItem="vgh-l2-8hx" firstAttribute="centerX" secondItem="Ylm-aW-HG0" secondAttribute="centerX" id="pe5-DU-68f"/>
+                                    <constraint firstAttribute="trailing" secondItem="hC6-oy-S3E" secondAttribute="trailing" constant="15" id="trt-qJ-tBl"/>
+                                    <constraint firstItem="hC6-oy-S3E" firstAttribute="centerX" secondItem="Ylm-aW-HG0" secondAttribute="centerX" id="xV4-6n-jL5"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1qh-oX-I6h"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="sZk-IF-fVK" firstAttribute="leading" secondItem="1qh-oX-I6h" secondAttribute="leading" constant="29" id="XMf-KJ-RRL"/>
-                            <constraint firstItem="TBC-dZ-hSy" firstAttribute="top" secondItem="1qh-oX-I6h" secondAttribute="top" constant="25" id="fz7-nq-TBR"/>
-                            <constraint firstItem="TBC-dZ-hSy" firstAttribute="centerX" secondItem="5lr-0C-ef3" secondAttribute="centerX" id="hDe-ah-fhL"/>
-                            <constraint firstItem="sZk-IF-fVK" firstAttribute="top" secondItem="1qh-oX-I6h" secondAttribute="top" constant="36" id="st3-TC-FLf"/>
+                            <constraint firstItem="wHS-8t-ghg" firstAttribute="leading" secondItem="1qh-oX-I6h" secondAttribute="leading" id="0pB-dt-Zqk"/>
+                            <constraint firstItem="Ylm-aW-HG0" firstAttribute="top" secondItem="AmU-5F-f6n" secondAttribute="bottom" id="2mQ-Cc-Dne"/>
+                            <constraint firstItem="Ylm-aW-HG0" firstAttribute="leading" secondItem="1qh-oX-I6h" secondAttribute="leading" id="6FZ-KL-NO3"/>
+                            <constraint firstItem="AmU-5F-f6n" firstAttribute="top" secondItem="wHS-8t-ghg" secondAttribute="bottom" id="B3e-ja-0sq"/>
+                            <constraint firstItem="AmU-5F-f6n" firstAttribute="trailing" secondItem="1qh-oX-I6h" secondAttribute="trailing" id="CcC-6o-qbc"/>
+                            <constraint firstItem="wHS-8t-ghg" firstAttribute="trailing" secondItem="1qh-oX-I6h" secondAttribute="trailing" id="GKH-EO-Hdo"/>
+                            <constraint firstItem="1qh-oX-I6h" firstAttribute="top" secondItem="6u9-Hm-mjt" secondAttribute="top" id="JDG-1s-hnw"/>
+                            <constraint firstItem="Ylm-aW-HG0" firstAttribute="trailing" secondItem="1qh-oX-I6h" secondAttribute="trailing" id="UGM-Zo-Ahh"/>
+                            <constraint firstItem="AmU-5F-f6n" firstAttribute="leading" secondItem="1qh-oX-I6h" secondAttribute="leading" id="W8U-aQ-anZ"/>
+                            <constraint firstItem="Ylm-aW-HG0" firstAttribute="bottom" secondItem="1qh-oX-I6h" secondAttribute="bottom" id="iIb-LU-Zc8"/>
+                            <constraint firstItem="wHS-8t-ghg" firstAttribute="top" secondItem="5lr-0C-ef3" secondAttribute="top" id="ijq-qb-Tlk"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="t6j-P3-uLL"/>
                     <connections>
+                        <outlet property="bottomView" destination="Ylm-aW-HG0" id="mUP-za-qXx"/>
+                        <outlet property="cancelButton" destination="sZk-IF-fVK" id="oCs-HN-Iux"/>
                         <outlet property="goBackToThePastButton" destination="hC6-oy-S3E" id="qNp-Nf-JEH"/>
+                        <outlet property="middleView" destination="AmU-5F-f6n" id="84o-xe-iOK"/>
                         <outlet property="timeMachineLabel" destination="TBC-dZ-hSy" id="2k7-J0-WQZ"/>
+                        <outlet property="topView" destination="wHS-8t-ghg" id="Rcj-dO-lUa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yc2-3N-qUW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4152" y="2453"/>
+            <point key="canvasLocation" x="4150.7246376811599" y="2452.9017857142858"/>
         </scene>
         <!--项目名-->
         <scene sceneID="mE3-UO-mLP">
@@ -1595,27 +1671,9 @@ Cg
                                         <rect key="frame" x="326" y="15" width="28" height="28"/>
                                         <accessibility key="accessibilityConfiguration" identifier="TimeMachineButton"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="TimeMachineFrame"/>
+                                        <state key="normal" image="TimeMachine1"/>
                                         <connections>
                                             <action selector="timeMachineButtonPressed:" destination="cr2-6I-Rrh" eventType="touchUpInside" id="PAg-hu-gkN"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TcB-6z-XPK" userLabel="Time Machine Hour Hand Button ">
-                                        <rect key="frame" x="326" y="15" width="28" height="28"/>
-                                        <accessibility key="accessibilityConfiguration" identifier="TimeMachineButton"/>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="TimeMachineHourHand.png"/>
-                                        <connections>
-                                            <action selector="timeMachineButtonPressed:" destination="cr2-6I-Rrh" eventType="touchUpInside" id="Yjh-FW-qE1"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aI3-2L-jGE" userLabel="Time Machine Minute Hand Button">
-                                        <rect key="frame" x="326" y="15" width="28" height="28"/>
-                                        <accessibility key="accessibilityConfiguration" identifier="TimeMachineButton"/>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="TimeMachineMinuteHand"/>
-                                        <connections>
-                                            <action selector="timeMachineButtonPressed:" destination="cr2-6I-Rrh" eventType="touchUpInside" id="vKp-fF-YRd"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1624,7 +1682,6 @@ Cg
                                 <constraints>
                                     <constraint firstItem="djk-JB-I2X" firstAttribute="top" secondItem="NdA-gx-XZ9" secondAttribute="bottom" constant="20" id="0pp-Ry-MOe"/>
                                     <constraint firstItem="UnO-dN-eLE" firstAttribute="top" secondItem="NdA-gx-XZ9" secondAttribute="bottom" constant="20" id="4cW-At-cBQ"/>
-                                    <constraint firstItem="aI3-2L-jGE" firstAttribute="top" secondItem="RwH-pK-cja" secondAttribute="top" constant="15" id="8uR-Jp-eel"/>
                                     <constraint firstItem="NdA-gx-XZ9" firstAttribute="leading" secondItem="RwH-pK-cja" secondAttribute="leading" constant="30" id="LnF-db-IFL"/>
                                     <constraint firstItem="NdA-gx-XZ9" firstAttribute="top" secondItem="RwH-pK-cja" secondAttribute="top" constant="20" id="NLK-vd-RYC"/>
                                     <constraint firstAttribute="trailing" secondItem="WWW-ka-0QZ" secondAttribute="trailing" constant="30" id="NNx-wu-neB"/>
@@ -1632,12 +1689,9 @@ Cg
                                     <constraint firstAttribute="trailing" secondItem="NdA-gx-XZ9" secondAttribute="trailing" constant="30" id="XEd-Ni-muM"/>
                                     <constraint firstItem="WWW-ka-0QZ" firstAttribute="top" secondItem="RwH-pK-cja" secondAttribute="top" constant="15" id="c9m-5N-gIo"/>
                                     <constraint firstItem="djk-JB-I2X" firstAttribute="centerX" secondItem="RwH-pK-cja" secondAttribute="centerX" constant="-60" id="ckB-n2-0nj"/>
-                                    <constraint firstItem="TcB-6z-XPK" firstAttribute="top" secondItem="RwH-pK-cja" secondAttribute="top" constant="15" id="f3H-97-mzH"/>
                                     <constraint firstItem="4yp-mE-jGG" firstAttribute="centerX" secondItem="RwH-pK-cja" secondAttribute="centerX" constant="60" id="fmF-aj-inV"/>
                                     <constraint firstItem="UnO-dN-eLE" firstAttribute="leading" secondItem="RwH-pK-cja" secondAttribute="leading" constant="20" id="gR2-dM-FZu"/>
-                                    <constraint firstAttribute="trailing" secondItem="aI3-2L-jGE" secondAttribute="trailing" constant="30" id="hSb-gu-gyY"/>
                                     <constraint firstItem="UGA-qj-SB4" firstAttribute="top" secondItem="NdA-gx-XZ9" secondAttribute="bottom" constant="20" id="pEf-eU-6mK"/>
-                                    <constraint firstAttribute="trailing" secondItem="TcB-6z-XPK" secondAttribute="trailing" constant="30" id="q84-lV-aKa"/>
                                     <constraint firstItem="4yp-mE-jGG" firstAttribute="top" secondItem="NdA-gx-XZ9" secondAttribute="bottom" constant="20" id="sPV-Zt-pbh"/>
                                     <constraint firstAttribute="height" constant="100" id="xV9-76-0mq"/>
                                 </constraints>
@@ -1753,8 +1807,6 @@ Cg
                         <outlet property="startMonthButton" destination="4yp-mE-jGG" id="psf-h6-csZ"/>
                         <outlet property="thisMonthButton" destination="djk-JB-I2X" id="Z0K-DV-oE9"/>
                         <outlet property="timeMachineButton" destination="WWW-ka-0QZ" id="IHt-vu-FTo"/>
-                        <outlet property="timeMachineHourHandButton" destination="TcB-6z-XPK" id="umW-1N-3qj"/>
-                        <outlet property="timeMachineMinuteHandButton" destination="aI3-2L-jGE" id="ksl-FY-Uai"/>
                         <outlet property="topView" destination="RwH-pK-cja" id="YLy-qL-yPX"/>
                         <segue destination="Mvo-e2-cGd" kind="custom" identifier="goTimeMachineView" customClass="PresentTimeMachineSegue" customModule="Reborn" customModuleProvider="target" id="uhl-kh-ZNW"/>
                     </connections>
@@ -1784,6 +1836,7 @@ Cg
     </inferredMetricsTieBreakers>
     <resources>
         <image name="AvatarMale" width="256" height="256"/>
+        <image name="CancelButton" width="28" height="28"/>
         <image name="FeedbackIcon" width="28" height="28"/>
         <image name="GradingIcon" width="28" height="28"/>
         <image name="HistoryIcon" width="28" height="28"/>
@@ -1797,9 +1850,7 @@ Cg
         <image name="RestoreIcon" width="28" height="28"/>
         <image name="ShareIcon" width="28" height="28"/>
         <image name="Test" width="195" height="196"/>
-        <image name="TimeMachineFrame" width="28" height="28"/>
-        <image name="TimeMachineHourHand.png" width="28" height="28"/>
-        <image name="TimeMachineMinuteHand" width="28" height="28"/>
+        <image name="TimeMachine1" width="28" height="28"/>
         <image name="Welcome2Icon1" width="512" height="512"/>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
@@ -1824,8 +1875,17 @@ Cg
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

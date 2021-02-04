@@ -32,7 +32,7 @@ class DismissStrategy: PagesBehaviorStrategy {
                 
                 calendarPage.removeFromSuperview()
                 self.moveUpCalendarView()
-                self.fadeOutOtherSubviews()
+
             }
             
             cordinateYDifference += self.setting.newCalendarPageCordiateYDifference
@@ -49,19 +49,5 @@ class DismissStrategy: PagesBehaviorStrategy {
         }
     }
     
-    func fadeOutOtherSubviews() {
-        
-        UIView.animate(withDuration: SystemStyleSetting.shared.timeMachineAnimationSlowSpeed, delay: 0, options: .curveEaseOut, animations: {
-            for subview in self.timeMachineViewController.view.subviews {  // fade out all subvies except calendar view
-                if let calendarView = subview.subviews.first,
-                   let identifier = calendarView.accessibilityIdentifier,
-                   identifier == "InteractableCalendarView" {
 
-                } else {
-                    subview.alpha = 0
-                }
-            }
-        })
-        
-    }
 }
