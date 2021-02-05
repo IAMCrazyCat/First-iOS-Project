@@ -49,8 +49,7 @@ class TimeMachineViewDismissAnimationController: NSObject, UIViewControllerAnima
             originalParentViewController.addChild(toViewController)
             originalParentViewController.topView.addSubview(toView)
             transitionContext.completeTransition(true)
-            toViewController.userDidGo = .noWhere
-            toViewController.state = .normal
+            
            
         }
         

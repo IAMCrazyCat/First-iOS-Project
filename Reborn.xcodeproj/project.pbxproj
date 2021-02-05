@@ -74,6 +74,7 @@
 		22D8A05225CCE1D500A605D6 /* CalendarCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8A05125CCE1D500A605D6 /* CalendarCellType.swift */; };
 		22D8A05725CCE21C00A605D6 /* NewCalendarPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8A05625CCE21C00A605D6 /* NewCalendarPage.swift */; };
 		22D8A05C25CCE24800A605D6 /* CalendarState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8A05B25CCE24800A605D6 /* CalendarState.swift */; };
+		22D8A06725CD13BA00A605D6 /* CalendarCellState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8A06625CD13BA00A605D6 /* CalendarCellState.swift */; };
 		22E9A855259ED1B40073D432 /* PikerViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E9A854259ED1B40073D432 /* PikerViewData.swift */; };
 		22E9A875259F33F50073D432 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E9A873259F33F50073D432 /* PopUpViewController.swift */; };
 		22FCB1B5258D86BA006A0D39 /* SetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FCB1B4258D86BA006A0D39 /* SetUpViewController.swift */; };
@@ -171,6 +172,7 @@
 		22D8A05125CCE1D500A605D6 /* CalendarCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellType.swift; sourceTree = "<group>"; };
 		22D8A05625CCE21C00A605D6 /* NewCalendarPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCalendarPage.swift; sourceTree = "<group>"; };
 		22D8A05B25CCE24800A605D6 /* CalendarState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarState.swift; sourceTree = "<group>"; };
+		22D8A06625CD13BA00A605D6 /* CalendarCellState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellState.swift; sourceTree = "<group>"; };
 		22E9A854259ED1B40073D432 /* PikerViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PikerViewData.swift; sourceTree = "<group>"; };
 		22E9A873259F33F50073D432 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		22FCB1B4258D86BA006A0D39 /* SetUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewController.swift; sourceTree = "<group>"; };
@@ -225,13 +227,12 @@
 		220B7280258A288000E4BEDC /* Reborn */ = {
 			isa = PBXGroup;
 			children = (
+				220B7281258A288000E4BEDC /* AppDelegate.swift */,
 				220B72B6258C690B00E4BEDC /* Controller */,
+				220B728F258A288300E4BEDC /* Info.plist */,
 				220B72B5258C690400E4BEDC /* View */,
 				220B72B4258C68FB00E4BEDC /* Model */,
-				220B7281258A288000E4BEDC /* AppDelegate.swift */,
 				220B7283258A288000E4BEDC /* SceneDelegate.swift */,
-				220B728A258A288300E4BEDC /* Assets.xcassets */,
-				220B728F258A288300E4BEDC /* Info.plist */,
 			);
 			path = Reborn;
 			sourceTree = "<group>";
@@ -272,6 +273,7 @@
 		220B72B5258C690400E4BEDC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				220B728A258A288300E4BEDC /* Assets.xcassets */,
 				220B7287258A288000E4BEDC /* Main.storyboard */,
 				220B728C258A288300E4BEDC /* LaunchScreen.storyboard */,
 			);
@@ -281,15 +283,7 @@
 		220B72B6258C690B00E4BEDC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				22FCB1B4258D86BA006A0D39 /* SetUpViewController.swift */,
-				220B7285258A288000E4BEDC /* WelcomeViewController.swift */,
-				22A597F825986685008E2A06 /* AddItemViewController.swift */,
-				22E9A873259F33F50073D432 /* PopUpViewController.swift */,
-				225AD12E25A868F50040E356 /* ItemDetailViewController.swift */,
-				22AACA3025AE98B40098D920 /* CalendarViewController.swift */,
-				228ED3E525B94D630054591F /* CalendarCell.swift */,
-				22916DA825BFE34C004A3EC4 /* TimeMachineViewController.swift */,
-				22D354BE25A6B142004F5667 /* Tab Bar Controller */,
+				22D8A06B25CD141200A605D6 /* View Controller */,
 				223A777325A30645004B3324 /* Transition */,
 			);
 			path = Controller;
@@ -298,17 +292,17 @@
 		221E0B7A25A9273300386FE1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				221E0BA325A9D38100386FE1 /* Image.swift */,
-				221E0B7B25A9273E00386FE1 /* User.swift */,
-				22D7FBA025A18FE5006B1F28 /* DataOption.swift */,
-				22C5D974258F40E800131964 /* SetUpPage.swift */,
-				22D7FBA525A190E9006B1F28 /* SetUpPageData.swift */,
-				22E9A854259ED1B40073D432 /* PikerViewData.swift */,
-				22C23A13258DC58F00D4BEB2 /* Item.swift */,
-				22C23A18258DC5D700D4BEB2 /* QuittingItem.swift */,
-				22C23A1D258DC5FB00D4BEB2 /* PersistingItem.swift */,
 				22BC454425B04ED000516F75 /* CalendarPage.swift */,
 				22BC454F25B1C92100516F75 /* CustomDate.swift */,
+				22D7FBA025A18FE5006B1F28 /* DataOption.swift */,
+				221E0BA325A9D38100386FE1 /* Image.swift */,
+				22C23A13258DC58F00D4BEB2 /* Item.swift */,
+				22C23A1D258DC5FB00D4BEB2 /* PersistingItem.swift */,
+				22E9A854259ED1B40073D432 /* PikerViewData.swift */,
+				22C23A18258DC5D700D4BEB2 /* QuittingItem.swift */,
+				22C5D974258F40E800131964 /* SetUpPage.swift */,
+				22D7FBA525A190E9006B1F28 /* SetUpPageData.swift */,
+				221E0B7B25A9273E00386FE1 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -316,12 +310,13 @@
 		221E0B8625A9A20A00386FE1 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
-				224A91832595FA7D00A896BE /* ItemType.swift */,
-				221E0B8725A9A22800386FE1 /* Gender.swift */,
-				22A597FD2599C0AF008E2A06 /* WeekDay.swift */,
+				22D8A06625CD13BA00A605D6 /* CalendarCellState.swift */,
 				22D8A05125CCE1D500A605D6 /* CalendarCellType.swift */,
-				22D8A05625CCE21C00A605D6 /* NewCalendarPage.swift */,
 				22D8A05B25CCE24800A605D6 /* CalendarState.swift */,
+				221E0B8725A9A22800386FE1 /* Gender.swift */,
+				224A91832595FA7D00A896BE /* ItemType.swift */,
+				22D8A05625CCE21C00A605D6 /* NewCalendarPage.swift */,
+				22A597FD2599C0AF008E2A06 /* WeekDay.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -349,16 +344,16 @@
 		224E663325C6454100B71E8A /* Strategy */ = {
 			isa = PBXGroup;
 			children = (
-				224E663425C6457900B71E8A /* TimeMachineAnimationStrategy.swift */,
-				224E665025C6483E00B71E8A /* PagesBehaviorStrategy.swift */,
-				224E663C25C6465D00B71E8A /* ForwardForOneStrategy.swift */,
 				224E664125C6467100B71E8A /* BackwardForManyStrategy.swift */,
-				224E664625C6468D00B71E8A /* ForwardForManyStrategy.swift */,
 				224E664B25C6469B00B71E8A /* BackwardForOneStrategy.swift */,
-				224E665825C64F5F00B71E8A /* PresentStrategy.swift */,
 				2246D2E525CA68230001EFB7 /* DismissStrategy.swift */,
 				2246D2ED25CAD5110001EFB7 /* EnlargeStrategy.swift */,
+				224E664625C6468D00B71E8A /* ForwardForManyStrategy.swift */,
+				224E663C25C6465D00B71E8A /* ForwardForOneStrategy.swift */,
 				2246D2F225CAD9F70001EFB7 /* GoBackToThePastStrategy.swift */,
+				224E665025C6483E00B71E8A /* PagesBehaviorStrategy.swift */,
+				224E665825C64F5F00B71E8A /* PresentStrategy.swift */,
+				224E663425C6457900B71E8A /* TimeMachineAnimationStrategy.swift */,
 			);
 			path = Strategy;
 			sourceTree = "<group>";
@@ -428,13 +423,21 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
-		22D354BE25A6B142004F5667 /* Tab Bar Controller */ = {
+		22D8A06B25CD141200A605D6 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				22A597F825986685008E2A06 /* AddItemViewController.swift */,
+				228ED3E525B94D630054591F /* CalendarCell.swift */,
+				22AACA3025AE98B40098D920 /* CalendarViewController.swift */,
 				22C23A26258DCE4500D4BEB2 /* HomeViewController.swift */,
+				225AD12E25A868F50040E356 /* ItemDetailViewController.swift */,
+				22E9A873259F33F50073D432 /* PopUpViewController.swift */,
+				22FCB1B4258D86BA006A0D39 /* SetUpViewController.swift */,
+				22916DA825BFE34C004A3EC4 /* TimeMachineViewController.swift */,
 				22D354B325A595B7004F5667 /* UserCenterViewController.swift */,
+				220B7285258A288000E4BEDC /* WelcomeViewController.swift */,
 			);
-			path = "Tab Bar Controller";
+			path = "View Controller";
 			sourceTree = "<group>";
 		};
 		22E9A850259ECDB10073D432 /* Extension */ = {
@@ -619,6 +622,7 @@
 				224E664225C6467100B71E8A /* BackwardForManyStrategy.swift in Sources */,
 				22E9A875259F33F50073D432 /* PopUpViewController.swift in Sources */,
 				220B7286258A288000E4BEDC /* WelcomeViewController.swift in Sources */,
+				22D8A06725CD13BA00A605D6 /* CalendarCellState.swift in Sources */,
 				224E663525C6457900B71E8A /* TimeMachineAnimationStrategy.swift in Sources */,
 				22C5D975258F40E800131964 /* SetUpPage.swift in Sources */,
 				220B7282258A288000E4BEDC /* AppDelegate.swift in Sources */,

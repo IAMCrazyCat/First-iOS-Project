@@ -46,18 +46,21 @@ class TimeMachineViewController: UIViewController {
     @IBAction func goBackToThePastButtonPressed(_ sender: UIButton) {
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
+        self.calendarViewController?.updatePunchedInDates()
         self.dismiss(animated: true, completion: nil)
     }
     
 
-    func presentCalendarPages() {
-      
+    public func presentCalendarPages() {
+        
         self.strategy = PresentStrategy(timeMachineViewController : self)
         updateUI()
     
     }
     
-    func dismissCalendarPages() {
+    public func dismissCalendarPages() {
+        self.calendarViewController?.userDidGo = .noWhere
+        self.calendarViewController?.state = .normal
         self.animationSpeed = self.setting.timeMachineAnimationNormalSpeed
         self.strategy = DismissStrategy(timeMachineViewController : self)
         updateUI()
@@ -76,7 +79,7 @@ extension TimeMachineViewController: CalendarViewDegelagte {
     }
     
     func calendarPageDidGoLastMonth() {
-        print("Delegate method called")
+    
         self.animationSpeed = self.setting.timeMachineAnimationNormalSpeed
         self.strategy = ForwardForOneStrategy(timeMachineViewController: self)
         updateUI()

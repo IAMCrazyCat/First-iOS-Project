@@ -12,37 +12,10 @@ class CalendarCell: UICollectionViewCell {
 
     
     static var identifier: String = "DayCell"
-    private var storedType: CalendarCellType? = nil
-    private var storedData: String? = nil
     public let dayButton: UIButton = UIButton()
-    
-    public var data: String? {
-        get {
-            return storedData
-        }
-        
-        set {
-            storedData = newValue
-            if storedType != nil && storedData != nil {
-                updateUI()
-            }
-            
-        }
-    }
-    public var type: CalendarCellType? {
-        get {
-            return storedType
-        }
-        
-        set {
-            storedType = newValue
-            if storedType != nil && storedData != nil {
-                updateUI()
-            }
-        }
-        
-    }
-    
+    public var state: UIControl.State = .normal
+
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setUpUI()
@@ -50,9 +23,8 @@ class CalendarCell: UICollectionViewCell {
     }
     
     private func setUpUI() {
-        
-        data = nil
-        type = nil
+    
+        state = .normal
         
         contentView.layer.cornerRadius = contentView.frame.width / 2
         contentView.clipsToBounds = true
@@ -71,20 +43,40 @@ class CalendarCell: UICollectionViewCell {
         dayButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }
     
-    private func updateUI() {
-        
+    public func updateUI(type: CalendarCellType, cellDay data: String) {
+
         switch type {
         case .punchedInDay:
-            print("Punched")
+            self.state = .disabled
+            self.dayButton.setTitle(data, for: .normal)
+            self.dayButton.setTitleColor(.white, for: .normal)
+            self.contentView.backgroundColor = UserStyleSetting.themeColor
         case .breakDay:
-            print("nreak")
-        case .missedDay:
-            print("missed")
-        case nil:
             break
+        case .missedDay:
+            self.state = .normal
+            self.dayButton.setTitle(data, for: .normal)
+        case .transparent:
+            self.state = .disabled
+            self.contentView.backgroundColor = .clear
+        case .selected:
+            
+            if self.state != .disabled {
+                self.state = .selected
+                self.dayButton.setTitle(data, for: .normal)
+                self.dayButton.setTitleColor(.white, for: .normal)
+                self.contentView.backgroundColor = .green
+            }
+        case .unselected:
+            if self.state != .disabled {
+                self.state = .normal
+                self.dayButton.setTitle(data, for: .normal)
+                self.dayButton.setTitleColor(.black, for: .normal)
+                self.contentView.backgroundColor = .clear
+            }
         }
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

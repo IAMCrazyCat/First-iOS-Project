@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CustomDate: Codable {
+struct CustomDate: Codable, Equatable {
     var year: Int
     var month: Int
     var day: Int 

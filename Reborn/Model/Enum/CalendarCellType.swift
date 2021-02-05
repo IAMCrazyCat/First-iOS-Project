@@ -11,4 +11,7 @@ enum CalendarCellType {
     case punchedInDay
     case breakDay
     case missedDay
+    case transparent
+    case selected
+    case unselected
 }

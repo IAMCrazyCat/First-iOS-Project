@@ -93,8 +93,7 @@ class CalendarViewController: UIViewController {
         view.layer.cornerRadius = setting.itemCardCornerRadius
     
         view.clipsToBounds = true
-        print("I Still love u")
-        print(view.frame)
+      
         lastMonthButton.layer.cornerRadius = setting.calendarFunctionButtonCornerRadius
         //lastMonthButton.setViewShadow()
         nextMonthButton.layer.cornerRadius = setting.calendarFunctionButtonCornerRadius
@@ -183,7 +182,6 @@ class CalendarViewController: UIViewController {
            
         }
         
-        print(storedMonthInterval)
         self.userDidGo = type
         self.updateUI()
             
@@ -193,29 +191,39 @@ class CalendarViewController: UIViewController {
         self.item!.creationDate = CustomDate(year: 2018, month: 12, day: 12) // For Test
         
         self.updateCalendarPage(type: .startMonth)
-        self.delegate?.calendarPageDidGoStartMonth()
+        
+        if self.state == .timeMachine {
+            self.delegate?.calendarPageDidGoStartMonth()
+        }
+      
        
     }
 
     @IBAction func thisMonthButtonPressed(_ sender: UIButton!) {
         
-        
         self.updateCalendarPage(type: .thisMonth)
-        self.delegate?.calendarPageDidGoThisMonth()
+        
+        if self.state == .timeMachine {
+            self.delegate?.calendarPageDidGoThisMonth()
+        }
     }
     
     @IBAction func lastMonthButtonPressed(_ sender: Any) {
        
 
         self.updateCalendarPage(type: .lastMonth)
-        self.delegate?.calendarPageDidGoLastMonth()
+        if self.state == .timeMachine {
+            self.delegate?.calendarPageDidGoLastMonth()
+        }
        
     }
     
     @IBAction func nextMonthButtonPressed(_ sender: Any) {
        
         self.updateCalendarPage(type: .nextMonth)
-        self.delegate?.calendarPageDidGoNextMonth()
+        if self.state == .timeMachine {
+            self.delegate?.calendarPageDidGoNextMonth()
+        }
     }
     
     @IBAction func timeMachineButtonPressed(_ sender: Any) {
@@ -223,10 +231,7 @@ class CalendarViewController: UIViewController {
        
     }
     
-    @objc func cellButtonPressed(_ sender: UIButton) {
-        print(sender.currentTitle)
-    }
-    
+   
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if let desitinationViewController = segue.destination as? TimeMachineViewController {
@@ -309,7 +314,16 @@ class CalendarViewController: UIViewController {
        
     }
     
-
+    func updatePunchedInDates() {
+        
+        for makingUpDate in self.punchInMakingUpDates {
+            self.item?.punchInDates.append(makingUpDate)
+        }
+        self.punchInMakingUpDates.removeAll()
+       
+        updateUI()
+        
+    }
     
     func updateUI() {
         
@@ -333,6 +347,40 @@ class CalendarViewController: UIViewController {
 
 extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
+    @objc func cellButtonPressed(_ sender: UIButton) {
+     
+        if let pressedCell = self.bottomCollectionView.cellForItem(at: IndexPath(row: sender.tag, section: 0)) as? CalendarCell {
+            
+            if pressedCell.state == .selected {
+    
+                pressedCell.updateUI(type: .unselected, cellDay: sender.currentTitle ?? "?")
+                
+                var index = 0
+                for makingUpDate in self.punchInMakingUpDates {
+            
+                    if makingUpDate == CustomDate(year: self.currentCalendarPage.year, month: self.currentCalendarPage.month, day: Int(sender.currentTitle ?? "1") ?? 1) {
+                        self.punchInMakingUpDates.remove(at: index)
+                    }
+                    index += 1
+                }
+
+            } else {
+                
+                pressedCell.updateUI(type: .selected, cellDay: sender.currentTitle ?? "?")
+                self.punchInMakingUpDates.append(CustomDate(year: self.currentCalendarPage.year, month: self.currentCalendarPage.month, day: Int(sender.currentTitle ?? "1") ?? 1))
+                
+              
+            }
+
+            
+        }
+          
+        
+        print(self.punchInMakingUpDates)
+       
+    }
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return 42
@@ -341,29 +389,29 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarCell.identifier, for: indexPath) as! CalendarCell
-       
-
+        let dayNumber = indexPath.row - self.currentCalendarPage.weekdayOfFirstDay + 1
+        cell.dayButton.tag = indexPath.row
+        cell.dayButton.addTarget(self, action: #selector(self.cellButtonPressed(_:)), for: .touchUpInside)
+        
+        
         if indexPath.row < (self.currentCalendarPage.weekdayOfFirstDay) - 1 { //Before the first day
 
-            cell.contentView.backgroundColor = .clear
+            cell.updateUI(type: .transparent, cellDay: String(dayNumber))
 
         } else if indexPath.row >  self.currentCalendarPage.weekdayOfFirstDay - 1 && indexPath.row < self.currentCalendarPage.days + self.currentCalendarPage.weekdayOfFirstDay { // Between the firstday And Last Day
-
-            let dayNumber = indexPath.row - self.currentCalendarPage.weekdayOfFirstDay + 1
-
-            cell.dayButton.setTitle(String(dayNumber), for: .normal)
-            cell.dayButton.addTarget(self, action: #selector(self.cellButtonPressed(_:)), for: .touchUpInside)
-            
+  
             if self.currentCalendarPage.punchedInDays.contains(dayNumber) { // punchedIn day UI
-                cell.contentView.backgroundColor = UserStyleSetting.themeColor
-                cell.dayButton.setTitleColor(.white, for: .normal)
-                
+                cell.updateUI(type: .punchedInDay, cellDay: String(dayNumber))
+            } else if self.punchInMakingUpDates.contains(CustomDate(year: self.currentCalendarPage.year, month: self.currentCalendarPage.month, day: dayNumber)) {
+                cell.updateUI(type: .selected, cellDay: String(dayNumber))
+            } else {
+                cell.updateUI(type: .missedDay, cellDay: String(dayNumber))
             }
-
+            
         } else { // After lastday
-            cell.contentView.backgroundColor = .clear
+            cell.updateUI(type: .transparent, cellDay: String(dayNumber))
         }
         
         
@@ -375,6 +423,7 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
         
         return CGSize(width: (collectionView.frame.width - 2) / 9, height: (collectionView.frame.width - 2) / 9)
       }
+    
     
    
    
