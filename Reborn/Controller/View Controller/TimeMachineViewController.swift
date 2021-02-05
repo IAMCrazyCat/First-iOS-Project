@@ -46,7 +46,6 @@ class TimeMachineViewController: UIViewController {
     @IBAction func goBackToThePastButtonPressed(_ sender: UIButton) {
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
-        self.calendarViewController?.updatePunchedInDates()
         self.dismiss(animated: true, completion: nil)
     }
     

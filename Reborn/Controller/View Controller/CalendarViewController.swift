@@ -157,76 +157,67 @@ class CalendarViewController: UIViewController {
     func updateCalendarPage(type: NewCalendarPage) {
          
         let newCalendarPage: CalendarPage
-        if type == .lastMonth {
+        switch type {
+        case .lastMonth:
+            
             self.storedMonthInterval = -1
             newCalendarPage = CalendarPage(year: lastPageYear, month: lastPageMonth, punchedInDays: self.getPunchedInDays(pageYear: lastPageYear, pageMonth: lastPageMonth))
             self.currentCalendarPage = newCalendarPage
-           
-        } else if type == .nextMonth {
+            
+        case .nextMonth:
+            
             self.storedMonthInterval = 1
             newCalendarPage = CalendarPage(year: nextPageYear, month: nextPageMonth, punchedInDays:  self.getPunchedInDays(pageYear: nextPageYear, pageMonth: nextPageMonth))
             self.currentCalendarPage = newCalendarPage
             
-        } else if type == .startMonth {
+        case .startMonth:
             
             if item != nil {
                 let startDate = self.item!.creationDate
                 self.storedMonthInterval = DateCalculator(currentYear: self.currentCalendarPage.year, currentMonth: self.currentCalendarPage.month, newYear: startDate.year, newMonth: startDate.month).monthInterval
                 self.currentCalendarPage = CalendarPage(year: startDate.year, month: startDate.month, punchedInDays: self.getPunchedInDays(pageYear: startDate.year, pageMonth: startDate.month))
             }
-            
-        } else if type == .thisMonth {
+        case .thisMonth:
             
             self.storedMonthInterval = DateCalculator(currentYear: self.currentCalendarPage.year, currentMonth: self.currentCalendarPage.month, newYear: self.engine.currentDate.year, newMonth: self.engine.currentDate.month).monthInterval
             self.currentCalendarPage = CalendarPage(year: self.engine.currentDate.year, month: self.engine.currentDate.month, punchedInDays: self.getPunchedInDays(pageYear: self.engine.currentDate.year, pageMonth: self.engine.currentDate.month))
-           
-        }
-        
-        self.userDidGo = type
-        self.updateUI()
             
+        case .noWhere:
+            
+            self.currentCalendarPage = CalendarPage(year: self.currentCalendarPage.year, month: self.currentCalendarPage.month, punchedInDays: self.getPunchedInDays(pageYear: self.currentCalendarPage.year, pageMonth: self.currentCalendarPage.month))
+            print(self.currentCalendarPage.punchedInDays)
+        }
+    
     }
     
     @IBAction func startMonthButtonPressed(_ sender: UIButton!) {
         self.item!.creationDate = CustomDate(year: 2018, month: 12, day: 12) // For Test
         
-        self.updateCalendarPage(type: .startMonth)
-        
-        if self.state == .timeMachine {
-            self.delegate?.calendarPageDidGoStartMonth()
-        }
-      
+        self.userDidGo = .startMonth
+        updateUI()
        
     }
 
     @IBAction func thisMonthButtonPressed(_ sender: UIButton!) {
         
-        self.updateCalendarPage(type: .thisMonth)
-        
-        if self.state == .timeMachine {
-            self.delegate?.calendarPageDidGoThisMonth()
-        }
+        self.userDidGo = .thisMonth
+        updateUI()
     }
     
     @IBAction func lastMonthButtonPressed(_ sender: Any) {
-       
-
-        self.updateCalendarPage(type: .lastMonth)
-        if self.state == .timeMachine {
-            self.delegate?.calendarPageDidGoLastMonth()
-        }
-       
+    
+        self.userDidGo = .lastMonth
+        updateUI()
     }
     
     @IBAction func nextMonthButtonPressed(_ sender: Any) {
        
-        self.updateCalendarPage(type: .nextMonth)
-        if self.state == .timeMachine {
-            self.delegate?.calendarPageDidGoNextMonth()
-        }
+        self.userDidGo = .nextMonth
+        updateUI()
     }
     
     @IBAction func timeMachineButtonPressed(_ sender: Any) {
+        self.userDidGo = .noWhere
         self.presentTimeMachineView()
        
     }
@@ -327,6 +318,34 @@ class CalendarViewController: UIViewController {
     
     func updateUI() {
         
+        self.updateCalendarPage(type: userDidGo)
+        
+        switch userDidGo {
+        case .lastMonth:
+            
+            if self.state == .timeMachine {
+                self.delegate?.calendarPageDidGoLastMonth()
+            }
+        case .startMonth:
+            
+            if self.state == .timeMachine {
+                self.delegate?.calendarPageDidGoStartMonth()
+            }
+        case .thisMonth:
+            
+            if self.state == .timeMachine {
+                self.delegate?.calendarPageDidGoThisMonth()
+            }
+        case .nextMonth:
+    
+            if self.state == .timeMachine {
+                self.delegate?.calendarPageDidGoNextMonth()
+            }
+        case .noWhere:
+            self.updateMonthLabelWithoutAnimation()
+        }
+        
+        
         self.bottomCollectionView.reloadData()
         
         if self.state == .normal {
@@ -334,6 +353,8 @@ class CalendarViewController: UIViewController {
         } else if self.state == .timeMachine {
             updateMonthLabelWithoutAnimation()
         }
+        
+       
        
     }
     
@@ -394,7 +415,7 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
         let dayNumber = indexPath.row - self.currentCalendarPage.weekdayOfFirstDay + 1
         cell.dayButton.tag = indexPath.row
         cell.dayButton.addTarget(self, action: #selector(self.cellButtonPressed(_:)), for: .touchUpInside)
-        
+        print("EXCUTED")
         
         if indexPath.row < (self.currentCalendarPage.weekdayOfFirstDay) - 1 { //Before the first day
 
@@ -404,6 +425,7 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
   
             if self.currentCalendarPage.punchedInDays.contains(dayNumber) { // punchedIn day UI
                 cell.updateUI(type: .punchedInDay, cellDay: String(dayNumber))
+            
             } else if self.punchInMakingUpDates.contains(CustomDate(year: self.currentCalendarPage.year, month: self.currentCalendarPage.month, day: dayNumber)) {
                 cell.updateUI(type: .selected, cellDay: String(dayNumber))
             } else {
