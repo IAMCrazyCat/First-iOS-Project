@@ -13,9 +13,6 @@ class ItemDetailViewController: UIViewController {
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var calendarView: UIView!
     @IBOutlet weak var mediumView: UIView!
-    
-
-    
     @IBOutlet weak var verticallyScrollContentView: UIView!
     
     let setting: SystemStyleSetting = SystemStyleSetting.shared

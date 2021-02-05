@@ -6,28 +6,15 @@
 //
 
 import UIKit
-enum NewCalendarPage {
-    case lastMonth
-    case startMonth
-    case noWhere
-    case thisMonth
-    case nextMonth
-}
 
-enum CalendarState {
-    case normal
-    case timeMachine
-}
 
 protocol CalendarViewDegelagte {
     func calendarCellDidLayout(size: CGSize)
-    
     func calendarPageDidGoLastMonth()
     func calendarPageDidGoNextMonth()
     func calendarPageDidGoStartMonth()
     func calendarPageDidGoThisMonth()
 }
-
 
 
 class CalendarViewController: UIViewController {

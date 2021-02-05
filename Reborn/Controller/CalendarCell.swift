@@ -8,13 +8,40 @@
 import Foundation
 import UIKit
 
-
 class CalendarCell: UICollectionViewCell {
 
     
     static var identifier: String = "DayCell"
-    let dayButton: UIButton = UIButton()
-
+    private var storedType: CalendarCellType? = nil
+    private var storedData: String? = nil
+    public let dayButton: UIButton = UIButton()
+    
+    public var data: String? {
+        get {
+            return storedData
+        }
+        
+        set {
+            storedData = newValue
+            if storedType != nil && storedData != nil {
+                updateUI()
+            }
+            
+        }
+    }
+    public var type: CalendarCellType? {
+        get {
+            return storedType
+        }
+        
+        set {
+            storedType = newValue
+            if storedType != nil && storedData != nil {
+                updateUI()
+            }
+        }
+        
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,6 +50,10 @@ class CalendarCell: UICollectionViewCell {
     }
     
     private func setUpUI() {
+        
+        data = nil
+        type = nil
+        
         contentView.layer.cornerRadius = contentView.frame.width / 2
         contentView.clipsToBounds = true
         contentView.backgroundColor = .white // or orange, whatever
@@ -38,6 +69,20 @@ class CalendarCell: UICollectionViewCell {
 
         dayButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         dayButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+    }
+    
+    private func updateUI() {
+        
+        switch type {
+        case .punchedInDay:
+            print("Punched")
+        case .breakDay:
+            print("nreak")
+        case .missedDay:
+            print("missed")
+        case nil:
+            break
+        }
     }
     
     required init?(coder: NSCoder) {

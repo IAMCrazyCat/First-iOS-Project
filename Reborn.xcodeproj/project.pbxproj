@@ -71,6 +71,9 @@
 		22D7FBA125A18FE5006B1F28 /* DataOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7FBA025A18FE5006B1F28 /* DataOption.swift */; };
 		22D7FBA625A190E9006B1F28 /* SetUpPageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7FBA525A190E9006B1F28 /* SetUpPageData.swift */; };
 		22D7FBB125A1E065006B1F28 /* SetUpPageBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7FBB025A1E065006B1F28 /* SetUpPageBuilder.swift */; };
+		22D8A05225CCE1D500A605D6 /* CalendarCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8A05125CCE1D500A605D6 /* CalendarCellType.swift */; };
+		22D8A05725CCE21C00A605D6 /* NewCalendarPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8A05625CCE21C00A605D6 /* NewCalendarPage.swift */; };
+		22D8A05C25CCE24800A605D6 /* CalendarState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8A05B25CCE24800A605D6 /* CalendarState.swift */; };
 		22E9A855259ED1B40073D432 /* PikerViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E9A854259ED1B40073D432 /* PikerViewData.swift */; };
 		22E9A875259F33F50073D432 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E9A873259F33F50073D432 /* PopUpViewController.swift */; };
 		22FCB1B5258D86BA006A0D39 /* SetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FCB1B4258D86BA006A0D39 /* SetUpViewController.swift */; };
@@ -165,6 +168,9 @@
 		22D7FBA025A18FE5006B1F28 /* DataOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataOption.swift; sourceTree = "<group>"; };
 		22D7FBA525A190E9006B1F28 /* SetUpPageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpPageData.swift; sourceTree = "<group>"; };
 		22D7FBB025A1E065006B1F28 /* SetUpPageBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpPageBuilder.swift; sourceTree = "<group>"; };
+		22D8A05125CCE1D500A605D6 /* CalendarCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellType.swift; sourceTree = "<group>"; };
+		22D8A05625CCE21C00A605D6 /* NewCalendarPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCalendarPage.swift; sourceTree = "<group>"; };
+		22D8A05B25CCE24800A605D6 /* CalendarState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarState.swift; sourceTree = "<group>"; };
 		22E9A854259ED1B40073D432 /* PikerViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PikerViewData.swift; sourceTree = "<group>"; };
 		22E9A873259F33F50073D432 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		22FCB1B4258D86BA006A0D39 /* SetUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewController.swift; sourceTree = "<group>"; };
@@ -313,6 +319,9 @@
 				224A91832595FA7D00A896BE /* ItemType.swift */,
 				221E0B8725A9A22800386FE1 /* Gender.swift */,
 				22A597FD2599C0AF008E2A06 /* WeekDay.swift */,
+				22D8A05125CCE1D500A605D6 /* CalendarCellType.swift */,
+				22D8A05625CCE21C00A605D6 /* NewCalendarPage.swift */,
+				22D8A05B25CCE24800A605D6 /* CalendarState.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -585,6 +594,8 @@
 				22916DA925BFE34C004A3EC4 /* TimeMachineViewController.swift in Sources */,
 				2246D2E625CA68230001EFB7 /* DismissStrategy.swift in Sources */,
 				22D7FBB125A1E065006B1F28 /* SetUpPageBuilder.swift in Sources */,
+				22D8A05725CCE21C00A605D6 /* NewCalendarPage.swift in Sources */,
+				22D8A05225CCE1D500A605D6 /* CalendarCellType.swift in Sources */,
 				2246D2EE25CAD5110001EFB7 /* EnlargeStrategy.swift in Sources */,
 				22D6195C25A0290600EC9396 /* UIViewController.swift in Sources */,
 				22C23A27258DCE4500D4BEB2 /* HomeViewController.swift in Sources */,
@@ -601,6 +612,7 @@
 				22AACA1125AD910D0098D920 /* Date.swift in Sources */,
 				224A91842595FA7D00A896BE /* ItemType.swift in Sources */,
 				22FCB1B5258D86BA006A0D39 /* SetUpViewController.swift in Sources */,
+				22D8A05C25CCE24800A605D6 /* CalendarState.swift in Sources */,
 				22D6195225A0238E00EC9396 /* PopUpViewPresentationController.swift in Sources */,
 				22A597F925986685008E2A06 /* AddItemViewController.swift in Sources */,
 				22C23A19258DC5D700D4BEB2 /* QuittingItem.swift in Sources */,
