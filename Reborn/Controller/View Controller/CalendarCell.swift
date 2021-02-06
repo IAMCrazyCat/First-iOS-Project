@@ -26,10 +26,11 @@ class CalendarCell: UICollectionViewCell {
     
         state = .normal
         
-        contentView.layer.cornerRadius = contentView.frame.width / 2
+        contentView.setCornerRadius()
         contentView.clipsToBounds = true
         contentView.backgroundColor = .white // or orange, whatever
-        
+//        contentView.layer.borderWidth = 1
+//        contentView.layer.borderColor = UIColor.gray.cgColor
         
         dayButton.setTitle(nil, for: .normal)
         dayButton.backgroundColor = .clear
@@ -65,6 +66,15 @@ class CalendarCell: UICollectionViewCell {
                 self.state = .selected
                 self.dayButton.setTitle(data, for: .normal)
                 self.dayButton.setTitleColor(.white, for: .normal)
+                self.contentView.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.contentView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+                }) { _ in
+                    UIView.animate(withDuration: 0.1, animations: {
+                        self.contentView.transform = CGAffineTransform(scaleX: 1, y: 1)
+                    })
+                    
+                }
                 self.contentView.backgroundColor = .green
             }
         case .unselected:

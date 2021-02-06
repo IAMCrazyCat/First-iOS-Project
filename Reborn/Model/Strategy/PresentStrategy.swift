@@ -61,15 +61,16 @@ class PresentStrategy: PagesBehaviorStrategy {
             newCalendarPage.frame.size = calendarView.frame.size
             newCalendarPage.frame.origin = self.timeMachineViewController.calendarViewOriginalPosition ?? .zero
             newCalendarPage.layer.cornerRadius = self.setting.itemCardCornerRadius
-            newCalendarPage.setViewShadow()
+            newCalendarPage.setShadow()
             newCalendarPage.addSubview(calendarView)
             self.timeMachineViewController.middleView.addSubview(newCalendarPage)
             self.timeMachineViewController.calendarPages.append(newCalendarPage)
             self.timeMachineViewController.view.layoutIfNeeded()
             
             UIView.animate(withDuration: self.setting.timeMachineAnimationSlowSpeed, delay: 0, options: .curveEaseOut, animations: {
-              
+        
                 self.timeMachineViewController.calendarPages.first?.frame.origin.y = self.timeMachineViewController.middleView.frame.height / 2  - self.timeMachineViewController.calendarPages.first!.frame.height / 2
+                //self.timeMachineViewController.calendarPages.first?.frame.origin.y = self.timeMachineViewController.bottomView.frame.origin.y - self.timeMachineViewController.calendarPages.first!.frame.height
                 
             }) { _ in
                 self.addOtherCalendarPagesAndMoveThemUp()
@@ -92,7 +93,7 @@ class PresentStrategy: PagesBehaviorStrategy {
             newCalendarPage.frame = self.timeMachineViewController.calendarPages.first!.frame
             newCalendarPage.transform = CGAffineTransform(scaleX: scale, y: scale)
             newCalendarPage.layer.cornerRadius = self.setting.itemCardCornerRadius
-            newCalendarPage.setViewShadow()
+            newCalendarPage.setShadow()
             
             
             self.timeMachineViewController.middleView.insertSubview(newCalendarPage, belowSubview: self.timeMachineViewController.calendarPages[index])

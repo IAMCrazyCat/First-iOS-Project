@@ -65,7 +65,7 @@ class BackwardForManyStrategy: PagesBehaviorStrategy {
         
         newCalendarPage.alpha = 0
         newCalendarPage.layer.cornerRadius = self.setting.itemCardCornerRadius
-        newCalendarPage.setViewShadow()
+        newCalendarPage.setShadow()
         
         self.timeMachineViewController.middleView.insertSubview(newCalendarPage, aboveSubview: self.timeMachineViewController.calendarPages.first!)
         self.timeMachineViewController.calendarPages.insert(newCalendarPage, at: 0)

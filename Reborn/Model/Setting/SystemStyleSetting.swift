@@ -12,12 +12,11 @@ struct SystemStyleSetting{
     
     static let shared = SystemStyleSetting()
     
-    // for whole app use
+    // for all use
     let screenFrame: CGRect = UIScreen.main.bounds
     let mainButtonHeight: CGFloat = 50
     let mainButtonCornerRadius: CGFloat = 25
     let checkButtonCornerRadius: CGFloat = 15
-    let optionButtonCornerRadius: CGFloat = 25
     let itemCardCornerRadius: CGFloat = 25
     let UIViewShadowColor: CGColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.15).cgColor
     let UIViewShadowOffset: CGSize = CGSize(width: 0.0, height: 1.5)
@@ -37,15 +36,15 @@ struct SystemStyleSetting{
     
     // for set up page buttons
     let optionButtonToTopDistance: CGFloat = 50
-    let optionButtonWidth: CGFloat = 140
-    let optionButtonHeight: CGFloat = 45
+    let optionButtonWidthRatio: CGFloat = 0.35
+    let optionButtonHeightRatio: CGFloat = 0.05
     let optionButtonVerticalDistance: CGFloat = 30
     let optionButtonHorizontalDistance: CGFloat = 25
     let optionButtonTitleColor: UIColor = UIColor.black
     let optionButtonTitleFont: UIFont = UIFont.systemFont(ofSize: 15)
-    let optionButtonBGImage: UIImage = #imageLiteral(resourceName: "OptionButton")
-    let optionButtonPressedBgImage: UIImage = #imageLiteral(resourceName: "OptionButtonPressed")
-    let optionButtonDisabledBgImage: UIImage = #imageLiteral(resourceName: "OptionButtonDisabled")
+    let optionButtonCornerRadius: CGFloat = 25
+    
+    
     let questionLabelFont: UIFont = UIFont.systemFont(ofSize: 17)
     let progressBarAnimationSpeed = 0.2
     
@@ -66,7 +65,7 @@ struct SystemStyleSetting{
     let itemCardGap: CGFloat = 15
     
     // for builder
-
+    
     
     // for pop up view
     let textFieldCornerRadius: CGFloat = 5

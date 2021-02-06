@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "HistoryIcon.png",
+      "filename" : "RightButton.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "HistoryIcon@2x.png",
+      "filename" : "RightButton@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "HistoryIcon@3x.png",
+      "filename" : "RightButton@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

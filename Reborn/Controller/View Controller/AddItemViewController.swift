@@ -55,8 +55,10 @@ class AddItemViewController: UIViewController {
         
         for subview in view.viewWithTag(4)!.subviews { // all buttons
             if let button = subview as? UIButton {
-                button.layer.cornerRadius = setting.optionButtonCornerRadius
-                button.setViewShadow()
+               
+                button.setSizeAccrodingToScreen()
+                button.setCornerRadius()
+                button.setShadow()
                 button.setBackgroundColor(UserStyleSetting.themeColor, cornerRadius: button.layer.cornerRadius, for: .selected)
                 button.setTitleColor(.white, for: .selected)
 

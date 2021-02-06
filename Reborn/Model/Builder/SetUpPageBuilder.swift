@@ -42,13 +42,15 @@ class SetUpPageBuilder {
         var buttonY: CGFloat = -self.setting.optionButtonToTopDistance
         
         var button: UIButton
+        let buttonWidth = self.setting.screenFrame.width * self.setting.optionButtonWidthRatio
+        let buttonHeight = self.setting.screenFrame.height * self.setting.optionButtonHeightRatio
         
         for dataButton in page.buttons {
             let buttonTitle = dataButton.title
             
             if column == 1 { // left side buttons
-                buttonX = self.pageView!.frame.width / 2.0 - self.setting.optionButtonWidth - self.setting.optionButtonHorizontalDistance / 2.0
-                buttonY += self.setting.optionButtonVerticalDistance + self.setting.optionButtonHeight
+                buttonX = self.pageView!.frame.width / 2.0 - buttonWidth - self.setting.optionButtonHorizontalDistance / 2.0
+                buttonY += self.setting.optionButtonVerticalDistance + buttonHeight
                 column += 1
                 
             } else { // right side buttons
@@ -57,16 +59,10 @@ class SetUpPageBuilder {
             }
          
            
-            button = UIButton(frame: CGRect(x: buttonX, y: buttonY, width: self.setting.optionButtonWidth, height: self.setting.optionButtonHeight))
-            // Button's properties
-//            button.layer.cornerRadius = self.setting.optionButtonCornerRadius
-//            button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
-//            button.layer.shadowOffset =  CGSize(width: 0.0, height: 2.0)
-//            button.layer.shadowOpacity = 1.0
-//            button.layer.masksToBounds = false
-            
-            button.layer.cornerRadius = SystemStyleSetting.shared.optionButtonCornerRadius
-            button.setViewShadow()
+            button = UIButton(frame: CGRect(x: buttonX, y: buttonY, width: buttonWidth, height: buttonHeight))
+    
+            button.layer.cornerRadius = button.frame.height / 2
+            button.setShadow()
             button.setTitle(buttonTitle, for: .normal)
             button.setTitleColor(self.setting.optionButtonTitleColor, for: .normal)
             button.setTitleColor(UIColor.black, for: .normal)

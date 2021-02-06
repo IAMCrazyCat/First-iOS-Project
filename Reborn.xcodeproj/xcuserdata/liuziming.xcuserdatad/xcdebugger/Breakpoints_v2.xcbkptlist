@@ -404,8 +404,8 @@
             filePath = "Reborn/Controller/View Controller/CalendarViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
+            startingLineNumber = "313"
+            endingLineNumber = "313"
             landmarkName = "updateUI()"
             landmarkType = "7">
          </BreakpointContent>
@@ -420,8 +420,8 @@
             filePath = "Reborn/Controller/View Controller/CalendarViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
             landmarkName = "startMonthButtonPressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -436,8 +436,8 @@
             filePath = "Reborn/Controller/View Controller/CalendarViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "349"
-            endingLineNumber = "349"
+            startingLineNumber = "343"
+            endingLineNumber = "343"
             landmarkName = "updateUI()"
             landmarkType = "7">
          </BreakpointContent>
@@ -452,10 +452,118 @@
             filePath = "Reborn/Controller/View Controller/CalendarViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "315"
-            endingLineNumber = "315"
+            startingLineNumber = "309"
+            endingLineNumber = "309"
             landmarkName = "updatePunchedInDates()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B8574C07-106D-4888-8501-27B2060849CA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Reborn/Controller/View Controller/ItemDetailViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "ItemDetailViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "B8574C07-106D-4888-8501-27B2060849CA - 3e85f3aa13e78d5a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Reborn.ItemDetailViewController.dayCellFrame.getter : Swift.Optional&lt;__C.CGRect&gt;"
+                  moduleName = "Reborn"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liuziming/Library/Mobile%20Documents/com~apple~CloudDocs/IOS%20%E4%BA%91%E7%AB%AF%E9%A1%B9%E7%9B%AE/Reborn/Reborn/Controller/View%20Controller/ItemDetailViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "160">
+               </Location>
+               <Location
+                  uuid = "B8574C07-106D-4888-8501-27B2060849CA - 8e72ecb0410e2556"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Reborn.ItemDetailViewController.dayCellFrame.setter : Swift.Optional&lt;__C.CGRect&gt;"
+                  moduleName = "Reborn"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liuziming/Library/Mobile%20Documents/com~apple~CloudDocs/IOS%20%E4%BA%91%E7%AB%AF%E9%A1%B9%E7%9B%AE/Reborn/Reborn/Controller/View%20Controller/ItemDetailViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "122">
+               </Location>
+               <Location
+                  uuid = "B8574C07-106D-4888-8501-27B2060849CA - 947a94b0b5733210"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Reborn.ItemDetailViewController.dayCellFrame.modify : Swift.Optional&lt;__C.CGRect&gt;"
+                  moduleName = "Reborn"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liuziming/Library/Mobile%20Documents/com~apple~CloudDocs/IOS%20%E4%BA%91%E7%AB%AF%E9%A1%B9%E7%9B%AE/Reborn/Reborn/Controller/View%20Controller/ItemDetailViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "22">
+               </Location>
+               <Location
+                  uuid = "B8574C07-106D-4888-8501-27B2060849CA - 5da48e87c3004f5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Reborn.ItemDetailViewController.dayCellFrame.modify : Swift.Optional&lt;__C.CGRect&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Reborn"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liuziming/Library/Mobile%20Documents/com~apple~CloudDocs/IOS%20%E4%BA%91%E7%AB%AF%E9%A1%B9%E7%9B%AE/Reborn/Reborn/Controller/View%20Controller/ItemDetailViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "10">
+               </Location>
+               <Location
+                  uuid = "B8574C07-106D-4888-8501-27B2060849CA - 94e1d44093cc502d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Reborn.ItemDetailViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Reborn.ItemDetailViewController"
+                  moduleName = "Reborn"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liuziming/Library/Mobile%20Documents/com~apple~CloudDocs/IOS%20%E4%BA%91%E7%AB%AF%E9%A1%B9%E7%9B%AE/Reborn/Reborn/Controller/View%20Controller/ItemDetailViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "3903">
+               </Location>
+               <Location
+                  uuid = "B8574C07-106D-4888-8501-27B2060849CA - 6908529b9d46d422"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Reborn.ItemDetailViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Reborn.ItemDetailViewController&gt;"
+                  moduleName = "Reborn"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liuziming/Library/Mobile%20Documents/com~apple~CloudDocs/IOS%20%E4%BA%91%E7%AB%AF%E9%A1%B9%E7%9B%AE/Reborn/Reborn/Controller/View%20Controller/ItemDetailViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "3838">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

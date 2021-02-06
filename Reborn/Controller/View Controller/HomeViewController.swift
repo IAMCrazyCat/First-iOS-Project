@@ -56,7 +56,7 @@ class HomeViewController: UIViewController {
         quittingItemsView.layoutIfNeeded()
 
         overallProgressView.layer.cornerRadius = setting.itemCardCornerRadius
-        overallProgressView.setViewShadow()
+        overallProgressView.setShadow()
         overallProgressView.layoutIfNeeded()
         
         avatarImageView.layer.masksToBounds = true
@@ -196,13 +196,13 @@ class HomeViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             
         if let destinationViewController = segue.destination as? ItemDetailViewController, segue.identifier == "goItemDetailView" {
-            let item = self.engine.user.items[(sender as? UIButton)?.tag ?? 0]
+            let item = self.engine.currentUser.items[(sender as? UIButton)?.tag ?? 0]
             destinationViewController.item = item
         
             
             
         } else if let destinationViewController = segue.destination as? CalendarViewController, segue.identifier == "embeddedCalendarContainer" {
-            let item = self.engine.user.items[(sender as? UIButton)?.tag ?? 0]
+            let item = self.engine.currentUser.items[(sender as? UIButton)?.tag ?? 0]
             destinationViewController.item = item
         }
         
@@ -246,7 +246,7 @@ class HomeViewController: UIViewController {
     }
     
     func loadUserAvatar() {
-        avatarImageView.image = engine.user.getAvatarImage()
+        avatarImageView.image = engine.currentUser.getAvatarImage()
     }
     
     func loadItemCards() {
@@ -256,8 +256,8 @@ class HomeViewController: UIViewController {
         var quittingCordinateY: CGFloat = 0
         
         
-        let items = self.engine.user.items
-            var tag: Int = self.engine.user.items.count - 1
+        let items = self.engine.currentUser.items
+            var tag: Int = self.engine.currentUser.items.count - 1
             if items.count > 0 {
                 
                 

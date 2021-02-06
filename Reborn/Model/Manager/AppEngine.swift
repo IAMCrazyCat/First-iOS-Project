@@ -17,7 +17,7 @@ protocol AppEngineDelegate {
 class AppEngine {
     
     static let shared = AppEngine()
-    var user: User = User(name: "颠猫", gender: .undefined, avatar: #imageLiteral(resourceName: "AvatarMale"), keys: 3, items: [Item](), vip: false)
+    var currentUser: User = User(name: "颠猫", gender: .undefined, avatar: #imageLiteral(resourceName: "AvatarMale"), keys: 3, items: [Item](), vip: false)
     var defaults: UserDefaults = UserDefaults.standard
     let dataFilePath: URL? = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("item.plist")
     let setting: SystemStyleSetting = SystemStyleSetting()
@@ -44,12 +44,12 @@ class AppEngine {
 
     }
     
-    public func saveUser(newUser user: User?) {
+    public func saveUser(_ user: User) {
 
         let encoder = JSONEncoder()//PropertyListEncoder()
 
         do {
-            let data = try encoder.encode(self.user)
+            let data = try encoder.encode(self.currentUser)
             try data.write(to: self.dataFilePath!)
         } catch {
             print("Error encoding item array, \(error)")
@@ -65,7 +65,7 @@ class AppEngine {
            let decoder = JSONDecoder() //PropertyListDecoder()
 
            do {
-                self.user = try decoder.decode(User.self, from: data) // .self 可以提取数据类型
+                self.currentUser = try decoder.decode(User.self, from: data) // .self 可以提取数据类型
            } catch {
                print(error)
            }
@@ -74,15 +74,15 @@ class AppEngine {
     
     public func addItem(newItem: Item) {
         
-        self.user.items.append(newItem)
+        self.currentUser.items.append(newItem)
         
-        //self.saveUser(newUser: nil)
+        self.saveUser(self.currentUser)
 
     }
     
     public func getItems() -> Array<Item>? {
  
-        return self.user.items
+        return self.currentUser.items
     }
     
     
@@ -93,33 +93,18 @@ class AppEngine {
         let currentYear: Int = Calendar.current.component(.year, from: Date())
         let currentMonth: Int = Calendar.current.component(.month, from: Date())
         let currentDay: Int = Calendar.current.component(.day, from: Date())
-        self.user.items[tag].punchIn(punchInDate: CustomDate(year: currentYear, month: currentMonth, day: currentDay))
+        self.currentUser.items[tag].punchIn(punchInDate: CustomDate(year: currentYear, month: currentMonth, day: currentDay))
         
-        //self.saveUser(newUser: nil)
-        // test
-//        let currentYear: Int = Calendar.current.component(.year, from: Date())
-//        let currentMonth: Int = Calendar.current.component(.month, from: Date())
-//        let currentDay: Int = Calendar.current.component(.day, from: Date())
-//
-//        for i in 1 ... 100 {
-//            for j in 1 ... 12 {
-//                for k in 1 ... 31 {
-//                    self.user?.items[tag].punchIn(punchInDate: CustomDate(year: currentYear, month: j, day: k))
-//                }
-//            }
-//
-//        }
-        
-        
+        self.saveUser(self.currentUser)
 
     }
     
     public func getFinishedDays(tag: Int) -> Int? {
-        return self.user.items[tag].finishedDays
+        return self.currentUser.items[tag].finishedDays
     }
     
     public func getDays(tag: Int) -> Int? {
-        return self.user.items[tag].targetDays
+        return self.currentUser.items[tag].targetDays
     }
     
     public func getOverAllProgress() -> Double {
@@ -127,7 +112,7 @@ class AppEngine {
         self.overAllProgress = 0.0
         
 
-        for item in self.user.items {
+        for item in self.currentUser.items {
            
             if item.targetDays != 0 {
                 let itemProgress = Double(item.finishedDays) / Double(item.targetDays)
@@ -137,8 +122,8 @@ class AppEngine {
 
         }
         
-        if self.user.items.count != 0 {
-            self.overAllProgress /= Double(self.user.items.count)
+        if self.currentUser.items.count != 0 {
+            self.overAllProgress /= Double(self.currentUser.items.count)
         }
         
         

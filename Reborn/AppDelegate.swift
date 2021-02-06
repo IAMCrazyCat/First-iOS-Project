@@ -32,15 +32,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillTerminate(_ application: UIApplication) {
         print("TERMINATED")
-        print(AppEngine.shared.user.items)
-        AppEngine.shared.saveUser(newUser: nil)
-        print(AppEngine.shared.user.items)
+        print(AppEngine.shared.currentUser.items)
+        AppEngine.shared.saveUser(AppEngine.shared.currentUser)
+        print(AppEngine.shared.currentUser.items)
         
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
         print("Background")
-        AppEngine.shared.saveUser(newUser: nil)
+        AppEngine.shared.saveUser(AppEngine.shared.currentUser)
     }
 
     

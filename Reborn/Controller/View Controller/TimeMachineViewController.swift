@@ -33,7 +33,7 @@ class TimeMachineViewController: UIViewController {
         animationSpeed = self.setting.timeMachineAnimationNormalSpeed
         
         goBackToThePastButton.layer.cornerRadius = self.setting.mainButtonCornerRadius
-        goBackToThePastButton.setViewShadow()
+        goBackToThePastButton.setShadow()
         goBackToThePastButton.setBackgroundColor(UserStyleSetting.themeColor, cornerRadius: goBackToThePastButton.layer.cornerRadius, for: .normal)
         goBackToThePastButton.setBackgroundColor(.gray, cornerRadius: goBackToThePastButton.layer.cornerRadius, for: .disabled)
  

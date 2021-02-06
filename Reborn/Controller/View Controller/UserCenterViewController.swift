@@ -30,10 +30,10 @@ class UserCenterViewController: UIViewController {
         timeMachineView.layer.cornerRadius = setting.itemCardCornerRadius - 5
         appSettingView.layer.cornerRadius = setting.itemCardCornerRadius
         
-        purchaseView.setViewShadow()
-        punchInView.setViewShadow()
-        timeMachineView.setViewShadow()
-        appSettingView.setViewShadow()
+        purchaseView.setShadow()
+        punchInView.setShadow()
+        timeMachineView.setShadow()
+        appSettingView.setShadow()
         
         verticalScrollView.delegate = self
         scrollViewTopOffset = avaterView.frame.origin.y - 10

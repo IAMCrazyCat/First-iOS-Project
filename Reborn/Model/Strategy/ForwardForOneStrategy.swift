@@ -41,7 +41,7 @@ class ForwardForOneStrategy: PagesBehaviorStrategy {
         newCalendarPage.backgroundColor = self.setting.calendarPageColor
         newCalendarPage.alpha = 0
         newCalendarPage.layer.cornerRadius = self.setting.itemCardCornerRadius
-        newCalendarPage.setViewShadow()
+        newCalendarPage.setShadow()
 
         self.timeMachineViewController.middleView.insertSubview(newCalendarPage, belowSubview: self.timeMachineViewController.calendarPages.last!)
         self.timeMachineViewController.calendarPages.append(newCalendarPage)

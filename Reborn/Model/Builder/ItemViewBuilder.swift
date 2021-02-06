@@ -74,10 +74,10 @@ class ItemViewBuilder {
     public func buildDetailsView() -> UIView {
         //freqency = DataOption(data: 1)
         createItemDetailsView()
-        addProgressBar(barFrame: CGRect(x: self.setting.mainPadding, y: outPutView.frame.height - 30, width: outPutView.frame.width - self.setting.mainPadding * 2, height: 15), withProgressLabel: true)
-        addItemDetailsFreqencyLabel()
-        addFinishedDaysLabel(labelFrame: CGRect(x: 100, y: 100, width: 0, height: 0), withTypeLabel: true)
-        addTargetDaysLabel(labelFrame: CGRect(x: 220, y: 100, width: 0, height: 0), withTypeLabel: true)
+        addProgressBar(barFrame: CGRect(x: self.setting.mainPadding, y: outPutView.frame.height / 2, width: outPutView.frame.width - self.setting.mainPadding * 2, height: 15), withProgressLabel: true)
+        //addItemDetailsFreqencyLabel()
+        //addFinishedDaysLabel(labelFrame: CGRect(x: 100, y: 100, width: 0, height: 0), withTypeLabel: true)
+        //addTargetDaysLabel(labelFrame: CGRect(x: 220, y: 100, width: 0, height: 0), withTypeLabel: true)
         
         return outPutView
     }
@@ -87,14 +87,14 @@ class ItemViewBuilder {
         outPutView.accessibilityIdentifier = setting.itemCardIdentifier
         outPutView.backgroundColor = setting.whiteAndBlack
         outPutView.layer.cornerRadius = setting.itemCardCornerRadius
-        outPutView.setViewShadow()
+        outPutView.setShadow()
         outPutView.frame = CGRect(x: cordinateX, y: cordinateY, width: width, height: height)
         
     }
     
     private func createItemDetailsView() {
         outPutView.backgroundColor = setting.whiteAndBlack
-        outPutView.layer.cornerRadius = setting.itemCardCornerRadius
+        //outPutView.layer.cornerRadius = setting.itemCardCornerRadius
         outPutView.frame = CGRect(x: cordinateX, y: cordinateY, width: width, height: height)
     }
     

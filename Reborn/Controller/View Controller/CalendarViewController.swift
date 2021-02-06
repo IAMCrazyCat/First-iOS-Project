@@ -91,19 +91,13 @@ class CalendarViewController: UIViewController {
         }
         
         view.layer.cornerRadius = setting.itemCardCornerRadius
-    
         view.clipsToBounds = true
       
-        lastMonthButton.layer.cornerRadius = setting.calendarFunctionButtonCornerRadius
-        //lastMonthButton.setViewShadow()
-        nextMonthButton.layer.cornerRadius = setting.calendarFunctionButtonCornerRadius
+        lastMonthButton.setCornerRadius()
+        thisMonthButton.setCornerRadius()
+        nextMonthButton.setCornerRadius()
+        startMonthButton.setCornerRadius()
     
-        //nextMonthButton.setViewShadow()
-        startMonthButton.layer.cornerRadius = setting.calendarFunctionButtonCornerRadius
-        //startDayButton.setViewShadow()
-        thisMonthButton.layer.cornerRadius = setting.calendarFunctionButtonCornerRadius
-        //todayButton.setViewShadow()
-        
         monthLabelOriginalCordinateX = currentMonthLabel.frame.origin.x
         updateUI()
     
