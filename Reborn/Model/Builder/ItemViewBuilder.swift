@@ -58,7 +58,7 @@ class ItemViewBuilder {
     public func buildItemCardView() -> UIView {
       
         createItemCardView() //1
-        addNameLabel() //2
+        addIconAndNameLabel() //2
         addGoDetailsButton() //3
         addTypeLabel() //4
         addFinishedDaysLabel(labelFrame: nil, withTypeLabel: false) //5
@@ -98,7 +98,9 @@ class ItemViewBuilder {
         outPutView.frame = CGRect(x: cordinateX, y: cordinateY, width: width, height: height)
     }
     
-    private func addNameLabel() {
+    private func addIconAndNameLabel() {
+       
+        
         let nameLabel = UILabel()
         nameLabel.accessibilityIdentifier = "nameLabel"
         nameLabel.text = item.type.rawValue + item.name
@@ -111,6 +113,16 @@ class ItemViewBuilder {
         nameLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
         nameLabel.topAnchor.constraint(equalTo: outPutView.topAnchor, constant: self.setting.mainDistance).isActive = true
         nameLabel.leftAnchor.constraint(equalTo: outPutView.leftAnchor, constant: self.setting.mainDistance).isActive = true
+        
+//        let icon = UIImageView()
+//        icon.image = #imageLiteral(resourceName: "StarIcon")
+//        icon.tintColor = .red
+//        outPutView.addSubview(icon)
+//        icon.translatesAutoresizingMaskIntoConstraints = false
+//        icon.leftAnchor.constraint(equalTo: outPutView.leftAnchor, constant: self.setting.mainDistance).isActive = true
+//        icon.centerYAnchor.constraint(equalTo: nameLabel.centerYAnchor).isActive = true
+//
+//        nameLabel.leftAnchor.constraint(equalTo: icon.rightAnchor, constant: 10).isActive = true
     }
     
     private func addItemCardFreqencyLabel() {
