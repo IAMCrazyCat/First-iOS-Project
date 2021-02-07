@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum AddItemViewState {
+    case adding
+    case editing
+}
+
 class AddItemViewController: UIViewController {
 
     @IBOutlet weak var middleContentView: UIView!
@@ -41,6 +46,8 @@ class AddItemViewController: UIViewController {
     
     var item: Item? = nil
     var preViewItemCard: UIView? = nil
+    var state: AddItemViewState? = nil
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         self.itemNameTextfield.delegate = self
@@ -68,7 +75,14 @@ class AddItemViewController: UIViewController {
         self.hideAllFrequencyOptionButtons(true)
         self.updateUI()
         
-        
+        if let item = item {
+            print(item.name)
+            self.itemName = item.name
+            self.itemType = item.type
+            self.targetDays = item.targetDays
+            self.frequency = item.frequency
+            updateUI()
+        }
     }
     
    
@@ -185,32 +199,36 @@ class AddItemViewController: UIViewController {
     }
     func updatePreViewItemCard() {
         
-       
-        
-        switch itemType {
-        case .quitting:
+        print("updatePreViewItemCard()")
+ 
+        if let state = self.state, state == .adding {
             
-            self.item = QuittingItem(name: self.itemName, days: self.targetDays, finishedDays: 0, creationDate: self.engine.currentDate)
+            switch self.itemType {
+            case .quitting:
+                
+                self.item = QuittingItem(name: self.itemName, days: self.targetDays, finishedDays: 0, creationDate: self.engine.currentDate)
 
-        case .persisting:
+            case .persisting:
+                
+                self.item = PersistingItem(name: self.itemName, days: self.targetDays, finishedDays: 0, creationDate: self.engine.currentDate)
+
+            default:
+                
+                self.item = Item(name: self.itemName, days: self.targetDays, finishedDays: 0, creationDate: self.engine.currentDate, type: .undefined)
+
+            }
             
-            self.item = PersistingItem(name: self.itemName, days: self.targetDays, finishedDays: 0, creationDate: self.engine.currentDate)
-
-        default:
+            if self.frequency != nil {
+                self.item!.setFreqency(frequency: frequency!)
+            }
+ 
             
-            self.item = Item(name: self.itemName, days: self.targetDays, finishedDays: 0, creationDate: self.engine.currentDate, type: .undefined)
-
         }
         
-        if frequency != nil {
-            self.item!.setFreqency(frequency: frequency!)
-        }
         excuteItemCardAimation()
         
-       
-            
         let builder = ItemViewBuilder(item: self.item!, width: self.setting.screenFrame.width - 2 * self.setting.mainPadding, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: 0)
-        
+  
         let generator = UIImpactFeedbackGenerator(style: .light)
         generator.impactOccurred()
         
@@ -219,7 +237,6 @@ class AddItemViewController: UIViewController {
  
         self.preViewItemCard!.center = self.middleContentView.center
         self.middleContentView.addSubview(preViewItemCard!)
-
 
     }
     
@@ -245,8 +262,10 @@ class AddItemViewController: UIViewController {
     
     func updateUI() {
         
+        
         removeOldPreviewItemCard()
         updatePreViewItemCard()
+        
         
     }
 }
