@@ -64,10 +64,10 @@ class ItemDetailViewController: UIViewController {
             destinationViewController.superViewController = self
             embeddedCalendarViewController = destinationViewController
   
-        } else if segue.identifier == "goToEditItemView", let destinationViewController = segue.destination as? AddItemViewController {
+        } else if segue.identifier == "goToEditItemView", let destinationViewController = segue.destination as? NewItemViewController {
             print("HHHHH")
-            destinationViewController.item = self.item
-            destinationViewController.state = .editing
+            destinationViewController.item = self.item!
+            destinationViewController.UIStrategy = EditingItemStrategy(newItemViewController: destinationViewController)
         }
         
         

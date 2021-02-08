@@ -284,7 +284,7 @@ Cg
         <!--新建项目-->
         <scene sceneID="zzG-9i-gO6">
             <objects>
-                <viewController id="yhk-VJ-4nb" customClass="AddItemViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="yhk-VJ-4nb" customClass="NewItemViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5tU-dT-BVc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -597,7 +597,7 @@ Cg
                                             <color key="titleColor" name="ThemeColor"/>
                                         </state>
                                         <connections>
-                                            <action selector="addItemButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="sxZ-Ci-h3i"/>
+                                            <action selector="doneButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="sxZ-Ci-h3i"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g8z-B1-4WR">
@@ -648,13 +648,23 @@ Cg
                         <outlet property="addFrequencyButton" destination="EyZ-JA-Lr7" id="l5f-nt-Alq"/>
                         <outlet property="bottomScrollView" destination="ppR-2m-3uc" id="3FA-gS-jcl"/>
                         <outlet property="customFrequencyButton" destination="eEh-sX-wyw" id="U5H-60-1ci"/>
+                        <outlet property="customTargetButton" destination="afP-fa-obf" id="2Mc-MM-PmY"/>
                         <outlet property="customTargetDaysButton" destination="afP-fa-obf" id="5yl-9D-oLr"/>
                         <outlet property="customizeFrequencyButton" destination="eEh-sX-wyw" id="ffo-EW-Nz9"/>
                         <outlet property="deleteFrequencyButton" destination="OWL-bI-NRj" id="KBV-bX-HQP"/>
+                        <outlet property="doneButton" destination="VYb-iy-kVx" id="MeK-Ms-4D0"/>
                         <outlet property="everydayOptionButton" destination="3i9-WH-Zt7" id="f4t-aB-Low"/>
                         <outlet property="itemNameTextfield" destination="dF6-S4-tMX" id="z3x-eW-GOP"/>
                         <outlet property="middleContentView" destination="75g-jl-Rdo" id="24b-cA-trw"/>
                         <outlet property="mondayToFridayOptionButton" destination="wJB-1F-QUe" id="IOY-NJ-kPk"/>
+                        <outlet property="oneHundredDaysButton" destination="RFy-ys-MHv" id="b52-Y0-84E"/>
+                        <outlet property="oneYearButton" destination="QGd-7R-bfn" id="WP6-yI-Jic"/>
+                        <outlet property="persistingTypeButton" destination="WpU-fd-JVR" id="A3d-QG-oK0"/>
+                        <outlet property="quittingTypeButton" destination="eYH-kV-dcm" id="9Hg-8N-m4R"/>
+                        <outlet property="sevenDaysButton" destination="uum-ys-rdj" id="UbE-lG-BKG"/>
+                        <outlet property="sixtyDaysButton" destination="maG-bk-NyY" id="IlD-wh-zdV"/>
+                        <outlet property="thirtyDaysButton" destination="eVH-dn-gr1" id="Fv6-1F-g39"/>
+                        <outlet property="titleLabel" destination="FTM-I4-dC0" id="0ML-wu-Mbo"/>
                         <outlet property="weekendOptionButton" destination="rS9-xl-t7u" id="oGw-pl-fPk"/>
                     </connections>
                 </viewController>
@@ -1294,7 +1304,7 @@ Cg
                         <outlet property="quittingItemsViewPromptLabel" destination="s0C-g8-oh2" id="H5P-dq-PHG"/>
                         <outlet property="verticalScrollView" destination="BDY-Xd-Ccc" id="t6O-zo-dHw"/>
                         <outlet property="view" destination="uAb-zv-xSl" id="5u5-dj-8jZ"/>
-                        <segue destination="yhk-VJ-4nb" kind="showDetail" identifier="goToAddItemView" id="dzd-Jo-rYE"/>
+                        <segue destination="yhk-VJ-4nb" kind="showDetail" identifier="goToNewItemView" id="dzd-Jo-rYE"/>
                         <segue destination="ks2-0d-aBh" kind="show" identifier="goItemDetailView" id="tkB-nE-CDt"/>
                     </connections>
                 </viewController>
@@ -1714,7 +1724,7 @@ Cg
             <objects>
                 <viewController id="cr2-6I-Rrh" customClass="CalendarViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jX3-MM-9D0">
-                        <rect key="frame" x="0.0" y="0.0" width="345" height="400"/>
+                        <rect key="frame" x="0.0" y="0.0" width="345" height="430"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RwH-pK-cja" userLabel="Top View">
@@ -1876,10 +1886,10 @@ Cg
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CyJ-kQ-0F2" userLabel="Bottom View">
-                                <rect key="frame" x="0.0" y="140" width="345" height="260"/>
+                                <rect key="frame" x="0.0" y="140" width="345" height="290"/>
                                 <subviews>
                                     <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zYE-Pq-52Y">
-                                        <rect key="frame" x="30" y="0.0" width="285" height="240"/>
+                                        <rect key="frame" x="30" y="0.0" width="285" height="270"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="mXR-mX-f4e">
                                             <size key="itemSize" width="128" height="128"/>
@@ -1951,7 +1961,7 @@ Cg
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="PMl-Ex-sJd"/>
+        <segue reference="XZJ-WO-7s9"/>
         <segue reference="HdV-Uf-p4p"/>
     </inferredMetricsTieBreakers>
     <resources>

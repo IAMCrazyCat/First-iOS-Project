@@ -166,20 +166,24 @@ class AppEngine {
         
     }
     
-    public func showAddItemView(controller: HomeViewController) {
+    public func showNewItemView(controller: HomeViewController) {
         self.delegate = controller
-        controller.performSegue(withIdentifier: "goToAddItemView", sender: controller)
+        controller.performSegue(withIdentifier: "goToNewItemView", sender: controller)
     }
     
-    public func dismissAddItemViewWithoutSave(controller: AddItemViewController) {
+    public func dismissNewItemViewWithoutSave(viewController: NewItemViewController) {
         
-        controller.dismiss(animated: true, completion: nil)
+        viewController.dismiss(animated: true, completion: nil)
     }
     
+    public func dismissNewItemViewAndSaveItem(viewController: NewItemViewController) {
+        viewController.dismiss(animated: true, completion: nil)
+        self.saveUser(self.currentUser)
+    }
     
-    public func dismissAndSaveAddItemView(controller: AddItemViewController) {
-        self.itemCardFromController = controller.preViewItemCard
-        self.itemFromController = controller.item
+    public func dismissNewItemViewAndAddItem(viewController: NewItemViewController) {
+        self.itemCardFromController = viewController.preViewItemCard
+        self.itemFromController = viewController.item
         
         if self.itemFromController != nil {
             self.addItem(newItem: itemFromController!)
@@ -187,7 +191,7 @@ class AppEngine {
         
         //self.delegate = 
         self.delegate?.willDismissView()
-        controller.dismiss(animated: true, completion: nil)
+        viewController.dismiss(animated: true, completion: nil)
 
         self.delegate?.didDismissView()
     }

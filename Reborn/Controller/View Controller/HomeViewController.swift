@@ -189,7 +189,7 @@ class HomeViewController: UIViewController {
 
     @IBAction func addItemViewController(_ sender: UIBarButtonItem) {
     
-        self.engine.showAddItemView(controller: self)
+        self.engine.showNewItemView(controller: self)
     }
     
   
@@ -204,6 +204,9 @@ class HomeViewController: UIViewController {
         } else if let destinationViewController = segue.destination as? CalendarViewController, segue.identifier == "embeddedCalendarContainer" {
             let item = self.engine.currentUser.items[(sender as? UIButton)?.tag ?? 0]
             destinationViewController.item = item
+        } else if let destinationViewController = segue.destination as? NewItemViewController, segue.identifier == "goToAddItemView" {
+            
+            destinationViewController.UIStrategy = AddingItemStrategy(newItemViewController: destinationViewController)
         }
         
     }
