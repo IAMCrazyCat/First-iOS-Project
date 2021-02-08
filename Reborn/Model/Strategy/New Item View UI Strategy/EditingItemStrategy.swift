@@ -41,53 +41,24 @@ class EditingItemStrategy: NewItemViewStrategy {
             case 365:
                 newItemViewController.oneYearButton.isSelected = true
             default:
-                newItemViewController.customTargetButton.isSelected = true
+                newItemViewController.customTargetDaysButton.isSelected = true
             }
             
  
-        newItemViewController.updateUI()
-        self.initializePreviewItemCard()
+        
     }
         
     
-    func updatePreViewItemCard() {
-
-        if newItemViewController.frequency != nil {
-            newItemViewController.item.setFreqency(frequency: newItemViewController.frequency!)
-        }
-
-        
-        let builder = ItemViewBuilder(item: newItemViewController.item, width: newItemViewController.setting.screenFrame.width - 2 * newItemViewController.setting.mainPadding, height: newItemViewController.setting.itemCardHeight, corninateX: 0, cordinateY: 0)
-  
-        let generator = UIImpactFeedbackGenerator(style: .light)
-        generator.impactOccurred()
-        
-        newItemViewController.preViewItemCard = builder.buildItemCardView()
-        newItemViewController.previewItemCardTag = newItemViewController.preViewItemCard!.tag
- 
-        newItemViewController.preViewItemCard!.center = newItemViewController.middleContentView.center
-        newItemViewController.middleContentView.addSubview(newItemViewController.preViewItemCard!)
-    }
     
-   
-    
-    func initializePreviewItemCard() {
-        let builder = ItemViewBuilder(item: newItemViewController.item, width: newItemViewController.setting.screenFrame.width - 2 * newItemViewController.setting.mainPadding, height: newItemViewController.setting.itemCardHeight, corninateX: 0, cordinateY: 0)
-  
-        let generator = UIImpactFeedbackGenerator(style: .light)
-        generator.impactOccurred()
-        
-        newItemViewController.preViewItemCard = builder.buildItemCardView()
-        newItemViewController.previewItemCardTag = newItemViewController.preViewItemCard!.tag
- 
-        newItemViewController.preViewItemCard!.center = newItemViewController.middleContentView.center
-        newItemViewController.middleContentView.addSubview(newItemViewController.preViewItemCard!)
-    }
     
     
     func doneButtonPressed(_ sender: UIButton) {
-        newItemViewController.engine.dismissNewItemViewAndSaveItem(viewController: newItemViewController)
         
+        
+        newItemViewController.engine.saveUser(newItemViewController.engine.currentUser)
+        newItemViewController.dismiss(animated: true) {
+            self.newItemViewController.engine.notigyAllObservers()
+        }
     }
     
 }

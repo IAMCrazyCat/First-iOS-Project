@@ -11,6 +11,5 @@ import UIKit
 protocol NewItemViewStrategy {
     
     func initializeUI()
-    func updatePreViewItemCard()
     func doneButtonPressed(_ sender: UIButton)
 }

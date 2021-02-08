@@ -286,7 +286,7 @@ Cg
             <objects>
                 <viewController id="yhk-VJ-4nb" customClass="NewItemViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5tU-dT-BVc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eis-9Y-9bk" userLabel="Middle Scroll View">
@@ -346,7 +346,7 @@ Cg
                                                     <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="typeOptionButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="OBF-nX-09u"/>
+                                                    <action selector="typeButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="OBF-nX-09u"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uum-ys-rdj">
@@ -358,7 +358,7 @@ Cg
                                                     <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="targetDaysOptionButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="Idp-Ne-BIc"/>
+                                                    <action selector="targetDaysButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="Idp-Ne-BIc"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="maG-bk-NyY">
@@ -369,7 +369,7 @@ Cg
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="targetDaysOptionButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="WAm-bf-awP"/>
+                                                    <action selector="targetDaysButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="WAm-bf-awP"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WpU-fd-JVR">
@@ -380,7 +380,7 @@ Cg
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="typeOptionButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="18K-oo-swr"/>
+                                                    <action selector="typeButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="18K-oo-swr"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eVH-dn-gr1">
@@ -391,7 +391,7 @@ Cg
                                                     <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="targetDaysOptionButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="LD0-Sp-RF6"/>
+                                                    <action selector="targetDaysButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="LD0-Sp-RF6"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RFy-ys-MHv">
@@ -402,7 +402,7 @@ Cg
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="targetDaysOptionButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="vpi-Yg-Di9"/>
+                                                    <action selector="targetDaysButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="vpi-Yg-Di9"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afP-fa-obf">
@@ -413,7 +413,7 @@ Cg
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="targetDaysOptionButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="kYQ-YN-dQI"/>
+                                                    <action selector="targetDaysButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="kYQ-YN-dQI"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGd-7R-bfn">
@@ -424,7 +424,7 @@ Cg
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="targetDaysOptionButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="Zpk-bg-n8l"/>
+                                                    <action selector="targetDaysButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="Zpk-bg-n8l"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="频率" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wH2-TB-oP3">
@@ -441,7 +441,7 @@ Cg
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="frequencyOptionButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="rhT-XC-q7N"/>
+                                                    <action selector="frequencyButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="rhT-XC-q7N"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rS9-xl-t7u">
@@ -452,50 +452,40 @@ Cg
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="frequencyOptionButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="6OK-oY-CJr"/>
+                                                    <action selector="frequencyButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="6OK-oY-CJr"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJB-1F-QUe">
-                                                <rect key="frame" x="273" y="444" width="62" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uVK-qR-Otb">
+                                                <rect key="frame" x="304" y="494" width="31" height="30"/>
                                                 <color key="backgroundColor" name="WhiteAndBlack"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="两天一次">
+                                                <state key="normal" title="每月">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="frequencyOptionButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="UQ6-x6-D5W"/>
+                                                    <action selector="frequencyButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="gdB-1B-1CH"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJB-1F-QUe">
+                                                <rect key="frame" x="289" y="444" width="46" height="30"/>
+                                                <color key="backgroundColor" name="WhiteAndBlack"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="每两天">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="frequencyButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="UQ6-x6-D5W"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEh-sX-wyw">
-                                                <rect key="frame" x="289" y="494" width="46" height="30"/>
+                                                <rect key="frame" x="289" y="544" width="46" height="30"/>
                                                 <color key="backgroundColor" name="WhiteAndBlack"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="自定义">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="frequencyOptionButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="hbi-Gi-Qtc"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EyZ-JA-Lr7">
-                                                <rect key="frame" x="152" y="444" width="71" height="30"/>
-                                                <color key="backgroundColor" name="WhiteAndBlack"/>
-                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="+添加频率">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="addFrequencyButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="fII-wA-ANB"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OWL-bI-NRj">
-                                                <rect key="frame" x="156.66666666666666" y="544" width="62" height="30"/>
-                                                <color key="backgroundColor" name="WhiteAndBlack"/>
-                                                <state key="normal" title="删除频率">
-                                                    <color key="titleColor" systemColor="systemRedColor"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="deleteFrequencyButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="jbZ-Cu-twg"/>
+                                                    <action selector="frequencyButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="hbi-Gi-Qtc"/>
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TargetIcon" translatesAutoresizingMaskIntoConstraints="NO" id="a3D-ld-P7d">
@@ -516,11 +506,35 @@ Cg
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJD-UT-gB8">
+                                                <rect key="frame" x="40" y="544" width="62" height="30"/>
+                                                <color key="backgroundColor" name="WhiteAndBlack"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="自由打卡">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="frequencyButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="Nbk-Oo-doz"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="频率计划外为休息日，无需打卡" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZL-a6-T5M">
+                                                <rect key="frame" x="40" y="614" width="295" height="16"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <color key="textColor" name="ThemeColorInvert"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;自由打卡&quot;没有限制，只需要完成目标天数即可" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WKm-RK-W4j">
+                                                <rect key="frame" x="40" y="650" width="295" height="16"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <color key="textColor" name="ThemeColorInvert"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="QGd-7R-bfn" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="40" id="1fy-nX-Y7D"/>
                                             <constraint firstItem="TtZ-0J-0EP" firstAttribute="centerY" secondItem="wH2-TB-oP3" secondAttribute="centerY" id="24z-ny-OP7"/>
+                                            <constraint firstItem="xZL-a6-T5M" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="40" id="3Ye-6p-byn"/>
                                             <constraint firstItem="TtZ-0J-0EP" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="15" id="4G7-oC-jQv"/>
                                             <constraint firstAttribute="trailing" secondItem="eYH-kV-dcm" secondAttribute="trailing" constant="40" id="5bY-sF-AS0"/>
                                             <constraint firstItem="wH2-TB-oP3" firstAttribute="leading" secondItem="TtZ-0J-0EP" secondAttribute="trailing" constant="10" id="5lL-DI-ki2"/>
@@ -532,24 +546,26 @@ Cg
                                             <constraint firstItem="afP-fa-obf" firstAttribute="top" secondItem="RFy-ys-MHv" secondAttribute="bottom" constant="20" id="C9B-hI-qn2"/>
                                             <constraint firstItem="rS9-xl-t7u" firstAttribute="top" secondItem="3i9-WH-Zt7" secondAttribute="bottom" constant="20" id="EvS-IT-YCr"/>
                                             <constraint firstItem="nS3-iZ-Nkf" firstAttribute="centerY" secondItem="p0g-iC-UgG" secondAttribute="centerY" id="Flt-v5-jkg"/>
-                                            <constraint firstItem="EyZ-JA-Lr7" firstAttribute="top" secondItem="wH2-TB-oP3" secondAttribute="bottom" constant="20" id="FwX-li-6Rd"/>
                                             <constraint firstAttribute="trailing" secondItem="eEh-sX-wyw" secondAttribute="trailing" constant="40" id="Iva-12-VmY"/>
                                             <constraint firstItem="eYH-kV-dcm" firstAttribute="top" secondItem="p0g-iC-UgG" secondAttribute="bottom" constant="20" id="KVW-1h-Ocq"/>
                                             <constraint firstItem="dF6-S4-tMX" firstAttribute="top" secondItem="N9a-6t-lce" secondAttribute="bottom" constant="20" id="Kim-vM-7yQ"/>
+                                            <constraint firstItem="eEh-sX-wyw" firstAttribute="top" secondItem="uVK-qR-Otb" secondAttribute="bottom" constant="20" id="Kjx-ji-7Ib"/>
                                             <constraint firstItem="dF6-S4-tMX" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="15" id="L30-Sy-KP3"/>
                                             <constraint firstAttribute="trailing" secondItem="afP-fa-obf" secondAttribute="trailing" constant="40" id="OTW-Xm-5De"/>
-                                            <constraint firstItem="OWL-bI-NRj" firstAttribute="centerX" secondItem="zHw-xi-vrL" secondAttribute="centerX" id="PAC-eC-uYz"/>
+                                            <constraint firstItem="xZL-a6-T5M" firstAttribute="top" secondItem="eEh-sX-wyw" secondAttribute="bottom" constant="40" id="OwC-13-1I1"/>
                                             <constraint firstItem="a3D-ld-P7d" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="15" id="Pf5-XJ-aF9"/>
                                             <constraint firstAttribute="trailing" secondItem="dF6-S4-tMX" secondAttribute="trailing" constant="15" id="R8R-rX-amo"/>
+                                            <constraint firstAttribute="trailing" secondItem="xZL-a6-T5M" secondAttribute="trailing" constant="40" id="RDW-VB-gKV"/>
                                             <constraint firstItem="uum-ys-rdj" firstAttribute="top" secondItem="I5N-Yf-LFv" secondAttribute="bottom" constant="20" id="SqT-sp-jqv"/>
                                             <constraint firstItem="RFy-ys-MHv" firstAttribute="top" secondItem="eVH-dn-gr1" secondAttribute="bottom" constant="20" id="UH0-Z4-jue"/>
                                             <constraint firstItem="nS3-iZ-Nkf" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="15" id="UkV-Oy-dGC"/>
                                             <constraint firstItem="p0g-iC-UgG" firstAttribute="top" secondItem="dF6-S4-tMX" secondAttribute="bottom" constant="20" id="Vie-Rd-DSA"/>
                                             <constraint firstItem="a3D-ld-P7d" firstAttribute="centerY" secondItem="I5N-Yf-LFv" secondAttribute="centerY" id="ZVn-kz-Lmv"/>
                                             <constraint firstItem="WpU-fd-JVR" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="40" id="ZjC-Xz-XKD"/>
+                                            <constraint firstItem="uVK-qR-Otb" firstAttribute="top" secondItem="wJB-1F-QUe" secondAttribute="bottom" constant="20" id="c3E-wn-dWb"/>
+                                            <constraint firstItem="WKm-RK-W4j" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="40" id="cI5-JS-iqX"/>
                                             <constraint firstItem="N9a-6t-lce" firstAttribute="top" secondItem="zHw-xi-vrL" secondAttribute="top" constant="20" id="cb1-Lk-RJF"/>
                                             <constraint firstItem="aAy-4f-o1J" firstAttribute="centerY" secondItem="N9a-6t-lce" secondAttribute="centerY" id="cke-Rh-bct"/>
-                                            <constraint firstItem="OWL-bI-NRj" firstAttribute="top" secondItem="rS9-xl-t7u" secondAttribute="bottom" constant="20" id="d6W-VZ-0po"/>
                                             <constraint firstItem="wH2-TB-oP3" firstAttribute="top" secondItem="afP-fa-obf" secondAttribute="bottom" constant="20" id="d8A-Zb-4g3"/>
                                             <constraint firstItem="eVH-dn-gr1" firstAttribute="top" secondItem="I5N-Yf-LFv" secondAttribute="bottom" constant="20" id="dwL-IC-a7d"/>
                                             <constraint firstItem="3i9-WH-Zt7" firstAttribute="top" secondItem="wH2-TB-oP3" secondAttribute="bottom" constant="20" id="f6h-AJ-YH5"/>
@@ -559,15 +575,18 @@ Cg
                                             <constraint firstItem="N9a-6t-lce" firstAttribute="leading" secondItem="aAy-4f-o1J" secondAttribute="trailing" constant="10" id="ih2-FJ-mIS"/>
                                             <constraint firstItem="3i9-WH-Zt7" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="40" id="mcB-ZX-dew"/>
                                             <constraint firstItem="aAy-4f-o1J" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="15" id="nIM-BA-PiT"/>
+                                            <constraint firstAttribute="trailing" secondItem="uVK-qR-Otb" secondAttribute="trailing" constant="40" id="nMb-eB-GGx"/>
                                             <constraint firstItem="uum-ys-rdj" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="40" id="qE1-UG-HSg"/>
                                             <constraint firstAttribute="trailing" secondItem="wJB-1F-QUe" secondAttribute="trailing" constant="40" id="ret-TS-tT8"/>
-                                            <constraint firstItem="EyZ-JA-Lr7" firstAttribute="centerX" secondItem="zHw-xi-vrL" secondAttribute="centerX" id="sbA-4b-hPi"/>
+                                            <constraint firstItem="NJD-UT-gB8" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="40" id="sg7-U7-aC6"/>
+                                            <constraint firstItem="WKm-RK-W4j" firstAttribute="top" secondItem="xZL-a6-T5M" secondAttribute="bottom" constant="20" id="u7d-O8-Rgh"/>
                                             <constraint firstItem="wJB-1F-QUe" firstAttribute="top" secondItem="wH2-TB-oP3" secondAttribute="bottom" constant="20" id="uEf-Wk-xhU"/>
                                             <constraint firstItem="maG-bk-NyY" firstAttribute="top" secondItem="uum-ys-rdj" secondAttribute="bottom" constant="20" id="vZl-A5-ihL"/>
                                             <constraint firstAttribute="trailing" secondItem="eVH-dn-gr1" secondAttribute="trailing" constant="40" id="w0T-7p-4Rq"/>
+                                            <constraint firstAttribute="trailing" secondItem="WKm-RK-W4j" secondAttribute="trailing" constant="40" id="wYc-ma-SPh"/>
                                             <constraint firstAttribute="height" constant="900" id="wkm-ef-NiO"/>
+                                            <constraint firstItem="NJD-UT-gB8" firstAttribute="top" secondItem="rS9-xl-t7u" secondAttribute="bottom" constant="20" id="wqq-Bz-Oja"/>
                                             <constraint firstItem="maG-bk-NyY" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="40" id="yA1-jb-13r"/>
-                                            <constraint firstItem="eEh-sX-wyw" firstAttribute="top" secondItem="wJB-1F-QUe" secondAttribute="bottom" constant="20" id="zGe-Tr-YrP"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -645,27 +664,27 @@ Cg
                         <barButtonItem key="rightBarButtonItem" title="添加" id="mbP-lN-Cmn"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="addFrequencyButton" destination="EyZ-JA-Lr7" id="l5f-nt-Alq"/>
                         <outlet property="bottomScrollView" destination="ppR-2m-3uc" id="3FA-gS-jcl"/>
                         <outlet property="customFrequencyButton" destination="eEh-sX-wyw" id="U5H-60-1ci"/>
-                        <outlet property="customTargetButton" destination="afP-fa-obf" id="2Mc-MM-PmY"/>
                         <outlet property="customTargetDaysButton" destination="afP-fa-obf" id="5yl-9D-oLr"/>
-                        <outlet property="customizeFrequencyButton" destination="eEh-sX-wyw" id="ffo-EW-Nz9"/>
-                        <outlet property="deleteFrequencyButton" destination="OWL-bI-NRj" id="KBV-bX-HQP"/>
                         <outlet property="doneButton" destination="VYb-iy-kVx" id="MeK-Ms-4D0"/>
-                        <outlet property="everydayOptionButton" destination="3i9-WH-Zt7" id="f4t-aB-Low"/>
+                        <outlet property="everydayFrequencyButton" destination="3i9-WH-Zt7" id="f4t-aB-Low"/>
+                        <outlet property="firstInstructionLabel" destination="xZL-a6-T5M" id="Xxn-TD-XFp"/>
+                        <outlet property="freedomFrequencyButton" destination="NJD-UT-gB8" id="RFS-gG-9fp"/>
                         <outlet property="itemNameTextfield" destination="dF6-S4-tMX" id="z3x-eW-GOP"/>
                         <outlet property="middleContentView" destination="75g-jl-Rdo" id="24b-cA-trw"/>
-                        <outlet property="mondayToFridayOptionButton" destination="wJB-1F-QUe" id="IOY-NJ-kPk"/>
                         <outlet property="oneHundredDaysButton" destination="RFy-ys-MHv" id="b52-Y0-84E"/>
+                        <outlet property="oneMonthOnceFrequencyButton" destination="uVK-qR-Otb" id="eXN-KO-znz"/>
+                        <outlet property="oneWeekOnceFreqencyButton" destination="rS9-xl-t7u" id="oGw-pl-fPk"/>
                         <outlet property="oneYearButton" destination="QGd-7R-bfn" id="WP6-yI-Jic"/>
                         <outlet property="persistingTypeButton" destination="WpU-fd-JVR" id="A3d-QG-oK0"/>
                         <outlet property="quittingTypeButton" destination="eYH-kV-dcm" id="9Hg-8N-m4R"/>
+                        <outlet property="secondInstructionLabel" destination="WKm-RK-W4j" id="bc4-RE-AkC"/>
                         <outlet property="sevenDaysButton" destination="uum-ys-rdj" id="UbE-lG-BKG"/>
                         <outlet property="sixtyDaysButton" destination="maG-bk-NyY" id="IlD-wh-zdV"/>
                         <outlet property="thirtyDaysButton" destination="eVH-dn-gr1" id="Fv6-1F-g39"/>
                         <outlet property="titleLabel" destination="FTM-I4-dC0" id="0ML-wu-Mbo"/>
-                        <outlet property="weekendOptionButton" destination="rS9-xl-t7u" id="oGw-pl-fPk"/>
+                        <outlet property="twoDaysOnceFreqencyButton" destination="wJB-1F-QUe" id="IOY-NJ-kPk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zsl-RN-1KK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -825,7 +844,7 @@ Cg
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="400" id="G4z-Xe-LKL"/>
                                                         </constraints>
                                                         <connections>
-                                                            <segue destination="cr2-6I-Rrh" kind="embed" identifier="embeddedCalendarContainer" id="XZJ-WO-7s9"/>
+                                                            <segue destination="cr2-6I-Rrh" kind="embed" identifier="EmbeddedCalendarContainer" id="XZJ-WO-7s9"/>
                                                         </connections>
                                                     </containerView>
                                                 </subviews>
@@ -914,7 +933,7 @@ Cg
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="typeOptionButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="nyR-pw-bpY"/>
+                                                            <action selector="typeButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="nyR-pw-bpY"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Stx-iB-4so">
@@ -925,7 +944,7 @@ Cg
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="typeOptionButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="Hfc-ff-Qsd"/>
+                                                            <action selector="typeButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="Hfc-ff-Qsd"/>
                                                         </connections>
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wZL-aW-y72" userLabel="Frequency View">
@@ -1051,7 +1070,7 @@ Cg
                     <navigationItem key="navigationItem" title="项目名" id="dce-h9-NTD">
                         <barButtonItem key="rightBarButtonItem" title="编辑" id="uXu-af-sL3">
                             <connections>
-                                <segue destination="yhk-VJ-4nb" kind="presentation" identifier="goToEditItemView" id="HdV-Uf-p4p"/>
+                                <segue destination="yhk-VJ-4nb" kind="presentation" identifier="GoToEditItemView" id="HdV-Uf-p4p"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1304,8 +1323,8 @@ Cg
                         <outlet property="quittingItemsViewPromptLabel" destination="s0C-g8-oh2" id="H5P-dq-PHG"/>
                         <outlet property="verticalScrollView" destination="BDY-Xd-Ccc" id="t6O-zo-dHw"/>
                         <outlet property="view" destination="uAb-zv-xSl" id="5u5-dj-8jZ"/>
-                        <segue destination="yhk-VJ-4nb" kind="showDetail" identifier="goToNewItemView" id="dzd-Jo-rYE"/>
-                        <segue destination="ks2-0d-aBh" kind="show" identifier="goItemDetailView" id="tkB-nE-CDt"/>
+                        <segue destination="yhk-VJ-4nb" kind="showDetail" identifier="GoToNewItemView" id="dzd-Jo-rYE"/>
+                        <segue destination="ks2-0d-aBh" kind="show" identifier="GoToItemDetailView" id="tkB-nE-CDt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zpd-ju-ZRL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1724,7 +1743,7 @@ Cg
             <objects>
                 <viewController id="cr2-6I-Rrh" customClass="CalendarViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jX3-MM-9D0">
-                        <rect key="frame" x="0.0" y="0.0" width="345" height="430"/>
+                        <rect key="frame" x="0.0" y="0.0" width="345" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RwH-pK-cja" userLabel="Top View">
@@ -1886,10 +1905,10 @@ Cg
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CyJ-kQ-0F2" userLabel="Bottom View">
-                                <rect key="frame" x="0.0" y="140" width="345" height="290"/>
+                                <rect key="frame" x="0.0" y="140" width="345" height="260"/>
                                 <subviews>
                                     <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zYE-Pq-52Y">
-                                        <rect key="frame" x="30" y="0.0" width="285" height="270"/>
+                                        <rect key="frame" x="30" y="0.0" width="285" height="240"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="mXR-mX-f4e">
                                             <size key="itemSize" width="128" height="128"/>
@@ -1961,7 +1980,7 @@ Cg
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="XZJ-WO-7s9"/>
+        <segue reference="PMl-Ex-sJd"/>
         <segue reference="HdV-Uf-p4p"/>
     </inferredMetricsTieBreakers>
     <resources>

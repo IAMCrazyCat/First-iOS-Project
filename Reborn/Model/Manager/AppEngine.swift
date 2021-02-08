@@ -7,9 +7,8 @@
 
 import Foundation
 import UIKit
-protocol AppEngineDelegate {
-    func willDismissView()
-    func didDismissView()
+protocol PopUpViewDelegate {
+    func didDismissPopUpViewWithoutSave()
     func didSaveAndDismissPopUpView(type: PopUpType)
 }
 
@@ -25,8 +24,6 @@ class AppEngine {
     var storedDataFromPopUpView: Any? = nil
     var itemCardFromController: UIView? = nil
     var itemFromController: Item? = nil
-    
-    var delegate: AppEngineDelegate?
     var currentViewController: UIViewController? = nil
     var currentDate: CustomDate {
         let date = Date()
@@ -36,6 +33,8 @@ class AppEngine {
         return CustomDate(year: currentYear, month: currentMonth, day: currentDay)
     }
     
+    var delegate: PopUpViewDelegate?
+    private var observers: Array<Observer> = []
 
     private init() {
         
@@ -131,10 +130,24 @@ class AppEngine {
        
     }
     
+    // ------------------------------------ observer ------------------------------------------------------
+    public func registerObserver(observer: Observer) {
+        self.observers.append(observer)
+    }
+    
+    public func notigyAllObservers() {
+        for observer in self.observers {
+            observer.updateUI()
+        }
+    }
+    // ------------------------------------ observer end ------------------------------------------------------
+    
+    
+    
 
     public func showPopUp(_ popUpType: PopUpType, from forPresented: UIViewController) {
         
-        self.delegate = forPresented as? AppEngineDelegate
+        self.delegate = forPresented as? PopUpViewDelegate
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
@@ -145,15 +158,10 @@ class AppEngine {
             forPresented.presentBottom(to: popUpViewController)
         }
         
-
-        
-        
     }
-    
  
-    
     public func dismissPopUpWithoutSave(controller: PopUpViewController) {
-        //delegate?.didDismissView()
+        delegate?.didDismissPopUpViewWithoutSave()
         controller.dismiss(animated: true, completion: nil)
         
     }
@@ -166,35 +174,6 @@ class AppEngine {
         
     }
     
-    public func showNewItemView(controller: HomeViewController) {
-        self.delegate = controller
-        controller.performSegue(withIdentifier: "goToNewItemView", sender: controller)
-    }
-    
-    public func dismissNewItemViewWithoutSave(viewController: NewItemViewController) {
-        
-        viewController.dismiss(animated: true, completion: nil)
-    }
-    
-    public func dismissNewItemViewAndSaveItem(viewController: NewItemViewController) {
-        viewController.dismiss(animated: true, completion: nil)
-        self.saveUser(self.currentUser)
-    }
-    
-    public func dismissNewItemViewAndAddItem(viewController: NewItemViewController) {
-        self.itemCardFromController = viewController.preViewItemCard
-        self.itemFromController = viewController.item
-        
-        if self.itemFromController != nil {
-            self.addItem(newItem: itemFromController!)
-        }
-        
-        //self.delegate = 
-        self.delegate?.willDismissView()
-        viewController.dismiss(animated: true, completion: nil)
-
-        self.delegate?.didDismissView()
-    }
     
     func getStoredDataFromPopUpView() -> Any {
         return self.storedDataFromPopUpView ?? "No Stored Data"

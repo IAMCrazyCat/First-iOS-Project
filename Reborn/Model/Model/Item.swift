@@ -14,7 +14,7 @@ class Item: Codable {
     var creationDate: CustomDate
     var type: ItemType
     var punchInDates: Array<CustomDate> = []
-    var frequency: DataOption? = nil
+    var frequency: DataOption
     
     var progress: Double {
         return Double(self.finishedDays) / Double(self.targetDays)
@@ -24,12 +24,13 @@ class Item: Codable {
         return String(format: "%.1f", progress * 100) + " %"
     }
     
-    init(name: String, days: Int, finishedDays: Int, creationDate: CustomDate, type: ItemType) {
+    init(name: String, days: Int, finishedDays: Int, frequency: DataOption, creationDate: CustomDate, type: ItemType) {
         self.name = name
         self.targetDays = days
         self.finishedDays = finishedDays
         self.creationDate = creationDate
         self.type = type
+        self.frequency = frequency
     }
     
     func punchIn(punchInDate: CustomDate) {
@@ -37,7 +38,5 @@ class Item: Codable {
         self.finishedDays += 1
     }
     
-    func setFreqency(frequency: DataOption) {
-        self.frequency = frequency
-    }
+    
 }

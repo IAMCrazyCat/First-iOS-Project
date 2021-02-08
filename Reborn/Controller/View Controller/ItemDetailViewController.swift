@@ -58,13 +58,13 @@ class ItemDetailViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         
-        if segue.identifier == "embeddedCalendarContainer", let destinationViewController = segue.destination as? CalendarViewController  {
+        if segue.identifier == "EmbeddedCalendarContainer", let destinationViewController = segue.destination as? CalendarViewController  {
     
             destinationViewController.item = item
             destinationViewController.superViewController = self
             embeddedCalendarViewController = destinationViewController
   
-        } else if segue.identifier == "goToEditItemView", let destinationViewController = segue.destination as? NewItemViewController {
+        } else if segue.identifier == "GoToEditItemView", let destinationViewController = segue.destination as? NewItemViewController {
             print("HHHHH")
             destinationViewController.item = self.item!
             destinationViewController.UIStrategy = EditingItemStrategy(newItemViewController: destinationViewController)
@@ -77,15 +77,19 @@ class ItemDetailViewController: UIViewController {
     func setUpUI() {
         if item != nil {
             self.verticallyScrollContentView.layoutIfNeeded()
-            let builder = ItemViewBuilder(item: item!, width: self.mediumView.frame.width, height: self.setting.itemDetailsViewHeight, corninateX: 0, cordinateY: 0)
+            let builder = ItemViewBuilder(item: item!, width: self.mediumView.frame.width, height: self.setting.itemDetailsViewHeight, cordinateX: 0, cordinateY: 0)
             let detailsView = builder.buildDetailsView()
             self.progressView.addSubview(detailsView)
             print(detailsView)
         }
         
     }
-    
-   
-    
+     
   
+}
+
+extension ItemDetailViewController: Observer {
+    func updateUI() {
+        print("ItemDetailview updated")
+    }
 }

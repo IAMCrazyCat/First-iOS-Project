@@ -51,6 +51,7 @@
 		22A59811259AA31A008E2A06 /* PopUpViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A59810259AA31A008E2A06 /* PopUpViewBuilder.swift */; };
 		22AACA1125AD910D0098D920 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AACA1025AD910D0098D920 /* Date.swift */; };
 		22AACA3225AE98B40098D920 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AACA3025AE98B40098D920 /* CalendarViewController.swift */; };
+		22B4B56325D10ACD00C0CFD7 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B4B56225D10ACD00C0CFD7 /* Observer.swift */; };
 		22BABF2425C3ECBA00168AE1 /* TimeMachineCalendarPageBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BABF2325C3ECBA00168AE1 /* TimeMachineCalendarPageBuilder.swift */; };
 		22BABF2925C42ABB00168AE1 /* CGAffineTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BABF2825C42ABB00168AE1 /* CGAffineTransform.swift */; };
 		22BC454525B04ED000516F75 /* CalendarPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BC454425B04ED000516F75 /* CalendarPage.swift */; };
@@ -152,6 +153,7 @@
 		22A59810259AA31A008E2A06 /* PopUpViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewBuilder.swift; sourceTree = "<group>"; };
 		22AACA1025AD910D0098D920 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		22AACA3025AE98B40098D920 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		22B4B56225D10ACD00C0CFD7 /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
 		22BABF2325C3ECBA00168AE1 /* TimeMachineCalendarPageBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineCalendarPageBuilder.swift; sourceTree = "<group>"; };
 		22BABF2825C42ABB00168AE1 /* CGAffineTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGAffineTransform.swift; sourceTree = "<group>"; };
 		22BC454425B04ED000516F75 /* CalendarPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPage.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 		220B72B4258C68FB00E4BEDC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				22B4B56125D10A9F00C0CFD7 /* Observer */,
 				22CE4ECB25D0048B007EBD5B /* State */,
 				224E668825C6A75000B71E8A /* Tool */,
 				224E663325C6454100B71E8A /* Strategy */,
@@ -299,6 +302,7 @@
 		221E0B7A25A9273300386FE1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				221E0B7B25A9273E00386FE1 /* User.swift */,
 				22BC454425B04ED000516F75 /* CalendarPage.swift */,
 				22BC454F25B1C92100516F75 /* CustomDate.swift */,
 				22D7FBA025A18FE5006B1F28 /* DataOption.swift */,
@@ -309,7 +313,6 @@
 				22C23A18258DC5D700D4BEB2 /* QuittingItem.swift */,
 				22C5D974258F40E800131964 /* SetUpPage.swift */,
 				22D7FBA525A190E9006B1F28 /* SetUpPageData.swift */,
-				221E0B7B25A9273E00386FE1 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -411,6 +414,14 @@
 				22C5D966258F3E4400131964 /* SetUpEngine.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		22B4B56125D10A9F00C0CFD7 /* Observer */ = {
+			isa = PBXGroup;
+			children = (
+				22B4B56225D10ACD00C0CFD7 /* Observer.swift */,
+			);
+			path = Observer;
 			sourceTree = "<group>";
 		};
 		22C5D987258F646700131964 /* Setting */ = {
@@ -675,6 +686,7 @@
 				220B7284258A288000E4BEDC /* SceneDelegate.swift in Sources */,
 				22BC454525B04ED000516F75 /* CalendarPage.swift in Sources */,
 				22C23A14258DC58F00D4BEB2 /* Item.swift in Sources */,
+				22B4B56325D10ACD00C0CFD7 /* Observer.swift in Sources */,
 				22BABF2425C3ECBA00168AE1 /* TimeMachineCalendarPageBuilder.swift in Sources */,
 				221E0BA425A9D38100386FE1 /* Image.swift in Sources */,
 				22D354B425A595B7004F5667 /* UserCenterViewController.swift in Sources */,

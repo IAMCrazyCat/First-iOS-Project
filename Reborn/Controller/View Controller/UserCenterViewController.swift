@@ -58,13 +58,13 @@ class UserCenterViewController: UIViewController {
 
 }
 
-extension UserCenterViewController: AppEngineDelegate, UIScrollViewDelegate {
+extension UserCenterViewController: PopUpViewDelegate, UIScrollViewDelegate {
     // Delegate extension
     func willDismissView() {
         
     }
 
-    func didDismissView() {
+    func didDismissPopUpViewWithoutSave() {
 
     }
     

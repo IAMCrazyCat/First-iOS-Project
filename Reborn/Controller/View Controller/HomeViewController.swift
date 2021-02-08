@@ -183,28 +183,32 @@ class HomeViewController: UIViewController {
     
     @objc func itemDetailsButtonPressed(_ sender: UIButton!) {
         print("willGoDetailsView")
-        self.performSegue(withIdentifier: "goItemDetailView", sender: sender)
+        
+    
+        self.engine.registerObserver(observer: self)
+
+        self.performSegue(withIdentifier: "GoToItemDetailView", sender: sender)
     }
     
 
     @IBAction func addItemViewController(_ sender: UIBarButtonItem) {
-    
-        self.engine.showNewItemView(controller: self)
+        
+        self.engine.registerObserver(observer: self)
+        self.performSegue(withIdentifier: "GoToNewItemView", sender: self)
     }
     
   
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             
-        if let destinationViewController = segue.destination as? ItemDetailViewController, segue.identifier == "goItemDetailView" {
+        if let destinationViewController = segue.destination as? ItemDetailViewController, segue.identifier == "GoToItemDetailView" {
             let item = self.engine.currentUser.items[(sender as? UIButton)?.tag ?? 0]
             destinationViewController.item = item
-        
+            self.engine.registerObserver(observer: destinationViewController)
             
-            
-        } else if let destinationViewController = segue.destination as? CalendarViewController, segue.identifier == "embeddedCalendarContainer" {
+        } else if let destinationViewController = segue.destination as? CalendarViewController, segue.identifier == "EmbeddedCalendarContainer" {
             let item = self.engine.currentUser.items[(sender as? UIButton)?.tag ?? 0]
             destinationViewController.item = item
-        } else if let destinationViewController = segue.destination as? NewItemViewController, segue.identifier == "goToAddItemView" {
+        } else if let destinationViewController = segue.destination as? NewItemViewController, segue.identifier == "GoToNewItemView" {
             
             destinationViewController.UIStrategy = AddingItemStrategy(newItemViewController: destinationViewController)
         }
@@ -338,7 +342,11 @@ class HomeViewController: UIViewController {
 
 }
 
-extension HomeViewController: AppEngineDelegate, UIScrollViewDelegate {
+extension HomeViewController: Observer {
+    
+}
+
+extension HomeViewController: PopUpViewDelegate, UIScrollViewDelegate {
     // Delegate extension
     func willDismissView() {
 //        if let topView = UIApplication.getTopViewController(), let itemCardFromAddItemCardView = self.engine.itemCardOnTransitionBetweenHomeViewAndAddItemCardView {
@@ -349,7 +357,7 @@ extension HomeViewController: AppEngineDelegate, UIScrollViewDelegate {
         
     }
     
-    func didDismissView() {
+    func didDismissPopUpViewWithoutSave() {
         print("AddItemViewDidDismiss")
         self.updateUI()
         
@@ -420,23 +428,11 @@ extension HomeViewController: AppEngineDelegate, UIScrollViewDelegate {
             }
         }
        
-//        let ratio: CGFloat = scrollView.contentOffset.y / scrollViewTopOffset
-//        let r: CGFloat = 255 - (255 - UserStyleSetting.themeColor!.value.red) * ratio
-//        let g: CGFloat = 255 - (255 - UserStyleSetting.themeColor!.value.red) * ratio
-//        let b: CGFloat = 255 - (255 - UserStyleSetting.themeColor!.value.blue) * ratio
-//        let a: CGFloat = UserStyleSetting.themeColor!.value.alpha
-//
-//        print(UIColor(red: r, green: g, blue: b, alpha: a).value)
-//        navigationBar!.barTintColor = UIColor(red: r, green: g, blue: b, alpha: a)
-//        navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navigationBar!.tintColor.withAlphaComponent(ratio)]
-//        navigationBar!.layoutIfNeeded()
+
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        
-//        if scrollView.tag == self.setting.homeViewHorizentalScrollViewTag {
-//            self.horizentalScrollView.setContentOffset(CGPoint(x: 0, y: self.horizentalScrollView.frame.width), animated: true)
-//        }
+
       
     }
     

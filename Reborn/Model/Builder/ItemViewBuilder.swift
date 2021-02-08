@@ -21,9 +21,8 @@ class ItemViewBuilder {
     let cardBGImage: UIImage = SystemStyleSetting.shared.itemCardBGImage
     let setting: SystemStyleSetting = SystemStyleSetting.shared
     let outPutView: UIView = UIView()
-    var freqency: DataOption? = nil
-    
-    init(item: Item, width: CGFloat, height: CGFloat, corninateX: CGFloat, cordinateY: CGFloat, punchInButtonTag: Int, punchInButtonAction: Selector, detailsButtonAction: Selector){
+
+    init(item: Item, width: CGFloat, height: CGFloat, corninateX: CGFloat, cordinateY: CGFloat, punchInButtonTag: Int, punchInButtonAction: Selector, detailsButtonAction: Selector){ // for home page
 
         self.item = item
         self.cordinateX = corninateX
@@ -33,25 +32,20 @@ class ItemViewBuilder {
         self.height = height
         self.punchInButtonAction = punchInButtonAction
         self.detailsButtonAction = detailsButtonAction
-        if let freqency = item.frequency {
-            self.freqency = freqency
-        }
     }
     
-    init(item: Item, width: CGFloat, height: CGFloat, corninateX: CGFloat, cordinateY: CGFloat){
+    init(item: Item, width: CGFloat, height: CGFloat, cordinateX: CGFloat, cordinateY: CGFloat){ // for preview
 
         self.item = item
-        self.cordinateX = corninateX
+        self.cordinateX = cordinateX
         self.cordinateY = cordinateY
         self.punchInButtonTag = 11607
         self.width = width
         self.height = height
         self.punchInButtonAction = nil
         self.detailsButtonAction = nil
-        
-        if let freqency = item.frequency {
-            self.freqency = freqency
-        }
+
+
     }
     
     
@@ -83,13 +77,16 @@ class ItemViewBuilder {
     }
     
     private func createItemCardView() {
-   
+        
+        
         outPutView.accessibilityIdentifier = setting.itemCardIdentifier
         outPutView.backgroundColor = setting.whiteAndBlack
         outPutView.layer.cornerRadius = setting.itemCardCornerRadius
         outPutView.setShadow()
         outPutView.frame = CGRect(x: cordinateX, y: cordinateY, width: width, height: height)
         
+        print("item card created")
+        print(outPutView.frame)
     }
     
     private func createItemDetailsView() {
@@ -129,7 +126,7 @@ class ItemViewBuilder {
         let freqencyLabel = UILabel()
         freqencyLabel.accessibilityIdentifier = "freqencyLabel"
         
-        freqencyLabel.text = freqency?.title
+        freqencyLabel.text = item.frequency.title
         freqencyLabel.textColor = .black
         freqencyLabel.font = UserStyleSetting.fontSmall
         freqencyLabel.sizeToFit()
@@ -153,7 +150,7 @@ class ItemViewBuilder {
         let freqencyLabel = UILabel()
 
         freqencyLabel.accessibilityIdentifier = "freqencyLabel"
-        freqencyLabel.text = "频率: \(freqency?.title ?? "自由打卡")"
+        freqencyLabel.text = "频率: \(item.frequency.title)"
         freqencyLabel.textColor = .black
         freqencyLabel.font = UserStyleSetting.fontMedium
         freqencyLabel.sizeToFit()

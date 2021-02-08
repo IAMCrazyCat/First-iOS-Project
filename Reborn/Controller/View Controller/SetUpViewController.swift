@@ -181,14 +181,14 @@ class SetUpViewController: UIViewController{
     
 }
 
-extension SetUpViewController: AppEngineDelegate {
+extension SetUpViewController: PopUpViewDelegate {
     // delegate extension
     func willDismissView() {
         
     }
 
     
-    func didDismissView() {
+    func didDismissPopUpViewWithoutSave() {
         print("DISMISS")
     }
     

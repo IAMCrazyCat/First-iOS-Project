@@ -15,27 +15,32 @@ enum AddItemViewState {
 class NewItemViewController: UIViewController {
 
     @IBOutlet weak var middleContentView: UIView!
-    @IBOutlet weak var everydayOptionButton: UIButton!
-    @IBOutlet weak var mondayToFridayOptionButton: UIButton!
-    @IBOutlet weak var weekendOptionButton: UIButton!
-    @IBOutlet weak var customizeFrequencyButton: UIButton!
-    
-    @IBOutlet weak var addFrequencyButton: UIButton!
-    @IBOutlet weak var deleteFrequencyButton: UIButton!
-    
-    @IBOutlet weak var itemNameTextfield: UITextField!
-    @IBOutlet weak var customTargetDaysButton: UIButton!
-    @IBOutlet weak var customFrequencyButton: UIButton!
     @IBOutlet weak var bottomScrollView: UIScrollView!
     @IBOutlet weak var doneButton: UIButton!
+    //ItemName
+    @IBOutlet weak var itemNameTextfield: UITextField!
+    //Item Type
     @IBOutlet weak var persistingTypeButton: UIButton!
     @IBOutlet weak var quittingTypeButton: UIButton!
+    //Item Target
     @IBOutlet weak var sevenDaysButton: UIButton!
     @IBOutlet weak var thirtyDaysButton: UIButton!
     @IBOutlet weak var sixtyDaysButton: UIButton!
     @IBOutlet weak var oneHundredDaysButton: UIButton!
     @IBOutlet weak var oneYearButton: UIButton!
-    @IBOutlet weak var customTargetButton: UIButton!
+    @IBOutlet weak var customTargetDaysButton: UIButton!
+    //Item Frequency
+    @IBOutlet weak var everydayFrequencyButton: UIButton!
+    @IBOutlet weak var twoDaysOnceFreqencyButton: UIButton!
+    @IBOutlet weak var oneWeekOnceFreqencyButton: UIButton!
+    @IBOutlet weak var oneMonthOnceFrequencyButton: UIButton!
+    @IBOutlet weak var freedomFrequencyButton: UIButton!
+    @IBOutlet weak var customFrequencyButton: UIButton!
+    
+    @IBOutlet weak var firstInstructionLabel: UILabel!
+    @IBOutlet weak var secondInstructionLabel: UILabel!
+    
+    
     @IBOutlet weak var titleLabel: UILabel!
     
     let engine: AppEngine = AppEngine.shared
@@ -46,8 +51,8 @@ class NewItemViewController: UIViewController {
     var selectedTargetDaysButton: UIButton? = nil
     var selectedFrequencyButton: UIButton? = nil
     var lastSelectedButton: UIButton? = nil
-    var item: Item = Item(name: "项目名", days: 1, finishedDays: 0, creationDate: AppEngine.shared.currentDate, type: .undefined)
-    var preViewItemCard: UIView? = nil
+    var item: Item = Item(name: "项目名", days: 1, finishedDays: 0, frequency: DataOption(title: "", data: 1), creationDate: AppEngine.shared.currentDate, type: .undefined)
+    var preViewItemCard: UIView = UIView()
     var UIStrategy: NewItemViewStrategy? = nil
         
     override func viewDidLoad() {
@@ -74,21 +79,13 @@ class NewItemViewController: UIViewController {
             }
         }
         
-        hideAllFrequencyOptionButtons(true)
         
         self.UIStrategy?.initializeUI()
-        
+        self.updateUI()
         
     }
     
-   
-    func hideAllFrequencyOptionButtons(_ isHidden: Bool) {
-        self.everydayOptionButton.isHidden = isHidden
-        self.mondayToFridayOptionButton.isHidden = isHidden
-        self.weekendOptionButton.isHidden = isHidden
-        self.customizeFrequencyButton.isHidden = isHidden
-        self.deleteFrequencyButton.isHidden = isHidden
-    }
+
     
     @objc func textfieldTextChanged(_ sender: UITextField!) {
         self.item.name = sender.text ?? ""
@@ -96,7 +93,7 @@ class NewItemViewController: UIViewController {
 
     }
     
-    @IBAction func typeOptionButtonPressed(_ sender: UIButton) {
+    @IBAction func typeButtonPressed(_ sender: UIButton) {
         self.deSelectButton()
         
         for type in ItemType.allCases {
@@ -104,6 +101,8 @@ class NewItemViewController: UIViewController {
                 self.item.type = type
             }
         }
+        
+
         self.selectedTypeButton = sender
         self.lastSelectedButton = sender
         self.selectButton()
@@ -111,7 +110,7 @@ class NewItemViewController: UIViewController {
     }
     
     
-    @IBAction func targetDaysOptionButtonPressed(_ sender: UIButton) {
+    @IBAction func targetDaysButtonPressed(_ sender: UIButton) {
         self.deSelectButton()
         self.selectedTargetDaysButton = sender
         self.lastSelectedButton = sender
@@ -127,37 +126,105 @@ class NewItemViewController: UIViewController {
 
     }
     
-    @IBAction func frequencyOptionButtonPressed(_ sender: UIButton) {
+    @IBAction func frequencyButtonPressed(_ sender: UIButton) {
         self.deSelectButton()
         self.selectedFrequencyButton = sender
         self.lastSelectedButton = sender
+    
+        self.selectButton()
+        
+        switch sender.currentTitle {
+        case "每天":
+            self.item.frequency = DataOption(title: sender.currentTitle!, data: 0)
+        case "每两天":
+            self.item.frequency = DataOption(title: sender.currentTitle!, data: 1)
+        case "每周":
+            self.item.frequency = DataOption(title: sender.currentTitle!, data: 6)
+        case "每月":
+            self.item.frequency = DataOption(title: sender.currentTitle!, data: 30)
+        case "自由打卡":
+            self.item.frequency = DataOption(title: sender.currentTitle!, data: nil)
+        default:
+            break
+        }
+        
+        self.updateUI()
+        
         if sender.tag == self.setting.customFrequencyButtonTag {
             self.engine.showPopUp(.customFrequency, from: self)
         }
-        self.selectButton()
     }
     
-    
-    
-    @IBAction func addFrequencyButtonPressed(_ sender: Any) {
-        self.addFrequencyButton.isHidden = true
-        self.hideAllFrequencyOptionButtons(false)
-    }
-    
-    @IBAction func deleteFrequencyButtonPressed(_ sender: Any) {
-        self.addFrequencyButton.isHidden = false
-        self.hideAllFrequencyOptionButtons(true)
-    }
-    
+
     
     @IBAction func cancelButtonPressed(_ sender: UIButton) {
-        self.engine.dismissNewItemViewWithoutSave(viewController: self)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
         self.UIStrategy?.doneButtonPressed(sender)
     }
     
+    func updateInstructionLabels() {
+        
+        if self.item.type == .quitting {
+            self.firstInstructionLabel.text = "戒除项目需要您坚持每天打卡"
+            self.secondInstructionLabel.isHidden = true
+        } else {
+            self.firstInstructionLabel.text = "频率计划外为休息日，无需打卡"
+            self.secondInstructionLabel.isHidden = false
+        }
+    }
+    
+    func updateFrequencyButtons() {
+        
+        
+        if self.item.type == .quitting {
+            UIView.animate(withDuration: 0.3, animations: {
+                
+  
+                self.twoDaysOnceFreqencyButton.alpha = 0
+                self.oneWeekOnceFreqencyButton.alpha = 0
+                self.oneMonthOnceFrequencyButton.alpha = 0
+                self.freedomFrequencyButton.alpha = 0
+                self.customFrequencyButton.alpha = 0
+                
+            }) { _ in
+                self.twoDaysOnceFreqencyButton.isHidden = true
+                self.oneWeekOnceFreqencyButton.isHidden = true
+                self.oneMonthOnceFrequencyButton.isHidden = true
+                self.freedomFrequencyButton.isHidden = true
+                self.customFrequencyButton.isHidden = true
+            }
+            
+        } else {
+            
+            UIView.animate(withDuration: 0.3, animations: {
+                self.twoDaysOnceFreqencyButton.isHidden = false
+                self.oneWeekOnceFreqencyButton.isHidden = false
+                self.oneMonthOnceFrequencyButton.isHidden = false
+                self.freedomFrequencyButton.isHidden = false
+                self.customFrequencyButton.isHidden = false
+                
+                self.twoDaysOnceFreqencyButton.alpha = 1
+                self.oneWeekOnceFreqencyButton.alpha = 1
+                self.oneMonthOnceFrequencyButton.alpha = 1
+                self.freedomFrequencyButton.alpha = 1
+                self.customFrequencyButton.alpha = 1
+                
+               
+            })
+        }
+        
+        
+        
+        
+       
+        
+        
+       
+        
+    }
     
     func selectButton() {
         self.selectedTypeButton?.isSelected = true
@@ -183,21 +250,35 @@ class NewItemViewController: UIViewController {
     }
     
     func updatePreViewItemCard() {
-        self.UIStrategy?.updatePreViewItemCard()
+        self.view.layoutIfNeeded()
+        let witdh: CGFloat =  self.setting.screenFrame.width - 2 * self.setting.mainPadding
+        let height: CGFloat = self.setting.itemCardHeight
+        let cordinateX: CGFloat = self.middleContentView.frame.width / 2 - witdh / 2
+        let cordinateY: CGFloat = self.middleContentView.frame.height / 2 - height / 2
+        
+        let builder = ItemViewBuilder(item: self.item, width: witdh, height: height, cordinateX: cordinateX, cordinateY: cordinateY)
+  
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.impactOccurred()
+        
+        self.preViewItemCard = builder.buildItemCardView()
+        self.previewItemCardTag = self.preViewItemCard.tag
+ 
+        self.middleContentView.addSubview(self.preViewItemCard)
     }
     
     func excuteItemCardAimation() {
+        
         UIView.animateKeyframes(withDuration: 0.4, delay: 0, options: .calculationModeCubic, animations: {
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.4, animations: {
-                self.preViewItemCard?.layer.transform = CATransform3DMakeScale(0.9, 0.9, 1)
+                self.preViewItemCard.layer.transform = CATransform3DMakeScale(0.9, 0.9, 1)
             })
             UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.4, animations: {
-                self.preViewItemCard?.layer.transform = CATransform3DMakeScale(1.05, 1.05, 1)
+                self.preViewItemCard.layer.transform = CATransform3DMakeScale(1.05, 1.05, 1)
             })
             UIView.addKeyframe(withRelativeStartTime: 0.75, relativeDuration: 0.2, animations: {
-                self.preViewItemCard?.layer.transform = CATransform3DMakeScale(1, 1, 1)
+                self.preViewItemCard.layer.transform = CATransform3DMakeScale(1, 1, 1)
             })
-            
             
         }) { _ in
             
@@ -205,19 +286,21 @@ class NewItemViewController: UIViewController {
        
     }
     
+   
+    
     func updateUI() {
+        
+        updateFrequencyButtons()
+        updateInstructionLabels()
         removeOldPreviewItemCard()
         excuteItemCardAimation()
         updatePreViewItemCard()
     }
 }
 
-extension NewItemViewController: AppEngineDelegate, UIScrollViewDelegate, UITextFieldDelegate { // Delegate extension
-    func willDismissView() {
-        
-    }
-    
-    func didDismissView() {
+extension NewItemViewController: PopUpViewDelegate { // Delegate extension
+ 
+    func didDismissPopUpViewWithoutSave() {
         print("PopUpDidDismiss")
     }
     
@@ -231,13 +314,15 @@ extension NewItemViewController: AppEngineDelegate, UIScrollViewDelegate, UIText
             
     
             self.selectedFrequencyButton?.setTitle((self.engine.getStoredDataFromPopUpView() as? DataOption)?.title, for: .normal)
-            self.item.frequency = self.engine.getStoredDataFromPopUpView() as? DataOption
+            self.item.frequency = self.engine.getStoredDataFromPopUpView() as? DataOption ?? DataOption(data: 0)
         }
         
-       
         self.updateUI()
     }
     
+}
+
+extension NewItemViewController: UIScrollViewDelegate, UITextFieldDelegate {
     // scrollView delegate function
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.itemNameTextfield.resignFirstResponder()

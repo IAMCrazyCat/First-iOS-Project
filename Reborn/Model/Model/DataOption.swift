@@ -20,7 +20,7 @@ struct DataOption: Codable {
         self.title = title
     }
     
-    init(title: String, data: Int) {
+    init(title: String, data: Int?) {
         self.data = data
         self.title = title
     }
