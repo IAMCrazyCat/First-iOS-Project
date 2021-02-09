@@ -669,14 +669,15 @@ Cg
                         <outlet property="customFrequencyButton" destination="eEh-sX-wyw" id="U5H-60-1ci"/>
                         <outlet property="customTargetDaysButton" destination="afP-fa-obf" id="5yl-9D-oLr"/>
                         <outlet property="doneButton" destination="VYb-iy-kVx" id="MeK-Ms-4D0"/>
+                        <outlet property="everyMonthFrequencyButton" destination="uVK-qR-Otb" id="eXN-KO-znz"/>
+                        <outlet property="everyTwoDaysFreqencyButton" destination="wJB-1F-QUe" id="IOY-NJ-kPk"/>
+                        <outlet property="everyWeekFreqencyButton" destination="rS9-xl-t7u" id="oGw-pl-fPk"/>
                         <outlet property="everydayFrequencyButton" destination="3i9-WH-Zt7" id="f4t-aB-Low"/>
                         <outlet property="firstInstructionLabel" destination="xZL-a6-T5M" id="Xxn-TD-XFp"/>
                         <outlet property="freedomFrequencyButton" destination="NJD-UT-gB8" id="RFS-gG-9fp"/>
                         <outlet property="itemNameTextfield" destination="dF6-S4-tMX" id="z3x-eW-GOP"/>
                         <outlet property="middleContentView" destination="75g-jl-Rdo" id="24b-cA-trw"/>
                         <outlet property="oneHundredDaysButton" destination="RFy-ys-MHv" id="b52-Y0-84E"/>
-                        <outlet property="oneMonthOnceFrequencyButton" destination="uVK-qR-Otb" id="eXN-KO-znz"/>
-                        <outlet property="oneWeekOnceFreqencyButton" destination="rS9-xl-t7u" id="oGw-pl-fPk"/>
                         <outlet property="oneYearButton" destination="QGd-7R-bfn" id="WP6-yI-Jic"/>
                         <outlet property="persistingTypeButton" destination="WpU-fd-JVR" id="A3d-QG-oK0"/>
                         <outlet property="quittingTypeButton" destination="eYH-kV-dcm" id="9Hg-8N-m4R"/>
@@ -685,7 +686,6 @@ Cg
                         <outlet property="sixtyDaysButton" destination="maG-bk-NyY" id="IlD-wh-zdV"/>
                         <outlet property="thirtyDaysButton" destination="eVH-dn-gr1" id="Fv6-1F-g39"/>
                         <outlet property="titleLabel" destination="FTM-I4-dC0" id="0ML-wu-Mbo"/>
-                        <outlet property="twoDaysOnceFreqencyButton" destination="wJB-1F-QUe" id="IOY-NJ-kPk"/>
                         <outlet property="typeIcon" destination="nS3-iZ-Nkf" id="JKG-kN-x97"/>
                         <outlet property="typeLabel" destination="p0g-iC-UgG" id="dsh-GP-MDg"/>
                     </connections>

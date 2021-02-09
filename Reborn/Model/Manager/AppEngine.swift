@@ -145,14 +145,15 @@ class AppEngine {
     
     
 
-    public func showPopUp(_ popUpType: PopUpType, from forPresented: UIViewController) {
+    public func showPopUp(_ popUpType: PopUpType, dataStartIndex: Int = 0, from forPresented: UIViewController) {
         
         self.delegate = forPresented as? PopUpViewDelegate
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         if let popUpViewController = storyboard.instantiateViewController(withIdentifier: "PopUpViewController") as? PopUpViewController {
-            let popUpWindow = PopUpViewBuilder(popUpType: popUpType, popUpViewController: popUpViewController).buildPopUpView()
+
+            let popUpWindow = PopUpViewBuilder(popUpType: popUpType, dataStartIndex: dataStartIndex, popUpViewController: popUpViewController).buildView()
             popUpViewController.type = popUpType
             popUpViewController.view.addSubview(popUpWindow)
             forPresented.presentBottom(to: popUpViewController)

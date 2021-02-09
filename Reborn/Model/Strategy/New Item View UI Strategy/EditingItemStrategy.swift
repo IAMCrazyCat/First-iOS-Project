@@ -24,32 +24,83 @@ class EditingItemStrategy: NewItemViewStrategy {
         newItemViewController.itemNameTextfield.text = newItemViewController.item.name
             
         if newItemViewController.item.type == .persisting {
-                newItemViewController.persistingTypeButton.isSelected = true
+            newItemViewController.persistingTypeButton.isSelected = true
+            newItemViewController.selectedTypeButton = newItemViewController.persistingTypeButton
         } else if newItemViewController.item.type == .quitting {
-                newItemViewController.quittingTypeButton.isSelected = true
-            }
+            newItemViewController.quittingTypeButton.isSelected = true
+            newItemViewController.selectedTypeButton = newItemViewController.quittingTypeButton
+        }
             
         switch newItemViewController.item.targetDays {
             case 7:
                 newItemViewController.sevenDaysButton.isSelected = true
+                newItemViewController.selectedTargetDaysButton = newItemViewController.sevenDaysButton
             case 30:
                 newItemViewController.thirtyDaysButton.isSelected = true
+                newItemViewController.selectedTargetDaysButton = newItemViewController.thirtyDaysButton
             case 60:
                 newItemViewController.sixtyDaysButton.isSelected = true
+                newItemViewController.selectedTargetDaysButton = newItemViewController.sixtyDaysButton
             case 100:
                 newItemViewController.oneHundredDaysButton.isSelected = true
+                newItemViewController.selectedTargetDaysButton = newItemViewController.oneHundredDaysButton
             case 365:
                 newItemViewController.oneYearButton.isSelected = true
+                newItemViewController.selectedTargetDaysButton = newItemViewController.oneYearButton
             default:
                 newItemViewController.customTargetDaysButton.isSelected = true
+                newItemViewController.selectedTargetDaysButton = newItemViewController.customTargetDaysButton
+                
             }
             
+        switch newItemViewController.item.frequency.title {
+        case "每天":
+            newItemViewController.everydayFrequencyButton.isSelected = true
+            newItemViewController.selectedFrequencyButton = newItemViewController.everydayFrequencyButton
+        case "每两天":
+            newItemViewController.everyTwoDaysFreqencyButton.isSelected = true
+            newItemViewController.selectedFrequencyButton = newItemViewController.everyTwoDaysFreqencyButton
+        case "每周":
+            newItemViewController.everyWeekFreqencyButton.isSelected = true
+            newItemViewController.selectedFrequencyButton = newItemViewController.everyWeekFreqencyButton
+        case "每月":
+            newItemViewController.everyMonthFrequencyButton.isSelected = true
+            newItemViewController.selectedFrequencyButton = newItemViewController.everyMonthFrequencyButton
+        case "自由打卡":
+            newItemViewController.freedomFrequencyButton.isSelected = true
+            newItemViewController.selectedFrequencyButton = newItemViewController.freedomFrequencyButton
+        default:
+            newItemViewController.customFrequencyButton.isSelected = true
+            newItemViewController.selectedFrequencyButton = newItemViewController.customFrequencyButton
+        }
  
         
     }
+    
+    func showPopUp(popUpType: PopUpType) {
+        newItemViewController.engine.showPopUp(popUpType, dataStartIndex: newItemViewController.item.finishedDays, from: newItemViewController)
+    }
+    
+  
+    
+    func isRedyToDismiss() -> Bool {
+        var isRedyToDismiss: Bool = false
         
-    
-    
+        if newItemViewController.itemNameTextfield.text != ""
+            && newItemViewController.selectedTypeButton != nil
+            && newItemViewController.selectedFrequencyButton != nil
+            && newItemViewController.selectedTargetDaysButton != nil {
+            
+            isRedyToDismiss = true
+            
+        } else {
+            
+            isRedyToDismiss = false
+            newItemViewController.preViewItemCard.shake()
+        }
+        
+        return isRedyToDismiss
+    }
     
     
     func doneButtonPressed(_ sender: UIButton) {

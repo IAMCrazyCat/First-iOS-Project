@@ -17,6 +17,7 @@ class PopUpViewController: UIViewController {
     var pikerViewData: Array<Any> = []
     var keyboardDidShowFully: Bool = false
     var pickerViewSelectedRow: Int = 0
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

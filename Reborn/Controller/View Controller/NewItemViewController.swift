@@ -31,9 +31,9 @@ class NewItemViewController: UIViewController {
     @IBOutlet weak var customTargetDaysButton: UIButton!
     //Item Frequency
     @IBOutlet weak var everydayFrequencyButton: UIButton!
-    @IBOutlet weak var twoDaysOnceFreqencyButton: UIButton!
-    @IBOutlet weak var oneWeekOnceFreqencyButton: UIButton!
-    @IBOutlet weak var oneMonthOnceFrequencyButton: UIButton!
+    @IBOutlet weak var everyTwoDaysFreqencyButton: UIButton!
+    @IBOutlet weak var everyWeekFreqencyButton: UIButton!
+    @IBOutlet weak var everyMonthFrequencyButton: UIButton!
     @IBOutlet weak var freedomFrequencyButton: UIButton!
     @IBOutlet weak var customFrequencyButton: UIButton!
     
@@ -54,7 +54,7 @@ class NewItemViewController: UIViewController {
     var selectedTargetDaysButton: UIButton? = nil
     var selectedFrequencyButton: UIButton? = nil
     var lastSelectedButton: UIButton? = nil
-    var item: Item = Item(name: "项目名", days: 1, finishedDays: 0, frequency: DataOption(title: "", data: 1), creationDate: AppEngine.shared.currentDate, type: .undefined)
+    var item: Item = Item(name: "(项目名)", days: 1, finishedDays: 0, frequency: DataOption(title: "", data: 1), creationDate: AppEngine.shared.currentDate, type: .undefined)
     var preViewItemCard: UIView = UIView()
     var UIStrategy: NewItemViewStrategy? = nil
         
@@ -108,7 +108,8 @@ class NewItemViewController: UIViewController {
             }
         }
         
-
+        self.selectedFrequencyButton = nil
+        self.item.frequency = DataOption(title: "", data: 0)
         self.selectedTypeButton = sender
         self.lastSelectedButton = sender
         self.selectButton()
@@ -123,7 +124,7 @@ class NewItemViewController: UIViewController {
         self.selectButton()
         if sender.tag == self.setting.customTargetDaysButtonTag {
             
-            self.engine.showPopUp(.customTargetDays, from: self)
+            self.UIStrategy?.showPopUp(popUpType: .customTargetDays)
             
         } else {
             self.item.targetDays = sender.getData() ?? 1
@@ -157,7 +158,7 @@ class NewItemViewController: UIViewController {
         self.updateUI()
         
         if sender.tag == self.setting.customFrequencyButtonTag {
-            self.engine.showPopUp(.customFrequency, from: self)
+            self.UIStrategy?.showPopUp(popUpType: .customFrequency)
         }
     }
     
@@ -189,16 +190,16 @@ class NewItemViewController: UIViewController {
             UIView.animate(withDuration: 0.3, animations: {
                 
   
-                self.twoDaysOnceFreqencyButton.alpha = 0
-                self.oneWeekOnceFreqencyButton.alpha = 0
-                self.oneMonthOnceFrequencyButton.alpha = 0
+                self.everyTwoDaysFreqencyButton.alpha = 0
+                self.everyWeekFreqencyButton.alpha = 0
+                self.everyMonthFrequencyButton.alpha = 0
                 self.freedomFrequencyButton.alpha = 0
                 self.customFrequencyButton.alpha = 0
                 
             }) { _ in
-                self.twoDaysOnceFreqencyButton.isHidden = true
-                self.oneWeekOnceFreqencyButton.isHidden = true
-                self.oneMonthOnceFrequencyButton.isHidden = true
+                self.everyTwoDaysFreqencyButton.isHidden = true
+                self.everyWeekFreqencyButton.isHidden = true
+                self.everyMonthFrequencyButton.isHidden = true
                 self.freedomFrequencyButton.isHidden = true
                 self.customFrequencyButton.isHidden = true
             }
@@ -206,15 +207,15 @@ class NewItemViewController: UIViewController {
         } else {
             
             UIView.animate(withDuration: 0.3, animations: {
-                self.twoDaysOnceFreqencyButton.isHidden = false
-                self.oneWeekOnceFreqencyButton.isHidden = false
-                self.oneMonthOnceFrequencyButton.isHidden = false
+                self.everyTwoDaysFreqencyButton.isHidden = false
+                self.everyWeekFreqencyButton.isHidden = false
+                self.everyMonthFrequencyButton.isHidden = false
                 self.freedomFrequencyButton.isHidden = false
                 self.customFrequencyButton.isHidden = false
                 
-                self.twoDaysOnceFreqencyButton.alpha = 1
-                self.oneWeekOnceFreqencyButton.alpha = 1
-                self.oneMonthOnceFrequencyButton.alpha = 1
+                self.everyTwoDaysFreqencyButton.alpha = 1
+                self.everyWeekFreqencyButton.alpha = 1
+                self.everyMonthFrequencyButton.alpha = 1
                 self.freedomFrequencyButton.alpha = 1
                 self.customFrequencyButton.alpha = 1
                 
@@ -262,12 +263,12 @@ class NewItemViewController: UIViewController {
         let cordinateX: CGFloat = self.middleContentView.frame.width / 2 - witdh / 2
         let cordinateY: CGFloat = self.middleContentView.frame.height / 2 - height / 2
         
-        let builder = ItemViewBuilder(item: self.item, width: witdh, height: height, cordinateX: cordinateX, cordinateY: cordinateY)
+        let builder = ItemCardViewBuilder(item: self.item, width: witdh, height: height, cordinateX: cordinateX, cordinateY: cordinateY)
   
         let generator = UIImpactFeedbackGenerator(style: .light)
         generator.impactOccurred()
         
-        self.preViewItemCard = builder.buildItemCardView()
+        self.preViewItemCard = builder.buildView()
         self.previewItemCardTag = self.preViewItemCard.tag
  
         self.middleContentView.addSubview(self.preViewItemCard)
@@ -313,8 +314,12 @@ extension NewItemViewController: PopUpViewDelegate { // Delegate extension
     func didSaveAndDismissPopUpView(type: PopUpType) {
         
         if self.lastSelectedButton?.tag == setting.customTargetDaysButtonTag {
-            self.selectedTargetDaysButton?.setTitle((self.engine.getStoredDataFromPopUpView() as? DataOption)?.title, for: .normal)
-            self.item.targetDays = (self.engine.getStoredDataFromPopUpView() as? DataOption)?.data ?? 1
+            
+            guard let selectedData = (self.engine.getStoredDataFromPopUpView() as? DataOption) else { return }
+            
+            self.selectedTargetDaysButton?.setTitle(selectedData.title, for: .normal)
+            self.item.targetDays = selectedData.data ?? 1
+            
             
         } else if self.lastSelectedButton?.tag == setting.customFrequencyButtonTag {
             

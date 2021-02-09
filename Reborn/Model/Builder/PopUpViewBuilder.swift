@@ -14,21 +14,22 @@ enum PopUpType {
     case customFrequency
 }
 
-class PopUpViewBuilder {
+class PopUpViewBuilder: Builder {
     
-    var popUpWindow: UIView
-    var setting: SystemStyleSetting
-    let popUpType: PopUpType
-    var popUpViewController: PopUpViewController?
-    
-    init(popUpType: PopUpType, popUpViewController: PopUpViewController) {
+    private var outPutView: UIView
+    private var setting: SystemStyleSetting
+    private let popUpType: PopUpType
+    private var popUpViewController: PopUpViewController?
+    private var dataStartIndex: Int
+    init(popUpType: PopUpType, dataStartIndex: Int = 0, popUpViewController: PopUpViewController) {
         self.setting = SystemStyleSetting.shared
-        self.popUpWindow = UIView()
+        self.outPutView = UIView()
         self.popUpType = popUpType
+        self.dataStartIndex = dataStartIndex
         self.popUpViewController = popUpViewController
     }
     
-    public func buildPopUpView() -> UIView {
+    public func buildView() -> UIView {
         
         
         
@@ -42,7 +43,7 @@ class PopUpViewBuilder {
 
         }
         
-        return popUpWindow
+        return outPutView
     }
     
     private func buildStandardView() { // common views for pop up window
@@ -81,11 +82,11 @@ class PopUpViewBuilder {
     private func createPopUpUIViews() {
         
         // Tag 0
-        popUpWindow.backgroundColor = setting.whiteAndBlack
-        popUpWindow.frame = CGRect(x: 0, y: 0, width: setting.screenFrame.width, height: setting.popUpWindowHeight)
-        popUpWindow.layer.cornerRadius = setting.popUpWindowCornerRadius
-        popUpWindow.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        popUpWindow.tag = 0
+        outPutView.backgroundColor = setting.whiteAndBlack
+        outPutView.frame = CGRect(x: 0, y: 0, width: setting.screenFrame.width, height: setting.popUpWindowHeight)
+        outPutView.layer.cornerRadius = setting.popUpWindowCornerRadius
+        outPutView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        outPutView.tag = 0
     }
     
     private func addCancelButton() { // Tag 2
@@ -95,12 +96,12 @@ class PopUpViewBuilder {
         cancelButton.setBackgroundImage(#imageLiteral(resourceName: "CancelButton"), for: .normal)
         cancelButton.tag = 2
         cancelButton.addTarget(self, action: #selector(popUpViewController?.cancelButtonPressed(_:)), for: .touchDown)
-        self.popUpWindow.addSubview(cancelButton)
+        self.outPutView.addSubview(cancelButton)
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
         cancelButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        cancelButton.topAnchor.constraint(equalTo: popUpWindow.topAnchor, constant: self.setting.mainDistance).isActive = true
-        cancelButton.rightAnchor.constraint(equalTo: popUpWindow.rightAnchor, constant: -self.setting.mainDistance).isActive = true
+        cancelButton.topAnchor.constraint(equalTo: outPutView.topAnchor, constant: self.setting.mainDistance).isActive = true
+        cancelButton.rightAnchor.constraint(equalTo: outPutView.rightAnchor, constant: -self.setting.mainDistance).isActive = true
         
         
     }
@@ -112,10 +113,10 @@ class PopUpViewBuilder {
         doneButton.layer.cornerRadius = self.setting.mainButtonCornerRadius
         doneButton.tag = setting.popUpWindowDoneButtonTag
         doneButton.addTarget(self, action: #selector(popUpViewController?.doneButtonPressed(_:)), for: .touchDown)
-        self.popUpWindow.addSubview(doneButton)
+        self.outPutView.addSubview(doneButton)
         doneButton.translatesAutoresizingMaskIntoConstraints = false
-        doneButton.bottomAnchor.constraint(equalTo: self.popUpWindow.bottomAnchor, constant: -self.setting.mainDistance - 20).isActive = true
-        doneButton.centerXAnchor.constraint(equalTo: self.popUpWindow.centerXAnchor).isActive = true
+        doneButton.bottomAnchor.constraint(equalTo: self.outPutView.bottomAnchor, constant: -self.setting.mainDistance - 20).isActive = true
+        doneButton.centerXAnchor.constraint(equalTo: self.outPutView.centerXAnchor).isActive = true
         doneButton.heightAnchor.constraint(equalToConstant: self.setting.mainButtonHeight).isActive = true
         doneButton.widthAnchor.constraint(equalToConstant: self.setting.screenFrame.width - 2 * self.setting.mainDistance).isActive = true
         
@@ -133,12 +134,24 @@ class PopUpViewBuilder {
         picker.tag = self.setting.popUpWindowPickerViewTag
         picker.delegate = popUpViewController
         picker.dataSource = popUpViewController
-        popUpViewController?.pikerViewData = PickerViewData.customTargetDays
-        popUpWindow.addSubview(picker)
+        
+        var dataArray = PickerViewData.customTargetDays
+        if dataStartIndex > 0 {
+            for _ in 0 ... dataStartIndex - 1 {
+                
+                if dataArray.count > 0 {
+                    dataArray.removeFirst()
+                }
+                
+            }
+        }
+        
+        popUpViewController?.pikerViewData = dataArray
+        outPutView.addSubview(picker)
         picker.translatesAutoresizingMaskIntoConstraints = false
         picker.widthAnchor.constraint(equalToConstant: self.setting.screenFrame.width - 2 * self.setting.mainDistance).isActive = true
-        picker.centerXAnchor.constraint(equalTo: self.popUpWindow.centerXAnchor).isActive = true
-        picker.centerYAnchor.constraint(equalTo: self.popUpWindow.centerYAnchor).isActive = true
+        picker.centerXAnchor.constraint(equalTo: self.outPutView.centerXAnchor).isActive = true
+        picker.centerYAnchor.constraint(equalTo: self.outPutView.centerYAnchor).isActive = true
     }
     
     private func addFrequencyPicker() {
@@ -148,12 +161,22 @@ class PopUpViewBuilder {
         picker.tag = self.setting.popUpWindowPickerViewTag
         picker.delegate = popUpViewController
         picker.dataSource = popUpViewController
-        popUpViewController?.pikerViewData = PickerViewData.customFrequency
-        popUpWindow.addSubview(picker)
+        
+        var dataArray = PickerViewData.customFrequency
+        if dataStartIndex > 0 {
+            for _ in 0 ... dataStartIndex - 1 {
+                if dataArray.count > 0 {
+                    dataArray.removeFirst()
+                }
+            }
+        }
+        
+        popUpViewController?.pikerViewData = dataArray
+        outPutView.addSubview(picker)
         picker.translatesAutoresizingMaskIntoConstraints = false
         picker.widthAnchor.constraint(equalToConstant: self.setting.screenFrame.width - 2 * self.setting.mainDistance).isActive = true
-        picker.centerXAnchor.constraint(equalTo: self.popUpWindow.centerXAnchor).isActive = true
-        picker.centerYAnchor.constraint(equalTo: self.popUpWindow.centerYAnchor).isActive = true
+        picker.centerXAnchor.constraint(equalTo: self.outPutView.centerXAnchor).isActive = true
+        picker.centerYAnchor.constraint(equalTo: self.outPutView.centerYAnchor).isActive = true
     }
     
     private func addTitleLabel(title: String) {
@@ -162,10 +185,10 @@ class PopUpViewBuilder {
         titleLabel.font = UserStyleSetting.fontLarge
         titleLabel.sizeToFit()
         
-        self.popUpWindow.addSubview(titleLabel)
+        self.outPutView.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.topAnchor.constraint(equalTo: popUpWindow.topAnchor, constant: 50).isActive = true
-        titleLabel.leftAnchor.constraint(equalTo: popUpWindow.leftAnchor, constant: self.setting.mainDistance).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: outPutView.topAnchor, constant: 50).isActive = true
+        titleLabel.leftAnchor.constraint(equalTo: outPutView.leftAnchor, constant: self.setting.mainDistance).isActive = true
     }
     
     
@@ -177,12 +200,12 @@ class PopUpViewBuilder {
         textField.tag = self.setting.popUpWindowTextFieldTag
         textField.addTarget(self, action: #selector(popUpViewController?.textFieldTapped(_:)), for: .touchDown)
         
-        self.popUpWindow.addSubview(textField)
+        self.outPutView.addSubview(textField)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.widthAnchor.constraint(equalToConstant: self.setting.screenFrame.width - 2 * self.setting.mainDistance).isActive = true
         textField.heightAnchor.constraint(equalToConstant: self.setting.textFieldHeight).isActive = true
-        textField.centerXAnchor.constraint(equalTo: self.popUpWindow.centerXAnchor).isActive = true
-        textField.centerYAnchor.constraint(equalTo: self.popUpWindow.centerYAnchor, constant: -setting.mainButtonHeight).isActive = true
+        textField.centerXAnchor.constraint(equalTo: self.outPutView.centerXAnchor).isActive = true
+        textField.centerYAnchor.constraint(equalTo: self.outPutView.centerYAnchor, constant: -setting.mainButtonHeight).isActive = true
     }
     
     private func addPromptLabel() {
@@ -194,15 +217,15 @@ class PopUpViewBuilder {
         promptLabel.tag = self.setting.popUpWindowPromptLabelTag
         promptLabel.isHidden = true
         
-        self.popUpWindow.addSubview(promptLabel)
+        self.outPutView.addSubview(promptLabel)
         promptLabel.translatesAutoresizingMaskIntoConstraints = false
-        promptLabel.topAnchor.constraint(equalTo: popUpWindow.topAnchor, constant: 180).isActive = true
-        promptLabel.leftAnchor.constraint(equalTo: popUpWindow.leftAnchor, constant: self.setting.mainDistance).isActive = true
+        promptLabel.topAnchor.constraint(equalTo: outPutView.topAnchor, constant: 180).isActive = true
+        promptLabel.leftAnchor.constraint(equalTo: outPutView.leftAnchor, constant: self.setting.mainDistance).isActive = true
         
     }
     
     private func addPopUpWindowToBgView() {
-        popUpViewController?.view.addSubview(popUpWindow)
+        popUpViewController?.view.addSubview(outPutView)
     }
     
    

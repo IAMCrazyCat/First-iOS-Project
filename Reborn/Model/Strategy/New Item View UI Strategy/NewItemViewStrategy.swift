@@ -11,5 +11,7 @@ import UIKit
 protocol NewItemViewStrategy {
     
     func initializeUI()
+    func isRedyToDismiss() -> Bool
+    func showPopUp(popUpType: PopUpType)
     func doneButtonPressed(_ sender: UIButton)
 }

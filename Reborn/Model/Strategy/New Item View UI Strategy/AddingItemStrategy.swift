@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class AddingItemStrategy: NewItemViewStrategy {
-    
+ 
     let newItemViewController: NewItemViewController
     
     init(newItemViewController: NewItemViewController) {
@@ -21,29 +21,34 @@ class AddingItemStrategy: NewItemViewStrategy {
         
     }
     
-    func isRedyToFinish() -> Bool {
-        var isRedyToFinish: Bool = false
+    func showPopUp(popUpType: PopUpType) {
+        newItemViewController.engine.showPopUp(popUpType, from: newItemViewController)
+    }
+    
+    func isRedyToDismiss() -> Bool {
+        var isRedyToDismiss: Bool = false
         
         if newItemViewController.itemNameTextfield.text != ""
             && newItemViewController.selectedTypeButton != nil
             && newItemViewController.selectedFrequencyButton != nil
             && newItemViewController.selectedTargetDaysButton != nil {
             
-            isRedyToFinish = true
+            isRedyToDismiss = true
             
         } else {
             
-            isRedyToFinish = false
+            isRedyToDismiss = false
             newItemViewController.preViewItemCard.shake()
         }
         
         
-        return isRedyToFinish
+        return isRedyToDismiss
     }
+    
     
     func doneButtonPressed(_ sender: UIButton) {
         
-        if isRedyToFinish() {
+        if isRedyToDismiss() {
             newItemViewController.engine.addItem(newItem: newItemViewController.item)
             newItemViewController.dismiss(animated: true) {
                 self.newItemViewController.engine.notigyAllObservers()

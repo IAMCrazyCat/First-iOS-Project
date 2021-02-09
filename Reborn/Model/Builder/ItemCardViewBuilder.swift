@@ -7,7 +7,7 @@
 import Foundation
 import UIKit
 
-class ItemViewBuilder {
+class ItemCardViewBuilder: Builder {
 
     let item: Item
     let punchInButtonTag: Int
@@ -34,7 +34,7 @@ class ItemViewBuilder {
         self.detailsButtonAction = detailsButtonAction
     }
     
-    init(item: Item, width: CGFloat, height: CGFloat, cordinateX: CGFloat, cordinateY: CGFloat){ // for preview
+    init(item: Item, width: CGFloat, height: CGFloat, cordinateX: CGFloat, cordinateY: CGFloat){ // for new item view preview card
 
         self.item = item
         self.cordinateX = cordinateX
@@ -49,7 +49,7 @@ class ItemViewBuilder {
     }
     
     
-    public func buildItemCardView() -> UIView {
+    public func buildView() -> UIView {
       
         createItemCardView() //1
         addIconAndNameLabel() //2
@@ -65,35 +65,19 @@ class ItemViewBuilder {
     
     }
     
-    public func buildDetailsView() -> UIView {
-        //freqency = DataOption(data: 1)
-        createItemDetailsView()
-        addProgressBar(barFrame: CGRect(x: self.setting.mainPadding, y: outPutView.frame.height / 2, width: outPutView.frame.width - self.setting.mainPadding * 2, height: 15), withProgressLabel: true)
-        //addItemDetailsFreqencyLabel()
-        //addFinishedDaysLabel(labelFrame: CGRect(x: 100, y: 100, width: 0, height: 0), withTypeLabel: true)
-        //addTargetDaysLabel(labelFrame: CGRect(x: 220, y: 100, width: 0, height: 0), withTypeLabel: true)
-        
-        return outPutView
-    }
+  
     
     private func createItemCardView() {
-        
         
         outPutView.accessibilityIdentifier = setting.itemCardIdentifier
         outPutView.backgroundColor = setting.whiteAndBlack
         outPutView.layer.cornerRadius = setting.itemCardCornerRadius
         outPutView.setShadow()
         outPutView.frame = CGRect(x: cordinateX, y: cordinateY, width: width, height: height)
-        
-        print("item card created")
-        print(outPutView.frame)
+
     }
     
-    private func createItemDetailsView() {
-        outPutView.backgroundColor = setting.whiteAndBlack
-        //outPutView.layer.cornerRadius = setting.itemCardCornerRadius
-        outPutView.frame = CGRect(x: cordinateX, y: cordinateY, width: width, height: height)
-    }
+    
     
     private func addIconAndNameLabel() {
        
@@ -146,25 +130,7 @@ class ItemViewBuilder {
 
     }
     
-    private func addItemDetailsFreqencyLabel() {
-        let freqencyLabel = UILabel()
-
-        freqencyLabel.accessibilityIdentifier = "freqencyLabel"
-        freqencyLabel.text = "频率: \(item.frequency.title)"
-        freqencyLabel.textColor = .black
-        freqencyLabel.font = UserStyleSetting.fontMedium
-        freqencyLabel.sizeToFit()
-        
-        outPutView.addSubview(freqencyLabel)
-        freqencyLabel.translatesAutoresizingMaskIntoConstraints = false
-        freqencyLabel.topAnchor.constraint(equalTo: outPutView.topAnchor, constant: 20).isActive = true
-        freqencyLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
-        freqencyLabel.rightAnchor.constraint(equalTo: outPutView.rightAnchor, constant: -self.setting.mainPadding).isActive = true
-        
-        
-        
-
-    }
+   
     
     
     private func addGoDetailsButton() {
@@ -268,7 +234,16 @@ class ItemViewBuilder {
         barTrackLayer.strokeEnd = 0
         outPutView.layer.addSublayer(barTrackLayer)
         
-        let barShapePath = UIBezierPath(roundedRect: CGRect(x: barFrame.origin.x, y: barFrame.origin.y, width: CGFloat(self.item.progress) * barFrame.width, height: barFrame.height), cornerRadius: 10)
+        var barShapeWitdh: CGFloat {
+            let width = CGFloat(self.item.progress) * barFrame.width
+            if width > barFrame.width {
+                return barFrame.width
+            } else {
+                return width
+            }
+        }
+        
+        let barShapePath = UIBezierPath(roundedRect: CGRect(x: barFrame.origin.x, y: barFrame.origin.y, width: barShapeWitdh, height: barFrame.height), cornerRadius: 10)
         let barShapeLayer = CAShapeLayer()
         barShapeLayer.name = "progressBar"
         barShapeLayer.path = barShapePath.cgPath
