@@ -21,14 +21,34 @@ class AddingItemStrategy: NewItemViewStrategy {
         
     }
     
-    
+    func isRedyToFinish() -> Bool {
+        var isRedyToFinish: Bool = false
+        
+        if newItemViewController.itemNameTextfield.text != ""
+            && newItemViewController.selectedTypeButton != nil
+            && newItemViewController.selectedFrequencyButton != nil
+            && newItemViewController.selectedTargetDaysButton != nil {
+            
+            isRedyToFinish = true
+            
+        } else {
+            
+            isRedyToFinish = false
+            newItemViewController.preViewItemCard.shake()
+        }
+        
+        
+        return isRedyToFinish
+    }
     
     func doneButtonPressed(_ sender: UIButton) {
         
-        print("DONEDONE")
-        newItemViewController.engine.addItem(newItem: newItemViewController.item)
-        newItemViewController.dismiss(animated: true) {
-            self.newItemViewController.engine.notigyAllObservers()
+        if isRedyToFinish() {
+            newItemViewController.engine.addItem(newItem: newItemViewController.item)
+            newItemViewController.dismiss(animated: true) {
+                self.newItemViewController.engine.notigyAllObservers()
+        }
+       
         }
     }
 }

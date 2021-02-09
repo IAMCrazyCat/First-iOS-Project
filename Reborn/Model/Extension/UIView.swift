@@ -20,4 +20,14 @@ extension UIView {
         
         self.layer.cornerRadius = self.frame.height / 2
     }
+    
+    func shake(duration: TimeInterval = 0.5, values: [CGFloat] = [-12.0, 12.0, -12.0, 12.0, -6.0, 6.0, -3.0, 3.0, 0.0]) {
+        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+
+        animation.duration = duration // You can set fix duration
+        animation.values = values  // You can set fix values here also
+        self.layer.add(animation, forKey: "shake")
+    }
 }

@@ -286,7 +286,7 @@ Cg
             <objects>
                 <viewController id="yhk-VJ-4nb" customClass="NewItemViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5tU-dT-BVc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eis-9Y-9bk" userLabel="Middle Scroll View">
@@ -307,7 +307,7 @@ Cg
                                 </constraints>
                             </scrollView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ppR-2m-3uc" userLabel="Bottom Scroll View">
-                                <rect key="frame" x="0.0" y="200" width="375" height="524"/>
+                                <rect key="frame" x="0.0" y="200" width="375" height="558"/>
                                 <subviews>
                                     <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zHw-xi-vrL" userLabel="Contetnt View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="900"/>
@@ -584,7 +584,7 @@ Cg
                                             <constraint firstItem="maG-bk-NyY" firstAttribute="top" secondItem="uum-ys-rdj" secondAttribute="bottom" constant="20" id="vZl-A5-ihL"/>
                                             <constraint firstAttribute="trailing" secondItem="eVH-dn-gr1" secondAttribute="trailing" constant="40" id="w0T-7p-4Rq"/>
                                             <constraint firstAttribute="trailing" secondItem="WKm-RK-W4j" secondAttribute="trailing" constant="40" id="wYc-ma-SPh"/>
-                                            <constraint firstAttribute="height" constant="900" id="wkm-ef-NiO"/>
+                                            <constraint firstAttribute="height" constant="900" identifier="HeightConstraint" id="wkm-ef-NiO"/>
                                             <constraint firstItem="NJD-UT-gB8" firstAttribute="top" secondItem="rS9-xl-t7u" secondAttribute="bottom" constant="20" id="wqq-Bz-Oja"/>
                                             <constraint firstItem="maG-bk-NyY" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="40" id="yA1-jb-13r"/>
                                         </constraints>
@@ -657,7 +657,7 @@ Cg
                             <constraint firstItem="eis-9Y-9bk" firstAttribute="top" secondItem="NsA-vi-9iW" secondAttribute="bottom" id="lcI-JW-w7b"/>
                             <constraint firstItem="ppR-2m-3uc" firstAttribute="trailing" secondItem="xkx-NE-CR0" secondAttribute="trailing" id="n5a-ST-4L5"/>
                             <constraint firstItem="ppR-2m-3uc" firstAttribute="top" secondItem="eis-9Y-9bk" secondAttribute="bottom" id="soy-kT-44h"/>
-                            <constraint firstItem="ppR-2m-3uc" firstAttribute="bottom" secondItem="xkx-NE-CR0" secondAttribute="bottom" id="wxP-4L-5kU"/>
+                            <constraint firstItem="ppR-2m-3uc" firstAttribute="bottom" secondItem="5tU-dT-BVc" secondAttribute="bottom" id="wxP-4L-5kU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="新建项目" id="u3g-Zr-aAE">
@@ -665,6 +665,7 @@ Cg
                     </navigationItem>
                     <connections>
                         <outlet property="bottomScrollView" destination="ppR-2m-3uc" id="3FA-gS-jcl"/>
+                        <outlet property="bottomScrollViewContentViewHeightConstraint" destination="wkm-ef-NiO" id="qd8-6v-HEn"/>
                         <outlet property="customFrequencyButton" destination="eEh-sX-wyw" id="U5H-60-1ci"/>
                         <outlet property="customTargetDaysButton" destination="afP-fa-obf" id="5yl-9D-oLr"/>
                         <outlet property="doneButton" destination="VYb-iy-kVx" id="MeK-Ms-4D0"/>
@@ -685,6 +686,8 @@ Cg
                         <outlet property="thirtyDaysButton" destination="eVH-dn-gr1" id="Fv6-1F-g39"/>
                         <outlet property="titleLabel" destination="FTM-I4-dC0" id="0ML-wu-Mbo"/>
                         <outlet property="twoDaysOnceFreqencyButton" destination="wJB-1F-QUe" id="IOY-NJ-kPk"/>
+                        <outlet property="typeIcon" destination="nS3-iZ-Nkf" id="JKG-kN-x97"/>
+                        <outlet property="typeLabel" destination="p0g-iC-UgG" id="dsh-GP-MDg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zsl-RN-1KK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

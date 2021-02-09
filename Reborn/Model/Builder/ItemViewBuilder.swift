@@ -127,7 +127,7 @@ class ItemViewBuilder {
         freqencyLabel.accessibilityIdentifier = "freqencyLabel"
         
         freqencyLabel.text = item.frequency.title
-        freqencyLabel.textColor = .black
+        freqencyLabel.textColor = UserStyleSetting.themeColor
         freqencyLabel.font = UserStyleSetting.fontSmall
         freqencyLabel.sizeToFit()
         

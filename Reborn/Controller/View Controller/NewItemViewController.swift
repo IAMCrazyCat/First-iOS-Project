@@ -39,9 +39,12 @@ class NewItemViewController: UIViewController {
     
     @IBOutlet weak var firstInstructionLabel: UILabel!
     @IBOutlet weak var secondInstructionLabel: UILabel!
+    @IBOutlet weak var typeIcon: UIImageView!
+    @IBOutlet weak var typeLabel: UILabel!
     
     
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var bottomScrollViewContentViewHeightConstraint: NSLayoutConstraint!
     
     let engine: AppEngine = AppEngine.shared
     let setting: SystemStyleSetting = SystemStyleSetting.shared
@@ -78,6 +81,9 @@ class NewItemViewController: UIViewController {
 
             }
         }
+        
+        view.layoutIfNeeded()
+        bottomScrollViewContentViewHeightConstraint.constant = secondInstructionLabel.frame.origin.y + 40
         
         
         self.UIStrategy?.initializeUI()
