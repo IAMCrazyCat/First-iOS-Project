@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SwiftConfettiView
 extension UIView {
     func setShadow() {
 
@@ -30,4 +31,14 @@ extension UIView {
         animation.values = values  // You can set fix values here also
         self.layer.add(animation, forKey: "shake")
     }
+    
+    func addConfettiEffect() {
+        let confettiView = SwiftConfettiView(frame: self.bounds)
+       
+        confettiView.intensity = 0.5
+        confettiView.clipsToBounds = true
+        self.addSubview(confettiView)
+        confettiView.startConfetti()
+    }
+    
 }

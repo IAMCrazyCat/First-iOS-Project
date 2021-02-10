@@ -46,6 +46,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+       
         persistingItemsViewPromptLabel.sizeToFit()
         quittingItemsViewPromptLabel.sizeToFit()
         
@@ -138,8 +139,6 @@ class HomeViewController: UIViewController {
     var currentTransitionValue = 0.0
     
     func excuteProgressLabelAnimation() {
-
-        //timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateProgressLabel), userInfo: nil, repeats: true)
         
         let animation:CATransition = CATransition()
         animation.timingFunction = CAMediaTimingFunction(name:
@@ -150,15 +149,6 @@ class HomeViewController: UIViewController {
         self.overallProgressLabel.text = "已完成: \(String(format: "%.1f", (self.engine.getOverAllProgress() ?? 0) * 100))%"
         animation.duration = 0.5
         self.overallProgressLabel.layer.add(animation, forKey: CATransitionType.fade.rawValue)
-        
-//        UIView.animate(withDuration: 0.2, animations: { () -> Void in
-//            self.overallProgressLabel.transform = .init(scaleX: 1.25, y: 1.25)
-//        }) { (finished: Bool) -> Void in
-//            self.overallProgressLabel.text = "已完成: \(String(format: "%.1f", (self.engine.getOverAllProgress() ?? 0) * 100))%"
-//            UIView.animate(withDuration: 0.25, animations: { () -> Void in
-//                self.overallProgressLabel.transform = .identity
-//            })
-//        }
         
     }
     
@@ -172,7 +162,7 @@ class HomeViewController: UIViewController {
 
         currentTransitionValue = (circleShapeLayer.presentation()?.value(forKeyPath: "strokeEnd") ?? 0.0) as! Double
         print(currentTransitionValue)
-        self.overallProgressLabel.text = "已完成: \(String(format: "%.1f", self.currentTransitionValue * (self.engine.getOverAllProgress() ?? 0) * 100))%"
+        self.overallProgressLabel.text = "已完成: \(String(format: "%.1f", self.currentTransitionValue * (self.engine.getOverAllProgress() ) * 100))%"
     }
     
     @objc func itemPunchInButtonPressed(_ sender: UIButton!) {

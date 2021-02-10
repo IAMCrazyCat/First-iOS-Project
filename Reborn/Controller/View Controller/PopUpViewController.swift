@@ -35,14 +35,14 @@ class PopUpViewController: UIViewController {
         
         switch type {
         case .customFrequency:
-            AppEngine.shared.dismissAndSavePopUp(controller: self)
+            AppEngine.shared.dismissBottomPopUpAndSave(controller: self)
         case .customTargetDays:
-            AppEngine.shared.dismissAndSavePopUp(controller: self)
+            AppEngine.shared.dismissBottomPopUpAndSave(controller: self)
         case .customItemName:
             if let textField = self.getWindowSubviewByTag(tag: SystemStyleSetting.shared.popUpWindowTextFieldTag) as? UITextField {
                 
                 if textField.text != "" {
-                    AppEngine.shared.dismissAndSavePopUp(controller: self)
+                    AppEngine.shared.dismissBottomPopUpAndSave(controller: self)
                 } else {
                     
                     self.hidePromptLabel(false)
@@ -70,7 +70,7 @@ class PopUpViewController: UIViewController {
     
     @objc
     func cancelButtonPressed(_ sender: UIButton!) {
-        AppEngine.shared.dismissPopUpWithoutSave(controller: self)
+        AppEngine.shared.dismissBottomPopUpWithoutSave(controller: self)
     }
 
     

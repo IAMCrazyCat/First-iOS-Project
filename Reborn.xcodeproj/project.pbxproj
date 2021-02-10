@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F58F0E83E3F8EDE21CC6EB0 /* Pods_RebornTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E6CCCA1322DA999E425BE3 /* Pods_RebornTests.framework */; };
 		220B7282258A288000E4BEDC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B7281258A288000E4BEDC /* AppDelegate.swift */; };
 		220B7284258A288000E4BEDC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B7283258A288000E4BEDC /* SceneDelegate.swift */; };
 		220B7286258A288000E4BEDC /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B7285258A288000E4BEDC /* WelcomeViewController.swift */; };
@@ -85,6 +86,8 @@
 		22E9A875259F33F50073D432 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E9A873259F33F50073D432 /* PopUpViewController.swift */; };
 		22FCB1B5258D86BA006A0D39 /* SetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FCB1B4258D86BA006A0D39 /* SetUpViewController.swift */; };
 		22FCB1BA258D907C006A0D39 /* SystemStyleSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FCB1B9258D907C006A0D39 /* SystemStyleSetting.swift */; };
+		378F133BB1E91F6A674DE7AC /* Pods_Reborn_RebornUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C4533996E1B3FEF9192966A /* Pods_Reborn_RebornUITests.framework */; };
+		53EE2A465F2776989018DF07 /* Pods_Reborn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0016053E631AFCDC65A2DC6 /* Pods_Reborn.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +108,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		077AEB837FD3306A6B1AAE85 /* Pods-Reborn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reborn.release.xcconfig"; path = "Target Support Files/Pods-Reborn/Pods-Reborn.release.xcconfig"; sourceTree = "<group>"; };
+		0C4533996E1B3FEF9192966A /* Pods_Reborn_RebornUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reborn_RebornUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		220B727E258A288000E4BEDC /* Reborn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reborn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		220B7281258A288000E4BEDC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		220B7283258A288000E4BEDC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -189,6 +194,13 @@
 		22E9A873259F33F50073D432 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		22FCB1B4258D86BA006A0D39 /* SetUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewController.swift; sourceTree = "<group>"; };
 		22FCB1B9258D907C006A0D39 /* SystemStyleSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemStyleSetting.swift; sourceTree = "<group>"; };
+		5AE27D89D9638F0EFD870D9C /* Pods-RebornTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RebornTests.release.xcconfig"; path = "Target Support Files/Pods-RebornTests/Pods-RebornTests.release.xcconfig"; sourceTree = "<group>"; };
+		7CE5BEF44ACD6AA4D79D4722 /* Pods-Reborn-RebornUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reborn-RebornUITests.release.xcconfig"; path = "Target Support Files/Pods-Reborn-RebornUITests/Pods-Reborn-RebornUITests.release.xcconfig"; sourceTree = "<group>"; };
+		80E6CCCA1322DA999E425BE3 /* Pods_RebornTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RebornTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		895F522435FA3AFA81AC0F2E /* Pods-Reborn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reborn.debug.xcconfig"; path = "Target Support Files/Pods-Reborn/Pods-Reborn.debug.xcconfig"; sourceTree = "<group>"; };
+		E0193F9FED7F6EF0C625645B /* Pods-Reborn-RebornUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reborn-RebornUITests.debug.xcconfig"; path = "Target Support Files/Pods-Reborn-RebornUITests/Pods-Reborn-RebornUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E02C154DA2228E81C3178B6F /* Pods-RebornTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RebornTests.debug.xcconfig"; path = "Target Support Files/Pods-RebornTests/Pods-RebornTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F0016053E631AFCDC65A2DC6 /* Pods_Reborn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reborn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +208,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53EE2A465F2776989018DF07 /* Pods_Reborn.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +216,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F58F0E83E3F8EDE21CC6EB0 /* Pods_RebornTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +224,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				378F133BB1E91F6A674DE7AC /* Pods_Reborn_RebornUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,6 +238,8 @@
 				220B7297258A288300E4BEDC /* RebornTests */,
 				220B72A2258A288300E4BEDC /* RebornUITests */,
 				220B727F258A288000E4BEDC /* Products */,
+				A7B58A2351C49A8FD761DC49 /* Pods */,
+				E35D7D858DC5113C89E576D1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -514,6 +531,30 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		A7B58A2351C49A8FD761DC49 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				895F522435FA3AFA81AC0F2E /* Pods-Reborn.debug.xcconfig */,
+				077AEB837FD3306A6B1AAE85 /* Pods-Reborn.release.xcconfig */,
+				E0193F9FED7F6EF0C625645B /* Pods-Reborn-RebornUITests.debug.xcconfig */,
+				7CE5BEF44ACD6AA4D79D4722 /* Pods-Reborn-RebornUITests.release.xcconfig */,
+				E02C154DA2228E81C3178B6F /* Pods-RebornTests.debug.xcconfig */,
+				5AE27D89D9638F0EFD870D9C /* Pods-RebornTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E35D7D858DC5113C89E576D1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F0016053E631AFCDC65A2DC6 /* Pods_Reborn.framework */,
+				0C4533996E1B3FEF9192966A /* Pods_Reborn_RebornUITests.framework */,
+				80E6CCCA1322DA999E425BE3 /* Pods_RebornTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -521,9 +562,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 220B72A8258A288300E4BEDC /* Build configuration list for PBXNativeTarget "Reborn" */;
 			buildPhases = (
+				B6D69196024C0CDB314B996C /* [CP] Check Pods Manifest.lock */,
 				220B727A258A288000E4BEDC /* Sources */,
 				220B727B258A288000E4BEDC /* Frameworks */,
 				220B727C258A288000E4BEDC /* Resources */,
+				19D9C4306C56AFB946F40941 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -538,6 +581,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 220B72AB258A288300E4BEDC /* Build configuration list for PBXNativeTarget "RebornTests" */;
 			buildPhases = (
+				70D44F3DCFA21EFEA94B754A /* [CP] Check Pods Manifest.lock */,
 				220B7290258A288300E4BEDC /* Sources */,
 				220B7291258A288300E4BEDC /* Frameworks */,
 				220B7292258A288300E4BEDC /* Resources */,
@@ -556,9 +600,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 220B72AE258A288300E4BEDC /* Build configuration list for PBXNativeTarget "RebornUITests" */;
 			buildPhases = (
+				7E3736024CF7FCEA30DC41D2 /* [CP] Check Pods Manifest.lock */,
 				220B729B258A288300E4BEDC /* Sources */,
 				220B729C258A288300E4BEDC /* Frameworks */,
 				220B729D258A288300E4BEDC /* Resources */,
+				EF17914C4E1E3A8D1ECB47AD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -638,6 +684,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		19D9C4306C56AFB946F40941 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Reborn/Pods-Reborn-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Reborn/Pods-Reborn-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Reborn/Pods-Reborn-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		70D44F3DCFA21EFEA94B754A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RebornTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7E3736024CF7FCEA30DC41D2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Reborn-RebornUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B6D69196024C0CDB314B996C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Reborn-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF17914C4E1E3A8D1ECB47AD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Reborn-RebornUITests/Pods-Reborn-RebornUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Reborn-RebornUITests/Pods-Reborn-RebornUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Reborn-RebornUITests/Pods-Reborn-RebornUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		220B727A258A288000E4BEDC /* Sources */ = {
@@ -889,6 +1038,7 @@
 		};
 		220B72A9258A288300E4BEDC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 895F522435FA3AFA81AC0F2E /* Pods-Reborn.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -908,6 +1058,7 @@
 		};
 		220B72AA258A288300E4BEDC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 077AEB837FD3306A6B1AAE85 /* Pods-Reborn.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -927,6 +1078,7 @@
 		};
 		220B72AC258A288300E4BEDC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E02C154DA2228E81C3178B6F /* Pods-RebornTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -949,6 +1101,7 @@
 		};
 		220B72AD258A288300E4BEDC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5AE27D89D9638F0EFD870D9C /* Pods-RebornTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -971,6 +1124,7 @@
 		};
 		220B72AF258A288300E4BEDC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E0193F9FED7F6EF0C625645B /* Pods-Reborn-RebornUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -991,6 +1145,7 @@
 		};
 		220B72B0258A288300E4BEDC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7CE5BEF44ACD6AA4D79D4722 /* Pods-Reborn-RebornUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

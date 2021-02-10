@@ -18,6 +18,11 @@ class ItemDetailViewController: UIViewController {
     @IBOutlet weak var bottomEditButton: UIButton!
     @IBOutlet weak var bottomShareButton: UIButton!
     
+    @IBOutlet weak var finishedDayLabel: UILabel!
+    @IBOutlet weak var targetDayLabel: UILabel!
+    @IBOutlet weak var frequencyLabel: UILabel!
+    @IBOutlet weak var todayLabel: UILabel!
+    
     let setting: SystemStyleSetting = SystemStyleSetting.shared
     let engine: AppEngine = AppEngine.shared
     var item: Item? = nil
@@ -47,7 +52,7 @@ class ItemDetailViewController: UIViewController {
         bottomEditButton.setShadow()
         bottomEditButton.setCornerRadius()
         
-        setUpUI()
+        updateUI()
     }
     
     override func viewDidLayoutSubviews() {
@@ -72,9 +77,12 @@ class ItemDetailViewController: UIViewController {
         
         
     }
- 
-    
-    func setUpUI() {
+
+  
+}
+
+extension ItemDetailViewController: Observer {
+    func updateUI() {
         if item != nil {
             self.verticallyScrollContentView.layoutIfNeeded()
             let builder = ItemDetailViewBuilder(item: item!, width: self.mediumView.frame.width, height: self.setting.itemDetailsViewHeight, cordinateX: 0, cordinateY: 0)
@@ -83,13 +91,18 @@ class ItemDetailViewController: UIViewController {
             print(detailsView)
         }
         
-    }
-     
-  
-}
-
-extension ItemDetailViewController: Observer {
-    func updateUI() {
-        print("ItemDetailview updated")
+        self.finishedDayLabel.text = "\(String(self.item?.finishedDays ?? -1)) 天"
+        self.targetDayLabel.text = "\(String(self.item?.targetDays ?? -1)) 天"
+        self.frequencyLabel.text = "\(String(self.item?.frequency.title ?? "加载错误"))"
+        
+        if self.item?.punchInDates.last == self.engine.currentDate {
+            self.todayLabel.textColor = .green
+            self.todayLabel.text = "已打卡"
+        } else {
+            self.todayLabel.textColor = .red
+            self.todayLabel.text = "未打卡"
+        }
+        
+        
     }
 }

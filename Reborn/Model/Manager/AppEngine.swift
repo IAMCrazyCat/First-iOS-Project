@@ -143,9 +143,20 @@ class AppEngine {
     // ------------------------------------ observer end ------------------------------------------------------
     
     
-    
+    public func showCenterPopUp(from forPresented: UIViewController) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let popUpType = PopUpType.customTargetDays
+        
+        if let popUpViewController = storyboard.instantiateViewController(withIdentifier: "PopUpViewController") as? PopUpViewController {
 
-    public func showPopUp(_ popUpType: PopUpType, dataStartIndex: Int = 0, from forPresented: UIViewController) {
+            let popUpWindow = PopUpViewBuilder(popUpType: popUpType, popUpViewController: popUpViewController).buildView()
+            popUpViewController.type = popUpType
+            popUpViewController.view.addSubview(popUpWindow)
+            forPresented.presentBottom(to: popUpViewController)
+        }
+    }
+
+    public func showBottomPopUp(_ popUpType: PopUpType, dataStartIndex: Int = 0, from forPresented: UIViewController) {
         
         self.delegate = forPresented as? PopUpViewDelegate
         
@@ -161,13 +172,13 @@ class AppEngine {
         
     }
  
-    public func dismissPopUpWithoutSave(controller: PopUpViewController) {
+    public func dismissBottomPopUpWithoutSave(controller: PopUpViewController) {
         delegate?.didDismissPopUpViewWithoutSave()
         controller.dismiss(animated: true, completion: nil)
         
     }
     
-    public func dismissAndSavePopUp(controller: PopUpViewController) {
+    public func dismissBottomPopUpAndSave(controller: PopUpViewController) {
         
         self.storedDataFromPopUpView = controller.getStoredData()
         controller.dismiss(animated: true, completion: nil)

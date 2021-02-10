@@ -51,15 +51,20 @@ class ItemCardViewBuilder: Builder {
     
     public func buildView() -> UIView {
       
-        createItemCardView() //1
-        addIconAndNameLabel() //2
-        addGoDetailsButton() //3
-        addTypeLabel() //4
-        addFinishedDaysLabel(labelFrame: nil, withTypeLabel: false) //5
-        addProgressBar(barFrame: CGRect(x: self.setting.mainDistance, y: outPutView.frame.height - 30, width: outPutView.frame.width - self.setting.progressBarLengthToRightEdgeOffset, height: 10), withProgressLabel: false) //5
-        addTargetDaysLabel(labelFrame: nil, withTypeLabel: false) //6
-        addPunInButton() //7
+        createItemCardView()
+        
+        if item.finishedDays == item.targetDays {
+            addConfettiTopView()
+        }
+        addIconAndNameLabel()
+        addGoDetailsButton()
+        addTypeLabel()
+        addFinishedDaysLabel(labelFrame: nil, withTypeLabel: false)
+        addProgressBar(barFrame: CGRect(x: self.setting.mainDistance, y: outPutView.frame.height - 30, width: outPutView.frame.width - self.setting.progressBarLengthToRightEdgeOffset, height: 10), withProgressLabel: false)
+        addTargetDaysLabel(labelFrame: nil, withTypeLabel: false)
+        addPunInButton()
         addItemCardFreqencyLabel()
+      
         
         return outPutView
     
@@ -68,6 +73,7 @@ class ItemCardViewBuilder: Builder {
   
     
     private func createItemCardView() {
+        
         
         outPutView.accessibilityIdentifier = setting.itemCardIdentifier
         outPutView.backgroundColor = setting.whiteAndBlack
@@ -334,7 +340,22 @@ class ItemCardViewBuilder: Builder {
         }
     }
     
-
+    private func addConfettiTopView() {
+        let confettiTopView = UIView()
+        confettiTopView.frame = CGRect(x: 0, y: 0, width: outPutView.frame.width, height: 40)
+        confettiTopView.layer.cornerRadius = outPutView.layer.cornerRadius
+        confettiTopView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        confettiTopView.layer.masksToBounds = true
+        confettiTopView.addConfettiEffect()
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = confettiTopView.bounds
+        gradientLayer.colors = [UIColor.white.withAlphaComponent(0).cgColor, UIColor.white.withAlphaComponent(1).cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.5)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
+        confettiTopView.layer.addSublayer(gradientLayer)
+        outPutView.addSubview(confettiTopView)
+    }
     
     
   

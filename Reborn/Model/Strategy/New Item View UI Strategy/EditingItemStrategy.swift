@@ -78,7 +78,12 @@ class EditingItemStrategy: NewItemViewStrategy {
     }
     
     func showPopUp(popUpType: PopUpType) {
-        newItemViewController.engine.showPopUp(popUpType, dataStartIndex: newItemViewController.item.finishedDays, from: newItemViewController)
+        if popUpType == .customTargetDays {
+            newItemViewController.engine.showBottomPopUp(popUpType, dataStartIndex: newItemViewController.item.finishedDays, from: newItemViewController)
+        } else if popUpType == .customFrequency {
+            newItemViewController.engine.showBottomPopUp(popUpType, from: newItemViewController)
+        }
+        
     }
     
   
@@ -105,10 +110,11 @@ class EditingItemStrategy: NewItemViewStrategy {
     
     func doneButtonPressed(_ sender: UIButton) {
         
-        
-        newItemViewController.engine.saveUser(newItemViewController.engine.currentUser)
-        newItemViewController.dismiss(animated: true) {
-            self.newItemViewController.engine.notigyAllObservers()
+        if isRedyToDismiss() {
+            newItemViewController.engine.saveUser(newItemViewController.engine.currentUser)
+            newItemViewController.dismiss(animated: true) {
+                self.newItemViewController.engine.notigyAllObservers()
+            }
         }
     }
     
