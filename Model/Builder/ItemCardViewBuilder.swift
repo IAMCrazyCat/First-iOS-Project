@@ -229,7 +229,7 @@ class ItemCardViewBuilder: Builder {
         let barTrackLayer = CAShapeLayer()
         
         let shapeColor = UserStyleSetting.themeColor.cgColor
-        let trackColor = UserStyleSetting.themeColor.withAlphaComponent(0.3).cgColor
+        let trackColor = UserStyleSetting.themeColor.fadeColor.cgColor
         let progressWidth: CGFloat = 10
 
         barTrackLayer.name = "progressTrack"

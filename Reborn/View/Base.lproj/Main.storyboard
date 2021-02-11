@@ -286,7 +286,7 @@ Cg
             <objects>
                 <viewController id="yhk-VJ-4nb" customClass="NewItemViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5tU-dT-BVc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eis-9Y-9bk" userLabel="Middle Scroll View">
@@ -831,7 +831,7 @@ Cg
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FRC-Pg-OSb">
-                                <rect key="frame" x="0.0" y="88" width="375" height="724"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fhM-A8-SwE" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1400"/>
@@ -840,7 +840,7 @@ Cg
                                                 <rect key="frame" x="15" y="43" width="345" height="430"/>
                                                 <subviews>
                                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rPK-k0-tHl" userLabel="Calendar View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="345" height="430"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="345" height="400"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="430" id="AF9-H6-ena"/>
@@ -1166,7 +1166,7 @@ Cg
             </objects>
             <point key="canvasLocation" x="1987" y="33"/>
         </scene>
-        <!--打卡-->
+        <!--概览-->
         <scene sceneID="Faw-1M-obz">
             <objects>
                 <viewController id="5eW-DY-fpx" customClass="HomeViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
@@ -1175,78 +1175,50 @@ Cg
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BDY-Xd-Ccc">
-                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="641"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="efV-kw-weZ" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12月22日星期二" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tK5-Vl-jvU">
-                                                <rect key="frame" x="15" y="0.0" width="96" height="16"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="进度" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lMu-Im-CUO">
-                                                <rect key="frame" x="15" y="82" width="39" height="23"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rxm-0f-Igg">
-                                                <rect key="frame" x="15" y="115" width="345" height="230"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所有项目" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WFU-9H-CGg">
-                                                        <rect key="frame" x="20" y="20" width="62" height="18"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                        <nil key="textColor"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="早上好，宝贝" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WFU-9H-CGg">
+                                                        <rect key="frame" x="15" y="19.999999999999996" width="176.33333333333334" height="34.666666666666657"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已完成: 0%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dn0-ju-vC2">
-                                                        <rect key="frame" x="134" y="192" width="77" height="18"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="继续坚持，胜利就在眼前" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xlY-9o-Nvi">
+                                                        <rect key="frame" x="15" y="64.666666666666657" width="169" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Test" translatesAutoresizingMaskIntoConstraints="NO" id="WVO-ua-0v5">
-                                                        <rect key="frame" x="122.66666666666666" y="65" width="100" height="100"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="100" id="Jmf-1M-SVq"/>
-                                                            <constraint firstAttribute="width" constant="100" id="l9R-ZA-ilc"/>
-                                                        </constraints>
-                                                    </imageView>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" name="ThemeColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="Dn0-ju-vC2" secondAttribute="bottom" constant="20" id="BKc-1G-Zfn"/>
-                                                    <constraint firstItem="Dn0-ju-vC2" firstAttribute="centerX" secondItem="rxm-0f-Igg" secondAttribute="centerX" id="Dcs-rS-5pf"/>
-                                                    <constraint firstItem="WVO-ua-0v5" firstAttribute="centerY" secondItem="rxm-0f-Igg" secondAttribute="centerY" id="JhQ-LE-07L"/>
-                                                    <constraint firstItem="WFU-9H-CGg" firstAttribute="leading" secondItem="rxm-0f-Igg" secondAttribute="leading" constant="20" id="Kku-BG-5Gt"/>
+                                                    <constraint firstItem="xlY-9o-Nvi" firstAttribute="top" secondItem="WFU-9H-CGg" secondAttribute="bottom" constant="10" id="6Cf-Cn-KA7"/>
+                                                    <constraint firstItem="WFU-9H-CGg" firstAttribute="leading" secondItem="rxm-0f-Igg" secondAttribute="leading" constant="15" id="Kku-BG-5Gt"/>
+                                                    <constraint firstItem="xlY-9o-Nvi" firstAttribute="leading" secondItem="rxm-0f-Igg" secondAttribute="leading" constant="15" id="McI-uM-HMy"/>
                                                     <constraint firstItem="WFU-9H-CGg" firstAttribute="top" secondItem="rxm-0f-Igg" secondAttribute="top" constant="20" id="bZS-PA-RrU"/>
-                                                    <constraint firstItem="WVO-ua-0v5" firstAttribute="centerX" secondItem="rxm-0f-Igg" secondAttribute="centerX" id="tNM-Pc-dCI"/>
-                                                    <constraint firstAttribute="height" constant="230" id="xpP-5F-J4d"/>
+                                                    <constraint firstAttribute="height" constant="300" id="xpP-5F-J4d"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="概览" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yj9-p1-nrD">
-                                                <rect key="frame" x="15" y="20" width="71" height="42"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="打卡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BU0-nc-P3S">
-                                                <rect key="frame" x="15" y="360" width="39" height="23"/>
+                                                <rect key="frame" x="15" y="315" width="39" height="23"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QUl-UX-mGH" userLabel="Horizental Scroll View">
-                                                <rect key="frame" x="0.0" y="393" width="375" height="407"/>
+                                                <rect key="frame" x="0.0" y="348" width="375" height="452"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s3S-rb-hjS" userLabel="Content View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="750" height="407"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="750" height="452"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="la4-fr-xx5">
-                                                                <rect key="frame" x="15" y="0.0" width="345" height="407"/>
+                                                                <rect key="frame" x="15" y="0.0" width="345" height="452"/>
                                                                 <subviews>
                                                                     <label autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击右上角添加项目" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIc-xu-5NB">
                                                                         <rect key="frame" x="103.66666666666669" y="100" width="138" height="18"/>
@@ -1262,7 +1234,7 @@ Cg
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1K9-RY-bz1" userLabel="Quitting Item Cards View">
-                                                                <rect key="frame" x="390" y="0.0" width="345" height="407"/>
+                                                                <rect key="frame" x="390" y="0.0" width="345" height="452"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击右上角添加项目" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s0C-g8-oh2">
                                                                         <rect key="frame" x="103.66666666666669" y="100" width="138" height="18"/>
@@ -1305,24 +1277,18 @@ Cg
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="1K9-RY-bz1" firstAttribute="width" secondItem="rxm-0f-Igg" secondAttribute="width" id="1EO-ZS-TyN"/>
-                                            <constraint firstItem="lMu-Im-CUO" firstAttribute="top" secondItem="yj9-p1-nrD" secondAttribute="bottom" constant="20" id="45Z-zz-VdW"/>
+                                            <constraint firstItem="1K9-RY-bz1" firstAttribute="width" secondItem="rxm-0f-Igg" secondAttribute="width" constant="-30" id="1EO-ZS-TyN"/>
                                             <constraint firstItem="BU0-nc-P3S" firstAttribute="leading" secondItem="efV-kw-weZ" secondAttribute="leading" constant="15" id="9Ma-Yt-IF2"/>
-                                            <constraint firstItem="rxm-0f-Igg" firstAttribute="top" secondItem="lMu-Im-CUO" secondAttribute="bottom" constant="10" id="9ne-VW-ioe"/>
                                             <constraint firstAttribute="height" constant="800" identifier="heightConstraint" id="A94-HB-Kcf"/>
                                             <constraint firstAttribute="bottom" secondItem="QUl-UX-mGH" secondAttribute="bottom" id="ENl-s8-aFh"/>
                                             <constraint firstItem="QUl-UX-mGH" firstAttribute="leading" secondItem="efV-kw-weZ" secondAttribute="leading" id="GlM-cp-TZl"/>
                                             <constraint firstItem="BU0-nc-P3S" firstAttribute="top" secondItem="rxm-0f-Igg" secondAttribute="bottom" constant="15" id="S03-4X-1OL"/>
-                                            <constraint firstItem="yj9-p1-nrD" firstAttribute="leading" secondItem="efV-kw-weZ" secondAttribute="leading" constant="15" id="Sco-3p-aXJ"/>
-                                            <constraint firstItem="la4-fr-xx5" firstAttribute="width" secondItem="rxm-0f-Igg" secondAttribute="width" id="XJH-Hn-11D"/>
-                                            <constraint firstItem="lMu-Im-CUO" firstAttribute="leading" secondItem="efV-kw-weZ" secondAttribute="leading" constant="15" id="a3x-gR-brd"/>
-                                            <constraint firstItem="yj9-p1-nrD" firstAttribute="top" secondItem="tK5-Vl-jvU" secondAttribute="bottom" constant="4" id="dpH-rs-WHx"/>
-                                            <constraint firstAttribute="trailing" secondItem="rxm-0f-Igg" secondAttribute="trailing" constant="15" id="epf-uy-L4V"/>
-                                            <constraint firstItem="tK5-Vl-jvU" firstAttribute="leading" secondItem="efV-kw-weZ" secondAttribute="leading" constant="15" id="gOY-Nt-g1X"/>
+                                            <constraint firstItem="la4-fr-xx5" firstAttribute="width" secondItem="rxm-0f-Igg" secondAttribute="width" constant="-30" id="XJH-Hn-11D"/>
+                                            <constraint firstItem="rxm-0f-Igg" firstAttribute="top" secondItem="efV-kw-weZ" secondAttribute="top" id="db4-9V-cRY"/>
+                                            <constraint firstAttribute="trailing" secondItem="rxm-0f-Igg" secondAttribute="trailing" id="epf-uy-L4V"/>
                                             <constraint firstAttribute="trailing" secondItem="QUl-UX-mGH" secondAttribute="trailing" id="hs8-ic-ENW"/>
                                             <constraint firstItem="QUl-UX-mGH" firstAttribute="top" secondItem="BU0-nc-P3S" secondAttribute="bottom" constant="10" id="iwr-jw-eKQ"/>
-                                            <constraint firstItem="tK5-Vl-jvU" firstAttribute="top" secondItem="efV-kw-weZ" secondAttribute="top" id="nJP-oS-W9h"/>
-                                            <constraint firstItem="rxm-0f-Igg" firstAttribute="leading" secondItem="efV-kw-weZ" secondAttribute="leading" constant="15" id="ydC-76-An8"/>
+                                            <constraint firstItem="rxm-0f-Igg" firstAttribute="leading" secondItem="efV-kw-weZ" secondAttribute="leading" id="ydC-76-An8"/>
                                             <constraint firstItem="rxm-0f-Igg" firstAttribute="centerX" secondItem="efV-kw-weZ" secondAttribute="centerX" id="zl1-Qs-Q5K"/>
                                         </constraints>
                                     </view>
@@ -1349,22 +1315,18 @@ Cg
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="概览" id="LbD-Pb-pXy"/>
-                    <navigationItem key="navigationItem" title="打卡" id="kKW-I5-ia5">
+                    <navigationItem key="navigationItem" id="kKW-I5-ia5">
                         <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="NaI-4f-HfK">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="addItemViewController:" destination="5eW-DY-fpx" id="Sjs-Cr-uro"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="avatarImageView" destination="WVO-ua-0v5" id="RUI-0r-wVT"/>
                         <outlet property="contentView" destination="efV-kw-weZ" id="dgU-Nz-Kdn"/>
-                        <outlet property="dataLabel" destination="tK5-Vl-jvU" id="NnL-g3-xIb"/>
                         <outlet property="horizentalScrollView" destination="QUl-UX-mGH" id="Xvf-09-9wG"/>
                         <outlet property="itemsTitleLabel" destination="BU0-nc-P3S" id="Cpl-nE-Mgi"/>
-                        <outlet property="navigationBarTitleLabel" destination="yj9-p1-nrD" id="hay-gg-JsU"/>
-                        <outlet property="overAllProgressTitleLabel" destination="lMu-Im-CUO" id="gc9-f0-ovg"/>
-                        <outlet property="overallProgressLabel" destination="Dn0-ju-vC2" id="9xK-aX-6VD"/>
                         <outlet property="overallProgressView" destination="rxm-0f-Igg" id="U8E-hO-qXg"/>
                         <outlet property="persistingItemsView" destination="la4-fr-xx5" id="Jot-6u-g2n"/>
                         <outlet property="persistingItemsViewPromptLabel" destination="nIc-xu-5NB" id="AAV-aK-xdy"/>
@@ -1383,14 +1345,16 @@ Cg
         <!--概要-->
         <scene sceneID="9aa-Ko-nlN">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fLO-0e-dFJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jdV-7M-5pe" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="概要" image="tabBarItem:sU1-NQ-WFC:image" id="sU1-NQ-WFC"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" id="WRg-cq-9vY">
+                    <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" translucent="NO" id="WRg-cq-9vY">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" name="ThemeColor"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BWa-Pl-4eE">
@@ -1400,6 +1364,7 @@ Cg
                         <segue destination="5eW-DY-fpx" kind="relationship" relationship="rootViewController" id="8L7-oP-nWL"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fLO-0e-dFJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2884" y="53"/>
         </scene>
@@ -1432,7 +1397,7 @@ Cg
             <objects>
                 <navigationController id="vqv-6z-2PO" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="已完成" image="HistoryIcon" selectedImage="HistoryIcon" id="5kR-Ma-zyI"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CRy-rA-s2G">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="CRy-rA-s2G">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" name="ThemeColor"/>
@@ -1773,7 +1738,7 @@ Cg
             <objects>
                 <viewController id="cr2-6I-Rrh" customClass="CalendarViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jX3-MM-9D0">
-                        <rect key="frame" x="0.0" y="0.0" width="345" height="430"/>
+                        <rect key="frame" x="0.0" y="0.0" width="345" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RwH-pK-cja" userLabel="Top View">
@@ -1935,10 +1900,10 @@ Cg
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CyJ-kQ-0F2" userLabel="Bottom View">
-                                <rect key="frame" x="0.0" y="140" width="345" height="290"/>
+                                <rect key="frame" x="0.0" y="140" width="345" height="260"/>
                                 <subviews>
                                     <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zYE-Pq-52Y">
-                                        <rect key="frame" x="30" y="0.0" width="285" height="270"/>
+                                        <rect key="frame" x="30" y="0.0" width="285" height="240"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="mXR-mX-f4e">
                                             <size key="itemSize" width="128" height="128"/>
@@ -2033,7 +1998,6 @@ Cg
         <image name="SucessIcon-HD" width="60" height="60"/>
         <image name="TargetIcon" width="28" height="28"/>
         <image name="TargetIcon-HD" width="60" height="60"/>
-        <image name="Test" width="195" height="196"/>
         <image name="TimeMachine1" width="28" height="28"/>
         <image name="TimeMachine2-HD" width="60" height="60"/>
         <image name="TodayIcon-HD" width="60" height="60"/>

@@ -16,7 +16,7 @@ protocol PopUpViewDelegate {
 class AppEngine {
     
     static let shared = AppEngine()
-    var currentUser: User = User(name: "颠猫", gender: .undefined, avatar: #imageLiteral(resourceName: "AvatarMale"), keys: 3, items: [Item](), vip: false)
+    var currentUser: User = User(name: "颠猫", gender: .undefined, avatar: #imageLiteral(resourceName: "Test"), keys: 3, items: [Item](), vip: false)
     var defaults: UserDefaults = UserDefaults.standard
     let dataFilePath: URL? = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("item.plist")
     let setting: SystemStyleSetting = SystemStyleSetting()

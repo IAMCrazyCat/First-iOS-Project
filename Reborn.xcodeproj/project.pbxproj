@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -55,6 +55,7 @@
 		22B4B56325D10ACD00C0CFD7 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B4B56225D10ACD00C0CFD7 /* Observer.swift */; };
 		22BABF2425C3ECBA00168AE1 /* TimeMachineCalendarPageBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BABF2325C3ECBA00168AE1 /* TimeMachineCalendarPageBuilder.swift */; };
 		22BABF2925C42ABB00168AE1 /* CGAffineTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BABF2825C42ABB00168AE1 /* CGAffineTransform.swift */; };
+		22BC200125D39C0F007D2822 /* NavigationViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BC200025D39C0F007D2822 /* NavigationViewBuilder.swift */; };
 		22BC454525B04ED000516F75 /* CalendarPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BC454425B04ED000516F75 /* CalendarPage.swift */; };
 		22BC455025B1C92100516F75 /* CustomDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BC454F25B1C92100516F75 /* CustomDate.swift */; };
 		22C23A0F258DC4FA00D4BEB2 /* AppEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C23A0E258DC4FA00D4BEB2 /* AppEngine.swift */; };
@@ -163,6 +164,7 @@
 		22B4B56225D10ACD00C0CFD7 /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
 		22BABF2325C3ECBA00168AE1 /* TimeMachineCalendarPageBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineCalendarPageBuilder.swift; sourceTree = "<group>"; };
 		22BABF2825C42ABB00168AE1 /* CGAffineTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGAffineTransform.swift; sourceTree = "<group>"; };
+		22BC200025D39C0F007D2822 /* NavigationViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewBuilder.swift; sourceTree = "<group>"; };
 		22BC454425B04ED000516F75 /* CalendarPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPage.swift; sourceTree = "<group>"; };
 		22BC454F25B1C92100516F75 /* CustomDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDate.swift; sourceTree = "<group>"; };
 		22C23A0E258DC4FA00D4BEB2 /* AppEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEngine.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				220B7280258A288000E4BEDC /* Reborn */,
+				220B72B4258C68FB00E4BEDC /* Model */,
 				220B7297258A288300E4BEDC /* RebornTests */,
 				220B72A2258A288300E4BEDC /* RebornUITests */,
 				220B727F258A288000E4BEDC /* Products */,
@@ -260,7 +263,6 @@
 				220B72B6258C690B00E4BEDC /* Controller */,
 				220B728F258A288300E4BEDC /* Info.plist */,
 				220B72B5258C690400E4BEDC /* View */,
-				220B72B4258C68FB00E4BEDC /* Model */,
 				220B7283258A288000E4BEDC /* SceneDelegate.swift */,
 			);
 			path = Reborn;
@@ -370,6 +372,7 @@
 				22A59810259AA31A008E2A06 /* PopUpViewBuilder.swift */,
 				22D7FBB025A1E065006B1F28 /* SetUpPageBuilder.swift */,
 				22BABF2325C3ECBA00168AE1 /* TimeMachineCalendarPageBuilder.swift */,
+				22BC200025D39C0F007D2822 /* NavigationViewBuilder.swift */,
 			);
 			path = Builder;
 			sourceTree = "<group>";
@@ -397,7 +400,8 @@
 				225AD13325A86ED80040E356 /* FadeInSegue.swift */,
 				22916DB425C05F0D004A3EC4 /* PresentTimeMachineSegue.swift */,
 			);
-			path = "Custom Segue";
+			name = "Custom Segue";
+			path = "../../../Custom Segue";
 			sourceTree = "<group>";
 		};
 		225AD13A25A872450040E356 /* Custom Transition */ = {
@@ -541,7 +545,6 @@
 				E02C154DA2228E81C3178B6F /* Pods-RebornTests.debug.xcconfig */,
 				5AE27D89D9638F0EFD870D9C /* Pods-RebornTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -801,6 +804,7 @@
 				228ED3E625B94D630054591F /* CalendarCell.swift in Sources */,
 				22CE4EF525D00C73007EBD5B /* EditingItemStrategy.swift in Sources */,
 				2279C17E2592ED2F00566CD7 /* UserStyleSetting.swift in Sources */,
+				22BC200125D39C0F007D2822 /* NavigationViewBuilder.swift in Sources */,
 				223A777B25A41184004B3324 /* UIView.swift in Sources */,
 				22916DA925BFE34C004A3EC4 /* TimeMachineViewController.swift in Sources */,
 				2246D2E625CA68230001EFB7 /* DismissStrategy.swift in Sources */,

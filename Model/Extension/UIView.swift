@@ -18,7 +18,7 @@ extension UIView {
     }
     
     func setCornerRadius() {
-        
+        self.layer.masksToBounds = true
         self.layer.cornerRadius = self.frame.height / 2
     }
     

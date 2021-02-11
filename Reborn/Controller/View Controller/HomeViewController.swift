@@ -17,7 +17,7 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var overallProgressLabel: UILabel!
     @IBOutlet weak var itemsTitleLabel: UILabel!
-    @IBOutlet weak var navigationBarTitleLabel: UILabel!
+   
     @IBOutlet weak var persistingItemsViewPromptLabel: UILabel!
     @IBOutlet weak var quittingItemsViewPromptLabel: UILabel!
     
@@ -30,12 +30,6 @@ class HomeViewController: UIViewController {
     static var view: UIView!
     
     var setting = SystemStyleSetting.shared
- 
-    
-    let circleTrackLayer = CAShapeLayer()
-    let circleShapeLayer = CAShapeLayer()
-    
-    
     
     var scrollViewTopOffset: CGFloat = 0
     var scrollViewLastOffsetY: CGFloat = 0
@@ -43,6 +37,8 @@ class HomeViewController: UIViewController {
     let dateFormatter = DateFormatter()
     let engine = AppEngine.shared
     var keyboardFrame: CGRect? = nil
+    var navigationBar: UIView? = nil
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -55,16 +51,17 @@ class HomeViewController: UIViewController {
         
         persistingItemsView.layoutIfNeeded()
         quittingItemsView.layoutIfNeeded()
-
+        
+        
         overallProgressView.layer.cornerRadius = setting.itemCardCornerRadius
-        overallProgressView.setShadow()
+        overallProgressView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         overallProgressView.layoutIfNeeded()
         
-        avatarImageView.layer.masksToBounds = true
-        avatarImageView.layer.cornerRadius = avatarImageView.bounds.width / 2
-       
-        scrollViewTopOffset = overAllProgressTitleLabel.frame.origin.y - 8
-        verticalScrollView.setContentOffset(CGPoint(x: 0, y: scrollViewTopOffset), animated: false)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.tintColor = UIColor.black
+        
+        scrollViewTopOffset = overallProgressView.frame.maxY// + (navigationBar?.frame.height ?? 0) + (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0)
+        //verticalScrollView.setContentOffset(CGPoint(x: 0, y: scrollViewTopOffset), animated: false)
         
         verticalScrollView.delegate = self // activate delegate
         verticalScrollView.contentSize = CGSize(width: view.frame.width, height: 2000)
@@ -76,12 +73,12 @@ class HomeViewController: UIViewController {
         dateFormatter.locale = Locale(identifier: "zh")
         dateFormatter.setLocalizedDateFormatFromTemplate("dd MMMM EEEE")
         
-        dataLabel.text = dateFormatter.string(from: date)
-        
-        navigationBarTitleLabel.text = self.navigationItem.title
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.tintColor = UIColor.black
-        
+        navigationBar = navigationController?.navigationBar
+        navigationBar?.frame = CGRect(x: 0, y: 0, width: navigationController!.navigationBar.bounds.width, height: 200)
+        if navigationBar != nil {
+            navigationBar!.frame.size.height = 200
+
+        }
         engine.loadUser()
         updateUI()
         
@@ -91,79 +88,37 @@ class HomeViewController: UIViewController {
     
 
     
-    func updateProgressCircle() { // Circle progress bar
-       
-
-        let center = CGPoint(x: overallProgressView.frame.width / 2 , y: overallProgressView.frame.height / 2)
-        let circleTrackPath = UIBezierPath(arcCenter: center, radius: 60, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
-
-        let shapeColor = UserStyleSetting.themeColor.cgColor
-        let trackColor = UserStyleSetting.themeColor.withAlphaComponent(0.3).cgColor
-        let progressWidth: CGFloat = 8
-
-        circleTrackLayer.path = circleTrackPath.cgPath
-        circleTrackLayer.strokeColor = trackColor
-        circleTrackLayer.lineWidth = progressWidth
-        circleTrackLayer.fillColor = UIColor.clear.cgColor
-        circleTrackLayer.lineCap = CAShapeLayerLineCap.round
-        overallProgressView.layer.addSublayer(circleTrackLayer)
    
-
-        let circleShapePath = UIBezierPath(arcCenter: center, radius: 60, startAngle: -CGFloat.pi / 2, endAngle: CGFloat(self.engine.getOverAllProgress() ?? 0) * 2 * CGFloat.pi - CGFloat.pi / 2, clockwise: true)
-        
-        circleShapeLayer.path = circleShapePath.cgPath
-        circleShapeLayer.strokeColor = shapeColor
-        circleShapeLayer.lineWidth = progressWidth
-        circleShapeLayer.fillColor = UIColor.clear.cgColor
-        circleShapeLayer.lineCap = CAShapeLayerLineCap.round
-        circleShapeLayer.strokeEnd = 0
-        overallProgressView.layer.addSublayer(circleShapeLayer)
-        
-       
-    }
-    
-    func excuteCircleAnimation() {
-        
-        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        basicAnimation.toValue = 1
-        basicAnimation.duration = 1.5
-        basicAnimation.fillMode = CAMediaTimingFillMode.forwards
-        basicAnimation.timingFunction = CAMediaTimingFunction(controlPoints: 0.29, 0.34, 0.02, 1)
-        basicAnimation.isRemovedOnCompletion = false
-        circleShapeLayer.add(basicAnimation, forKey: "basicAnimation")
-     
-        
-    }
     
     var timer: Timer?
     var currentTransitionValue = 0.0
     
-    func excuteProgressLabelAnimation() {
-        
-        let animation:CATransition = CATransition()
-        animation.timingFunction = CAMediaTimingFunction(name:
-            CAMediaTimingFunctionName.easeInEaseOut)
-        animation.type = CATransitionType.fade
-        animation.subtype = CATransitionSubtype.fromTop
-        currentTransitionValue = (circleShapeLayer.presentation()?.value(forKeyPath: "strokeEnd") ?? 0.0) as! Double
-        self.overallProgressLabel.text = "已完成: \(String(format: "%.1f", (self.engine.getOverAllProgress() ?? 0) * 100))%"
-        animation.duration = 0.5
-        self.overallProgressLabel.layer.add(animation, forKey: CATransitionType.fade.rawValue)
-        
-    }
-    
-    @objc func updateProgressLabel() {
-
-        if currentTransitionValue >= 1 {
-            print("timer Ivalidated")
-            timer?.invalidate()
-            currentTransitionValue = 0
-        }
-
-        currentTransitionValue = (circleShapeLayer.presentation()?.value(forKeyPath: "strokeEnd") ?? 0.0) as! Double
-        print(currentTransitionValue)
-        self.overallProgressLabel.text = "已完成: \(String(format: "%.1f", self.currentTransitionValue * (self.engine.getOverAllProgress() ) * 100))%"
-    }
+//    func excuteProgressLabelAnimation() {
+//
+//        let animation:CATransition = CATransition()
+//        animation.timingFunction = CAMediaTimingFunction(name:
+//            CAMediaTimingFunctionName.easeInEaseOut)
+//        animation.type = CATransitionType.fade
+//        animation.subtype = CATransitionSubtype.fromTop
+//        currentTransitionValue = (circleShapeLayer.presentation()?.value(forKeyPath: "strokeEnd") ?? 0.0) as! Double
+//        self.overallProgressLabel.text = "已完成: \(String(format: "%.1f", (self.engine.getOverAllProgress() ?? 0) * 100))%"
+//        animation.duration = 0.5
+//        self.overallProgressLabel.layer.add(animation, forKey: CATransitionType.fade.rawValue)
+//
+//    }
+//
+//    @objc func updateProgressLabel() {
+//
+//        if currentTransitionValue >= 1 {
+//            print("timer Ivalidated")
+//            timer?.invalidate()
+//            currentTransitionValue = 0
+//        }
+//
+//        currentTransitionValue = (circleShapeLayer.presentation()?.value(forKeyPath: "strokeEnd") ?? 0.0) as! Double
+//        print(currentTransitionValue)
+//        self.overallProgressLabel.text = "已完成: \(String(format: "%.1f", self.currentTransitionValue * (self.engine.getOverAllProgress() ) * 100))%"
+//    }
     
     @objc func itemPunchInButtonPressed(_ sender: UIButton!) {
         
@@ -225,13 +180,13 @@ class HomeViewController: UIViewController {
         
     }
     
-    func removeOriginalCircle() {
-        for subLayer in overallProgressView.layer.sublayers! {
-            if subLayer is CAShapeLayer {
-                subLayer.removeFromSuperlayer()
-            }
-        }
-    }
+//    func removeOriginalCircle() {
+//        for subLayer in overallProgressView.layer.sublayers! {
+//            if subLayer is CAShapeLayer {
+//                subLayer.removeFromSuperlayer()
+//            }
+//        }
+//    }
     
     func firstAccessIntialize() {
         verticalScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
@@ -242,9 +197,7 @@ class HomeViewController: UIViewController {
         }
     }
     
-    func loadUserAvatar() {
-        avatarImageView.image = engine.currentUser.getAvatarImage()
-    }
+    
     
     func loadItemCards() {
 
@@ -312,18 +265,25 @@ class HomeViewController: UIViewController {
             self.quittingItemsViewPromptLabel.isHidden = false
         }
         
-        
-
     }
     
-    func updateUI() {
-        print("HomeViewUIDidUpdate")
+    func updateNavigationBar() {
         
-        loadUserAvatar()
-        removeOriginalCircle()
-        updateProgressCircle()
-        excuteCircleAnimation()
-        excuteProgressLabelAnimation()
+        var builder = NavigationViewBuilder(avatarImage: self.engine.currentUser.getAvatarImage(), progress: self.engine.getOverAllProgress(), frame: CGRect(x: 15, y: 0, width: 15, height: 15))
+        let circleView = builder.buildView()
+        self.navigationBar?.addSubview(circleView)
+        
+        for subview in overallProgressView.subviews {
+            subview.removeFromSuperview()
+        }
+        
+        builder = NavigationViewBuilder(avatarImage: self.engine.currentUser.getAvatarImage(), progress: self.engine.getOverAllProgress(), frame: self.overallProgressView.bounds)
+        let navigationView = builder.buildView()
+        self.overallProgressView.addSubview(navigationView)
+    }
+    func updateUI() {
+        
+        updateNavigationBar()
         removeAllItemCards()
         loadItemCards()
         
@@ -336,7 +296,7 @@ extension HomeViewController: Observer {
     
 }
 
-extension HomeViewController: PopUpViewDelegate, UIScrollViewDelegate {
+extension HomeViewController: PopUpViewDelegate {
     // Delegate extension
     func willDismissView() {
 //        if let topView = UIApplication.getTopViewController(), let itemCardFromAddItemCardView = self.engine.itemCardOnTransitionBetweenHomeViewAndAddItemCardView {
@@ -362,63 +322,63 @@ extension HomeViewController: PopUpViewDelegate, UIScrollViewDelegate {
     func didSaveAndDismissPopUpView(type: PopUpType) {
         
     }
+}
+
+extension HomeViewController: UIScrollViewDelegate {
     
     // scrollview delegate functions
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if scrollView.tag == self.setting.homeViewVerticalScrollViewTag {
-            if scrollView.contentOffset.y < self.scrollViewTopOffset / 2 && scrollView.contentOffset.y > 0 { // [0, crollViewTopOffset / 2]
-                
-                if scrollView.contentOffset.y > scrollViewLastOffsetY { // scroll up
-                    UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
-                        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
-                    }, completion: nil)
-                    
-                }
-                
-            } else if scrollView.contentOffset.y > self.scrollViewTopOffset / 2 && scrollView.contentOffset.y < self.scrollViewTopOffset { // [crollViewTopOffset / 2, offset]
-                
-                if scrollView.contentOffset.y > scrollViewLastOffsetY  { // scroll up
-                    UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
-                        scrollView.setContentOffset(CGPoint(x: 0, y: self.scrollViewTopOffset), animated: false)
-                    }, completion: nil)
-                } else { // scroll down
-                    UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
-                        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
-                    }, completion: nil)
-                }
-            }
-       
-            self.scrollViewLastOffsetY = scrollView.contentOffset.y
-            
-        }
-    }
-    
+//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//        if scrollView.tag == self.setting.homeViewVerticalScrollViewTag {
+//            if scrollView.contentOffset.y < self.scrollViewTopOffset / 2 && scrollView.contentOffset.y > 0 { // [0, crollViewTopOffset / 2]
+//
+//                if scrollView.contentOffset.y > scrollViewLastOffsetY { // scroll up
+//                    UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+//                        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+//                    }, completion: nil)
+//
+//                }
+//
+//            } else if scrollView.contentOffset.y > self.scrollViewTopOffset / 2 && scrollView.contentOffset.y < self.scrollViewTopOffset { // [crollViewTopOffset / 2, offset]
+//
+//                if scrollView.contentOffset.y > scrollViewLastOffsetY  { // scroll up
+//                    UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+//                        scrollView.setContentOffset(CGPoint(x: 0, y: self.scrollViewTopOffset), animated: false)
+//                    }, completion: nil)
+//                } else { // scroll down
+//                    UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+//                        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+//                    }, completion: nil)
+//                }
+//            }
+//
+//            self.scrollViewLastOffsetY = scrollView.contentOffset.y
+//
+//        }
+//    }
+//
     
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.tag == self.setting.homeViewVerticalScrollViewTag {
+          
             
-            let navigationBar = self.navigationController?.navigationBar
-            if scrollView.contentOffset.y < self.scrollViewTopOffset - 10 {
+            guard let navigationView = self.overallProgressView.subviews.first else { return }
 
-                UIView.animate(withDuration: 0.2, delay: 0.1, animations: {
-                    navigationBar!.barTintColor = UIColor.white
-                    navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navigationBar!.tintColor.withAlphaComponent(0)]
-                    navigationBar!.layoutIfNeeded()
-                })
-
-            } else {
-
-                UIView.animate(withDuration: 0.2, delay: 0.1, animations: {
-                    navigationBar!.barTintColor = UserStyleSetting.themeColor
-                    navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navigationBar!.tintColor.withAlphaComponent(1)]
-                    navigationBar!.layoutIfNeeded()
-                })
-
+            for subview in navigationView.subviews {
+               
+                if scrollView.contentOffset.y > subview.frame.origin.y + subview.frame.height / 2  { // 
+                    UIView.animate(withDuration: 0.3, animations: {
+                        subview.alpha = 0
+                    })
+                } else {
+                    UIView.animate(withDuration: 0.3, animations: {
+                        subview.alpha = 1
+                    })
+                }
             }
+            
+            
         }
-       
-
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {

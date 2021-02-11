@@ -21,11 +21,23 @@ extension UIColor {
     
     var absoluteValue: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
         
-        var red: CGFloat = value.red * 255
-        var green: CGFloat = value.green * 255
-        var blue: CGFloat = value.blue * 255
-        var alpha: CGFloat = value.alpha
+        let red: CGFloat = value.red * 255
+        let green: CGFloat = value.green * 255
+        let blue: CGFloat = value.blue * 255
+        let alpha: CGFloat = value.alpha
         //getRed(&red, green: &green, blue: &blue, alpha: &alpha)
         return (red, green, blue, alpha)
+    }
+    
+    var invertColor: UIColor {
+        return UIColor(red: 1 - value.red, green: 1 - value.green, blue: 1 - value.blue, alpha: 1)
+    }
+    
+    var brightColor: UIColor {
+        return UIColor(red: value.red * 1.2, green: value.green * 1.2, blue: value.blue * 1.2, alpha: 1)
+    }
+    
+    var fadeColor: UIColor {
+        return self.withAlphaComponent(0.3)
     }
 }
