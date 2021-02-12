@@ -15,17 +15,30 @@ protocol PopUpViewDelegate {
 
 class AppEngine {
     
-    static let shared = AppEngine()
-    var currentUser: User = User(name: "颠猫", gender: .undefined, avatar: #imageLiteral(resourceName: "Test"), keys: 3, items: [Item](), vip: false)
-    var defaults: UserDefaults = UserDefaults.standard
-    let dataFilePath: URL? = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("item.plist")
-    let setting: SystemStyleSetting = SystemStyleSetting()
-    var overAllProgress: Double = 0.0
-    var storedDataFromPopUpView: Any? = nil
-    var itemCardFromController: UIView? = nil
-    var itemFromController: Item? = nil
-    var currentViewController: UIViewController? = nil
-    var currentDate: CustomDate {
+    public static let shared = AppEngine()
+    public var currentUser: User = User(name: "颠猫", gender: .undefined, avatar: #imageLiteral(resourceName: "Test"), keys: 3, items: [Item](), vip: false)
+    public var defaults: UserDefaults = UserDefaults.standard
+    public let dataFilePath: URL? = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("item.plist")
+    public let setting: SystemStyleSetting = SystemStyleSetting()
+    public var overAllProgress: Double = 0.0
+    public var storedDataFromPopUpView: Any? = nil
+    public var itemFromController: Item? = nil
+    public var currentViewController: UIViewController? = nil
+    
+    public var currentTimeRange: TimeRange {
+        let time = calendar.dateComponents([.hour,.minute,.second], from: Date())
+        
+        for timeRange in TimeRange.allCases {
+
+            if timeRange.range.contains(time.hour!) {
+                
+                return timeRange
+            }
+        }
+        return .morning
+    }
+    
+    public var currentDate: CustomDate {
         let date = Date()
         let currentYear: Int = Calendar.current.component(.year, from: date)
         let currentMonth: Int = Calendar.current.component(.month, from: date)
@@ -33,7 +46,8 @@ class AppEngine {
         return CustomDate(year: currentYear, month: currentMonth, day: currentDay)
     }
     
-    var delegate: PopUpViewDelegate?
+    private let calendar = Calendar.current
+    private var delegate: PopUpViewDelegate?
     private var observers: Array<Observer> = []
 
     private init() {

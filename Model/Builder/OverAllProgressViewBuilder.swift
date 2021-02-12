@@ -7,9 +7,11 @@
 
 import Foundation
 import UIKit
-class NavigationViewBuilder: Builder {
+class OverAllProgressViewBuilder: Builder {
     
     let setting: SystemStyleSetting = SystemStyleSetting.shared
+    let welcomeTextData = WelcomeTextData()
+    
     let avatarImage: UIImage
     let progress: Double
     let outPutViewFrame: CGRect
@@ -42,8 +44,8 @@ class NavigationViewBuilder: Builder {
         } else {
             
            
-            createNavigationView()
-            addSmallProgressCircle()
+            createSmallCircleView()
+            addSmallProgressCircleView()
             addCircleAnimation()
             
         }
@@ -53,8 +55,9 @@ class NavigationViewBuilder: Builder {
     }
     
     
+    
     private func createNavigationView() {
-        outPutView.accessibilityIdentifier = "NavigationView"
+        outPutView.accessibilityIdentifier = "OverAllProgressView"
         outPutView.frame = self.outPutViewFrame
         outPutView.backgroundColor = UserStyleSetting.themeColor
         outPutView.layer.cornerRadius = setting.itemCardCornerRadius
@@ -63,29 +66,40 @@ class NavigationViewBuilder: Builder {
         
     }
     
+    private func createSmallCircleView() {
+        outPutView.accessibilityIdentifier = "OverAllProgressView"
+        outPutView.frame = self.outPutViewFrame
+        outPutView.backgroundColor = UserStyleSetting.themeColor
+        
+    }
+    
     private func addTextLabel() {
         let firstTextLabel = UILabel()
-        firstTextLabel.text = "早上好，刘子铭"
+
+        firstTextLabel.text = welcomeTextData.randomText(timeRange: AppEngine.shared.currentTimeRange).firstText
         firstTextLabel.font = UserStyleSetting.fontLarge
         firstTextLabel.textColor = .white
-        firstTextLabel.frame.origin = CGPoint(x: 15, y: 20)
+        firstTextLabel.frame.origin = CGPoint(x: 15, y: 0)
         firstTextLabel.sizeToFit()
         self.outPutView.addSubview(firstTextLabel)
         
         let secondTextLabel = UILabel()
         secondTextLabel.font = UserStyleSetting.fontSmall
-        secondTextLabel.text = "继续坚持，胜利就在眼前"
+        secondTextLabel.text = welcomeTextData.randomText(timeRange: AppEngine.shared.currentTimeRange).secondText
         secondTextLabel.textColor = .white
-        secondTextLabel.frame.origin = CGPoint(x: 15, y: firstTextLabel.frame.height + 30)
         secondTextLabel.sizeToFit()
         
+        
         self.outPutView.addSubview(secondTextLabel)
+        secondTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        secondTextLabel.topAnchor.constraint(equalTo: firstTextLabel.bottomAnchor, constant: 10).isActive = true
+        secondTextLabel.leftAnchor.constraint(equalTo: self.outPutView.leftAnchor, constant: 15).isActive = true
     
     }
     
-    private func addSmallProgressCircle() {
-        
-        let circleRadius: CGFloat = self.outPutView.frame.width
+    private func addSmallProgressCircleView() {
+        let progressWidth: CGFloat = 5
+        let circleRadius: CGFloat = self.outPutView.frame.width / 2 - progressWidth
         let circleViewCenter = CGPoint(x: self.outPutViewFrame.width / 2 , y: self.outPutViewFrame.height / 2)
         
         circleView.frame.size = CGSize(width: circleRadius * 2, height: circleRadius * 2)
@@ -95,7 +109,7 @@ class NavigationViewBuilder: Builder {
         let circleShapePath = UIBezierPath(arcCenter: CGPoint(x: circleView.frame.width / 2, y: circleView.frame.height / 2), radius: circleRadius, startAngle: -CGFloat.pi / 2, endAngle: CGFloat(progress) * 2 * CGFloat.pi - CGFloat.pi / 2, clockwise: true)
         let shapeColor = UserStyleSetting.themeColorPair.cgColor
         let trackColor = UserStyleSetting.themeColor.brightColor.cgColor
-        let progressWidth: CGFloat = 5
+        
         
         self.circleTrackLayer.path = circleTrackPath.cgPath
         self.circleTrackLayer.strokeColor = trackColor
@@ -113,13 +127,13 @@ class NavigationViewBuilder: Builder {
         circleView.layer.addSublayer(circleShapeLayer)
 
         
-        let imageView = UIImageView()
-        imageView.frame.size = CGSize(width: circleRadius * 2 - 30, height: circleRadius * 2 - 10)
-        imageView.center = CGPoint(x: circleView.frame.width / 2, y: circleView.frame.height / 2)
-        imageView.image = self.avatarImage
-        imageView.setCornerRadius()
-         
-        circleView.addSubview(imageView)
+//        let imageView = UIImageView()
+//        imageView.frame.size = CGSize(width: circleRadius * 2 - 30, height: circleRadius * 2 - 10)
+//        imageView.center = CGPoint(x: circleView.frame.width / 2, y: circleView.frame.height / 2)
+//        imageView.image = self.avatarImage
+//        imageView.setCornerRadius()
+//
+//        circleView.addSubview(imageView)
         
         outPutView.addSubview(circleView)
         
@@ -128,7 +142,7 @@ class NavigationViewBuilder: Builder {
     private func addProgressCircleView() { // Circle progress bar
        
         let circleRadius: CGFloat = 60
-        let circleViewCenter = CGPoint(x: self.outPutViewFrame.width / 2 , y: self.outPutViewFrame.height / 2 + 40)
+        let circleViewCenter = CGPoint(x: self.outPutViewFrame.width / 2 , y: self.outPutViewFrame.height / 2 + 20)
         
         circleView.frame.size = CGSize(width: circleRadius * 2, height: circleRadius * 2)
         circleView.center = circleViewCenter
@@ -161,8 +175,8 @@ class NavigationViewBuilder: Builder {
         imageView.image = self.avatarImage
         imageView.setCornerRadius()
          
+        circleView.accessibilityIdentifier = "ProgressCircleView"
         circleView.addSubview(imageView)
-        
         outPutView.addSubview(circleView)
     }
     

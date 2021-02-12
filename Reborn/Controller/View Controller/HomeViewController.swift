@@ -12,21 +12,17 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var verticalScrollView: UIScrollView!
     @IBOutlet weak var horizentalScrollView: UIScrollView!
     @IBOutlet weak var overallProgressView: UIView!
-    @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var contentView: UIView!
-    
-    @IBOutlet weak var overallProgressLabel: UILabel!
     @IBOutlet weak var itemsTitleLabel: UILabel!
-   
     @IBOutlet weak var persistingItemsViewPromptLabel: UILabel!
     @IBOutlet weak var quittingItemsViewPromptLabel: UILabel!
-    
-    @IBOutlet weak var dataLabel: UILabel!
-    @IBOutlet weak var overAllProgressTitleLabel: UILabel!
     @IBOutlet weak var persistingItemsView: UIView!
     @IBOutlet weak var quittingItemsView: UIView!
+    @IBOutlet var addNewItemButton: UIButton!
+    @IBOutlet var customNavigationBar: UIView!
+    @IBOutlet weak var spaceView: UIView!
+    @IBOutlet weak var spaceViewHeightConstraint: NSLayoutConstraint!
     
-
     static var view: UIView!
     
     var setting = SystemStyleSetting.shared
@@ -37,18 +33,14 @@ class HomeViewController: UIViewController {
     let dateFormatter = DateFormatter()
     let engine = AppEngine.shared
     var keyboardFrame: CGRect? = nil
-    var navigationBar: UIView? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       
+    
+        
         persistingItemsViewPromptLabel.sizeToFit()
         quittingItemsViewPromptLabel.sizeToFit()
-        
-//        persistingItemsView.frame.size.height -= 200
-//        quittingItemsView.frame.size.height -= 200
-        
+
         persistingItemsView.layoutIfNeeded()
         quittingItemsView.layoutIfNeeded()
         
@@ -60,9 +52,8 @@ class HomeViewController: UIViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.tintColor = UIColor.black
         
-        scrollViewTopOffset = overallProgressView.frame.maxY// + (navigationBar?.frame.height ?? 0) + (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0)
-        //verticalScrollView.setContentOffset(CGPoint(x: 0, y: scrollViewTopOffset), animated: false)
-        
+        scrollViewTopOffset = overallProgressView.frame.maxY// +
+        //verticalScrollView.setContentOffset(CGPoint(x: 0, y: self.customNavigationBar.frame.height), animated: false)
         verticalScrollView.delegate = self // activate delegate
         verticalScrollView.contentSize = CGSize(width: view.frame.width, height: 2000)
         verticalScrollView.tag = setting.homeViewVerticalScrollViewTag
@@ -73,23 +64,33 @@ class HomeViewController: UIViewController {
         dateFormatter.locale = Locale(identifier: "zh")
         dateFormatter.setLocalizedDateFormatFromTemplate("dd MMMM EEEE")
         
-        navigationBar = navigationController?.navigationBar
-        navigationBar?.frame = CGRect(x: 0, y: 0, width: navigationController!.navigationBar.bounds.width, height: 200)
-        if navigationBar != nil {
-            navigationBar!.frame.size.height = 200
-
-        }
+        customNavigationBar.layer.cornerRadius = setting.itemCardCornerRadius
+        customNavigationBar.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+     
         engine.loadUser()
         updateUI()
         
         
     }
-   
     
+    override func viewDidAppear(_ animated: Bool) {
+        // make sure that the overall progress is not coverd by custom navigation bar
+        let statusBarHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        self.spaceViewHeightConstraint.constant = self.customNavigationBar.frame.height - statusBarHeight
+    
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        super.viewWillDisappear(animated)
+    }
 
-    
+    override func viewWillAppear(_ animated: Bool) {
+       
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
    
-    
     var timer: Timer?
     var currentTransitionValue = 0.0
     
@@ -135,13 +136,12 @@ class HomeViewController: UIViewController {
         self.performSegue(withIdentifier: "GoToItemDetailView", sender: sender)
     }
     
-
-    @IBAction func addItemViewController(_ sender: UIBarButtonItem) {
-        
+    @IBAction func addNewItemButtonPressed(_ sender: UIButton) {
         self.engine.registerObserver(observer: self)
         self.performSegue(withIdentifier: "GoToNewItemView", sender: self)
     }
     
+
   
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             
@@ -268,19 +268,26 @@ class HomeViewController: UIViewController {
     }
     
     func updateNavigationBar() {
+     
+        let circleRadius: CGFloat = 40
         
-        var builder = NavigationViewBuilder(avatarImage: self.engine.currentUser.getAvatarImage(), progress: self.engine.getOverAllProgress(), frame: CGRect(x: 15, y: 0, width: 15, height: 15))
+        var builder = OverAllProgressViewBuilder(avatarImage: self.engine.currentUser.getAvatarImage(), progress: self.engine.getOverAllProgress(), frame: CGRect(x: 15, y: 0, width: circleRadius, height: circleRadius))
         let circleView = builder.buildView()
-        self.navigationBar?.addSubview(circleView)
         
+        circleView.center.y = self.addNewItemButton.center.y
+        circleView.accessibilityIdentifier = "SmallProgressCircle"
+        self.customNavigationBar.addSubview(circleView)
+
         for subview in overallProgressView.subviews {
             subview.removeFromSuperview()
         }
         
-        builder = NavigationViewBuilder(avatarImage: self.engine.currentUser.getAvatarImage(), progress: self.engine.getOverAllProgress(), frame: self.overallProgressView.bounds)
-        let navigationView = builder.buildView()
-        self.overallProgressView.addSubview(navigationView)
+        builder = OverAllProgressViewBuilder(avatarImage: self.engine.currentUser.getAvatarImage(), progress: self.engine.getOverAllProgress(), frame: self.overallProgressView.bounds)
+        let overAllProgressView = builder.buildView()
+        overAllProgressView.accessibilityIdentifier = "OverAllProgressView"
+        self.overallProgressView.addSubview(overAllProgressView)
     }
+    
     func updateUI() {
         
         updateNavigationBar()
@@ -326,55 +333,67 @@ extension HomeViewController: PopUpViewDelegate {
 
 extension HomeViewController: UIScrollViewDelegate {
     
-    // scrollview delegate functions
-//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-//        if scrollView.tag == self.setting.homeViewVerticalScrollViewTag {
-//            if scrollView.contentOffset.y < self.scrollViewTopOffset / 2 && scrollView.contentOffset.y > 0 { // [0, crollViewTopOffset / 2]
-//
-//                if scrollView.contentOffset.y > scrollViewLastOffsetY { // scroll up
-//                    UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
-//                        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
-//                    }, completion: nil)
-//
-//                }
-//
-//            } else if scrollView.contentOffset.y > self.scrollViewTopOffset / 2 && scrollView.contentOffset.y < self.scrollViewTopOffset { // [crollViewTopOffset / 2, offset]
-//
-//                if scrollView.contentOffset.y > scrollViewLastOffsetY  { // scroll up
-//                    UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
-//                        scrollView.setContentOffset(CGPoint(x: 0, y: self.scrollViewTopOffset), animated: false)
-//                    }, completion: nil)
-//                } else { // scroll down
-//                    UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
-//                        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
-//                    }, completion: nil)
-//                }
-//            }
-//
-//            self.scrollViewLastOffsetY = scrollView.contentOffset.y
-//
-//        }
-//    }
-//
+     //scrollview delegate functions
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollView.tag == self.setting.homeViewVerticalScrollViewTag {
+            
+            
+
+        }
+    }
+
     
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.tag == self.setting.homeViewVerticalScrollViewTag {
-          
             
-            guard let navigationView = self.overallProgressView.subviews.first else { return }
+            if scrollView.contentOffset.y <= 50 { // make sure that view background color will change when scrolling 
+                self.view.backgroundColor = UserStyleSetting.themeColor
+            } else {
+                self.view.backgroundColor = .white
+            }
+            
+            guard let overallProgressInsideView = self.overallProgressView.subviews.first else { return }
 
-            for subview in navigationView.subviews {
-               
-                if scrollView.contentOffset.y > subview.frame.origin.y + subview.frame.height / 2  { // 
-                    UIView.animate(withDuration: 0.3, animations: {
-                        subview.alpha = 0
-                    })
+            for subview in overallProgressInsideView.subviews {
+                
+                if subview.accessibilityIdentifier == "ProgressCircleView" { // for only progress circleview
+                    print("WTF")
+                    if scrollView.contentOffset.y > subview.frame.origin.y + subview.frame.height / 1.5  {
+                        
+                        UIView.animate(withDuration: 0.3, animations: {
+                            subview.alpha = 0
+                            
+                            let smallCircleView = self.customNavigationBar.getSubviewByIdentifier(idenifier: "SmallProgressCircle")?.subviews.first
+                            smallCircleView?.alpha = 1
+                        })
+                        
+                    } else {
+                        UIView.animate(withDuration: 0.3, animations: {
+                            subview.alpha = 1
+                            let smallCircleView = self.customNavigationBar.getSubviewByIdentifier(idenifier: "SmallProgressCircle")?.subviews.first
+                            smallCircleView?.alpha = 0
+                        })
+                    }
+                    
                 } else {
-                    UIView.animate(withDuration: 0.3, animations: {
-                        subview.alpha = 1
-                    })
+                    
+                    
+                    if scrollView.contentOffset.y > subview.frame.origin.y + subview.frame.height / 2  { // for other subviews
+                        
+                        UIView.animate(withDuration: 0.3, animations: { // hide subview
+                            subview.alpha = 0
+                        })
+                        
+                    } else {
+                        UIView.animate(withDuration: 0.3, animations: { // show subview
+                            subview.alpha = 1
+                        })
+                    }
+                    
                 }
+                
+               
             }
             
             

@@ -41,4 +41,15 @@ extension UIView {
         confettiView.startConfetti()
     }
     
+    func getSubviewByIdentifier(idenifier: String) -> UIView? {
+        var subviewByEdentifier: UIView? = nil
+        
+        for subview in self.subviews {
+            if subview.accessibilityIdentifier == idenifier {
+                subviewByEdentifier = subview
+            }
+        }
+        return subviewByEdentifier
+    }
+    
 }
