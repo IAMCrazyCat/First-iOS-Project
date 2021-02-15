@@ -76,7 +76,7 @@ class NewItemViewController: UIViewController {
                 button.setSizeAccrodingToScreen()
                 button.setCornerRadius()
                 button.setShadow()
-                button.setBackgroundColor(UserStyleSetting.themeColor, cornerRadius: button.layer.cornerRadius, for: .selected)
+                button.setBackgroundColor(UserStyleSetting.themeColor, for: .selected)
                 button.setTitleColor(.white, for: .selected)
 
             }
@@ -265,8 +265,7 @@ class NewItemViewController: UIViewController {
         
         let builder = ItemCardViewBuilder(item: self.item, width: witdh, height: height, cordinateX: cordinateX, cordinateY: cordinateY)
   
-        let generator = UIImpactFeedbackGenerator(style: .light)
-        generator.impactOccurred()
+        Vibrator.vibrate(withImpactLevel: .light)
         
         self.preViewItemCard = builder.buildView()
         self.previewItemCardTag = self.preViewItemCard.tag

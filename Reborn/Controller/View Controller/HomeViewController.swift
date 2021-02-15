@@ -22,6 +22,7 @@ class HomeViewController: UIViewController {
     @IBOutlet var customNavigationBar: UIView!
     @IBOutlet weak var spaceView: UIView!
     @IBOutlet weak var spaceViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var todayProgressLabel: UILabel!
     
     static var view: UIView!
     
@@ -123,7 +124,7 @@ class HomeViewController: UIViewController {
     
     @objc func itemPunchInButtonPressed(_ sender: UIButton!) {
         
-        self.engine.punchInItem(tag: sender.tag)
+        self.engine.updateItem(tag: sender.tag)
         self.updateUI()
     }
     
@@ -268,9 +269,11 @@ class HomeViewController: UIViewController {
     }
     
     func updateNavigationBar() {
-     
-        let circleRadius: CGFloat = 40
         
+        self.todayProgressLabel.text = "今日打卡: \(self.engine.getTodayProgress())"
+        self.todayProgressLabel.layer.zPosition = 3
+        
+        let circleRadius: CGFloat = 40
         var builder = OverAllProgressViewBuilder(avatarImage: self.engine.currentUser.getAvatarImage(), progress: self.engine.getOverAllProgress(), frame: CGRect(x: 15, y: 0, width: circleRadius, height: circleRadius))
         let circleView = builder.buildView()
         
@@ -286,6 +289,9 @@ class HomeViewController: UIViewController {
         let overAllProgressView = builder.buildView()
         overAllProgressView.accessibilityIdentifier = "OverAllProgressView"
         self.overallProgressView.addSubview(overAllProgressView)
+        updateOverAllProgressView(scrollView: self.verticalScrollView, animated: false)
+        
+    
     }
     
     func updateUI() {
@@ -295,7 +301,63 @@ class HomeViewController: UIViewController {
         loadItemCards()
         
     }
-    
+        
+    func updateOverAllProgressView(scrollView: UIScrollView, animated: Bool) {
+        
+        let animationSpeed: TimeInterval = animated ? 0.3 : 0
+        
+        if scrollView.contentOffset.y <= 0 { // make sure that view background color will change when scrolling
+            self.view.backgroundColor = UserStyleSetting.themeColor
+        } else {
+            self.view.backgroundColor = .white
+        }
+
+        guard let overallProgressInsideView = self.overallProgressView.subviews.first else { return }
+
+        for subview in overallProgressInsideView.subviews {
+
+            if subview.accessibilityIdentifier == "ProgressCircleView" { // for only progress circleview
+
+                if scrollView.contentOffset.y > subview.frame.origin.y + subview.frame.height / 1.5  {
+
+                    UIView.animate(withDuration: animationSpeed, animations: {
+                        subview.alpha = 0
+                        self.todayProgressLabel.alpha = 0
+                        let smallCircleView = self.customNavigationBar.getSubviewByIdentifier(idenifier: "SmallProgressCircle")?.subviews.first
+                        smallCircleView?.alpha = 1
+                    })
+
+                } else {
+                    UIView.animate(withDuration: animationSpeed, animations: {
+                        subview.alpha = 1
+                        self.todayProgressLabel.alpha = 1
+                        let smallCircleView = self.customNavigationBar.getSubviewByIdentifier(idenifier: "SmallProgressCircle")?.subviews.first
+                        smallCircleView?.alpha = 0
+                    })
+                }
+
+            } else {
+
+
+                if scrollView.contentOffset.y > subview.frame.origin.y + subview.frame.height / 2  { // for other subviews
+
+                    UIView.animate(withDuration: animationSpeed, animations: { // hide subview
+                        subview.alpha = 0
+                    })
+
+                } else {
+                    UIView.animate(withDuration: animationSpeed, animations: { // show subview
+                        subview.alpha = 1
+                    })
+                }
+
+            }
+
+
+        }
+
+
+    }
 
 }
 
@@ -341,62 +403,14 @@ extension HomeViewController: UIScrollViewDelegate {
 
         }
     }
-
+    
     
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.tag == self.setting.homeViewVerticalScrollViewTag {
-            
-            if scrollView.contentOffset.y <= 50 { // make sure that view background color will change when scrolling 
-                self.view.backgroundColor = UserStyleSetting.themeColor
-            } else {
-                self.view.backgroundColor = .white
-            }
-            
-            guard let overallProgressInsideView = self.overallProgressView.subviews.first else { return }
+            print("YES")
+            updateOverAllProgressView(scrollView: scrollView, animated: true)
 
-            for subview in overallProgressInsideView.subviews {
-                
-                if subview.accessibilityIdentifier == "ProgressCircleView" { // for only progress circleview
-                    print("WTF")
-                    if scrollView.contentOffset.y > subview.frame.origin.y + subview.frame.height / 1.5  {
-                        
-                        UIView.animate(withDuration: 0.3, animations: {
-                            subview.alpha = 0
-                            
-                            let smallCircleView = self.customNavigationBar.getSubviewByIdentifier(idenifier: "SmallProgressCircle")?.subviews.first
-                            smallCircleView?.alpha = 1
-                        })
-                        
-                    } else {
-                        UIView.animate(withDuration: 0.3, animations: {
-                            subview.alpha = 1
-                            let smallCircleView = self.customNavigationBar.getSubviewByIdentifier(idenifier: "SmallProgressCircle")?.subviews.first
-                            smallCircleView?.alpha = 0
-                        })
-                    }
-                    
-                } else {
-                    
-                    
-                    if scrollView.contentOffset.y > subview.frame.origin.y + subview.frame.height / 2  { // for other subviews
-                        
-                        UIView.animate(withDuration: 0.3, animations: { // hide subview
-                            subview.alpha = 0
-                        })
-                        
-                    } else {
-                        UIView.animate(withDuration: 0.3, animations: { // show subview
-                            subview.alpha = 1
-                        })
-                    }
-                    
-                }
-                
-               
-            }
-            
-            
         }
     }
     

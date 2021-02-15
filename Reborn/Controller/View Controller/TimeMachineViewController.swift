@@ -34,8 +34,8 @@ class TimeMachineViewController: UIViewController {
         
         goBackToThePastButton.layer.cornerRadius = self.setting.mainButtonCornerRadius
         goBackToThePastButton.setShadow()
-        goBackToThePastButton.setBackgroundColor(UserStyleSetting.themeColor, cornerRadius: goBackToThePastButton.layer.cornerRadius, for: .normal)
-        goBackToThePastButton.setBackgroundColor(.gray, cornerRadius: goBackToThePastButton.layer.cornerRadius, for: .disabled)
+        goBackToThePastButton.setBackgroundColor(UserStyleSetting.themeColor, for: .normal)
+        goBackToThePastButton.setBackgroundColor(.gray, for: .disabled)
  
     }
     
@@ -44,11 +44,10 @@ class TimeMachineViewController: UIViewController {
     }
     
     @IBAction func goBackToThePastButtonPressed(_ sender: UIButton) {
-        let generator = UINotificationFeedbackGenerator()
-        generator.notificationOccurred(.success)
+        
+        Vibrator.vibrate(withNotificationType: .success)
         self.dismiss(animated: true, completion: nil)
     }
-    
 
     public func presentCalendarPages() {
         

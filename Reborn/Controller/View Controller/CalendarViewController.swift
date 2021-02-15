@@ -281,8 +281,7 @@ class CalendarViewController: UIViewController {
     var originalParentViewController: UIViewController? = nil
     
     func presentTimeMachineView() {
-        let generator = UIImpactFeedbackGenerator(style: .medium)
-        generator.impactOccurred()
+        Vibrator.vibrate(withImpactLevel: .medium)
        
         if let toViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TimeMachineViewController") as? TimeMachineViewController {
             

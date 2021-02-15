@@ -53,7 +53,7 @@
 		22AACA1125AD910D0098D920 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AACA1025AD910D0098D920 /* Date.swift */; };
 		22AACA3225AE98B40098D920 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AACA3025AE98B40098D920 /* CalendarViewController.swift */; };
 		22B4B56325D10ACD00C0CFD7 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B4B56225D10ACD00C0CFD7 /* Observer.swift */; };
-		22BABF2425C3ECBA00168AE1 /* TimeMachineCalendarPageBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BABF2325C3ECBA00168AE1 /* TimeMachineCalendarPageBuilder.swift */; };
+		22BABF2425C3ECBA00168AE1 /* TimeMachineCalendarPageViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BABF2325C3ECBA00168AE1 /* TimeMachineCalendarPageViewBuilder.swift */; };
 		22BABF2925C42ABB00168AE1 /* CGAffineTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BABF2825C42ABB00168AE1 /* CGAffineTransform.swift */; };
 		22BC200125D39C0F007D2822 /* OverAllProgressViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BC200025D39C0F007D2822 /* OverAllProgressViewBuilder.swift */; };
 		22BC454525B04ED000516F75 /* CalendarPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BC454425B04ED000516F75 /* CalendarPage.swift */; };
@@ -81,11 +81,12 @@
 		22D6197725A06B7F00EC9396 /* PopUpViewTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6197625A06B7F00EC9396 /* PopUpViewTransitioningDelegate.swift */; };
 		22D7FBA125A18FE5006B1F28 /* DataOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7FBA025A18FE5006B1F28 /* DataOption.swift */; };
 		22D7FBA625A190E9006B1F28 /* SetUpPageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7FBA525A190E9006B1F28 /* SetUpPageData.swift */; };
-		22D7FBB125A1E065006B1F28 /* SetUpPageBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7FBB025A1E065006B1F28 /* SetUpPageBuilder.swift */; };
+		22D7FBB125A1E065006B1F28 /* SetUpPageViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7FBB025A1E065006B1F28 /* SetUpPageViewBuilder.swift */; };
 		22D8A05225CCE1D500A605D6 /* CalendarCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8A05125CCE1D500A605D6 /* CalendarCellType.swift */; };
 		22D8A05725CCE21C00A605D6 /* NewCalendarPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8A05625CCE21C00A605D6 /* NewCalendarPage.swift */; };
 		22D8A05C25CCE24800A605D6 /* CalendarState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8A05B25CCE24800A605D6 /* CalendarState.swift */; };
 		22D8A06725CD13BA00A605D6 /* CalendarCellState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8A06625CD13BA00A605D6 /* CalendarCellState.swift */; };
+		22E069A925D79250006DCE5C /* Vibrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E069A825D79250006DCE5C /* Vibrator.swift */; };
 		22E9A855259ED1B40073D432 /* PikerViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E9A854259ED1B40073D432 /* PikerViewData.swift */; };
 		22E9A875259F33F50073D432 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E9A873259F33F50073D432 /* PopUpViewController.swift */; };
 		22FCB1B5258D86BA006A0D39 /* SetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FCB1B4258D86BA006A0D39 /* SetUpViewController.swift */; };
@@ -165,7 +166,7 @@
 		22AACA1025AD910D0098D920 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		22AACA3025AE98B40098D920 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		22B4B56225D10ACD00C0CFD7 /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
-		22BABF2325C3ECBA00168AE1 /* TimeMachineCalendarPageBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineCalendarPageBuilder.swift; sourceTree = "<group>"; };
+		22BABF2325C3ECBA00168AE1 /* TimeMachineCalendarPageViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineCalendarPageViewBuilder.swift; sourceTree = "<group>"; };
 		22BABF2825C42ABB00168AE1 /* CGAffineTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGAffineTransform.swift; sourceTree = "<group>"; };
 		22BC200025D39C0F007D2822 /* OverAllProgressViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverAllProgressViewBuilder.swift; sourceTree = "<group>"; };
 		22BC454425B04ED000516F75 /* CalendarPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPage.swift; sourceTree = "<group>"; };
@@ -193,11 +194,12 @@
 		22D6197625A06B7F00EC9396 /* PopUpViewTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewTransitioningDelegate.swift; sourceTree = "<group>"; };
 		22D7FBA025A18FE5006B1F28 /* DataOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataOption.swift; sourceTree = "<group>"; };
 		22D7FBA525A190E9006B1F28 /* SetUpPageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpPageData.swift; sourceTree = "<group>"; };
-		22D7FBB025A1E065006B1F28 /* SetUpPageBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpPageBuilder.swift; sourceTree = "<group>"; };
+		22D7FBB025A1E065006B1F28 /* SetUpPageViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpPageViewBuilder.swift; sourceTree = "<group>"; };
 		22D8A05125CCE1D500A605D6 /* CalendarCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellType.swift; sourceTree = "<group>"; };
 		22D8A05625CCE21C00A605D6 /* NewCalendarPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCalendarPage.swift; sourceTree = "<group>"; };
 		22D8A05B25CCE24800A605D6 /* CalendarState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarState.swift; sourceTree = "<group>"; };
 		22D8A06625CD13BA00A605D6 /* CalendarCellState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellState.swift; sourceTree = "<group>"; };
+		22E069A825D79250006DCE5C /* Vibrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibrator.swift; sourceTree = "<group>"; };
 		22E9A854259ED1B40073D432 /* PikerViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PikerViewData.swift; sourceTree = "<group>"; };
 		22E9A873259F33F50073D432 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		22FCB1B4258D86BA006A0D39 /* SetUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewController.swift; sourceTree = "<group>"; };
@@ -243,7 +245,6 @@
 			isa = PBXGroup;
 			children = (
 				220B7280258A288000E4BEDC /* Reborn */,
-				220B72B4258C68FB00E4BEDC /* Model */,
 				220B7297258A288300E4BEDC /* RebornTests */,
 				220B72A2258A288300E4BEDC /* RebornUITests */,
 				220B727F258A288000E4BEDC /* Products */,
@@ -265,11 +266,10 @@
 		220B7280258A288000E4BEDC /* Reborn */ = {
 			isa = PBXGroup;
 			children = (
-				220B7281258A288000E4BEDC /* AppDelegate.swift */,
-				220B72B6258C690B00E4BEDC /* Controller */,
 				220B728F258A288300E4BEDC /* Info.plist */,
+				220B72B6258C690B00E4BEDC /* Controller */,
 				220B72B5258C690400E4BEDC /* View */,
-				220B7283258A288000E4BEDC /* SceneDelegate.swift */,
+				220B72B4258C68FB00E4BEDC /* Model */,
 			);
 			path = Reborn;
 			sourceTree = "<group>";
@@ -295,15 +295,16 @@
 		220B72B4258C68FB00E4BEDC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				22AAD46A25922C06005078B6 /* Manager */,
+				22E0699E25D76F57006DCE5C /* Delegate */,
 				22B4B56125D10A9F00C0CFD7 /* Observer */,
 				22CE4ECB25D0048B007EBD5B /* State */,
 				224E668825C6A75000B71E8A /* Tool */,
 				224E663325C6454100B71E8A /* Strategy */,
-				22AAD46A25922C06005078B6 /* Manager */,
+				224A919025971E0800A896BE /* Builder */,
 				221E0B8625A9A20A00386FE1 /* Enum */,
 				221E0B7A25A9273300386FE1 /* Model */,
 				22C5D987258F646700131964 /* Setting */,
-				224A919025971E0800A896BE /* Builder */,
 				22E9A850259ECDB10073D432 /* Extension */,
 			);
 			path = Model;
@@ -368,8 +369,8 @@
 				224A919125971E9000A896BE /* ItemCardViewBuilder.swift */,
 				22C4BFC225D21F2400528A1C /* ItemDetailViewBuilder.swift */,
 				22A59810259AA31A008E2A06 /* PopUpViewBuilder.swift */,
-				22D7FBB025A1E065006B1F28 /* SetUpPageBuilder.swift */,
-				22BABF2325C3ECBA00168AE1 /* TimeMachineCalendarPageBuilder.swift */,
+				22D7FBB025A1E065006B1F28 /* SetUpPageViewBuilder.swift */,
+				22BABF2325C3ECBA00168AE1 /* TimeMachineCalendarPageViewBuilder.swift */,
 				22BC200025D39C0F007D2822 /* OverAllProgressViewBuilder.swift */,
 			);
 			path = Builder;
@@ -388,6 +389,7 @@
 			isa = PBXGroup;
 			children = (
 				224E668925C6A76600B71E8A /* DateCalculator.swift */,
+				22E069A825D79250006DCE5C /* Vibrator.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -542,6 +544,15 @@
 				220B7285258A288000E4BEDC /* WelcomeViewController.swift */,
 			);
 			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		22E0699E25D76F57006DCE5C /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				220B7283258A288000E4BEDC /* SceneDelegate.swift */,
+				220B7281258A288000E4BEDC /* AppDelegate.swift */,
+			);
+			path = Delegate;
 			sourceTree = "<group>";
 		};
 		22E9A850259ECDB10073D432 /* Extension */ = {
@@ -834,7 +845,7 @@
 				223A777B25A41184004B3324 /* UIView.swift in Sources */,
 				22916DA925BFE34C004A3EC4 /* TimeMachineViewController.swift in Sources */,
 				2246D2E625CA68230001EFB7 /* DismissStrategy.swift in Sources */,
-				22D7FBB125A1E065006B1F28 /* SetUpPageBuilder.swift in Sources */,
+				22D7FBB125A1E065006B1F28 /* SetUpPageViewBuilder.swift in Sources */,
 				22BC4C6825D6A3DB009E905C /* WelcomeTextData.swift in Sources */,
 				22D8A05725CCE21C00A605D6 /* NewCalendarPage.swift in Sources */,
 				22D8A05225CCE1D500A605D6 /* CalendarCellType.swift in Sources */,
@@ -850,6 +861,7 @@
 				22AACA3225AE98B40098D920 /* CalendarViewController.swift in Sources */,
 				22C4BFB825D21E7A00528A1C /* Builder.swift in Sources */,
 				22D6196725A02FE100EC9396 /* PopUpViewDismissAnimationController.swift in Sources */,
+				22E069A925D79250006DCE5C /* Vibrator.swift in Sources */,
 				224E668A25C6A76600B71E8A /* DateCalculator.swift in Sources */,
 				22A2EC6E25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift in Sources */,
 				22A2EC9525CA2AAB00E97787 /* Array.swift in Sources */,
@@ -876,7 +888,7 @@
 				22BC454525B04ED000516F75 /* CalendarPage.swift in Sources */,
 				22C23A14258DC58F00D4BEB2 /* Item.swift in Sources */,
 				22B4B56325D10ACD00C0CFD7 /* Observer.swift in Sources */,
-				22BABF2425C3ECBA00168AE1 /* TimeMachineCalendarPageBuilder.swift in Sources */,
+				22BABF2425C3ECBA00168AE1 /* TimeMachineCalendarPageViewBuilder.swift in Sources */,
 				221E0BA425A9D38100386FE1 /* Image.swift in Sources */,
 				22D354B425A595B7004F5667 /* UserCenterViewController.swift in Sources */,
 				22BABF2925C42ABB00168AE1 /* CGAffineTransform.swift in Sources */,
