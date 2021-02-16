@@ -9,7 +9,11 @@
 import Foundation
 class Item: Codable {
     var name: String
-    var targetDays: Int
+    var targetDays: Int {
+        didSet {
+            self.updateScheduleDates()
+        }
+    }
     var finishedDays: Int
     var creationDate: CustomDate
     var type: ItemType
@@ -17,28 +21,7 @@ class Item: Codable {
     var punchInDates: Array<CustomDate> = []
     var frequency: DataOption {
         didSet{
-            self.scheduleDates.removeAll()
-            var cycle = self.frequency.data ?? 1
-            var interval = 0
-            while self.scheduleDates.count < self.targetDays  {
-  
-                if cycle < self.frequency.data ?? 1 {
-                    
-                    cycle += 1
-                    
-                } else {
-                    
-                    let calendar = Calendar.current
-                    let date = calendar.date(byAdding: .day, value: interval, to: Date())
-                    let components = calendar.dateComponents([.year, .month, .day, .hour], from: date!)
-                    let customDate = CustomDate(year: components.year!, month: components.month!, day: components.day!)
-                    self.scheduleDates.append(customDate)
-                    cycle = 0
-                }
-                
-                interval += 1
-            }
-            print(scheduleDates)
+            self.updateScheduleDates()
         }
     }
     var isPunchedIn: Bool{
@@ -94,6 +77,30 @@ class Item: Codable {
             self.finishedDays -= 1
         }
         
+    }
+    
+    func updateScheduleDates() {
+        self.scheduleDates.removeAll()
+        var cycle = self.frequency.data ?? 1
+        var difference = 0
+        while self.scheduleDates.count < self.targetDays  {
+
+            if cycle < self.frequency.data ?? 1 {
+                
+                cycle += 1
+                
+            } else {
+                
+                let customDate = DateCalculator.calculateDate(withDayDifference: difference, originalDate: self.creationDate)
+                
+                self.scheduleDates.append(customDate)
+                cycle = 0
+            }
+            
+            difference += 1
+        }
+        print(self.creationDate)
+        print(scheduleDates)
     }
     
     

@@ -54,10 +54,10 @@ class TimeMachineCalendarPageViewBuilder {
                 
                 let currentYear = self.calendarViewController.currentCalendarPage.year
                 let currentMonth = self.calendarViewController.currentCalendarPage.month
-                dateLabel.text = "\(DateCalculator(currentYear: currentYear, currentMonth: currentMonth, monthInterval: self.monthDifference).yearResult)年 \(DateCalculator(currentYear: currentYear, currentMonth: currentMonth, monthInterval: self.monthDifference).monthResult)月"
+                let currentDay = self.calendarViewController.currentCalendarPage.days
                 
-                
-                
+                let newDate = DateCalculator.calculateDate(withMonthDifference: self.monthDifference, originalDate: CustomDate(year: currentYear, month: currentMonth, day: currentDay))
+                dateLabel.text = "\(newDate.year)年 \(newDate.month)月"
                 topView.addSubview(dateLabel)
             }
             

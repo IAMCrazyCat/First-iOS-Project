@@ -7,15 +7,23 @@
 
 import Foundation
 class DateCalculator {
-    private var currentYear: Int = 1997
-    private var currentMonth: Int = 4
-    open var monthInterval: Int = 0
-    private var newYear: Int = 2077
-    private var newMonth: Int = 4
     
-    open var monthResult: Int {
-        if monthInterval < 0 {
-            var month = self.currentMonth + self.monthInterval
+    static func calculateMonthDifference(withOriginalDate originalDate: CustomDate, andNewDate newDate: CustomDate) -> Int {
+        
+        let yearDifference = newDate.year - originalDate.year
+        var monthDifference = newDate.month - originalDate.month
+        monthDifference = yearDifference * 12 + monthDifference
+        
+        return monthDifference
+    }
+    
+    
+    static func calculateDate(withMonthDifference value: Int, originalDate: CustomDate) -> CustomDate {
+        var yearResult = 0
+        var monthResult = 0
+
+        if value < 0 {
+            var month = originalDate.month + value
             while month < 0 {
                 month = 12 + month
 
@@ -24,28 +32,26 @@ class DateCalculator {
             if month == 0 {
                 month = 12
             }
-            return month
+            monthResult = month
             
-        } else if monthInterval > 0 {
+        } else if value > 0 {
             
-            var month = monthInterval % 12 + self.currentMonth
+            var month = value % 12 + originalDate.month
             
             if month > 12 {
                 month = month - 12
             }
   
-            return month
+            monthResult = month
             
         } else {
             
-            return currentMonth
+            monthResult = originalDate.month
         }
-    
-    }
-    
-    open var yearResult: Int {
-        if monthInterval < 0 {
-            var month = self.currentMonth + self.monthInterval
+        
+        
+        if value < 0 {
+            var month = originalDate.month + value
             var year = 0
             while month < 0 {
 
@@ -58,46 +64,58 @@ class DateCalculator {
                 year += 1
             }
             
-            year = self.currentYear - year
-            return year
+            year = originalDate.year - year
+            yearResult = year
             
-        } else if monthInterval > 0 {
+        } else if value > 0 {
             
-            let month = monthInterval % 12 + self.currentMonth
+            let month = value % 12 + originalDate.month
             
-            var year = Int(monthInterval / 12) + self.currentYear
+            var year = Int(value / 12) + originalDate.year
             if month > 12 {
                 year += 1
                 
             }
 
-            return year
+            yearResult = year
             
         } else {
             
-            return currentYear
+            yearResult = originalDate.year
         }
-       
-      
-    }
-
-    
-    init(currentYear: Int, currentMonth: Int, monthInterval: Int) {
-        self.currentYear = currentYear
-        self.currentMonth = currentMonth
-        self.monthInterval = monthInterval
-    }
-    
-    init(currentYear: Int, currentMonth: Int, newYear: Int, newMonth: Int) {
-        self.currentYear = currentYear
-        self.currentMonth = currentMonth
-        self.newYear = newYear
-        self.newMonth = newMonth
         
-        let yearInterval = newYear - currentYear
-        self.monthInterval = newMonth - currentMonth
-        self.monthInterval = yearInterval * 12 + self.monthInterval
+        
+        return CustomDate(year: yearResult, month: monthResult, day: originalDate.day)
+        
     }
     
+    static func calculateDate(withDayDifference dayDifference: Int, originalDate: CustomDate) -> CustomDate {
+        
+        let defaultResult = CustomDate(year: 1997, month: 4, day: 9)
+        let calendar = Calendar.current
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy M d"
+        
+        guard let originalDate = dateFormatter.date(from: "\(originalDate.year) \(originalDate.month) \(originalDate.day)"),
+              let nowDate = dateFormatter.date(from: "\(AppEngine.shared.currentDate.year) \(AppEngine.shared.currentDate.month) \(AppEngine.shared.currentDate.day)")
+        else {
+            return defaultResult
+            
+        }
+        
+        let date1 = calendar.startOfDay(for: originalDate)
+        let date2 = calendar.startOfDay(for: nowDate)
+        
+        guard let daysDiffernceBetweenOriginalDateAndNow = calendar.dateComponents([.day], from: date1, to: date2).day
+        else {
+            return defaultResult
+        }
+        
+        let date = calendar.date(byAdding: .day, value: dayDifference - daysDiffernceBetweenOriginalDateAndNow, to: Date())
+        let components = calendar.dateComponents([.year, .month, .day, .hour], from: date!)
+        let dateResult = CustomDate(year: components.year!, month: components.month!, day: components.day!)
+        
+        return dateResult
+    }
     
 }

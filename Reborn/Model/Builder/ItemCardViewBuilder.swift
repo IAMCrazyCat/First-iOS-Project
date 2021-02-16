@@ -84,7 +84,7 @@ class ItemCardViewBuilder: Builder {
         if self.item.scheduleDates.contains(AppEngine.shared.currentDate) {
             outPutView.alpha = 1
         } else {
-            outPutView.alpha = 0.5
+            outPutView.alpha = 0.3
         }
         
 

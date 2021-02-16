@@ -47,6 +47,11 @@ class CalendarViewController: UIViewController {
     public var storedMonthInterval: Int = 0
     public var userDidGo: NewCalendarPage = .noWhere
     public var punchInMakingUpDates: Array<CustomDate> = []
+    
+//    lazy var currentYear = self.currentCalendarPage.year
+//    lazy var currentMonth = self.currentCalendarPage.month
+//    lazy var currentDay = self.currentCalendarPage.days
+    
 
     public var state: CalendarState {
         get {
@@ -61,19 +66,39 @@ class CalendarViewController: UIViewController {
     }
 
     private var lastPageYear: Int {
-        return DateCalculator(currentYear: self.currentCalendarPage.year, currentMonth: self.currentCalendarPage.month, monthInterval: -1).yearResult
+        let currentYear = self.currentCalendarPage.year
+        let currentMonth = self.currentCalendarPage.month
+        let currentDay = self.currentCalendarPage.days
+        let newDate = DateCalculator.calculateDate(withMonthDifference: -1, originalDate: CustomDate(year: currentYear, month: currentMonth, day: currentDay))
+        return newDate.year
+        
     }
     
     private var lastPageMonth: Int {
-        return DateCalculator(currentYear: self.currentCalendarPage.year, currentMonth: self.currentCalendarPage.month, monthInterval: -1).monthResult
+        let currentYear = self.currentCalendarPage.year
+        let currentMonth = self.currentCalendarPage.month
+        let currentDay = self.currentCalendarPage.days
+        let newDate = DateCalculator.calculateDate(withMonthDifference: -1, originalDate: CustomDate(year: currentYear, month: currentMonth, day: currentDay))
+        return newDate.month
+        
     }
     
     private var nextPageYear: Int {
-        return DateCalculator(currentYear: self.currentCalendarPage.year, currentMonth: self.currentCalendarPage.month, monthInterval: 1).yearResult
+        let currentYear = self.currentCalendarPage.year
+        let currentMonth = self.currentCalendarPage.month
+        let currentDay = self.currentCalendarPage.days
+        let newDate = DateCalculator.calculateDate(withMonthDifference: 1, originalDate: CustomDate(year: currentYear, month: currentMonth, day: currentDay))
+        return newDate.year
+
     }
     
     private var nextPageMonth: Int {
-        return DateCalculator(currentYear: self.currentCalendarPage.year, currentMonth: self.currentCalendarPage.month, monthInterval: 1).monthResult
+        let currentYear = self.currentCalendarPage.year
+        let currentMonth = self.currentCalendarPage.month
+        let currentDay = self.currentCalendarPage.days
+        let newDate = DateCalculator.calculateDate(withMonthDifference: 1, originalDate: CustomDate(year: currentYear, month: currentMonth, day: currentDay))
+        return newDate.month
+       
     }
     
 
@@ -168,12 +193,20 @@ class CalendarViewController: UIViewController {
             
             if item != nil {
                 let startDate = self.item!.creationDate
-                self.storedMonthInterval = DateCalculator(currentYear: self.currentCalendarPage.year, currentMonth: self.currentCalendarPage.month, newYear: startDate.year, newMonth: startDate.month).monthInterval
+                let currentYear = self.currentCalendarPage.year
+                let currentMonth = self.currentCalendarPage.month
+                let currentDay = self.currentCalendarPage.days
+                
+                self.storedMonthInterval = DateCalculator.calculateMonthDifference(withOriginalDate: CustomDate(year: currentYear, month: currentMonth, day: currentDay), andNewDate: startDate)
+
                 self.currentCalendarPage = CalendarPage(year: startDate.year, month: startDate.month, punchedInDays: self.getPunchedInDays(pageYear: startDate.year, pageMonth: startDate.month))
             }
         case .thisMonth:
-            
-            self.storedMonthInterval = DateCalculator(currentYear: self.currentCalendarPage.year, currentMonth: self.currentCalendarPage.month, newYear: self.engine.currentDate.year, newMonth: self.engine.currentDate.month).monthInterval
+            let currentYear = self.currentCalendarPage.year
+            let currentMonth = self.currentCalendarPage.month
+            let currentDay = self.currentCalendarPage.days
+            self.storedMonthInterval = DateCalculator.calculateMonthDifference(withOriginalDate: CustomDate(year: currentYear, month: currentMonth, day: currentDay), andNewDate: self.engine.currentDate)
+
             self.currentCalendarPage = CalendarPage(year: self.engine.currentDate.year, month: self.engine.currentDate.month, punchedInDays: self.getPunchedInDays(pageYear: self.engine.currentDate.year, pageMonth: self.engine.currentDate.month))
             
         case .noWhere:

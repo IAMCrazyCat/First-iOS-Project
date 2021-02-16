@@ -42,6 +42,7 @@
 		228ED3E625B94D630054591F /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228ED3E525B94D630054591F /* CalendarCell.swift */; };
 		22916DA925BFE34C004A3EC4 /* TimeMachineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22916DA825BFE34C004A3EC4 /* TimeMachineViewController.swift */; };
 		22916DB525C05F0D004A3EC4 /* PresentTimeMachineSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22916DB425C05F0D004A3EC4 /* PresentTimeMachineSegue.swift */; };
+		2293F38625DB7C18009B4753 /* ItemManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2293F38525DB7C18009B4753 /* ItemManagementViewController.swift */; };
 		22A2EC6E25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A2EC6D25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift */; };
 		22A2EC7925C9862A00E97787 /* TimeMachineViewPresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A2EC7825C9862A00E97787 /* TimeMachineViewPresentAnimationController.swift */; };
 		22A2EC8425C9868C00E97787 /* TimeMachineViewDismissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A2EC8325C9868C00E97787 /* TimeMachineViewDismissAnimationController.swift */; };
@@ -155,6 +156,7 @@
 		228ED3E525B94D630054591F /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		22916DA825BFE34C004A3EC4 /* TimeMachineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineViewController.swift; sourceTree = "<group>"; };
 		22916DB425C05F0D004A3EC4 /* PresentTimeMachineSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentTimeMachineSegue.swift; sourceTree = "<group>"; };
+		2293F38525DB7C18009B4753 /* ItemManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemManagementViewController.swift; sourceTree = "<group>"; };
 		22A2EC6D25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineTransitioningDelegate.swift; sourceTree = "<group>"; };
 		22A2EC7825C9862A00E97787 /* TimeMachineViewPresentAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineViewPresentAnimationController.swift; sourceTree = "<group>"; };
 		22A2EC8325C9868C00E97787 /* TimeMachineViewDismissAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineViewDismissAnimationController.swift; sourceTree = "<group>"; };
@@ -542,6 +544,7 @@
 				22916DA825BFE34C004A3EC4 /* TimeMachineViewController.swift */,
 				22D354B325A595B7004F5667 /* UserCenterViewController.swift */,
 				220B7285258A288000E4BEDC /* WelcomeViewController.swift */,
+				2293F38525DB7C18009B4753 /* ItemManagementViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -844,6 +847,7 @@
 				22BC200125D39C0F007D2822 /* OverAllProgressViewBuilder.swift in Sources */,
 				223A777B25A41184004B3324 /* UIView.swift in Sources */,
 				22916DA925BFE34C004A3EC4 /* TimeMachineViewController.swift in Sources */,
+				2293F38625DB7C18009B4753 /* ItemManagementViewController.swift in Sources */,
 				2246D2E625CA68230001EFB7 /* DismissStrategy.swift in Sources */,
 				22D7FBB125A1E065006B1F28 /* SetUpPageViewBuilder.swift in Sources */,
 				22BC4C6825D6A3DB009E905C /* WelcomeTextData.swift in Sources */,
