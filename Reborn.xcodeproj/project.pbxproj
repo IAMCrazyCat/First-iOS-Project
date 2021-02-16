@@ -43,6 +43,8 @@
 		22916DA925BFE34C004A3EC4 /* TimeMachineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22916DA825BFE34C004A3EC4 /* TimeMachineViewController.swift */; };
 		22916DB525C05F0D004A3EC4 /* PresentTimeMachineSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22916DB425C05F0D004A3EC4 /* PresentTimeMachineSegue.swift */; };
 		2293F38625DB7C18009B4753 /* ItemManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2293F38525DB7C18009B4753 /* ItemManagementViewController.swift */; };
+		2293F39725DC004E009B4753 /* UISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2293F39625DC004E009B4753 /* UISegmentedControl.swift */; };
+		2293F39C25DC00CE009B4753 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2293F39B25DC00CE009B4753 /* UIImage.swift */; };
 		22A2EC6E25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A2EC6D25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift */; };
 		22A2EC7925C9862A00E97787 /* TimeMachineViewPresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A2EC7825C9862A00E97787 /* TimeMachineViewPresentAnimationController.swift */; };
 		22A2EC8425C9868C00E97787 /* TimeMachineViewDismissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A2EC8325C9868C00E97787 /* TimeMachineViewDismissAnimationController.swift */; };
@@ -157,6 +159,8 @@
 		22916DA825BFE34C004A3EC4 /* TimeMachineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineViewController.swift; sourceTree = "<group>"; };
 		22916DB425C05F0D004A3EC4 /* PresentTimeMachineSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentTimeMachineSegue.swift; sourceTree = "<group>"; };
 		2293F38525DB7C18009B4753 /* ItemManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemManagementViewController.swift; sourceTree = "<group>"; };
+		2293F39625DC004E009B4753 /* UISegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentedControl.swift; sourceTree = "<group>"; };
+		2293F39B25DC00CE009B4753 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		22A2EC6D25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineTransitioningDelegate.swift; sourceTree = "<group>"; };
 		22A2EC7825C9862A00E97787 /* TimeMachineViewPresentAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineViewPresentAnimationController.swift; sourceTree = "<group>"; };
 		22A2EC8325C9868C00E97787 /* TimeMachineViewDismissAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineViewDismissAnimationController.swift; sourceTree = "<group>"; };
@@ -570,6 +574,8 @@
 				22AACA1025AD910D0098D920 /* Date.swift */,
 				22BABF2825C42ABB00168AE1 /* CGAffineTransform.swift */,
 				22A2EC9425CA2AAB00E97787 /* Array.swift */,
+				2293F39625DC004E009B4753 /* UISegmentedControl.swift */,
+				2293F39B25DC00CE009B4753 /* UIImage.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -868,6 +874,7 @@
 				22E069A925D79250006DCE5C /* Vibrator.swift in Sources */,
 				224E668A25C6A76600B71E8A /* DateCalculator.swift in Sources */,
 				22A2EC6E25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift in Sources */,
+				2293F39C25DC00CE009B4753 /* UIImage.swift in Sources */,
 				22A2EC9525CA2AAB00E97787 /* Array.swift in Sources */,
 				22AACA1125AD910D0098D920 /* Date.swift in Sources */,
 				22CE4ED925D00AE3007EBD5B /* NewItemViewStrategy.swift in Sources */,
@@ -913,6 +920,7 @@
 				22D7FBA125A18FE5006B1F28 /* DataOption.swift in Sources */,
 				2246D2F325CAD9F70001EFB7 /* GoBackToThePastStrategy.swift in Sources */,
 				22D6197725A06B7F00EC9396 /* PopUpViewTransitioningDelegate.swift in Sources */,
+				2293F39725DC004E009B4753 /* UISegmentedControl.swift in Sources */,
 				22BC455025B1C92100516F75 /* CustomDate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

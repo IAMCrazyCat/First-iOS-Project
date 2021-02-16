@@ -286,7 +286,7 @@ Cg
             <objects>
                 <viewController id="yhk-VJ-4nb" customClass="NewItemViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5tU-dT-BVc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eis-9Y-9bk" userLabel="Middle Scroll View">
@@ -1592,56 +1592,24 @@ Cg
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lt5-gF-RX7" userLabel="Option Bar">
                                 <rect key="frame" x="0.0" y="100" width="375" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gIx-cS-tSe">
-                                        <rect key="frame" x="15" y="10" width="62" height="30"/>
-                                        <state key="normal" title="所有项目">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="optionButtonPressed:" destination="7qU-RC-e4u" eventType="touchUpInside" id="A2c-xb-smP"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0eD-1E-DtE">
-                                        <rect key="frame" x="97" y="10" width="62" height="30"/>
-                                        <state key="normal" title="今日计划">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="optionButtonPressed:" destination="7qU-RC-e4u" eventType="touchUpInside" id="7Sf-V1-Kgh"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8AT-hW-CDb">
-                                        <rect key="frame" x="179" y="10" width="46" height="30"/>
-                                        <state key="normal" title="已完成">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="optionButtonPressed:" destination="7qU-RC-e4u" eventType="touchUpInside" id="duL-kT-D6O"/>
-                                        </connections>
-                                    </button>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BEN-RE-GRN">
-                                        <rect key="frame" x="262" y="12" width="66" height="27"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="mH9-Nw-pG6">
-                                        <rect key="frame" x="46" y="25" width="131" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="mH9-Nw-pG6">
+                                        <rect key="frame" x="15" y="9.6666666666666714" width="218" height="32"/>
                                         <segments>
-                                            <segment title="First"/>
-                                            <segment title="Second"/>
+                                            <segment title="全部项目"/>
+                                            <segment title="今日打卡"/>
+                                            <segment title="已完成"/>
                                         </segments>
+                                        <color key="selectedSegmentTintColor" name="WhiteAndBlack"/>
+                                        <connections>
+                                            <action selector="optionButtonPressed:" destination="7qU-RC-e4u" eventType="valueChanged" id="Mej-dU-bIH"/>
+                                        </connections>
                                     </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 <constraints>
-                                    <constraint firstItem="gIx-cS-tSe" firstAttribute="leading" secondItem="Lt5-gF-RX7" secondAttribute="leading" constant="15" id="6na-gd-v2D"/>
-                                    <constraint firstItem="0eD-1E-DtE" firstAttribute="leading" secondItem="gIx-cS-tSe" secondAttribute="trailing" constant="20" id="Hl6-Jr-hxE"/>
+                                    <constraint firstItem="mH9-Nw-pG6" firstAttribute="leading" secondItem="Lt5-gF-RX7" secondAttribute="leading" constant="15" id="Jpm-4f-LpJ"/>
                                     <constraint firstAttribute="height" constant="50" id="Skc-cN-Iws"/>
-                                    <constraint firstItem="8AT-hW-CDb" firstAttribute="centerY" secondItem="Lt5-gF-RX7" secondAttribute="centerY" id="T7Z-Sh-30b"/>
-                                    <constraint firstItem="8AT-hW-CDb" firstAttribute="leading" secondItem="0eD-1E-DtE" secondAttribute="trailing" constant="20" id="UoL-sv-jp8"/>
-                                    <constraint firstItem="gIx-cS-tSe" firstAttribute="centerY" secondItem="Lt5-gF-RX7" secondAttribute="centerY" id="odB-WE-Xui"/>
-                                    <constraint firstItem="0eD-1E-DtE" firstAttribute="centerY" secondItem="Lt5-gF-RX7" secondAttribute="centerY" id="p1u-yN-eJr"/>
+                                    <constraint firstItem="mH9-Nw-pG6" firstAttribute="centerY" secondItem="Lt5-gF-RX7" secondAttribute="centerY" id="Y9X-xt-PD2"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1662,12 +1630,9 @@ Cg
                     </view>
                     <navigationItem key="navigationItem" id="TpJ-5e-ah0"/>
                     <connections>
-                        <outlet property="allItemsButton" destination="gIx-cS-tSe" id="e0X-Bf-Agx"/>
-                        <outlet property="finishedItemsButton" destination="8AT-hW-CDb" id="AXN-6R-AzU"/>
                         <outlet property="horizentalScrollView" destination="UBE-Ka-utv" id="1kz-Ug-Iyl"/>
                         <outlet property="optionBar" destination="Lt5-gF-RX7" id="IHe-zO-fda"/>
-                        <outlet property="optionBarSlider" destination="BEN-RE-GRN" id="Hds-21-j3j"/>
-                        <outlet property="todayItemsButton" destination="0eD-1E-DtE" id="abQ-Lz-ymL"/>
+                        <outlet property="segmentedControl" destination="mH9-Nw-pG6" id="I2h-VE-h0R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bof-g5-eiZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
