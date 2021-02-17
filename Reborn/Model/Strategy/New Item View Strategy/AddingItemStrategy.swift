@@ -38,6 +38,7 @@ class AddingItemStrategy: NewItemViewStrategy {
         } else {
             
             isRedyToDismiss = false
+            print("SHAKE")
             newItemViewController.preViewItemCard.shake()
         }
         
@@ -51,7 +52,7 @@ class AddingItemStrategy: NewItemViewStrategy {
         if isRedyToDismiss() {
             newItemViewController.engine.addItem(newItem: newItemViewController.item)
             newItemViewController.dismiss(animated: true) {
-                self.newItemViewController.engine.notigyAllObservers()
+                self.newItemViewController.engine.notifyAllObservers()
         }
        
         }

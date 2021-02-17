@@ -6,7 +6,7 @@
 //
 
 import Foundation
-enum ItemCardsType {
+enum RenderingType {
     case allItems
     case todayItems
     case breakDayItems

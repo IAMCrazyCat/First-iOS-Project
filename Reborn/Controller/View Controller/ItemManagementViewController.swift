@@ -13,6 +13,9 @@ class ItemManagementViewController: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     @IBOutlet weak var horizentalScrollView: UIScrollView!
+    @IBOutlet weak var firstVerticalContentView: UIView!
+    @IBOutlet weak var secondVerticalContentView: UIView!
+    @IBOutlet weak var thirdVerticalContentView: UIView!
     
     let setting: SystemStyleSetting = SystemStyleSetting.shared
     let engine: AppEngine = AppEngine.shared
@@ -27,7 +30,13 @@ class ItemManagementViewController: UIViewController {
         UISegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UserStyleSetting.themeColor], for: .selected)
         UISegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
         
-        //segmentedControl.setSegmentStyle(normalColor: UIColor.white, selectedColor: UserStyleSetting.themeColor, dividerColor: UIColor.clear)
+        engine.registerObserver(observer: self)
+
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        updateUI()
     }
 
     @IBAction func optionButtonPressed(_ sender: AnyObject) {
@@ -36,24 +45,31 @@ class ItemManagementViewController: UIViewController {
         updateUI()
     }
     
-    func updateSliderPosition() {
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
-        
-            //self.optionBarSlider.frame = self.selectedButton.frame
-        }) { _ in
-//            self.selectedButton.setTitleColor(.black, for: .normal)
-        }
+    func updateFirstVerticalContentView() {
+        firstVerticalContentView.removeAllSubviews()
+        firstVerticalContentView.renderItemCards(for: .allItems)
     }
+    
+    func updateSecondVerticalContentView() {
+        secondVerticalContentView.removeAllSubviews()
+        secondVerticalContentView.renderItemCards(for: .todayItems)
+    }
+    
+    func updateThirdVerticalContentView() {
+        thirdVerticalContentView.removeAllSubviews()
+        thirdVerticalContentView.renderItemCards(for: .finishedItems)
+    }
+    
+  
     
 }
 
 extension ItemManagementViewController: Observer {
     func updateUI() {
         
-        
-        
-        updateSliderPosition()
-        
+        updateFirstVerticalContentView()
+        updateSecondVerticalContentView()
+        updateThirdVerticalContentView()
     }
     
 }

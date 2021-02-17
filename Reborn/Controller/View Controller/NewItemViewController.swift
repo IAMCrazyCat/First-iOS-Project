@@ -56,7 +56,7 @@ class NewItemViewController: UIViewController {
     var lastSelectedButton: UIButton? = nil
     var item: Item = Item(name: "(项目名)", days: 1, finishedDays: 0, frequency: DataOption(title: "", data: 1), creationDate: AppEngine.shared.currentDate, type: .undefined)
     var preViewItemCard: UIView = UIView()
-    var UIStrategy: NewItemViewStrategy? = nil
+    var strategy: NewItemViewStrategy? = nil
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,7 +86,7 @@ class NewItemViewController: UIViewController {
         bottomScrollViewContentViewHeightConstraint.constant = secondInstructionLabel.frame.origin.y + 40
         
         
-        self.UIStrategy?.initializeUI()
+        self.strategy?.initializeUI()
         self.updateUI()
         
     }
@@ -124,7 +124,7 @@ class NewItemViewController: UIViewController {
         self.selectButton()
         if sender.tag == self.setting.customTargetDaysButtonTag {
             
-            self.UIStrategy?.showPopUp(popUpType: .customTargetDays)
+            self.strategy?.showPopUp(popUpType: .customTargetDays)
             
         } else {
             self.item.targetDays = sender.getData() ?? 1
@@ -158,7 +158,7 @@ class NewItemViewController: UIViewController {
         self.updateUI()
         
         if sender.tag == self.setting.customFrequencyButtonTag {
-            self.UIStrategy?.showPopUp(popUpType: .customFrequency)
+            self.strategy?.showPopUp(popUpType: .customFrequency)
         }
     }
     
@@ -169,7 +169,7 @@ class NewItemViewController: UIViewController {
     }
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
-        self.UIStrategy?.doneButtonPressed(sender)
+        self.strategy?.doneButtonPressed(sender)
     }
     
     func updateInstructionLabels() {
@@ -258,19 +258,10 @@ class NewItemViewController: UIViewController {
     
     func updatePreViewItemCard() {
         self.view.layoutIfNeeded()
-        let witdh: CGFloat =  self.setting.screenFrame.width - 2 * self.setting.mainPadding
-        let height: CGFloat = self.setting.itemCardHeight
-        let cordinateX: CGFloat = self.middleContentView.frame.width / 2 - witdh / 2
-        let cordinateY: CGFloat = self.middleContentView.frame.height / 2 - height / 2
-        
-        let builder = ItemCardViewBuilder(item: self.item, frame: CGRect(x: cordinateX, y: cordinateY, width: witdh, height: height), isInteractable: false)
-  
-        Vibrator.vibrate(withImpactLevel: .light)
-        
-        self.preViewItemCard = builder.buildView()
+        self.middleContentView.renderItemCard(by: self.item)
         self.previewItemCardTag = self.preViewItemCard.tag
- 
-        self.middleContentView.addSubview(self.preViewItemCard)
+        self.preViewItemCard = self.middleContentView.subviews.first!
+        Vibrator.vibrate(withImpactLevel: .light)
     }
     
     func excuteItemCardAimation() {
@@ -315,7 +306,7 @@ extension NewItemViewController: PopUpViewDelegate { // Delegate extension
         if self.lastSelectedButton?.tag == setting.customTargetDaysButtonTag {
             
             guard let selectedData = (self.engine.getStoredDataFromPopUpView() as? DataOption) else { return }
-            
+            print(selectedData)
             self.selectedTargetDaysButton?.setTitle(selectedData.title, for: .normal)
             self.item.targetDays = selectedData.data ?? 1
             

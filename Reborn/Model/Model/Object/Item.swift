@@ -19,6 +19,7 @@ class Item: Codable {
     var type: ItemType
     var scheduleDates: Array<CustomDate> = []
     var punchInDates: Array<CustomDate> = []
+    var state: ItemState = .inProgress
     var frequency: DataOption {
         didSet{
             self.updateScheduleDates()
@@ -54,12 +55,24 @@ class Item: Codable {
         self.creationDate = creationDate
         self.type = type
         self.frequency = frequency
+        updateState()
+    }
+    
+    func updateState() {
         
+        if self.finishedDays == self.targetDays {
+            self.state = .finished
+        } else if self.scheduleDates.contains(AppEngine.shared.currentDate) {
+            self.state = .inProgress
+        } else {
+            self.state = .duringBreak
+        }
     }
     
     func punchIn(punchInDate: CustomDate) {
         self.punchInDates.append(punchInDate)
         self.finishedDays += 1
+        updateState()
     }
     
     
@@ -76,6 +89,7 @@ class Item: Codable {
 
             self.finishedDays -= 1
         }
+        updateState()
         
     }
     
@@ -99,8 +113,7 @@ class Item: Codable {
             
             difference += 1
         }
-        print(self.creationDate)
-        print(scheduleDates)
+        updateState()
     }
     
     

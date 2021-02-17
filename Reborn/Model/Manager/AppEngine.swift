@@ -168,7 +168,8 @@ class AppEngine {
         self.observers.append(observer)
     }
     
-    public func notigyAllObservers() {
+    public func notifyAllObservers() {
+        print("All Observer nofified")
         for observer in self.observers {
             observer.updateUI()
         }
@@ -206,7 +207,7 @@ class AppEngine {
     }
  
     public func dismissBottomPopUpWithoutSave(controller: PopUpViewController) {
-        delegate?.didDismissPopUpViewWithoutSave()
+        self.delegate?.didDismissPopUpViewWithoutSave()
         controller.dismiss(animated: true, completion: nil)
         
     }

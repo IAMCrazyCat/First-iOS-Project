@@ -1470,7 +1470,7 @@ Cg
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fa7-Ai-ARm" userLabel="First Vertical Content View">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
-                                                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="800" id="gsG-lR-FaB"/>
                                                         </constraints>
@@ -1491,7 +1491,7 @@ Cg
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Edx-hh-Fmd" userLabel="Second Verticsal Content View">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
-                                                        <color key="backgroundColor" systemColor="systemRedColor"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="800" id="Y33-oF-6Al"/>
                                                         </constraints>
@@ -1512,7 +1512,7 @@ Cg
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bOq-9f-5eq" userLabel="Third Vertical Content View">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
-                                                        <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="800" id="Ioo-eM-l29"/>
                                                         </constraints>
@@ -1605,7 +1605,7 @@ Cg
                                         </connections>
                                     </segmentedControl>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <color key="backgroundColor" name="ThemeColor"/>
                                 <constraints>
                                     <constraint firstItem="mH9-Nw-pG6" firstAttribute="leading" secondItem="Lt5-gF-RX7" secondAttribute="leading" constant="15" id="Jpm-4f-LpJ"/>
                                     <constraint firstAttribute="height" constant="50" id="Skc-cN-Iws"/>
@@ -1630,9 +1630,12 @@ Cg
                     </view>
                     <navigationItem key="navigationItem" id="TpJ-5e-ah0"/>
                     <connections>
+                        <outlet property="firstVerticalContentView" destination="fa7-Ai-ARm" id="YtV-m6-xfH"/>
                         <outlet property="horizentalScrollView" destination="UBE-Ka-utv" id="1kz-Ug-Iyl"/>
                         <outlet property="optionBar" destination="Lt5-gF-RX7" id="IHe-zO-fda"/>
+                        <outlet property="secondVerticalContentView" destination="Edx-hh-Fmd" id="QLV-R8-TS7"/>
                         <outlet property="segmentedControl" destination="mH9-Nw-pG6" id="I2h-VE-h0R"/>
+                        <outlet property="thirdVerticalContentView" destination="bOq-9f-5eq" id="YQB-kA-Erq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bof-g5-eiZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2239,9 +2242,6 @@ Cg
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemPurpleColor">
-            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

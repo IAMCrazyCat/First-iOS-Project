@@ -113,7 +113,7 @@ class EditingItemStrategy: NewItemViewStrategy {
         if isRedyToDismiss() {
             newItemViewController.engine.saveUser(newItemViewController.engine.currentUser)
             newItemViewController.dismiss(animated: true) {
-                self.newItemViewController.engine.notigyAllObservers()
+                self.newItemViewController.engine.notifyAllObservers()
             }
         }
     }

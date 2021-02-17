@@ -39,10 +39,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for i in 0 ... 100 {
-            engine.addItem(newItem: Item(name: "TEST", days: 730, finishedDays: 0, frequency: DataOption(title: "TEST", data: 1), creationDate: engine.currentDate, type: .persisting))
-        }
-        
         
         engine.registerObserver(observer: self)
         persistingItemsViewPromptLabel.sizeToFit()
@@ -155,7 +151,7 @@ class HomeViewController: UIViewController {
             destinationViewController.item = item
         } else if let destinationViewController = segue.destination as? NewItemViewController, segue.identifier == "GoToNewItemView" {
             
-            destinationViewController.UIStrategy = AddingItemStrategy(newItemViewController: destinationViewController)
+            destinationViewController.strategy = AddingItemStrategy(newItemViewController: destinationViewController)
         }
         
     }
@@ -180,13 +176,7 @@ class HomeViewController: UIViewController {
         
     }
     
-//    func removeOriginalCircle() {
-//        for subLayer in overallProgressView.layer.sublayers! {
-//            if subLayer is CAShapeLayer {
-//                subLayer.removeFromSuperlayer()
-//            }
-//        }
-//    }
+
     
     func firstAccessIntialize() {
         verticalScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
@@ -197,11 +187,10 @@ class HomeViewController: UIViewController {
         }
     }
     
-    lazy var itemCardAction = ItemCardAction.shared
-    
-    func loadItemCards() {
 
-            
+    func updateItemCards() {
+
+        removeAllItemCards()
         var persistingCordinateY: CGFloat = 0
         var quittingCordinateY: CGFloat = 0
         
@@ -280,10 +269,7 @@ class HomeViewController: UIViewController {
         circleView.center.y = self.addNewItemButton.center.y
         circleView.accessibilityIdentifier = "SmallProgressCircle"
         self.customNavigationBar.addSubview(circleView)
-
-        for subview in overallProgressView.subviews {
-            subview.removeFromSuperview()
-        }
+        self.overallProgressView.removeAllSubviews()
         
         builder = OverAllProgressViewBuilder(avatarImage: self.engine.currentUser.getAvatarImage(), progress: self.engine.getOverAllProgress(), frame: self.overallProgressView.bounds)
         let overAllProgressView = builder.buildView()
@@ -297,8 +283,8 @@ class HomeViewController: UIViewController {
     func updateUI() {
         
         updateNavigationBar()
-        removeAllItemCards()
-        loadItemCards()
+       
+        updateItemCards()
         
     }
         

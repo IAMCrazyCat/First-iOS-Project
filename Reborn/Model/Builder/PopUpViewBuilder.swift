@@ -95,7 +95,7 @@ class PopUpViewBuilder: Builder {
    
         cancelButton.setBackgroundImage(#imageLiteral(resourceName: "CancelButton"), for: .normal)
         cancelButton.tag = 2
-        cancelButton.addTarget(self, action: #selector(popUpViewController?.cancelButtonPressed(_:)), for: .touchDown)
+        cancelButton.addTarget(popUpViewController, action: #selector(popUpViewController?.cancelButtonPressed(_:)), for: .touchDown)
         self.outPutView.addSubview(cancelButton)
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
@@ -112,7 +112,7 @@ class PopUpViewBuilder: Builder {
         doneButton.setTitle("确定", for: .normal)
         doneButton.layer.cornerRadius = self.setting.mainButtonCornerRadius
         doneButton.tag = setting.popUpWindowDoneButtonTag
-        doneButton.addTarget(self, action: #selector(popUpViewController?.doneButtonPressed(_:)), for: .touchDown)
+        doneButton.addTarget(popUpViewController, action: #selector(popUpViewController?.doneButtonPressed(_:)), for: .touchDown)
         self.outPutView.addSubview(doneButton)
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         doneButton.bottomAnchor.constraint(equalTo: self.outPutView.bottomAnchor, constant: -self.setting.mainDistance - 20).isActive = true
@@ -198,7 +198,7 @@ class PopUpViewBuilder: Builder {
         textField.layer.cornerRadius = self.setting.textFieldCornerRadius
         textField.placeholder = "  请输入自定义名字"
         textField.tag = self.setting.popUpWindowTextFieldTag
-        textField.addTarget(self, action: #selector(popUpViewController?.textFieldTapped(_:)), for: .touchDown)
+        textField.addTarget(popUpViewController, action: #selector(popUpViewController?.textFieldTapped(_:)), for: .touchDown)
         
         self.outPutView.addSubview(textField)
         textField.translatesAutoresizingMaskIntoConstraints = false

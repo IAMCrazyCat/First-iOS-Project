@@ -22,11 +22,12 @@ class ItemCardAction {
     @objc func itemPunchInButtonPressed(_ sender: UIButton!) {
         print("TEST")
         AppEngine.shared.updateItem(tag: sender.tag)
-        AppEngine.shared.notigyAllObservers()
+        AppEngine.shared.notifyAllObservers()
         //self.updateUI()
     }
     
     @objc func itemDetailsButtonPressed(_ sender: UIButton!) {
+        
         //self.performSegue(withIdentifier: "GoToItemDetailView", sender: sender)
     }
 }

@@ -72,7 +72,7 @@ class ItemDetailViewController: UIViewController {
         } else if segue.identifier == "GoToEditItemView", let destinationViewController = segue.destination as? NewItemViewController {
 
             destinationViewController.item = self.item!
-            destinationViewController.UIStrategy = EditingItemStrategy(newItemViewController: destinationViewController)
+            destinationViewController.strategy = EditingItemStrategy(newItemViewController: destinationViewController)
         }
         
         
@@ -88,7 +88,7 @@ extension ItemDetailViewController: Observer {
             let builder = ItemDetailViewBuilder(item: item!, width: self.mediumView.frame.width, height: self.setting.itemDetailsViewHeight, cordinateX: 0, cordinateY: 0)
             let detailsView = builder.buildView()
             self.progressView.addSubview(detailsView)
-            print(detailsView)
+            
         }
         
         self.finishedDayLabel.text = "\(String(self.item?.finishedDays ?? -1)) 天"

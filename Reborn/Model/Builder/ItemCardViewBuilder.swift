@@ -62,12 +62,12 @@ class ItemCardViewBuilder: Builder {
         outPutView.setShadow()
         outPutView.frame = CGRect(x: cordinateX, y: cordinateY, width: width, height: height)
         
-        if self.item.scheduleDates.contains(AppEngine.shared.currentDate) {
-            outPutView.alpha = 1
-        } else {
-            outPutView.alpha = 0.3
-        }
-        
+//        if self.item.state == .inProgress {
+//            outPutView.alpha = 1
+//        } else {
+//            outPutView.alpha = 0.3
+//        }
+//        
 
     }
     
@@ -146,7 +146,6 @@ class ItemCardViewBuilder: Builder {
         fullViewButton.frame = CGRect(x: 0, y: 0, width: self.outPutView.frame.width, height: self.outPutView.frame.height)
         fullViewButton.layer.zPosition = 2
         fullViewButton.tag = self.punchInButtonTag
-        print("DetailsButtonAdded, item: \(item)")
         
         if isInteractable {
             fullViewButton.addTarget(ItemCardAction.shared, action: ItemCardAction.shared.detailsViewAction, for: .touchDown)

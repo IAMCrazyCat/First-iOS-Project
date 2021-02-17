@@ -30,6 +30,7 @@ extension UIView {
         animation.duration = duration // You can set fix duration
         animation.values = values  // You can set fix values here also
         self.layer.add(animation, forKey: "shake")
+        
     }
     
     func addConfettiEffect() {
@@ -52,27 +53,96 @@ extension UIView {
         return subviewByEdentifier
     }
     
-    func renderItemCards(for type: ItemCardsType) {
-        
-        var items = AppEngine.shared.currentUser.items
+    func removeAllSubviews() {
+        for subview in self.subviews {
+            subview.removeFromSuperview()
+        }
+    }
+    
+    func renderItemCard(by item: Item) {
+        let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: 0, y: 0, width: self.frame.width - 2 * SystemStyleSetting.shared.mainPadding, height: SystemStyleSetting.shared.itemCardHeight), isInteractable: false)
+        let itemCard = builder.buildView()
+        itemCard.center = self.center
+        self.addSubview(itemCard)
+    }
+    
+    func renderItemCards(for type: RenderingType) {
         
         switch type {
         case .allItems:
-            var tag = items.count - 1
-            
-            while tag <= items.count {
-                let item = items[tag]
-//                let builder = ItemCardViewBuilder(item: item, width: self.frame.width - 2 * SystemStyleSetting.shared.mainPadding, height: SystemStyleSetting.shared.itemCardHeight, corninateX: <#T##CGFloat#>, cordinateY: <#T##CGFloat#>, punchInButtonTag: tag, punchInButtonAction: <#T##Selector#>, detailsButtonAction: <#T##Selector#>)
-                tag -= 1
-            }
-            
+            self.renderAllItems()
         case .todayItems:
-            break
+            self.renderTodayItems()
         case .breakDayItems:
-            break
+            self.renderBreakDayItems()
         case .finishedItems:
-            break
+            self.renderFinishedItems()
         }
     }
+    
+   
+    
+    private func renderAllItems() {
+        
+        let items = AppEngine.shared.currentUser.items
+        var tag: Int = items.count - 1
+        var cordinateY: CGFloat = SystemStyleSetting.shared.mainPadding
+
+        while tag >= 0 {
+            
+            let item = items[tag]
+            let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: SystemStyleSetting.shared.mainPadding, y: cordinateY, width: self.frame.width - 2 * SystemStyleSetting.shared.mainPadding, height: SystemStyleSetting.shared.itemCardHeight), punchInButtonTag: tag, isInteractable: true)
+            let itemCard = builder.buildView()
+            cordinateY += SystemStyleSetting.shared.itemCardHeight + SystemStyleSetting.shared.itemCardGap
+            self.addSubview(itemCard)
+            
+            tag -= 1
+        }
+    }
+    
+    private func renderTodayItems() {
+        let items = AppEngine.shared.currentUser.items
+        var tag: Int = items.count - 1
+        var cordinateY: CGFloat = SystemStyleSetting.shared.mainPadding
+
+        while tag >= 0 {
+            
+            let item = items[tag]
+            if item.state == .inProgress {
+                let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: SystemStyleSetting.shared.mainPadding, y: cordinateY, width: self.frame.width - 2 * SystemStyleSetting.shared.mainPadding, height: SystemStyleSetting.shared.itemCardHeight), punchInButtonTag: tag, isInteractable: true)
+                let itemCard = builder.buildView()
+                cordinateY += SystemStyleSetting.shared.itemCardHeight + SystemStyleSetting.shared.itemCardGap
+                self.addSubview(itemCard)
+            }
+            
+            
+            tag -= 1
+        }
+    }
+    
+    private func renderBreakDayItems() {
+        
+    }
+    
+    private func renderFinishedItems() {
+        let items = AppEngine.shared.currentUser.items
+        var tag: Int = items.count - 1
+        var cordinateY: CGFloat = SystemStyleSetting.shared.mainPadding
+
+        while tag >= 0 {
+            
+            let item = items[tag]
+            if item.state == .finished {
+                let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: SystemStyleSetting.shared.mainPadding, y: cordinateY, width: self.frame.width - 2 * SystemStyleSetting.shared.mainPadding, height: SystemStyleSetting.shared.itemCardHeight), punchInButtonTag: tag, isInteractable: true)
+                let itemCard = builder.buildView()
+                cordinateY += SystemStyleSetting.shared.itemCardHeight + SystemStyleSetting.shared.itemCardGap
+                self.addSubview(itemCard)
+            }
+            
+            
+            tag -= 1
+        }
+    }
+
     
 }
