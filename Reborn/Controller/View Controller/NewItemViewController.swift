@@ -263,7 +263,7 @@ class NewItemViewController: UIViewController {
         let cordinateX: CGFloat = self.middleContentView.frame.width / 2 - witdh / 2
         let cordinateY: CGFloat = self.middleContentView.frame.height / 2 - height / 2
         
-        let builder = ItemCardViewBuilder(item: self.item, width: witdh, height: height, cordinateX: cordinateX, cordinateY: cordinateY)
+        let builder = ItemCardViewBuilder(item: self.item, frame: CGRect(x: cordinateX, y: cordinateY, width: witdh, height: height), isInteractable: false)
   
         Vibrator.vibrate(withImpactLevel: .light)
         

@@ -34,11 +34,17 @@ class HomeViewController: UIViewController {
     let dateFormatter = DateFormatter()
     let engine = AppEngine.shared
     var keyboardFrame: CGRect? = nil
-
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
         
+        for i in 0 ... 100 {
+            engine.addItem(newItem: Item(name: "TEST", days: 730, finishedDays: 0, frequency: DataOption(title: "TEST", data: 1), creationDate: engine.currentDate, type: .persisting))
+        }
+        
+        
+        engine.registerObserver(observer: self)
         persistingItemsViewPromptLabel.sizeToFit()
         quittingItemsViewPromptLabel.sizeToFit()
 
@@ -122,20 +128,13 @@ class HomeViewController: UIViewController {
 //        self.overallProgressLabel.text = "已完成: \(String(format: "%.1f", self.currentTransitionValue * (self.engine.getOverAllProgress() ) * 100))%"
 //    }
     
-    @objc func itemPunchInButtonPressed(_ sender: UIButton!) {
-        
-        self.engine.updateItem(tag: sender.tag)
-        self.updateUI()
-    }
+//    @objc func itemPunchInButtonPressed(_ sender: UIButton!) {
+//        
+//        self.engine.updateItem(tag: sender.tag)
+//        self.updateUI()
+//    }
     
-    @objc func itemDetailsButtonPressed(_ sender: UIButton!) {
-        print("willGoDetailsView")
-        
-    
-        self.engine.registerObserver(observer: self)
-
-        self.performSegue(withIdentifier: "GoToItemDetailView", sender: sender)
-    }
+   
     
     @IBAction func addNewItemButtonPressed(_ sender: UIButton) {
         self.engine.registerObserver(observer: self)
@@ -198,7 +197,7 @@ class HomeViewController: UIViewController {
         }
     }
     
-    
+    lazy var itemCardAction = ItemCardAction.shared
     
     func loadItemCards() {
 
@@ -218,9 +217,9 @@ class HomeViewController: UIViewController {
                 
               
                 if item.type == .persisting {
-                    
+        
                     self.persistingItemsViewPromptLabel.isHidden = true
-                    let builder = ItemCardViewBuilder(item: item, width: self.persistingItemsView.frame.width, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: persistingCordinateY, punchInButtonTag: tag, punchInButtonAction: #selector(self.itemPunchInButtonPressed(_:)), detailsButtonAction: #selector(self.itemDetailsButtonPressed(_:)))
+                    let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: 0, y: persistingCordinateY, width: self.persistingItemsView.frame.width, height: self.setting.itemCardHeight), punchInButtonTag: tag, isInteractable: true)
                     let newItemCard = builder.buildView()
                     
                     let heightConstraintIndex = self.contentView.constraints.count - 1
@@ -238,7 +237,8 @@ class HomeViewController: UIViewController {
                 } else if item.type == .quitting {
                     
                     self.quittingItemsViewPromptLabel.isHidden = true
-                    let builder = ItemCardViewBuilder(item: item, width: self.quittingItemsView.frame.width, height: self.setting.itemCardHeight, corninateX: 0, cordinateY: quittingCordinateY, punchInButtonTag: tag, punchInButtonAction: #selector(self.itemPunchInButtonPressed(_:)), detailsButtonAction: #selector(self.itemDetailsButtonPressed(_:)))
+            
+                    let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: 0, y: quittingCordinateY, width: self.quittingItemsView.frame.width, height: self.setting.itemCardHeight), punchInButtonTag: tag, isInteractable: true)
                     let newItemCard = builder.buildView()
                     
                     let heightConstraintIndex = self.contentView.constraints.count - 1

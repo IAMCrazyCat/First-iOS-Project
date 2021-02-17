@@ -55,6 +55,8 @@
 		22A59811259AA31A008E2A06 /* PopUpViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A59810259AA31A008E2A06 /* PopUpViewBuilder.swift */; };
 		22AACA1125AD910D0098D920 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AACA1025AD910D0098D920 /* Date.swift */; };
 		22AACA3225AE98B40098D920 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AACA3025AE98B40098D920 /* CalendarViewController.swift */; };
+		22B1E8DF25DCDAAF003ABF6C /* ItemCardsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B1E8DE25DCDAAF003ABF6C /* ItemCardsType.swift */; };
+		22B1E8E425DCE3A5003ABF6C /* ItemCardAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B1E8E325DCE3A5003ABF6C /* ItemCardAction.swift */; };
 		22B4B56325D10ACD00C0CFD7 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B4B56225D10ACD00C0CFD7 /* Observer.swift */; };
 		22BABF2425C3ECBA00168AE1 /* TimeMachineCalendarPageViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BABF2325C3ECBA00168AE1 /* TimeMachineCalendarPageViewBuilder.swift */; };
 		22BABF2925C42ABB00168AE1 /* CGAffineTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BABF2825C42ABB00168AE1 /* CGAffineTransform.swift */; };
@@ -171,6 +173,8 @@
 		22A59810259AA31A008E2A06 /* PopUpViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewBuilder.swift; sourceTree = "<group>"; };
 		22AACA1025AD910D0098D920 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		22AACA3025AE98B40098D920 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		22B1E8DE25DCDAAF003ABF6C /* ItemCardsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCardsType.swift; sourceTree = "<group>"; };
+		22B1E8E325DCE3A5003ABF6C /* ItemCardAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCardAction.swift; sourceTree = "<group>"; };
 		22B4B56225D10ACD00C0CFD7 /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
 		22BABF2325C3ECBA00168AE1 /* TimeMachineCalendarPageViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineCalendarPageViewBuilder.swift; sourceTree = "<group>"; };
 		22BABF2825C42ABB00168AE1 /* CGAffineTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGAffineTransform.swift; sourceTree = "<group>"; };
@@ -355,6 +359,7 @@
 				22D8A05625CCE21C00A605D6 /* NewCalendarPage.swift */,
 				22A597FD2599C0AF008E2A06 /* WeekDay.swift */,
 				22BC4C6C25D6A3FF009E905C /* TimeRange.swift */,
+				22B1E8DE25DCDAAF003ABF6C /* ItemCardsType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -480,6 +485,7 @@
 				22C23A18258DC5D700D4BEB2 /* QuittingItem.swift */,
 				22C5D974258F40E800131964 /* SetUpPage.swift */,
 				22BC4C7D25D6A517009E905C /* WelcomeText.swift */,
+				22B1E8E325DCE3A5003ABF6C /* ItemCardAction.swift */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -856,6 +862,7 @@
 				2293F38625DB7C18009B4753 /* ItemManagementViewController.swift in Sources */,
 				2246D2E625CA68230001EFB7 /* DismissStrategy.swift in Sources */,
 				22D7FBB125A1E065006B1F28 /* SetUpPageViewBuilder.swift in Sources */,
+				22B1E8E425DCE3A5003ABF6C /* ItemCardAction.swift in Sources */,
 				22BC4C6825D6A3DB009E905C /* WelcomeTextData.swift in Sources */,
 				22D8A05725CCE21C00A605D6 /* NewCalendarPage.swift in Sources */,
 				22D8A05225CCE1D500A605D6 /* CalendarCellType.swift in Sources */,
@@ -903,6 +910,7 @@
 				221E0BA425A9D38100386FE1 /* Image.swift in Sources */,
 				22D354B425A595B7004F5667 /* UserCenterViewController.swift in Sources */,
 				22BABF2925C42ABB00168AE1 /* CGAffineTransform.swift in Sources */,
+				22B1E8DF25DCDAAF003ABF6C /* ItemCardsType.swift in Sources */,
 				224E665125C6483E00B71E8A /* PagesBehaviorStrategy.swift in Sources */,
 				221E0B7C25A9273E00386FE1 /* User.swift in Sources */,
 				22FCB1BA258D907C006A0D39 /* SystemStyleSetting.swift in Sources */,

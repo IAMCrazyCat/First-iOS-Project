@@ -52,4 +52,27 @@ extension UIView {
         return subviewByEdentifier
     }
     
+    func renderItemCards(for type: ItemCardsType) {
+        
+        var items = AppEngine.shared.currentUser.items
+        
+        switch type {
+        case .allItems:
+            var tag = items.count - 1
+            
+            while tag <= items.count {
+                let item = items[tag]
+//                let builder = ItemCardViewBuilder(item: item, width: self.frame.width - 2 * SystemStyleSetting.shared.mainPadding, height: SystemStyleSetting.shared.itemCardHeight, corninateX: <#T##CGFloat#>, cordinateY: <#T##CGFloat#>, punchInButtonTag: tag, punchInButtonAction: <#T##Selector#>, detailsButtonAction: <#T##Selector#>)
+                tag -= 1
+            }
+            
+        case .todayItems:
+            break
+        case .breakDayItems:
+            break
+        case .finishedItems:
+            break
+        }
+    }
+    
 }

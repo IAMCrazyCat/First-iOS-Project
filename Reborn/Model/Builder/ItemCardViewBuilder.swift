@@ -15,40 +15,21 @@ class ItemCardViewBuilder: Builder {
     var cordinateY: CGFloat
     var width: CGFloat
     var height: CGFloat
-    var punchInButtonAction: Selector?
-    var detailsButtonAction: Selector?
-    
     let cardBGImage: UIImage = SystemStyleSetting.shared.itemCardBGImage
     let setting: SystemStyleSetting = SystemStyleSetting.shared
     let outPutView: UIView = UIView()
-
-    init(item: Item, width: CGFloat, height: CGFloat, corninateX: CGFloat, cordinateY: CGFloat, punchInButtonTag: Int, punchInButtonAction: Selector, detailsButtonAction: Selector){ // for home page
+    var isInteractable: Bool
+    init(item: Item, frame: CGRect, punchInButtonTag: Int = 11607, isInteractable: Bool){ // for home page
 
         self.item = item
-        self.cordinateX = corninateX
-        self.cordinateY = cordinateY
+        self.width = frame.width
+        self.height = frame.height
+        self.cordinateX = frame.origin.x
+        self.cordinateY = frame.origin.y
         self.punchInButtonTag = punchInButtonTag
-        self.width = width
-        self.height = height
-        self.punchInButtonAction = punchInButtonAction
-        self.detailsButtonAction = detailsButtonAction
+        self.isInteractable = isInteractable
     }
-    
-    init(item: Item, width: CGFloat, height: CGFloat, cordinateX: CGFloat, cordinateY: CGFloat){ // for new item view preview card
 
-        self.item = item
-        self.cordinateX = cordinateX
-        self.cordinateY = cordinateY
-        self.punchInButtonTag = 11607
-        self.width = width
-        self.height = height
-        self.punchInButtonAction = nil
-        self.detailsButtonAction = nil
-
-
-    }
-    
-    
     public func buildView() -> UIView {
       
         createItemCardView()
@@ -166,9 +147,11 @@ class ItemCardViewBuilder: Builder {
         fullViewButton.layer.zPosition = 2
         fullViewButton.tag = self.punchInButtonTag
         print("DetailsButtonAdded, item: \(item)")
-        if detailsButtonAction != nil {
-            fullViewButton.addTarget(self, action: detailsButtonAction!, for: .touchDown)
+        
+        if isInteractable {
+            fullViewButton.addTarget(ItemCardAction.shared, action: ItemCardAction.shared.detailsViewAction, for: .touchDown)
         }
+        
         outPutView.addSubview(fullViewButton)
     }
     
@@ -356,8 +339,8 @@ class ItemCardViewBuilder: Builder {
         punchInButton.centerYAnchor.constraint(equalTo: outPutView.centerYAnchor).isActive = true
         punchInButton.tag = self.punchInButtonTag
         
-        if punchInButtonAction != nil {
-            punchInButton.addTarget(self, action: punchInButtonAction!, for: .touchDown)
+        if isInteractable {
+            punchInButton.addTarget(ItemCardAction.shared, action: ItemCardAction.shared.punchInAction, for: .touchDown)
         }
     }
     
