@@ -24,13 +24,16 @@ class AppEngine {
     public var storedDataFromPopUpView: Any? = nil
     public var itemFromController: Item? = nil
     public var currentViewController: UIViewController? = nil
-    
+
+    public var time: DateComponents {
+        let date = Date()
+        return Calendar.current.dateComponents([.hour,.minute,.second], from: date)
+    }
     public var currentTimeRange: TimeRange {
-        let time = calendar.dateComponents([.hour,.minute,.second], from: Date())
         
         for timeRange in TimeRange.allCases {
 
-            if timeRange.range.contains(time.hour!) {
+            if timeRange.range.contains(self.time.hour!) {
                 
                 return timeRange
             }
@@ -46,15 +49,34 @@ class AppEngine {
         return CustomDate(year: currentYear, month: currentMonth, day: currentDay)
     }
     
-    private let calendar = Calendar.current
+    
     private var delegate: PopUpViewDelegate?
     private var observers: Array<Observer> = []
-
+    private var observerNotifier: Timer = Timer()
+    private var observerNotifierTimePoints: Array<Int> = []
+    private var observerIsNotifiedByNotifier: Bool = false
+    
     private init() {
         
-        //loadItems()
         print(dataFilePath!)
+        
+       
+        for timePoint in TimeRange.allCases {
+            self.observerNotifierTimePoints.append(timePoint.range.first!)
+        }
+    
+        observerNotifier = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in self.checkUpdate() }
 
+    }
+    
+    private func checkUpdate() {
+        if let currentHour = self.time.hour, self.observerNotifierTimePoints.contains(currentHour), !observerIsNotifiedByNotifier { // notify observers once 
+            
+            self.notifyAllObservers()
+            observerIsNotifiedByNotifier = true
+        } else if let currentHour = self.time.hour, self.observerNotifierTimePoints.contains(currentHour + 1) { // ready to notifiy all observers one hour before hour points
+            observerIsNotifiedByNotifier = false
+        }
     }
     
     public func saveUser(_ user: User) {
@@ -120,15 +142,7 @@ class AppEngine {
        
     }
     
-    
-    public func getFinishedDays(tag: Int) -> Int? {
-        return self.currentUser.items[tag].finishedDays
-    }
-    
-    public func getDays(tag: Int) -> Int? {
-        return self.currentUser.items[tag].targetDays
-    }
-    
+
     public func getOverAllProgress() -> Double {
         
         self.overAllProgress = 0.0

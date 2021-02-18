@@ -74,7 +74,6 @@ extension UIView {
         var cordinateY: CGFloat = SystemStyleSetting.shared.mainPadding
 
         while tag >= 0 {
-            print(tag)
             let item = items[tag]
             if item.state == condition || isRenderingAll {
                 let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: SystemStyleSetting.shared.mainPadding, y: cordinateY, width: self.frame.width - 2 * SystemStyleSetting.shared.mainPadding, height: SystemStyleSetting.shared.itemCardHeight), punchInButtonTag: tag, isInteractable: true)
@@ -86,11 +85,20 @@ extension UIView {
             }
             tag -= 1
         }
-        
-        
-        
+
       
     }
+    
+    
+    func findViewController() -> UIViewController? {
+            if let nextResponder = self.next as? UIViewController {
+                return nextResponder
+            } else if let nextResponder = self.next as? UIView {
+                return nextResponder.findViewController()
+            } else {
+                return nil
+            }
+        }
     
    
     

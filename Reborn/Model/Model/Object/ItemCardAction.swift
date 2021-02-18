@@ -20,14 +20,23 @@ class ItemCardAction {
     var detailsViewAction: Selector = #selector(ItemCardAction.shared.itemDetailsButtonPressed(_:))
     
     @objc func itemPunchInButtonPressed(_ sender: UIButton!) {
-        print("TEST")
         AppEngine.shared.updateItem(tag: sender.tag)
         AppEngine.shared.notifyAllObservers()
-        //self.updateUI()
     }
     
     @objc func itemDetailsButtonPressed(_ sender: UIButton!) {
         
-        //self.performSegue(withIdentifier: "GoToItemDetailView", sender: sender)
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        guard let senderViewController = sender.findViewController(),
+              let navigationController = senderViewController.navigationController,
+              let itemDetailViewController = storyBoard.instantiateViewController(withIdentifier: "ItemDetailView") as? ItemDetailViewController
+        else {
+            return
+        }
+        
+        itemDetailViewController.item = AppEngine.shared.currentUser.items[sender.tag]
+        navigationController.pushViewController(itemDetailViewController, animated: true)
+
     }
 }
