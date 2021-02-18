@@ -66,83 +66,35 @@ extension UIView {
         self.addSubview(itemCard)
     }
     
-    func renderItemCards(for type: RenderingType) {
+    func renderItemCards(withConstraint condition: ItemState?) {
         
-        switch type {
-        case .allItems:
-            self.renderAllItems()
-        case .todayItems:
-            self.renderTodayItems()
-        case .breakDayItems:
-            self.renderBreakDayItems()
-        case .finishedItems:
-            self.renderFinishedItems()
+        let isRenderingAll = condition == nil ? true : false
+        let items = AppEngine.shared.currentUser.items
+        var tag: Int = items.count - 1
+        var cordinateY: CGFloat = SystemStyleSetting.shared.mainPadding
+
+        while tag >= 0 {
+            print(tag)
+            let item = items[tag]
+            if item.state == condition || isRenderingAll {
+                let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: SystemStyleSetting.shared.mainPadding, y: cordinateY, width: self.frame.width - 2 * SystemStyleSetting.shared.mainPadding, height: SystemStyleSetting.shared.itemCardHeight), punchInButtonTag: tag, isInteractable: true)
+                let itemCard = builder.buildView()
+                cordinateY += SystemStyleSetting.shared.itemCardHeight + SystemStyleSetting.shared.itemCardGap
+                self.addSubview(itemCard)
+                
+                
+            }
+            tag -= 1
         }
+        
+        
+        
+      
     }
     
    
     
-    private func renderAllItems() {
-        
-        let items = AppEngine.shared.currentUser.items
-        var tag: Int = items.count - 1
-        var cordinateY: CGFloat = SystemStyleSetting.shared.mainPadding
-
-        while tag >= 0 {
-            
-            let item = items[tag]
-            let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: SystemStyleSetting.shared.mainPadding, y: cordinateY, width: self.frame.width - 2 * SystemStyleSetting.shared.mainPadding, height: SystemStyleSetting.shared.itemCardHeight), punchInButtonTag: tag, isInteractable: true)
-            let itemCard = builder.buildView()
-            cordinateY += SystemStyleSetting.shared.itemCardHeight + SystemStyleSetting.shared.itemCardGap
-            self.addSubview(itemCard)
-            
-            tag -= 1
-        }
-    }
     
-    private func renderTodayItems() {
-        let items = AppEngine.shared.currentUser.items
-        var tag: Int = items.count - 1
-        var cordinateY: CGFloat = SystemStyleSetting.shared.mainPadding
-
-        while tag >= 0 {
-            
-            let item = items[tag]
-            if item.state == .inProgress {
-                let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: SystemStyleSetting.shared.mainPadding, y: cordinateY, width: self.frame.width - 2 * SystemStyleSetting.shared.mainPadding, height: SystemStyleSetting.shared.itemCardHeight), punchInButtonTag: tag, isInteractable: true)
-                let itemCard = builder.buildView()
-                cordinateY += SystemStyleSetting.shared.itemCardHeight + SystemStyleSetting.shared.itemCardGap
-                self.addSubview(itemCard)
-            }
-            
-            
-            tag -= 1
-        }
-    }
-    
-    private func renderBreakDayItems() {
-        
-    }
-    
-    private func renderFinishedItems() {
-        let items = AppEngine.shared.currentUser.items
-        var tag: Int = items.count - 1
-        var cordinateY: CGFloat = SystemStyleSetting.shared.mainPadding
-
-        while tag >= 0 {
-            
-            let item = items[tag]
-            if item.state == .finished {
-                let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: SystemStyleSetting.shared.mainPadding, y: cordinateY, width: self.frame.width - 2 * SystemStyleSetting.shared.mainPadding, height: SystemStyleSetting.shared.itemCardHeight), punchInButtonTag: tag, isInteractable: true)
-                let itemCard = builder.buildView()
-                cordinateY += SystemStyleSetting.shared.itemCardHeight + SystemStyleSetting.shared.itemCardGap
-                self.addSubview(itemCard)
-            }
-            
-            
-            tag -= 1
-        }
-    }
 
     
 }

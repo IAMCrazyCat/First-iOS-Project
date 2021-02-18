@@ -11,23 +11,18 @@ class ItemManagementViewController: UIViewController {
     
     @IBOutlet weak var optionBar: UIView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    
-    @IBOutlet weak var horizentalScrollView: UIScrollView!
-    @IBOutlet weak var firstVerticalContentView: UIView!
-    @IBOutlet weak var secondVerticalContentView: UIView!
-    @IBOutlet weak var thirdVerticalContentView: UIView!
-    @IBOutlet weak var fourthVerticalContentView: UIView!
-    
-    @IBOutlet weak var firstVerticalContentViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var secondVerticalContentViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var thirdVerticalContentViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var fourthVerticalContentViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var verticalScrollView: UIScrollView!
+    @IBOutlet weak var verticalContentView: UIView!
+    @IBOutlet weak var verticalContentHeightConstraint: NSLayoutConstraint!
+    var selectedSegment: ItemState? = nil
     
     let setting: SystemStyleSetting = SystemStyleSetting.shared
     let engine: AppEngine = AppEngine.shared
     var selectedButton: UIButton = UIButton()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
         
         optionBar.layer.cornerRadius = setting.itemCardCornerRadius
         optionBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
@@ -45,39 +40,35 @@ class ItemManagementViewController: UIViewController {
         updateUI()
     }
 
-    @IBAction func optionButtonPressed(_ sender: AnyObject) {
-        
-        horizentalScrollView.setContentOffset(CGPoint(x: CGFloat(horizentalScrollView.frame.width) * CGFloat(self.segmentedControl.selectedSegmentIndex), y: 0), animated: true)
+    @IBAction func optionButtonPressed(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            self.selectedSegment = nil
+        case 1:
+            self.selectedSegment = .inProgress
+        case 2:
+            self.selectedSegment = .duringBreak
+        case 3:
+            self.selectedSegment = .finished
+            
+        default:
+            print("Segement Tag not found")
+        }
+        print(self.selectedSegment)
         updateUI()
     }
     
-    func updateFirstVerticalContentView() {
-        firstVerticalContentView.removeAllSubviews()
-        firstVerticalContentView.renderItemCards(for: .allItems)
-        if let lastItemCard = firstVerticalContentView.subviews.last {
-            firstVerticalContentViewHeightConstraint.constant = lastItemCard.frame.maxY + setting.mainPadding
+    func updateVerticalContentView() {
+        verticalContentView.removeAllSubviews()
+        verticalContentView.renderItemCards(withConstraint: self.selectedSegment)
+      
+        if let lastItemCard = verticalContentView.subviews.last, lastItemCard.frame.maxY > self.verticalScrollView.frame.height {
+            verticalContentHeightConstraint.constant = lastItemCard.frame.maxY + setting.mainPadding
+        } else {
+            verticalContentHeightConstraint.constant = verticalScrollView.frame.height + 1
         }
         
-    }
-    
-    func updateSecondVerticalContentView() {
-        secondVerticalContentView.removeAllSubviews()
-        secondVerticalContentView.renderItemCards(for: .todayItems)
-        if let lastItemCard = secondVerticalContentView.subviews.last {
-            secondVerticalContentViewHeightConstraint.constant = lastItemCard.frame.maxY + setting.mainPadding
-        }
-    }
-    
-    func updateThirdVerticalContentView() {
-        
-    }
-    
-    func updateFourthVerticalContentView() {
-        fourthVerticalContentView.removeAllSubviews()
-        fourthVerticalContentView.renderItemCards(for: .finishedItems)
-        if let lastItemCard = fourthVerticalContentView.subviews.last {
-            fourthVerticalContentViewHeightConstraint.constant = lastItemCard.frame.maxY + setting.mainPadding
-        }
+        verticalContentView.layoutIfNeeded()
     }
   
     
@@ -86,10 +77,7 @@ class ItemManagementViewController: UIViewController {
 extension ItemManagementViewController: Observer {
     func updateUI() {
 
-        updateFirstVerticalContentView()
-        updateSecondVerticalContentView()
-        updateThirdVerticalContentView()
-        updateFourthVerticalContentView()
+        updateVerticalContentView()
     }
     
 }
