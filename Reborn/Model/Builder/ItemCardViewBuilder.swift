@@ -62,12 +62,13 @@ class ItemCardViewBuilder: Builder {
         outPutView.setShadow()
         outPutView.frame = CGRect(x: cordinateX, y: cordinateY, width: width, height: height)
         
-//        if self.item.state == .inProgress {
-//            outPutView.alpha = 1
-//        } else {
-//            outPutView.alpha = 0.3
-//        }
-//        
+        if self.item.state == .duringBreak {
+            outPutView.alpha = 0.5
+            
+        } else {
+            outPutView.alpha = 1
+        }
+        
 
     }
     

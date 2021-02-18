@@ -286,7 +286,7 @@ Cg
             <objects>
                 <viewController id="yhk-VJ-4nb" customClass="NewItemViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5tU-dT-BVc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eis-9Y-9bk" userLabel="Middle Scroll View">
@@ -1459,13 +1459,13 @@ Cg
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UBE-Ka-utv" userLabel="Horizental Scroll View">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBE-Ka-utv" userLabel="Horizental Scroll View">
                                 <rect key="frame" x="0.0" y="150" width="375" height="662"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dfc-OC-smB" userLabel="Horizental Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="1125" height="662"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="1500" height="662"/>
                                         <subviews>
-                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9VM-7B-DCK" userLabel="First Vertical Scroll View">
+                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9VM-7B-DCK" userLabel="First Vertical Scroll View">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="662"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fa7-Ai-ARm" userLabel="First Vertical Content View">
@@ -1486,7 +1486,7 @@ Cg
                                                 <viewLayoutGuide key="contentLayoutGuide" id="77f-9m-E3G"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="Vxo-cb-7cj"/>
                                             </scrollView>
-                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="crP-Pr-X23" userLabel="Second Vertical Scroll View">
+                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="crP-Pr-X23" userLabel="Second Vertical Scroll View">
                                                 <rect key="frame" x="375" y="0.0" width="375" height="662"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Edx-hh-Fmd" userLabel="Second Verticsal Content View">
@@ -1507,7 +1507,7 @@ Cg
                                                 <viewLayoutGuide key="contentLayoutGuide" id="VO2-oH-Jh8"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="UaF-kb-vng"/>
                                             </scrollView>
-                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x4x-5a-IOq" userLabel="Third Vertical Scroll View">
+                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x4x-5a-IOq" userLabel="Third Vertical Scroll View">
                                                 <rect key="frame" x="750" y="0.0" width="375" height="662"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bOq-9f-5eq" userLabel="Third Vertical Content View">
@@ -1528,18 +1528,43 @@ Cg
                                                 <viewLayoutGuide key="contentLayoutGuide" id="1PT-6R-if9"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="PNi-Nj-rFw"/>
                                             </scrollView>
+                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HX2-9K-MHe" userLabel="Fourth Vertical Scroll View">
+                                                <rect key="frame" x="1125" y="0.0" width="375" height="662"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nE2-Lz-ZdN" userLabel="Forth Vertical Content View">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="800" id="uD1-KN-g8F"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="nE2-Lz-ZdN" firstAttribute="leading" secondItem="cNz-3J-FjU" secondAttribute="leading" id="4z8-V8-QVO"/>
+                                                    <constraint firstItem="nE2-Lz-ZdN" firstAttribute="width" secondItem="sH7-06-fM2" secondAttribute="width" id="7wL-lP-Fy6"/>
+                                                    <constraint firstItem="nE2-Lz-ZdN" firstAttribute="trailing" secondItem="cNz-3J-FjU" secondAttribute="trailing" id="XFF-Lg-hyS"/>
+                                                    <constraint firstItem="nE2-Lz-ZdN" firstAttribute="top" secondItem="cNz-3J-FjU" secondAttribute="top" id="qdx-f7-2sh"/>
+                                                    <constraint firstItem="nE2-Lz-ZdN" firstAttribute="bottom" secondItem="cNz-3J-FjU" secondAttribute="bottom" id="tDg-eK-sCO"/>
+                                                </constraints>
+                                                <viewLayoutGuide key="contentLayoutGuide" id="cNz-3J-FjU"/>
+                                                <viewLayoutGuide key="frameLayoutGuide" id="sH7-06-fM2"/>
+                                            </scrollView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="x4x-5a-IOq" secondAttribute="bottom" id="4iZ-TQ-3IJ"/>
                                             <constraint firstAttribute="bottom" secondItem="9VM-7B-DCK" secondAttribute="bottom" id="77X-Xp-Tvv"/>
+                                            <constraint firstItem="HX2-9K-MHe" firstAttribute="leading" secondItem="x4x-5a-IOq" secondAttribute="trailing" id="AxZ-ds-5CW"/>
                                             <constraint firstItem="x4x-5a-IOq" firstAttribute="leading" secondItem="crP-Pr-X23" secondAttribute="trailing" id="DGw-ju-vKQ"/>
                                             <constraint firstItem="crP-Pr-X23" firstAttribute="leading" secondItem="9VM-7B-DCK" secondAttribute="trailing" id="Ge0-Gn-mUX"/>
+                                            <constraint firstItem="HX2-9K-MHe" firstAttribute="top" secondItem="Dfc-OC-smB" secondAttribute="top" id="M5z-R4-bzw"/>
                                             <constraint firstItem="9VM-7B-DCK" firstAttribute="leading" secondItem="Dfc-OC-smB" secondAttribute="leading" id="O5t-rc-QEg"/>
                                             <constraint firstAttribute="bottom" secondItem="crP-Pr-X23" secondAttribute="bottom" id="Xfu-P4-GgX"/>
                                             <constraint firstItem="crP-Pr-X23" firstAttribute="top" secondItem="Dfc-OC-smB" secondAttribute="top" id="dri-Xs-12o"/>
                                             <constraint firstItem="x4x-5a-IOq" firstAttribute="top" secondItem="Dfc-OC-smB" secondAttribute="top" id="esk-ej-X3H"/>
                                             <constraint firstItem="9VM-7B-DCK" firstAttribute="top" secondItem="Dfc-OC-smB" secondAttribute="top" id="xDs-mm-3Q6"/>
+                                            <constraint firstAttribute="bottom" secondItem="HX2-9K-MHe" secondAttribute="bottom" id="xdn-o5-w76"/>
+                                            <constraint firstAttribute="trailing" secondItem="HX2-9K-MHe" secondAttribute="trailing" id="yxz-mn-tqg"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1547,7 +1572,7 @@ Cg
                                     <constraint firstItem="crP-Pr-X23" firstAttribute="width" secondItem="t9c-HQ-YS5" secondAttribute="width" id="48X-iG-aeJ"/>
                                     <constraint firstItem="Dfc-OC-smB" firstAttribute="bottom" secondItem="jLw-6y-kl7" secondAttribute="bottom" id="4Md-78-BEc"/>
                                     <constraint firstItem="Dfc-OC-smB" firstAttribute="trailing" secondItem="jLw-6y-kl7" secondAttribute="trailing" id="7IU-fN-d07"/>
-                                    <constraint firstItem="Dfc-OC-smB" firstAttribute="width" secondItem="t9c-HQ-YS5" secondAttribute="width" multiplier="3" id="8p1-fT-ufe"/>
+                                    <constraint firstItem="Dfc-OC-smB" firstAttribute="width" secondItem="t9c-HQ-YS5" secondAttribute="width" multiplier="4" id="8p1-fT-ufe"/>
                                     <constraint firstItem="9VM-7B-DCK" firstAttribute="width" secondItem="t9c-HQ-YS5" secondAttribute="width" id="Gzp-Ym-1xI"/>
                                     <constraint firstItem="Dfc-OC-smB" firstAttribute="top" secondItem="jLw-6y-kl7" secondAttribute="top" id="PuG-2g-3v6"/>
                                     <constraint firstItem="Dfc-OC-smB" firstAttribute="leading" secondItem="jLw-6y-kl7" secondAttribute="leading" id="k33-l5-SQP"/>
@@ -1593,10 +1618,11 @@ Cg
                                 <rect key="frame" x="0.0" y="100" width="375" height="50"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="mH9-Nw-pG6">
-                                        <rect key="frame" x="15" y="9.6666666666666714" width="218" height="32"/>
+                                        <rect key="frame" x="15" y="9.6666666666666714" width="291" height="32"/>
                                         <segments>
                                             <segment title="全部项目"/>
-                                            <segment title="今日打卡"/>
+                                            <segment title="今日项目"/>
+                                            <segment title="今日休息"/>
                                             <segment title="已完成"/>
                                         </segments>
                                         <color key="selectedSegmentTintColor" name="WhiteAndBlack"/>
@@ -1631,11 +1657,16 @@ Cg
                     <navigationItem key="navigationItem" id="TpJ-5e-ah0"/>
                     <connections>
                         <outlet property="firstVerticalContentView" destination="fa7-Ai-ARm" id="YtV-m6-xfH"/>
+                        <outlet property="firstVerticalContentViewHeightConstraint" destination="gsG-lR-FaB" id="2vg-Rt-4FR"/>
+                        <outlet property="fourthVerticalContentView" destination="nE2-Lz-ZdN" id="2jd-JN-7ED"/>
+                        <outlet property="fourthVerticalContentViewHeightConstraint" destination="uD1-KN-g8F" id="YMd-OR-7dI"/>
                         <outlet property="horizentalScrollView" destination="UBE-Ka-utv" id="1kz-Ug-Iyl"/>
                         <outlet property="optionBar" destination="Lt5-gF-RX7" id="IHe-zO-fda"/>
                         <outlet property="secondVerticalContentView" destination="Edx-hh-Fmd" id="QLV-R8-TS7"/>
+                        <outlet property="secondVerticalContentViewHeightConstraint" destination="Y33-oF-6Al" id="bJ6-TR-ecw"/>
                         <outlet property="segmentedControl" destination="mH9-Nw-pG6" id="I2h-VE-h0R"/>
                         <outlet property="thirdVerticalContentView" destination="bOq-9f-5eq" id="YQB-kA-Erq"/>
+                        <outlet property="thirdVerticalContentViewHeightConstraint" destination="Ioo-eM-l29" id="Bq9-oy-V8g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bof-g5-eiZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

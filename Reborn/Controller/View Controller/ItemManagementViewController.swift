@@ -16,6 +16,12 @@ class ItemManagementViewController: UIViewController {
     @IBOutlet weak var firstVerticalContentView: UIView!
     @IBOutlet weak var secondVerticalContentView: UIView!
     @IBOutlet weak var thirdVerticalContentView: UIView!
+    @IBOutlet weak var fourthVerticalContentView: UIView!
+    
+    @IBOutlet weak var firstVerticalContentViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var secondVerticalContentViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var thirdVerticalContentViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var fourthVerticalContentViewHeightConstraint: NSLayoutConstraint!
     
     let setting: SystemStyleSetting = SystemStyleSetting.shared
     let engine: AppEngine = AppEngine.shared
@@ -48,28 +54,42 @@ class ItemManagementViewController: UIViewController {
     func updateFirstVerticalContentView() {
         firstVerticalContentView.removeAllSubviews()
         firstVerticalContentView.renderItemCards(for: .allItems)
+        if let lastItemCard = firstVerticalContentView.subviews.last {
+            firstVerticalContentViewHeightConstraint.constant = lastItemCard.frame.maxY + setting.mainPadding
+        }
+        
     }
     
     func updateSecondVerticalContentView() {
         secondVerticalContentView.removeAllSubviews()
         secondVerticalContentView.renderItemCards(for: .todayItems)
+        if let lastItemCard = secondVerticalContentView.subviews.last {
+            secondVerticalContentViewHeightConstraint.constant = lastItemCard.frame.maxY + setting.mainPadding
+        }
     }
     
     func updateThirdVerticalContentView() {
-        thirdVerticalContentView.removeAllSubviews()
-        thirdVerticalContentView.renderItemCards(for: .finishedItems)
+        
     }
     
+    func updateFourthVerticalContentView() {
+        fourthVerticalContentView.removeAllSubviews()
+        fourthVerticalContentView.renderItemCards(for: .finishedItems)
+        if let lastItemCard = fourthVerticalContentView.subviews.last {
+            fourthVerticalContentViewHeightConstraint.constant = lastItemCard.frame.maxY + setting.mainPadding
+        }
+    }
   
     
 }
 
 extension ItemManagementViewController: Observer {
     func updateUI() {
-        
+
         updateFirstVerticalContentView()
         updateSecondVerticalContentView()
         updateThirdVerticalContentView()
+        updateFourthVerticalContentView()
     }
     
 }
