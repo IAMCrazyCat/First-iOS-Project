@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UNUserNotificationCenterDelegate {
 
     @IBOutlet weak var verticalScrollView: UIScrollView!
     @IBOutlet weak var horizentalScrollView: UIScrollView!
@@ -74,7 +74,48 @@ class HomeViewController: UIViewController {
         updateUI()
         
         
+        
+        sendNotification()
     }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .badge, .sound])
+    }
+    
+    func sendNotification() {
+        let userNotificationCenter = UNUserNotificationCenter.current()
+        let notificationContent = UNMutableNotificationContent()
+        userNotificationCenter.delegate = self
+        // Add the content to the notification content
+        notificationContent.title = "Test"
+        notificationContent.body = "Test body"
+        notificationContent.badge = NSNumber(value: 3)
+
+        // Add an attachment to the notification content
+        if let url = Bundle.main.url(forResource: "dune",
+                                        withExtension: "png") {
+            if let attachment = try? UNNotificationAttachment(identifier: "dune",
+                                                                url: url,
+                                                                options: nil) {
+                notificationContent.attachments = [attachment]
+            }
+        }
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let request = UNNotificationRequest(identifier: "testNotification", content: notificationContent, trigger: trigger)
+        userNotificationCenter.add(request) { (error) in
+            if let error = error {
+                print("Notification Error: ", error)
+            }
+        }
+    }
+
+    
+    
     
     override func viewDidAppear(_ animated: Bool) {
         // make sure that the overall progress is not coverd by custom navigation bar
@@ -96,43 +137,9 @@ class HomeViewController: UIViewController {
    
     var timer: Timer?
     var currentTransitionValue = 0.0
-    
-//    func excuteProgressLabelAnimation() {
-//
-//        let animation:CATransition = CATransition()
-//        animation.timingFunction = CAMediaTimingFunction(name:
-//            CAMediaTimingFunctionName.easeInEaseOut)
-//        animation.type = CATransitionType.fade
-//        animation.subtype = CATransitionSubtype.fromTop
-//        currentTransitionValue = (circleShapeLayer.presentation()?.value(forKeyPath: "strokeEnd") ?? 0.0) as! Double
-//        self.overallProgressLabel.text = "已完成: \(String(format: "%.1f", (self.engine.getOverAllProgress() ?? 0) * 100))%"
-//        animation.duration = 0.5
-//        self.overallProgressLabel.layer.add(animation, forKey: CATransitionType.fade.rawValue)
-//
-//    }
-//
-//    @objc func updateProgressLabel() {
-//
-//        if currentTransitionValue >= 1 {
-//            print("timer Ivalidated")
-//            timer?.invalidate()
-//            currentTransitionValue = 0
-//        }
-//
-//        currentTransitionValue = (circleShapeLayer.presentation()?.value(forKeyPath: "strokeEnd") ?? 0.0) as! Double
-//        print(currentTransitionValue)
-//        self.overallProgressLabel.text = "已完成: \(String(format: "%.1f", self.currentTransitionValue * (self.engine.getOverAllProgress() ) * 100))%"
-//    }
-    
-//    @objc func itemPunchInButtonPressed(_ sender: UIButton!) {
-//        
-//        self.engine.updateItem(tag: sender.tag)
-//        self.updateUI()
-//    }
-    
    
-    
     @IBAction func addNewItemButtonPressed(_ sender: UIButton) {
+        
         self.engine.registerObserver(observer: self)
         self.performSegue(withIdentifier: "GoToNewItemView", sender: self)
     }

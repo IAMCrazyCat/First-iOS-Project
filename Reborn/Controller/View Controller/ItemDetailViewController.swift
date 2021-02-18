@@ -55,9 +55,8 @@ class ItemDetailViewController: UIViewController {
         updateUI()
     }
     
-    override func viewDidLayoutSubviews() {
-        
-    }
+    
+    
     
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

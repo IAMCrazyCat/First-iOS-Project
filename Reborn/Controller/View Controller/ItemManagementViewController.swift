@@ -39,6 +39,18 @@ class ItemManagementViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         updateUI()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        super.viewWillDisappear(animated)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+       
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
 
     @IBAction func optionButtonPressed(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {

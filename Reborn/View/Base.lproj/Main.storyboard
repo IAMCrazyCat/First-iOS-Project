@@ -831,7 +831,7 @@ Cg
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FRC-Pg-OSb">
-                                <rect key="frame" x="0.0" y="44" width="375" height="768"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fhM-A8-SwE" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1400"/>
@@ -840,7 +840,7 @@ Cg
                                                 <rect key="frame" x="15" y="43" width="345" height="430"/>
                                                 <subviews>
                                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rPK-k0-tHl" userLabel="Calendar View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="345" height="430"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="345" height="400"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="430" id="AF9-H6-ena"/>
@@ -1071,6 +1071,7 @@ Cg
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" name="WhiteAndBlack"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="Axy-dD-Kcg" secondAttribute="trailing" constant="15" id="5Lj-kG-E6L"/>
                                             <constraint firstItem="bQ8-um-Suf" firstAttribute="centerX" secondItem="fhM-A8-SwE" secondAttribute="centerX" id="70M-ol-Het"/>
@@ -1175,7 +1176,7 @@ Cg
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BDY-Xd-Ccc">
-                                <rect key="frame" x="0.0" y="44" width="375" height="685"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="641"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="efV-kw-weZ" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
@@ -1388,10 +1389,11 @@ Cg
         <!--进行中-->
         <scene sceneID="9aa-Ko-nlN">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="jdV-7M-5pe" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jdV-7M-5pe" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="进行中" image="OverallIcon" id="sU1-NQ-WFC"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" translucent="NO" id="WRg-cq-9vY">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" name="ThemeColor"/>
                         <textAttributes key="titleTextAttributes">
@@ -1559,6 +1561,7 @@ Cg
                         <outlet property="verticalContentHeightConstraint" destination="Je9-ys-7df" id="zQK-DQ-bVv"/>
                         <outlet property="verticalContentView" destination="RlR-Ck-CHb" id="wks-Je-AOp"/>
                         <outlet property="verticalScrollView" destination="hVc-FF-Wj4" id="MRU-Bk-NTp"/>
+                        <segue destination="ks2-0d-aBh" kind="show" id="qHk-ov-wBz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bof-g5-eiZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1877,7 +1880,7 @@ Cg
             <objects>
                 <viewController id="cr2-6I-Rrh" customClass="CalendarViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jX3-MM-9D0">
-                        <rect key="frame" x="0.0" y="0.0" width="345" height="430"/>
+                        <rect key="frame" x="0.0" y="0.0" width="345" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RwH-pK-cja" userLabel="Top View">
@@ -2039,10 +2042,10 @@ Cg
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CyJ-kQ-0F2" userLabel="Bottom View">
-                                <rect key="frame" x="0.0" y="140" width="345" height="290"/>
+                                <rect key="frame" x="0.0" y="140" width="345" height="260"/>
                                 <subviews>
                                     <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zYE-Pq-52Y">
-                                        <rect key="frame" x="30" y="0.0" width="285" height="270"/>
+                                        <rect key="frame" x="30" y="0.0" width="285" height="240"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="mXR-mX-f4e">
                                             <size key="itemSize" width="128" height="128"/>
@@ -2114,6 +2117,7 @@ Cg
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="tkB-nE-CDt"/>
         <segue reference="HdV-Uf-p4p"/>
     </inferredMetricsTieBreakers>
     <resources>
