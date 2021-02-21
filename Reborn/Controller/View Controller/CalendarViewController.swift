@@ -34,7 +34,7 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var timeMachineButton: UIButton!
 
     
-    private let setting: SystemStyleSetting = SystemStyleSetting.shared
+    private let setting: SystemSetting = SystemSetting.shared
     private let engine: AppEngine = AppEngine.shared
     private var storedState: CalendarState = .normal
     
@@ -115,7 +115,7 @@ class CalendarViewController: UIViewController {
             layout.minimumLineSpacing = 10
         }
         
-        view.layer.cornerRadius = setting.itemCardCornerRadius
+        //view.layer.cornerRadius = setting.itemCardCornerRadius
         view.clipsToBounds = true
       
         lastMonthButton.setCornerRadius()
@@ -156,21 +156,8 @@ class CalendarViewController: UIViewController {
       
     }
     
- 
- 
-    
-    public func getPunchedInDays(pageYear year: Int, pageMonth month: Int) -> Array<Int> {
-        var punchedInDays: Array<Int> = []
-        if self.item != nil {
-            for punchedInDate in self.item!.punchInDates { // add all punched in date into punchedInDays array
-                if punchedInDate.year == year && punchedInDate.month == month {
-                    punchedInDays.append(punchedInDate.day)
-                }
-            }
-        }
-       
-        return punchedInDays
-    }
+
+
     
     
     func updateCalendarPage(type: NewCalendarPage) {
@@ -441,7 +428,12 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
         let dayNumber = indexPath.row - self.currentCalendarPage.weekdayOfFirstDay + 1
         cell.dayButton.tag = indexPath.row
         cell.dayButton.addTarget(self, action: #selector(self.cellButtonPressed(_:)), for: .touchUpInside)
-        print("EXCUTED")
+        
+        
+        let punchedInDays = self.getPunchedInDays(pageYear: self.lastPageYear, pageMonth: self.lastPageMonth)
+        let lastMonthCalendarPage = CalendarPage(year: self.lastPageYear, month: self.lastPageMonth, punchedInDays: <#T##Array<Int>#>)
+        let lastMonthDayNumber =
+        let nextMonthDayNumber = 0
         
         if indexPath.row < (self.currentCalendarPage.weekdayOfFirstDay) - 1 { //Before the first day
 
@@ -459,7 +451,8 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
             }
             
         } else { // After lastday
-            cell.updateUI(type: .transparent, cellDay: String(dayNumber))
+            
+            cell.updateUI(type: .transparent, cellDay: String(nextMonthDayNumber))
         }
         
         

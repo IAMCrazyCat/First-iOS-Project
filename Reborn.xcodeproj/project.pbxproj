@@ -38,7 +38,7 @@
 		225AD12A25A848A30040E356 /* Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AD12925A848A30040E356 /* Selector.swift */; };
 		225AD12F25A868F50040E356 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AD12E25A868F50040E356 /* ItemDetailViewController.swift */; };
 		225AD13425A86ED80040E356 /* FadeInSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AD13325A86ED80040E356 /* FadeInSegue.swift */; };
-		2279C17E2592ED2F00566CD7 /* UserStyleSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2279C17D2592ED2F00566CD7 /* UserStyleSetting.swift */; };
+		2279C17E2592ED2F00566CD7 /* UserSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2279C17D2592ED2F00566CD7 /* UserSetting.swift */; };
 		228ED3E625B94D630054591F /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228ED3E525B94D630054591F /* CalendarCell.swift */; };
 		22916DA925BFE34C004A3EC4 /* TimeMachineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22916DA825BFE34C004A3EC4 /* TimeMachineViewController.swift */; };
 		22916DB525C05F0D004A3EC4 /* PresentTimeMachineSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22916DB425C05F0D004A3EC4 /* PresentTimeMachineSegue.swift */; };
@@ -94,8 +94,9 @@
 		22E069A925D79250006DCE5C /* Vibrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E069A825D79250006DCE5C /* Vibrator.swift */; };
 		22E9A855259ED1B40073D432 /* PikerViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E9A854259ED1B40073D432 /* PikerViewData.swift */; };
 		22E9A875259F33F50073D432 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E9A873259F33F50073D432 /* PopUpViewController.swift */; };
+		22F847ED25DFDF8A008F7EBB /* SwiftyAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F847EC25DFDF8A008F7EBB /* SwiftyAvatar.swift */; };
 		22FCB1B5258D86BA006A0D39 /* SetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FCB1B4258D86BA006A0D39 /* SetUpViewController.swift */; };
-		22FCB1BA258D907C006A0D39 /* SystemStyleSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FCB1B9258D907C006A0D39 /* SystemStyleSetting.swift */; };
+		22FCB1BA258D907C006A0D39 /* SystemSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FCB1B9258D907C006A0D39 /* SystemSetting.swift */; };
 		378F133BB1E91F6A674DE7AC /* Pods_Reborn_RebornUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C4533996E1B3FEF9192966A /* Pods_Reborn_RebornUITests.framework */; };
 		53EE2A465F2776989018DF07 /* Pods_Reborn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0016053E631AFCDC65A2DC6 /* Pods_Reborn.framework */; };
 /* End PBXBuildFile section */
@@ -156,7 +157,7 @@
 		225AD12925A848A30040E356 /* Selector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selector.swift; sourceTree = "<group>"; };
 		225AD12E25A868F50040E356 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		225AD13325A86ED80040E356 /* FadeInSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeInSegue.swift; sourceTree = "<group>"; };
-		2279C17D2592ED2F00566CD7 /* UserStyleSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStyleSetting.swift; sourceTree = "<group>"; };
+		2279C17D2592ED2F00566CD7 /* UserSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSetting.swift; sourceTree = "<group>"; };
 		228ED3E525B94D630054591F /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		22916DA825BFE34C004A3EC4 /* TimeMachineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineViewController.swift; sourceTree = "<group>"; };
 		22916DB425C05F0D004A3EC4 /* PresentTimeMachineSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentTimeMachineSegue.swift; sourceTree = "<group>"; };
@@ -212,8 +213,9 @@
 		22E069A825D79250006DCE5C /* Vibrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibrator.swift; sourceTree = "<group>"; };
 		22E9A854259ED1B40073D432 /* PikerViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PikerViewData.swift; sourceTree = "<group>"; };
 		22E9A873259F33F50073D432 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		22F847EC25DFDF8A008F7EBB /* SwiftyAvatar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyAvatar.swift; path = "../../../../../../../../../Desktop/SwiftyAvatar-master/SwiftyAvatar/Classes/SwiftyAvatar.swift"; sourceTree = "<group>"; };
 		22FCB1B4258D86BA006A0D39 /* SetUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewController.swift; sourceTree = "<group>"; };
-		22FCB1B9258D907C006A0D39 /* SystemStyleSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemStyleSetting.swift; sourceTree = "<group>"; };
+		22FCB1B9258D907C006A0D39 /* SystemSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSetting.swift; sourceTree = "<group>"; };
 		5AE27D89D9638F0EFD870D9C /* Pods-RebornTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RebornTests.release.xcconfig"; path = "Target Support Files/Pods-RebornTests/Pods-RebornTests.release.xcconfig"; sourceTree = "<group>"; };
 		7CE5BEF44ACD6AA4D79D4722 /* Pods-Reborn-RebornUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reborn-RebornUITests.release.xcconfig"; path = "Target Support Files/Pods-Reborn-RebornUITests/Pods-Reborn-RebornUITests.release.xcconfig"; sourceTree = "<group>"; };
 		80E6CCCA1322DA999E425BE3 /* Pods_RebornTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RebornTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -343,6 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				22BC4C7825D6A4A4009E905C /* Object */,
+				225A78D325E0EB39009EE149 /* View Model */,
 				22BC4C7725D6A490009E905C /* Data Model */,
 			);
 			path = Model;
@@ -405,6 +408,15 @@
 			path = Tool;
 			sourceTree = "<group>";
 		};
+		225A78D325E0EB39009EE149 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				22BC454425B04ED000516F75 /* CalendarPage.swift */,
+				22C5D974258F40E800131964 /* SetUpPage.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
 		225AD13825A872180040E356 /* Custom Segue */ = {
 			isa = PBXGroup;
 			children = (
@@ -465,6 +477,7 @@
 		22BC4C7725D6A490009E905C /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
+				22E9A854259ED1B40073D432 /* PikerViewData.swift */,
 				22D7FBA525A190E9006B1F28 /* SetUpPageData.swift */,
 				22BC4C6725D6A3DB009E905C /* WelcomeTextData.swift */,
 			);
@@ -474,18 +487,16 @@
 		22BC4C7825D6A4A4009E905C /* Object */ = {
 			isa = PBXGroup;
 			children = (
+				22F847EC25DFDF8A008F7EBB /* SwiftyAvatar.swift */,
 				221E0B7B25A9273E00386FE1 /* User.swift */,
-				22BC454425B04ED000516F75 /* CalendarPage.swift */,
 				22BC454F25B1C92100516F75 /* CustomDate.swift */,
 				22D7FBA025A18FE5006B1F28 /* DataOption.swift */,
-				221E0BA325A9D38100386FE1 /* Image.swift */,
 				22C23A13258DC58F00D4BEB2 /* Item.swift */,
 				22C23A1D258DC5FB00D4BEB2 /* PersistingItem.swift */,
-				22E9A854259ED1B40073D432 /* PikerViewData.swift */,
 				22C23A18258DC5D700D4BEB2 /* QuittingItem.swift */,
-				22C5D974258F40E800131964 /* SetUpPage.swift */,
 				22BC4C7D25D6A517009E905C /* WelcomeText.swift */,
 				22B1E8E325DCE3A5003ABF6C /* ItemCardAction.swift */,
+				221E0BA325A9D38100386FE1 /* Image.swift */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -493,8 +504,8 @@
 		22C5D987258F646700131964 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				22FCB1B9258D907C006A0D39 /* SystemStyleSetting.swift */,
-				2279C17D2592ED2F00566CD7 /* UserStyleSetting.swift */,
+				22FCB1B9258D907C006A0D39 /* SystemSetting.swift */,
+				2279C17D2592ED2F00566CD7 /* UserSetting.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -855,7 +866,7 @@
 				224E665925C64F5F00B71E8A /* PresentStrategy.swift in Sources */,
 				228ED3E625B94D630054591F /* CalendarCell.swift in Sources */,
 				22CE4EF525D00C73007EBD5B /* EditingItemStrategy.swift in Sources */,
-				2279C17E2592ED2F00566CD7 /* UserStyleSetting.swift in Sources */,
+				2279C17E2592ED2F00566CD7 /* UserSetting.swift in Sources */,
 				22BC200125D39C0F007D2822 /* OverAllProgressViewBuilder.swift in Sources */,
 				223A777B25A41184004B3324 /* UIView.swift in Sources */,
 				22916DA925BFE34C004A3EC4 /* TimeMachineViewController.swift in Sources */,
@@ -865,6 +876,7 @@
 				22B1E8E425DCE3A5003ABF6C /* ItemCardAction.swift in Sources */,
 				22BC4C6825D6A3DB009E905C /* WelcomeTextData.swift in Sources */,
 				22D8A05725CCE21C00A605D6 /* NewCalendarPage.swift in Sources */,
+				22F847ED25DFDF8A008F7EBB /* SwiftyAvatar.swift in Sources */,
 				22D8A05225CCE1D500A605D6 /* CalendarCellType.swift in Sources */,
 				2246D2EE25CAD5110001EFB7 /* EnlargeStrategy.swift in Sources */,
 				22D6195C25A0290600EC9396 /* UIViewController.swift in Sources */,
@@ -912,7 +924,7 @@
 				22BABF2925C42ABB00168AE1 /* CGAffineTransform.swift in Sources */,
 				224E665125C6483E00B71E8A /* PagesBehaviorStrategy.swift in Sources */,
 				221E0B7C25A9273E00386FE1 /* User.swift in Sources */,
-				22FCB1BA258D907C006A0D39 /* SystemStyleSetting.swift in Sources */,
+				22FCB1BA258D907C006A0D39 /* SystemSetting.swift in Sources */,
 				22C23A1E258DC5FB00D4BEB2 /* PersistingItem.swift in Sources */,
 				224E664725C6468D00B71E8A /* ForwardForManyStrategy.swift in Sources */,
 				22A2EC7925C9862A00E97787 /* TimeMachineViewPresentAnimationController.swift in Sources */,

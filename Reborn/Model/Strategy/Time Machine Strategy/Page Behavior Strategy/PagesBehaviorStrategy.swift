@@ -10,7 +10,7 @@ import UIKit
 class PagesBehaviorStrategy: TimeMachineAnimationStrategy {
 
     let timeMachineViewController: TimeMachineViewController
-    let setting: SystemStyleSetting = SystemStyleSetting.shared
+    let setting: SystemSetting = SystemSetting.shared
     
     init(timeMachineViewController: TimeMachineViewController) {
         self.timeMachineViewController = timeMachineViewController 

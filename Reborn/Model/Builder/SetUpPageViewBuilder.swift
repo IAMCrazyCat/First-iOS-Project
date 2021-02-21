@@ -14,7 +14,7 @@ class SetUpPageViewBuilder {
     var pageCordinateX: CGFloat
     var superView: UIView
     var pageView: UIView?
-    let setting: SystemStyleSetting = SystemStyleSetting.shared
+    let setting: SystemSetting = SystemSetting.shared
     
     init(page: SetUpPage, pageCordinateX: CGFloat, layoutGuideView: UIView){
         self.superView = layoutGuideView
@@ -32,7 +32,7 @@ class SetUpPageViewBuilder {
     private func createPageView() {
         
         self.pageView = UIView(frame: CGRect(x: self.pageCordinateX, y: 0, width: superView.frame.width, height: superView.frame.height))
-        
+        self.pageView?.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackBackground
     }
     
     private func addButtons() {
@@ -65,11 +65,11 @@ class SetUpPageViewBuilder {
             button.setShadow()
             button.setTitle(buttonTitle, for: .normal)
             button.setTitleColor(self.setting.optionButtonTitleColor, for: .normal)
-            button.setTitleColor(UIColor.black, for: .normal)
-            button.setTitleColor(UIColor.white, for: .selected)
+            button.setTitleColor(.label, for: .normal)
+            button.setTitleColor(.white, for: .selected)
             
-            button.setBackgroundColor(UIColor.white, for: .normal)
-            button.setBackgroundColor(UserStyleSetting.themeColor, for: .selected)
+            button.setBackgroundColor(AppEngine.shared.userSetting.whiteAndBlackContent, for: .normal)
+            button.setBackgroundColor(AppEngine.shared.userSetting.themeColor, for: .selected)
             
             button.titleLabel?.font = self.setting.optionButtonTitleFont
             button.addTarget(self, action: SetUpViewController.optionButtonAction, for: .touchDown)
@@ -94,7 +94,7 @@ class SetUpPageViewBuilder {
             default: print("")
             }
             
-            self.pageView!.addSubview(button)
+            self.pageView?.addSubview(button)
         }
     }
     

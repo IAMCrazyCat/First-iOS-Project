@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 class ItemDetailViewBuilder: Builder {
     
-    let setting: SystemStyleSetting = SystemStyleSetting.shared
+    let setting: SystemSetting = SystemSetting.shared
     let item: Item
     let punchInButtonTag: Int
     var cordinateX: CGFloat
@@ -37,7 +37,7 @@ class ItemDetailViewBuilder: Builder {
     }
     
     private func createItemDetailsView() {
-        outPutView.backgroundColor = setting.whiteAndBlack
+        outPutView.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackContent
         //outPutView.layer.cornerRadius = setting.itemCardCornerRadius
         outPutView.frame = CGRect(x: cordinateX, y: cordinateY, width: width, height: height)
     }
@@ -48,7 +48,7 @@ class ItemDetailViewBuilder: Builder {
         freqencyLabel.accessibilityIdentifier = "freqencyLabel"
         freqencyLabel.text = "频率: \(item.frequency.title)"
         freqencyLabel.textColor = .black
-        freqencyLabel.font = UserStyleSetting.fontMedium
+        freqencyLabel.font = AppEngine.shared.userSetting.fontMedium
         freqencyLabel.sizeToFit()
         
         outPutView.addSubview(freqencyLabel)
@@ -63,8 +63,8 @@ class ItemDetailViewBuilder: Builder {
         let barTrackPath = UIBezierPath(roundedRect: barFrame, cornerRadius: 10)
         let barTrackLayer = CAShapeLayer()
         
-        let shapeColor = UserStyleSetting.themeColor.cgColor
-        let trackColor = UserStyleSetting.themeColor.withAlphaComponent(0.3).cgColor
+        let shapeColor = AppEngine.shared.userSetting.themeColor.cgColor
+        let trackColor = AppEngine.shared.userSetting.themeColor.withAlphaComponent(0.3).cgColor
         let progressWidth: CGFloat = 10
 
         barTrackLayer.name = "progressTrack"
@@ -97,7 +97,7 @@ class ItemDetailViewBuilder: Builder {
         if withProgressLabel {
             let progressLabel = UILabel()
             progressLabel.frame.origin = CGPoint(x: CGFloat(self.item.progress) * barFrame.width - 10, y: barFrame.origin.y - barFrame.height - 10)
-            progressLabel.font = UserStyleSetting.fontSmall
+            progressLabel.font = AppEngine.shared.userSetting.fontSmall
             progressLabel.text = self.item.progressInPercentageString
             progressLabel.sizeToFit()
             outPutView.addSubview(progressLabel)

@@ -47,7 +47,7 @@ class NewItemViewController: UIViewController {
     @IBOutlet weak var bottomScrollViewContentViewHeightConstraint: NSLayoutConstraint!
     
     let engine: AppEngine = AppEngine.shared
-    let setting: SystemStyleSetting = SystemStyleSetting.shared
+    let setting: SystemSetting = SystemSetting.shared
     var frequency: DataOption? = nil
     var previewItemCardTag: Int? = nil
     var selectedTypeButton: UIButton? = nil
@@ -76,7 +76,7 @@ class NewItemViewController: UIViewController {
                 button.setSizeAccrodingToScreen()
                 button.setCornerRadius()
                 button.setShadow()
-                button.setBackgroundColor(UserStyleSetting.themeColor, for: .selected)
+                button.setBackgroundColor(AppEngine.shared.userSetting.themeColor, for: .selected)
                 button.setTitleColor(.white, for: .selected)
 
             }

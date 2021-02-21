@@ -35,7 +35,9 @@ class TimeMachineCalendarPageViewBuilder {
     
     private func createCalendarPageView() {
         self.outputCalendarpageView = UIView()
-        self.outputCalendarpageView!.frame = calendarView.frame
+        self.outputCalendarpageView?.frame = calendarView.frame
+        self.outputCalendarpageView?.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackContent
+        self.outputCalendarpageView?.layer.cornerRadius = calendarView.layer.cornerRadius
         
     }
     

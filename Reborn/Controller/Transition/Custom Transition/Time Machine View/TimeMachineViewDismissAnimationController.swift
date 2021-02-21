@@ -12,7 +12,7 @@ class TimeMachineViewDismissAnimationController: NSObject, UIViewControllerAnima
     
    
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return SystemStyleSetting.shared.timeMachineAnimationSlowSpeed
+        return SystemSetting.shared.timeMachineAnimationSlowSpeed
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -35,7 +35,7 @@ class TimeMachineViewDismissAnimationController: NSObject, UIViewControllerAnima
         fromViewController.dismissCalendarPages()
         originalParentViewController.topView.alpha = 0
         
-        UIView.animate(withDuration: SystemStyleSetting.shared.timeMachineAnimationSlowSpeed, animations: {
+        UIView.animate(withDuration: SystemSetting.shared.timeMachineAnimationSlowSpeed, animations: {
             fromViewController.view.backgroundColor = fromViewController.view.backgroundColor?.withAlphaComponent(0)
             fromViewController.topView.alpha = 0
             fromViewController.middleView.backgroundColor = fromViewController.middleView.backgroundColor?.withAlphaComponent(0)

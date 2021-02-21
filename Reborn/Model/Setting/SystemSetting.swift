@@ -8,22 +8,23 @@
 import Foundation
 import UIKit
 
-struct SystemStyleSetting{
+struct SystemSetting{
     
-    static let shared = SystemStyleSetting()
+    static let shared = SystemSetting()
     
     // for all use
     let screenFrame: CGRect = UIScreen.main.bounds
     let mainButtonHeight: CGFloat = 50
     let mainButtonCornerRadius: CGFloat = 25
     let checkButtonCornerRadius: CGFloat = 15
-    let itemCardCornerRadius: CGFloat = 25
+    let itemCardCornerRadius: CGFloat = 15
+    let customNavigationBarCornerRadius: CGFloat = 25
     let UIViewShadowColor: CGColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.15).cgColor
     let UIViewShadowOffset: CGSize = CGSize(width: 0.0, height: 1.5)
     let UIViewShadowOpacity: Float = 1.0
     
     let greyColor: UIColor = UIColor(named: "GreyColor")!
-    let whiteAndBlack: UIColor = UIColor(named: "WhiteAndBlack")!
+    
     
     var customTargetDaysButtonTag = 10
     var customItemNameButtonTag = 20

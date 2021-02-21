@@ -186,9 +186,10 @@ Cg
                                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="rFI-80-kPJ">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="4"/>
                                                 <color key="progressTintColor" name="ThemeColor"/>
-                                                <color key="trackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="trackTintColor" name="WhiteAndBlackBackground"/>
                                             </progressView>
                                         </subviews>
+                                        <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                         <constraints>
                                             <constraint firstItem="fTm-iM-EaV" firstAttribute="centerY" secondItem="W2n-Di-uQY" secondAttribute="centerY" id="3Hb-RJ-gSk"/>
                                             <constraint firstItem="rFI-80-kPJ" firstAttribute="leading" secondItem="W2n-Di-uQY" secondAttribute="leading" id="3mu-AI-FJb"/>
@@ -205,6 +206,7 @@ Cg
                                         <subviews>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4AG-Sb-41L" userLabel="Middle Scroll View">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="534.33333333333337"/>
+                                                <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                             </scrollView>
                                         </subviews>
                                         <constraints>
@@ -239,6 +241,7 @@ Cg
                                                 </connections>
                                             </button>
                                         </subviews>
+                                        <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                         <constraints>
                                             <constraint firstItem="07C-PA-2WH" firstAttribute="top" secondItem="haM-7Y-zaB" secondAttribute="bottom" constant="5" id="JYb-yP-BoV"/>
                                             <constraint firstItem="haM-7Y-zaB" firstAttribute="leading" secondItem="A54-Kn-Wj2" secondAttribute="leading" constant="20" id="JeD-Vl-dZh"/>
@@ -256,7 +259,7 @@ Cg
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="h4p-fu-icp"/>
-                        <color key="backgroundColor" name="WhiteAndBlack"/>
+                        <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                         <constraints>
                             <constraint firstItem="296-4n-XsT" firstAttribute="width" secondItem="24F-GW-htL" secondAttribute="width" id="EXb-xL-2V4"/>
                             <constraint firstItem="h4p-fu-icp" firstAttribute="bottom" secondItem="296-4n-XsT" secondAttribute="bottom" id="HWd-gE-gKn"/>
@@ -294,7 +297,7 @@ Cg
                                 <subviews>
                                     <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="75g-jl-Rdo" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -330,7 +333,7 @@ Cg
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  想坚持/戒除的事" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dF6-S4-tMX">
                                                 <rect key="frame" x="15" y="61" width="345" height="40"/>
-                                                <color key="backgroundColor" red="0.94547043633215211" green="0.94547043633215211" blue="0.94547043633215211" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="uKL-sp-dsg"/>
@@ -340,7 +343,7 @@ Cg
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYH-kV-dcm">
                                                 <rect key="frame" x="304" y="162" width="31" height="30"/>
-                                                <color key="backgroundColor" name="WhiteAndBlack"/>
+                                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="戒除">
                                                     <color key="titleColor" systemColor="labelColor"/>
@@ -351,7 +354,7 @@ Cg
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uum-ys-rdj">
                                                 <rect key="frame" x="40" y="253" width="30" height="30"/>
-                                                <color key="backgroundColor" name="WhiteAndBlack"/>
+                                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <size key="titleShadowOffset" width="3" height="0.0"/>
                                                 <state key="normal" title="7天">
@@ -363,10 +366,10 @@ Cg
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="maG-bk-NyY">
                                                 <rect key="frame" x="40" y="303" width="34" height="30"/>
-                                                <color key="backgroundColor" name="WhiteAndBlack"/>
+                                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="60天">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="targetDaysButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="WAm-bf-awP"/>
@@ -374,10 +377,10 @@ Cg
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WpU-fd-JVR">
                                                 <rect key="frame" x="40" y="162" width="31" height="30"/>
-                                                <color key="backgroundColor" name="WhiteAndBlack"/>
+                                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="坚持">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="typeButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="18K-oo-swr"/>
@@ -385,7 +388,7 @@ Cg
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eVH-dn-gr1">
                                                 <rect key="frame" x="301" y="253" width="34" height="30"/>
-                                                <color key="backgroundColor" name="WhiteAndBlack"/>
+                                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="30天">
                                                     <color key="titleColor" systemColor="labelColor"/>
@@ -396,10 +399,10 @@ Cg
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RFy-ys-MHv">
                                                 <rect key="frame" x="294" y="303" width="41" height="30"/>
-                                                <color key="backgroundColor" name="WhiteAndBlack"/>
+                                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="100天">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="targetDaysButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="vpi-Yg-Di9"/>
@@ -407,10 +410,10 @@ Cg
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afP-fa-obf">
                                                 <rect key="frame" x="289" y="353" width="46" height="30"/>
-                                                <color key="backgroundColor" name="WhiteAndBlack"/>
+                                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="自定义">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="targetDaysButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="kYQ-YN-dQI"/>
@@ -418,10 +421,10 @@ Cg
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGd-7R-bfn">
                                                 <rect key="frame" x="40" y="353" width="43" height="30"/>
-                                                <color key="backgroundColor" name="WhiteAndBlack"/>
+                                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="365天">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="targetDaysButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="Zpk-bg-n8l"/>
@@ -435,10 +438,10 @@ Cg
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3i9-WH-Zt7">
                                                 <rect key="frame" x="40" y="444" width="31" height="30"/>
-                                                <color key="backgroundColor" name="WhiteAndBlack"/>
+                                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="每天">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="frequencyButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="rhT-XC-q7N"/>
@@ -446,10 +449,10 @@ Cg
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rS9-xl-t7u">
                                                 <rect key="frame" x="40" y="494" width="31" height="30"/>
-                                                <color key="backgroundColor" name="WhiteAndBlack"/>
+                                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="每周">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="frequencyButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="6OK-oY-CJr"/>
@@ -457,10 +460,10 @@ Cg
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uVK-qR-Otb">
                                                 <rect key="frame" x="304" y="494" width="31" height="30"/>
-                                                <color key="backgroundColor" name="WhiteAndBlack"/>
+                                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="每月">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="frequencyButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="gdB-1B-1CH"/>
@@ -468,10 +471,10 @@ Cg
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJB-1F-QUe">
                                                 <rect key="frame" x="289" y="444" width="46" height="30"/>
-                                                <color key="backgroundColor" name="WhiteAndBlack"/>
+                                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="每两天">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="frequencyButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="UQ6-x6-D5W"/>
@@ -479,10 +482,10 @@ Cg
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEh-sX-wyw">
                                                 <rect key="frame" x="289" y="544" width="46" height="30"/>
-                                                <color key="backgroundColor" name="WhiteAndBlack"/>
+                                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="自定义">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="frequencyButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="hbi-Gi-Qtc"/>
@@ -508,10 +511,10 @@ Cg
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJD-UT-gB8">
                                                 <rect key="frame" x="40" y="544" width="62" height="30"/>
-                                                <color key="backgroundColor" name="WhiteAndBlack"/>
+                                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="自由打卡">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="frequencyButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="Nbk-Oo-doz"/>
@@ -530,7 +533,7 @@ Cg
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                         <constraints>
                                             <constraint firstItem="QGd-7R-bfn" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="40" id="1fy-nX-Y7D"/>
                                             <constraint firstItem="TtZ-0J-0EP" firstAttribute="centerY" secondItem="wH2-TB-oP3" secondAttribute="centerY" id="24z-ny-OP7"/>
@@ -630,7 +633,7 @@ Cg
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="C0p-o8-nIg"/>
                                     <constraint firstItem="g8z-B1-4WR" firstAttribute="leading" secondItem="NsA-vi-9iW" secondAttribute="leading" constant="15" id="P4k-r8-43R"/>
@@ -643,7 +646,7 @@ Cg
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xkx-NE-CR0"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                         <constraints>
                             <constraint firstItem="eis-9Y-9bk" firstAttribute="leading" secondItem="xkx-NE-CR0" secondAttribute="leading" id="6Jy-VF-dBs"/>
                             <constraint firstItem="NsA-vi-9iW" firstAttribute="trailing" secondItem="xkx-NE-CR0" secondAttribute="trailing" id="7Ki-Bv-c2J"/>
@@ -703,8 +706,8 @@ Cg
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AmU-5F-f6n" userLabel="Middle View">
-                                <rect key="frame" x="0.0" y="100" width="375" height="528"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="0.0" y="100" width="375" height="548"/>
+                                <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wHS-8t-ghg" userLabel="Top View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
@@ -727,13 +730,14 @@ Cg
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时间机器" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBC-dZ-hSy">
-                                                <rect key="frame" x="130.66666666666666" y="11" width="114" height="34"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
+                                                <rect key="frame" x="139" y="14.333333333333337" width="97.333333333333314" height="27.666666666666671"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                <color key="textColor" name="ThemeColor"/>
+                                                <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" name="ThemeColor"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="TBC-dZ-hSy" firstAttribute="centerY" secondItem="6u9-Hm-mjt" secondAttribute="centerY" id="AsF-2X-fBa"/>
                                             <constraint firstItem="sZk-IF-fVK" firstAttribute="centerY" secondItem="6u9-Hm-mjt" secondAttribute="centerY" id="gly-gJ-hgA"/>
@@ -742,7 +746,7 @@ Cg
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" name="ThemeColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="6u9-Hm-mjt" secondAttribute="trailing" id="Ps4-ya-Cyi"/>
                                     <constraint firstAttribute="bottom" secondItem="6u9-Hm-mjt" secondAttribute="bottom" id="Rob-i5-lVc"/>
@@ -751,10 +755,11 @@ Cg
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ylm-aW-HG0" userLabel="Bottom View">
-                                <rect key="frame" x="0.0" y="628" width="375" height="150"/>
+                                <rect key="frame" x="0.0" y="648" width="375" height="130"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hC6-oy-S3E">
-                                        <rect key="frame" x="15" y="90" width="345" height="50"/>
+                                        <rect key="frame" x="15" y="70" width="345" height="50"/>
+                                        <color key="backgroundColor" name="ThemeColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="kGn-9m-rTt"/>
                                         </constraints>
@@ -766,25 +771,26 @@ Cg
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择您想补打卡的日子" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgh-l2-8hx">
-                                        <rect key="frame" x="92" y="21.666666666666629" width="191" height="20.333333333333329"/>
+                                        <rect key="frame" x="92" y="1.6666666666666288" width="191" height="20.333333333333332"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eyW-12-NFP">
-                                        <rect key="frame" x="159" y="52" width="57" height="28"/>
+                                        <rect key="frame" x="159" y="32" width="57" height="28"/>
+                                        <color key="tintColor" systemColor="systemYellowColor"/>
                                         <state key="normal" title=" x 3" image="KeyIcon">
                                             <color key="titleColor" systemColor="labelColor"/>
                                         </state>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                 <constraints>
                                     <constraint firstItem="eyW-12-NFP" firstAttribute="top" secondItem="vgh-l2-8hx" secondAttribute="bottom" constant="10" id="Cy6-4C-CMa"/>
                                     <constraint firstItem="hC6-oy-S3E" firstAttribute="leading" secondItem="Ylm-aW-HG0" secondAttribute="leading" constant="15" id="Ngd-UQ-99X"/>
                                     <constraint firstItem="eyW-12-NFP" firstAttribute="centerX" secondItem="Ylm-aW-HG0" secondAttribute="centerX" id="Qs6-F6-MfO"/>
                                     <constraint firstItem="hC6-oy-S3E" firstAttribute="top" secondItem="eyW-12-NFP" secondAttribute="bottom" constant="10" id="guB-iU-AaB"/>
-                                    <constraint firstAttribute="height" constant="150" id="jcC-S8-LHZ"/>
+                                    <constraint firstAttribute="height" constant="130" id="jcC-S8-LHZ"/>
                                     <constraint firstAttribute="bottom" secondItem="hC6-oy-S3E" secondAttribute="bottom" constant="10" id="oAB-sA-iUc"/>
                                     <constraint firstItem="vgh-l2-8hx" firstAttribute="centerX" secondItem="Ylm-aW-HG0" secondAttribute="centerX" id="pe5-DU-68f"/>
                                     <constraint firstAttribute="trailing" secondItem="hC6-oy-S3E" secondAttribute="trailing" constant="15" id="trt-qJ-tBl"/>
@@ -841,7 +847,7 @@ Cg
                                                 <subviews>
                                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rPK-k0-tHl" userLabel="Calendar View">
                                                         <rect key="frame" x="0.0" y="0.0" width="345" height="400"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="430" id="AF9-H6-ena"/>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="400" id="G4z-Xe-LKL"/>
@@ -871,7 +877,7 @@ Cg
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tlr-bf-UK5" userLabel="Progress View">
                                                         <rect key="frame" x="0.0" y="0.0" width="345" height="70"/>
-                                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                        <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="70" id="jkA-sC-ogg"/>
                                                         </constraints>
@@ -944,10 +950,10 @@ Cg
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wc5-Hz-1bB">
                                                         <rect key="frame" x="25" y="530" width="31" height="30"/>
-                                                        <color key="backgroundColor" name="WhiteAndBlack"/>
+                                                        <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="编辑">
-                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="titleColor" systemColor="labelColor"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="typeButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="nyR-pw-bpY"/>
@@ -955,10 +961,10 @@ Cg
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Stx-iB-4so">
                                                         <rect key="frame" x="289" y="530" width="31" height="30"/>
-                                                        <color key="backgroundColor" name="WhiteAndBlack"/>
+                                                        <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="分享">
-                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="titleColor" systemColor="labelColor"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="typeButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="Hfc-ff-Qsd"/>
@@ -1031,7 +1037,7 @@ Cg
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" name="WhiteAndBlack"/>
+                                                <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="600" id="3cM-NS-czp"/>
                                                     <constraint firstItem="wZL-aW-y72" firstAttribute="width" secondItem="CVf-bU-dEW" secondAttribute="width" id="3mS-Fj-sjH"/>
@@ -1070,7 +1076,7 @@ Cg
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" name="WhiteAndBlack"/>
+                                        <color key="backgroundColor" name="GrayWhiteAndBlackBackground"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="Axy-dD-Kcg" secondAttribute="trailing" constant="15" id="5Lj-kG-E6L"/>
@@ -1090,6 +1096,7 @@ Cg
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                 <constraints>
                                     <constraint firstItem="fhM-A8-SwE" firstAttribute="bottom" secondItem="d11-UI-6ln" secondAttribute="bottom" id="1bh-jd-zX7"/>
                                     <constraint firstItem="fhM-A8-SwE" firstAttribute="trailing" secondItem="d11-UI-6ln" secondAttribute="trailing" id="AC5-GS-ueE"/>
@@ -1102,7 +1109,7 @@ Cg
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DQ0-N6-onb"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="GrayWhiteAndBlackBackground"/>
                         <constraints>
                             <constraint firstItem="wc5-Hz-1bB" firstAttribute="leading" secondItem="DQ0-N6-onb" secondAttribute="leading" constant="40" id="1GC-9a-21z"/>
                             <constraint firstItem="rPK-k0-tHl" firstAttribute="height" secondItem="0fl-uJ-8UA" secondAttribute="height" multiplier="0.529557" priority="750" id="1IY-X4-Xj4"/>
@@ -1115,6 +1122,7 @@ Cg
                     </view>
                     <navigationItem key="navigationItem" title="项目名" id="dce-h9-NTD">
                         <barButtonItem key="rightBarButtonItem" title="编辑" id="uXu-af-sL3">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <segue destination="yhk-VJ-4nb" kind="presentation" identifier="GoToEditItemView" id="HdV-Uf-p4p"/>
                             </connections>
@@ -1183,7 +1191,7 @@ Cg
                                         <subviews>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3zJ-j0-odF" userLabel="Space view">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                                <color key="backgroundColor" name="ThemeColor"/>
+                                                <color key="backgroundColor" name="ThemeColorAndBlack"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="2Ck-lH-mKj"/>
                                                 </constraints>
@@ -1204,7 +1212,7 @@ Cg
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" name="ThemeColor"/>
+                                                <color key="backgroundColor" name="ThemeColorAndBlack"/>
                                                 <constraints>
                                                     <constraint firstItem="xlY-9o-Nvi" firstAttribute="top" secondItem="WFU-9H-CGg" secondAttribute="bottom" constant="10" id="6Cf-Cn-KA7"/>
                                                     <constraint firstItem="WFU-9H-CGg" firstAttribute="leading" secondItem="rxm-0f-Igg" secondAttribute="leading" constant="15" id="Kku-BG-5Gt"/>
@@ -1235,7 +1243,7 @@ Cg
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" name="WhiteAndBlack"/>
+                                                                <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                                                 <constraints>
                                                                     <constraint firstItem="nIc-xu-5NB" firstAttribute="centerX" secondItem="la4-fr-xx5" secondAttribute="centerX" id="BBd-Rt-aj9"/>
                                                                     <constraint firstItem="nIc-xu-5NB" firstAttribute="top" secondItem="la4-fr-xx5" secondAttribute="top" constant="100" id="EBw-T3-A7v"/>
@@ -1254,14 +1262,14 @@ Cg
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" name="WhiteAndBlack"/>
+                                                                <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                                                 <constraints>
                                                                     <constraint firstItem="s0C-g8-oh2" firstAttribute="top" secondItem="1K9-RY-bz1" secondAttribute="top" constant="100" id="D8O-2v-I5V"/>
                                                                     <constraint firstItem="s0C-g8-oh2" firstAttribute="centerX" secondItem="1K9-RY-bz1" secondAttribute="centerX" id="gcb-Cy-jAx"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="la4-fr-xx5" secondAttribute="bottom" id="IOu-cM-Yxi"/>
                                                             <constraint firstAttribute="bottom" secondItem="1K9-RY-bz1" secondAttribute="bottom" id="hYp-7g-uuX"/>
@@ -1283,7 +1291,7 @@ Cg
                                                 <viewLayoutGuide key="frameLayoutGuide" id="vil-3f-dZG"/>
                                             </scrollView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                         <constraints>
                                             <constraint firstItem="1K9-RY-bz1" firstAttribute="width" secondItem="rxm-0f-Igg" secondAttribute="width" constant="-30" id="1EO-ZS-TyN"/>
                                             <constraint firstItem="rxm-0f-Igg" firstAttribute="top" secondItem="3zJ-j0-odF" secondAttribute="bottom" id="2zk-zV-Fbj"/>
@@ -1337,7 +1345,7 @@ Cg
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" name="ThemeColor"/>
+                                <color key="backgroundColor" name="ThemeColorAndBlack"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Zxq-bS-hHW" secondAttribute="trailing" constant="15" id="4n5-DN-HGU"/>
                                     <constraint firstItem="PRS-WT-xZR" firstAttribute="centerY" secondItem="Zxq-bS-hHW" secondAttribute="centerY" id="Hck-Yv-rfx"/>
@@ -1348,7 +1356,7 @@ Cg
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6sH-n0-ndx"/>
-                        <color key="backgroundColor" name="ThemeColor"/>
+                        <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                         <constraints>
                             <constraint firstItem="3zJ-j0-odF" firstAttribute="width" secondItem="d1D-I0-rzL" secondAttribute="width" id="2Es-nR-bV0"/>
                             <constraint firstItem="d1D-I0-rzL" firstAttribute="top" secondItem="uAb-zv-xSl" secondAttribute="top" id="3bZ-tW-7Vt"/>
@@ -1366,12 +1374,12 @@ Cg
                         <outlet property="addNewItemButton" destination="Zxq-bS-hHW" id="Tvl-9R-55q"/>
                         <outlet property="contentView" destination="efV-kw-weZ" id="dgU-Nz-Kdn"/>
                         <outlet property="customNavigationBar" destination="d1D-I0-rzL" id="eeV-NX-RSG"/>
+                        <outlet property="horizentalContentLeftView" destination="la4-fr-xx5" id="Jot-6u-g2n"/>
+                        <outlet property="horizentalContentRightView" destination="1K9-RY-bz1" id="Kgd-0Z-Ydc"/>
                         <outlet property="horizentalScrollView" destination="QUl-UX-mGH" id="Xvf-09-9wG"/>
                         <outlet property="itemsTitleLabel" destination="BU0-nc-P3S" id="Cpl-nE-Mgi"/>
                         <outlet property="overallProgressView" destination="rxm-0f-Igg" id="U8E-hO-qXg"/>
-                        <outlet property="persistingItemsView" destination="la4-fr-xx5" id="Jot-6u-g2n"/>
                         <outlet property="persistingItemsViewPromptLabel" destination="nIc-xu-5NB" id="AAV-aK-xdy"/>
-                        <outlet property="quittingItemsView" destination="1K9-RY-bz1" id="Kgd-0Z-Ydc"/>
                         <outlet property="quittingItemsViewPromptLabel" destination="s0C-g8-oh2" id="H5P-dq-PHG"/>
                         <outlet property="spaceView" destination="3zJ-j0-odF" id="Lwc-NM-Ljv"/>
                         <outlet property="spaceViewHeightConstraint" destination="2Ck-lH-mKj" id="Y2w-UY-j2j"/>
@@ -1389,12 +1397,14 @@ Cg
         <!--进行中-->
         <scene sceneID="9aa-Ko-nlN">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fLO-0e-dFJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jdV-7M-5pe" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="进行中" image="OverallIcon" id="sU1-NQ-WFC"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" translucent="NO" id="WRg-cq-9vY">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" name="ThemeColor"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1408,7 +1418,6 @@ Cg
                         <segue destination="5eW-DY-fpx" kind="relationship" relationship="rootViewController" id="8L7-oP-nWL"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fLO-0e-dFJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2884" y="53"/>
         </scene>
@@ -1418,12 +1427,12 @@ Cg
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="HyW-tH-URj" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="概览" id="EdY-bB-4Am"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="g2J-w4-n4e">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="g2J-w4-n4e">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" name="WhiteAndBlackContent"/>
                         <color key="selectedImageTintColor" name="ThemeColor"/>
                     </tabBar>
                     <connections>
@@ -1439,11 +1448,16 @@ Cg
         <!--项目管理-->
         <scene sceneID="qRa-3M-2d2">
             <objects>
-                <navigationController navigationBarHidden="YES" id="vqv-6z-2PO" sceneMemberID="viewController">
+                <navigationController id="vqv-6z-2PO" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="项目管理" image="HistoryIcon" selectedImage="HistoryIcon" id="5kR-Ma-zyI"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="CRy-rA-s2G">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" name="ThemeColor"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="7qU-RC-e4u" kind="relationship" relationship="rootViewController" id="64U-zF-Wuw"/>
@@ -1461,40 +1475,8 @@ Cg
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rgE-Ln-n8O" userLabel="Custom Navigation Bar">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1yb-WP-6lw">
-                                        <rect key="frame" x="335" y="57.333333333333314" width="25" height="20.666666666666686"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="25" id="uds-7l-b8X"/>
-                                            <constraint firstAttribute="height" constant="25" id="yVa-aJ-K3g"/>
-                                        </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" backgroundImage="plus" catalog="system"/>
-                                        <connections>
-                                            <action selector="addNewItemButtonPressed:" destination="5eW-DY-fpx" eventType="touchUpInside" id="GYJ-OX-n81"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自律管理" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQd-Ij-XiP">
-                                        <rect key="frame" x="153" y="58.000000000000007" width="69.333333333333314" height="19.333333333333336"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" name="ThemeColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="1yb-WP-6lw" secondAttribute="trailing" constant="15" id="8nM-vL-zD9"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="VGK-b7-62x"/>
-                                    <constraint firstAttribute="height" constant="100" id="Xzq-Ra-u5E"/>
-                                    <constraint firstItem="CQd-Ij-XiP" firstAttribute="centerX" secondItem="rgE-Ln-n8O" secondAttribute="centerX" id="aQq-HR-6DY"/>
-                                    <constraint firstItem="CQd-Ij-XiP" firstAttribute="centerY" secondItem="1yb-WP-6lw" secondAttribute="centerY" id="bDg-8f-nMv"/>
-                                    <constraint firstAttribute="bottom" secondItem="1yb-WP-6lw" secondAttribute="bottom" constant="20" id="bpY-lN-hhD"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lt5-gF-RX7" userLabel="Option Bar">
-                                <rect key="frame" x="0.0" y="100" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="mH9-Nw-pG6">
                                         <rect key="frame" x="15" y="9.6666666666666714" width="291" height="32"/>
@@ -1510,7 +1492,7 @@ Cg
                                         </connections>
                                     </segmentedControl>
                                 </subviews>
-                                <color key="backgroundColor" name="ThemeColor"/>
+                                <color key="backgroundColor" name="ThemeColorAndBlack"/>
                                 <constraints>
                                     <constraint firstItem="mH9-Nw-pG6" firstAttribute="leading" secondItem="Lt5-gF-RX7" secondAttribute="leading" constant="15" id="Jpm-4f-LpJ"/>
                                     <constraint firstAttribute="height" constant="50" id="Skc-cN-Iws"/>
@@ -1518,11 +1500,11 @@ Cg
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVc-FF-Wj4" userLabel="Vertical Scroll View">
-                                <rect key="frame" x="0.0" y="150" width="375" height="579"/>
+                                <rect key="frame" x="0.0" y="50" width="375" height="591"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RlR-Ck-CHb" userLabel="Vertical Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="600"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="600" id="Je9-ys-7df"/>
                                         </constraints>
@@ -1540,17 +1522,14 @@ Cg
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="iOI-gm-T7y"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                         <constraints>
+                            <constraint firstItem="Lt5-gF-RX7" firstAttribute="top" secondItem="iOI-gm-T7y" secondAttribute="top" id="AKx-Fs-xNv"/>
                             <constraint firstItem="hVc-FF-Wj4" firstAttribute="top" secondItem="Lt5-gF-RX7" secondAttribute="bottom" id="CHA-xk-35p"/>
                             <constraint firstItem="hVc-FF-Wj4" firstAttribute="leading" secondItem="iOI-gm-T7y" secondAttribute="leading" id="LNV-Pv-0U0"/>
-                            <constraint firstItem="rgE-Ln-n8O" firstAttribute="trailing" secondItem="iOI-gm-T7y" secondAttribute="trailing" id="QUd-lf-z0a"/>
-                            <constraint firstItem="rgE-Ln-n8O" firstAttribute="top" secondItem="XJ8-ec-9K0" secondAttribute="top" id="TEO-kk-Yta"/>
                             <constraint firstItem="iOI-gm-T7y" firstAttribute="trailing" secondItem="hVc-FF-Wj4" secondAttribute="trailing" id="dpm-9H-bDD"/>
                             <constraint firstItem="iOI-gm-T7y" firstAttribute="bottom" secondItem="hVc-FF-Wj4" secondAttribute="bottom" id="fSX-be-3qr"/>
-                            <constraint firstItem="rgE-Ln-n8O" firstAttribute="leading" secondItem="iOI-gm-T7y" secondAttribute="leading" id="iNy-r4-VMY"/>
                             <constraint firstItem="Lt5-gF-RX7" firstAttribute="trailing" secondItem="iOI-gm-T7y" secondAttribute="trailing" id="iTm-wX-9VP"/>
-                            <constraint firstItem="Lt5-gF-RX7" firstAttribute="top" secondItem="rgE-Ln-n8O" secondAttribute="bottom" id="iVa-vX-m7U"/>
                             <constraint firstItem="Lt5-gF-RX7" firstAttribute="leading" secondItem="iOI-gm-T7y" secondAttribute="leading" id="lTe-Jz-UZr"/>
                         </constraints>
                     </view>
@@ -1582,7 +1561,7 @@ Cg
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fkI-Nx-UK5" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="900"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AvatarMale" translatesAutoresizingMaskIntoConstraints="NO" id="KpG-66-JYl">
+                                            <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AvatarMale" translatesAutoresizingMaskIntoConstraints="NO" id="KpG-66-JYl">
                                                 <rect key="frame" x="15" y="85" width="100" height="100"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -1633,7 +1612,7 @@ Cg
                                                         </state>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" name="WhiteAndBlack"/>
+                                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <constraints>
                                                     <constraint firstItem="DNH-Rd-qdE" firstAttribute="leading" secondItem="FzS-Z7-id6" secondAttribute="leading" constant="20" id="DUJ-QY-xEt"/>
                                                     <constraint firstAttribute="trailing" secondItem="DNH-Rd-qdE" secondAttribute="trailing" constant="20" id="ITh-Vd-srj"/>
@@ -1648,13 +1627,13 @@ Cg
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s8i-6y-kYV" userLabel="白天/黑夜模式">
                                                         <rect key="frame" x="15" y="6" width="305" height="28"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                        <color key="tintColor" red="0.062746584420000001" green="0.062742397189999993" blue="0.062745235859999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        <state key="normal" title="  打卡时间" image="PunchInSettingIcon">
+                                                        <color key="tintColor" systemColor="labelColor"/>
+                                                        <state key="normal" title="  通知时间" image="PunchInSettingIcon">
                                                             <color key="titleColor" systemColor="labelColor"/>
                                                         </state>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" name="WhiteAndBlack"/>
+                                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="H8A-Ra-gRl"/>
                                                     <constraint firstAttribute="trailing" secondItem="s8i-6y-kYV" secondAttribute="trailing" constant="15" id="bJg-w8-Aea"/>
@@ -1715,7 +1694,7 @@ Cg
                                                         </state>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" name="WhiteAndBlack"/>
+                                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <constraints>
                                                     <constraint firstItem="h4L-GB-8hZ" firstAttribute="top" secondItem="SX5-HU-KYh" secondAttribute="bottom" constant="20" id="8TU-MW-jwd"/>
                                                     <constraint firstItem="lhG-N7-zSU" firstAttribute="leading" secondItem="bXE-cc-vLl" secondAttribute="leading" constant="20" id="CzX-nw-M36"/>
@@ -1750,7 +1729,7 @@ Cg
                                                         </state>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" name="WhiteAndBlack"/>
+                                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="7qb-Hl-aQ4" secondAttribute="trailing" constant="15" id="6oT-x6-jNJ"/>
                                                     <constraint firstAttribute="height" constant="40" id="fYJ-St-XS6"/>
@@ -1767,7 +1746,7 @@ Cg
                                                 </state>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                         <constraints>
                                             <constraint firstItem="0sp-V1-vxG" firstAttribute="centerX" secondItem="fkI-Nx-UK5" secondAttribute="centerX" id="1JI-Oh-UvC"/>
                                             <constraint firstItem="uT8-OF-XzE" firstAttribute="top" secondItem="FzS-Z7-id6" secondAttribute="bottom" constant="20" id="5F6-8m-5Ph"/>
@@ -1828,7 +1807,7 @@ Cg
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="K5e-X2-qAd"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                         <constraints>
                             <constraint firstItem="K5e-X2-qAd" firstAttribute="trailing" secondItem="2gY-P1-gbC" secondAttribute="trailing" id="BYv-h0-A2n"/>
                             <constraint firstItem="2gY-P1-gbC" firstAttribute="top" secondItem="K5e-X2-qAd" secondAttribute="top" id="Ee4-UR-cmq"/>
@@ -1842,9 +1821,9 @@ Cg
                         <outlet property="appVersionLabelButton" destination="1Rc-aS-e5C" id="ESG-rC-hs8"/>
                         <outlet property="avaterView" destination="KpG-66-JYl" id="lht-Ht-8Bz"/>
                         <outlet property="perchaseButton" destination="rRc-pT-ow4" id="M1j-T2-zSl"/>
-                        <outlet property="punchInView" destination="OaW-i9-p1v" id="ejq-2X-Ggr"/>
+                        <outlet property="punchInSettingView" destination="OaW-i9-p1v" id="ejq-2X-Ggr"/>
                         <outlet property="purchaseView" destination="FzS-Z7-id6" id="N0I-OX-fSu"/>
-                        <outlet property="timeMachineView" destination="0sp-V1-vxG" id="r5R-Iw-RL2"/>
+                        <outlet property="timeMachineSettingView" destination="0sp-V1-vxG" id="r5R-Iw-RL2"/>
                         <outlet property="verticalScrollView" destination="2gY-P1-gbC" id="ani-dJ-wxu"/>
                     </connections>
                 </viewController>
@@ -1861,7 +1840,7 @@ Cg
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" name="ThemeColor"/>
+                        <color key="barTintColor" name="ThemeColorAndBlack"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="textShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1895,7 +1874,7 @@ Cg
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UGA-qj-SB4">
                                         <rect key="frame" x="295" y="61.666666666666657" width="20" height="20"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <accessibility key="accessibilityConfiguration" identifier="NextMonthButton"/>
                                         <color key="tintColor" red="0.82259156531894329" green="0.82259156531894329" blue="0.82259156531894329" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" image="RightButton">
@@ -1907,7 +1886,7 @@ Cg
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="djk-JB-I2X">
                                         <rect key="frame" x="72.666666666666671" y="61.666666666666657" width="80.000000000000014" height="20"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <accessibility key="accessibilityConfiguration" identifier="StartMonthButton"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="HKc-mv-psR"/>
@@ -1915,7 +1894,7 @@ Cg
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
                                         <state key="normal" title="开始日">
-                                            <color key="titleColor" name="ThemeColor"/>
+                                            <color key="titleColor" systemColor="labelColor"/>
                                         </state>
                                         <connections>
                                             <action selector="startMonthButtonPressed:" destination="cr2-6I-Rrh" eventType="touchUpInside" id="kqP-QE-1lq"/>
@@ -1936,7 +1915,7 @@ Cg
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4yp-mE-jGG">
                                         <rect key="frame" x="192.66666666666666" y="61.666666666666657" width="79.999999999999972" height="20"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <accessibility key="accessibilityConfiguration" identifier="ThisMonthButton"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="GGq-jH-MJN"/>
@@ -1944,7 +1923,7 @@ Cg
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
                                         <state key="normal" title="今天">
-                                            <color key="titleColor" name="ThemeColor"/>
+                                            <color key="titleColor" systemColor="labelColor"/>
                                         </state>
                                         <connections>
                                             <action selector="thisMonthButtonPressed:" destination="cr2-6I-Rrh" eventType="touchUpInside" id="mpK-Su-jcG"/>
@@ -1960,7 +1939,7 @@ Cg
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                 <accessibility key="accessibilityConfiguration" identifier="TopView"/>
                                 <constraints>
                                     <constraint firstItem="UnO-dN-eLE" firstAttribute="top" secondItem="NdA-gx-XZ9" secondAttribute="bottom" constant="20" id="4cW-At-cBQ"/>
@@ -2032,7 +2011,7 @@ Cg
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                 <accessibility key="accessibilityConfiguration" identifier="MiddleView"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Hni-M4-Kg5"/>
@@ -2046,7 +2025,7 @@ Cg
                                 <subviews>
                                     <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zYE-Pq-52Y">
                                         <rect key="frame" x="30" y="0.0" width="285" height="240"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="mXR-mX-f4e">
                                             <size key="itemSize" width="128" height="128"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -2056,7 +2035,7 @@ Cg
                                         <cells/>
                                     </collectionView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                 <accessibility key="accessibilityConfiguration" identifier="BottomView"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="zYE-Pq-52Y" secondAttribute="bottom" constant="20" id="Mg1-zX-7MG"/>
@@ -2067,7 +2046,7 @@ Cg
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="f7g-te-UXB"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="1uJ-r9-mDY" secondAttribute="trailing" id="0Ty-Gh-mpN"/>
                             <constraint firstAttribute="trailing" secondItem="CyJ-kQ-0F2" secondAttribute="trailing" id="3d3-7v-igk"/>
@@ -2117,9 +2096,10 @@ Cg
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="tkB-nE-CDt"/>
+        <segue reference="qHk-ov-wBz"/>
         <segue reference="HdV-Uf-p4p"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <image name="AvatarMale" width="256" height="256"/>
         <image name="CancelButton" width="28" height="28"/>
@@ -2149,13 +2129,25 @@ Cg
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <namedColor name="GrayWhiteAndBlackBackground">
+            <color red="0.9686403871" green="0.9686041474" blue="0.96862870450000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <namedColor name="ThemeColor">
             <color red="0.18000000715255737" green="0.45500001311302185" blue="0.70999997854232788" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ThemeColorAndBlack">
+            <color red="0.17925208810000001" green="0.45211249590000002" blue="0.70970946550000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="ThemeColorInvert">
             <color red="0.57700002193450928" green="0.58399999141693115" blue="0.58799999952316284" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="WhiteAndBlack">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="WhiteAndBlackBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="WhiteAndBlackContent">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
@@ -2166,9 +2158,6 @@ Cg
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

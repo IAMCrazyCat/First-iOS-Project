@@ -15,8 +15,8 @@ class ItemCardViewBuilder: Builder {
     var cordinateY: CGFloat
     var width: CGFloat
     var height: CGFloat
-    let cardBGImage: UIImage = SystemStyleSetting.shared.itemCardBGImage
-    let setting: SystemStyleSetting = SystemStyleSetting.shared
+    let cardBGImage: UIImage = SystemSetting.shared.itemCardBGImage
+    let setting: SystemSetting = SystemSetting.shared
     let outPutView: UIView = UIView()
     var isInteractable: Bool
     init(item: Item, frame: CGRect, punchInButtonTag: Int = 11607, isInteractable: Bool){ // for home page
@@ -33,10 +33,6 @@ class ItemCardViewBuilder: Builder {
     public func buildView() -> UIView {
       
         createItemCardView()
-        
-        if item.finishedDays == item.targetDays {
-            addConfettiTopView()
-        }
         addIconAndNameLabel()
         addGoDetailsButton()
         addTypeLabel()
@@ -57,7 +53,7 @@ class ItemCardViewBuilder: Builder {
         
         
         outPutView.accessibilityIdentifier = setting.itemCardIdentifier
-        outPutView.backgroundColor = setting.whiteAndBlack
+        outPutView.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackContent
         outPutView.layer.cornerRadius = setting.itemCardCornerRadius
         outPutView.setShadow()
         outPutView.frame = CGRect(x: cordinateX, y: cordinateY, width: width, height: height)
@@ -69,6 +65,9 @@ class ItemCardViewBuilder: Builder {
             outPutView.alpha = 1
         }
         
+        if item.finishedDays == item.targetDays {
+            addConfettiTopView()
+        }
 
     }
     
@@ -81,8 +80,8 @@ class ItemCardViewBuilder: Builder {
         nameLabel.accessibilityIdentifier = "NameLabel"
         nameLabel.text = item.type.rawValue + item.name
 
-        nameLabel.textColor = .black
-        nameLabel.font = UserStyleSetting.fontSmall
+        nameLabel.textColor = .label
+        nameLabel.font = AppEngine.shared.userSetting.fontSmall
         
         outPutView.addSubview(nameLabel)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -106,8 +105,8 @@ class ItemCardViewBuilder: Builder {
         freqencyLabel.accessibilityIdentifier = "FreqencyLabel"
         
         freqencyLabel.text = item.frequency.title
-        freqencyLabel.textColor = UserStyleSetting.themeColor
-        freqencyLabel.font = UserStyleSetting.fontSmall
+        freqencyLabel.textColor = AppEngine.shared.userSetting.themeColor
+        freqencyLabel.font = AppEngine.shared.userSetting.fontSmall
         freqencyLabel.sizeToFit()
         
         outPutView.addSubview(freqencyLabel)
@@ -133,8 +132,8 @@ class ItemCardViewBuilder: Builder {
         goDetailsButton.accessibilityIdentifier = "GoDetailsButton"
         goDetailsButton.setBackgroundImage(UIImage(named: "DetailsButton"), for: .normal)
         goDetailsButton.setTitleColor(.black, for: .normal)
-        goDetailsButton.titleLabel!.font = UserStyleSetting.fontSmall
-        goDetailsButton.tintColor = UserStyleSetting.themeColor
+        goDetailsButton.titleLabel!.font = AppEngine.shared.userSetting.fontSmall
+        goDetailsButton.tintColor = AppEngine.shared.userSetting.themeColor
         outPutView.addSubview(goDetailsButton)
         
         goDetailsButton.translatesAutoresizingMaskIntoConstraints = false
@@ -149,7 +148,7 @@ class ItemCardViewBuilder: Builder {
         fullViewButton.tag = self.punchInButtonTag
         
         if isInteractable {
-            fullViewButton.addTarget(ItemCardAction.shared, action: ItemCardAction.shared.detailsViewAction, for: .touchDown)
+            fullViewButton.addTarget(ItemCardAction.shared, action: ItemCardAction.shared.detailsViewAction, for: .touchUpInside)
         }
         
         outPutView.addSubview(fullViewButton)
@@ -160,8 +159,8 @@ class ItemCardViewBuilder: Builder {
         typeLabel.accessibilityIdentifier = "TypeLabel"
         
         typeLabel.text = "已打卡"
-        typeLabel.textColor = .black
-        typeLabel.font = UserStyleSetting.fontSmall
+        typeLabel.textColor = .label
+        typeLabel.font = AppEngine.shared.userSetting.fontSmall
         typeLabel.sizeToFit()
         
         outPutView.addSubview(typeLabel)
@@ -174,8 +173,8 @@ class ItemCardViewBuilder: Builder {
     private func addFinishedDaysLabel(labelFrame: CGRect?, withTypeLabel: Bool) {
         
         let finishedDaysLabel = UILabel()
-        let attrs1 = [NSAttributedString.Key.font: UserStyleSetting.fontLarge]
-        let attrs2 = [NSAttributedString.Key.font: UserStyleSetting.fontSmall, NSAttributedString.Key.foregroundColor: UIColor.gray]
+        let attrs1 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.fontLarge]
+        let attrs2 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.fontSmall, NSAttributedString.Key.foregroundColor: UIColor.gray]
         finishedDaysLabel.accessibilityIdentifier = "FinishedDaysLabel"
         finishedDaysLabel.sizeToFit()
         
@@ -186,7 +185,7 @@ class ItemCardViewBuilder: Builder {
             if labelFrame != nil {
                 
                 finishedDaysLabel.frame.origin = labelFrame!.origin
-                let attrs0 = [NSAttributedString.Key.font: UserStyleSetting.fontSmall, NSAttributedString.Key.foregroundColor: UIColor.gray]
+                let attrs0 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.fontSmall, NSAttributedString.Key.foregroundColor: UIColor.gray]
                 let typeString = NSMutableAttributedString(string: "已打卡:  ", attributes: attrs0)
                 
                 finishedDaysString.append(unit)
@@ -216,8 +215,8 @@ class ItemCardViewBuilder: Builder {
         let barTrackPath = UIBezierPath(roundedRect: barFrame, cornerRadius: 10)
         let barTrackLayer = CAShapeLayer()
         
-        let shapeColor = UserStyleSetting.themeColor.cgColor
-        let trackColor = UserStyleSetting.themeColor.withAlphaComponent(0.3).cgColor
+        let shapeColor = AppEngine.shared.userSetting.themeColor.cgColor
+        let trackColor = AppEngine.shared.userSetting.themeColor.withAlphaComponent(0.3).cgColor
         let progressWidth: CGFloat = 10
 
         barTrackLayer.name = "ProgressTrack"
@@ -250,7 +249,7 @@ class ItemCardViewBuilder: Builder {
         if withProgressLabel {
             let progressLabel = UILabel()
             progressLabel.frame.origin = CGPoint(x: CGFloat(self.item.progress) * barFrame.width - 10, y: barFrame.origin.y - barFrame.height - 10)
-            progressLabel.font = UserStyleSetting.fontSmall
+            progressLabel.font = AppEngine.shared.userSetting.fontSmall
             progressLabel.text = self.item.progressInPercentageString
             progressLabel.sizeToFit()
             outPutView.addSubview(progressLabel)
@@ -265,9 +264,9 @@ class ItemCardViewBuilder: Builder {
                 daysLabel.accessibilityIdentifier = "DaysLabel"
                 daysLabel.frame.origin = labelFrame!.origin
                 
-                let atr0 = [NSAttributedString.Key.font: UserStyleSetting.fontSmall]
-                let atr1 = [NSAttributedString.Key.font: UserStyleSetting.fontLarge]
-                let atr2 = [NSAttributedString.Key.font: UserStyleSetting.fontSmall, NSAttributedString.Key.foregroundColor: UIColor.black]
+                let atr0 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.fontSmall]
+                let atr1 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.fontLarge]
+                let atr2 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.fontSmall, NSAttributedString.Key.foregroundColor: UIColor.label]
                 
                 let typeString = NSMutableAttributedString(string: "目标:  ", attributes: atr0)
                 let daysString = NSMutableAttributedString(string: "\(self.item.targetDays)", attributes: atr1)
@@ -289,8 +288,8 @@ class ItemCardViewBuilder: Builder {
             let daysLabel = UILabel()
             daysLabel.accessibilityIdentifier = "DaysLabel"
             
-            let atr1 = [NSAttributedString.Key.font: UserStyleSetting.fontSmall]
-            let atr2 = [NSAttributedString.Key.font: UserStyleSetting.fontSmall, NSAttributedString.Key.foregroundColor: UIColor.black]
+            let atr1 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.fontSmall]
+            let atr2 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.fontSmall, NSAttributedString.Key.foregroundColor: UIColor.label]
             let daysString = NSMutableAttributedString(string: "\(self.item.targetDays)", attributes: atr1)
             let daysUnit = NSMutableAttributedString(string: "天", attributes: atr2)
             
@@ -312,14 +311,14 @@ class ItemCardViewBuilder: Builder {
         
         punchInButton.setTitle("打卡", for: .normal)
         punchInButton.setTitle("打卡", for: .selected)
-        punchInButton.setTitleColor(UserStyleSetting.themeColor, for: .normal)
+        punchInButton.setTitleColor(AppEngine.shared.userSetting.themeColor, for: .normal)
         punchInButton.setTitleColor(.white, for: .selected)
        
-        punchInButton.titleLabel!.font = UserStyleSetting.fontSmall
+        punchInButton.titleLabel!.font = AppEngine.shared.userSetting.fontSmall
         punchInButton.layer.cornerRadius = self.setting.checkButtonCornerRadius
         punchInButton.layer.zPosition = 3
-        punchInButton.setBackgroundColor(.white, for: .normal)
-        punchInButton.setBackgroundColor(UserStyleSetting.themeColor, for: .selected)
+        punchInButton.setBackgroundColor(.clear, for: .normal)
+        punchInButton.setBackgroundColor(AppEngine.shared.userSetting.themeColor, for: .selected)
     
         punchInButton.isSelected = self.item.isPunchedIn ? true : false
         
@@ -328,7 +327,7 @@ class ItemCardViewBuilder: Builder {
             
         } else {
             punchInButton.layer.borderWidth = 1
-            punchInButton.layer.borderColor = UserStyleSetting.themeColor.cgColor
+            punchInButton.layer.borderColor = AppEngine.shared.userSetting.themeColor.cgColor
             
         }
         
@@ -340,7 +339,7 @@ class ItemCardViewBuilder: Builder {
         punchInButton.tag = self.punchInButtonTag
         
         if isInteractable {
-            punchInButton.addTarget(ItemCardAction.shared, action: ItemCardAction.shared.punchInAction, for: .touchDown)
+            punchInButton.addTarget(ItemCardAction.shared, action: ItemCardAction.shared.punchInAction, for: .touchUpInside)
         }
     }
     
@@ -354,7 +353,7 @@ class ItemCardViewBuilder: Builder {
         
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = confettiTopView.bounds
-        gradientLayer.colors = [UIColor.white.withAlphaComponent(0).cgColor, UIColor.white.withAlphaComponent(1).cgColor]
+        gradientLayer.colors = [AppEngine.shared.userSetting.whiteAndBlackContent.withAlphaComponent(0).cgColor, AppEngine.shared.userSetting.whiteAndBlackContent.withAlphaComponent(1).cgColor]
         gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.5)
         gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
         confettiTopView.layer.addSublayer(gradientLayer)

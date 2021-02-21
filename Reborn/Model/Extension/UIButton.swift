@@ -52,8 +52,8 @@ extension UIButton {
     }
     
     func setSizeAccrodingToScreen() {
-        self.heightAnchor.constraint(equalToConstant: SystemStyleSetting.shared.screenFrame.height *  SystemStyleSetting.shared.optionButtonHeightRatio).isActive = true
-        self.widthAnchor.constraint(equalToConstant:  SystemStyleSetting.shared.screenFrame.width *  SystemStyleSetting.shared.optionButtonWidthRatio).isActive = true
+        self.heightAnchor.constraint(equalToConstant: SystemSetting.shared.screenFrame.height *  SystemSetting.shared.optionButtonHeightRatio).isActive = true
+        self.widthAnchor.constraint(equalToConstant:  SystemSetting.shared.screenFrame.width *  SystemSetting.shared.optionButtonWidthRatio).isActive = true
         self.layoutIfNeeded()
     }
 }

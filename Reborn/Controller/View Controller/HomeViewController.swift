@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UNUserNotificationCenterDelegate {
+class HomeViewController: UIViewController {
 
     @IBOutlet weak var verticalScrollView: UIScrollView!
     @IBOutlet weak var horizentalScrollView: UIScrollView!
@@ -16,8 +16,8 @@ class HomeViewController: UIViewController, UNUserNotificationCenterDelegate {
     @IBOutlet weak var itemsTitleLabel: UILabel!
     @IBOutlet weak var persistingItemsViewPromptLabel: UILabel!
     @IBOutlet weak var quittingItemsViewPromptLabel: UILabel!
-    @IBOutlet weak var persistingItemsView: UIView!
-    @IBOutlet weak var quittingItemsView: UIView!
+    @IBOutlet weak var horizentalContentLeftView: UIView!
+    @IBOutlet weak var horizentalContentRightView: UIView!
     @IBOutlet var addNewItemButton: UIButton!
     @IBOutlet var customNavigationBar: UIView!
     @IBOutlet weak var spaceView: UIView!
@@ -26,7 +26,7 @@ class HomeViewController: UIViewController, UNUserNotificationCenterDelegate {
     
     static var view: UIView!
     
-    var setting = SystemStyleSetting.shared
+    var setting = SystemSetting.shared
     
     var scrollViewTopOffset: CGFloat = 0
     var scrollViewLastOffsetY: CGFloat = 0
@@ -34,23 +34,31 @@ class HomeViewController: UIViewController, UNUserNotificationCenterDelegate {
     let dateFormatter = DateFormatter()
     let engine = AppEngine.shared
     var keyboardFrame: CGRect? = nil
-   
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        engine.notifyAllObservers()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        customNavigationBar.backgroundColor = engine.userSetting.themeColorAndBlack
+        spaceView.backgroundColor = engine.userSetting.themeColorAndBlack
         
         engine.registerObserver(observer: self)
         persistingItemsViewPromptLabel.sizeToFit()
         quittingItemsViewPromptLabel.sizeToFit()
 
-        persistingItemsView.layoutIfNeeded()
-        quittingItemsView.layoutIfNeeded()
+        horizentalContentLeftView.layoutIfNeeded()
+        horizentalContentRightView.layoutIfNeeded()
         
+        customNavigationBar.layer.cornerRadius = setting.customNavigationBarCornerRadius
+        customNavigationBar.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         
-        overallProgressView.layer.cornerRadius = setting.itemCardCornerRadius
-        overallProgressView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        overallProgressView.layoutIfNeeded()
+        overallProgressView.layer.cornerRadius = customNavigationBar.layer.cornerRadius
+        overallProgressView.layer.maskedCorners = customNavigationBar.layer.maskedCorners
+        overallProgressView.layer.masksToBounds = true
         
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.tintColor = UIColor.black
@@ -66,33 +74,19 @@ class HomeViewController: UIViewController, UNUserNotificationCenterDelegate {
         
         dateFormatter.locale = Locale(identifier: "zh")
         dateFormatter.setLocalizedDateFormatFromTemplate("dd MMMM EEEE")
-        
-        customNavigationBar.layer.cornerRadius = setting.itemCardCornerRadius
-        customNavigationBar.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-     
-        engine.loadUser()
         updateUI()
         
         
         
-        sendNotification()
-    }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        completionHandler()
-    }
-
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.alert, .badge, .sound])
+        //sendNotification()
     }
     
     func sendNotification() {
         let userNotificationCenter = UNUserNotificationCenter.current()
         let notificationContent = UNMutableNotificationContent()
-        userNotificationCenter.delegate = self
         // Add the content to the notification content
-        notificationContent.title = "Test"
-        notificationContent.body = "Test body"
+        notificationContent.title = "我爱你"
+        notificationContent.body = "快回来吧"
         notificationContent.badge = NSNumber(value: 3)
 
         // Add an attachment to the notification content
@@ -113,7 +107,8 @@ class HomeViewController: UIViewController, UNUserNotificationCenterDelegate {
             }
         }
     }
-
+    
+  
     
     
     
@@ -167,7 +162,7 @@ class HomeViewController: UIViewController, UNUserNotificationCenterDelegate {
     
     func removeAllItemCards() {
         
-        for subView in persistingItemsView.subviews {
+        for subView in horizentalContentLeftView.subviews {
             if subView.accessibilityIdentifier == setting.itemCardIdentifier {
 
                 subView.removeFromSuperview()
@@ -175,7 +170,7 @@ class HomeViewController: UIViewController, UNUserNotificationCenterDelegate {
             
         }
         
-        for subView in quittingItemsView.subviews {
+        for subView in horizentalContentRightView.subviews {
             if subView.accessibilityIdentifier == setting.itemCardIdentifier {
                 subView.removeFromSuperview()
             }
@@ -215,38 +210,38 @@ class HomeViewController: UIViewController, UNUserNotificationCenterDelegate {
                 if item.type == .persisting {
         
                     self.persistingItemsViewPromptLabel.isHidden = true
-                    let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: 0, y: persistingCordinateY, width: self.persistingItemsView.frame.width, height: self.setting.itemCardHeight), punchInButtonTag: tag, isInteractable: true)
+                    let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: 0, y: persistingCordinateY, width: self.horizentalContentLeftView.frame.width, height: self.setting.itemCardHeight), punchInButtonTag: tag, isInteractable: true)
                     let newItemCard = builder.buildView()
                     
                     let heightConstraintIndex = self.contentView.constraints.count - 1
                     let tabBarHeight: CGFloat = 200
-                    self.persistingItemsView.addSubview(newItemCard)
+                    self.horizentalContentLeftView.addSubview(newItemCard)
                     
                     let newConstraint = self.itemsTitleLabel.frame.origin.y + tabBarHeight + persistingCordinateY
                     if newConstraint > self.contentView.constraints[heightConstraintIndex].constant {
                         self.contentView.constraints[heightConstraintIndex].constant = newConstraint // update height constraint (height is at the last index of constraints array)
                     }
              
-                    self.persistingItemsView.layoutIfNeeded()
+                    self.horizentalContentLeftView.layoutIfNeeded()
                     persistingCordinateY += setting.itemCardHeight + setting.itemCardGap
                     
                 } else if item.type == .quitting {
                     
                     self.quittingItemsViewPromptLabel.isHidden = true
             
-                    let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: 0, y: quittingCordinateY, width: self.quittingItemsView.frame.width, height: self.setting.itemCardHeight), punchInButtonTag: tag, isInteractable: true)
+                    let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: 0, y: quittingCordinateY, width: self.horizentalContentRightView.frame.width, height: self.setting.itemCardHeight), punchInButtonTag: tag, isInteractable: true)
                     let newItemCard = builder.buildView()
                     
                     let heightConstraintIndex = self.contentView.constraints.count - 1
                     let tabBarHeight: CGFloat = 200
-                    self.quittingItemsView.addSubview(newItemCard)
+                    self.horizentalContentRightView.addSubview(newItemCard)
                     
                     let newConstraint = self.itemsTitleLabel.frame.origin.y + tabBarHeight + quittingCordinateY
                     if newConstraint > self.contentView.constraints[heightConstraintIndex].constant {
                         self.contentView.constraints[heightConstraintIndex].constant = newConstraint // update height constraint (height is at the last index of constraints array)
                     }
              
-                    self.persistingItemsView.layoutIfNeeded()
+                    self.horizentalContentLeftView.layoutIfNeeded()
                     quittingCordinateY += setting.itemCardHeight + setting.itemCardGap
                 }
                 
@@ -264,7 +259,7 @@ class HomeViewController: UIViewController, UNUserNotificationCenterDelegate {
         
     }
     
-    func updateNavigationBar() {
+    func updateNavigationView() {
         
         self.todayProgressLabel.text = "今日打卡: \(self.engine.getTodayProgress())"
         self.todayProgressLabel.layer.zPosition = 3
@@ -278,6 +273,7 @@ class HomeViewController: UIViewController, UNUserNotificationCenterDelegate {
         self.customNavigationBar.addSubview(circleView)
         self.overallProgressView.removeAllSubviews()
         
+        self.overallProgressView.layoutIfNeeded()
         builder = OverAllProgressViewBuilder(avatarImage: self.engine.currentUser.getAvatarImage(), progress: self.engine.getOverAllProgress(), frame: self.overallProgressView.bounds)
         let overAllProgressView = builder.buildView()
         overAllProgressView.accessibilityIdentifier = "OverAllProgressView"
@@ -287,22 +283,16 @@ class HomeViewController: UIViewController, UNUserNotificationCenterDelegate {
     
     }
     
-    func updateUI() {
-        
-        updateNavigationBar()
-       
-        updateItemCards()
-        
-    }
+    
         
     func updateOverAllProgressView(scrollView: UIScrollView, animated: Bool) {
         
         let animationSpeed: TimeInterval = animated ? 0.3 : 0
         
         if scrollView.contentOffset.y <= 0 { // make sure that view background color will change when scrolling
-            self.view.backgroundColor = UserStyleSetting.themeColor
+            self.view.backgroundColor = AppEngine.shared.userSetting.themeColorAndBlack
         } else {
-            self.view.backgroundColor = .white
+            self.view.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackBackground
         }
 
         guard let overallProgressInsideView = self.overallProgressView.subviews.first else { return }
@@ -355,7 +345,12 @@ class HomeViewController: UIViewController, UNUserNotificationCenterDelegate {
 }
 
 extension HomeViewController: Observer {
-    
+    func updateUI() {
+        
+        updateNavigationView()
+        updateItemCards()
+        
+    }
 }
 
 extension HomeViewController: PopUpViewDelegate {
@@ -376,7 +371,7 @@ extension HomeViewController: PopUpViewDelegate {
         if self.engine.itemFromController?.type == .persisting {
             self.horizentalScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true) // scroll to left after item added
         } else if self.engine.itemFromController?.type == .quitting {
-            self.horizentalScrollView.setContentOffset(CGPoint(x: self.persistingItemsView.frame.width, y: 0), animated: true) // scroll to right after item added
+            self.horizentalScrollView.setContentOffset(CGPoint(x: self.horizentalContentLeftView.frame.width, y: 0), animated: true) // scroll to right after item added
         }
         
     }

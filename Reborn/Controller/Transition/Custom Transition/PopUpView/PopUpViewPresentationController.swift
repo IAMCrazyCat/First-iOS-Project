@@ -35,7 +35,7 @@ final class PopUpViewPresentationController: UIPresentationController {
     override var frameOfPresentedViewInContainerView: CGRect { //override pop up view frame
         guard let container = containerView else { return .zero }
         
-        return CGRect(x: 0, y: SystemStyleSetting.shared.screenFrame.height - SystemStyleSetting.shared.popUpWindowHeight, width: container.bounds.width, height: SystemStyleSetting.shared.popUpWindowHeight)
+        return CGRect(x: 0, y: SystemSetting.shared.screenFrame.height - SystemSetting.shared.popUpWindowHeight, width: container.bounds.width, height: SystemSetting.shared.popUpWindowHeight)
     }
     
     override init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?) {

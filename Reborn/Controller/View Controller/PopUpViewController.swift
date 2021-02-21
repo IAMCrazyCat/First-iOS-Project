@@ -11,8 +11,8 @@ class PopUpViewController: UIViewController {
     
     
     var keyboardFrame: CGRect? = nil
-    var height: CGFloat = SystemStyleSetting.shared.popUpWindowHeight
-    var presentDuration: Double = SystemStyleSetting.shared.popUpWindowPresentDuration
+    var height: CGFloat = SystemSetting.shared.popUpWindowHeight
+    var presentDuration: Double = SystemSetting.shared.popUpWindowPresentDuration
     var type: PopUpType?
     var pikerViewData: Array<Any> = []
     var keyboardDidShowFully: Bool = false
@@ -38,7 +38,7 @@ class PopUpViewController: UIViewController {
         case .customTargetDays:
             AppEngine.shared.dismissBottomPopUpAndSave(controller: self)
         case .customItemName:
-            if let textField = self.getWindowSubviewByTag(tag: SystemStyleSetting.shared.popUpWindowTextFieldTag) as? UITextField {
+            if let textField = self.getWindowSubviewByTag(tag: SystemSetting.shared.popUpWindowTextFieldTag) as? UITextField {
                 
                 if textField.text != "" {
                     AppEngine.shared.dismissBottomPopUpAndSave(controller: self)
@@ -59,7 +59,7 @@ class PopUpViewController: UIViewController {
     func hidePromptLabel(_ isHidden: Bool) {
        
         
-        if let promptLabel = self.getWindowSubviewByTag(tag: SystemStyleSetting.shared.popUpWindowPromptLabelTag) as? UILabel {
+        if let promptLabel = self.getWindowSubviewByTag(tag: SystemSetting.shared.popUpWindowPromptLabelTag) as? UILabel {
             
             promptLabel.isHidden = isHidden
         }
@@ -107,7 +107,7 @@ class PopUpViewController: UIViewController {
     {
         var popUpWindow: UIView? = nil
         for subview in self.view.subviews {
-            if subview.tag == SystemStyleSetting.shared.popUpWindowTag {
+            if subview.tag == SystemSetting.shared.popUpWindowTag {
                 popUpWindow = subview
             }
         }
@@ -130,19 +130,19 @@ class PopUpViewController: UIViewController {
         
         switch type {
         case .customFrequency:
-            let pickerView = getWindowSubviewByTag(tag: SystemStyleSetting.shared.popUpWindowPickerViewTag) as! UIPickerView
+            let pickerView = getWindowSubviewByTag(tag: SystemSetting.shared.popUpWindowPickerViewTag) as! UIPickerView
            
             storedData = self.pikerViewData[pickerView.selectedRow(inComponent: 0)]
         case .customItemName:
             
-            let textField = getWindowSubviewByTag(tag: SystemStyleSetting.shared.popUpWindowTextFieldTag) as! UITextField
+            let textField = getWindowSubviewByTag(tag: SystemSetting.shared.popUpWindowTextFieldTag) as! UITextField
             
             if let text = textField.text {
                 storedData = text
             }
         
         case .customTargetDays:
-            let pickerView = getWindowSubviewByTag(tag: SystemStyleSetting.shared.popUpWindowPickerViewTag) as! UIPickerView
+            let pickerView = getWindowSubviewByTag(tag: SystemSetting.shared.popUpWindowPickerViewTag) as! UIPickerView
            
             storedData = self.pikerViewData[pickerView.selectedRow(inComponent: 0)]
         default:

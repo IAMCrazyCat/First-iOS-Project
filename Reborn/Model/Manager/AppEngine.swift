@@ -19,7 +19,8 @@ class AppEngine {
     public var currentUser: User = User(name: "颠猫", gender: .undefined, avatar: #imageLiteral(resourceName: "Test"), keys: 3, items: [Item](), vip: false)
     public var defaults: UserDefaults = UserDefaults.standard
     public let dataFilePath: URL? = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("item.plist")
-    public let setting: SystemStyleSetting = SystemStyleSetting()
+    public let setting: SystemSetting = SystemSetting()
+    public let userSetting: UserSetting = UserSetting()
     public var overAllProgress: Double = 0.0
     public var storedDataFromPopUpView: Any? = nil
     public var itemFromController: Item? = nil
@@ -60,39 +61,62 @@ class AppEngine {
         
         print(dataFilePath!)
         
-       
         for timePoint in TimeRange.allCases {
             self.observerNotifierTimePoints.append(timePoint.range.first!)
         }
-    
+        
         observerNotifier = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in self.checkUpdate() }
+        
+        loadUser()
         scheduleNotification()
+
     }
     
     func scheduleNotification() {
-        print("scheldued")
-        let center = UNUserNotificationCenter.current()
+        if self.currentUser.items.count != 0 {
+            var item: Item {
+                var outputItem = self.currentUser.items[Int.random(in: 0 ... self.currentUser.items.count - 1)]
+                while outputItem.state != .inProgress {
+                    
+                    outputItem = self.currentUser.items[Int.random(in: 0 ... self.currentUser.items.count - 1)]
+                }
+                return outputItem
+            }
 
-        let content = UNMutableNotificationContent()
-        content.title = "Late wake up call"
-        content.body = "The early bird catches the worm, but the second mouse gets the cheese."
-        content.categoryIdentifier = "alarm"
-        content.userInfo = ["customData": "fizzbuzz"]
-        content.sound = UNNotificationSound.default
+            
+            let content = UNMutableNotificationContent()
+            content.title = "今天\(item.type.rawValue)\(item.name)了吗"
+            content.body = "已打卡 \(item.finishedDays)天, 进度: \(item.progressInPercentageString)"
+            
+            var dateComponents = DateComponents()
+            dateComponents.calendar = Calendar.current
+            dateComponents.hour = userSetting.notificationHour
+            dateComponents.minute = userSetting.notificationMinute
+            
+            // Create the trigger as a repeating event.
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+            // Create the request
+            let uuidString = UUID().uuidString
+            let request = UNNotificationRequest(identifier: uuidString,
+                        content: content, trigger: trigger)
 
-        var dateComponents = DateComponents()
-        dateComponents.hour = 0
-        dateComponents.minute = 25
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        center.add(request)
+            // Schedule the request with the system.
+            let notificationCenter = UNUserNotificationCenter.current()
+            notificationCenter.add(request) { (error) in
+               if error != nil {
+                  print("没有权限")
+               }
+            }
+        }
+            
+       
     }
+
     
     
     
     private func checkUpdate() {
-        if let currentHour = self.time.hour, self.observerNotifierTimePoints.contains(currentHour), !observerIsNotifiedByNotifier { // notify observers once 
+        if let currentHour = self.time.hour, let currentMinute = self.time.minute, self.observerNotifierTimePoints.contains(currentHour), currentMinute == 0, !observerIsNotifiedByNotifier { // notify observers once
             
             self.notifyAllObservers()
             observerIsNotifiedByNotifier = true
@@ -123,6 +147,7 @@ class AppEngine {
 
            do {
                 self.currentUser = try decoder.decode(User.self, from: data) // .self 可以提取数据类型
+        
            } catch {
                print(error)
            }
@@ -205,7 +230,7 @@ class AppEngine {
     }
     
     public func notifyAllObservers() {
-        print("All Observer nofified")
+
         for observer in self.observers {
             observer.updateUI()
         }

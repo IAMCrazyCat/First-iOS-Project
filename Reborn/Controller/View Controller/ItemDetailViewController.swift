@@ -23,7 +23,7 @@ class ItemDetailViewController: UIViewController {
     @IBOutlet weak var frequencyLabel: UILabel!
     @IBOutlet weak var todayLabel: UILabel!
     
-    let setting: SystemStyleSetting = SystemStyleSetting.shared
+    let setting: SystemSetting = SystemSetting.shared
     let engine: AppEngine = AppEngine.shared
     var item: Item? = nil
     var embeddedCalendarViewController: CalendarViewController? = nil
@@ -38,10 +38,13 @@ class ItemDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        topView.layer.cornerRadius = setting.itemCardCornerRadius
-        topView.setShadow()
+        //topView.layer.cornerRadius = setting.itemCardCornerRadius
+        //topView.setShadow()
+        
+        //mediumView.layer.cornerRadius = setting.itemCardCornerRadius
         //mediumView.setShadow()
-       
+        
+        navigationController!.navigationBar.backgroundColor = engine.userSetting.themeColorAndBlack
         calendarView.layer.cornerRadius = setting.itemCardCornerRadius
         
         bottomShareButton.setSizeAccrodingToScreen()

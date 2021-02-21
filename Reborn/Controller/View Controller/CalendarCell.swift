@@ -29,12 +29,12 @@ class CalendarCell: UICollectionViewCell {
         contentView.setCornerRadius()
         contentView.clipsToBounds = true
         contentView.backgroundColor = .white // or orange, whatever
-//        contentView.layer.borderWidth = 1
-//        contentView.layer.borderColor = UIColor.gray.cgColor
+        contentView.layer.borderWidth = 1
+        contentView.layer.borderColor = SystemSetting.shared.greyColor.withAlphaComponent(1).cgColor
         
         dayButton.setTitle(nil, for: .normal)
         dayButton.backgroundColor = .clear
-        dayButton.setTitleColor(.black, for: .normal)
+        dayButton.setTitleColor(.label, for: .normal)
         dayButton.titleLabel?.textAlignment = .center
         dayButton.translatesAutoresizingMaskIntoConstraints = false
        
@@ -51,21 +51,26 @@ class CalendarCell: UICollectionViewCell {
             self.state = .disabled
             self.dayButton.setTitle(data, for: .normal)
             self.dayButton.setTitleColor(.white, for: .normal)
-            self.contentView.backgroundColor = UserStyleSetting.themeColor
+            self.contentView.backgroundColor = AppEngine.shared.userSetting.themeColor
+            self.contentView.layer.borderColor = AppEngine.shared.userSetting.themeColor.cgColor
         case .breakDay:
             break
         case .missedDay:
             self.state = .normal
+            self.contentView.backgroundColor = .clear
+            
             self.dayButton.setTitle(data, for: .normal)
         case .transparent:
             self.state = .disabled
             self.contentView.backgroundColor = .clear
+            self.dayButton.setTitle(data, for: .normal)
+            self.dayButton.setTitleColor(.label, for: .normal)
         case .selected:
             
             if self.state != .disabled {
                 self.state = .selected
                 self.dayButton.setTitle(data, for: .normal)
-                self.dayButton.setTitleColor(.white, for: .normal)
+                self.dayButton.setTitleColor(.label, for: .normal)
                 self.contentView.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
                 UIView.animate(withDuration: 0.2, animations: {
                     self.contentView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
@@ -75,14 +80,17 @@ class CalendarCell: UICollectionViewCell {
                     })
                     
                 }
-                self.contentView.backgroundColor = .green
+                self.contentView.backgroundColor = .clear
+                self.contentView.layer.borderWidth = 1
+                self.contentView.layer.borderColor = AppEngine.shared.userSetting.themeColor.cgColor
             }
         case .unselected:
             if self.state != .disabled {
                 self.state = .normal
                 self.dayButton.setTitle(data, for: .normal)
-                self.dayButton.setTitleColor(.black, for: .normal)
+                self.dayButton.setTitleColor(.label, for: .normal)
                 self.contentView.backgroundColor = .clear
+                self.contentView.layer.borderWidth = 0
             }
         }
     }
@@ -92,8 +100,8 @@ class CalendarCell: UICollectionViewCell {
     }
     
     override func layoutSubviews() {
-        dayButton.frame = self.contentView.frame
-        dayButton.layer.cornerRadius = dayButton.frame.width / 2
+        //dayButton.frame = self.contentView.frame
+        //dayButton.layer.cornerRadius = dayButton.frame.width / 2
     }
     
     override func prepareForReuse() {

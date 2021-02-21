@@ -13,7 +13,7 @@ class PopUpViewPresentAnimationController: NSObject, UIViewControllerAnimatedTra
   
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return SystemStyleSetting.shared.popUpWindowPresentDuration
+        return SystemSetting.shared.popUpWindowPresentDuration
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -22,7 +22,7 @@ class PopUpViewPresentAnimationController: NSObject, UIViewControllerAnimatedTra
         let toViewController = transitionContext.viewController(forKey: .to)!
         transitionContext.containerView.addSubview(toViewController.view)
         let finalFrame = transitionContext.finalFrame(for: toViewController)
-        let initialFrame = CGRect(origin: CGPoint(x: 0, y: SystemStyleSetting.shared.screenFrame.height), size: finalFrame.size)
+        let initialFrame = CGRect(origin: CGPoint(x: 0, y: SystemSetting.shared.screenFrame.height), size: finalFrame.size)
         
         toViewController.view.frame = initialFrame
         
@@ -33,7 +33,7 @@ class PopUpViewPresentAnimationController: NSObject, UIViewControllerAnimatedTra
         }) { _ in
 
 
-            UIView.animate(withDuration: SystemStyleSetting.shared.popUpWindowBounceDuration, delay: 0.0, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: SystemSetting.shared.popUpWindowBounceDuration, delay: 0.0, options: .curveEaseOut, animations: {
                 toViewController.view.frame = CGRect(x: finalFrame.origin.x, y: finalFrame.origin.y + 15, width: finalFrame.width, height: finalFrame.height)
             }) { _ in
                 transitionContext.completeTransition(true)

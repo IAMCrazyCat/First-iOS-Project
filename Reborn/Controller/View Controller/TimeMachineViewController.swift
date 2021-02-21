@@ -13,7 +13,7 @@ class TimeMachineViewController: UIViewController {
     var calendarViewOriginalPosition: CGPoint?
     var calendarViewController: CalendarViewController?
     
-    let setting: SystemStyleSetting = SystemStyleSetting.shared
+    let setting: SystemSetting = SystemSetting.shared
     var calendarPages: Array<UIView> = []
     var userDidGo: NewCalendarPage = .noWhere
     var animationSpeed: TimeInterval = 0.0
@@ -34,7 +34,7 @@ class TimeMachineViewController: UIViewController {
         
         goBackToThePastButton.layer.cornerRadius = self.setting.mainButtonCornerRadius
         goBackToThePastButton.setShadow()
-        goBackToThePastButton.setBackgroundColor(UserStyleSetting.themeColor, for: .normal)
+        goBackToThePastButton.setBackgroundColor(AppEngine.shared.userSetting.themeColor, for: .normal)
         goBackToThePastButton.setBackgroundColor(.gray, for: .disabled)
  
     }

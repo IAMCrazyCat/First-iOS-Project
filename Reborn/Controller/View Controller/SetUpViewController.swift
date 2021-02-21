@@ -19,7 +19,7 @@ class SetUpViewController: UIViewController{
     @IBOutlet weak var skipSetUpButton: UIButton!
     
     var engine = SetUpEngine()
-    var setting = SystemStyleSetting()
+    var setting = SystemSetting()
     
 
     
@@ -168,7 +168,7 @@ class SetUpViewController: UIViewController{
         }
         
         //update button background color
-        nextStepButton.backgroundColor = nextStepButton.isEnabled ? UIColor(named: "ThemeColor"): UIColor(named: "ButtonGray") 
+        nextStepButton.backgroundColor = nextStepButton.isEnabled ? AppEngine.shared.userSetting.themeColor: AppEngine.shared.userSetting.grayAndBlack
         
        
         if engine.progress == engine.getPagesCount() {

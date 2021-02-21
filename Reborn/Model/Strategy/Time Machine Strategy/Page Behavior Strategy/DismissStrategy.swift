@@ -43,7 +43,7 @@ class DismissStrategy: PagesBehaviorStrategy {
     
     func moveUpCalendarView() {
         if let calendarView = self.timeMachineViewController.calendarPages.first, let originalPosition = self.timeMachineViewController.calendarViewOriginalPosition {
-            UIView.animate(withDuration: SystemStyleSetting.shared.timeMachineAnimationNormalSpeed, delay: 0, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: SystemSetting.shared.timeMachineAnimationNormalSpeed, delay: 0, options: .curveEaseOut, animations: {
                 calendarView.frame.origin.y = originalPosition.y
             })
         }

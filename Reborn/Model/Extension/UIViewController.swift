@@ -18,5 +18,9 @@ extension UIViewController: UIViewControllerTransitioningDelegate  {
         self.present(presenting, animated:true, completion: nil)
      }
     
-        
+    
+}
+
+class UpdateStyleMode: UIViewController {
+    
 }

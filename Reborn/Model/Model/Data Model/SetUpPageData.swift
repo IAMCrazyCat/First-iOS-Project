@@ -15,14 +15,14 @@ struct SetUpPageData {
                      DataOption(title: "喝酒"), DataOption(title: "蹦迪"),
                      DataOption(title: "游戏"), DataOption(title: "赖床"),
                      DataOption(title: "手机"), DataOption(title: "奶茶"),
-                     DataOption(title: SystemStyleSetting.shared.customButtonTitle)
-                     , DataOption(title: SystemStyleSetting.shared.skipButtonTitle)
+                     DataOption(title: SystemSetting.shared.customButtonTitle)
+                     , DataOption(title: SystemSetting.shared.skipButtonTitle)
                     ]),
         
         SetUpPage(ID: 2, question: "您想戒多久", buttons:
                     [DataOption(data: 7) , DataOption(data: 30),
                      DataOption(data: 60), DataOption(data: 100),
-                     DataOption(data: 365), DataOption(title:  SystemStyleSetting.shared.customButtonTitle)
+                     DataOption(data: 365), DataOption(title:  SystemSetting.shared.customButtonTitle)
                     ]),
         
         SetUpPage(ID: 3, question: "请选择一项您现在最想坚持的事情",buttons:
@@ -31,15 +31,15 @@ struct SetUpPageData {
                      DataOption(title: "减肥"), DataOption(title: "健身"),
                      DataOption(title: "冥想"), DataOption(title: "吃早餐"),
                      DataOption(title: "存钱"), DataOption(title: "每日自省"),
-                     DataOption(title: SystemStyleSetting.shared.customButtonTitle)
-                     , DataOption(title: SystemStyleSetting.shared.skipButtonTitle)
+                     DataOption(title: SystemSetting.shared.customButtonTitle)
+                     , DataOption(title: SystemSetting.shared.skipButtonTitle)
                      ]),
         
         SetUpPage(ID: 4, question: "您想坚持多久", buttons:
                     [DataOption(data: 7), DataOption(data: 30),
                       DataOption(data: 60), DataOption(data: 100),
                       DataOption(data: 365),
-                      DataOption(title: SystemStyleSetting.shared.customButtonTitle)
+                      DataOption(title: SystemSetting.shared.customButtonTitle)
                       ]),
         
         SetUpPage(ID: 5, question: "您的性别？", buttons: [DataOption(title: "男生"),

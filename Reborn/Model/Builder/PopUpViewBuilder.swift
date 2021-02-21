@@ -17,12 +17,12 @@ enum PopUpType {
 class PopUpViewBuilder: Builder {
     
     private var outPutView: UIView
-    private var setting: SystemStyleSetting
+    private var setting: SystemSetting
     private let popUpType: PopUpType
     private var popUpViewController: PopUpViewController?
     private var dataStartIndex: Int
     init(popUpType: PopUpType, dataStartIndex: Int = 0, popUpViewController: PopUpViewController) {
-        self.setting = SystemStyleSetting.shared
+        self.setting = SystemSetting.shared
         self.outPutView = UIView()
         self.popUpType = popUpType
         self.dataStartIndex = dataStartIndex
@@ -46,7 +46,7 @@ class PopUpViewBuilder: Builder {
         return outPutView
     }
     
-    private func buildStandardView() { // common views for pop up window
+    private func buildSharedView() { // common views for pop up window
         createPopUpUIViews()
         addCancelButton()
         addDoneButton()
@@ -54,7 +54,7 @@ class PopUpViewBuilder: Builder {
     }
     
     private func buildCustomTargetDaysView(){
-        buildStandardView()
+        buildSharedView()
         addTitleLabel(title: "自定义目标")
         addTargetPiker()
         addPopUpWindowToBgView()
@@ -62,7 +62,7 @@ class PopUpViewBuilder: Builder {
     }
     
     private func buildCustomItemNameView() {
-        buildStandardView()
+        buildSharedView()
         addTextField()
         addTitleLabel(title: "自定义项目名")
         addPromptLabel()
@@ -71,7 +71,7 @@ class PopUpViewBuilder: Builder {
     
     private func buildCustomFrequencyView() {
         
-        buildStandardView()
+        buildSharedView()
         addTitleLabel(title: "自定义频率")
         addFrequencyPicker()
         
@@ -82,7 +82,7 @@ class PopUpViewBuilder: Builder {
     private func createPopUpUIViews() {
         
         // Tag 0
-        outPutView.backgroundColor = setting.whiteAndBlack
+        outPutView.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackBackground
         outPutView.frame = CGRect(x: 0, y: 0, width: setting.screenFrame.width, height: setting.popUpWindowHeight)
         outPutView.layer.cornerRadius = setting.popUpWindowCornerRadius
         outPutView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -108,7 +108,7 @@ class PopUpViewBuilder: Builder {
     
     private func addDoneButton() { // Tag 3
         let doneButton = UIButton()
-        doneButton.backgroundColor = UserStyleSetting.themeColor
+        doneButton.backgroundColor = AppEngine.shared.userSetting.themeColor
         doneButton.setTitle("确定", for: .normal)
         doneButton.layer.cornerRadius = self.setting.mainButtonCornerRadius
         doneButton.tag = setting.popUpWindowDoneButtonTag
@@ -130,7 +130,7 @@ class PopUpViewBuilder: Builder {
     private func addTargetPiker() {
         
         let picker = UIPickerView()
-        picker.backgroundColor = SystemStyleSetting.shared.whiteAndBlack
+        picker.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackBackground
         picker.tag = self.setting.popUpWindowPickerViewTag
         picker.delegate = popUpViewController
         picker.dataSource = popUpViewController
@@ -157,7 +157,7 @@ class PopUpViewBuilder: Builder {
     private func addFrequencyPicker() {
         
         let picker = UIPickerView()
-        picker.backgroundColor = SystemStyleSetting.shared.whiteAndBlack
+        picker.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackBackground
         picker.tag = self.setting.popUpWindowPickerViewTag
         picker.delegate = popUpViewController
         picker.dataSource = popUpViewController
@@ -182,7 +182,7 @@ class PopUpViewBuilder: Builder {
     private func addTitleLabel(title: String) {
         let titleLabel = UILabel()
         titleLabel.text = title
-        titleLabel.font = UserStyleSetting.fontLarge
+        titleLabel.font = AppEngine.shared.userSetting.fontLarge
         titleLabel.sizeToFit()
         
         self.outPutView.addSubview(titleLabel)
@@ -194,7 +194,7 @@ class PopUpViewBuilder: Builder {
     
     private func addTextField() {
         let textField = UITextField()
-        textField.backgroundColor = self.setting.greyColor
+        textField.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackContent
         textField.layer.cornerRadius = self.setting.textFieldCornerRadius
         textField.placeholder = "  请输入自定义名字"
         textField.tag = self.setting.popUpWindowTextFieldTag
@@ -211,7 +211,7 @@ class PopUpViewBuilder: Builder {
     private func addPromptLabel() {
         let promptLabel = UILabel()
         promptLabel.text = "请输入项目名字"
-        promptLabel.font = UserStyleSetting.fontMedium
+        promptLabel.font = AppEngine.shared.userSetting.fontMedium
         promptLabel.sizeToFit()
         promptLabel.textColor = UIColor.red
         promptLabel.tag = self.setting.popUpWindowPromptLabelTag

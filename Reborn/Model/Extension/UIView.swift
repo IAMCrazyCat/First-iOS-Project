@@ -11,9 +11,9 @@ import SwiftConfettiView
 extension UIView {
     func setShadow() {
 
-        self.layer.shadowColor = SystemStyleSetting.shared.UIViewShadowColor
-        self.layer.shadowOffset =  SystemStyleSetting.shared.UIViewShadowOffset
-        self.layer.shadowOpacity = SystemStyleSetting.shared.UIViewShadowOpacity
+        self.layer.shadowColor = SystemSetting.shared.UIViewShadowColor
+        self.layer.shadowOffset =  SystemSetting.shared.UIViewShadowOffset
+        self.layer.shadowOpacity = SystemSetting.shared.UIViewShadowOpacity
         self.layer.masksToBounds = false
     }
     
@@ -60,7 +60,7 @@ extension UIView {
     }
     
     func renderItemCard(by item: Item) {
-        let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: 0, y: 0, width: self.frame.width - 2 * SystemStyleSetting.shared.mainPadding, height: SystemStyleSetting.shared.itemCardHeight), isInteractable: false)
+        let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: 0, y: 0, width: self.frame.width - 2 * SystemSetting.shared.mainPadding, height: SystemSetting.shared.itemCardHeight), isInteractable: false)
         let itemCard = builder.buildView()
         itemCard.center = self.center
         self.addSubview(itemCard)
@@ -71,14 +71,14 @@ extension UIView {
         let isRenderingAll = condition == nil ? true : false
         let items = AppEngine.shared.currentUser.items
         var tag: Int = items.count - 1
-        var cordinateY: CGFloat = SystemStyleSetting.shared.mainPadding
+        var cordinateY: CGFloat = SystemSetting.shared.mainPadding
 
         while tag >= 0 {
             let item = items[tag]
             if item.state == condition || isRenderingAll {
-                let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: SystemStyleSetting.shared.mainPadding, y: cordinateY, width: self.frame.width - 2 * SystemStyleSetting.shared.mainPadding, height: SystemStyleSetting.shared.itemCardHeight), punchInButtonTag: tag, isInteractable: true)
+                let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: SystemSetting.shared.mainPadding, y: cordinateY, width: self.frame.width - 2 * SystemSetting.shared.mainPadding, height: SystemSetting.shared.itemCardHeight), punchInButtonTag: tag, isInteractable: true)
                 let itemCard = builder.buildView()
-                cordinateY += SystemStyleSetting.shared.itemCardHeight + SystemStyleSetting.shared.itemCardGap
+                cordinateY += SystemSetting.shared.itemCardHeight + SystemSetting.shared.itemCardGap
                 self.addSubview(itemCard)
                 
                 
