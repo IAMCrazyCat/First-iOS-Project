@@ -13,9 +13,10 @@ enum AddItemViewState {
 }
 
 class NewItemViewController: UIViewController {
-
-    @IBOutlet weak var middleContentView: UIView!
-    @IBOutlet weak var bottomScrollView: UIScrollView!
+    @IBOutlet weak var horizentalScrollView: UIScrollView!
+    @IBOutlet weak var horizentalContentView: UIView!
+    @IBOutlet weak var verticalScrollView: UIScrollView!
+    @IBOutlet weak var verticalContentView: UIView!
     @IBOutlet weak var doneButton: UIButton!
     //ItemName
     @IBOutlet weak var itemNameTextfield: UITextField!
@@ -41,10 +42,8 @@ class NewItemViewController: UIViewController {
     @IBOutlet weak var secondInstructionLabel: UILabel!
     @IBOutlet weak var typeIcon: UIImageView!
     @IBOutlet weak var typeLabel: UILabel!
-    
-    
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var bottomScrollViewContentViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var verticalScrollViewContentViewHeightConstraint: NSLayoutConstraint!
     
     let engine: AppEngine = AppEngine.shared
     let setting: SystemSetting = SystemSetting.shared
@@ -54,14 +53,14 @@ class NewItemViewController: UIViewController {
     var selectedTargetDaysButton: UIButton? = nil
     var selectedFrequencyButton: UIButton? = nil
     var lastSelectedButton: UIButton? = nil
-    var item: Item = Item(name: "(项目名)", days: 1, finishedDays: 0, frequency: DataOption(title: "", data: 1), creationDate: AppEngine.shared.currentDate, type: .undefined)
+    var item: Item = Item(ID: AppEngine.shared.getLargestItemID() + 1, name: "(项目名)", days: 1, finishedDays: 0, frequency: DataOption(title: "", data: 1), creationDate: AppEngine.shared.currentDate, type: .undefined)
     var preViewItemCard: UIView = UIView()
     var strategy: NewItemViewStrategy? = nil
-        
+    var lastViewController: UIViewController? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
         itemNameTextfield.delegate = self
-        bottomScrollView.delegate = self
+        verticalScrollView.delegate = self
         
         customFrequencyButton.setTitle(setting.customButtonTitle, for: .normal)
         customTargetDaysButton.setTitle(setting.customButtonTitle, for: .normal)
@@ -83,7 +82,7 @@ class NewItemViewController: UIViewController {
         }
         
         view.layoutIfNeeded()
-        bottomScrollViewContentViewHeightConstraint.constant = secondInstructionLabel.frame.origin.y + 40
+        verticalScrollViewContentViewHeightConstraint.constant = secondInstructionLabel.frame.origin.y + 40
         
         
         self.strategy?.initializeUI()
@@ -172,6 +171,40 @@ class NewItemViewController: UIViewController {
         self.strategy?.doneButtonPressed(sender)
     }
     
+    @objc func deleteItemButtonPressed(_ sender: UIButton) {
+        showAlert()
+    }
+    
+    private func showAlert() {
+        let alert = UIAlertController(title: "你真的想删除该项目吗", message: "该项目所有的数据将会被删除，且不能恢复", preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: "删除", style: .destructive) { _ in
+            self.deleteItemWithAnimation()
+        }
+        alert.addAction(cancelAction)
+        alert.addAction(deleteAction)
+        
+
+        self.present(alert, animated: true)
+    }
+    
+    private func deleteItemWithAnimation() {
+        
+        UIView.animate(withDuration: 1, animations: {
+            self.preViewItemCard.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
+            self.engine.delete(item: self.item)
+        }) { _ in
+            self.dismiss(animated: true) {
+  
+                if let parentViewController = self.lastViewController as? ItemDetailViewController {
+                    parentViewController.goBackToParentView()
+                }
+            }
+        }
+        
+    }
+    
     func updateInstructionLabels() {
         
         if self.item.type == .quitting {
@@ -222,15 +255,7 @@ class NewItemViewController: UIViewController {
                
             })
         }
-        
-        
-        
-        
-       
-        
-        
-       
-        
+   
     }
     
     func selectButton() {
@@ -258,9 +283,9 @@ class NewItemViewController: UIViewController {
     
     func updatePreViewItemCard() {
         self.view.layoutIfNeeded()
-        self.middleContentView.renderItemCard(by: self.item)
+        self.horizentalContentView.renderItemCard(by: self.item)
         self.previewItemCardTag = self.preViewItemCard.tag
-        self.preViewItemCard = self.middleContentView.subviews.first!
+        self.preViewItemCard = self.horizentalContentView.subviews.first!
         Vibrator.vibrate(withImpactLevel: .light)
     }
     

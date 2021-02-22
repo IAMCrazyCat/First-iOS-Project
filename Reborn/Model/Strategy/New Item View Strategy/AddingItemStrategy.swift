@@ -50,7 +50,7 @@ class AddingItemStrategy: NewItemViewStrategy {
     func doneButtonPressed(_ sender: UIButton) {
         
         if isRedyToDismiss() {
-            newItemViewController.engine.addItem(newItem: newItemViewController.item)
+            newItemViewController.engine.add(newItem: newItemViewController.item)
             newItemViewController.dismiss(animated: true) {
                 self.newItemViewController.engine.notifyAllObservers()
         }

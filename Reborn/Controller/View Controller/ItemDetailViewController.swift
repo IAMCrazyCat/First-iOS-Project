@@ -13,6 +13,7 @@ class ItemDetailViewController: UIViewController {
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var calendarView: UIView!
     @IBOutlet weak var mediumView: UIView!
+    @IBOutlet weak var verticalScrollView: UIScrollView!
     @IBOutlet weak var verticallyScrollContentView: UIView!
     @IBOutlet weak var progressView: UIView!
     @IBOutlet weak var bottomEditButton: UIButton!
@@ -27,8 +28,7 @@ class ItemDetailViewController: UIViewController {
     let engine: AppEngine = AppEngine.shared
     var item: Item? = nil
     var embeddedCalendarViewController: CalendarViewController? = nil
-    
-    
+    var lastViewController: UIViewController? = nil
     var dayCellFrame: CGRect? {
         didSet {
             
@@ -39,12 +39,12 @@ class ItemDetailViewController: UIViewController {
         super.viewDidLoad()
         
         //topView.layer.cornerRadius = setting.itemCardCornerRadius
-        //topView.setShadow()
+        topView.setShadow()
         
         //mediumView.layer.cornerRadius = setting.itemCardCornerRadius
-        //mediumView.setShadow()
+        mediumView.setShadow()
         
-        navigationController!.navigationBar.backgroundColor = engine.userSetting.themeColorAndBlack
+        navigationController?.navigationBar.barTintColor = engine.userSetting.themeColorAndBlack
         calendarView.layer.cornerRadius = setting.itemCardCornerRadius
         
         bottomShareButton.setSizeAccrodingToScreen()
@@ -58,7 +58,10 @@ class ItemDetailViewController: UIViewController {
         updateUI()
     }
     
-    
+    override func viewDidLayoutSubviews() {
+        self.verticalScrollView.contentSize.height = self.bottomEditButton.frame.maxY + 20
+        self.verticalScrollView.layoutIfNeeded()
+    }
     
     
 
@@ -68,16 +71,21 @@ class ItemDetailViewController: UIViewController {
         if segue.identifier == "EmbeddedCalendarContainer", let destinationViewController = segue.destination as? CalendarViewController  {
     
             destinationViewController.item = item
-            destinationViewController.superViewController = self
+            destinationViewController.lastViewController = self
             embeddedCalendarViewController = destinationViewController
   
         } else if segue.identifier == "GoToEditItemView", let destinationViewController = segue.destination as? NewItemViewController {
 
             destinationViewController.item = self.item!
+            destinationViewController.lastViewController = self
             destinationViewController.strategy = EditingItemStrategy(newItemViewController: destinationViewController)
         }
         
         
+    }
+    
+    func goBackToParentView() {
+        navigationController?.popViewController(animated: true)
     }
 
   
@@ -87,7 +95,7 @@ extension ItemDetailViewController: Observer {
     func updateUI() {
         if item != nil {
             self.verticallyScrollContentView.layoutIfNeeded()
-            let builder = ItemDetailViewBuilder(item: item!, width: self.mediumView.frame.width, height: self.setting.itemDetailsViewHeight, cordinateX: 0, cordinateY: 0)
+            let builder = ItemDetailViewBuilder(item: item!, frame: self.progressView.bounds)
             let detailsView = builder.buildView()
             self.progressView.addSubview(detailsView)
             
@@ -98,10 +106,10 @@ extension ItemDetailViewController: Observer {
         self.frequencyLabel.text = "\(String(self.item?.frequency.title ?? "加载错误"))"
         
         if self.item?.punchInDates.last == self.engine.currentDate {
-            self.todayLabel.textColor = .green
+            //self.todayLabel.textColor = .green
             self.todayLabel.text = "已打卡"
         } else {
-            self.todayLabel.textColor = .red
+            //self.todayLabel.textColor = .red
             self.todayLabel.text = "未打卡"
         }
         

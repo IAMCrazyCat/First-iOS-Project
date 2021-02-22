@@ -154,7 +154,7 @@ class AppEngine {
         }
     }
     
-    public func addItem(newItem: Item) {
+    public func add(newItem: Item) {
         
         self.currentUser.items.append(newItem)
         
@@ -162,12 +162,35 @@ class AppEngine {
 
     }
     
+    public func delete(item itemforDeleting: Item) {
+        var index = 0
+        for item in self.currentUser.items {
+            if item.ID == itemforDeleting.ID {
+                self.currentUser.items.remove(at: index)
+            }
+            index += 1
+        }
+
+        self.saveUser(self.currentUser)
+        self.notifyAllObservers()
+    }
+    
+    
     public func getItems() -> Array<Item>? {
  
         return self.currentUser.items
     }
     
-    
+    public func getLargestItemID() -> Int {
+        var largestID = 0
+        for item in self.currentUser.items {
+            let ID = item.ID
+            if ID > largestID {
+                largestID = ID
+            }
+        }
+        return largestID
+    }
     
     
     public func updateItem(tag: Int) {

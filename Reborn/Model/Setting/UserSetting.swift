@@ -31,6 +31,7 @@ class UserSetting {
     var grayAndBlack: UIColor = UIColor(named: "GrayAndBlack") ?? UIColor.clear
     var grayWhiteAndBlackBackground: UIColor = UIColor(named: "grayWhiteAndBlackBackground") ?? UIColor.clear
     var greenColor =  UIColor(named: "GreenColor") ?? UIColor.clear
+    var redColor =  UIColor(named: "RedColor") ?? UIColor.clear
     var fontLarge = UIFont.systemFont(ofSize: 30)
     var fontMedium = UIFont.systemFont(ofSize: 17)
     var fontSmall = UIFont.systemFont(ofSize: 14)

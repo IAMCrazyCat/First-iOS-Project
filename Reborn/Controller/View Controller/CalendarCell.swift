@@ -25,12 +25,12 @@ class CalendarCell: UICollectionViewCell {
     private func setUpUI() {
     
         state = .normal
-        
+        contentView.removeAllSubviews()
         contentView.setCornerRadius()
         contentView.clipsToBounds = true
         contentView.backgroundColor = .white // or orange, whatever
         contentView.layer.borderWidth = 1
-        contentView.layer.borderColor = SystemSetting.shared.greyColor.withAlphaComponent(1).cgColor
+        contentView.layer.borderColor = UIColor.label.withAlphaComponent(0.05).cgColor
         
         dayButton.setTitle(nil, for: .normal)
         dayButton.backgroundColor = .clear
@@ -44,7 +44,8 @@ class CalendarCell: UICollectionViewCell {
         dayButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }
     
-    public func updateUI(type: CalendarCellType, cellDay data: String) {
+    
+    public func updateAppearence(withType type: CalendarCellType, cellDay data: String) {
 
         switch type {
         case .punchedInDay:
@@ -60,11 +61,7 @@ class CalendarCell: UICollectionViewCell {
             self.contentView.backgroundColor = .clear
             
             self.dayButton.setTitle(data, for: .normal)
-        case .transparent:
-            self.state = .disabled
-            self.contentView.backgroundColor = .clear
-            self.dayButton.setTitle(data, for: .normal)
-            self.dayButton.setTitleColor(.label, for: .normal)
+       
         case .selected:
             
             if self.state != .disabled {
@@ -84,7 +81,9 @@ class CalendarCell: UICollectionViewCell {
                 self.contentView.layer.borderWidth = 1
                 self.contentView.layer.borderColor = AppEngine.shared.userSetting.themeColor.cgColor
             }
+            
         case .unselected:
+            
             if self.state != .disabled {
                 self.state = .normal
                 self.dayButton.setTitle(data, for: .normal)
@@ -92,8 +91,37 @@ class CalendarCell: UICollectionViewCell {
                 self.contentView.backgroundColor = .clear
                 self.contentView.layer.borderWidth = 0
             }
+        case .notThisMonthMissedDay:
+            
+            self.state = .disabled
+            self.contentView.backgroundColor = .clear
+            self.dayButton.setTitle(data, for: .normal)
+            self.dayButton.setTitleColor(UIColor.label.withAlphaComponent(0.2), for: .normal)
+            
+        case .nothThisMonthPunchedIn:
+            
+            self.state = .disabled
+            self.contentView.backgroundColor = AppEngine.shared.userSetting.themeColor.withAlphaComponent(0.3)
+            self.dayButton.setTitle(data, for: .normal)
+            self.dayButton.setTitleColor(UIColor.white, for: .normal)
         }
+        
     }
+    
+    func addDotToBottom(withColor color: UIColor) {
+        let dot = UIView()
+        dot.accessibilityIdentifier = "dot"
+        dot.frame.size = CGSize(width: self.contentView.frame.size.width.truncatingRemainder(dividingBy: 6) , height: self.contentView.frame.size.height.truncatingRemainder(dividingBy: 6))
+        dot.center.x = self.contentView.center.x
+        dot.frame.origin.y = self.contentView.frame.maxY + 2
+        dot.backgroundColor = color
+        dot.setCornerRadius()
+        self.contentView.clipsToBounds = false
+        
+        self.contentView.addSubview(dot)
+    }
+    
+
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

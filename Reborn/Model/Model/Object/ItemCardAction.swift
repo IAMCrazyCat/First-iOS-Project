@@ -36,6 +36,7 @@ class ItemCardAction {
         }
         
         itemDetailViewController.item = AppEngine.shared.currentUser.items[sender.tag]
+        itemDetailViewController.lastViewController = senderViewController
         navigationController.pushViewController(itemDetailViewController, animated: true)
 
     }

@@ -97,10 +97,7 @@ extension TimeMachineViewController: CalendarViewDegelagte {
             
         } else if let monthInterval = self.calendarViewController?.storedMonthInterval, monthInterval > 0 {
             self.strategy = BackwardForManyStrategy(timeMachineViewController: self)
-        } else {
-            self.strategy = EnlargeStrategy(timeMachineViewController: self)
         }
-        
         updateUI()
     }
     
@@ -111,9 +108,12 @@ extension TimeMachineViewController: CalendarViewDegelagte {
             
         } else if let monthInterval = self.calendarViewController?.storedMonthInterval, monthInterval > 0 {
             self.strategy = BackwardForManyStrategy(timeMachineViewController: self)
-        } else {
-            self.strategy = EnlargeStrategy(timeMachineViewController: self)
         }
+        updateUI()
+    }
+    
+    func calendarPageDidGoNowhere() {
+        self.strategy = EnlargeStrategy(timeMachineViewController: self)
         updateUI()
     }
     

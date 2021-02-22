@@ -23,6 +23,7 @@ class UserCenterViewController: UIViewController {
     var scrollViewTopOffset: CGFloat = 0
     var scrollViewLastOffset: CGFloat = 0
     var setting: SystemSetting = SystemSetting.shared
+    let engine: AppEngine = AppEngine.shared
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,8 +41,9 @@ class UserCenterViewController: UIViewController {
         verticalScrollView.delegate = self
         scrollViewTopOffset = avaterView.frame.origin.y - 10
         
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.tintColor = UIColor.black
+        navigationController?.navigationBar.removeBorder()
+        navigationController?.navigationBar.barTintColor = engine.userSetting.themeColorAndBlack
+        
         
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Error"
         self.appVersionLabelButton.setTitle("  v\(appVersion)", for: .normal)
@@ -129,7 +131,7 @@ extension UserCenterViewController: PopUpViewDelegate, UIScrollViewDelegate {
         if scrollView.contentOffset.y < self.scrollViewTopOffset - 10 {
             
             UIView.animate(withDuration: 0.2, animations: {
-                navigationBar!.barTintColor = UIColor.white
+                navigationBar!.barTintColor = self.view.backgroundColor
                 navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navigationBar!.tintColor.withAlphaComponent(0)]
                 navigationBar!.layoutIfNeeded()
             })
@@ -137,7 +139,7 @@ extension UserCenterViewController: PopUpViewDelegate, UIScrollViewDelegate {
         } else {
             
             UIView.animate(withDuration: 0.2, animations: {
-                navigationBar!.barTintColor = AppEngine.shared.userSetting.themeColor
+                navigationBar!.barTintColor = self.engine.userSetting.themeColorAndBlack
                 navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navigationBar!.tintColor.withAlphaComponent(1)]
                 navigationBar!.layoutIfNeeded()
             })

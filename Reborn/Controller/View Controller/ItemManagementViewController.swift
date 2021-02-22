@@ -14,9 +14,8 @@ class ItemManagementViewController: UIViewController {
     @IBOutlet weak var verticalScrollView: UIScrollView!
     @IBOutlet weak var verticalContentView: UIView!
     @IBOutlet weak var verticalContentHeightConstraint: NSLayoutConstraint!
-    //@IBOutlet weak var customNavigationBar: UIView!
-    var selectedSegment: ItemState? = nil
     
+    var selectedSegment: ItemState? = nil
     let setting: SystemSetting = SystemSetting.shared
     let engine: AppEngine = AppEngine.shared
     var selectedButton: UIButton = UIButton()
@@ -25,15 +24,18 @@ class ItemManagementViewController: UIViewController {
         //customNavigationBar.backgroundColor = engine.userSetting.themeColorAndBlack
         optionBar.backgroundColor = engine.userSetting.themeColorAndBlack
         
-        optionBar.layer.cornerRadius = setting.customNavigationBarCornerRadius
-        optionBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+//        optionBar.layer.cornerRadius = setting.customNavigationBarCornerRadius
+//        optionBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         optionBar.layer.zPosition = -2
         
         UISegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: AppEngine.shared.userSetting.themeColor], for: .selected)
         UISegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
         
         engine.registerObserver(observer: self)
-
+        //self.navigationItem.titleView = segmentedControl
+        navigationController?.navigationBar.removeBorder()
+        navigationController?.navigationBar.barTintColor = engine.userSetting.themeColorAndBlack
+        
         
     }
     

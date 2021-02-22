@@ -104,6 +104,7 @@ struct SystemSetting{
     let timeMachineAnimationNormalSpeed: TimeInterval = 0.35
     let timeMachineAnimationSlowSpeed: TimeInterval = 0.8
     
+    let contentToScrollViewBottomDistance: CGFloat = 20
     
 }
 

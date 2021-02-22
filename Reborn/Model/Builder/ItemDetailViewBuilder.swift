@@ -19,14 +19,14 @@ class ItemDetailViewBuilder: Builder {
     var outPutView: UIView = UIView()
     
     
-    init(item: Item, width: CGFloat, height: CGFloat, cordinateX: CGFloat, cordinateY: CGFloat){ // for new item view preview card
+    init(item: Item, frame: CGRect){ // for new item view preview card
 
         self.item = item
-        self.cordinateX = cordinateX
-        self.cordinateY = cordinateY
+        self.cordinateX = frame.origin.x
+        self.cordinateY = frame.origin.y
         self.punchInButtonTag = 11607
-        self.width = width
-        self.height = height
+        self.width = frame.width
+        self.height = frame.height
 
     }
     

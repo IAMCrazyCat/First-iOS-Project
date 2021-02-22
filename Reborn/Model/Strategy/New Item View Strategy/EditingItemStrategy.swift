@@ -18,7 +18,7 @@ class EditingItemStrategy: NewItemViewStrategy {
     func initializeUI() {
         
         newItemViewController.doneButton.setTitle("保存", for: .normal)
-        newItemViewController.titleLabel.text = "编辑卡片"
+        newItemViewController.titleLabel.text = "编辑项目"
      
             
         newItemViewController.itemNameTextfield.text = newItemViewController.item.name
@@ -73,8 +73,18 @@ class EditingItemStrategy: NewItemViewStrategy {
             newItemViewController.customFrequencyButton.isSelected = true
             newItemViewController.selectedFrequencyButton = newItemViewController.customFrequencyButton
         }
- 
         
+        
+        let secondInstructionLabel = newItemViewController.verticalScrollView.getSubviewByIdentifier(idenifier: "SecondInstructionLabel")
+        let deleteItemButton = UIButton()
+        deleteItemButton.frame = CGRect(x: SystemSetting.shared.mainPadding, y: ((secondInstructionLabel?.frame.maxY) ?? newItemViewController.verticalContentView.frame.height - SystemSetting.shared.mainButtonHeight - 20) + 20 , width: newItemViewController.verticalContentView.frame.width - 2 * SystemSetting.shared.mainPadding, height: SystemSetting.shared.mainButtonHeight)
+        deleteItemButton.setCornerRadius()
+        deleteItemButton.setTitle("删除项目", for: .normal)
+        deleteItemButton.setBackgroundColor(AppEngine.shared.userSetting.redColor, for: .normal)
+        deleteItemButton.addTarget(newItemViewController, action: #selector(newItemViewController.deleteItemButtonPressed(_:)), for: .touchUpInside)
+        newItemViewController.verticalContentView.addSubview(deleteItemButton)
+        newItemViewController.verticalScrollViewContentViewHeightConstraint.constant = deleteItemButton.frame.maxY + SystemSetting.shared.contentToScrollViewBottomDistance
+        newItemViewController.verticalScrollView.layoutIfNeeded()
     }
     
     func showPopUp(popUpType: PopUpType) {

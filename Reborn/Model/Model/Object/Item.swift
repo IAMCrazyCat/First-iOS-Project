@@ -8,6 +8,7 @@
 
 import Foundation
 class Item: Codable {
+    var ID: Int
     var name: String
     var targetDays: Int {
         didSet {
@@ -48,7 +49,8 @@ class Item: Codable {
         return String(format: "%.1f", progress * 100) + " %"
     }
     
-    init(name: String, days: Int, finishedDays: Int, frequency: DataOption, creationDate: CustomDate, type: ItemType) {
+    init(ID: Int, name: String, days: Int, finishedDays: Int, frequency: DataOption, creationDate: CustomDate, type: ItemType) {
+        self.ID = ID
         self.name = name
         self.targetDays = days
         self.finishedDays = finishedDays
