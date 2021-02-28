@@ -51,7 +51,7 @@ class AppEngine {
     }
     
     
-    private var delegate: PopUpViewDelegate?
+    public var delegate: PopUpViewDelegate?
     private var observers: Array<Observer> = []
     private var observerNotifier: Timer = Timer()
     private var observerNotifierTimePoints: Array<Int> = []
@@ -66,10 +66,47 @@ class AppEngine {
         }
         
         observerNotifier = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in self.checkUpdate() }
-        
         loadUser()
-        scheduleNotification()
+        initUserSetting()
+    }
+    
+    func changeThemeColor(to newThemeColor: ThemeColor) {
+        
+        self.currentUser.themeColorSetting = newThemeColor
+        self.userSetting.themeColor = newThemeColor.uiColor
+        self.notifyAllObservers()
+        self.saveUser(self.currentUser)
+    }
+    
+    func initUserSetting() {
+        if let themeColor = currentUser.themeColorSetting {
+            changeThemeColor(to: themeColor)
+        }
+    }
+    
+    func checkIfAppLaunchedBefore() -> Bool {
+        let launchedBefore = UserDefaults.standard.bool(forKey: "LaunchedBefore")
+        if launchedBefore {
+            print("Not first launch.")
+            
+        } else {
+            
+            print("First launch")
+            UserDefaults.standard.set(true, forKey: "LaunchedBefore")
+        }
+        return launchedBefore
+    }
+    
+    func requestNotificationPermission() {
+        let center = UNUserNotificationCenter.current()
 
+        center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+            if granted {
+                print("Yay!")
+            } else {
+                print("D'oh")
+            }
+        }
     }
     
     func scheduleNotification() {
@@ -248,7 +285,7 @@ class AppEngine {
     }
     
     // ------------------------------------ observer ------------------------------------------------------
-    public func registerObserver(observer: Observer) {
+    public func register(observer: Observer) {
         self.observers.append(observer)
     }
     
@@ -261,34 +298,7 @@ class AppEngine {
     // ------------------------------------ observer end ------------------------------------------------------
     
     
-    public func showCenterPopUp(from forPresented: UIViewController) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let popUpType = PopUpType.customTargetDays
-        
-        if let popUpViewController = storyboard.instantiateViewController(withIdentifier: "PopUpViewController") as? PopUpViewController {
-
-            let popUpWindow = PopUpViewBuilder(popUpType: popUpType, popUpViewController: popUpViewController).buildView()
-            popUpViewController.type = popUpType
-            popUpViewController.view.addSubview(popUpWindow)
-            forPresented.presentBottom(to: popUpViewController)
-        }
-    }
-
-    public func showBottomPopUp(_ popUpType: PopUpType, dataStartIndex: Int = 0, from forPresented: UIViewController) {
-        
-        self.delegate = forPresented as? PopUpViewDelegate
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        if let popUpViewController = storyboard.instantiateViewController(withIdentifier: "PopUpViewController") as? PopUpViewController {
-
-            let popUpWindow = PopUpViewBuilder(popUpType: popUpType, dataStartIndex: dataStartIndex, popUpViewController: popUpViewController).buildView()
-            popUpViewController.type = popUpType
-            popUpViewController.view.addSubview(popUpWindow)
-            forPresented.presentBottom(to: popUpViewController)
-        }
-        
-    }
+    
  
     public func dismissBottomPopUpWithoutSave(controller: PopUpViewController) {
         self.delegate?.didDismissPopUpViewWithoutSave()

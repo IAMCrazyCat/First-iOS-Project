@@ -13,15 +13,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let center = UNUserNotificationCenter.current()
-
-        center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
-            if granted {
-                print("Yay!")
-            } else {
-                print("D'oh")
-            }
-        }
+        
+        UIBarButtonItem.appearance().tintColor = .white
+        
         return true
     }
 
@@ -41,14 +35,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillTerminate(_ application: UIApplication) {
         print("TERMINATED")
-        print(AppEngine.shared.currentUser.items)
         AppEngine.shared.saveUser(AppEngine.shared.currentUser)
-        print(AppEngine.shared.currentUser.items)
+
         
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        print("Background")
+        print("Went to Background")
         AppEngine.shared.saveUser(AppEngine.shared.currentUser)
     }
 

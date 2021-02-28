@@ -8,16 +8,17 @@
 import Foundation
 import UIKit
 
-class ItemCardAction {
+class Actions {
     
-    static var shared: ItemCardAction = ItemCardAction()
+    static var shared: Actions = Actions()
     
     private init() {
        
     }
     
-    var punchInAction: Selector = #selector(ItemCardAction.shared.itemPunchInButtonPressed)
-    var detailsViewAction: Selector = #selector(ItemCardAction.shared.itemDetailsButtonPressed(_:))
+    var punchInAction: Selector = #selector(Actions.shared.itemPunchInButtonPressed)
+    var detailsViewAction: Selector = #selector(Actions.shared.itemDetailsButtonPressed(_:))
+    var themeColorChangedAction: Selector = #selector(Actions.shared.themeColorButtonPressed(_:))
     
     @objc func itemPunchInButtonPressed(_ sender: UIButton!) {
         AppEngine.shared.updateItem(tag: sender.tag)
@@ -39,5 +40,20 @@ class ItemCardAction {
         itemDetailViewController.lastViewController = senderViewController
         navigationController.pushViewController(itemDetailViewController, animated: true)
 
+    }
+    
+    @objc func themeColorButtonPressed(_ sender: UIButton!) {
+        var newThemeColor: ThemeColor? = nil
+        for themeColor in ThemeColor.allCases {
+            if themeColor.rawValue == sender.accessibilityValue {
+                newThemeColor = themeColor
+            }
+        }
+        
+        if newThemeColor != nil {
+            Vibrator.vibrate(withImpactLevel: .light)
+            AppEngine.shared.changeThemeColor(to: newThemeColor!)
+        }
+        
     }
 }

@@ -8,8 +8,17 @@
 import Foundation
 import UIKit
 class UserSetting {
-    var themeColor = UIColor(named: "ThemeColor") ?? UIColor.clear
-    var themeColorPair = UIColor(named: "ThemeColorPair") ?? UIColor.clear
+    var themeColor = UIColor(named: ThemeColor.blue.rawValue) ?? UIColor.clear
+    //var themeColorPair = UIColor(named: "ThemeColorPair") ?? UIColor.clear
+    var themeColorDarkAndThemeCarlor = UIColor { system in
+        switch system.userInterfaceStyle {
+        case.dark:
+            return AppEngine.shared.userSetting.themeColor
+        default:
+            return AppEngine.shared.userSetting.themeColor.darkColor
+        }
+        
+    }
     var themeColorAndBlack = UIColor { system in
         switch system.userInterfaceStyle {
         case .dark:

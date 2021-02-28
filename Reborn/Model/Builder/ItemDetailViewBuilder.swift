@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-class ItemDetailViewBuilder: Builder {
+class ItemDetailViewBuilder: ViewBuilder {
     
     let setting: SystemSetting = SystemSetting.shared
     let item: Item
@@ -96,10 +96,22 @@ class ItemDetailViewBuilder: Builder {
         
         if withProgressLabel {
             let progressLabel = UILabel()
-            progressLabel.frame.origin = CGPoint(x: CGFloat(self.item.progress) * barFrame.width - 10, y: barFrame.origin.y - barFrame.height - 10)
+            var labelX = CGFloat(self.item.progress) * barFrame.width
+            let labelY = barFrame.origin.y - barFrame.height - 10
+            
+            if labelX - 10 > 0 {
+                print(">")
+                labelX -= 10
+            }
+            
+            progressLabel.frame.origin = CGPoint(x: labelX, y: labelY)
             progressLabel.font = AppEngine.shared.userSetting.fontSmall
             progressLabel.text = self.item.progressInPercentageString
             progressLabel.sizeToFit()
+            
+            if progressLabel.frame.origin.x + progressLabel.frame.width > barFrame.width {
+                progressLabel.frame.origin.x =  barFrame.width - progressLabel.frame.width
+            }
             outPutView.addSubview(progressLabel)
         }
     }

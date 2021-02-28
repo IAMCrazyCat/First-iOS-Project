@@ -109,7 +109,8 @@ class CalendarViewController: UIViewController {
         bottomCollectionView.delegate = self
         bottomCollectionView.dataSource = self
         bottomCollectionView.register(CalendarCell.self, forCellWithReuseIdentifier: CalendarCell.identifier)
-       
+        engine.register(observer: self)
+        
         if let layout = bottomCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .vertical
             layout.minimumInteritemSpacing = 10
@@ -378,10 +379,7 @@ class CalendarViewController: UIViewController {
         
     }
     
-    func updateUI() {
-        
-        self.updateCalendarPage(type: userDidGo)
-        
+    func callDelegateMethod() {
         switch userDidGo {
         case .lastMonth:
             
@@ -410,7 +408,18 @@ class CalendarViewController: UIViewController {
             self.updateMonthLabelWithoutAnimation()
         }
         
+    }
+    
+   
+
+}
+
+extension CalendarViewController: Observer {
+    func updateUI() {
+        self.timeMachineButton.tintColor = self.engine.userSetting.themeColor
         
+        self.callDelegateMethod()
+        self.updateCalendarPage(type: userDidGo)
         self.bottomCollectionView.reloadData()
         
         if self.state == .normal {
@@ -422,14 +431,7 @@ class CalendarViewController: UIViewController {
        
        
     }
-    
-    
-    
-    
-
 }
-
-
 
 extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     

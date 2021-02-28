@@ -43,10 +43,9 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        customNavigationBar.backgroundColor = engine.userSetting.themeColorAndBlack
-        spaceView.backgroundColor = engine.userSetting.themeColorAndBlack
         
-        engine.registerObserver(observer: self)
+        
+        engine.register(observer: self)
         persistingItemsViewPromptLabel.sizeToFit()
         quittingItemsViewPromptLabel.sizeToFit()
 
@@ -135,7 +134,7 @@ class HomeViewController: UIViewController {
    
     @IBAction func addNewItemButtonPressed(_ sender: UIButton) {
         
-        self.engine.registerObserver(observer: self)
+        self.engine.register(observer: self)
         self.performSegue(withIdentifier: "GoToNewItemView", sender: self)
     }
     
@@ -149,7 +148,7 @@ class HomeViewController: UIViewController {
             let item = self.engine.currentUser.items[(sender as? UIButton)?.tag ?? 0]
             destinationViewController.item = item
             destinationViewController.lastViewController = self
-            self.engine.registerObserver(observer: destinationViewController)
+            self.engine.register(observer: destinationViewController)
             
         } else if let destinationViewController = segue.destination as? CalendarViewController, segue.identifier == "EmbeddedCalendarContainer" {
             
@@ -267,6 +266,8 @@ class HomeViewController: UIViewController {
     
     func updateNavigationView() {
         
+        self.customNavigationBar.backgroundColor = engine.userSetting.themeColorAndBlack
+        self.spaceView.backgroundColor = engine.userSetting.themeColorAndBlack
         self.todayProgressLabel.text = "今日打卡: \(self.engine.getTodayProgress())"
         self.todayProgressLabel.layer.zPosition = 3
         

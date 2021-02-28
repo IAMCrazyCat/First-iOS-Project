@@ -7,7 +7,7 @@
 import Foundation
 import UIKit
 
-class ItemCardViewBuilder: Builder {
+class ItemCardViewBuilder: ViewBuilder {
 
     let item: Item
     let punchInButtonTag: Int
@@ -148,7 +148,7 @@ class ItemCardViewBuilder: Builder {
         fullViewButton.tag = self.punchInButtonTag
         
         if isInteractable {
-            fullViewButton.addTarget(ItemCardAction.shared, action: ItemCardAction.shared.detailsViewAction, for: .touchUpInside)
+            fullViewButton.addTarget(Actions.shared, action: Actions.shared.detailsViewAction, for: .touchUpInside)
         }
         
         outPutView.addSubview(fullViewButton)
@@ -339,7 +339,7 @@ class ItemCardViewBuilder: Builder {
         punchInButton.tag = self.punchInButtonTag
         
         if isInteractable {
-            punchInButton.addTarget(ItemCardAction.shared, action: ItemCardAction.shared.punchInAction, for: .touchUpInside)
+            punchInButton.addTarget(Actions.shared, action: Actions.shared.punchInAction, for: .touchUpInside)
         }
     }
     

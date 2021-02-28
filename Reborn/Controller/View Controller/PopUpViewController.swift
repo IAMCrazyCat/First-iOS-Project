@@ -10,13 +10,14 @@ import UIKit
 class PopUpViewController: UIViewController {
     
     
-    var keyboardFrame: CGRect? = nil
-    var height: CGFloat = SystemSetting.shared.popUpWindowHeight
-    var presentDuration: Double = SystemSetting.shared.popUpWindowPresentDuration
-    var type: PopUpType?
-    var pikerViewData: Array<Any> = []
-    var keyboardDidShowFully: Bool = false
-    var pickerViewSelectedRow: Int = 0
+    private var keyboardFrame: CGRect? = nil
+    private var height: CGFloat = SystemSetting.shared.popUpWindowHeight
+    private var presentDuration: Double = SystemSetting.shared.popUpWindowPresentDuration
+    public var type: PopUpType?
+    public var dataStartIndex: Int = 0
+    public var pikerViewData: Array<Any> = []
+    private var keyboardDidShowFully: Bool = false
+    private var pickerViewSelectedRow: Int = 0
 
     
     override func viewDidLoad() {
@@ -47,13 +48,12 @@ class PopUpViewController: UIViewController {
                     self.hidePromptLabel(false)
                 }
             }
+        case .customThemeColor:
+            AppEngine.shared.dismissBottomPopUpAndSave(controller: self)
         default:
             print("Switching type error")
         }
             
-            
-
-       
     }
     
     func hidePromptLabel(_ isHidden: Bool) {
@@ -151,6 +151,28 @@ class PopUpViewController: UIViewController {
         
         return storedData ?? "Error"
     }
+}
+
+extension PopUpViewController: Observer {
+    func updateUI() {
+        var popUpWindow = UIView()
+        switch type {
+        case .customFrequency:
+            popUpWindow = CustomFrequencyPopUpViewBuilder(dataStartIndex: dataStartIndex, popUpViewController: self).buildView()
+        case .customItemName:
+            popUpWindow = CustomItemNamePopUpViewBuilder(popUpViewController: self).buildView()
+        case .customTargetDays:
+            popUpWindow = CustomTargetDaysPopUpViewBuilder(dataStartIndex: dataStartIndex, popUpViewController: self).buildView()
+        case .customThemeColor:
+            popUpWindow = CustomThemeColorPopUpViewBuilder(popUpViewController: self).buildView()
+        case nil:
+            break
+        }
+        
+        self.view.addSubview(popUpWindow)
+    }
+    
+    
 }
 
 extension PopUpViewController: UIPickerViewDelegate, UIPickerViewDataSource {

@@ -201,7 +201,8 @@ extension SetUpViewController: PopUpViewDelegate {
             self.selectedButton.setTitle(self.engine.getStoredDataFromPopUpView() as? String, for: .normal)
         case .customTargetDays:
             self.selectedButton.setTitle((self.engine.getStoredDataFromPopUpView() as? DataOption)?.title, for: .normal)
-        
+        case .customThemeColor:
+            break
         }
        
     }

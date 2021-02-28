@@ -19,14 +19,27 @@ class UserCenterViewController: UIViewController {
     @IBOutlet weak var appVersionLabelButton: UIButton!
     @IBOutlet weak var verticalScrollView: UIScrollView!
     
+    @IBOutlet weak var purchaseButton: UIButton!
+    @IBOutlet weak var notificationButton: UIButton!
+    @IBOutlet weak var myKeysButton: UIButton!
+    @IBOutlet weak var themeColorButton: UIButton!
+    @IBOutlet weak var lightAndDarkModeButton: UIButton!
+    @IBOutlet weak var reviewButton: UIButton!
+    @IBOutlet weak var feedbackButton: UIButton!
+    @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var restorePurchaseButton: UIButton!
+    @IBOutlet weak var instructionButton: UIButton!
     
     var scrollViewTopOffset: CGFloat = 0
     var scrollViewLastOffset: CGFloat = 0
     var setting: SystemSetting = SystemSetting.shared
     let engine: AppEngine = AppEngine.shared
+    
+    var settingButtons: Array<UIButton> = []
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        AppEngine.shared.register(observer: self)
         avaterView.setCornerRadius()
         purchaseView.layer.cornerRadius = setting.itemCardCornerRadius - 5
         punchInSettingView.layer.cornerRadius = setting.itemCardCornerRadius - 5
@@ -40,16 +53,27 @@ class UserCenterViewController: UIViewController {
         
         verticalScrollView.delegate = self
         scrollViewTopOffset = avaterView.frame.origin.y - 10
-        
-        navigationController?.navigationBar.removeBorder()
-        navigationController?.navigationBar.barTintColor = engine.userSetting.themeColorAndBlack
-        
-        
+ 
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Error"
         self.appVersionLabelButton.setTitle("  v\(appVersion)", for: .normal)
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(avatarViewTapped))
         self.avaterView.addGestureRecognizer(gesture)
+        
+        //purchaseButton.setCornerRadius()
+        settingButtons.append(purchaseButton)
+        settingButtons.append(notificationButton)
+        settingButtons.append(myKeysButton)
+        settingButtons.append(themeColorButton)
+        settingButtons.append(lightAndDarkModeButton)
+        settingButtons.append(reviewButton)
+        settingButtons.append(feedbackButton)
+        settingButtons.append(shareButton)
+        settingButtons.append(restorePurchaseButton)
+        settingButtons.append(instructionButton)
+        
+        
+        updateUI()
     }
     
     override func viewDidLayoutSubviews() {
@@ -64,7 +88,32 @@ class UserCenterViewController: UIViewController {
         imagePicker.allowsEditing = false
         self.present(imagePicker, animated: true, completion: nil)
     }
+    
+ 
+    @IBAction func settingButtonPressed(_ sender: UIButton) {
+        self.showBottom(.customThemeColor)
+    }
+    
+    func setButtonsAppearence() {
+        self.themeColorButton.tintColor = AppEngine.shared.userSetting.themeColor
+        for button in self.settingButtons {
+            button.setBackgroundColor(.systemGray3, for: .highlighted)
+            button.layer.cornerRadius = self.setting.itemCardCornerRadius - 5
+        }
+    }
+    
+    func updateNavigationBar() {
+        navigationController?.navigationBar.removeBorder()
+        navigationController?.navigationBar.barTintColor = engine.userSetting.themeColorAndBlack
+    }
+    
+}
 
+extension UserCenterViewController: Observer {
+    func updateUI() {
+        updateNavigationBar()
+        setButtonsAppearence()
+    }
 }
 
 extension UserCenterViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {

@@ -22,19 +22,16 @@ class ItemManagementViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //customNavigationBar.backgroundColor = engine.userSetting.themeColorAndBlack
-        optionBar.backgroundColor = engine.userSetting.themeColorAndBlack
-        
 //        optionBar.layer.cornerRadius = setting.customNavigationBarCornerRadius
 //        optionBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
-        optionBar.layer.zPosition = -2
+        
         
         UISegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: AppEngine.shared.userSetting.themeColor], for: .selected)
         UISegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
         
-        engine.registerObserver(observer: self)
-        //self.navigationItem.titleView = segmentedControl
-        navigationController?.navigationBar.removeBorder()
-        navigationController?.navigationBar.barTintColor = engine.userSetting.themeColorAndBlack
+        engine.register(observer: self)
+
+        updateUI()
         
         
     }
@@ -69,8 +66,18 @@ class ItemManagementViewController: UIViewController {
         default:
             print("Segement Tag not found")
         }
-        print(self.selectedSegment)
+
         updateUI()
+    }
+    
+    func updateNavigationBar() {
+        self.navigationController?.navigationBar.removeBorder()
+        self.navigationController?.navigationBar.barTintColor = engine.userSetting.themeColorAndBlack
+    }
+    
+    func updateOptionBar() {
+        optionBar.backgroundColor = engine.userSetting.themeColorAndBlack
+        optionBar.layer.zPosition = -2
     }
     
     func updateVerticalContentView() {
@@ -91,7 +98,8 @@ class ItemManagementViewController: UIViewController {
 
 extension ItemManagementViewController: Observer {
     func updateUI() {
-
+        updateNavigationBar()
+        updateOptionBar()
         updateVerticalContentView()
     }
     

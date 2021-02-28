@@ -56,12 +56,17 @@
 		22A59811259AA31A008E2A06 /* PopUpViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A59810259AA31A008E2A06 /* PopUpViewBuilder.swift */; };
 		22AACA1125AD910D0098D920 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AACA1025AD910D0098D920 /* Date.swift */; };
 		22AACA3225AE98B40098D920 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AACA3025AE98B40098D920 /* CalendarViewController.swift */; };
-		22B1E8E425DCE3A5003ABF6C /* ItemCardAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B1E8E325DCE3A5003ABF6C /* ItemCardAction.swift */; };
+		22B1E8E425DCE3A5003ABF6C /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B1E8E325DCE3A5003ABF6C /* Actions.swift */; };
 		22B1E8E925DD47F3003ABF6C /* ItemState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B1E8E825DD47F3003ABF6C /* ItemState.swift */; };
 		22B4B56325D10ACD00C0CFD7 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B4B56225D10ACD00C0CFD7 /* Observer.swift */; };
 		22BABF2425C3ECBA00168AE1 /* TimeMachineCalendarPageViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BABF2325C3ECBA00168AE1 /* TimeMachineCalendarPageViewBuilder.swift */; };
 		22BABF2925C42ABB00168AE1 /* CGAffineTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BABF2825C42ABB00168AE1 /* CGAffineTransform.swift */; };
 		22BC200125D39C0F007D2822 /* OverAllProgressViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BC200025D39C0F007D2822 /* OverAllProgressViewBuilder.swift */; };
+		22BC38DF25E7361E00AEFE44 /* PopUpType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BC38DE25E7361E00AEFE44 /* PopUpType.swift */; };
+		22BC38E525E7388600AEFE44 /* CustomTargetDaysPopUpViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BC38E425E7388600AEFE44 /* CustomTargetDaysPopUpViewBuilder.swift */; };
+		22BC38EA25E738AA00AEFE44 /* CustomItemNamePopUpViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BC38E925E738AA00AEFE44 /* CustomItemNamePopUpViewBuilder.swift */; };
+		22BC38F225E738CD00AEFE44 /* CustomFrequencyPopUpViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BC38F125E738CD00AEFE44 /* CustomFrequencyPopUpViewBuilder.swift */; };
+		22BC38F725E738E900AEFE44 /* CustomThemeColorPopUpViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BC38F625E738E900AEFE44 /* CustomThemeColorPopUpViewBuilder.swift */; };
 		22BC454525B04ED000516F75 /* CalendarPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BC454425B04ED000516F75 /* CalendarPage.swift */; };
 		22BC455025B1C92100516F75 /* CustomDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BC454F25B1C92100516F75 /* CustomDate.swift */; };
 		22BC4C6825D6A3DB009E905C /* WelcomeTextData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BC4C6725D6A3DB009E905C /* WelcomeTextData.swift */; };
@@ -72,10 +77,11 @@
 		22C23A19258DC5D700D4BEB2 /* QuittingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C23A18258DC5D700D4BEB2 /* QuittingItem.swift */; };
 		22C23A1E258DC5FB00D4BEB2 /* PersistingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C23A1D258DC5FB00D4BEB2 /* PersistingItem.swift */; };
 		22C23A27258DCE4500D4BEB2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C23A26258DCE4500D4BEB2 /* HomeViewController.swift */; };
-		22C4BFB825D21E7A00528A1C /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4BFB725D21E7A00528A1C /* Builder.swift */; };
+		22C4BFB825D21E7A00528A1C /* ViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4BFB725D21E7A00528A1C /* ViewBuilder.swift */; };
 		22C4BFC325D21F2400528A1C /* ItemDetailViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4BFC225D21F2400528A1C /* ItemDetailViewBuilder.swift */; };
 		22C5D967258F3E4400131964 /* SetUpEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5D966258F3E4400131964 /* SetUpEngine.swift */; };
 		22C5D975258F40E800131964 /* SetUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5D974258F40E800131964 /* SetUpPage.swift */; };
+		22CBB97E25EA42C500994D33 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CBB97D25EA42C500994D33 /* ThemeColor.swift */; };
 		22CE4ED925D00AE3007EBD5B /* NewItemViewStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE4ED825D00AE3007EBD5B /* NewItemViewStrategy.swift */; };
 		22CE4EF025D00C65007EBD5B /* AddingItemStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE4EEF25D00C65007EBD5B /* AddingItemStrategy.swift */; };
 		22CE4EF525D00C73007EBD5B /* EditingItemStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE4EF425D00C73007EBD5B /* EditingItemStrategy.swift */; };
@@ -95,7 +101,6 @@
 		22E069A925D79250006DCE5C /* Vibrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E069A825D79250006DCE5C /* Vibrator.swift */; };
 		22E9A855259ED1B40073D432 /* PikerViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E9A854259ED1B40073D432 /* PikerViewData.swift */; };
 		22E9A875259F33F50073D432 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E9A873259F33F50073D432 /* PopUpViewController.swift */; };
-		22F847ED25DFDF8A008F7EBB /* SwiftyAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F847EC25DFDF8A008F7EBB /* SwiftyAvatar.swift */; };
 		22FCB1B5258D86BA006A0D39 /* SetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FCB1B4258D86BA006A0D39 /* SetUpViewController.swift */; };
 		22FCB1BA258D907C006A0D39 /* SystemSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FCB1B9258D907C006A0D39 /* SystemSetting.swift */; };
 		378F133BB1E91F6A674DE7AC /* Pods_Reborn_RebornUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C4533996E1B3FEF9192966A /* Pods_Reborn_RebornUITests.framework */; };
@@ -176,12 +181,17 @@
 		22A59810259AA31A008E2A06 /* PopUpViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewBuilder.swift; sourceTree = "<group>"; };
 		22AACA1025AD910D0098D920 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		22AACA3025AE98B40098D920 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		22B1E8E325DCE3A5003ABF6C /* ItemCardAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCardAction.swift; sourceTree = "<group>"; };
+		22B1E8E325DCE3A5003ABF6C /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
 		22B1E8E825DD47F3003ABF6C /* ItemState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemState.swift; sourceTree = "<group>"; };
 		22B4B56225D10ACD00C0CFD7 /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
 		22BABF2325C3ECBA00168AE1 /* TimeMachineCalendarPageViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineCalendarPageViewBuilder.swift; sourceTree = "<group>"; };
 		22BABF2825C42ABB00168AE1 /* CGAffineTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGAffineTransform.swift; sourceTree = "<group>"; };
 		22BC200025D39C0F007D2822 /* OverAllProgressViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverAllProgressViewBuilder.swift; sourceTree = "<group>"; };
+		22BC38DE25E7361E00AEFE44 /* PopUpType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpType.swift; sourceTree = "<group>"; };
+		22BC38E425E7388600AEFE44 /* CustomTargetDaysPopUpViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTargetDaysPopUpViewBuilder.swift; sourceTree = "<group>"; };
+		22BC38E925E738AA00AEFE44 /* CustomItemNamePopUpViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomItemNamePopUpViewBuilder.swift; sourceTree = "<group>"; };
+		22BC38F125E738CD00AEFE44 /* CustomFrequencyPopUpViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFrequencyPopUpViewBuilder.swift; sourceTree = "<group>"; };
+		22BC38F625E738E900AEFE44 /* CustomThemeColorPopUpViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomThemeColorPopUpViewBuilder.swift; sourceTree = "<group>"; };
 		22BC454425B04ED000516F75 /* CalendarPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPage.swift; sourceTree = "<group>"; };
 		22BC454F25B1C92100516F75 /* CustomDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDate.swift; sourceTree = "<group>"; };
 		22BC4C6725D6A3DB009E905C /* WelcomeTextData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeTextData.swift; sourceTree = "<group>"; };
@@ -192,10 +202,11 @@
 		22C23A18258DC5D700D4BEB2 /* QuittingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuittingItem.swift; sourceTree = "<group>"; };
 		22C23A1D258DC5FB00D4BEB2 /* PersistingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistingItem.swift; sourceTree = "<group>"; };
 		22C23A26258DCE4500D4BEB2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		22C4BFB725D21E7A00528A1C /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
+		22C4BFB725D21E7A00528A1C /* ViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBuilder.swift; sourceTree = "<group>"; };
 		22C4BFC225D21F2400528A1C /* ItemDetailViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewBuilder.swift; sourceTree = "<group>"; };
 		22C5D966258F3E4400131964 /* SetUpEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpEngine.swift; sourceTree = "<group>"; };
 		22C5D974258F40E800131964 /* SetUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpPage.swift; sourceTree = "<group>"; };
+		22CBB97D25EA42C500994D33 /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
 		22CE4ED825D00AE3007EBD5B /* NewItemViewStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemViewStrategy.swift; sourceTree = "<group>"; };
 		22CE4EEF25D00C65007EBD5B /* AddingItemStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingItemStrategy.swift; sourceTree = "<group>"; };
 		22CE4EF425D00C73007EBD5B /* EditingItemStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingItemStrategy.swift; sourceTree = "<group>"; };
@@ -215,7 +226,6 @@
 		22E069A825D79250006DCE5C /* Vibrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibrator.swift; sourceTree = "<group>"; };
 		22E9A854259ED1B40073D432 /* PikerViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PikerViewData.swift; sourceTree = "<group>"; };
 		22E9A873259F33F50073D432 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
-		22F847EC25DFDF8A008F7EBB /* SwiftyAvatar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyAvatar.swift; path = "../../../../../../../../../Desktop/SwiftyAvatar-master/SwiftyAvatar/Classes/SwiftyAvatar.swift"; sourceTree = "<group>"; };
 		22FCB1B4258D86BA006A0D39 /* SetUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewController.swift; sourceTree = "<group>"; };
 		22FCB1B9258D907C006A0D39 /* SystemSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSetting.swift; sourceTree = "<group>"; };
 		5AE27D89D9638F0EFD870D9C /* Pods-RebornTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RebornTests.release.xcconfig"; path = "Target Support Files/Pods-RebornTests/Pods-RebornTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -365,6 +375,8 @@
 				22A597FD2599C0AF008E2A06 /* WeekDay.swift */,
 				22BC4C6C25D6A3FF009E905C /* TimeRange.swift */,
 				22B1E8E825DD47F3003ABF6C /* ItemState.swift */,
+				22BC38DE25E7361E00AEFE44 /* PopUpType.swift */,
+				22CBB97D25EA42C500994D33 /* ThemeColor.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -381,10 +393,10 @@
 		224A919025971E0800A896BE /* Builder */ = {
 			isa = PBXGroup;
 			children = (
-				22C4BFB725D21E7A00528A1C /* Builder.swift */,
+				22BC38E325E7383100AEFE44 /* Bottom Pop Up Builder */,
+				22C4BFB725D21E7A00528A1C /* ViewBuilder.swift */,
 				224A919125971E9000A896BE /* ItemCardViewBuilder.swift */,
 				22C4BFC225D21F2400528A1C /* ItemDetailViewBuilder.swift */,
-				22A59810259AA31A008E2A06 /* PopUpViewBuilder.swift */,
 				22D7FBB025A1E065006B1F28 /* SetUpPageViewBuilder.swift */,
 				22BABF2325C3ECBA00168AE1 /* TimeMachineCalendarPageViewBuilder.swift */,
 				22BC200025D39C0F007D2822 /* OverAllProgressViewBuilder.swift */,
@@ -476,6 +488,18 @@
 			path = Observer;
 			sourceTree = "<group>";
 		};
+		22BC38E325E7383100AEFE44 /* Bottom Pop Up Builder */ = {
+			isa = PBXGroup;
+			children = (
+				22A59810259AA31A008E2A06 /* PopUpViewBuilder.swift */,
+				22BC38E425E7388600AEFE44 /* CustomTargetDaysPopUpViewBuilder.swift */,
+				22BC38E925E738AA00AEFE44 /* CustomItemNamePopUpViewBuilder.swift */,
+				22BC38F125E738CD00AEFE44 /* CustomFrequencyPopUpViewBuilder.swift */,
+				22BC38F625E738E900AEFE44 /* CustomThemeColorPopUpViewBuilder.swift */,
+			);
+			path = "Bottom Pop Up Builder";
+			sourceTree = "<group>";
+		};
 		22BC4C7725D6A490009E905C /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -489,7 +513,6 @@
 		22BC4C7825D6A4A4009E905C /* Object */ = {
 			isa = PBXGroup;
 			children = (
-				22F847EC25DFDF8A008F7EBB /* SwiftyAvatar.swift */,
 				221E0B7B25A9273E00386FE1 /* User.swift */,
 				22BC454F25B1C92100516F75 /* CustomDate.swift */,
 				22D7FBA025A18FE5006B1F28 /* DataOption.swift */,
@@ -497,7 +520,7 @@
 				22C23A1D258DC5FB00D4BEB2 /* PersistingItem.swift */,
 				22C23A18258DC5D700D4BEB2 /* QuittingItem.swift */,
 				22BC4C7D25D6A517009E905C /* WelcomeText.swift */,
-				22B1E8E325DCE3A5003ABF6C /* ItemCardAction.swift */,
+				22B1E8E325DCE3A5003ABF6C /* Actions.swift */,
 				221E0BA325A9D38100386FE1 /* Image.swift */,
 			);
 			path = Object;
@@ -864,8 +887,10 @@
 				224E663D25C6465D00B71E8A /* ForwardForOneStrategy.swift in Sources */,
 				22BC4C6D25D6A3FF009E905C /* TimeRange.swift in Sources */,
 				22A2EC8425C9868C00E97787 /* TimeMachineViewDismissAnimationController.swift in Sources */,
+				22BC38EA25E738AA00AEFE44 /* CustomItemNamePopUpViewBuilder.swift in Sources */,
 				22E9A855259ED1B40073D432 /* PikerViewData.swift in Sources */,
 				224E664C25C6469B00B71E8A /* BackwardForOneStrategy.swift in Sources */,
+				22BC38E525E7388600AEFE44 /* CustomTargetDaysPopUpViewBuilder.swift in Sources */,
 				224E665925C64F5F00B71E8A /* PresentStrategy.swift in Sources */,
 				228ED3E625B94D630054591F /* CalendarCell.swift in Sources */,
 				22CE4EF525D00C73007EBD5B /* EditingItemStrategy.swift in Sources */,
@@ -876,10 +901,10 @@
 				2293F38625DB7C18009B4753 /* ItemManagementViewController.swift in Sources */,
 				2246D2E625CA68230001EFB7 /* DismissStrategy.swift in Sources */,
 				22D7FBB125A1E065006B1F28 /* SetUpPageViewBuilder.swift in Sources */,
-				22B1E8E425DCE3A5003ABF6C /* ItemCardAction.swift in Sources */,
+				22BC38F725E738E900AEFE44 /* CustomThemeColorPopUpViewBuilder.swift in Sources */,
+				22B1E8E425DCE3A5003ABF6C /* Actions.swift in Sources */,
 				22BC4C6825D6A3DB009E905C /* WelcomeTextData.swift in Sources */,
 				22D8A05725CCE21C00A605D6 /* NewCalendarPage.swift in Sources */,
-				22F847ED25DFDF8A008F7EBB /* SwiftyAvatar.swift in Sources */,
 				22D8A05225CCE1D500A605D6 /* CalendarCellType.swift in Sources */,
 				2246D2EE25CAD5110001EFB7 /* EnlargeStrategy.swift in Sources */,
 				22D6195C25A0290600EC9396 /* UIViewController.swift in Sources */,
@@ -888,10 +913,11 @@
 				225AD12225A80EB30040E356 /* UIApplication.swift in Sources */,
 				225AD12A25A848A30040E356 /* Selector.swift in Sources */,
 				22BC4C7E25D6A517009E905C /* WelcomeText.swift in Sources */,
+				22CBB97E25EA42C500994D33 /* ThemeColor.swift in Sources */,
 				22D6195725A0277B00EC9396 /* PopUpViewPresentAnimationController.swift in Sources */,
 				224A919225971E9000A896BE /* ItemCardViewBuilder.swift in Sources */,
 				22AACA3225AE98B40098D920 /* CalendarViewController.swift in Sources */,
-				22C4BFB825D21E7A00528A1C /* Builder.swift in Sources */,
+				22C4BFB825D21E7A00528A1C /* ViewBuilder.swift in Sources */,
 				22D6196725A02FE100EC9396 /* PopUpViewDismissAnimationController.swift in Sources */,
 				22E069A925D79250006DCE5C /* Vibrator.swift in Sources */,
 				224E668A25C6A76600B71E8A /* DateCalculator.swift in Sources */,
@@ -927,6 +953,7 @@
 				22D354B425A595B7004F5667 /* UserCenterViewController.swift in Sources */,
 				22BABF2925C42ABB00168AE1 /* CGAffineTransform.swift in Sources */,
 				224E665125C6483E00B71E8A /* PagesBehaviorStrategy.swift in Sources */,
+				22BC38F225E738CD00AEFE44 /* CustomFrequencyPopUpViewBuilder.swift in Sources */,
 				221E0B7C25A9273E00386FE1 /* User.swift in Sources */,
 				22FCB1BA258D907C006A0D39 /* SystemSetting.swift in Sources */,
 				22C23A1E258DC5FB00D4BEB2 /* PersistingItem.swift in Sources */,
@@ -939,6 +966,7 @@
 				22D7FBA625A190E9006B1F28 /* SetUpPageData.swift in Sources */,
 				22A597EC2598091B008E2A06 /* UIButton.swift in Sources */,
 				22A59811259AA31A008E2A06 /* PopUpViewBuilder.swift in Sources */,
+				22BC38DF25E7361E00AEFE44 /* PopUpType.swift in Sources */,
 				221E0B8825A9A22800386FE1 /* Gender.swift in Sources */,
 				22C5D967258F3E4400131964 /* SetUpEngine.swift in Sources */,
 				22D7FBA125A18FE5006B1F28 /* DataOption.swift in Sources */,

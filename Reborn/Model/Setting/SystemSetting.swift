@@ -33,6 +33,7 @@ struct SystemSetting{
     // for welcome page
     let mainDistance: CGFloat = 20
     let mainPadding: CGFloat = 15
+    let mainGap: CGFloat = 20
     let FontNormalSize: CGFloat = 21
     
     // for set up page buttons

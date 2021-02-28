@@ -7,6 +7,6 @@
 
 import Foundation
 import UIKit
-protocol Builder {
+protocol ViewBuilder {
     func buildView() -> UIView
 }

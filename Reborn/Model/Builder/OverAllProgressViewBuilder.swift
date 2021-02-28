@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-class OverAllProgressViewBuilder: Builder {
+class OverAllProgressViewBuilder: ViewBuilder {
     
     let setting: SystemSetting = SystemSetting.shared
     let welcomeTextData = WelcomeTextData()
@@ -107,7 +107,7 @@ class OverAllProgressViewBuilder: Builder {
         
         let circleTrackPath = UIBezierPath(arcCenter: CGPoint(x: circleView.frame.width / 2, y: circleView.frame.height / 2), radius: circleRadius, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
         let circleShapePath = UIBezierPath(arcCenter: CGPoint(x: circleView.frame.width / 2, y: circleView.frame.height / 2), radius: circleRadius, startAngle: -CGFloat.pi / 2, endAngle: CGFloat(progress) * 2 * CGFloat.pi - CGFloat.pi / 2, clockwise: true)
-        let shapeColor = AppEngine.shared.userSetting.themeColorPair.cgColor
+        let shapeColor = AppEngine.shared.userSetting.themeColorDarkAndThemeCarlor.cgColor
         let trackColor = AppEngine.shared.userSetting.themeColorAndBlack.brightColor.cgColor
         
         
@@ -149,7 +149,7 @@ class OverAllProgressViewBuilder: Builder {
         
         let circleTrackPath = UIBezierPath(arcCenter: CGPoint(x: circleView.frame.width / 2, y: circleView.frame.height / 2), radius: circleRadius, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
         let circleShapePath = UIBezierPath(arcCenter: CGPoint(x: circleView.frame.width / 2, y: circleView.frame.height / 2), radius: circleRadius, startAngle: -CGFloat.pi / 2, endAngle: CGFloat(progress) * 2 * CGFloat.pi - CGFloat.pi / 2, clockwise: true)
-        let shapeColor = AppEngine.shared.userSetting.themeColorPair.cgColor
+        let shapeColor = AppEngine.shared.userSetting.themeColorDarkAndThemeCarlor.cgColor
         let trackColor = AppEngine.shared.userSetting.themeColorAndBlack.brightColor.cgColor
         let progressWidth: CGFloat = 8
         

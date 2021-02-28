@@ -87,11 +87,11 @@ class EditingItemStrategy: NewItemViewStrategy {
         newItemViewController.verticalScrollView.layoutIfNeeded()
     }
     
-    func showPopUp(popUpType: PopUpType) {
-        if popUpType == .customTargetDays {
-            newItemViewController.engine.showBottomPopUp(popUpType, dataStartIndex: newItemViewController.item.finishedDays, from: newItemViewController)
-        } else if popUpType == .customFrequency {
-            newItemViewController.engine.showBottomPopUp(popUpType, from: newItemViewController)
+    func showPopUp(popUpType popUp: PopUpType) {
+        if popUp == .customTargetDays {
+            newItemViewController.showBottom(popUp, dataStartIndex: newItemViewController.item.finishedDays)
+        } else if popUp == .customFrequency {
+            newItemViewController.showBottom(popUp)
         }
         
     }

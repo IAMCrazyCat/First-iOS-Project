@@ -24,7 +24,7 @@ class TimeMachineViewController: UIViewController {
     @IBOutlet weak var bottomView: UIView!
     
     @IBOutlet weak var goBackToThePastButton: UIButton!
-    @IBOutlet weak var timeMachineLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var cancelButton: UIButton!
     
     override func viewDidLoad() {
@@ -32,6 +32,7 @@ class TimeMachineViewController: UIViewController {
         
         animationSpeed = self.setting.timeMachineAnimationNormalSpeed
         
+        titleLabel.textColor = AppEngine.shared.userSetting.themeColor
         goBackToThePastButton.layer.cornerRadius = self.setting.mainButtonCornerRadius
         goBackToThePastButton.setShadow()
         goBackToThePastButton.setBackgroundColor(AppEngine.shared.userSetting.themeColor, for: .normal)
@@ -64,11 +65,17 @@ class TimeMachineViewController: UIViewController {
         updateUI()
     }
     
+  
+    
+}
+
+extension TimeMachineViewController: Observer {
     func updateUI() {
+        //timeMachineLabel.tintColor = AppEngine.shared.userSetting.themeColor
+        //goBackToThePastButton.setBackgroundColor(AppEngine.shared.userSetting.themeColor, for: .normal)
         
         self.strategy?.performStrategy()
     }
-    
 }
 
 extension TimeMachineViewController: CalendarViewDegelagte {

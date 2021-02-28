@@ -37,7 +37,16 @@ extension UIColor {
         return UIColor(red: value.red * 1.2, green: value.green * 1.2, blue: value.blue * 1.2, alpha: 1)
     }
     
-//    var fadeColor: UIColor {
-//        return self.withAlphaComponent(0.4)
+    var darkColor: UIColor {
+        return UIColor(red: value.red * 0.85, green: value.green * 0.85, blue: value.blue * 0.85, alpha: 1)
+    }
+    
+//    static var themeColor: (blue: UIColor, yellow: UIColor, pink: UIColor) {
+//        let blue = UIColor(named: "BlueThemeColor") ?? UIColor.clear
+//        let yellow = UIColor(named: "YellowThemeColor") ?? UIColor.clear
+//        let pink = UIColor(named: "PinkThemeColor") ?? UIColor.clear
+//        return (blue, yellow, pink)
 //    }
 }
+
+

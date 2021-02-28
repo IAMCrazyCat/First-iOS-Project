@@ -14,7 +14,8 @@ class ItemDetailViewController: UIViewController {
     @IBOutlet weak var calendarView: UIView!
     @IBOutlet weak var mediumView: UIView!
     @IBOutlet weak var verticalScrollView: UIScrollView!
-    @IBOutlet weak var verticallyScrollContentView: UIView!
+    @IBOutlet weak var verticalContentView: UIView!
+    @IBOutlet weak var verticalContentViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var progressView: UIView!
     @IBOutlet weak var bottomEditButton: UIButton!
     @IBOutlet weak var bottomShareButton: UIButton!
@@ -48,21 +49,26 @@ class ItemDetailViewController: UIViewController {
         calendarView.layer.cornerRadius = setting.itemCardCornerRadius
         
         bottomShareButton.setSizeAccrodingToScreen()
-        bottomShareButton.setShadow()
+        
         bottomShareButton.setCornerRadius()
+        bottomShareButton.setShadow()
         
         bottomEditButton.setSizeAccrodingToScreen()
-        bottomEditButton.setShadow()
+        
         bottomEditButton.setCornerRadius()
+        bottomEditButton.setShadow()
         
         updateUI()
     }
     
     override func viewDidLayoutSubviews() {
-        self.verticalScrollView.contentSize.height = self.bottomEditButton.frame.maxY + 20
+        self.verticalContentViewHeightConstraint.constant = self.bottomEditButton.frame.maxY + self.setting.contentToScrollViewBottomDistance
         self.verticalScrollView.layoutIfNeeded()
     }
     
+    @IBAction func bottomEidtItemButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "GoToEditItemView", sender: nil)
+    }
     
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -94,7 +100,7 @@ class ItemDetailViewController: UIViewController {
 extension ItemDetailViewController: Observer {
     func updateUI() {
         if item != nil {
-            self.verticallyScrollContentView.layoutIfNeeded()
+            self.verticalContentView.layoutIfNeeded()
             let builder = ItemDetailViewBuilder(item: item!, frame: self.progressView.bounds)
             let detailsView = builder.buildView()
             self.progressView.addSubview(detailsView)
