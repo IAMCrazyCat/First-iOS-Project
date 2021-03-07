@@ -52,7 +52,7 @@ class AppEngine {
     
     
     public var delegate: PopUpViewDelegate?
-    private var observers: Array<Observer> = []
+    private var observers: Array<UIObserver> = []
     private var observerNotifier: Timer = Timer()
     private var observerNotifierTimePoints: Array<Int> = []
     private var observerIsNotifiedByNotifier: Bool = false
@@ -74,7 +74,7 @@ class AppEngine {
         
         self.currentUser.themeColorSetting = newThemeColor
         self.userSetting.themeColor = newThemeColor.uiColor
-        self.notifyAllObservers()
+        self.notifyAllUIObservers()
         self.saveUser(self.currentUser)
     }
     
@@ -95,6 +95,12 @@ class AppEngine {
             UserDefaults.standard.set(true, forKey: "LaunchedBefore")
         }
         return launchedBefore
+    }
+    
+    func purchaseApp() {
+        self.currentUser.vip = true
+        self.saveUser(self.currentUser)
+        self.notifyAllUIObservers()
     }
     
     func requestNotificationPermission() {
@@ -155,7 +161,7 @@ class AppEngine {
     private func checkUpdate() {
         if let currentHour = self.time.hour, let currentMinute = self.time.minute, self.observerNotifierTimePoints.contains(currentHour), currentMinute == 0, !observerIsNotifiedByNotifier { // notify observers once
             
-            self.notifyAllObservers()
+            self.notifyAllUIObservers()
             observerIsNotifiedByNotifier = true
         } else if let currentHour = self.time.hour, self.observerNotifierTimePoints.contains(currentHour + 1) { // ready to notifiy all observers one hour before hour points
             observerIsNotifiedByNotifier = false
@@ -184,10 +190,13 @@ class AppEngine {
 
            do {
                 self.currentUser = try decoder.decode(User.self, from: data) // .self 可以提取数据类型
-        
            } catch {
                print(error)
            }
+        }
+        
+        if self.currentUser.vip {
+            print("Welcome back VIP!")
         }
     }
     
@@ -209,7 +218,7 @@ class AppEngine {
         }
 
         self.saveUser(self.currentUser)
-        self.notifyAllObservers()
+        self.notifyAllUIObservers()
     }
     
     
@@ -230,9 +239,9 @@ class AppEngine {
     }
     
     
-    public func updateItem(tag: Int) {
+    public func updateItem(tag index: Int) {
         
-        let item = self.currentUser.items[tag]
+        let item = self.currentUser.items[index]
         if !item.isPunchedIn {
             
             let currentYear: Int = Calendar.current.component(.year, from: Date())
@@ -241,12 +250,17 @@ class AppEngine {
             item.punchIn(punchInDate: CustomDate(year: currentYear, month: currentMonth, day: currentDay))
             Vibrator.vibrate(withNotificationType: .success)
         } else {
-            self.currentUser.items[tag].revokePunchIn()
+            self.currentUser.items[index].revokePunchIn()
             Vibrator.vibrate(withImpactLevel: .light)
         }
         
         self.saveUser(self.currentUser)
+        
        
+    }
+    
+    public func getItemBy(tag index: Int) -> Item {
+        return self.currentUser.items[index]
     }
     
 
@@ -285,11 +299,11 @@ class AppEngine {
     }
     
     // ------------------------------------ observer ------------------------------------------------------
-    public func register(observer: Observer) {
+    public func add(observer: UIObserver) {
         self.observers.append(observer)
     }
     
-    public func notifyAllObservers() {
+    public func notifyAllUIObservers() {
 
         for observer in self.observers {
             observer.updateUI()
@@ -300,17 +314,17 @@ class AppEngine {
     
     
  
-    public func dismissBottomPopUpWithoutSave(controller: PopUpViewController) {
+    public func dismissBottomPopUpWithoutSave(thenGoBackTo viewController: PopUpViewController) {
         self.delegate?.didDismissPopUpViewWithoutSave()
-        controller.dismiss(animated: true, completion: nil)
+        viewController.dismiss(animated: true, completion: nil)
         
     }
     
-    public func dismissBottomPopUpAndSave(controller: PopUpViewController) {
+    public func dismissBottomPopUpAndSave(thenGoBackTo viewController: PopUpViewController) {
         
-        self.storedDataFromPopUpView = controller.getStoredData()
-        controller.dismiss(animated: true, completion: nil)
-        self.delegate?.didSaveAndDismissPopUpView(type: controller.type!)
+        self.storedDataFromPopUpView = viewController.getStoredData()
+        viewController.dismiss(animated: true, completion: nil)
+        self.delegate?.didSaveAndDismissPopUpView(type: viewController.type!)
         
     }
     

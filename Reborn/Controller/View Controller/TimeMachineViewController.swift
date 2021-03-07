@@ -69,7 +69,7 @@ class TimeMachineViewController: UIViewController {
     
 }
 
-extension TimeMachineViewController: Observer {
+extension TimeMachineViewController: UIObserver {
     func updateUI() {
         //timeMachineLabel.tintColor = AppEngine.shared.userSetting.themeColor
         //goBackToThePastButton.setBackgroundColor(AppEngine.shared.userSetting.themeColor, for: .normal)

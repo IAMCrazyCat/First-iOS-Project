@@ -9,5 +9,5 @@ import Foundation
 enum ItemState: String, Codable {
     case inProgress
     case duringBreak
-    case finished
+    case completed
 }

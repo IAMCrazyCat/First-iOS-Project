@@ -42,7 +42,7 @@ extension UIView {
         confettiView.startConfetti()
     }
     
-    func getSubviewByIdentifier(idenifier: String) -> UIView? {
+    func getSubviewBy(idenifier: String) -> UIView? {
         var subviewByEdentifier: UIView? = nil
         
         for subview in self.subviews {
@@ -51,6 +51,17 @@ extension UIView {
             }
         }
         return subviewByEdentifier
+    }
+    
+    func getSubviewBy(tag: Int) -> UIView? {
+        var subviewByTag: UIView? = nil
+        
+        for subview in self.subviews {
+            if subview.tag == tag {
+                subviewByTag = subview
+            }
+        }
+        return subviewByTag
     }
     
     func removeAllSubviews() {
@@ -91,14 +102,14 @@ extension UIView {
     
     
     func findViewController() -> UIViewController? {
-            if let nextResponder = self.next as? UIViewController {
-                return nextResponder
-            } else if let nextResponder = self.next as? UIView {
-                return nextResponder.findViewController()
-            } else {
-                return nil
-            }
+        if let nextResponder = self.next as? UIViewController {
+            return nextResponder
+        } else if let nextResponder = self.next as? UIView {
+            return nextResponder.findViewController()
+        } else {
+            return nil
         }
+    }
     
    
     

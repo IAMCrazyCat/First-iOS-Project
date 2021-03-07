@@ -37,7 +37,7 @@ class HomeViewController: UIViewController {
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        engine.notifyAllObservers()
+        engine.notifyAllUIObservers()
     }
     
     override func viewDidLoad() {
@@ -45,7 +45,7 @@ class HomeViewController: UIViewController {
         
         
         
-        engine.register(observer: self)
+        engine.add(observer: self)
         persistingItemsViewPromptLabel.sizeToFit()
         quittingItemsViewPromptLabel.sizeToFit()
 
@@ -134,7 +134,7 @@ class HomeViewController: UIViewController {
    
     @IBAction func addNewItemButtonPressed(_ sender: UIButton) {
         
-        self.engine.register(observer: self)
+        self.engine.add(observer: self)
         self.performSegue(withIdentifier: "GoToNewItemView", sender: self)
     }
     
@@ -148,7 +148,7 @@ class HomeViewController: UIViewController {
             let item = self.engine.currentUser.items[(sender as? UIButton)?.tag ?? 0]
             destinationViewController.item = item
             destinationViewController.lastViewController = self
-            self.engine.register(observer: destinationViewController)
+            self.engine.add(observer: destinationViewController)
             
         } else if let destinationViewController = segue.destination as? CalendarViewController, segue.identifier == "EmbeddedCalendarContainer" {
             
@@ -266,6 +266,8 @@ class HomeViewController: UIViewController {
     
     func updateNavigationView() {
         
+        self.addNewItemButton.tintColor = engine.userSetting.whiteAndThemColor.brightColor
+        self.todayProgressLabel.textColor = engine.userSetting.whiteAndThemColor.brightColor
         self.customNavigationBar.backgroundColor = engine.userSetting.themeColorAndBlack
         self.spaceView.backgroundColor = engine.userSetting.themeColorAndBlack
         self.todayProgressLabel.text = "今日打卡: \(self.engine.getTodayProgress())"
@@ -313,7 +315,7 @@ class HomeViewController: UIViewController {
                     UIView.animate(withDuration: animationSpeed, animations: {
                         subview.alpha = 0
                         self.todayProgressLabel.alpha = 0
-                        let smallCircleView = self.customNavigationBar.getSubviewByIdentifier(idenifier: "SmallProgressCircle")?.subviews.first
+                        let smallCircleView = self.customNavigationBar.getSubviewBy(idenifier: "SmallProgressCircle")?.subviews.first
                         smallCircleView?.alpha = 1
                     })
 
@@ -321,7 +323,7 @@ class HomeViewController: UIViewController {
                     UIView.animate(withDuration: animationSpeed, animations: {
                         subview.alpha = 1
                         self.todayProgressLabel.alpha = 1
-                        let smallCircleView = self.customNavigationBar.getSubviewByIdentifier(idenifier: "SmallProgressCircle")?.subviews.first
+                        let smallCircleView = self.customNavigationBar.getSubviewBy(idenifier: "SmallProgressCircle")?.subviews.first
                         smallCircleView?.alpha = 0
                     })
                 }
@@ -351,7 +353,7 @@ class HomeViewController: UIViewController {
 
 }
 
-extension HomeViewController: Observer {
+extension HomeViewController: UIObserver {
     func updateUI() {
         
         updateNavigationView()

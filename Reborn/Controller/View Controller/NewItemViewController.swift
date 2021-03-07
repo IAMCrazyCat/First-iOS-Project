@@ -47,18 +47,20 @@ class NewItemViewController: UIViewController {
     
     let engine: AppEngine = AppEngine.shared
     let setting: SystemSetting = SystemSetting.shared
-    var frequency: DataOption? = nil
+    var frequency: DataModel? = nil
     var previewItemCardTag: Int? = nil
     var selectedTypeButton: UIButton? = nil
     var selectedTargetDaysButton: UIButton? = nil
     var selectedFrequencyButton: UIButton? = nil
     var lastSelectedButton: UIButton? = nil
-    var item: Item = Item(ID: AppEngine.shared.getLargestItemID() + 1, name: "(项目名)", days: 1, finishedDays: 0, frequency: DataOption(title: "", data: 1), creationDate: AppEngine.shared.currentDate, type: .undefined)
+    var item: Item = Item(ID: AppEngine.shared.getLargestItemID() + 1, name: "(项目名)", days: 1, finishedDays: 0, frequency: .everyday, creationDate: AppEngine.shared.currentDate, type: .undefined)
     var preViewItemCard: UIView = UIView()
     var strategy: NewItemViewStrategy? = nil
     var lastViewController: UIViewController? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        doneButton.setTitleColor(engine.userSetting.themeColor, for: .normal)
         itemNameTextfield.delegate = self
         verticalScrollView.delegate = self
         
@@ -108,7 +110,7 @@ class NewItemViewController: UIViewController {
         }
         
         self.selectedFrequencyButton = nil
-        self.item.frequency = DataOption(title: "", data: 0)
+        self.item.frequency = .everyday
         self.selectedTypeButton = sender
         self.lastSelectedButton = sender
         self.selectButton()
@@ -123,7 +125,7 @@ class NewItemViewController: UIViewController {
         self.selectButton()
         if sender.tag == self.setting.customTargetDaysButtonTag {
             
-            self.strategy?.showPopUp(popUpType: .customTargetDays)
+            self.strategy?.showPopUp(popUpType: .customTargetDaysPopUp)
             
         } else {
             self.item.targetDays = sender.getData() ?? 1
@@ -138,26 +140,16 @@ class NewItemViewController: UIViewController {
         self.lastSelectedButton = sender
     
         self.selectButton()
-        
-        switch sender.currentTitle {
-        case "每天":
-            self.item.frequency = DataOption(title: sender.currentTitle!, data: 0)
-        case "每两天":
-            self.item.frequency = DataOption(title: sender.currentTitle!, data: 1)
-        case "每周":
-            self.item.frequency = DataOption(title: sender.currentTitle!, data: 6)
-        case "每月":
-            self.item.frequency = DataOption(title: sender.currentTitle!, data: 30)
-        case "自由打卡":
-            self.item.frequency = DataOption(title: sender.currentTitle!, data: nil)
-        default:
-            break
+        for frequency in Frequency.allCases {
+            if sender.currentTitle == frequency.dataModel.title {
+                self.item.frequency = frequency
+            }
         }
         
         self.updateUI()
         
         if sender.tag == self.setting.customFrequencyButtonTag {
-            self.strategy?.showPopUp(popUpType: .customFrequency)
+            self.strategy?.showPopUp(popUpType: .customFrequencyPopUp)
         }
     }
     
@@ -330,17 +322,19 @@ extension NewItemViewController: PopUpViewDelegate { // Delegate extension
         
         if self.lastSelectedButton?.tag == setting.customTargetDaysButtonTag {
             
-            guard let selectedData = (self.engine.getStoredDataFromPopUpView() as? DataOption) else { return }
+            guard let selectedData = (self.engine.getStoredDataFromPopUpView() as? DataModel) else { return }
             print(selectedData)
             self.selectedTargetDaysButton?.setTitle(selectedData.title, for: .normal)
             self.item.targetDays = selectedData.data ?? 1
             
             
         } else if self.lastSelectedButton?.tag == setting.customFrequencyButtonTag {
-            
     
-            self.selectedFrequencyButton?.setTitle((self.engine.getStoredDataFromPopUpView() as? DataOption)?.title, for: .normal)
-            self.item.frequency = self.engine.getStoredDataFromPopUpView() as? DataOption ?? DataOption(data: 0)
+            if let storedDataFromPopUpView = self.engine.getStoredDataFromPopUpView() as? Frequency {
+                self.selectedFrequencyButton?.setTitle(storedDataFromPopUpView.dataModel.title, for: .normal)
+                self.item.frequency = storedDataFromPopUpView
+            }
+            
         }
         
         self.updateUI()

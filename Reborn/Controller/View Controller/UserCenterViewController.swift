@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import StoreKit
 class UserCenterViewController: UIViewController {
     @IBOutlet weak var perchaseButton: UIButton!
     
@@ -38,8 +38,9 @@ class UserCenterViewController: UIViewController {
     var settingButtons: Array<UIButton> = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        AppEngine.shared.add(observer: self)
         
-        AppEngine.shared.register(observer: self)
+        
         avaterView.setCornerRadius()
         purchaseView.layer.cornerRadius = setting.itemCardCornerRadius - 5
         punchInSettingView.layer.cornerRadius = setting.itemCardCornerRadius - 5
@@ -89,9 +90,18 @@ class UserCenterViewController: UIViewController {
         self.present(imagePicker, animated: true, completion: nil)
     }
     
- 
+    @IBAction func purchaseButtonPressed(_ sender: UIButton) {
+        self.showPurchaseView()
+
+    }
+    
     @IBAction func settingButtonPressed(_ sender: UIButton) {
-        self.showBottom(.customThemeColor)
+        self.show(.customThemeColorPopUp, animation: .slideInToCenter)
+    }
+    
+    
+    @IBAction func lightAndDarkButtonPressed(_ sender: UIButton) {
+       
     }
     
     func setButtonsAppearence() {
@@ -109,7 +119,8 @@ class UserCenterViewController: UIViewController {
     
 }
 
-extension UserCenterViewController: Observer {
+
+extension UserCenterViewController: UIObserver {
     func updateUI() {
         updateNavigationBar()
         setButtonsAppearence()

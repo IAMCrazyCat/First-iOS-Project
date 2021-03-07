@@ -57,6 +57,7 @@ class SetUpViewController: UIViewController{
     
     @IBAction func nextStepButtonPressed(_ sender: UIButton) {
 
+
         if nextStepButton.currentTitle == setting.finishButtonTitle {
             self.engine.processSlectedData(pressedButton: self.selectedButton)
             self.engine.createUser(setUpIsSkipped: false)
@@ -126,11 +127,11 @@ class SetUpViewController: UIViewController{
         print(sender.tag)
         if sender.tag == self.setting.customItemNameButtonTag {
             
-            self.showPopUpView(popUpType: .customItemName)
+            self.showPopUpView(popUpType: .customItemNamePopUp)
             
         } else if sender.tag == self.setting.customTargetDaysButtonTag {
 
-            self.showPopUpView(popUpType: .customTargetDays)
+            self.showPopUpView(popUpType: .customTargetDaysPopUp)
         }
         
         self.selectButton(button: sender)
@@ -195,13 +196,11 @@ extension SetUpViewController: PopUpViewDelegate {
     func didSaveAndDismissPopUpView(type: PopUpType) {
         
         switch type {
-        case.customFrequency:
-            break
-        case .customItemName:
+        case .customItemNamePopUp:
             self.selectedButton.setTitle(self.engine.getStoredDataFromPopUpView() as? String, for: .normal)
-        case .customTargetDays:
-            self.selectedButton.setTitle((self.engine.getStoredDataFromPopUpView() as? DataOption)?.title, for: .normal)
-        case .customThemeColor:
+        case .customTargetDaysPopUp:
+            self.selectedButton.setTitle((self.engine.getStoredDataFromPopUpView() as? DataModel)?.title, for: .normal)
+        default:
             break
         }
        

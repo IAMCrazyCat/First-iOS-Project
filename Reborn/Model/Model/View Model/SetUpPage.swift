@@ -9,9 +9,9 @@ import Foundation
 struct SetUpPage {
     var ID = 0
     var question = ""
-    var buttons: Array<DataOption> = []
+    var buttons: Array<DataModel> = []
     
-    init(ID: Int, question: String, buttons: Array<DataOption>){
+    init(ID: Int, question: String, buttons: Array<DataModel>){
         self.ID = ID
         self.question = question
         self.buttons = buttons

@@ -8,7 +8,7 @@
 import Foundation
 class QuittingItem: Item {
     
-    init(ID: Int, name: String, days: Int, finishedDays: Int, frequency: DataOption, creationDate: CustomDate) {
+    init(ID: Int, name: String, days: Int, finishedDays: Int, frequency: Frequency, creationDate: CustomDate) {
         super.init(ID: ID, name: name, days: days, finishedDays: finishedDays, frequency: frequency, creationDate: creationDate, type: .quitting)
     }
     

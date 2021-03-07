@@ -16,9 +16,10 @@ enum ThemeColor: String, Codable, CaseIterable {
     case cyan = "CyanThemeColor"
     case green = "GreenThemeColor"
     case red = "RedThemeColor"
+    case orange = "OrangeThemeColor"
     
     var uiColor: UIColor {
-        return UIColor(named: self.rawValue)!
+        return UIColor(named: self.rawValue) ?? UIColor.clear
     }
 }
 

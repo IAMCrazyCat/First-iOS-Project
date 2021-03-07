@@ -7,8 +7,10 @@
 
 import Foundation
 enum PopUpType {
-    case customTargetDays
-    case customItemName
-    case customFrequency
-    case customThemeColor
+    case customTargetDaysPopUp
+    case customItemNamePopUp
+    case customFrequencyPopUp
+    case customThemeColorPopUp
+    
+    case itemCompletedPopUp
 }

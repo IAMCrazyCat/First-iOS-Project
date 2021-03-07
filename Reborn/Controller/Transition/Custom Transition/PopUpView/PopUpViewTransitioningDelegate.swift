@@ -22,7 +22,24 @@ final class PopUpViewTransitioningDelegate: NSObject, UIViewControllerTransition
     }
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return PopUpViewPresentAnimationController()
+        
+        let defaultAnimationController = PopUpViewSlideInFromBottomPresentAnimationController()
+        
+
+        guard let presentingViewController = presented as? PopUpViewController,
+              let popUpAnimationType = presentingViewController.animationType
+              else {
+            print("Found nil")
+            return defaultAnimationController
+        }
+        
+        switch popUpAnimationType {
+            case .fadeInFromCenter:  return PopUpViewFadeInFromCenterPresentAnimationController()
+            case .slideInToBottom: return PopUpViewSlideInFromBottomPresentAnimationController()
+            case .slideInToCenter: return PopUpViewSlideInFromBottomPresentAnimationController()
+        }
+    
+        
     }
     
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {

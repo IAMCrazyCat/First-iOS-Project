@@ -53,7 +53,7 @@ class EditingItemStrategy: NewItemViewStrategy {
                 
             }
             
-        switch newItemViewController.item.frequency.title {
+        switch newItemViewController.item.frequency.dataModel.title {
         case "每天":
             newItemViewController.everydayFrequencyButton.isSelected = true
             newItemViewController.selectedFrequencyButton = newItemViewController.everydayFrequencyButton
@@ -75,7 +75,7 @@ class EditingItemStrategy: NewItemViewStrategy {
         }
         
         
-        let secondInstructionLabel = newItemViewController.verticalScrollView.getSubviewByIdentifier(idenifier: "SecondInstructionLabel")
+        let secondInstructionLabel = newItemViewController.verticalScrollView.getSubviewBy(idenifier: "SecondInstructionLabel")
         let deleteItemButton = UIButton()
         deleteItemButton.frame = CGRect(x: SystemSetting.shared.mainPadding, y: ((secondInstructionLabel?.frame.maxY) ?? newItemViewController.verticalContentView.frame.height - SystemSetting.shared.mainButtonHeight - 20) + 20 , width: newItemViewController.verticalContentView.frame.width - 2 * SystemSetting.shared.mainPadding, height: SystemSetting.shared.mainButtonHeight)
         deleteItemButton.setCornerRadius()
@@ -88,10 +88,10 @@ class EditingItemStrategy: NewItemViewStrategy {
     }
     
     func showPopUp(popUpType popUp: PopUpType) {
-        if popUp == .customTargetDays {
-            newItemViewController.showBottom(popUp, dataStartIndex: newItemViewController.item.finishedDays)
-        } else if popUp == .customFrequency {
-            newItemViewController.showBottom(popUp)
+        if popUp == .customTargetDaysPopUp {
+            newItemViewController.show(popUp, dataStartIndex: newItemViewController.item.finishedDays)
+        } else if popUp == .customFrequencyPopUp {
+            newItemViewController.show(popUp)
         }
         
     }
@@ -123,7 +123,7 @@ class EditingItemStrategy: NewItemViewStrategy {
         if isRedyToDismiss() {
             newItemViewController.engine.saveUser(newItemViewController.engine.currentUser)
             newItemViewController.dismiss(animated: true) {
-                self.newItemViewController.engine.notifyAllObservers()
+                self.newItemViewController.engine.notifyAllUIObservers()
             }
         }
     }

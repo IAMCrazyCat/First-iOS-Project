@@ -22,7 +22,7 @@ class AddingItemStrategy: NewItemViewStrategy {
     }
     
     func showPopUp(popUpType popUp: PopUpType) {
-        newItemViewController.showBottom(popUp)
+        newItemViewController.show(popUp)
     }
     
     func isRedyToDismiss() -> Bool {
@@ -48,13 +48,11 @@ class AddingItemStrategy: NewItemViewStrategy {
     
     
     func doneButtonPressed(_ sender: UIButton) {
-        
         if isRedyToDismiss() {
-            newItemViewController.engine.add(newItem: newItemViewController.item)
-            newItemViewController.dismiss(animated: true) {
-                self.newItemViewController.engine.notifyAllObservers()
+
+            let VIPStrategy: VIPStrategy = AddNewItemStrategy(newItemViewController: newItemViewController)
+            VIPStrategy.performStrategy()
         }
-       
-        }
+        
     }
 }

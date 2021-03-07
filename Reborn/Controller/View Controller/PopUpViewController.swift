@@ -9,17 +9,20 @@ import UIKit
 
 class PopUpViewController: UIViewController {
     
-    
-    private var keyboardFrame: CGRect? = nil
-    private var height: CGFloat = SystemSetting.shared.popUpWindowHeight
-    private var presentDuration: Double = SystemSetting.shared.popUpWindowPresentDuration
-    public var type: PopUpType?
-    public var dataStartIndex: Int = 0
-    public var pikerViewData: Array<Any> = []
+    private let setting: SystemSetting = SystemSetting.shared
+    private var keyboardFrame: CGRect?
+    private var presentDuration: Double = SystemSetting.shared.popUpWindowPresentShortDuration
     private var keyboardDidShowFully: Bool = false
     private var pickerViewSelectedRow: Int = 0
-
+    private var popUpWindow = UIView()
     
+    public var item: Item?
+    public var type: PopUpType?
+    public var animationType: PopUpAnimationType?
+    public var dataStartIndex: Int = 0
+    public var pikerViewData: Array<Any> = []
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,24 +37,24 @@ class PopUpViewController: UIViewController {
        
         
         switch type {
-        case .customFrequency:
-            AppEngine.shared.dismissBottomPopUpAndSave(controller: self)
-        case .customTargetDays:
-            AppEngine.shared.dismissBottomPopUpAndSave(controller: self)
-        case .customItemName:
-            if let textField = self.getWindowSubviewByTag(tag: SystemSetting.shared.popUpWindowTextFieldTag) as? UITextField {
+        case .customFrequencyPopUp:
+            AppEngine.shared.dismissBottomPopUpAndSave(thenGoBackTo: self)
+        case .customTargetDaysPopUp:
+            AppEngine.shared.dismissBottomPopUpAndSave(thenGoBackTo: self)
+        case .customItemNamePopUp:
+            if let textField = self.popUpWindow.getSubviewBy(idenifier: "ContentView")?.getSubviewBy(tag: self.setting.popUpWindowTextFieldTag) as? UITextField {
                 
                 if textField.text != "" {
-                    AppEngine.shared.dismissBottomPopUpAndSave(controller: self)
+                    AppEngine.shared.dismissBottomPopUpAndSave(thenGoBackTo: self)
                 } else {
                     
                     self.hidePromptLabel(false)
                 }
             }
-        case .customThemeColor:
-            AppEngine.shared.dismissBottomPopUpAndSave(controller: self)
+        case .customThemeColorPopUp:
+            AppEngine.shared.dismissBottomPopUpAndSave(thenGoBackTo: self)
         default:
-            print("Switching type error")
+            AppEngine.shared.dismissBottomPopUpWithoutSave(thenGoBackTo: self)
         }
             
     }
@@ -59,7 +62,7 @@ class PopUpViewController: UIViewController {
     func hidePromptLabel(_ isHidden: Bool) {
        
         
-        if let promptLabel = self.getWindowSubviewByTag(tag: SystemSetting.shared.popUpWindowPromptLabelTag) as? UILabel {
+        if let promptLabel = self.popUpWindow.getSubviewBy(tag: self.setting.popUpWindowPromptLabelTag) as? UILabel {
             
             promptLabel.isHidden = isHidden
         }
@@ -69,7 +72,7 @@ class PopUpViewController: UIViewController {
     
     @objc
     func cancelButtonPressed(_ sender: UIButton!) {
-        AppEngine.shared.dismissBottomPopUpWithoutSave(controller: self)
+        AppEngine.shared.dismissBottomPopUpWithoutSave(thenGoBackTo: self)
     }
 
     
@@ -102,49 +105,40 @@ class PopUpViewController: UIViewController {
         
     }
     
-    
-    private func getWindowSubviewByTag(tag: Int) -> UIView?
-    {
-        var popUpWindow: UIView? = nil
-        for subview in self.view.subviews {
-            if subview.tag == SystemSetting.shared.popUpWindowTag {
-                popUpWindow = subview
-            }
+    func showTitleLabel() {
+        if let titleLabel = self.view.getSubviewBy(idenifier: "ContentView")?.getSubviewBy(idenifier: "TitleLabel") {
+            UIView.animate(withDuration: 10, delay: 2, animations: {
+                titleLabel.alpha = 0.5
+            })
         }
         
-        if let _ = popUpWindow {
-            for subview in popUpWindow!.subviews {
-                print(subview.tag)
-                if subview.tag == tag {
-                    return subview
-                }
-            }
-
-        }
-        return nil
     }
-    
+
     public func getStoredData() -> Any {
         
         var storedData: Any?
         
         switch type {
-        case .customFrequency:
-            let pickerView = getWindowSubviewByTag(tag: SystemSetting.shared.popUpWindowPickerViewTag) as! UIPickerView
-           
-            storedData = self.pikerViewData[pickerView.selectedRow(inComponent: 0)]
-        case .customItemName:
+        case .customFrequencyPopUp:
             
-            let textField = getWindowSubviewByTag(tag: SystemSetting.shared.popUpWindowTextFieldTag) as! UITextField
-            
-            if let text = textField.text {
-                storedData = text
+            if let pickerView = popUpWindow.getSubviewBy(idenifier: "ContentView")?.getSubviewBy(tag: self.setting.popUpWindowPickerViewTag) as? UIPickerView {
+                storedData = self.pikerViewData[pickerView.selectedRow(inComponent: 0)]
             }
-        
-        case .customTargetDays:
-            let pickerView = getWindowSubviewByTag(tag: SystemSetting.shared.popUpWindowPickerViewTag) as! UIPickerView
+            
+        case .customItemNamePopUp:
+            
+            if let textField = popUpWindow.getSubviewBy(idenifier: "ContentView")?.getSubviewBy(tag: self.setting.popUpWindowTextFieldTag) as? UITextField {
+                if let text = textField.text {
+                    storedData = text
+                }
+            }
+            
+        case .customTargetDaysPopUp:
+            
+            if let pickerView = popUpWindow.getSubviewBy(idenifier: "ContentView")?.getSubviewBy(tag: self.setting.popUpWindowPickerViewTag) as? UIPickerView {
+                storedData = self.pikerViewData[pickerView.selectedRow(inComponent: 0)]
+            }
            
-            storedData = self.pikerViewData[pickerView.selectedRow(inComponent: 0)]
         default:
             print("Switch pop up type error, In 'PopUpViewController'")
         }
@@ -153,22 +147,48 @@ class PopUpViewController: UIViewController {
     }
 }
 
-extension PopUpViewController: Observer {
+extension PopUpViewController: UIObserver {
     func updateUI() {
-        var popUpWindow = UIView()
+        
+        let popUpWindowFrame: CGRect
+        
+        
+        switch animationType {
+        case .fadeInFromCenter:
+            
+            let widthProportion: CGFloat = 0.9
+            let heightProportion: CGFloat = 0.6
+           
+            popUpWindowFrame = CGRect(x: (self.view.frame.width - self.view.frame.width * widthProportion) / 2, y: (self.view.frame.height - self.view.frame.height * heightProportion) / 2, width: self.view.frame.width * widthProportion, height: self.view.frame.height * heightProportion)
+        case .slideInToBottom:
+            popUpWindowFrame = CGRect(x: 0, y: self.view.frame.height - self.setting.popUpWindowHeight, width: setting.screenFrame.width, height: setting.popUpWindowHeight)
+        case .slideInToCenter:
+            let widthProportion: CGFloat = 0.9
+            let heightProportion: CGFloat = 0.5
+            popUpWindowFrame =  CGRect(x: (self.view.frame.width - self.view.frame.width * widthProportion) / 2, y: (self.view.frame.height - self.view.frame.height * heightProportion) / 2, width: self.view.frame.width * widthProportion, height: self.view.frame.height * heightProportion)
+        case nil:
+            popUpWindowFrame = CGRect(x: 0, y: self.view.frame.height - self.setting.popUpWindowHeight, width: setting.screenFrame.width, height: setting.popUpWindowHeight)
+        }
+        
         switch type {
-        case .customFrequency:
-            popUpWindow = CustomFrequencyPopUpViewBuilder(dataStartIndex: dataStartIndex, popUpViewController: self).buildView()
-        case .customItemName:
-            popUpWindow = CustomItemNamePopUpViewBuilder(popUpViewController: self).buildView()
-        case .customTargetDays:
-            popUpWindow = CustomTargetDaysPopUpViewBuilder(dataStartIndex: dataStartIndex, popUpViewController: self).buildView()
-        case .customThemeColor:
-            popUpWindow = CustomThemeColorPopUpViewBuilder(popUpViewController: self).buildView()
+        case .customFrequencyPopUp:
+            popUpWindow = CustomFrequencyPopUpViewBuilder(dataStartIndex: dataStartIndex, popUpViewController: self, frame: popUpWindowFrame).buildView()
+        case .customItemNamePopUp:
+            popUpWindow = CustomItemNamePopUpViewBuilder(popUpViewController: self, frame: popUpWindowFrame).buildView()
+        case .customTargetDaysPopUp:
+            popUpWindow = CustomTargetDaysPopUpViewBuilder(dataStartIndex: dataStartIndex, popUpViewController: self, frame: popUpWindowFrame).buildView()
+        case .customThemeColorPopUp:
+            popUpWindow = CustomThemeColorPopUpViewBuilder(popUpViewController: self, frame: popUpWindowFrame).buildView()
+        case .itemCompletedPopUp:
+            if item != nil {
+                popUpWindow = ItemCompletedPopUpViewBuilder(popUpViewController: self, frame: popUpWindowFrame, item: item!).buildView()
+                showTitleLabel()
+            }
         case nil:
             break
         }
         
+        popUpWindow.accessibilityIdentifier = "PopUpWindow"
         self.view.addSubview(popUpWindow)
     }
     
@@ -189,12 +209,12 @@ extension PopUpViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
 
         switch self.type {
-        case .customFrequency:
-            return (self.pikerViewData as! Array<DataOption>)[row].title
-        case .customItemName:
+        case .customFrequencyPopUp:
+            return (self.pikerViewData as! Array<Frequency>)[row].dataModel.title
+        case .customItemNamePopUp:
             break
-        case .customTargetDays:
-            return (self.pikerViewData as! Array<DataOption>)[row].title
+        case .customTargetDaysPopUp:
+            return (self.pikerViewData as! Array<DataModel>)[row].title
         default:
             print("Switch pop up type error, in 'PopUpViewController' UIPickerViewDelegate")
         }

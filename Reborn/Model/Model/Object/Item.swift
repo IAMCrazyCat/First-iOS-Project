@@ -21,7 +21,7 @@ class Item: Codable {
     var scheduleDates: Array<CustomDate> = []
     var punchInDates: Array<CustomDate> = []
     var state: ItemState = .inProgress
-    var frequency: DataOption {
+    var frequency: Frequency {
         didSet{
             self.updateScheduleDates()
         }
@@ -49,7 +49,7 @@ class Item: Codable {
         return String(format: "%.1f", progress * 100) + " %"
     }
     
-    init(ID: Int, name: String, days: Int, finishedDays: Int, frequency: DataOption, creationDate: CustomDate, type: ItemType) {
+    init(ID: Int, name: String, days: Int, finishedDays: Int, frequency: Frequency, creationDate: CustomDate, type: ItemType) {
         self.ID = ID
         self.name = name
         self.targetDays = days
@@ -63,7 +63,7 @@ class Item: Codable {
     func updateState() {
         
         if self.finishedDays == self.targetDays {
-            self.state = .finished
+            self.state = .completed
         } else if self.scheduleDates.contains(AppEngine.shared.currentDate) {
             self.state = .inProgress
         } else {
@@ -97,11 +97,11 @@ class Item: Codable {
     
     func updateScheduleDates() {
         self.scheduleDates.removeAll()
-        var cycle = self.frequency.data ?? 1
+        var cycle = self.frequency.dataModel.data ?? 1
         var difference = 0
         while self.scheduleDates.count < self.targetDays  {
 
-            if cycle < self.frequency.data ?? 1 {
+            if cycle < (self.frequency.dataModel.data ?? 1) - 1 {
                 
                 cycle += 1
                 
@@ -116,6 +116,7 @@ class Item: Codable {
             difference += 1
         }
         updateState()
+        print(self.scheduleDates)
     }
     
     

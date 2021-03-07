@@ -109,7 +109,7 @@ class CalendarViewController: UIViewController {
         bottomCollectionView.delegate = self
         bottomCollectionView.dataSource = self
         bottomCollectionView.register(CalendarCell.self, forCellWithReuseIdentifier: CalendarCell.identifier)
-        engine.register(observer: self)
+        engine.add(observer: self)
         
         if let layout = bottomCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .vertical
@@ -414,7 +414,7 @@ class CalendarViewController: UIViewController {
 
 }
 
-extension CalendarViewController: Observer {
+extension CalendarViewController: UIObserver {
     func updateUI() {
         self.timeMachineButton.tintColor = self.engine.userSetting.themeColor
         

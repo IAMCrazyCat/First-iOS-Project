@@ -1,0 +1,29 @@
+{
+  "products" : [
+    {
+      "displayPrice" : "18",
+      "familyShareable" : false,
+      "internalID" : "A1FA831B",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "",
+          "locale" : "zh_CN"
+        }
+      ],
+      "productID" : "com.crazycat.Reborn.VIPAccount",
+      "referenceName" : "VIP Account",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 1,
+    "minor" : 0
+  }
+}

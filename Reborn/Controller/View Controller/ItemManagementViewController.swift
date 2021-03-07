@@ -26,10 +26,9 @@ class ItemManagementViewController: UIViewController {
 //        optionBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         
         
-        UISegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: AppEngine.shared.userSetting.themeColor], for: .selected)
-        UISegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
         
-        engine.register(observer: self)
+        
+        engine.add(observer: self)
 
         updateUI()
         
@@ -61,7 +60,7 @@ class ItemManagementViewController: UIViewController {
         case 2:
             self.selectedSegment = .duringBreak
         case 3:
-            self.selectedSegment = .finished
+            self.selectedSegment = .completed
             
         default:
             print("Segement Tag not found")
@@ -78,7 +77,10 @@ class ItemManagementViewController: UIViewController {
     func updateOptionBar() {
         optionBar.backgroundColor = engine.userSetting.themeColorAndBlack
         optionBar.layer.zPosition = -2
+        UISegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: AppEngine.shared.userSetting.themeColor], for: .selected)
+        UISegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
     }
+    
     
     func updateVerticalContentView() {
         verticalContentView.removeAllSubviews()
@@ -96,7 +98,7 @@ class ItemManagementViewController: UIViewController {
     
 }
 
-extension ItemManagementViewController: Observer {
+extension ItemManagementViewController: UIObserver {
     func updateUI() {
         updateNavigationBar()
         updateOptionBar()

@@ -10,7 +10,8 @@ import UIKit
 
 extension UIViewController: UIViewControllerTransitioningDelegate  {
     
-    func presentBottom(to presenting: PopUpViewController) {
+
+    private func present(to presenting: PopUpViewController) {
   
         let detailsTransitioningDelegate = PopUpViewTransitioningDelegate(from: self, to: presenting)
         presenting.modalPresentationStyle = .custom
@@ -18,35 +19,51 @@ extension UIViewController: UIViewControllerTransitioningDelegate  {
         self.present(presenting, animated:true, completion: nil)
      }
     
-//    public func showCenterPopUp() {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let popUpType = PopUpType.customTargetDays
-//
-//        if let popUpViewController = storyboard.instantiateViewController(withIdentifier: "PopUpViewController") as? PopUpViewController {
-//
-//            let popUpWindow = PopUpViewBuilder(popUpType: popUpType, popUpViewController: popUpViewController).buildView()
-//            popUpViewController.type = popUpType
-//            popUpViewController.view.addSubview(popUpWindow)
-//            forPresented.presentBottom(to: popUpViewController)
-//        }
-//    }
-
-    func showBottom(_ popUpType: PopUpType, dataStartIndex: Int = 0) {
-        
-        AppEngine.shared.delegate = self as? PopUpViewDelegate
+    func showPurchaseView() {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        if let popUpViewController = storyboard.instantiateViewController(withIdentifier: "PopUpViewController") as? PopUpViewController {
-            
-            popUpViewController.dataStartIndex = dataStartIndex
-            popUpViewController.type = popUpType
-            popUpViewController.updateUI()
-            AppEngine.shared.register(observer: popUpViewController)
-            self.presentBottom(to: popUpViewController)
+        if let purchaseViewController = storyboard.instantiateViewController(withIdentifier: "PurchaseViewController") as? PurchaseViewController {
+            self.present(purchaseViewController, animated: true, completion: nil)
         }
+       
+    }
+    
+    func show(_ popUpType: PopUpType, animation animationType: PopUpAnimationType = .slideInToBottom, dataStartIndex: Int = 0) {
+        
+        if popUpType != .itemCompletedPopUp {
+            AppEngine.shared.delegate = self as? PopUpViewDelegate
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let popUpViewController = storyboard.instantiateViewController(withIdentifier: "PopUpViewController") as? PopUpViewController {
+            
+                popUpViewController.dataStartIndex = dataStartIndex
+                popUpViewController.type = popUpType
+                popUpViewController.animationType = animationType
+                popUpViewController.updateUI()
+                AppEngine.shared.add(observer: popUpViewController)
+                self.present(to: popUpViewController)
+            }
+        } else {
+            print("You should not use this function")
+            print("Use 'showItemCompletedPopUp(for: Item)' instead")
+        }
+       
         
     }
+    
+    func showItemCompletedPopUp(for item: Item) {
+        AppEngine.shared.delegate = self as? PopUpViewDelegate
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let popUpViewController = storyboard.instantiateViewController(withIdentifier: "PopUpViewController") as? PopUpViewController {
+        
+            popUpViewController.type = .itemCompletedPopUp
+            popUpViewController.item = item
+            popUpViewController.animationType = .fadeInFromCenter
+            popUpViewController.updateUI()
+            AppEngine.shared.add(observer: popUpViewController)
+            self.present(to: popUpViewController)
+        }
+    }
+    
 }
 
 class UpdateStyleMode: UIViewController {

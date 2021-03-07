@@ -17,7 +17,6 @@ enum ModalScaleState {
 final class PopUpViewPresentationController: UIPresentationController {
     
 
-    private let presentedYOffset: CGFloat = 150
     private var direction: CGFloat = 0
     private var state: ModalScaleState = .interaction
     private lazy var dimmingView: UIView! = {
@@ -32,23 +31,23 @@ final class PopUpViewPresentationController: UIPresentationController {
         return view
     }()
     
-    override var frameOfPresentedViewInContainerView: CGRect { //override pop up view frame
-        guard let container = containerView else { return .zero }
-        
-        return CGRect(x: 0, y: SystemSetting.shared.screenFrame.height - SystemSetting.shared.popUpWindowHeight, width: container.bounds.width, height: SystemSetting.shared.popUpWindowHeight)
-    }
+
     
     override init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?) {
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
+
         
         presentedViewController.view.addGestureRecognizer(
             UIPanGestureRecognizer(target: self, action: #selector(didPan(pan:)))
         )
     }
     
-   
-    
-    
+    override var frameOfPresentedViewInContainerView: CGRect { //override pop up view frame
+        guard let container = containerView else { return .zero }
+        
+        return CGRect(x: 0, y: 0, width: container.bounds.width, height: container.bounds.height)
+    }
+
     override func presentationTransitionWillBegin() {
         guard let container = containerView,
             let coordinator = presentingViewController.transitionCoordinator else { return }
@@ -94,18 +93,20 @@ final class PopUpViewPresentationController: UIPresentationController {
             
             switch state {
             case .interaction:
-                presented.frame.origin.y = location.y + presentedYOffset
+                presented.frame.origin.y = location.y// + presentedYOffset
             case .presentation:
                 presented.frame.origin.y = location.y
             }
             direction = velocity.y
         case .ended:
-            let maxPresentedY = container.frame.height - presentedYOffset
+            let maxPresentedY: CGFloat = 80
             switch presented.frame.origin.y {
-            case 0...maxPresentedY:
+            case 0 ... maxPresentedY:
+                changeScale(to: .interaction)
+            case ...0:
                 changeScale(to: .interaction)
             default:
-                AppEngine.shared.dismissBottomPopUpWithoutSave(controller: presentedViewController as! PopUpViewController)
+                AppEngine.shared.dismissBottomPopUpWithoutSave(thenGoBackTo: presentedViewController as! PopUpViewController)
             }
         default:
             break
@@ -113,7 +114,7 @@ final class PopUpViewPresentationController: UIPresentationController {
     }
     
     @objc func didTap(tap: UITapGestureRecognizer) {
-        AppEngine.shared.dismissBottomPopUpWithoutSave(controller: presentedViewController as! PopUpViewController)
+        AppEngine.shared.dismissBottomPopUpWithoutSave(thenGoBackTo: presentedViewController as! PopUpViewController)
     }
     
     func changeScale(to state: ModalScaleState) {

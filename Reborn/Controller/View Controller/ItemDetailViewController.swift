@@ -44,20 +44,15 @@ class ItemDetailViewController: UIViewController {
         
         //mediumView.layer.cornerRadius = setting.itemCardCornerRadius
         mediumView.setShadow()
-        
-        navigationController?.navigationBar.barTintColor = engine.userSetting.themeColorAndBlack
+
         calendarView.layer.cornerRadius = setting.itemCardCornerRadius
         
         bottomShareButton.setSizeAccrodingToScreen()
-        
         bottomShareButton.setCornerRadius()
         bottomShareButton.setShadow()
-        
         bottomEditButton.setSizeAccrodingToScreen()
-        
         bottomEditButton.setCornerRadius()
         bottomEditButton.setShadow()
-        
         updateUI()
     }
     
@@ -93,12 +88,17 @@ class ItemDetailViewController: UIViewController {
     func goBackToParentView() {
         navigationController?.popViewController(animated: true)
     }
-
-  
-}
-
-extension ItemDetailViewController: Observer {
-    func updateUI() {
+    
+    func updateNavigationBar() {
+        navigationController?.navigationBar.barTintColor = engine.userSetting.themeColorAndBlack
+        
+        if let itemType = item?.type.rawValue, let itemName = item?.name {
+            title = itemType + itemName
+        }
+       
+    }
+    
+    func updateData() {
         if item != nil {
             self.verticalContentView.layoutIfNeeded()
             let builder = ItemDetailViewBuilder(item: item!, frame: self.progressView.bounds)
@@ -109,7 +109,7 @@ extension ItemDetailViewController: Observer {
         
         self.finishedDayLabel.text = "\(String(self.item?.finishedDays ?? -1)) 天"
         self.targetDayLabel.text = "\(String(self.item?.targetDays ?? -1)) 天"
-        self.frequencyLabel.text = "\(String(self.item?.frequency.title ?? "加载错误"))"
+        self.frequencyLabel.text = "\(String(self.item?.frequency.dataModel.title ?? "加载错误"))"
         
         if self.item?.punchInDates.last == self.engine.currentDate {
             //self.todayLabel.textColor = .green
@@ -118,7 +118,16 @@ extension ItemDetailViewController: Observer {
             //self.todayLabel.textColor = .red
             self.todayLabel.text = "未打卡"
         }
-        
-        
+    }
+
+  
+}
+
+extension ItemDetailViewController: UIObserver {
+    
+    func updateUI() {
+        updateNavigationBar()
+        updateData()
+
     }
 }

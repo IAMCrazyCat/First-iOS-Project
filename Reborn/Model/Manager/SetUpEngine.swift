@@ -15,7 +15,6 @@ class SetUpEngine {
     var persistingItemName: String = ""
     var persistingItemDays: Int = 0
     var userGender: Gender?
-    var items: Array<Item> = []
     func nextPage() {
         if progress < pages.count {
             progress += 1
@@ -72,31 +71,25 @@ class SetUpEngine {
         
     }
     
-    public func getLargestItemID() -> Int {
-        var largestID = 0
-        for item in self.items {
-            let ID = item.ID
-            if ID > largestID {
-                largestID = ID
-            }
-        }
-        return largestID
-    }
-    
+
     
     func createUser(setUpIsSkipped: Bool) {
+
+        let newUser = User(name: "没有名字", gender: userGender ?? .undefined, avatar: #imageLiteral(resourceName: "Test"), keys: 3, items: [Item](), vip: false)
         
         if !setUpIsSkipped {
-            items.append(QuittingItem(ID: getLargestItemID() + 1, name: quittingItemName, days: quittingItemDays, finishedDays: 0, frequency: DataOption(title: "每天", data: 1), creationDate: AppEngine.shared.currentDate))
-            items.append(PersistingItem(ID: getLargestItemID() + 1, name: persistingItemName, days: persistingItemDays, finishedDays: 0, frequency: DataOption(title: "每天", data: 1), creationDate: AppEngine.shared.currentDate))
+            
+            newUser.items.append(QuittingItem(ID: 1, name: quittingItemName, days: quittingItemDays, finishedDays: 0, frequency: .everyday, creationDate: AppEngine.shared.currentDate))
+            newUser.items.append(PersistingItem(ID: 2, name: persistingItemName, days: persistingItemDays, finishedDays: 0, frequency: .everyday, creationDate: AppEngine.shared.currentDate))
         }
-        AppEngine.shared.saveUser(User(name: "没有名字", gender: userGender ?? .undefined, avatar: #imageLiteral(resourceName: "Test"), keys: 3, items: self.items, vip: false))
+
+        AppEngine.shared.currentUser = newUser
     }
     
     
     func showPopUp(popUpType popUp: PopUpType, controller: UIViewController) {
   
-        controller.showBottom(popUp)
+        controller.show(popUp)
     }
     
     func getStoredDataFromPopUpView() -> Any {

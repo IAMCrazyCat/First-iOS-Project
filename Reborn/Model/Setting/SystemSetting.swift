@@ -82,8 +82,11 @@ struct SystemSetting{
     let popUpWindowTextFieldTag: Int = 4
     let popUpWindowPromptLabelTag: Int = 5
     let popUpWindowPickerViewTag: Int = 6
-    let popUpWindowPresentDuration: Double = 0.2
+    let popUpWindowPresentShortDuration: Double = 0.2
+    let popUpWindowPresentMediumDuration: Double = 0.4
+    let popUpWindowPresentLongDuration: Double = 0.6
     let popUpWindowBounceDuration: Double = 0.25
+    
     
     let calendarHeight: CGFloat = 300
     
