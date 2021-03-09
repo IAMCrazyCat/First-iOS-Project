@@ -33,13 +33,20 @@ extension UIView {
         
     }
     
-    func addConfettiEffect() {
+    func addConfettiView() {
         let confettiView = SwiftConfettiView(frame: self.bounds)
        
         confettiView.intensity = 0.5
         confettiView.clipsToBounds = true
         self.addSubview(confettiView)
         confettiView.startConfetti()
+    }
+    
+    func addConfettiAnimationView() {
+       
+        let confettiAnimationView = ConfettiAnimationView(frame: self.bounds)
+        self.addSubview(confettiAnimationView)
+        confettiAnimationView.excuteAnimation()
     }
     
     func getSubviewBy(idenifier: String) -> UIView? {

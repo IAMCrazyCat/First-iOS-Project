@@ -18,20 +18,20 @@ class ItemCompletedPopUpViewBuilder: PopUpViewBuilder {
     
     override func buildView() -> UIView {
         _ = super.buildView()
-        addItemCard()
-        excuteConfettiAnimation()
-        setUpUI()
-        showTitle()
+        self.addItemCard()
+        self.excuteConfettiAnimation()
+        self.setUpUI()
+        self.showTitle()
         return super.outPutView
     }
     
     func setUpUI() {
         super.titleLabel.text = "你成功了！"
-        super.titleLabel.alpha = 0
     }
     
     func addItemCard() {
         let itemCardView = ItemCardViewBuilder(item: item, frame: CGRect(x: 0, y: super.contentView.frame.height / 2 - SystemSetting.shared.itemCardHeight / 2, width: super.contentView.frame.width, height: SystemSetting.shared.itemCardHeight), isInteractable: false).buildView()
+        itemCardView.accessibilityIdentifier = "ItemCardView"
         super.contentView.addSubview(itemCardView)
         
     }
@@ -41,7 +41,11 @@ class ItemCompletedPopUpViewBuilder: PopUpViewBuilder {
     }
     
     func showTitle() {
-       
+        
+        UIView.animate(withDuration: 10, delay: 0, animations: {
+            
+            self.titleLabel.alpha = 0
+        })
     }
     
 }

@@ -49,6 +49,16 @@
 		2293F38625DB7C18009B4753 /* ItemManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2293F38525DB7C18009B4753 /* ItemManagementViewController.swift */; };
 		2293F39725DC004E009B4753 /* UISegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2293F39625DC004E009B4753 /* UISegmentedControl.swift */; };
 		2293F39C25DC00CE009B4753 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2293F39B25DC00CE009B4753 /* UIImage.swift */; };
+		22945D3525F5A43D0065B511 /* PopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22945D3425F5A43D0065B511 /* PopUp.swift */; };
+		22945D3A25F5A6EC0065B511 /* CustomThemeColorPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22945D3925F5A6EC0065B511 /* CustomThemeColorPopUp.swift */; };
+		22945D3F25F5A70C0065B511 /* CustomTargetDaysPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22945D3E25F5A70C0065B511 /* CustomTargetDaysPopUp.swift */; };
+		22945D4425F5A7700065B511 /* CustomItemNamePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22945D4325F5A7700065B511 /* CustomItemNamePopUp.swift */; };
+		22945D5625F5A8150065B511 /* ItemCompletedPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22945D5525F5A8150065B511 /* ItemCompletedPopUp.swift */; };
+		22945D5E25F5AB2B0065B511 /* PopUpImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22945D5D25F5AB2B0065B511 /* PopUpImpl.swift */; };
+		22945D6625F5ADED0065B511 /* CustomFrequencyPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22945D6525F5ADED0065B511 /* CustomFrequencyPopUp.swift */; };
+		22945D6F25F70AAD0065B511 /* ConfettiAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22945D6E25F70AAD0065B511 /* ConfettiAnimationView.swift */; };
+		22945D7D25F70E4D0065B511 /* ConfettiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22945D7C25F70E4D0065B511 /* ConfettiCell.swift */; };
+		22945D8525F70FD30065B511 /* ConfettiSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22945D8425F70FD30065B511 /* ConfettiSize.swift */; };
 		229C5EEA25F4F1FD00C94B61 /* UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229C5EE925F4F1FD00C94B61 /* UIWindow.swift */; };
 		22A2EC6E25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A2EC6D25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift */; };
 		22A2EC7925C9862A00E97787 /* TimeMachineViewPresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A2EC7825C9862A00E97787 /* TimeMachineViewPresentAnimationController.swift */; };
@@ -183,6 +193,16 @@
 		2293F38525DB7C18009B4753 /* ItemManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemManagementViewController.swift; sourceTree = "<group>"; };
 		2293F39625DC004E009B4753 /* UISegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentedControl.swift; sourceTree = "<group>"; };
 		2293F39B25DC00CE009B4753 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		22945D3425F5A43D0065B511 /* PopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUp.swift; sourceTree = "<group>"; };
+		22945D3925F5A6EC0065B511 /* CustomThemeColorPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomThemeColorPopUp.swift; sourceTree = "<group>"; };
+		22945D3E25F5A70C0065B511 /* CustomTargetDaysPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTargetDaysPopUp.swift; sourceTree = "<group>"; };
+		22945D4325F5A7700065B511 /* CustomItemNamePopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomItemNamePopUp.swift; sourceTree = "<group>"; };
+		22945D5525F5A8150065B511 /* ItemCompletedPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCompletedPopUp.swift; sourceTree = "<group>"; };
+		22945D5D25F5AB2B0065B511 /* PopUpImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpImpl.swift; sourceTree = "<group>"; };
+		22945D6525F5ADED0065B511 /* CustomFrequencyPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFrequencyPopUp.swift; sourceTree = "<group>"; };
+		22945D6E25F70AAD0065B511 /* ConfettiAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiAnimationView.swift; sourceTree = "<group>"; };
+		22945D7C25F70E4D0065B511 /* ConfettiCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiCell.swift; sourceTree = "<group>"; };
+		22945D8425F70FD30065B511 /* ConfettiSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiSize.swift; sourceTree = "<group>"; };
 		229C5EE925F4F1FD00C94B61 /* UIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindow.swift; sourceTree = "<group>"; };
 		22A2EC6D25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineTransitioningDelegate.swift; sourceTree = "<group>"; };
 		22A2EC7825C9862A00E97787 /* TimeMachineViewPresentAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineViewPresentAnimationController.swift; sourceTree = "<group>"; };
@@ -399,6 +419,7 @@
 				22CBB97D25EA42C500994D33 /* ThemeColor.swift */,
 				2278907525EBA65400613281 /* Frequency.swift */,
 				2264C59225F4B041009CE917 /* PopUpAnimationType.swift */,
+				22945D8425F70FD30065B511 /* ConfettiSize.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -442,6 +463,8 @@
 		225A78D325E0EB39009EE149 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
+				22945D6D25F70A9A0065B511 /* Animation View */,
+				22945D5425F5A7950065B511 /* Pop Up View  */,
 				22BC454425B04ED000516F75 /* CalendarPage.swift */,
 				22C5D974258F40E800131964 /* SetUpPage.swift */,
 			);
@@ -465,6 +488,29 @@
 				22A2EC8925C986E300E97787 /* Time Machine View */,
 			);
 			path = "Custom Transition";
+			sourceTree = "<group>";
+		};
+		22945D5425F5A7950065B511 /* Pop Up View  */ = {
+			isa = PBXGroup;
+			children = (
+				22945D3425F5A43D0065B511 /* PopUp.swift */,
+				22945D5D25F5AB2B0065B511 /* PopUpImpl.swift */,
+				22945D3925F5A6EC0065B511 /* CustomThemeColorPopUp.swift */,
+				22945D3E25F5A70C0065B511 /* CustomTargetDaysPopUp.swift */,
+				22945D4325F5A7700065B511 /* CustomItemNamePopUp.swift */,
+				22945D6525F5ADED0065B511 /* CustomFrequencyPopUp.swift */,
+				22945D5525F5A8150065B511 /* ItemCompletedPopUp.swift */,
+			);
+			path = "Pop Up View ";
+			sourceTree = "<group>";
+		};
+		22945D6D25F70A9A0065B511 /* Animation View */ = {
+			isa = PBXGroup;
+			children = (
+				22945D6E25F70AAD0065B511 /* ConfettiAnimationView.swift */,
+				22945D7C25F70E4D0065B511 /* ConfettiCell.swift */,
+			);
+			path = "Animation View";
 			sourceTree = "<group>";
 		};
 		229C5EE525F4EC2000C94B61 /* Event Action */ = {
@@ -1009,10 +1055,13 @@
 				22A2EC9525CA2AAB00E97787 /* Array.swift in Sources */,
 				22BDC91E25F262F4008E9C46 /* AddNewItemStrategy.swift in Sources */,
 				22AACA1125AD910D0098D920 /* Date.swift in Sources */,
+				22945D5625F5A8150065B511 /* ItemCompletedPopUp.swift in Sources */,
 				22CE4ED925D00AE3007EBD5B /* NewItemViewStrategy.swift in Sources */,
+				22945D7D25F70E4D0065B511 /* ConfettiCell.swift in Sources */,
 				224A91842595FA7D00A896BE /* ItemType.swift in Sources */,
 				22FCB1B5258D86BA006A0D39 /* SetUpViewController.swift in Sources */,
 				22D8A05C25CCE24800A605D6 /* CalendarState.swift in Sources */,
+				22945D3F25F5A70C0065B511 /* CustomTargetDaysPopUp.swift in Sources */,
 				22D6195225A0238E00EC9396 /* PopUpViewPresentationController.swift in Sources */,
 				22A597F925986685008E2A06 /* NewItemViewController.swift in Sources */,
 				22C23A19258DC5D700D4BEB2 /* QuittingItem.swift in Sources */,
@@ -1020,17 +1069,23 @@
 				224E664225C6467100B71E8A /* BackwardForManyStrategy.swift in Sources */,
 				22E9A875259F33F50073D432 /* PopUpViewController.swift in Sources */,
 				220B7286258A288000E4BEDC /* WelcomeViewController.swift in Sources */,
+				22945D4425F5A7700065B511 /* CustomItemNamePopUp.swift in Sources */,
 				22D8A06725CD13BA00A605D6 /* CalendarCellState.swift in Sources */,
 				224E663525C6457900B71E8A /* TimeMachineAnimationStrategy.swift in Sources */,
 				22C5D975258F40E800131964 /* SetUpPage.swift in Sources */,
+				22945D8525F70FD30065B511 /* ConfettiSize.swift in Sources */,
 				220B7282258A288000E4BEDC /* AppDelegate.swift in Sources */,
 				225AD11625A6C8620040E356 /* UIColor.swift in Sources */,
 				22BDC91225F26131008E9C46 /* VIPStrategyImpl.swift in Sources */,
 				22916DB525C05F0D004A3EC4 /* PresentTimeMachineSegue.swift in Sources */,
 				220B7284258A288000E4BEDC /* SceneDelegate.swift in Sources */,
 				22C4BFC325D21F2400528A1C /* ItemDetailViewBuilder.swift in Sources */,
+				22945D3525F5A43D0065B511 /* PopUp.swift in Sources */,
+				22945D6625F5ADED0065B511 /* CustomFrequencyPopUp.swift in Sources */,
 				22BC454525B04ED000516F75 /* CalendarPage.swift in Sources */,
 				22C23A14258DC58F00D4BEB2 /* Item.swift in Sources */,
+				22945D5E25F5AB2B0065B511 /* PopUpImpl.swift in Sources */,
+				22945D6F25F70AAD0065B511 /* ConfettiAnimationView.swift in Sources */,
 				22B4B56325D10ACD00C0CFD7 /* UIObserver.swift in Sources */,
 				22BABF2425C3ECBA00168AE1 /* TimeMachineCalendarPageViewBuilder.swift in Sources */,
 				221E0BA425A9D38100386FE1 /* Image.swift in Sources */,
@@ -1048,6 +1103,7 @@
 				22C23A0F258DC4FA00D4BEB2 /* AppEngine.swift in Sources */,
 				22A597FE2599C0AF008E2A06 /* WeekDay.swift in Sources */,
 				225AD13425A86ED80040E356 /* FadeInSegue.swift in Sources */,
+				22945D3A25F5A6EC0065B511 /* CustomThemeColorPopUp.swift in Sources */,
 				22D7FBA625A190E9006B1F28 /* SetUpPageData.swift in Sources */,
 				22A597EC2598091B008E2A06 /* UIButton.swift in Sources */,
 				22A59811259AA31A008E2A06 /* PopUpViewBuilder.swift in Sources */,

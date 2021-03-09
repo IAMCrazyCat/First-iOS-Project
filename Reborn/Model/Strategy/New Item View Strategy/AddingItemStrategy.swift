@@ -21,8 +21,8 @@ class AddingItemStrategy: NewItemViewStrategy {
         
     }
     
-    func showPopUp(popUpType popUp: PopUpType) {
-        newItemViewController.show(popUp)
+    func show(_ popUpType: PopUpType) {
+        newItemViewController.show(popUpType)
     }
     
     func isRedyToDismiss() -> Bool {

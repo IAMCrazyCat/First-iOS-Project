@@ -27,7 +27,7 @@ final class PopUpViewTransitioningDelegate: NSObject, UIViewControllerTransition
         
 
         guard let presentingViewController = presented as? PopUpViewController,
-              let popUpAnimationType = presentingViewController.animationType
+              let popUpAnimationType = presentingViewController.popUp?.presentAnimationType
               else {
             print("Found nil")
             return defaultAnimationController

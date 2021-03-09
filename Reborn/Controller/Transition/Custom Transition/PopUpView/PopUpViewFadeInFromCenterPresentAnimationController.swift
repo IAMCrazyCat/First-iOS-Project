@@ -22,7 +22,7 @@ class PopUpViewFadeInFromCenterPresentAnimationController: NSObject, UIViewContr
         let finalFrame = transitionContext.finalFrame(for: toViewController)
 
         
-        let popUpWindow = toViewController.view.getSubviewBy(idenifier: "PopUpWindow")
+        let popUpWindow = toViewController.popUp?.window
         
         popUpWindow?.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         popUpWindow?.alpha = 0.5

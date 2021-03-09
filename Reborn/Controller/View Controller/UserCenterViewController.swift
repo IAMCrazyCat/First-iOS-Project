@@ -143,7 +143,7 @@ extension UserCenterViewController: UINavigationControllerDelegate, UIImagePicke
     }
 }
 
-extension UserCenterViewController: PopUpViewDelegate, UIScrollViewDelegate {
+extension UserCenterViewController: PopUpViewDelegate {
     // Delegate extension
     func willDismissView() {
         
@@ -156,6 +156,10 @@ extension UserCenterViewController: PopUpViewDelegate, UIScrollViewDelegate {
     func didSaveAndDismissPopUpView(type: PopUpType) {
         
     }
+}
+
+extension UserCenterViewController: UIScrollViewDelegate {
+    
     
     // scrollview delegate functions
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {

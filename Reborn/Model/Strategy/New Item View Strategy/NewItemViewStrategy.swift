@@ -12,6 +12,6 @@ protocol NewItemViewStrategy {
     
     func initializeUI()
     func isRedyToDismiss() -> Bool
-    func showPopUp(popUpType: PopUpType)
+    func show(_ popUpType: PopUpType)
     func doneButtonPressed(_ sender: UIButton)
 }

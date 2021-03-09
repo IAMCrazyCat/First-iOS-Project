@@ -16,4 +16,9 @@ extension Array {
         }
         
     }
+    
+    var random: Element? {
+        let randomIndex = Int.random(in: 0 ... self.count - 1)
+        return self[randomIndex]
+    }
 }

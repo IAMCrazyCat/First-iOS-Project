@@ -322,9 +322,12 @@ class AppEngine {
     
     public func dismissBottomPopUpAndSave(thenGoBackTo viewController: PopUpViewController) {
         
-        self.storedDataFromPopUpView = viewController.getStoredData()
-        viewController.dismiss(animated: true, completion: nil)
-        self.delegate?.didSaveAndDismissPopUpView(type: viewController.type!)
+        if let popUp = viewController.popUp {
+            self.storedDataFromPopUpView = viewController.getStoredData()
+            viewController.dismiss(animated: true, completion: nil)
+            self.delegate?.didSaveAndDismissPopUpView(type: popUp.type)
+        }
+       
         
     }
     

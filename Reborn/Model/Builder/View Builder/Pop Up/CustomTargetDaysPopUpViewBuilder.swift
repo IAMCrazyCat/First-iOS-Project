@@ -20,7 +20,7 @@ class CustomTargetDaysPopUpViewBuilder: PopUpViewBuilder {
     
     override func buildView() -> UIView {
         _ = super.buildView()
-       
+        self.setUpUI()
         self.addTargetDaysPiker()
         return super.outPutView
     }
@@ -32,23 +32,10 @@ class CustomTargetDaysPopUpViewBuilder: PopUpViewBuilder {
     private func addTargetDaysPiker() {
         
         let picker = UIPickerView()
+        picker.accessibilityIdentifier = "PickerView"
         picker.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackBackground
-        picker.tag = self.setting.popUpWindowPickerViewTag
-        picker.delegate = popUpViewController
-        picker.dataSource = popUpViewController
-        
-        var dataArray = PickerViewData.customTargetDays
-        if dataStartIndex > 0 {
-            for _ in 0 ... dataStartIndex - 1 {
-                
-                if dataArray.count > 0 {
-                    dataArray.removeFirst()
-                }
-                
-            }
-        }
-        
-        popUpViewController.pikerViewData = dataArray
+       
+
         super.contentView.addSubview(picker)
         picker.translatesAutoresizingMaskIntoConstraints = false
         picker.widthAnchor.constraint(equalTo: super.contentView.widthAnchor).isActive = true

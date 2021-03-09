@@ -125,7 +125,7 @@ class NewItemViewController: UIViewController {
         self.selectButton()
         if sender.tag == self.setting.customTargetDaysButtonTag {
             
-            self.strategy?.showPopUp(popUpType: .customTargetDaysPopUp)
+            self.strategy?.show(.customTargetDaysPopUp)
             
         } else {
             self.item.targetDays = sender.getData() ?? 1
@@ -149,7 +149,7 @@ class NewItemViewController: UIViewController {
         self.updateUI()
         
         if sender.tag == self.setting.customFrequencyButtonTag {
-            self.strategy?.showPopUp(popUpType: .customFrequencyPopUp)
+            self.strategy?.show(.customFrequencyPopUp)
         }
     }
     

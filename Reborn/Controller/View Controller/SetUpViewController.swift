@@ -195,6 +195,7 @@ extension SetUpViewController: PopUpViewDelegate {
     
     func didSaveAndDismissPopUpView(type: PopUpType) {
         
+
         switch type {
         case .customItemNamePopUp:
             self.selectedButton.setTitle(self.engine.getStoredDataFromPopUpView() as? String, for: .normal)

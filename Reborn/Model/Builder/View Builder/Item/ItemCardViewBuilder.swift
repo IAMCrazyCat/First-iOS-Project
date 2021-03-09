@@ -344,12 +344,14 @@ class ItemCardViewBuilder: ViewBuilder {
     }
     
     private func addConfettiTopView() {
+        
         let confettiTopView = UIView()
+        confettiTopView.accessibilityIdentifier = "TopConfettiView"
         confettiTopView.frame = CGRect(x: 0, y: 0, width: outPutView.frame.width, height: 40)
         confettiTopView.layer.cornerRadius = outPutView.layer.cornerRadius
         confettiTopView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         confettiTopView.layer.masksToBounds = true
-        confettiTopView.addConfettiEffect()
+        confettiTopView.addConfettiView()
         
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = confettiTopView.bounds

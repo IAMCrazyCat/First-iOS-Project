@@ -30,36 +30,42 @@ extension UIViewController: UIViewControllerTransitioningDelegate  {
     
     func show(_ popUpType: PopUpType, animation animationType: PopUpAnimationType = .slideInToBottom, dataStartIndex: Int = 0) {
         
-        if popUpType != .itemCompletedPopUp {
-            AppEngine.shared.delegate = self as? PopUpViewDelegate
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if let popUpViewController = storyboard.instantiateViewController(withIdentifier: "PopUpViewController") as? PopUpViewController {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let popUpViewController = storyboard.instantiateViewController(withIdentifier: "PopUpViewController") as? PopUpViewController {
             
-                popUpViewController.dataStartIndex = dataStartIndex
-                popUpViewController.type = popUpType
-                popUpViewController.animationType = animationType
-                popUpViewController.updateUI()
-                AppEngine.shared.add(observer: popUpViewController)
-                self.present(to: popUpViewController)
+            AppEngine.shared.delegate = self as? PopUpViewDelegate
+            
+            switch popUpType {
+            case .customFrequencyPopUp:
+                popUpViewController.popUp = CustomFrequencyPopUp(presentAnimationType: animationType, popUpViewController: popUpViewController, dataStartIndex: dataStartIndex)
+            case .customItemNamePopUp:
+                popUpViewController.popUp = CustomItemNamePopUpView(presentAnimationType: animationType, popUpViewController: popUpViewController)
+            case .customTargetDaysPopUp:
+                popUpViewController.popUp = CustomTargetDaysPopUp(presentAnimationType: animationType, popUpViewController: popUpViewController, dataStartIndex: dataStartIndex)
+            case .customThemeColorPopUp:
+                popUpViewController.popUp = CustomThemeColorPopUp(presentAnimationType: animationType, popUpViewController: popUpViewController)
+            case .itemCompletedPopUp:
+                print("You should not use this function")
+                print("Use 'showItemCompletedPopUp(for: Item)' instead")
             }
-        } else {
-            print("You should not use this function")
-            print("Use 'showItemCompletedPopUp(for: Item)' instead")
+    
+            //popUpViewController.updateUI()
+            
+            self.present(to: popUpViewController)
         }
+       
        
         
     }
     
     func showItemCompletedPopUp(for item: Item) {
-        AppEngine.shared.delegate = self as? PopUpViewDelegate
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let popUpViewController = storyboard.instantiateViewController(withIdentifier: "PopUpViewController") as? PopUpViewController {
-        
-            popUpViewController.type = .itemCompletedPopUp
-            popUpViewController.item = item
-            popUpViewController.animationType = .fadeInFromCenter
-            popUpViewController.updateUI()
-            AppEngine.shared.add(observer: popUpViewController)
+            
+            AppEngine.shared.delegate = self as? PopUpViewDelegate
+            popUpViewController.popUp = ItemCompletedPopUp(item: item, presentAnimationType: .fadeInFromCenter, popUpViewController: popUpViewController)
             self.present(to: popUpViewController)
         }
     }
