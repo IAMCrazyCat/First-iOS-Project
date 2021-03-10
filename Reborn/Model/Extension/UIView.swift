@@ -47,6 +47,7 @@ extension UIView {
         let confettiAnimationView = ConfettiAnimationView(frame: self.bounds)
         self.addSubview(confettiAnimationView)
         confettiAnimationView.excuteAnimation()
+        
     }
     
     func getSubviewBy(idenifier: String) -> UIView? {

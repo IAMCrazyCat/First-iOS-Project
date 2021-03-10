@@ -8,43 +8,55 @@
 import Foundation
 import UIKit
 import SpriteKit
-class ConfettiCell: UIImageView {
+class ConfettiCell: SKSpriteNode {
     
-    var position: CGPoint = .zero {
+    var image: UIImage {
         didSet {
-            self.frame.origin = self.position
+            self.texture = SKTexture(image: image)
         }
     }
     
-    var size: ConfettiSize = .small {
+
+    var confettiSize: ConfettiSize
+    
+    override var physicsBody: SKPhysicsBody? {
         didSet {
-            
-            switch size {
+            switch self.confettiSize {
             case .small:
-                self.frame.size = CGSize(width: 10, height: 10)
-                self.layer.zPosition = 0
+                self.zPosition = 0
+                self.physicsBody?.linearDamping = CGFloat.random(in: 0.25 ... 0.35)
             case .medium:
-                self.frame.size = CGSize(width: 20, height: 20)
-                self.layer.zPosition = 1
+                self.zPosition = 1
+                self.physicsBody?.linearDamping = CGFloat.random(in: 0.15 ... 0.25)
             case .large:
-                self.frame.size = CGSize(width: 30, height: 30)
-                self.layer.zPosition = 2
+                self.physicsBody?.linearDamping = CGFloat.random(in: 0.1 ... 0.15)
+                self.zPosition = 2
             }
-           
-        }
-    }
-    
-    var color: UIColor = .red {
-        didSet {
-            self.tintColor = color
         }
     }
 
-    init(confetti: UIImage) {
+    init(image: UIImage, color: UIColor, size: ConfettiSize) {
+
+        self.image = image
+        self.confettiSize = size
+        let cgSize: CGSize
         
-        super.init(frame: .zero)
-        self.image = confetti
+        switch self.confettiSize {
+        case .small:
+            cgSize = CGSize(width: 10, height: 10)
+        case .medium:
+            cgSize = CGSize(width: 15, height: 15)
+        case .large:
+            cgSize = CGSize(width: 20, height: 20)
+        }
         
+        
+        
+        super.init(texture: SKTexture(image: self.image.withTintColor(color)), color: color, size: cgSize)
+        self.colorBlendFactor = 1
+        
+        
+   
     }
     
     required init?(coder: NSCoder) {

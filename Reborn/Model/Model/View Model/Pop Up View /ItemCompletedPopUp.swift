@@ -33,9 +33,8 @@ class ItemCompletedPopUp: PopUpImpl {
         
         super.window.addConfettiAnimationView()
         
-       
-        
-        UIView.animate(withDuration: 5, delay: 0, animations: {
+        UIView.animate(withDuration: 2, delay: 2, animations: {
+            self.topConfettiView?.alpha = 1
             super.titleLabel?.alpha = 1
         })
     }
