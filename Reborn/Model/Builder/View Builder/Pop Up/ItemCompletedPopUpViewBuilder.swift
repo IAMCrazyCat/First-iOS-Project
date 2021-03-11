@@ -11,6 +11,7 @@ import UIKit
 class ItemCompletedPopUpViewBuilder: PopUpViewBuilder {
     
     private var item: Item
+    private var itemCardView: UIView = UIView()
     init(popUpViewController: PopUpViewController, frame: CGRect, item: Item) {
         self.item = item
         super.init(popUpViewController: popUpViewController, frame: frame)
@@ -19,33 +20,35 @@ class ItemCompletedPopUpViewBuilder: PopUpViewBuilder {
     override func buildView() -> UIView {
         _ = super.buildView()
         self.addItemCard()
-        self.excuteConfettiAnimation()
+        self.addPromptLabel()
         self.setUpUI()
-        self.showTitle()
         return super.outPutView
     }
     
     func setUpUI() {
-        super.titleLabel.text = "你成功了！"
+        super.titleLabel.text = "目标达成！"
     }
     
     func addItemCard() {
-        let itemCardView = ItemCardViewBuilder(item: item, frame: CGRect(x: 0, y: super.contentView.frame.height / 2 - SystemSetting.shared.itemCardHeight / 2, width: super.contentView.frame.width, height: SystemSetting.shared.itemCardHeight), isInteractable: false).buildView()
+        itemCardView = ItemCardViewBuilder(item: item, frame: CGRect(x: 0, y: super.contentView.frame.height / 2 - SystemSetting.shared.itemCardHeight / 2, width: super.contentView.frame.width, height: SystemSetting.shared.itemCardHeight), isInteractable: false).buildView()
         itemCardView.accessibilityIdentifier = "ItemCardView"
         super.contentView.addSubview(itemCardView)
         
     }
     
-    func excuteConfettiAnimation() {
+    func addPromptLabel() {
+        let promptLabel = UILabel()
+        promptLabel.accessibilityIdentifier = "PromptLabel"
+        promptLabel.textColor = super.setting.greyColor
+        promptLabel.text = "已完成的项目可以在 项目管理 中操作 "
+        promptLabel.font = AppEngine.shared.userSetting.fontSmall.withSize(12)
+        promptLabel.sizeToFit()
+        super.contentView.addSubview(promptLabel)
         
+        promptLabel.translatesAutoresizingMaskIntoConstraints = false
+        promptLabel.centerXAnchor.constraint(equalTo: super.contentView.centerXAnchor).isActive = true
+        promptLabel.topAnchor.constraint(equalTo: self.itemCardView.bottomAnchor, constant: 20).isActive = true
     }
     
-    func showTitle() {
-        
-        UIView.animate(withDuration: 10, delay: 0, animations: {
-            
-            self.titleLabel.alpha = 0
-        })
-    }
     
 }

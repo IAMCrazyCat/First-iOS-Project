@@ -18,6 +18,7 @@ extension UIView {
     }
     
     func setCornerRadius() {
+        self.layoutIfNeeded()
         self.layer.masksToBounds = true
         self.layer.cornerRadius = self.frame.height / 2
     }
@@ -35,7 +36,7 @@ extension UIView {
     
     func addConfettiView() {
         let confettiView = SwiftConfettiView(frame: self.bounds)
-       
+        confettiView.type = .random
         confettiView.intensity = 0.5
         confettiView.clipsToBounds = true
         self.addSubview(confettiView)
@@ -45,7 +46,10 @@ extension UIView {
     func addConfettiAnimationView() {
        
         let confettiAnimationView = ConfettiAnimationView(frame: self.bounds)
-        self.addSubview(confettiAnimationView)
+        confettiAnimationView.accessibilityIdentifier = "ConfettiAnimationView"
+        confettiAnimationView.layer.cornerRadius = self.layer.cornerRadius
+        confettiAnimationView.layer.masksToBounds = true
+        self.insertSubview(confettiAnimationView, at: 0)
         confettiAnimationView.excuteAnimation()
         
     }
@@ -85,7 +89,7 @@ extension UIView {
         self.addSubview(itemCard)
     }
     
-    func renderItemCards(withConstraint condition: ItemState?) {
+    func renderItemCards(withCondition condition: ItemState?) {
         
         let isRenderingAll = condition == nil ? true : false
         let items = AppEngine.shared.currentUser.items
@@ -98,13 +102,15 @@ extension UIView {
                 let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: SystemSetting.shared.mainPadding, y: cordinateY, width: self.frame.width - 2 * SystemSetting.shared.mainPadding, height: SystemSetting.shared.itemCardHeight), punchInButtonTag: tag, isInteractable: true)
                 let itemCard = builder.buildView()
                 cordinateY += SystemSetting.shared.itemCardHeight + SystemSetting.shared.itemCardGap
+                self.frame.size.height = itemCard.frame.maxY
                 self.addSubview(itemCard)
                 
                 
             }
             tag -= 1
         }
-
+        
+        
       
     }
     

@@ -51,9 +51,17 @@ extension UIButton {
 
     }
     
-    func setSizeAccrodingToScreen() {
+    
+    func proportionallySetSizeWithScreen() {
+        self.translatesAutoresizingMaskIntoConstraints = false
         self.heightAnchor.constraint(equalToConstant: SystemSetting.shared.screenFrame.height *  SystemSetting.shared.optionButtonHeightRatio).isActive = true
         self.widthAnchor.constraint(equalToConstant:  SystemSetting.shared.screenFrame.width *  SystemSetting.shared.optionButtonWidthRatio).isActive = true
+        self.layoutIfNeeded()
+    }
+    
+    func proportionallySetHeightWithScreen() {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.heightAnchor.constraint(equalToConstant: SystemSetting.shared.screenFrame.height *  SystemSetting.shared.optionButtonHeightRatio).isActive = true
         self.layoutIfNeeded()
     }
 }

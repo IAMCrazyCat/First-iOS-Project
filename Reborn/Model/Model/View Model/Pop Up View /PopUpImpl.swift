@@ -21,7 +21,7 @@ class PopUpImpl: PopUp {
         return self.contentView?.getSubviewBy(idenifier: "CancelButton") as? UIButton
     }
     var doneButton: UIButton? {
-        return self.contentView?.getSubviewBy(idenifier: "DoneButton") as? UIButton
+        return self.window.getSubviewBy(idenifier: "DoneButton") as? UIButton
     }
     var presentAnimationType: PopUpAnimationType
     var popUpViewController: PopUpViewController

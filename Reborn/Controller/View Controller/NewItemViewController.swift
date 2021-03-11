@@ -74,7 +74,7 @@ class NewItemViewController: UIViewController {
         for subview in view.viewWithTag(4)!.subviews { // all buttons
             if let button = subview as? UIButton {
                
-                button.setSizeAccrodingToScreen()
+                button.proportionallySetSizeWithScreen()
                 button.setCornerRadius()
                 button.setShadow()
                 button.setBackgroundColor(AppEngine.shared.userSetting.themeColor, for: .selected)

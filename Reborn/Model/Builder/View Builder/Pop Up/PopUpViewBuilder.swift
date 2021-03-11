@@ -72,18 +72,18 @@ class PopUpViewBuilder: ViewBuilder {
         doneButton.accessibilityIdentifier = "DoneButton"
         doneButton.backgroundColor = AppEngine.shared.userSetting.themeColor
         doneButton.setTitle("确定", for: .normal)
-        doneButton.layer.cornerRadius = self.setting.mainButtonCornerRadius
+        
         doneButton.tag = setting.popUpWindowDoneButtonTag
         doneButton.addTarget(popUpViewController, action: #selector(popUpViewController.doneButtonPressed(_:)), for: .touchUpInside)
         outPutView.addSubview(doneButton)
         
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         doneButton.bottomAnchor.constraint(equalTo: self.outPutView.bottomAnchor, constant: -self.setting.mainDistance - 20).isActive = true
-        doneButton.heightAnchor.constraint(equalToConstant: self.setting.mainButtonHeight).isActive = true
         doneButton.leftAnchor.constraint(equalTo: self.outPutView.leftAnchor, constant: self.setting.mainDistance).isActive = true
         doneButton.rightAnchor.constraint(equalTo: self.outPutView.rightAnchor, constant: -self.setting.mainDistance).isActive = true
        
-
+        doneButton.setCornerRadius()
+        doneButton.proportionallySetSizeWithScreen()
     }
     
     private func addContentView() {

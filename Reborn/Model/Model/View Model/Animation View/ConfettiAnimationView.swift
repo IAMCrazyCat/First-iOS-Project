@@ -21,7 +21,7 @@ class ConfettiAnimationView: UIView {
                                           UIColor(red:0.48, green:0.78, blue:0.64, alpha:1.0),
                                           UIColor(red:0.30, green:0.76, blue:0.85, alpha:1.0),
                                           UIColor(red:0.58, green:0.39, blue:0.55, alpha:1.0)]
-    lazy var initialBurstPosition: CGPoint = CGPoint(x: self.skView!.bounds.width / 2, y: self.skView!.bounds.height + 150)
+    lazy var initialBurstPosition: CGPoint = CGPoint(x: self.skView!.bounds.width / 2, y: self.skView!.bounds.height + 200)
     private var randomZeroToOne: CGFloat {
         return CGFloat.random(in: 0 ... 1)
     }
@@ -29,8 +29,10 @@ class ConfettiAnimationView: UIView {
         return CGFloat.random(in: 0.5 ... 1)
     }
     
-    public var density: Int = 1000
-    public var animationSpeed: TimeInterval = 0.7
+    public var density: Int = 500
+    public var animationSpeed: TimeInterval = 1
+    public var confettiInitialSpeed: Double = 300
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .clear
@@ -42,9 +44,7 @@ class ConfettiAnimationView: UIView {
         setUpSKView()
         setUpSKScene()
         
-        for _ in 0 ... self.density {
-            addConfettiCells()
-        }
+        
     }
     
     required init?(coder: NSCoder) {
@@ -61,11 +61,31 @@ class ConfettiAnimationView: UIView {
         self.skScene!.backgroundColor = .clear
     }
     
-    func addConfettiCells() {
+    func addFirstBurst() {
+        for _ in 0 ... self.density / 10 {
+            let randomPointX = Double.random(in: -1 ... 1)
+            let randomPointY = Double.random(in: -1 ... 1)
+            
+            addConfettiCell(velocity: CGVector(dx: randomPointX * confettiInitialSpeed, dy: randomPointY * confettiInitialSpeed))
+        }
+        self.skView!.presentScene(self.skScene!)
+    }
+    
+    func addSecondBurst() {
+        for _ in 0 ... self.density {
+            let randomPointX = Double.random(in: -1 ... 1)
+            let randomPointY = Double.random(in: -1 ... 0)
+            
+            addConfettiCell(velocity: CGVector(dx: randomPointX * confettiInitialSpeed / 2, dy: randomPointY * confettiInitialSpeed / 2))
+        }
+        self.skView!.presentScene(self.skScene!)
+    }
+    
+    func addConfettiCell(velocity: CGVector) {
        
        
         let confettiNode = ConfettiCell(image: self.confettiImages.random!, color: self.confettiColors.random!, size: self.confettiSize.random!)
-        let initialSpeed: Double = 300
+        
         var randomSpeed: TimeInterval {
             return TimeInterval.random(in: 0.3 ... 0.6)
         }
@@ -81,7 +101,7 @@ class ConfettiAnimationView: UIView {
                                          
         let darkenSequence = SKAction.sequence([SKAction.colorize(with: SKColor.black, colorBlendFactor: 0.25, duration: randomSpeed), SKAction.colorize(withColorBlendFactor: 0, duration: randomSpeed)])
         let group = SKAction.group([rotateSequency, scaleSequence])
-        let initialPositionOffset: CGFloat = 50
+        let initialPositionOffset: CGFloat = 100
         
         confettiNode.position = CGPoint(x: CGFloat.random(in: initialBurstPosition.x - initialPositionOffset ... initialBurstPosition.x + initialPositionOffset), y: CGFloat.random(in: initialBurstPosition.y - initialPositionOffset ... initialBurstPosition.y + initialPositionOffset))
         confettiNode.physicsBody = SKPhysicsBody(rectangleOf: self.skView!.bounds.size)
@@ -90,29 +110,26 @@ class ConfettiAnimationView: UIView {
         confettiNode.physicsBody?.collisionBitMask = 0
 //        let randomPointX = Double.random(in: -1 ... 1)
 //        let randomPointY = Double.random(in: sin(Double.random(in: -180 ... 0) * Double.pi / 180) ... 0)
-        let randomPointX = Double.random(in: -1 ... 1)
-        let randomPointY = Double.random(in: -1 ... 1)
-        confettiNode.physicsBody?.velocity = CGVector(dx: randomPointX * initialSpeed, dy: randomPointY * initialSpeed)
+        
+        confettiNode.physicsBody?.velocity = velocity
             
        
         self.skScene!.addChild(confettiNode)
         self.addSubview(skView!)
 
-        
-        
 
     }
     
     func excuteAnimation() {
-        
-        self.skView!.presentScene(self.skScene!)
-        
-        UIView.animate(withDuration: 0.5, delay: 8, options: .curveEaseOut, animations: {
-            //self.animationSpeed += 0.5
-            //self.skScene?.physicsWorld.gravity = CGVector(dx: 0, dy: -1.62 * self.animationSpeed)
-        }) { _ in
-            
+     
+        self.addFirstBurst()
+        self.skScene?.physicsWorld.gravity = .zero
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { // Change `2.0` to the desired number of seconds.
+            self.addSecondBurst()
+            self.skScene?.physicsWorld.gravity = CGVector(dx: 0, dy: -1.62 * self.animationSpeed)
         }
+        
+
       
 //        self.animator = UIDynamicAnimator(referenceView: self)
 //        self.gravity = UIGravityBehavior(items: self.confettiCells)

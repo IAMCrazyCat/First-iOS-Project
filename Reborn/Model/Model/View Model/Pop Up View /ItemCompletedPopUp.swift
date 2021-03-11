@@ -15,6 +15,10 @@ class ItemCompletedPopUp: PopUpImpl {
     public var topConfettiView: UIView? {
         return self.itemCard?.getSubviewBy(idenifier: "TopConfettiView")
     }
+    public var promptLabel: UILabel? {
+        return super.contentView?.getSubviewBy(idenifier: "PromptLabel") as? UILabel
+    }
+    
     
     
    
@@ -25,18 +29,28 @@ class ItemCompletedPopUp: PopUpImpl {
     }
     
     func setUpUI() {
-        topConfettiView?.alpha = 0
+        
+        self.topConfettiView?.alpha = 0
+        self.promptLabel?.alpha = 0
         super.titleLabel?.alpha = 0
+        super.doneButton?.alpha = 0
+        super.doneButton?.isHidden = true
+        super.doneButton?.setTitle("知道了", for: .normal)
+        super.contentView?.layer.zPosition = -1
     }
     
     override func excuteAnimation() {
-        
+    
         super.window.addConfettiAnimationView()
-        
-        UIView.animate(withDuration: 2, delay: 2, animations: {
+        super.doneButton?.isHidden = false
+        UIView.animate(withDuration: 1, delay: 2, animations: {
+            self.promptLabel?.alpha = 1
             self.topConfettiView?.alpha = 1
+            super.doneButton?.alpha = 1
             super.titleLabel?.alpha = 1
-        })
+        }) { _ in
+
+        }
     }
     
     

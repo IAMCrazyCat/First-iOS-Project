@@ -10,14 +10,15 @@ import UIKit
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var verticalScrollView: UIScrollView!
-    @IBOutlet weak var horizentalScrollView: UIScrollView!
+
     @IBOutlet weak var overallProgressView: UIView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var itemsTitleLabel: UILabel!
-    @IBOutlet weak var persistingItemsViewPromptLabel: UILabel!
-    @IBOutlet weak var quittingItemsViewPromptLabel: UILabel!
-    @IBOutlet weak var horizentalContentLeftView: UIView!
-    @IBOutlet weak var horizentalContentRightView: UIView!
+
+    @IBOutlet var itemCardsView: UIView!
+    
+    @IBOutlet var verticalContentViewHeightConstraint: NSLayoutConstraint!
+    
     @IBOutlet var addNewItemButton: UIButton!
     @IBOutlet var customNavigationBar: UIView!
     @IBOutlet weak var spaceView: UIView!
@@ -46,11 +47,7 @@ class HomeViewController: UIViewController {
         
         
         engine.add(observer: self)
-        persistingItemsViewPromptLabel.sizeToFit()
-        quittingItemsViewPromptLabel.sizeToFit()
 
-        horizentalContentLeftView.layoutIfNeeded()
-        horizentalContentRightView.layoutIfNeeded()
         
         customNavigationBar.layer.cornerRadius = setting.customNavigationBarCornerRadius
         customNavigationBar.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
@@ -67,17 +64,19 @@ class HomeViewController: UIViewController {
         verticalScrollView.delegate = self // activate delegate
         verticalScrollView.contentSize = CGSize(width: view.frame.width, height: 2000)
         verticalScrollView.tag = setting.homeViewVerticalScrollViewTag
+        
 
-        horizentalScrollView.delegate = self
-        horizentalScrollView.tag = setting.homeViewHorizentalScrollViewTag
         
         dateFormatter.locale = Locale(identifier: "zh")
         dateFormatter.setLocalizedDateFormatFromTemplate("dd MMMM EEEE")
+    
         updateUI()
+
+    }
+    
+    override func viewDidLayoutSubviews() {
+        verticalContentViewHeightConstraint.constant = self.view.frame.height + overallProgressView.frame.maxY
         
-        
-        
-        //sendNotification()
     }
     
     func sendNotification() {
@@ -163,104 +162,12 @@ class HomeViewController: UIViewController {
         
     }
     
-   
-    
-    func removeAllItemCards() {
-        
-        for subView in horizentalContentLeftView.subviews {
-            if subView.accessibilityIdentifier == setting.itemCardIdentifier {
-
-                subView.removeFromSuperview()
-            }
-            
-        }
-        
-        for subView in horizentalContentRightView.subviews {
-            if subView.accessibilityIdentifier == setting.itemCardIdentifier {
-                subView.removeFromSuperview()
-            }
-        }
-        
-    }
-    
-
-    
-    func firstAccessIntialize() {
-        verticalScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
-        verticalScrollView.setContentOffset(CGPoint(x: 0, y: scrollViewTopOffset), animated: true)
-        self.horizentalScrollView.setContentOffset(CGPoint(x: self.overallProgressView.frame.width, y: 0), animated: true)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { // Change `2.0` to the desired number of seconds.
-            self.horizentalScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-        }
-    }
-    
 
     func updateItemCards() {
 
-        removeAllItemCards()
-        var persistingCordinateY: CGFloat = 0
-        var quittingCordinateY: CGFloat = 0
-        
-        
-        let items = self.engine.currentUser.items
-            var tag: Int = self.engine.currentUser.items.count - 1
-            if items.count > 0 {
-                
-                
-            for itemIndex in (0...items.count - 1).reversed() {
-                
-                let item = items[itemIndex]
-                
-              
-                if item.type == .persisting {
-        
-                    self.persistingItemsViewPromptLabel.isHidden = true
-                    let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: 0, y: persistingCordinateY, width: self.horizentalContentLeftView.frame.width, height: self.setting.itemCardHeight), punchInButtonTag: tag, isInteractable: true)
-                    let newItemCard = builder.buildView()
-                    
-                    let heightConstraintIndex = self.contentView.constraints.count - 1
-                    let tabBarHeight: CGFloat = 200
-                    self.horizentalContentLeftView.addSubview(newItemCard)
-                    
-                    let newConstraint = self.itemsTitleLabel.frame.origin.y + tabBarHeight + persistingCordinateY
-                    if newConstraint > self.contentView.constraints[heightConstraintIndex].constant {
-                        self.contentView.constraints[heightConstraintIndex].constant = newConstraint // update height constraint (height is at the last index of constraints array)
-                    }
-             
-                    self.horizentalContentLeftView.layoutIfNeeded()
-                    persistingCordinateY += setting.itemCardHeight + setting.itemCardGap
-                    
-                } else if item.type == .quitting {
-                    
-                    self.quittingItemsViewPromptLabel.isHidden = true
-            
-                    let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: 0, y: quittingCordinateY, width: self.horizentalContentRightView.frame.width, height: self.setting.itemCardHeight), punchInButtonTag: tag, isInteractable: true)
-                    let newItemCard = builder.buildView()
-                    
-                    let heightConstraintIndex = self.contentView.constraints.count - 1
-                    let tabBarHeight: CGFloat = 200
-                    self.horizentalContentRightView.addSubview(newItemCard)
-                    
-                    let newConstraint = self.itemsTitleLabel.frame.origin.y + tabBarHeight + quittingCordinateY
-                    if newConstraint > self.contentView.constraints[heightConstraintIndex].constant {
-                        self.contentView.constraints[heightConstraintIndex].constant = newConstraint // update height constraint (height is at the last index of constraints array)
-                    }
-             
-                    self.horizentalContentLeftView.layoutIfNeeded()
-                    quittingCordinateY += setting.itemCardHeight + setting.itemCardGap
-                }
-                
-                
-                
-                tag -= 1
-      
-            }
-            
-        } else {
-            
-            self.persistingItemsViewPromptLabel.isHidden = false
-            self.quittingItemsViewPromptLabel.isHidden = false
-        }
+        self.itemCardsView.removeAllSubviews()
+        self.view.layoutIfNeeded()
+        self.itemCardsView.renderItemCards(withCondition: .inProgress)
         
     }
     
@@ -359,6 +266,13 @@ extension HomeViewController: UIObserver {
         updateNavigationView()
         updateItemCards()
         
+        let newHeight = self.itemCardsView.frame.maxY + self.setting.contentToScrollViewBottomDistance
+        if self.verticalContentViewHeightConstraint.constant < newHeight {
+            self.verticalContentViewHeightConstraint.constant = newHeight
+        }
+
+
+        
     }
 }
 
@@ -377,11 +291,7 @@ extension HomeViewController: PopUpViewDelegate {
         print("AddItemViewDidDismiss")
         self.updateUI()
         
-        if self.engine.itemFromController?.type == .persisting {
-            self.horizentalScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true) // scroll to left after item added
-        } else if self.engine.itemFromController?.type == .quitting {
-            self.horizentalScrollView.setContentOffset(CGPoint(x: self.horizentalContentLeftView.frame.width, y: 0), animated: true) // scroll to right after item added
-        }
+    
         
     }
     
@@ -395,8 +305,7 @@ extension HomeViewController: UIScrollViewDelegate {
      //scrollview delegate functions
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if scrollView.tag == self.setting.homeViewVerticalScrollViewTag {
-            
-            
+   
 
         }
     }

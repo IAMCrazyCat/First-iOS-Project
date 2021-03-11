@@ -84,7 +84,7 @@ class ItemManagementViewController: UIViewController {
     
     func updateVerticalContentView() {
         verticalContentView.removeAllSubviews()
-        verticalContentView.renderItemCards(withConstraint: self.selectedSegment)
+        verticalContentView.renderItemCards(withCondition: self.selectedSegment)
       
         if let lastItemCard = verticalContentView.subviews.last, lastItemCard.frame.maxY > self.verticalScrollView.frame.height {
             verticalContentHeightConstraint.constant = lastItemCard.frame.maxY + setting.mainPadding

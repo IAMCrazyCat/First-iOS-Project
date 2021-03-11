@@ -47,10 +47,10 @@ class ItemDetailViewController: UIViewController {
 
         calendarView.layer.cornerRadius = setting.itemCardCornerRadius
         
-        bottomShareButton.setSizeAccrodingToScreen()
+        bottomShareButton.proportionallySetSizeWithScreen()
         bottomShareButton.setCornerRadius()
         bottomShareButton.setShadow()
-        bottomEditButton.setSizeAccrodingToScreen()
+        bottomEditButton.proportionallySetSizeWithScreen()
         bottomEditButton.setCornerRadius()
         bottomEditButton.setShadow()
         updateUI()

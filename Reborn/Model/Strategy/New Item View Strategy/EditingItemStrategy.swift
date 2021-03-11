@@ -78,13 +78,24 @@ class EditingItemStrategy: NewItemViewStrategy {
         let secondInstructionLabel = newItemViewController.verticalScrollView.getSubviewBy(idenifier: "SecondInstructionLabel")
         let deleteItemButton = UIButton()
         deleteItemButton.frame = CGRect(x: SystemSetting.shared.mainPadding, y: ((secondInstructionLabel?.frame.maxY) ?? newItemViewController.verticalContentView.frame.height - SystemSetting.shared.mainButtonHeight - 20) + 20 , width: newItemViewController.verticalContentView.frame.width - 2 * SystemSetting.shared.mainPadding, height: SystemSetting.shared.mainButtonHeight)
-        deleteItemButton.setCornerRadius()
+       
         deleteItemButton.setTitle("删除项目", for: .normal)
         deleteItemButton.setBackgroundColor(AppEngine.shared.userSetting.redColor, for: .normal)
         deleteItemButton.addTarget(newItemViewController, action: #selector(newItemViewController.deleteItemButtonPressed(_:)), for: .touchUpInside)
+        
+        
+        
         newItemViewController.verticalContentView.addSubview(deleteItemButton)
         newItemViewController.verticalScrollViewContentViewHeightConstraint.constant = deleteItemButton.frame.maxY + SystemSetting.shared.contentToScrollViewBottomDistance
         newItemViewController.verticalScrollView.layoutIfNeeded()
+        
+        deleteItemButton.leftAnchor.constraint(equalTo: newItemViewController.verticalContentView.leftAnchor, constant: SystemSetting.shared.mainPadding).isActive = true
+        deleteItemButton.rightAnchor.constraint(equalTo: newItemViewController.verticalContentView.rightAnchor, constant: -SystemSetting.shared.mainPadding).isActive = true
+        deleteItemButton.topAnchor.constraint(equalTo: newItemViewController.secondInstructionLabel.bottomAnchor, constant: SystemSetting.shared.mainGap).isActive = true
+        deleteItemButton.proportionallySetHeightWithScreen()
+        deleteItemButton.setCornerRadius()
+        newItemViewController.verticalScrollView.layoutIfNeeded()
+        newItemViewController.verticalScrollViewContentViewHeightConstraint.constant = deleteItemButton.frame.maxY + SystemSetting.shared.contentToScrollViewBottomDistance
     }
     
     func show(_ popUpType: PopUpType) {
