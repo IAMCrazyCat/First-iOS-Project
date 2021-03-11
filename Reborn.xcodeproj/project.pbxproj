@@ -39,6 +39,8 @@
 		225AD12A25A848A30040E356 /* Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AD12925A848A30040E356 /* Selector.swift */; };
 		225AD12F25A868F50040E356 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AD12E25A868F50040E356 /* ItemDetailViewController.swift */; };
 		225AD13425A86ED80040E356 /* FadeInSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AD13325A86ED80040E356 /* FadeInSegue.swift */; };
+		225EC25F25FA41BC00F2C69F /* CustomUserNamePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225EC25E25FA41BC00F2C69F /* CustomUserNamePopUp.swift */; };
+		225EC26C25FA427B00F2C69F /* CustomUserNamePopUpViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225EC26B25FA427B00F2C69F /* CustomUserNamePopUpViewBuilder.swift */; };
 		2264C59325F4B041009CE917 /* PopUpAnimationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2264C59225F4B041009CE917 /* PopUpAnimationType.swift */; };
 		2264C59E25F4B399009CE917 /* ItemCompletedPopUpViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2264C59D25F4B399009CE917 /* ItemCompletedPopUpViewBuilder.swift */; };
 		2278907625EBA65400613281 /* Frequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278907525EBA65400613281 /* Frequency.swift */; };
@@ -183,6 +185,8 @@
 		225AD12925A848A30040E356 /* Selector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selector.swift; sourceTree = "<group>"; };
 		225AD12E25A868F50040E356 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		225AD13325A86ED80040E356 /* FadeInSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeInSegue.swift; sourceTree = "<group>"; };
+		225EC25E25FA41BC00F2C69F /* CustomUserNamePopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUserNamePopUp.swift; sourceTree = "<group>"; };
+		225EC26B25FA427B00F2C69F /* CustomUserNamePopUpViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUserNamePopUpViewBuilder.swift; sourceTree = "<group>"; };
 		2264C59225F4B041009CE917 /* PopUpAnimationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpAnimationType.swift; sourceTree = "<group>"; };
 		2264C59D25F4B399009CE917 /* ItemCompletedPopUpViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCompletedPopUpViewBuilder.swift; sourceTree = "<group>"; };
 		2278907525EBA65400613281 /* Frequency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frequency.swift; sourceTree = "<group>"; };
@@ -500,6 +504,7 @@
 				22945D4325F5A7700065B511 /* CustomItemNamePopUp.swift */,
 				22945D6525F5ADED0065B511 /* CustomFrequencyPopUp.swift */,
 				22945D5525F5A8150065B511 /* ItemCompletedPopUp.swift */,
+				225EC25E25FA41BC00F2C69F /* CustomUserNamePopUp.swift */,
 			);
 			path = "Pop Up View ";
 			sourceTree = "<group>";
@@ -674,6 +679,7 @@
 				22BC38F125E738CD00AEFE44 /* CustomFrequencyPopUpViewBuilder.swift */,
 				22BC38F625E738E900AEFE44 /* CustomThemeColorPopUpViewBuilder.swift */,
 				2264C59D25F4B399009CE917 /* ItemCompletedPopUpViewBuilder.swift */,
+				225EC26B25FA427B00F2C69F /* CustomUserNamePopUpViewBuilder.swift */,
 			);
 			path = "Pop Up";
 			sourceTree = "<group>";
@@ -1052,6 +1058,7 @@
 				22BDC90A25F260E1008E9C46 /* VIPStrategy.swift in Sources */,
 				22A2EC6E25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift in Sources */,
 				2293F39C25DC00CE009B4753 /* UIImage.swift in Sources */,
+				225EC25F25FA41BC00F2C69F /* CustomUserNamePopUp.swift in Sources */,
 				22A2EC9525CA2AAB00E97787 /* Array.swift in Sources */,
 				22BDC91E25F262F4008E9C46 /* AddNewItemStrategy.swift in Sources */,
 				22AACA1125AD910D0098D920 /* Date.swift in Sources */,
@@ -1092,6 +1099,7 @@
 				22D354B425A595B7004F5667 /* UserCenterViewController.swift in Sources */,
 				22BABF2925C42ABB00168AE1 /* CGAffineTransform.swift in Sources */,
 				224E665125C6483E00B71E8A /* TimeMachineAnimationStrategyImpl.swift in Sources */,
+				225EC26C25FA427B00F2C69F /* CustomUserNamePopUpViewBuilder.swift in Sources */,
 				22BC38F225E738CD00AEFE44 /* CustomFrequencyPopUpViewBuilder.swift in Sources */,
 				221E0B7C25A9273E00386FE1 /* User.swift in Sources */,
 				22FCB1BA258D907C006A0D39 /* SystemSetting.swift in Sources */,

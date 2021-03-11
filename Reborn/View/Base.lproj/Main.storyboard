@@ -1480,13 +1480,6 @@ Cg
                                                     <constraint firstAttribute="height" constant="100" id="vck-wt-t0f"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="没有名字" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Hl-c2-mbv">
-                                                <rect key="frame" x="142" y="124" width="70" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="打卡设置" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uT8-OF-XzE">
                                                 <rect key="frame" x="15" y="298" width="62" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -1721,6 +1714,16 @@ Cg
                                                     <color key="titleColor" red="0.70197039839999997" green="0.70194357630000004" blue="0.70196175579999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </state>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kb1-p1-Yuj">
+                                                <rect key="frame" x="140" y="120" width="62" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="没有名字">
+                                                    <color key="titleColor" systemColor="labelColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="userNameButtonPressed:" destination="xEm-ah-agE" eventType="touchUpInside" id="my5-dI-3t5"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                         <constraints>
@@ -1811,6 +1814,7 @@ Cg
                         <outlet property="shareButton" destination="SX5-HU-KYh" id="v2R-4B-duH"/>
                         <outlet property="themeColorButton" destination="SZj-KF-5bx" id="qJD-nO-IIR"/>
                         <outlet property="timeMachineSettingView" destination="0sp-V1-vxG" id="r5R-Iw-RL2"/>
+                        <outlet property="userNameButton" destination="kb1-p1-Yuj" id="PaW-Pc-fJE"/>
                         <outlet property="verticalScrollView" destination="2gY-P1-gbC" id="ani-dJ-wxu"/>
                     </connections>
                 </viewController>
@@ -2437,7 +2441,7 @@ Cg
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="tkB-nE-CDt"/>
+        <segue reference="qHk-ov-wBz"/>
         <segue reference="dzd-Jo-rYE"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

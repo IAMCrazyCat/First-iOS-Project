@@ -52,7 +52,7 @@ class ConfettiAnimationView: UIView {
     }
     
     func setUpSKView() {
-        self.skView!.showsFPS = true
+        self.skView!.showsFPS = false
         self.skView!.backgroundColor = .clear
     }
     
@@ -79,6 +79,8 @@ class ConfettiAnimationView: UIView {
             addConfettiCell(velocity: CGVector(dx: randomPointX * confettiInitialSpeed / 2, dy: randomPointY * confettiInitialSpeed / 2))
         }
         self.skView!.presentScene(self.skScene!)
+        
+
     }
     
     func addConfettiCell(velocity: CGVector) {
@@ -90,18 +92,16 @@ class ConfettiAnimationView: UIView {
             return TimeInterval.random(in: 0.3 ... 0.6)
         }
         let spinSpeed: TimeInterval = randomSpeed
-        let rotateSpeed: TimeInterval = randomSpeed
-        let randomX: CGFloat = randomPointFiveToOne
-        let randomY: CGFloat = randomPointFiveToOne
+
         
         let rotateSequency = SKAction.rotate(byAngle: CGFloat.random(in: 0 ... CGFloat(180) * CGFloat.pi / 180), duration: spinSpeed)
         let scaleSequence = SKAction.sequence([SKAction.scaleY(to: -1, duration: spinSpeed),
                                                SKAction.scaleY(to: 1, duration: spinSpeed)]
                                               )
-                                         
+
         let darkenSequence = SKAction.sequence([SKAction.colorize(with: SKColor.black, colorBlendFactor: 0.25, duration: randomSpeed), SKAction.colorize(withColorBlendFactor: 0, duration: randomSpeed)])
         let group = SKAction.group([rotateSequency, scaleSequence])
-        let initialPositionOffset: CGFloat = 100
+        let initialPositionOffset: CGFloat = 80
         
         confettiNode.position = CGPoint(x: CGFloat.random(in: initialBurstPosition.x - initialPositionOffset ... initialBurstPosition.x + initialPositionOffset), y: CGFloat.random(in: initialBurstPosition.y - initialPositionOffset ... initialBurstPosition.y + initialPositionOffset))
         confettiNode.physicsBody = SKPhysicsBody(rectangleOf: self.skView!.bounds.size)

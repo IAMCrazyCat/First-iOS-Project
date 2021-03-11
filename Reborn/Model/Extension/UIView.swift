@@ -43,7 +43,7 @@ extension UIView {
         confettiView.startConfetti()
     }
     
-    func addConfettiAnimationView() {
+    func showConfettiAnimationAtBack() {
        
         let confettiAnimationView = ConfettiAnimationView(frame: self.bounds)
         confettiAnimationView.accessibilityIdentifier = "ConfettiAnimationView"
@@ -52,6 +52,15 @@ extension UIView {
         self.insertSubview(confettiAnimationView, at: 0)
         confettiAnimationView.excuteAnimation()
         
+    }
+    
+    func showConfettiAnimationInFront() {
+        let confettiAnimationView = ConfettiAnimationView(frame: self.bounds)
+        confettiAnimationView.accessibilityIdentifier = "ConfettiAnimationView"
+        confettiAnimationView.layer.cornerRadius = self.layer.cornerRadius
+        confettiAnimationView.layer.masksToBounds = true
+        self.addSubview(confettiAnimationView)
+        confettiAnimationView.excuteAnimation()
     }
     
     func getSubviewBy(idenifier: String) -> UIView? {

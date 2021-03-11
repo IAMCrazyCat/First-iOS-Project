@@ -29,6 +29,7 @@ class UserCenterViewController: UIViewController {
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var restorePurchaseButton: UIButton!
     @IBOutlet weak var instructionButton: UIButton!
+    @IBOutlet weak var userNameButton: UIButton!
     
     var scrollViewTopOffset: CGFloat = 0
     var scrollViewLastOffset: CGFloat = 0
@@ -104,6 +105,10 @@ class UserCenterViewController: UIViewController {
        
     }
     
+    @IBAction func userNameButtonPressed(_ sender: Any) {
+        self.show(.customUserNamePopUp, animation: .slideInToBottom)
+    }
+    
     func setButtonsAppearence() {
         self.themeColorButton.tintColor = AppEngine.shared.userSetting.themeColor
         for button in self.settingButtons {
@@ -117,6 +122,10 @@ class UserCenterViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = engine.userSetting.themeColorAndBlack
     }
     
+    func updateUserNameButton() {
+        self.userNameButton.setTitle(self.engine.currentUser.name, for: .normal)
+    }
+    
 }
 
 
@@ -124,6 +133,7 @@ extension UserCenterViewController: UIObserver {
     func updateUI() {
         updateNavigationBar()
         setButtonsAppearence()
+        updateUserNameButton()
     }
 }
 
@@ -154,7 +164,10 @@ extension UserCenterViewController: PopUpViewDelegate {
     }
     
     func didSaveAndDismissPopUpView(type: PopUpType) {
-        
+        if type == .customUserNamePopUp {
+            self.engine.currentUser.name = (AppEngine.shared.storedDataFromPopUpView as? String) ?? "没有名字"
+            self.engine.notifyAllUIObservers()
+        }
     }
 }
 

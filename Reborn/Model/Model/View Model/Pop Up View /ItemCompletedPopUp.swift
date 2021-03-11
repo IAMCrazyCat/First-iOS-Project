@@ -41,7 +41,7 @@ class ItemCompletedPopUp: PopUpImpl {
     
     override func excuteAnimation() {
     
-        super.window.addConfettiAnimationView()
+        super.window.showConfettiAnimationAtBack()
         super.doneButton?.isHidden = false
         UIView.animate(withDuration: 1, delay: 2, animations: {
             self.promptLabel?.alpha = 1

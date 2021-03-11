@@ -75,8 +75,27 @@ class HomeViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
+   
         verticalContentViewHeightConstraint.constant = self.view.frame.height + overallProgressView.frame.maxY
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        // make sure that the overall progress is not coverd by custom navigation bar
+        let statusBarHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        self.spaceViewHeightConstraint.constant = self.customNavigationBar.frame.height - statusBarHeight
+    
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        super.viewWillDisappear(animated)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+       
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     func sendNotification() {
@@ -110,23 +129,7 @@ class HomeViewController: UIViewController {
     
     
     
-    override func viewDidAppear(_ animated: Bool) {
-        // make sure that the overall progress is not coverd by custom navigation bar
-        let statusBarHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
-        self.spaceViewHeightConstraint.constant = self.customNavigationBar.frame.height - statusBarHeight
     
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
-        super.viewWillDisappear(animated)
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-       
-        super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
    
     var timer: Timer?
     var currentTransitionValue = 0.0
@@ -262,6 +265,7 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UIObserver {
     func updateUI() {
+        
         
         updateNavigationView()
         updateItemCards()

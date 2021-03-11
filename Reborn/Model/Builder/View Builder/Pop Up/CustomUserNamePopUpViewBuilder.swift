@@ -1,15 +1,13 @@
 //
-//  CustomItemNamePopUpViewBuilder.swift
+//  CustomUserNamePopUpViewBuilder.swift
 //  Reborn
 //
-//  Created by Christian Liu on 25/2/21.
+//  Created by Christian Liu on 11/3/21.
 //
 
 import Foundation
 import UIKit
-
-class CustomItemNamePopUpViewBuilder: PopUpViewBuilder {
-    
+class CustomUserNamePopUpViewBuilder: PopUpViewBuilder {
     override func buildView() -> UIView {
         _ = super.buildView()
         self.setUpUI()
@@ -19,7 +17,7 @@ class CustomItemNamePopUpViewBuilder: PopUpViewBuilder {
     }
     
     private func setUpUI() {
-        super.titleLabel.text = "自定义项目名"
+        super.titleLabel.text = "更改名字"
     }
    
     private func addTextField() {
@@ -27,7 +25,7 @@ class CustomItemNamePopUpViewBuilder: PopUpViewBuilder {
         textField.accessibilityIdentifier = "TextField"
         textField.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackContent
         textField.layer.cornerRadius = self.setting.textFieldCornerRadius
-        textField.placeholder = "  请输入自定义名字"
+        textField.text = "\(AppEngine.shared.currentUser.name)"
         textField.tag = self.setting.popUpWindowTextFieldTag
         textField.addTarget(popUpViewController, action: #selector(popUpViewController.textFieldTapped(_:)), for: .touchDown)
         
@@ -42,7 +40,7 @@ class CustomItemNamePopUpViewBuilder: PopUpViewBuilder {
     private func addPromptLabel() {
         let promptLabel = UILabel()
         promptLabel.accessibilityIdentifier = "PromptLabel"
-        promptLabel.text = "请输入项目名字"
+        promptLabel.text = "请输入您的名字"
         promptLabel.font = AppEngine.shared.userSetting.fontMedium
         promptLabel.sizeToFit()
         promptLabel.textColor = UIColor.red
@@ -55,5 +53,4 @@ class CustomItemNamePopUpViewBuilder: PopUpViewBuilder {
         promptLabel.leftAnchor.constraint(equalTo: super.contentView.leftAnchor).isActive = true
         
     }
-
 }

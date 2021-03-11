@@ -318,6 +318,16 @@ class AppEngine {
         self.delegate?.didDismissPopUpViewWithoutSave()
         viewController.dismiss(animated: true, completion: nil)
         
+        var index = 0
+        for observer in self.observers {
+            if observer is PopUpViewController {
+                self.observers.remove(at: index)
+            }
+            index += 1
+        }
+        self.delegate = nil
+
+        
     }
     
     public func dismissBottomPopUpAndSave(thenGoBackTo viewController: PopUpViewController) {
@@ -327,7 +337,15 @@ class AppEngine {
             viewController.dismiss(animated: true, completion: nil)
             self.delegate?.didSaveAndDismissPopUpView(type: popUp.type)
         }
-       
+        
+        var index = 0
+        for observer in self.observers {
+            if observer is PopUpViewController {
+                self.observers.remove(at: index)
+            }
+            index += 1
+        }
+        self.delegate = nil
         
     }
     

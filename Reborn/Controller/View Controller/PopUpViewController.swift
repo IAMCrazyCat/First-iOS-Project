@@ -121,7 +121,7 @@ extension PopUpViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         
         if let popUp = self.popUp as? CustomFrequencyPopUp {
             let pickerviewData = popUp.pikerViewData as! Array<Frequency>
-            print("FUCK YOU")
+
             return pickerviewData[row].dataModel.title
         } else if let popUp = self.popUp as? CustomTargetDaysPopUp {
             let pickerviewData = popUp.pikerViewData as! Array<DataModel>

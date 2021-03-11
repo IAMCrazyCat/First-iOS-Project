@@ -24,7 +24,7 @@ class PopUpImpl: PopUp {
         return self.window.getSubviewBy(idenifier: "DoneButton") as? UIButton
     }
     var presentAnimationType: PopUpAnimationType
-    var popUpViewController: PopUpViewController
+    weak var popUpViewController: PopUpViewController!
     
     let setting: SystemSetting = SystemSetting.shared
     var type: PopUpType

@@ -82,8 +82,9 @@ class PopUpViewBuilder: ViewBuilder {
         doneButton.leftAnchor.constraint(equalTo: self.outPutView.leftAnchor, constant: self.setting.mainDistance).isActive = true
         doneButton.rightAnchor.constraint(equalTo: self.outPutView.rightAnchor, constant: -self.setting.mainDistance).isActive = true
        
+        doneButton.proportionallySetHeightWithScreen()
         doneButton.setCornerRadius()
-        doneButton.proportionallySetSizeWithScreen()
+        
     }
     
     private func addContentView() {

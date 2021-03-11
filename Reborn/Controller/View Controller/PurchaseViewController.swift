@@ -50,9 +50,11 @@ class PurchaseViewController: UIViewController {
         
         for view in functionViews {
             for subview in view.subviews {
-                if subview is UIButton {
-                    subview.setCornerRadius()
+                if let button = subview as? UIButton {
+                    button.proportionallySetSizeWithScreen()
+                    button.setCornerRadius()
                 }
+            
             }
         }
     }
