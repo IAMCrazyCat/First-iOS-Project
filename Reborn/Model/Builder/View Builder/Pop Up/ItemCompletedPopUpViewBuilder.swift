@@ -39,7 +39,7 @@ class ItemCompletedPopUpViewBuilder: PopUpViewBuilder {
     func addPromptLabel() {
         let promptLabel = UILabel()
         promptLabel.accessibilityIdentifier = "PromptLabel"
-        promptLabel.textColor = super.setting.greyColor
+        promptLabel.textColor = super.setting.grayColor
         promptLabel.text = "已完成的项目可以在 项目管理 中操作 "
         promptLabel.font = AppEngine.shared.userSetting.fontSmall.withSize(12)
         promptLabel.sizeToFit()

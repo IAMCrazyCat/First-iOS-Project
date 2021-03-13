@@ -13,7 +13,7 @@ class SetUpPageViewBuilder {
     var page: SetUpPage
     var pageCordinateX: CGFloat
     var superView: UIView
-    var pageView: UIView?
+    var pageView: UIView = UIView()
     let setting: SystemSetting = SystemSetting.shared
     
     init(page: SetUpPage, pageCordinateX: CGFloat, layoutGuideView: UIView){
@@ -25,14 +25,19 @@ class SetUpPageViewBuilder {
     public func buildSetUpPage() -> UIView {
         createView()
         addButtons()
-        return pageView!
+        
+        if page.ID == 5 {
+            addTextField()
+        }
+        return pageView
     }
         
         
     private func createView() {
-        
-        self.pageView = UIView(frame: CGRect(x: self.pageCordinateX, y: 0, width: superView.frame.width, height: superView.frame.height))
-        self.pageView?.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackBackground
+        pageView.accessibilityIdentifier = "PageView"
+        pageView.tag = page.ID
+        pageView.frame = CGRect(x: self.pageCordinateX, y: 0, width: superView.frame.width, height: superView.frame.height)
+        pageView.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackBackground
     }
     
     private func addButtons() {
@@ -49,12 +54,12 @@ class SetUpPageViewBuilder {
             let buttonTitle = dataButton.title
             
             if column == 1 { // left side buttons
-                buttonX = self.pageView!.frame.width / 2.0 - buttonWidth - self.setting.optionButtonHorizontalDistance / 2.0
+                buttonX = self.pageView.frame.width / 2.0 - buttonWidth - self.setting.optionButtonHorizontalDistance / 2.0
                 buttonY += self.setting.optionButtonVerticalDistance + buttonHeight
                 column += 1
                 
             } else { // right side buttons
-                buttonX = self.pageView!.frame.width / 2 + self.setting.optionButtonHorizontalDistance / 2
+                buttonX = self.pageView.frame.width / 2 + self.setting.optionButtonHorizontalDistance / 2
                 column = 1
             }
          
@@ -91,11 +96,35 @@ class SetUpPageViewBuilder {
                 if buttonTitle == self.setting.customButtonTitle {
                     button.tag = self.setting.customTargetDaysButtonTag
                 }
+                
             default: print("")
             }
             
-            self.pageView?.addSubview(button)
+            self.pageView.addSubview(button)
         }
+    }
+    
+    func addTextField() {
+
+        let textField = UITextField()
+        textField.setPadding()
+        //textField.disableKeyBoard()
+        textField.tintColor = AppEngine.shared.userSetting.themeColor
+        textField.accessibilityIdentifier = "TextField"
+        textField.backgroundColor = SystemSetting.shared.grayColor.withAlphaComponent(0.3)
+        textField.layer.cornerRadius = self.setting.textFieldCornerRadius
+        textField.placeholder = "您的名称"
+        textField.tag = self.setting.popUpWindowTextFieldTag
+        textField.addTarget(Actions.shared, action: Actions.setUpTextFieldChangedAction, for: .touchDown)
+        textField.returnKeyType = .done
+       
+        self.pageView.addSubview(textField)
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.widthAnchor.constraint(equalToConstant: self.pageView.frame.width - 2 * self.setting.mainDistance).isActive = true
+        textField.heightAnchor.constraint(equalToConstant: self.setting.textFieldHeight).isActive = true
+        textField.centerXAnchor.constraint(equalTo: self.pageView.centerXAnchor).isActive = true
+        textField.topAnchor.constraint(equalTo: self.pageView.topAnchor, constant: self.setting.optionButtonToTopDistance).isActive = true
+        
     }
     
     

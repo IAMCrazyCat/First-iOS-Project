@@ -33,4 +33,9 @@ class User: Codable {
     public func getAvatarImage() -> UIImage {
         return UIImage(data: avatar) ?? UIImage()
     }
+    
+    public func setAvatarImage(_ image: UIImage) {
+
+        avatar = image.pngData() ?? #imageLiteral(resourceName: "Test").pngData()!
+    }
 }

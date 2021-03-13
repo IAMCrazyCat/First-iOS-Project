@@ -22,8 +22,10 @@ class CustomUserNamePopUpViewBuilder: PopUpViewBuilder {
    
     private func addTextField() {
         let textField = UITextField()
+        textField.setPadding()
+        textField.tintColor = AppEngine.shared.userSetting.themeColor
         textField.accessibilityIdentifier = "TextField"
-        textField.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackContent
+        textField.backgroundColor = SystemSetting.shared.grayColor.withAlphaComponent(0.3)
         textField.layer.cornerRadius = self.setting.textFieldCornerRadius
         textField.text = "\(AppEngine.shared.currentUser.name)"
         textField.tag = self.setting.popUpWindowTextFieldTag

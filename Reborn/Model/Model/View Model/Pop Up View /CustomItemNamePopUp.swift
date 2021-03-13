@@ -9,18 +9,21 @@ import Foundation
 import UIKit
 class CustomItemNamePopUpView: PopUpImpl {
     
-    var textField: UITextField = UITextField()
-    var promptLabel: UILabel = UILabel()
+    var textField: UITextField? {
+        return super.contentView?.getSubviewBy(idenifier: "TextField") as? UITextField
+    }
+    var promptLabel: UILabel? {
+        return super.contentView?.getSubviewBy(idenifier: "PromptLabel") as? UILabel
+    }
     
     init(presentAnimationType: PopUpAnimationType, popUpViewController: PopUpViewController) {
         super.init(presentAnimationType: presentAnimationType, popUpViewController: popUpViewController, type: .customItemNamePopUp)
         
-        textField = super.contentView?.getSubviewBy(tag: self.setting.popUpWindowTextFieldTag) as! UITextField
-        promptLabel = super.window.getSubviewBy(tag: self.setting.popUpWindowPromptLabelTag) as! UILabel
+
     }
     
     override func isReadyToDismiss() -> Bool {
-        if textField.text != "" {
+        if textField?.text != "" {
             return true
         } else {
             self.hidePromptLabel(false)
@@ -31,7 +34,7 @@ class CustomItemNamePopUpView: PopUpImpl {
 
     
     func hidePromptLabel(_ isHidden: Bool) {
-        promptLabel.isHidden = isHidden
+        promptLabel?.isHidden = isHidden
     }
     
     override func createWindow() -> UIView {
@@ -39,7 +42,7 @@ class CustomItemNamePopUpView: PopUpImpl {
     }
     
     override func getStoredData() -> Any {
-        if let text = textField.text {
+        if let text = textField?.text {
             return text
         }
         

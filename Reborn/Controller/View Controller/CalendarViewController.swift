@@ -436,7 +436,8 @@ extension CalendarViewController: UIObserver {
 extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     @objc func cellButtonPressed(_ sender: UIButton) {
-     
+        
+        Vibrator.vibrate(withImpactLevel: .light)
         if let pressedCell = self.bottomCollectionView.cellForItem(at: IndexPath(row: sender.tag, section: 0)) as? CalendarCell {
             
             if pressedCell.state == .selected {

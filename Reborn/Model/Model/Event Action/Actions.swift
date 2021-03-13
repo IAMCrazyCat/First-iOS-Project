@@ -16,10 +16,10 @@ class Actions {
        
     }
     
-    var punchInAction: Selector = #selector(Actions.shared.itemPunchInButtonPressed)
-    var detailsViewAction: Selector = #selector(Actions.shared.itemDetailsButtonPressed(_:))
-    var themeColorChangedAction: Selector = #selector(Actions.shared.themeColorButtonPressed(_:))
-    
+    static var punchInAction: Selector = #selector(Actions.shared.itemPunchInButtonPressed)
+    static var detailsViewAction: Selector = #selector(Actions.shared.itemDetailsButtonPressed(_:))
+    static var themeColorChangedAction: Selector = #selector(Actions.shared.themeColorButtonPressed(_:))
+    static var setUpTextFieldChangedAction: Selector = #selector(Actions.shared.setUpTextFieldTapped(_:))
     @objc func itemPunchInButtonPressed(_ sender: UIButton!) {
         AppEngine.shared.updateItem(tag: sender.tag)
         AppEngine.shared.notifyAllUIObservers()
@@ -60,5 +60,18 @@ class Actions {
             AppEngine.shared.changeThemeColor(to: newThemeColor!)
         }
         
+    }
+    
+    @objc func setUpTextFieldTapped(_ sender: UITextField!) {
+
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if let setUpViewController = storyBoard.instantiateViewController(withIdentifier: "SetUpViewController") as? SetUpViewController {
+
+
+    
+        }
+        
+       
     }
 }

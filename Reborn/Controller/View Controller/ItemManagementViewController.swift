@@ -24,10 +24,7 @@ class ItemManagementViewController: UIViewController {
         //customNavigationBar.backgroundColor = engine.userSetting.themeColorAndBlack
 //        optionBar.layer.cornerRadius = setting.customNavigationBarCornerRadius
 //        optionBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
-        
-        
-        
-        
+
         engine.add(observer: self)
 
         updateUI()
@@ -67,6 +64,18 @@ class ItemManagementViewController: UIViewController {
         }
 
         updateUI()
+    }
+    
+    @IBAction func addNewItemsButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "GoToNewItemView", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationViewController = segue.destination as? NewItemViewController, segue.identifier == "GoToNewItemView" {
+            
+            destinationViewController.lastViewController = self
+            destinationViewController.strategy = AddingItemStrategy(newItemViewController: destinationViewController)
+        }
     }
     
     func updateNavigationBar() {

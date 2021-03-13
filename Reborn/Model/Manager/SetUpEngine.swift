@@ -14,7 +14,8 @@ class SetUpEngine {
     var quittingItemDays: Int = 0
     var persistingItemName: String = ""
     var persistingItemDays: Int = 0
-    var userGender: Gender?
+    var userName: String = ""
+    var userGender: Gender = .undefined
     func nextPage() {
         if progress < pages.count {
             progress += 1
@@ -37,29 +38,29 @@ class SetUpEngine {
     
     
     
-    func processSlectedData(pressedButton: UIButton) { // execute once next button clicked
+    func save(data: Any) { // execute once next button clicked
         
-        var buttonTitle = pressedButton.currentTitle ?? "Error"
+        var data = data as! String
         
-
         switch progress {
         case 1:
-            quittingItemName = buttonTitle
+            quittingItemName = data
         case 2:
-         
-            buttonTitle.removeLast()
-            quittingItemDays = Int(buttonTitle) ?? 0
+            data.removeLast()
+            quittingItemDays = Int(data) ?? 0
         case 3:
-            persistingItemName = buttonTitle
+            persistingItemName = data
         case 4:
-
-            buttonTitle.removeLast()
-            persistingItemDays = Int(buttonTitle) ?? 0
-        case 5:
             
-            if buttonTitle == Gender.male.rawValue {
+            data.removeLast()
+            persistingItemDays = Int(data) ?? 0
+        case 5:
+            userName = data
+        case 6:
+
+            if data == Gender.male.rawValue {
                 userGender = .male
-            } else if buttonTitle == Gender.female.rawValue {
+            } else if data == Gender.female.rawValue {
                 userGender = .female
             } else {
                 userGender = .other
@@ -75,12 +76,15 @@ class SetUpEngine {
     
     func createUser(setUpIsSkipped: Bool) {
 
-        let newUser = User(name: "没有名字", gender: userGender ?? .undefined, avatar: #imageLiteral(resourceName: "Test"), keys: 3, items: [Item](), vip: false)
+        let newUser = AppEngine.shared.currentUser
         
         if !setUpIsSkipped {
-            
+            newUser.name = userName
+            newUser.gender = userGender
             newUser.items.append(QuittingItem(ID: 1, name: quittingItemName, days: quittingItemDays, finishedDays: 0, frequency: .everyday, creationDate: AppEngine.shared.currentDate))
             newUser.items.append(PersistingItem(ID: 2, name: persistingItemName, days: persistingItemDays, finishedDays: 0, frequency: .everyday, creationDate: AppEngine.shared.currentDate))
+            
+
         }
 
         AppEngine.shared.currentUser = newUser
@@ -97,21 +101,6 @@ class SetUpEngine {
         return AppEngine.shared.storedDataFromPopUpView ?? "Error"
     }
     
-    func loadSetUpPages(controller: SetUpViewController) -> UIView {
-        
-        let layoutGuideView = controller.middleView!
-        var pageNum = 0
-        
-        for page in pages {
-            print(CGFloat(pageNum) * layoutGuideView.frame.width)
-            let builder = SetUpPageViewBuilder(page: page, pageCordinateX: CGFloat(pageNum) * layoutGuideView.frame.width, layoutGuideView: layoutGuideView)
-            controller.middleScrollView.addSubview(builder.buildSetUpPage())
-            controller.middleScrollView.contentSize = CGSize(width: CGFloat(pages.count) * layoutGuideView.frame.width, height: layoutGuideView.frame.height) // set size
-            pageNum += 1
-            
-        }
-       
-        return layoutGuideView
-    }
+   
     
 }

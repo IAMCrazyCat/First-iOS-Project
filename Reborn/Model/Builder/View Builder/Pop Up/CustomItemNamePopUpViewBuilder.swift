@@ -24,10 +24,12 @@ class CustomItemNamePopUpViewBuilder: PopUpViewBuilder {
    
     private func addTextField() {
         let textField = UITextField()
+        textField.setPadding()
+        textField.tintColor = AppEngine.shared.userSetting.themeColor
         textField.accessibilityIdentifier = "TextField"
-        textField.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackContent
+        textField.backgroundColor = SystemSetting.shared.grayColor.withAlphaComponent(0.3)
         textField.layer.cornerRadius = self.setting.textFieldCornerRadius
-        textField.placeholder = "  请输入自定义名字"
+        textField.placeholder = "请输入自定义名字"
         textField.tag = self.setting.popUpWindowTextFieldTag
         textField.addTarget(popUpViewController, action: #selector(popUpViewController.textFieldTapped(_:)), for: .touchDown)
         

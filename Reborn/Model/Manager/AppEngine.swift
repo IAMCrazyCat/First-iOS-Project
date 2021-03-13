@@ -16,7 +16,7 @@ protocol PopUpViewDelegate {
 class AppEngine {
     
     public static let shared = AppEngine()
-    public var currentUser: User = User(name: "颠猫", gender: .undefined, avatar: #imageLiteral(resourceName: "Test"), keys: 3, items: [Item](), vip: false)
+    public var currentUser: User = User(name: "无名氏", gender: .undefined, avatar: #imageLiteral(resourceName: "Test"), keys: 3, items: [Item](), vip: false)
     public var defaults: UserDefaults = UserDefaults.standard
     public let dataFilePath: URL? = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("item.plist")
     public let setting: SystemSetting = SystemSetting()
@@ -75,7 +75,7 @@ class AppEngine {
         self.currentUser.themeColorSetting = newThemeColor
         self.userSetting.themeColor = newThemeColor.uiColor
         self.notifyAllUIObservers()
-        self.saveUser(self.currentUser)
+        self.saveUser()
     }
     
     func initUserSetting() {
@@ -92,7 +92,7 @@ class AppEngine {
         } else {
             
             print("First launch")
-            UserDefaults.standard.set(true, forKey: "LaunchedBefore")
+            
         }
         return launchedBefore
     }
@@ -168,7 +168,7 @@ class AppEngine {
         }
     }
     
-    public func saveUser(_ user: User) {
+    public func saveUser(_ newUser: User = AppEngine.shared.currentUser) {
 
         let encoder = JSONEncoder()//PropertyListEncoder()
 

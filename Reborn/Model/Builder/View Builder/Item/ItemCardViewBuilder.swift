@@ -148,7 +148,7 @@ class ItemCardViewBuilder: ViewBuilder {
         fullViewButton.tag = self.punchInButtonTag
         
         if isInteractable {
-            fullViewButton.addTarget(Actions.shared, action: Actions.shared.detailsViewAction, for: .touchUpInside)
+            fullViewButton.addTarget(Actions.shared, action: Actions.detailsViewAction, for: .touchUpInside)
         }
         
         outPutView.addSubview(fullViewButton)
@@ -339,7 +339,7 @@ class ItemCardViewBuilder: ViewBuilder {
         punchInButton.tag = self.punchInButtonTag
         
         if isInteractable {
-            punchInButton.addTarget(Actions.shared, action: Actions.shared.punchInAction, for: .touchUpInside)
+            punchInButton.addTarget(Actions.shared, action: Actions.punchInAction, for: .touchUpInside)
         }
     }
     

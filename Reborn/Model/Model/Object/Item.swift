@@ -57,6 +57,8 @@ class Item: Codable {
         self.creationDate = creationDate
         self.type = type
         self.frequency = frequency
+        
+        updateScheduleDates()
         updateState()
     }
     

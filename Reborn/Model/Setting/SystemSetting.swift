@@ -23,7 +23,7 @@ struct SystemSetting{
     let UIViewShadowOffset: CGSize = CGSize(width: 0.0, height: 1.5)
     let UIViewShadowOpacity: Float = 1.0
     
-    let greyColor: UIColor = UIColor(named: "GreyColor")!
+    let grayColor: UIColor = UIColor(named: "GreyColor")!
     
     
     var customTargetDaysButtonTag = 10

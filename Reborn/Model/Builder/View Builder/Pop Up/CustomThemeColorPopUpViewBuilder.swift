@@ -50,7 +50,7 @@ class CustomThemeColorPopUpViewBuilder: PopUpViewBuilder {
             colorButton.setBackgroundImage(#imageLiteral(resourceName: "ThemeColorIcon"), for: .normal)
             colorButton.imageView?.contentMode = .scaleToFill
             colorButton.tintColor = themeColor
-            colorButton.addTarget(Actions.shared, action: Actions.shared.themeColorChangedAction, for: .touchUpInside)
+            colorButton.addTarget(Actions.shared, action: Actions.themeColorChangedAction, for: .touchUpInside)
             super.contentView.addSubview(colorButton)
             
         

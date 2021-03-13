@@ -30,6 +30,9 @@ class UserCenterViewController: UIViewController {
     @IBOutlet weak var restorePurchaseButton: UIButton!
     @IBOutlet weak var instructionButton: UIButton!
     @IBOutlet weak var userNameButton: UIButton!
+    @IBOutlet weak var editPartButton: UIButton!
+    
+    @IBOutlet weak var verticalContentViewHeightConstraint: NSLayoutConstraint!
     
     var scrollViewTopOffset: CGFloat = 0
     var scrollViewLastOffset: CGFloat = 0
@@ -41,7 +44,8 @@ class UserCenterViewController: UIViewController {
         super.viewDidLoad()
         AppEngine.shared.add(observer: self)
         
-        
+      
+        editPartButton.alpha = 0.7
         avaterView.setCornerRadius()
         purchaseView.layer.cornerRadius = setting.itemCardCornerRadius - 5
         punchInSettingView.layer.cornerRadius = setting.itemCardCornerRadius - 5
@@ -126,6 +130,15 @@ class UserCenterViewController: UIViewController {
         self.userNameButton.setTitle(self.engine.currentUser.name, for: .normal)
     }
     
+    func updateAvatarView() {
+        self.avaterView.image = self.engine.currentUser.getAvatarImage()
+    }
+    
+    func updateVerticalContentViewHeight() {
+        //self.verticalScrollView.layoutIfNeeded()
+        self.verticalContentViewHeightConstraint.constant = self.appVersionLabelButton.frame.maxY + self.setting.contentToScrollViewBottomDistance
+    }
+    
 }
 
 
@@ -134,10 +147,13 @@ extension UserCenterViewController: UIObserver {
         updateNavigationBar()
         setButtonsAppearence()
         updateUserNameButton()
+        updateAvatarView()
+        updateVerticalContentViewHeight()
     }
 }
 
 extension UserCenterViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         var newImage: UIImage
 
@@ -148,7 +164,10 @@ extension UserCenterViewController: UINavigationControllerDelegate, UIImagePicke
         } else {
             return
         }
-
+        
+        self.engine.currentUser.setAvatarImage(newImage)
+        self.engine.notifyAllUIObservers()
+        self.engine.saveUser()
         self.dismiss(animated: true)
     }
 }

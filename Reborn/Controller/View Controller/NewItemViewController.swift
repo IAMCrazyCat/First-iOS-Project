@@ -60,6 +60,7 @@ class NewItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         doneButton.setTitleColor(engine.userSetting.themeColor, for: .normal)
         itemNameTextfield.delegate = self
         verticalScrollView.delegate = self
@@ -68,6 +69,9 @@ class NewItemViewController: UIViewController {
         customTargetDaysButton.setTitle(setting.customButtonTitle, for: .normal)
         customTargetDaysButton.tag = setting.customTargetDaysButtonTag
         customFrequencyButton.tag = setting.customFrequencyButtonTag
+        
+        itemNameTextfield.setPadding()
+        itemNameTextfield.tintColor = engine.userSetting.themeColor
         itemNameTextfield.addTarget(self, action: #selector(textfieldTextChanged(_:)), for: .editingChanged)
         itemNameTextfield.layer.cornerRadius = setting.textFieldCornerRadius
         

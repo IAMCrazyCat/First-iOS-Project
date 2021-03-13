@@ -20,19 +20,26 @@ class SetUpViewController: UIViewController{
     
     var engine = SetUpEngine()
     var setting = SystemSetting()
-    
 
-    
     var scrollViewWidth: CGFloat = 0
     var backButtonPressed = false
     var numberOfPagedAdded = 0
     var selectedButton: UIButton = UIButton()
-    
     var itemIsSkipped: Bool = false
+    var pageView: UIView? {
+        return self.middleScrollView.getSubviewBy(tag: self.engine.getCurrentPage().ID)
+    }
+    var textField: UITextField? {
+        return self.middleScrollView.getSubviewBy(tag: 5)?.getSubviewBy(idenifier: "TextField") as? UITextField
+    }
     static let optionButtonAction = #selector(optionButtonPressed)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(keyboardShowNotification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidHide(keyboardShowNotification:)), name: UIResponder.keyboardDidHideNotification, object: nil)
         
         middleView.frame = CGRect(x: middleView.frame.origin.x, y: middleView.frame.origin.y, width: view.frame.width, height: middleView.frame.height)
 
@@ -41,43 +48,63 @@ class SetUpViewController: UIViewController{
         nextStepButton.isEnabled = false
         
         //addAllPages()
-        updateButtons()
+        loadSetUpPages()
         updateUI()
-       
+        
+        textField?.delegate = self
     }
     
-    
-    func updateButtons() { // Adding a new page to scrollview
-        
-        middleView = engine.loadSetUpPages(controller: self)
+    override func viewDidLayoutSubviews() {
         
     }
     
-   
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
     
+
     @IBAction func nextStepButtonPressed(_ sender: UIButton) {
-
-
-        if nextStepButton.currentTitle == setting.finishButtonTitle {
-            self.engine.processSlectedData(pressedButton: self.selectedButton)
-            self.engine.createUser(setUpIsSkipped: false)
-            self.goToHomeView()
+    
+        
+        
+        
+        if self.engine.getCurrentPage().ID != 5 {
             
-        } else if selectedButton.currentTitle == self.setting.skipButtonTitle {
-            
-            self.engine.nextPage()
-            self.engine.nextPage()
-            self.deSelectButton()
-            self.itemIsSkipped = true
+            if sender.currentTitle == setting.finishButtonTitle {
+                self.engine.save(data: self.selectedButton.currentTitle ?? "")
+                self.engine.createUser(setUpIsSkipped: false)
+                self.goToHomeView()
+                
+            } else if selectedButton.currentTitle == self.setting.skipButtonTitle {
+                
+                self.engine.nextPage()
+                self.engine.nextPage()
+                self.deSelectButton()
+                self.itemIsSkipped = true
+                
+            } else {
+                self.engine.save(data: self.selectedButton.currentTitle ?? "")
+                self.engine.nextPage()
+                self.deSelectButton()
+                self.itemIsSkipped = false
+            }
             
         } else {
             
-            self.engine.processSlectedData(pressedButton: self.selectedButton)
-            self.engine.nextPage()
-            self.deSelectButton()
-            self.itemIsSkipped = false
-
+            if let text = self.textField?.text, text != "" {
+              
+                self.engine.save(data: text)
+                self.engine.nextPage()
+                self.deSelectButton()
+                self.itemIsSkipped = false
+                
+            }
+            
         }
+        
+        
+        
+   
         
     }
     
@@ -98,6 +125,26 @@ class SetUpViewController: UIViewController{
 
     }
     
+    func loadSetUpPages(){
+        
+        let layoutGuideView = self.middleView!
+        var pageNum = 0
+        
+        for page in self.engine.pages {
+            print(CGFloat(pageNum) * layoutGuideView.frame.width)
+            let builder = SetUpPageViewBuilder(page: page, pageCordinateX: CGFloat(pageNum) * layoutGuideView.frame.width, layoutGuideView: layoutGuideView)
+            self.middleScrollView.addSubview(builder.buildSetUpPage())
+            self.middleScrollView.contentSize = CGSize(width: CGFloat(self.engine.pages.count) * layoutGuideView.frame.width, height: layoutGuideView.frame.height) // set size
+            pageNum += 1
+            
+        }
+    
+        middleView = layoutGuideView
+    }
+    
+
+ 
+    
     func selectButton(button: UIButton) {
         
         self.nextStepButton.isEnabled = true
@@ -117,21 +164,26 @@ class SetUpViewController: UIViewController{
     
     
     @IBAction func skipSetUpButtonPressed(_ sender: UIButton) {
-        self.engine.processSlectedData(pressedButton: self.selectedButton)
+    
         self.engine.createUser(setUpIsSkipped: true)
         self.goToHomeView()
     }
     
+    @IBAction func skipButtonPressed(_ sender: UIButton) {
+        goToHomeView()
+    }
     
     @objc func optionButtonPressed(_ sender: UIButton! ) { // option button selected action
         print(sender.tag)
         if sender.tag == self.setting.customItemNameButtonTag {
             
-            self.showPopUpView(popUpType: .customItemNamePopUp)
+            self.show(.customItemNamePopUp)
+
             
         } else if sender.tag == self.setting.customTargetDaysButtonTag {
 
-            self.showPopUpView(popUpType: .customTargetDaysPopUp)
+            self.show(.customTargetDaysPopUp)
+
         }
         
         self.selectButton(button: sender)
@@ -139,18 +191,18 @@ class SetUpViewController: UIViewController{
         
     }
     
-    
-    func showPopUpView(popUpType: PopUpType) {
+    @objc
+    func keyboardWillShow(keyboardShowNotification notification: Notification) {
 
-        self.engine.showPopUp(popUpType: popUpType, controller: self)
-
+        print("KeyBoardWillShow")
+        
     }
     
-    @IBAction func skipButtonPressed(_ sender: UIButton) {
-        goToHomeView()
+    @objc
+    func keyboardDidHide(keyboardShowNotification notification: Notification) {
+        print("KeyboardDidHide")
     }
-    
-    
+ 
     func goToHomeView() {
         
         self.performSegue(withIdentifier: "goToHomeView", sender: self)
@@ -169,7 +221,7 @@ class SetUpViewController: UIViewController{
         }
         
         //update button background color
-        nextStepButton.backgroundColor = nextStepButton.isEnabled ? AppEngine.shared.userSetting.themeColor: AppEngine.shared.userSetting.grayAndBlack
+        nextStepButton.backgroundColor = nextStepButton.isEnabled ? AppEngine.shared.userSetting.themeColor : SystemSetting.shared.grayColor.withAlphaComponent(0.5)
         
        
         if engine.progress == engine.getPagesCount() {
@@ -182,6 +234,17 @@ class SetUpViewController: UIViewController{
     
 }
 
+extension SetUpViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+   
+        self.nextStepButton.isEnabled = textField.text == "" ? false : true
+        self.updateUI()
+        return true
+    }
+}
+
+
 extension SetUpViewController: PopUpViewDelegate {
     // delegate extension
     func willDismissView() {
@@ -190,7 +253,7 @@ extension SetUpViewController: PopUpViewDelegate {
 
     
     func didDismissPopUpViewWithoutSave() {
-        print("DISMISS")
+        self.deSelectButton()
     }
     
     func didSaveAndDismissPopUpView(type: PopUpType) {

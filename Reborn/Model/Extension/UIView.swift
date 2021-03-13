@@ -104,21 +104,55 @@ extension UIView {
         let items = AppEngine.shared.currentUser.items
         var tag: Int = items.count - 1
         var cordinateY: CGFloat = SystemSetting.shared.mainPadding
-
-        while tag >= 0 {
-            let item = items[tag]
-            if item.state == condition || isRenderingAll {
-                let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: SystemSetting.shared.mainPadding, y: cordinateY, width: self.frame.width - 2 * SystemSetting.shared.mainPadding, height: SystemSetting.shared.itemCardHeight), punchInButtonTag: tag, isInteractable: true)
-                let itemCard = builder.buildView()
-                cordinateY += SystemSetting.shared.itemCardHeight + SystemSetting.shared.itemCardGap
-                self.frame.size.height = itemCard.frame.maxY
-                self.addSubview(itemCard)
-                
-                
+       
+        let promptButton = UIButton()
+        
+        self.addSubview(promptButton)
+        promptButton.translatesAutoresizingMaskIntoConstraints = false
+        promptButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        //promptButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        promptButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 100).isActive = true
+        
+        var noConditionedItemFound: Bool = true
+        var userHasNoItem: Bool = true
+        if items.count > 0 {
+            userHasNoItem = false
+            while tag >= 0 {
+                let item = items[tag]
+                if item.state == condition || isRenderingAll {
+                    let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: SystemSetting.shared.mainPadding, y: cordinateY, width: self.frame.width - 2 * SystemSetting.shared.mainPadding, height: SystemSetting.shared.itemCardHeight), punchInButtonTag: tag, isInteractable: true)
+                    let itemCard = builder.buildView()
+                    cordinateY += SystemSetting.shared.itemCardHeight + SystemSetting.shared.itemCardGap
+                    self.frame.size.height = itemCard.frame.maxY
+                    self.addSubview(itemCard)
+                    noConditionedItemFound = false
+                    
+                }
+                tag -= 1
             }
-            tag -= 1
+
+        }
+       
+        if userHasNoItem {
+            print("HHHHHH")
+            promptButton.setTitle("点击右上角添加你的第一个目标", for: .normal)
+        } else if noConditionedItemFound {
+            
+            switch condition {
+            case .completed:
+                promptButton.setTitle("还没有完成的项目，继续加油", for: .normal)
+            case .duringBreak:
+                promptButton.setTitle("今天没有休息的项目，记得打卡哦", for: .normal)
+            case .inProgress:
+                promptButton.setTitle("今天没有项目需要打卡，好好休息", for: .normal)
+            default:
+                promptButton.setTitle("暂无项目", for: .normal)
+            }
+            
         }
         
+        promptButton.titleLabel?.font = AppEngine.shared.userSetting.fontSmall
+        promptButton.setTitleColor(SystemSetting.shared.grayColor, for: .normal)
         
       
     }

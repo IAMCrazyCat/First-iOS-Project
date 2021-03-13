@@ -129,6 +129,7 @@ class OverAllProgressViewBuilder: ViewBuilder {
         imageView.frame.size = CGSize(width: (circleRadius * 2 - progressWidth) * 0.9, height: (circleRadius * 2 - progressWidth ) * 0.9)
         imageView.center = CGPoint(x: circleView.frame.width / 2, y: circleView.frame.height / 2)
         imageView.image = self.avatarImage
+        imageView.contentMode = .scaleAspectFill
         imageView.setCornerRadius()
 
         circleView.addSubview(imageView)
@@ -171,6 +172,7 @@ class OverAllProgressViewBuilder: ViewBuilder {
         imageView.frame.size = CGSize(width: (circleRadius * 2 - progressWidth) * 0.8, height: (circleRadius * 2 - progressWidth ) * 0.8)
         imageView.center = CGPoint(x: circleView.frame.width / 2, y: circleView.frame.height / 2)
         imageView.image = self.avatarImage
+        imageView.contentMode = .scaleAspectFill
         imageView.setCornerRadius()
          
         circleView.accessibilityIdentifier = "ProgressCircleView"

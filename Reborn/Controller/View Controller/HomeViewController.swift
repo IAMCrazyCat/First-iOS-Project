@@ -15,15 +15,17 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var itemsTitleLabel: UILabel!
 
-    @IBOutlet var itemCardsView: UIView!
+    @IBOutlet weak var itemCardsView: UIView!
     
-    @IBOutlet var verticalContentViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var verticalContentViewHeightConstraint: NSLayoutConstraint!
     
-    @IBOutlet var addNewItemButton: UIButton!
-    @IBOutlet var customNavigationBar: UIView!
+    @IBOutlet weak var addNewItemButton: UIButton!
+    @IBOutlet weak var customNavigationBar: UIView!
     @IBOutlet weak var spaceView: UIView!
     @IBOutlet weak var spaceViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var todayProgressLabel: UILabel!
+
+
     
     static var view: UIView!
     
@@ -44,6 +46,11 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if engine.checkIfAppLaunchedBefore() {
+            
+        } else {
+            UserDefaults.standard.set(true, forKey: "LaunchedBefore")
+        }
         
         
         engine.add(observer: self)
@@ -125,10 +132,6 @@ class HomeViewController: UIViewController {
         }
     }
     
-  
-    
-    
-    
     
    
     var timer: Timer?
@@ -166,12 +169,12 @@ class HomeViewController: UIViewController {
     }
     
 
-    func updateItemCards() {
+    func updateItemCardsView() {
 
         self.itemCardsView.removeAllSubviews()
+       
         self.view.layoutIfNeeded()
         self.itemCardsView.renderItemCards(withCondition: .inProgress)
-        
     }
     
     func updateNavigationView() {
@@ -260,6 +263,14 @@ class HomeViewController: UIViewController {
 
 
     }
+    
+    func updateVerticalContentViewHeight() {
+        
+        let newHeight = self.itemCardsView.frame.maxY + self.setting.contentToScrollViewBottomDistance
+        if self.verticalContentViewHeightConstraint.constant < newHeight {
+            self.verticalContentViewHeightConstraint.constant = newHeight
+        }
+    }
 
 }
 
@@ -268,12 +279,8 @@ extension HomeViewController: UIObserver {
         
         
         updateNavigationView()
-        updateItemCards()
-        
-        let newHeight = self.itemCardsView.frame.maxY + self.setting.contentToScrollViewBottomDistance
-        if self.verticalContentViewHeightConstraint.constant < newHeight {
-            self.verticalContentViewHeightConstraint.constant = newHeight
-        }
+        updateItemCardsView()
+        updateVerticalContentViewHeight()
 
 
         
