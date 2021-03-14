@@ -21,7 +21,7 @@ class Actions {
     static var themeColorChangedAction: Selector = #selector(Actions.shared.themeColorButtonPressed(_:))
     static var setUpTextFieldChangedAction: Selector = #selector(Actions.shared.setUpTextFieldTapped(_:))
     @objc func itemPunchInButtonPressed(_ sender: UIButton!) {
-        AppEngine.shared.updateItem(tag: sender.tag)
+        AppEngine.shared.updateItem(withTag: sender.tag)
         AppEngine.shared.notifyAllUIObservers()
         
         let item = AppEngine.shared.getItemBy(tag: sender.tag)
@@ -57,7 +57,8 @@ class Actions {
         
         if newThemeColor != nil {
             Vibrator.vibrate(withImpactLevel: .light)
-            AppEngine.shared.changeThemeColor(to: newThemeColor!)
+            AppEngine.shared.userSetting.themeColor = UIColor(named: newThemeColor!.rawValue) ?? UIColor.clear
+            AppEngine.shared.saveSetting()
         }
         
     }

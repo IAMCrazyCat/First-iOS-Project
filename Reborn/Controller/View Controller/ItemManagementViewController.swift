@@ -79,8 +79,10 @@ class ItemManagementViewController: UIViewController {
     }
     
     func updateNavigationBar() {
-        self.navigationController?.navigationBar.removeBorder()
-        self.navigationController?.navigationBar.barTintColor = engine.userSetting.themeColorAndBlack
+        navigationController?.navigationBar.removeBorder()
+        navigationController?.navigationBar.barTintColor = engine.userSetting.themeColorAndBlack
+        navigationItem.rightBarButtonItem?.tintColor = engine.userSetting.smartLabelColorAndThemeColor
+        navigationItem.leftBarButtonItem?.tintColor = engine.userSetting.smartLabelColorAndThemeColor
     }
     
     func updateOptionBar() {

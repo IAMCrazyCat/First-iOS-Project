@@ -151,7 +151,7 @@ extension UIView {
             
         }
         
-        promptButton.titleLabel?.font = AppEngine.shared.userSetting.fontSmall
+        promptButton.titleLabel?.font = AppEngine.shared.userSetting.smallFont
         promptButton.setTitleColor(SystemSetting.shared.grayColor, for: .normal)
         
       

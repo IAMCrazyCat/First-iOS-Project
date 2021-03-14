@@ -32,7 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.rootViewController = viewController
             window?.makeKeyAndVisible()
             AppEngine.shared.requestNotificationPermission()
-            AppEngine.shared.scheduleNotification()
+            //AppEngine.shared.scheduleNotification()
         }
         
 

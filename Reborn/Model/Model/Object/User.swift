@@ -18,7 +18,7 @@ class User: Codable {
     var items: Array<Item>
     var vip: Bool
     
-    var themeColorSetting: ThemeColor? = nil
+    //var themeColorSetting: ThemeColor? = nil
 
     
     public init(name: String, gender: Gender, avatar: UIImage, keys: Int, items: Array<Item>, vip: Bool) {
@@ -38,4 +38,6 @@ class User: Codable {
 
         avatar = image.pngData() ?? #imageLiteral(resourceName: "Test").pngData()!
     }
+    
+
 }

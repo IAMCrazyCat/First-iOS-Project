@@ -105,7 +105,7 @@ class PopUpViewBuilder: ViewBuilder {
         
         titleLabel.accessibilityIdentifier = "TitleLabel"
         titleLabel.text = "(弹窗名)"
-        titleLabel.font = AppEngine.shared.userSetting.fontLarge
+        titleLabel.font = AppEngine.shared.userSetting.largeFont
         titleLabel.sizeToFit()
         
         outPutView.addSubview(titleLabel)

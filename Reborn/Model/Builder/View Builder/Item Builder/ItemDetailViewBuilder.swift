@@ -48,7 +48,7 @@ class ItemDetailViewBuilder: ViewBuilder {
         freqencyLabel.accessibilityIdentifier = "freqencyLabel"
         freqencyLabel.text = "频率: \(item.frequency.dataModel.title)"
         freqencyLabel.textColor = .black
-        freqencyLabel.font = AppEngine.shared.userSetting.fontMedium
+        freqencyLabel.font = AppEngine.shared.userSetting.mediumFont
         freqencyLabel.sizeToFit()
         
         outPutView.addSubview(freqencyLabel)
@@ -105,7 +105,7 @@ class ItemDetailViewBuilder: ViewBuilder {
             }
             
             progressLabel.frame.origin = CGPoint(x: labelX, y: labelY)
-            progressLabel.font = AppEngine.shared.userSetting.fontSmall
+            progressLabel.font = AppEngine.shared.userSetting.smallFont
             progressLabel.text = self.item.progressInPercentageString
             progressLabel.sizeToFit()
             

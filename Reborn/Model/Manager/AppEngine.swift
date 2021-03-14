@@ -15,21 +15,29 @@ protocol PopUpViewDelegate {
 
 class AppEngine {
     
+    private var defaults: UserDefaults = UserDefaults.standard
+    private let dataFilePath: URL? = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("item.plist")
+    private let setting: SystemSetting = SystemSetting()
+    private var observers: Array<UIObserver> = []
+    private var observerNotifier: Timer = Timer()
+    private var observerNotifierTimePoints: Array<Int> = []
+    private var observerIsNotifiedByNotifier: Bool = false
+    
+    
     public static let shared = AppEngine()
     public var currentUser: User = User(name: "无名氏", gender: .undefined, avatar: #imageLiteral(resourceName: "Test"), keys: 3, items: [Item](), vip: false)
-    public var defaults: UserDefaults = UserDefaults.standard
-    public let dataFilePath: URL? = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("item.plist")
-    public let setting: SystemSetting = SystemSetting()
     public let userSetting: UserSetting = UserSetting()
     public var overAllProgress: Double = 0.0
     public var storedDataFromPopUpView: Any? = nil
-    public var itemFromController: Item? = nil
-    public var currentViewController: UIViewController? = nil
+    public var currentViewController: UIViewController? {
+        return UIApplication.shared.getTopViewController()
+    }
 
     public var time: DateComponents {
         let date = Date()
         return Calendar.current.dateComponents([.hour,.minute,.second], from: date)
     }
+    
     public var currentTimeRange: TimeRange {
         
         for timeRange in TimeRange.allCases {
@@ -49,14 +57,9 @@ class AppEngine {
         let currentDay: Int = Calendar.current.component(.day, from: date)
         return CustomDate(year: currentYear, month: currentMonth, day: currentDay)
     }
-    
-    
+ 
     public var delegate: PopUpViewDelegate?
-    private var observers: Array<UIObserver> = []
-    private var observerNotifier: Timer = Timer()
-    private var observerNotifierTimePoints: Array<Int> = []
-    private var observerIsNotifiedByNotifier: Bool = false
-    
+
     private init() {
         
         print(dataFilePath!)
@@ -67,22 +70,10 @@ class AppEngine {
         
         observerNotifier = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in self.checkUpdate() }
         loadUser()
-        initUserSetting()
+        loadSetting()
+        scheduleNotification()
     }
     
-    func changeThemeColor(to newThemeColor: ThemeColor) {
-        
-        self.currentUser.themeColorSetting = newThemeColor
-        self.userSetting.themeColor = newThemeColor.uiColor
-        self.notifyAllUIObservers()
-        self.saveUser()
-    }
-    
-    func initUserSetting() {
-        if let themeColor = currentUser.themeColorSetting {
-            changeThemeColor(to: themeColor)
-        }
-    }
     
     func checkIfAppLaunchedBefore() -> Bool {
         let launchedBefore = UserDefaults.standard.bool(forKey: "LaunchedBefore")
@@ -108,27 +99,29 @@ class AppEngine {
 
         center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
             if granted {
-                print("Yay!")
+                print("App has notification permission")
             } else {
-                print("D'oh")
+                print("App does not have notification permission")
             }
         }
     }
     
     func scheduleNotification() {
+        
         if self.currentUser.items.count != 0 {
+            UNUserNotificationCenter.current().removeAllDeliveredNotifications()
             var item: Item {
-                var outputItem = self.currentUser.items[Int.random(in: 0 ... self.currentUser.items.count - 1)]
+                var outputItem = self.currentUser.items.random!
                 while outputItem.state != .inProgress {
                     
-                    outputItem = self.currentUser.items[Int.random(in: 0 ... self.currentUser.items.count - 1)]
+                    outputItem = self.currentUser.items.random!
                 }
                 return outputItem
             }
 
             
             let content = UNMutableNotificationContent()
-            content.title = "今天\(item.type.rawValue)\(item.name)了吗"
+            content.title = "\(currentUser.name), 今天\(item.type.rawValue)\(item.name)了吗"
             content.body = "已打卡 \(item.finishedDays)天, 进度: \(item.progressInPercentageString)"
             
             var dateComponents = DateComponents()
@@ -145,9 +138,12 @@ class AppEngine {
 
             // Schedule the request with the system.
             let notificationCenter = UNUserNotificationCenter.current()
+            
             notificationCenter.add(request) { (error) in
                if error != nil {
-                  print("没有权限")
+                  print("Notification schedule failed, No user permission")
+               } else {
+                print("Notification schedule successfully")
                }
             }
         }
@@ -183,7 +179,7 @@ class AppEngine {
     }
     
     
-    public func loadUser() {
+    private func loadUser() {
         
         if let data = try? Data(contentsOf: dataFilePath!) {
            let decoder = JSONDecoder() //PropertyListDecoder()
@@ -198,6 +194,25 @@ class AppEngine {
         if self.currentUser.vip {
             print("Welcome back VIP!")
         }
+    }
+    
+    public func saveSetting() {
+        defaults.set(userSetting.themeColor, forKey: "ThemeColor")
+        defaults.set(userSetting.notificationHour, forKey: "NotificationHour")
+        defaults.set(userSetting.notificationMinute, forKey: "NotificationMinute")
+        notifyAllUIObservers()
+    }
+    
+    private func loadSetting() {
+ 
+        let themeColor = defaults.color(forKey: "ThemeColor")
+        let notificationHour = defaults.integer(forKey: "NotificationHour")
+        let notificationMinute = defaults.integer(forKey: "NotificationMinute")
+    
+        userSetting.themeColor = themeColor!
+        userSetting.notificationHour = notificationHour
+        userSetting.notificationMinute = notificationMinute
+        
     }
     
     public func add(newItem: Item) {
@@ -222,11 +237,6 @@ class AppEngine {
     }
     
     
-    public func getItems() -> Array<Item>? {
- 
-        return self.currentUser.items
-    }
-    
     public func getLargestItemID() -> Int {
         var largestID = 0
         for item in self.currentUser.items {
@@ -239,7 +249,7 @@ class AppEngine {
     }
     
     
-    public func updateItem(tag index: Int) {
+    public func updateItem(withTag index: Int) {
         
         let item = self.currentUser.items[index]
         if !item.isPunchedIn {
@@ -309,11 +319,11 @@ class AppEngine {
             observer.updateUI()
         }
     }
-    // ------------------------------------ observer end ------------------------------------------------------
+    // ------------------------------------ observer ------------------------------------------------------
     
     
     
- 
+    // ------------------------------------ pop up ------------------------------------------------------
     public func dismissBottomPopUpWithoutSave(thenGoBackTo viewController: PopUpViewController) {
         self.delegate?.didDismissPopUpViewWithoutSave()
         viewController.dismiss(animated: true, completion: nil)
@@ -355,7 +365,7 @@ class AppEngine {
         return self.storedDataFromPopUpView ?? "No Stored Data"
     }
     
-    
+    // ------------------------------------ pop up ------------------------------------------------------
     
   
     

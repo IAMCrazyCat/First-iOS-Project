@@ -31,8 +31,10 @@ class UserCenterViewController: UIViewController {
     @IBOutlet weak var instructionButton: UIButton!
     @IBOutlet weak var userNameButton: UIButton!
     @IBOutlet weak var editPartButton: UIButton!
+    @IBOutlet weak var notificationTimeLabel: UILabel!
     
     @IBOutlet weak var verticalContentViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var dateLabel: UILabel!
     
     var scrollViewTopOffset: CGFloat = 0
     var scrollViewLastOffset: CGFloat = 0
@@ -99,6 +101,9 @@ class UserCenterViewController: UIViewController {
         self.showPurchaseView()
 
     }
+    @IBAction func notificationTimeButtonPressed(_ sender: UIButton) {
+        self.show(.notificationTimePopUp, animation: .slideInToCenter)
+    }
     
     @IBAction func settingButtonPressed(_ sender: UIButton) {
         self.show(.customThemeColorPopUp, animation: .slideInToCenter)
@@ -124,6 +129,7 @@ class UserCenterViewController: UIViewController {
     func updateNavigationBar() {
         navigationController?.navigationBar.removeBorder()
         navigationController?.navigationBar.barTintColor = engine.userSetting.themeColorAndBlack
+        navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.foregroundColor: engine.userSetting.smartLabelColorAndThemeColor]
     }
     
     func updateUserNameButton() {
@@ -139,6 +145,32 @@ class UserCenterViewController: UIViewController {
         self.verticalContentViewHeightConstraint.constant = self.appVersionLabelButton.frame.maxY + self.setting.contentToScrollViewBottomDistance
     }
     
+    func updateDateLabel() {
+        dateLabel.text = "\(engine.currentDate.year)年\(engine.currentDate.month)月\(engine.currentDate.day)日"
+    }
+    
+    func updateNotificationTimeLabel() {
+        
+        var notificationHour: String {
+            if engine.userSetting.notificationHour < 10 {
+                return "0\(engine.userSetting.notificationHour)"
+            } else {
+                return "\(engine.userSetting.notificationHour)"
+            }
+        }
+        
+        var notificationMinute: String {
+            if engine.userSetting.notificationMinute < 10 {
+                return "0\(engine.userSetting.notificationMinute)"
+            } else {
+                return "\(engine.userSetting.notificationMinute)"
+            }
+        }
+        
+        notificationTimeLabel.text = "\(notificationHour):\(notificationMinute)"
+        notificationTimeLabel.textColor = setting.grayColor
+    }
+    
 }
 
 
@@ -149,6 +181,8 @@ extension UserCenterViewController: UIObserver {
         updateUserNameButton()
         updateAvatarView()
         updateVerticalContentViewHeight()
+        updateDateLabel()
+        updateNotificationTimeLabel()
     }
 }
 
@@ -184,9 +218,22 @@ extension UserCenterViewController: PopUpViewDelegate {
     
     func didSaveAndDismissPopUpView(type: PopUpType) {
         if type == .customUserNamePopUp {
+            
             self.engine.currentUser.name = (AppEngine.shared.storedDataFromPopUpView as? String) ?? "没有名字"
-            self.engine.notifyAllUIObservers()
+            
+            
+        } else if type == .notificationTimePopUp {
+            
+            if let notificationTime = self.engine.storedDataFromPopUpView as? CustomTime {
+                self.engine.userSetting.notificationHour = notificationTime.hour
+                self.engine.userSetting.notificationMinute = notificationTime.minute
+                self.engine.saveSetting()
+                self.engine.scheduleNotification()
+            }
+
         }
+        
+        self.engine.notifyAllUIObservers()
     }
 }
 
@@ -228,7 +275,7 @@ extension UserCenterViewController: UIScrollViewDelegate {
             
             UIView.animate(withDuration: 0.2, animations: {
                 navigationBar!.barTintColor = self.view.backgroundColor
-                navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navigationBar!.tintColor.withAlphaComponent(0)]
+                navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: self.engine.userSetting.smartLabelColorAndThemeColor.withAlphaComponent(0)]
                 navigationBar!.layoutIfNeeded()
             })
             
@@ -236,7 +283,7 @@ extension UserCenterViewController: UIScrollViewDelegate {
             
             UIView.animate(withDuration: 0.2, animations: {
                 navigationBar!.barTintColor = self.engine.userSetting.themeColorAndBlack
-                navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navigationBar!.tintColor.withAlphaComponent(1)]
+                navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: self.engine.userSetting.smartLabelColorAndThemeColor.withAlphaComponent(1)]
                 navigationBar!.layoutIfNeeded()
             })
             

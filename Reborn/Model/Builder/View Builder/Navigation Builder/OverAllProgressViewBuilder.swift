@@ -75,16 +75,16 @@ class OverAllProgressViewBuilder: ViewBuilder {
         let firstTextLabel = UILabel()
 
         firstTextLabel.text = welcomeTextData.randomText(timeRange: AppEngine.shared.currentTimeRange).firstText
-        firstTextLabel.font = AppEngine.shared.userSetting.fontLarge
-        firstTextLabel.textColor = .white
+        firstTextLabel.font = AppEngine.shared.userSetting.largeFont
+        firstTextLabel.textColor = AppEngine.shared.userSetting.smartLabelColor
         firstTextLabel.frame.origin = CGPoint(x: 15, y: 0)
         firstTextLabel.sizeToFit()
         self.outPutView.addSubview(firstTextLabel)
         
         let secondTextLabel = UILabel()
-        secondTextLabel.font = AppEngine.shared.userSetting.fontSmall
+        secondTextLabel.font = AppEngine.shared.userSetting.smallFont
         secondTextLabel.text = welcomeTextData.randomText(timeRange: AppEngine.shared.currentTimeRange).secondText
-        secondTextLabel.textColor = .white
+        secondTextLabel.textColor = AppEngine.shared.userSetting.smartLabelColor
         secondTextLabel.sizeToFit()
         
         
@@ -198,8 +198,8 @@ class OverAllProgressViewBuilder: ViewBuilder {
     private func addProgressLabel() {
         let progressLabel = UILabel()
         progressLabel.text = "已完成: \(String(format: "%.1f", progress * 100))%"
-        progressLabel.font = AppEngine.shared.userSetting.fontSmall
-        progressLabel.textColor = .white
+        progressLabel.font = AppEngine.shared.userSetting.smallFont
+        progressLabel.textColor = AppEngine.shared.userSetting.smartLabelColor
         progressLabel.sizeToFit()
         progressLabel.center = CGPoint(x: self.circleView.center.x, y: self.circleView.center.y + 90)
         

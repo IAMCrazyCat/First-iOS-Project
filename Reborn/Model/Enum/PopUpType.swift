@@ -13,4 +13,5 @@ enum PopUpType {
     case customThemeColorPopUp
     case customUserNamePopUp
     case itemCompletedPopUp
+    case notificationTimePopUp
 }

@@ -31,7 +31,7 @@ class PurchaseViewController: UIViewController {
         super.viewDidLoad()
         SKPaymentQueue.default().add(self)
         
-        
+        avatarView.contentMode = .scaleAspectFill
         functionViews.append(VIPFounctionOneView)
         functionViews.append(VIPFounctionTwoView)
         functionViews.append(VIPFounctionThreeView)
@@ -75,9 +75,14 @@ class PurchaseViewController: UIViewController {
         }
     }
     
+    func updateUserAvatar() {
+        avatarView.image = engine.currentUser.getAvatarImage()
+    }
+    
     
     func updateUI() {
         updateVIPFouctionViews()
+        updateUserAvatar()
     }
 
 }

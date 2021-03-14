@@ -179,8 +179,8 @@ class HomeViewController: UIViewController {
     
     func updateNavigationView() {
         
-        self.addNewItemButton.tintColor = engine.userSetting.whiteAndThemColor.brightColor
-        self.todayProgressLabel.textColor = engine.userSetting.whiteAndThemColor.brightColor
+        self.addNewItemButton.tintColor = self.engine.userSetting.smartLabelColorAndThemeColor.brightColor
+        self.todayProgressLabel.textColor = self.engine.userSetting.smartLabelColorAndThemeColor.brightColor
         self.customNavigationBar.backgroundColor = engine.userSetting.themeColorAndBlack
         self.spaceView.backgroundColor = engine.userSetting.themeColorAndBlack
         self.todayProgressLabel.text = "今日打卡: \(self.engine.getTodayProgress())"

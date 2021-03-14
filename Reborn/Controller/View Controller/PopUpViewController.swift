@@ -52,19 +52,24 @@ class PopUpViewController: UIViewController {
     
     @objc
     func keyboardWillShow(keyboardShowNotification notification: Notification) {
-
-        if let userInfo = notification.userInfo, let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
-            self.keyboardFrame = keyboardFrame
-            
-            if !keyboardDidShowFully {
-                UIView.animate(withDuration: 0.2, delay: 0.05, options: .curveEaseOut, animations: {
-                    self.view.frame.origin.y -= keyboardFrame.height
-                })
-            }
-           
-        }
         
-        self.keyboardDidShowFully = true
+        if let animationType = self.popUp?.presentAnimationType, animationType == .slideInToBottom {
+            
+            if let userInfo = notification.userInfo, let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+                self.keyboardFrame = keyboardFrame
+                
+                if !keyboardDidShowFully {
+                    UIView.animate(withDuration: 0.2, delay: 0.05, options: .curveEaseOut, animations: {
+                        self.view.frame.origin.y -= keyboardFrame.height
+                    })
+                }
+               
+            }
+            
+            self.keyboardDidShowFully = true
+        }
+            
+       
         
     }
     

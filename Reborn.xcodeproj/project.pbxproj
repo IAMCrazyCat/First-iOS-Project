@@ -107,6 +107,10 @@
 		22CE4EF025D00C65007EBD5B /* AddingItemStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE4EEF25D00C65007EBD5B /* AddingItemStrategy.swift */; };
 		22CE4EF525D00C73007EBD5B /* EditingItemStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE4EF425D00C73007EBD5B /* EditingItemStrategy.swift */; };
 		22D00DD725FDE17500DB3F1D /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 22D00DD525FDE17500DB3F1D /* DataModel.xcdatamodeld */; };
+		22D00DDF25FE21D600DB3F1D /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D00DDE25FE21D600DB3F1D /* UserDefaults.swift */; };
+		22D00DE425FE297D00DB3F1D /* NotificationTimePopUpViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D00DE325FE297D00DB3F1D /* NotificationTimePopUpViewBuilder.swift */; };
+		22D00DEC25FE2A5900DB3F1D /* NotificationTimePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D00DEB25FE2A5900DB3F1D /* NotificationTimePopUp.swift */; };
+		22D00DFA25FE2F5700DB3F1D /* CustomTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D00DF925FE2F5700DB3F1D /* CustomTime.swift */; };
 		22D354B425A595B7004F5667 /* UserCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D354B325A595B7004F5667 /* UserCenterViewController.swift */; };
 		22D6195225A0238E00EC9396 /* PopUpViewPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6195125A0238E00EC9396 /* PopUpViewPresentationController.swift */; };
 		22D6195725A0277B00EC9396 /* PopUpViewSlideInFromBottomPresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6195625A0277B00EC9396 /* PopUpViewSlideInFromBottomPresentAnimationController.swift */; };
@@ -255,6 +259,10 @@
 		22CE4EEF25D00C65007EBD5B /* AddingItemStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingItemStrategy.swift; sourceTree = "<group>"; };
 		22CE4EF425D00C73007EBD5B /* EditingItemStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingItemStrategy.swift; sourceTree = "<group>"; };
 		22D00DD625FDE17500DB3F1D /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		22D00DDE25FE21D600DB3F1D /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		22D00DE325FE297D00DB3F1D /* NotificationTimePopUpViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTimePopUpViewBuilder.swift; sourceTree = "<group>"; };
+		22D00DEB25FE2A5900DB3F1D /* NotificationTimePopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTimePopUp.swift; sourceTree = "<group>"; };
+		22D00DF925FE2F5700DB3F1D /* CustomTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTime.swift; sourceTree = "<group>"; };
 		22D354B325A595B7004F5667 /* UserCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCenterViewController.swift; sourceTree = "<group>"; };
 		22D6195125A0238E00EC9396 /* PopUpViewPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewPresentationController.swift; sourceTree = "<group>"; };
 		22D6195625A0277B00EC9396 /* PopUpViewSlideInFromBottomPresentAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewSlideInFromBottomPresentAnimationController.swift; sourceTree = "<group>"; };
@@ -525,6 +533,7 @@
 				22945D6525F5ADED0065B511 /* CustomFrequencyPopUp.swift */,
 				22945D5525F5A8150065B511 /* ItemCompletedPopUp.swift */,
 				225EC25E25FA41BC00F2C69F /* CustomUserNamePopUp.swift */,
+				22D00DEB25FE2A5900DB3F1D /* NotificationTimePopUp.swift */,
 			);
 			path = "Pop Up View ";
 			sourceTree = "<group>";
@@ -606,6 +615,7 @@
 				22C23A18258DC5D700D4BEB2 /* QuittingItem.swift */,
 				22BC4C7D25D6A517009E905C /* WelcomeText.swift */,
 				221E0BA325A9D38100386FE1 /* Image.swift */,
+				22D00DF925FE2F5700DB3F1D /* CustomTime.swift */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -691,7 +701,7 @@
 			path = Delegate;
 			sourceTree = "<group>";
 		};
-		22E5A12125F3341D001AC3ED /* Pop Up */ = {
+		22E5A12125F3341D001AC3ED /* Pop Up Builder */ = {
 			isa = PBXGroup;
 			children = (
 				22A59810259AA31A008E2A06 /* PopUpViewBuilder.swift */,
@@ -701,54 +711,55 @@
 				22BC38F625E738E900AEFE44 /* CustomThemeColorPopUpViewBuilder.swift */,
 				2264C59D25F4B399009CE917 /* ItemCompletedPopUpViewBuilder.swift */,
 				225EC26B25FA427B00F2C69F /* CustomUserNamePopUpViewBuilder.swift */,
+				22D00DE325FE297D00DB3F1D /* NotificationTimePopUpViewBuilder.swift */,
 			);
-			path = "Pop Up";
+			path = "Pop Up Builder";
 			sourceTree = "<group>";
 		};
 		22E5A12225F33441001AC3ED /* View Builder */ = {
 			isa = PBXGroup;
 			children = (
 				22C4BFB725D21E7A00528A1C /* ViewBuilder.swift */,
-				22E5A12C25F334C5001AC3ED /* Navigation */,
-				22E5A12B25F334AD001AC3ED /* Set Up */,
-				22E5A12425F33478001AC3ED /* Time Machine */,
-				22E5A12325F33459001AC3ED /* Item */,
-				22E5A12125F3341D001AC3ED /* Pop Up */,
+				22E5A12C25F334C5001AC3ED /* Navigation Builder */,
+				22E5A12B25F334AD001AC3ED /* Set Up Builder */,
+				22E5A12425F33478001AC3ED /* Time Machine Builder */,
+				22E5A12325F33459001AC3ED /* Item Builder */,
+				22E5A12125F3341D001AC3ED /* Pop Up Builder */,
 			);
 			path = "View Builder";
 			sourceTree = "<group>";
 		};
-		22E5A12325F33459001AC3ED /* Item */ = {
+		22E5A12325F33459001AC3ED /* Item Builder */ = {
 			isa = PBXGroup;
 			children = (
 				224A919125971E9000A896BE /* ItemCardViewBuilder.swift */,
 				22C4BFC225D21F2400528A1C /* ItemDetailViewBuilder.swift */,
 			);
-			path = Item;
+			path = "Item Builder";
 			sourceTree = "<group>";
 		};
-		22E5A12425F33478001AC3ED /* Time Machine */ = {
+		22E5A12425F33478001AC3ED /* Time Machine Builder */ = {
 			isa = PBXGroup;
 			children = (
 				22BABF2325C3ECBA00168AE1 /* TimeMachineCalendarPageViewBuilder.swift */,
 			);
-			path = "Time Machine";
+			path = "Time Machine Builder";
 			sourceTree = "<group>";
 		};
-		22E5A12B25F334AD001AC3ED /* Set Up */ = {
+		22E5A12B25F334AD001AC3ED /* Set Up Builder */ = {
 			isa = PBXGroup;
 			children = (
 				22D7FBB025A1E065006B1F28 /* SetUpPageViewBuilder.swift */,
 			);
-			path = "Set Up";
+			path = "Set Up Builder";
 			sourceTree = "<group>";
 		};
-		22E5A12C25F334C5001AC3ED /* Navigation */ = {
+		22E5A12C25F334C5001AC3ED /* Navigation Builder */ = {
 			isa = PBXGroup;
 			children = (
 				22BC200025D39C0F007D2822 /* OverAllProgressViewBuilder.swift */,
 			);
-			path = Navigation;
+			path = "Navigation Builder";
 			sourceTree = "<group>";
 		};
 		22E9A850259ECDB10073D432 /* Extension */ = {
@@ -768,6 +779,7 @@
 				223072A725E3A99D00AE6ECB /* UINavigationBar.swift */,
 				229C5EE925F4F1FD00C94B61 /* UIWindow.swift */,
 				226C958425FCC8310029C2E6 /* UITextField.swift */,
+				22D00DDE25FE21D600DB3F1D /* UserDefaults.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1044,7 +1056,9 @@
 				22BC38EA25E738AA00AEFE44 /* CustomItemNamePopUpViewBuilder.swift in Sources */,
 				22E9A855259ED1B40073D432 /* PikerViewData.swift in Sources */,
 				224E664C25C6469B00B71E8A /* BackwardForOneStrategy.swift in Sources */,
+				22D00DEC25FE2A5900DB3F1D /* NotificationTimePopUp.swift in Sources */,
 				22BC38E525E7388600AEFE44 /* CustomTargetDaysPopUpViewBuilder.swift in Sources */,
+				22D00DFA25FE2F5700DB3F1D /* CustomTime.swift in Sources */,
 				224E665925C64F5F00B71E8A /* PresentStrategy.swift in Sources */,
 				228ED3E625B94D630054591F /* CalendarCell.swift in Sources */,
 				22CE4EF525D00C73007EBD5B /* EditingItemStrategy.swift in Sources */,
@@ -1074,6 +1088,7 @@
 				224A919225971E9000A896BE /* ItemCardViewBuilder.swift in Sources */,
 				22AACA3225AE98B40098D920 /* CalendarViewController.swift in Sources */,
 				22C4BFB825D21E7A00528A1C /* ViewBuilder.swift in Sources */,
+				22D00DDF25FE21D600DB3F1D /* UserDefaults.swift in Sources */,
 				22D6196725A02FE100EC9396 /* PopUpViewFadeInFromCenterPresentAnimationController.swift in Sources */,
 				22E069A925D79250006DCE5C /* Vibrator.swift in Sources */,
 				224E668A25C6A76600B71E8A /* DateCalculator.swift in Sources */,
@@ -1110,6 +1125,7 @@
 				22916DB525C05F0D004A3EC4 /* PresentTimeMachineSegue.swift in Sources */,
 				220B7284258A288000E4BEDC /* SceneDelegate.swift in Sources */,
 				22C4BFC325D21F2400528A1C /* ItemDetailViewBuilder.swift in Sources */,
+				22D00DE425FE297D00DB3F1D /* NotificationTimePopUpViewBuilder.swift in Sources */,
 				22D00DD725FDE17500DB3F1D /* DataModel.xcdatamodeld in Sources */,
 				22945D3525F5A43D0065B511 /* PopUp.swift in Sources */,
 				22945D6625F5ADED0065B511 /* CustomFrequencyPopUp.swift in Sources */,

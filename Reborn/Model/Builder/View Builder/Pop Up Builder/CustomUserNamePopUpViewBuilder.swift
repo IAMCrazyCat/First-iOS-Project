@@ -43,7 +43,7 @@ class CustomUserNamePopUpViewBuilder: PopUpViewBuilder {
         let promptLabel = UILabel()
         promptLabel.accessibilityIdentifier = "PromptLabel"
         promptLabel.text = "请输入您的名字"
-        promptLabel.font = AppEngine.shared.userSetting.fontMedium
+        promptLabel.font = AppEngine.shared.userSetting.mediumFont
         promptLabel.sizeToFit()
         promptLabel.textColor = UIColor.red
         promptLabel.tag = self.setting.popUpWindowPromptLabelTag

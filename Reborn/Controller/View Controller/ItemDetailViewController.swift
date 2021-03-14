@@ -24,6 +24,8 @@ class ItemDetailViewController: UIViewController {
     @IBOutlet weak var targetDayLabel: UILabel!
     @IBOutlet weak var frequencyLabel: UILabel!
     @IBOutlet weak var todayLabel: UILabel!
+    @IBOutlet weak var goBackButton: UINavigationItem!
+    @IBOutlet weak var editButton: UIBarButtonItem!
     
     let setting: SystemSetting = SystemSetting.shared
     let engine: AppEngine = AppEngine.shared
@@ -54,6 +56,10 @@ class ItemDetailViewController: UIViewController {
         bottomEditButton.setCornerRadius()
         bottomEditButton.setShadow()
         updateUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -91,9 +97,12 @@ class ItemDetailViewController: UIViewController {
     
     func updateNavigationBar() {
         navigationController?.navigationBar.barTintColor = engine.userSetting.themeColorAndBlack
-        
+        navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.foregroundColor: engine.userSetting.smartLabelColorAndThemeColor]
+        navigationController?.navigationBar.tintColor = engine.userSetting.smartLabelColorAndThemeColor
+        navigationItem.rightBarButtonItem?.tintColor = engine.userSetting.smartLabelColorAndThemeColor
+        navigationItem.leftBarButtonItem?.tintColor = engine.userSetting.smartLabelColorAndThemeColor
         if let itemType = item?.type.rawValue, let itemName = item?.name {
-            title = itemType + itemName
+            self.title = itemType + itemName
         }
        
     }

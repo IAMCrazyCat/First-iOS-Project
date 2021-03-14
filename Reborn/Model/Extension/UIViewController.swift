@@ -47,6 +47,8 @@ extension UIViewController: UIViewControllerTransitioningDelegate  {
                 popUpViewController.popUp = CustomThemeColorPopUp(presentAnimationType: animationType, popUpViewController: popUpViewController)
             case .customUserNamePopUp:
                 popUpViewController.popUp = CustomUserNamePopUp(presentAnimationType: animationType, popUpViewController: popUpViewController)
+            case .notificationTimePopUp:
+                popUpViewController.popUp = NotificationTimePopUp(presentAnimationType: animationType, popUpViewController: popUpViewController)
             case .itemCompletedPopUp:
                 print("You should not use this function")
                 print("Use 'showItemCompletedPopUp(for: Item)' instead")

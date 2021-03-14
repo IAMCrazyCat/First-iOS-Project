@@ -81,7 +81,7 @@ class ItemCardViewBuilder: ViewBuilder {
         nameLabel.text = item.type.rawValue + item.name
 
         nameLabel.textColor = .label
-        nameLabel.font = AppEngine.shared.userSetting.fontSmall
+        nameLabel.font = AppEngine.shared.userSetting.smallFont
         
         outPutView.addSubview(nameLabel)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -106,7 +106,7 @@ class ItemCardViewBuilder: ViewBuilder {
         
         freqencyLabel.text = item.frequency.dataModel.title
         freqencyLabel.textColor = AppEngine.shared.userSetting.properThemeColor
-        freqencyLabel.font = AppEngine.shared.userSetting.fontSmall
+        freqencyLabel.font = AppEngine.shared.userSetting.smallFont
         freqencyLabel.sizeToFit()
         
         outPutView.addSubview(freqencyLabel)
@@ -132,7 +132,7 @@ class ItemCardViewBuilder: ViewBuilder {
         goDetailsButton.accessibilityIdentifier = "GoDetailsButton"
         goDetailsButton.setBackgroundImage(UIImage(named: "DetailsButton"), for: .normal)
         goDetailsButton.setTitleColor(.black, for: .normal)
-        goDetailsButton.titleLabel!.font = AppEngine.shared.userSetting.fontSmall
+        goDetailsButton.titleLabel!.font = AppEngine.shared.userSetting.smallFont
         goDetailsButton.tintColor = AppEngine.shared.userSetting.themeColor
         outPutView.addSubview(goDetailsButton)
         
@@ -160,7 +160,7 @@ class ItemCardViewBuilder: ViewBuilder {
         
         typeLabel.text = "已打卡"
         typeLabel.textColor = .label
-        typeLabel.font = AppEngine.shared.userSetting.fontSmall
+        typeLabel.font = AppEngine.shared.userSetting.smallFont
         typeLabel.sizeToFit()
         
         outPutView.addSubview(typeLabel)
@@ -173,8 +173,8 @@ class ItemCardViewBuilder: ViewBuilder {
     private func addFinishedDaysLabel(labelFrame: CGRect?, withTypeLabel: Bool) {
         
         let finishedDaysLabel = UILabel()
-        let attrs1 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.fontLarge]
-        let attrs2 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.fontSmall, NSAttributedString.Key.foregroundColor: UIColor.gray]
+        let attrs1 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.largeFont]
+        let attrs2 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.smallFont, NSAttributedString.Key.foregroundColor: UIColor.gray]
         finishedDaysLabel.accessibilityIdentifier = "FinishedDaysLabel"
         finishedDaysLabel.sizeToFit()
         
@@ -185,7 +185,7 @@ class ItemCardViewBuilder: ViewBuilder {
             if labelFrame != nil {
                 
                 finishedDaysLabel.frame.origin = labelFrame!.origin
-                let attrs0 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.fontSmall, NSAttributedString.Key.foregroundColor: UIColor.gray]
+                let attrs0 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.smallFont, NSAttributedString.Key.foregroundColor: UIColor.gray]
                 let typeString = NSMutableAttributedString(string: "已打卡:  ", attributes: attrs0)
                 
                 finishedDaysString.append(unit)
@@ -249,7 +249,7 @@ class ItemCardViewBuilder: ViewBuilder {
         if withProgressLabel {
             let progressLabel = UILabel()
             progressLabel.frame.origin = CGPoint(x: CGFloat(self.item.progress) * barFrame.width - 10, y: barFrame.origin.y - barFrame.height - 10)
-            progressLabel.font = AppEngine.shared.userSetting.fontSmall
+            progressLabel.font = AppEngine.shared.userSetting.smallFont
             progressLabel.text = self.item.progressInPercentageString
             progressLabel.sizeToFit()
             outPutView.addSubview(progressLabel)
@@ -264,9 +264,9 @@ class ItemCardViewBuilder: ViewBuilder {
                 daysLabel.accessibilityIdentifier = "DaysLabel"
                 daysLabel.frame.origin = labelFrame!.origin
                 
-                let atr0 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.fontSmall]
-                let atr1 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.fontLarge]
-                let atr2 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.fontSmall, NSAttributedString.Key.foregroundColor: UIColor.label]
+                let atr0 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.smallFont]
+                let atr1 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.largeFont]
+                let atr2 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.smallFont, NSAttributedString.Key.foregroundColor: UIColor.label]
                 
                 let typeString = NSMutableAttributedString(string: "目标:  ", attributes: atr0)
                 let daysString = NSMutableAttributedString(string: "\(self.item.targetDays)", attributes: atr1)
@@ -288,8 +288,8 @@ class ItemCardViewBuilder: ViewBuilder {
             let daysLabel = UILabel()
             daysLabel.accessibilityIdentifier = "DaysLabel"
             
-            let atr1 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.fontSmall]
-            let atr2 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.fontSmall, NSAttributedString.Key.foregroundColor: UIColor.label]
+            let atr1 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.smallFont]
+            let atr2 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.smallFont, NSAttributedString.Key.foregroundColor: UIColor.label]
             let daysString = NSMutableAttributedString(string: "\(self.item.targetDays)", attributes: atr1)
             let daysUnit = NSMutableAttributedString(string: "天", attributes: atr2)
             
@@ -314,7 +314,7 @@ class ItemCardViewBuilder: ViewBuilder {
         punchInButton.setTitleColor(AppEngine.shared.userSetting.themeColor, for: .normal)
         punchInButton.setTitleColor(.white, for: .selected)
        
-        punchInButton.titleLabel!.font = AppEngine.shared.userSetting.fontSmall
+        punchInButton.titleLabel!.font = AppEngine.shared.userSetting.smallFont
         punchInButton.layer.cornerRadius = self.setting.checkButtonCornerRadius
         punchInButton.layer.zPosition = 3
         punchInButton.setBackgroundColor(.clear, for: .normal)

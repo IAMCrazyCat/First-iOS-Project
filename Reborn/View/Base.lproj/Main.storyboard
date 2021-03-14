@@ -1114,8 +1114,10 @@ Cg
                         <outlet property="bottomEditButton" destination="wc5-Hz-1bB" id="iHM-H8-Icb"/>
                         <outlet property="bottomShareButton" destination="Stx-iB-4so" id="l9l-4b-kvQ"/>
                         <outlet property="calendarView" destination="rPK-k0-tHl" id="cBC-LO-awm"/>
+                        <outlet property="editButton" destination="uXu-af-sL3" id="hAP-Aa-e68"/>
                         <outlet property="finishedDayLabel" destination="7gg-Tq-GuY" id="InL-Av-fXb"/>
                         <outlet property="frequencyLabel" destination="str-sO-Pcx" id="Tcm-bF-txo"/>
+                        <outlet property="goBackButton" destination="dce-h9-NTD" id="k2q-Xt-WHk"/>
                         <outlet property="mediumView" destination="NaE-mY-8uJ" id="wkX-Xm-RMS"/>
                         <outlet property="progressView" destination="tlr-bf-UK5" id="WaN-YE-fak"/>
                         <outlet property="targetDayLabel" destination="hOS-1r-urJ" id="PBr-25-oZr"/>
@@ -1464,7 +1466,6 @@ Cg
         <!--个人中心-->
         <scene sceneID="3sl-C0-kae">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="H6n-5p-wfc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="xEm-ah-agE" customClass="UserCenterViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Trs-NW-7D2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -1559,13 +1560,24 @@ Cg
                                                         <state key="normal" title="通知时间" image="PunchInSettingIcon">
                                                             <color key="titleColor" systemColor="labelColor"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="notificationTimeButtonPressed:" destination="xEm-ah-agE" eventType="touchUpInside" id="nnd-Fh-ilI"/>
+                                                        </connections>
                                                     </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ge1-y3-eIQ">
+                                                        <rect key="frame" x="322" y="12" width="42" height="21"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="s8i-6y-kYV" secondAttribute="trailing" id="bJg-w8-Aea"/>
                                                     <constraint firstAttribute="bottom" secondItem="s8i-6y-kYV" secondAttribute="bottom" id="gMo-uP-WnH"/>
                                                     <constraint firstItem="s8i-6y-kYV" firstAttribute="top" secondItem="OaW-i9-p1v" secondAttribute="top" id="pN7-wS-QnF"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ge1-y3-eIQ" secondAttribute="trailing" constant="20" id="ryv-ku-HZw"/>
+                                                    <constraint firstItem="ge1-y3-eIQ" firstAttribute="centerY" secondItem="s8i-6y-kYV" secondAttribute="centerY" id="tUO-U0-Cc3"/>
                                                     <constraint firstItem="s8i-6y-kYV" firstAttribute="leading" secondItem="OaW-i9-p1v" secondAttribute="leading" id="yRX-Ii-xD9"/>
                                                 </constraints>
                                             </view>
@@ -1785,13 +1797,13 @@ Cg
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12月22日星期二" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVz-AJ-JZD">
-                                        <rect key="frame" x="15" y="10" width="96" height="16"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <rect key="frame" x="15" y="10" width="110" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="个人中心" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iof-Wb-zG4">
-                                        <rect key="frame" x="15" y="30" width="142" height="42"/>
+                                        <rect key="frame" x="15" y="32" width="142" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1826,12 +1838,14 @@ Cg
                         <outlet property="appSettingView" destination="bXE-cc-vLl" id="euy-0V-gSC"/>
                         <outlet property="appVersionLabelButton" destination="1Rc-aS-e5C" id="ESG-rC-hs8"/>
                         <outlet property="avaterView" destination="KpG-66-JYl" id="lht-Ht-8Bz"/>
+                        <outlet property="dateLabel" destination="SVz-AJ-JZD" id="Ig1-U3-RZq"/>
                         <outlet property="editPartButton" destination="OeQ-hP-44X" id="j59-VI-A3l"/>
                         <outlet property="feedbackButton" destination="MMX-gO-o2H" id="Ky0-jN-2fU"/>
                         <outlet property="instructionButton" destination="WQX-Nq-SYU" id="ohY-Dx-8r7"/>
                         <outlet property="lightAndDarkModeButton" destination="rRc-pT-ow4" id="067-mS-ebl"/>
                         <outlet property="myKeysButton" destination="7qb-Hl-aQ4" id="KPO-Jj-pzw"/>
                         <outlet property="notificationButton" destination="s8i-6y-kYV" id="Zyk-FZ-RlG"/>
+                        <outlet property="notificationTimeLabel" destination="ge1-y3-eIQ" id="sP3-ba-nlf"/>
                         <outlet property="perchaseButton" destination="rRc-pT-ow4" id="M1j-T2-zSl"/>
                         <outlet property="punchInSettingView" destination="OaW-i9-p1v" id="ejq-2X-Ggr"/>
                         <outlet property="purchaseButton" destination="DNH-Rd-qdE" id="Fb4-Bf-G9C"/>
@@ -1846,6 +1860,7 @@ Cg
                         <outlet property="verticalScrollView" destination="2gY-P1-gbC" id="ani-dJ-wxu"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H6n-5p-wfc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5365.217391304348" y="747.32142857142856"/>
         </scene>
@@ -1877,7 +1892,7 @@ Cg
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="解锁最多3个项目创建限制" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A7A-Do-hr3">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="解锁最多2个项目创建限制" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A7A-Do-hr3">
                                                         <rect key="frame" x="60" y="27.5" width="143" height="15"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="textColor"/>
@@ -2049,7 +2064,7 @@ Cg
                                                     <constraint firstItem="vRP-mg-Bzi" firstAttribute="top" secondItem="fKZ-ry-kbD" secondAttribute="top" id="nbH-63-2as"/>
                                                 </constraints>
                                             </view>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="md1-sW-dOC">
+                                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="md1-sW-dOC">
                                                 <rect key="frame" x="274" y="360" width="110" height="100"/>
                                                 <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                                 <constraints>
@@ -2145,7 +2160,7 @@ Cg
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nsu-Ib-aY5">
                                         <rect key="frame" x="15" y="80.5" width="384" height="49.5"/>
                                         <color key="backgroundColor" name="BlueThemeColor"/>
-                                        <state key="normal" title="现在购买 ￥18">
+                                        <state key="normal" title="现在购买 ¥18">
                                             <color key="titleColor" red="0.94858902690000002" green="0.94918686149999998" blue="0.96842974420000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
@@ -2469,7 +2484,7 @@ Cg
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="qHk-ov-wBz"/>
-        <segue reference="LKv-l4-eYv"/>
+        <segue reference="HdV-Uf-p4p"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
