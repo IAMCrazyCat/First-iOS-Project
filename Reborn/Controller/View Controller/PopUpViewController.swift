@@ -124,7 +124,7 @@ extension PopUpViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 
             return pickerviewData[row].dataModel.title
         } else if let popUp = self.popUp as? CustomTargetDaysPopUp {
-            let pickerviewData = popUp.pikerViewData as! Array<DataModel>
+            let pickerviewData = popUp.pikerViewData as! Array<CustomData>
             return pickerviewData[row].title
         }
         

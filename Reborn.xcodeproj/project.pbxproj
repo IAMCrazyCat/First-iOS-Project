@@ -106,13 +106,14 @@
 		22CE4ED925D00AE3007EBD5B /* NewItemViewStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE4ED825D00AE3007EBD5B /* NewItemViewStrategy.swift */; };
 		22CE4EF025D00C65007EBD5B /* AddingItemStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE4EEF25D00C65007EBD5B /* AddingItemStrategy.swift */; };
 		22CE4EF525D00C73007EBD5B /* EditingItemStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE4EF425D00C73007EBD5B /* EditingItemStrategy.swift */; };
+		22D00DD725FDE17500DB3F1D /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 22D00DD525FDE17500DB3F1D /* DataModel.xcdatamodeld */; };
 		22D354B425A595B7004F5667 /* UserCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D354B325A595B7004F5667 /* UserCenterViewController.swift */; };
 		22D6195225A0238E00EC9396 /* PopUpViewPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6195125A0238E00EC9396 /* PopUpViewPresentationController.swift */; };
 		22D6195725A0277B00EC9396 /* PopUpViewSlideInFromBottomPresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6195625A0277B00EC9396 /* PopUpViewSlideInFromBottomPresentAnimationController.swift */; };
 		22D6195C25A0290600EC9396 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6195B25A0290600EC9396 /* UIViewController.swift */; };
 		22D6196725A02FE100EC9396 /* PopUpViewFadeInFromCenterPresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6196625A02FE100EC9396 /* PopUpViewFadeInFromCenterPresentAnimationController.swift */; };
 		22D6197725A06B7F00EC9396 /* PopUpViewTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6197625A06B7F00EC9396 /* PopUpViewTransitioningDelegate.swift */; };
-		22D7FBA125A18FE5006B1F28 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7FBA025A18FE5006B1F28 /* DataModel.swift */; };
+		22D7FBA125A18FE5006B1F28 /* CustomData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7FBA025A18FE5006B1F28 /* CustomData.swift */; };
 		22D7FBA625A190E9006B1F28 /* SetUpPageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7FBA525A190E9006B1F28 /* SetUpPageData.swift */; };
 		22D7FBB125A1E065006B1F28 /* SetUpPageViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7FBB025A1E065006B1F28 /* SetUpPageViewBuilder.swift */; };
 		22D8A05225CCE1D500A605D6 /* CalendarCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8A05125CCE1D500A605D6 /* CalendarCellType.swift */; };
@@ -253,13 +254,14 @@
 		22CE4ED825D00AE3007EBD5B /* NewItemViewStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemViewStrategy.swift; sourceTree = "<group>"; };
 		22CE4EEF25D00C65007EBD5B /* AddingItemStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingItemStrategy.swift; sourceTree = "<group>"; };
 		22CE4EF425D00C73007EBD5B /* EditingItemStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingItemStrategy.swift; sourceTree = "<group>"; };
+		22D00DD625FDE17500DB3F1D /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		22D354B325A595B7004F5667 /* UserCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCenterViewController.swift; sourceTree = "<group>"; };
 		22D6195125A0238E00EC9396 /* PopUpViewPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewPresentationController.swift; sourceTree = "<group>"; };
 		22D6195625A0277B00EC9396 /* PopUpViewSlideInFromBottomPresentAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewSlideInFromBottomPresentAnimationController.swift; sourceTree = "<group>"; };
 		22D6195B25A0290600EC9396 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		22D6196625A02FE100EC9396 /* PopUpViewFadeInFromCenterPresentAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewFadeInFromCenterPresentAnimationController.swift; sourceTree = "<group>"; };
 		22D6197625A06B7F00EC9396 /* PopUpViewTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewTransitioningDelegate.swift; sourceTree = "<group>"; };
-		22D7FBA025A18FE5006B1F28 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		22D7FBA025A18FE5006B1F28 /* CustomData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomData.swift; sourceTree = "<group>"; };
 		22D7FBA525A190E9006B1F28 /* SetUpPageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpPageData.swift; sourceTree = "<group>"; };
 		22D7FBB025A1E065006B1F28 /* SetUpPageViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpPageViewBuilder.swift; sourceTree = "<group>"; };
 		22D8A05125CCE1D500A605D6 /* CalendarCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellType.swift; sourceTree = "<group>"; };
@@ -585,6 +587,7 @@
 		22BC4C7725D6A490009E905C /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
+				22D00DD525FDE17500DB3F1D /* DataModel.xcdatamodeld */,
 				22E9A854259ED1B40073D432 /* PikerViewData.swift */,
 				22D7FBA525A190E9006B1F28 /* SetUpPageData.swift */,
 				22BC4C6725D6A3DB009E905C /* WelcomeTextData.swift */,
@@ -597,7 +600,7 @@
 			children = (
 				221E0B7B25A9273E00386FE1 /* User.swift */,
 				22BC454F25B1C92100516F75 /* CustomDate.swift */,
-				22D7FBA025A18FE5006B1F28 /* DataModel.swift */,
+				22D7FBA025A18FE5006B1F28 /* CustomData.swift */,
 				22C23A13258DC58F00D4BEB2 /* Item.swift */,
 				22C23A1D258DC5FB00D4BEB2 /* PersistingItem.swift */,
 				22C23A18258DC5D700D4BEB2 /* QuittingItem.swift */,
@@ -1107,6 +1110,7 @@
 				22916DB525C05F0D004A3EC4 /* PresentTimeMachineSegue.swift in Sources */,
 				220B7284258A288000E4BEDC /* SceneDelegate.swift in Sources */,
 				22C4BFC325D21F2400528A1C /* ItemDetailViewBuilder.swift in Sources */,
+				22D00DD725FDE17500DB3F1D /* DataModel.xcdatamodeld in Sources */,
 				22945D3525F5A43D0065B511 /* PopUp.swift in Sources */,
 				22945D6625F5ADED0065B511 /* CustomFrequencyPopUp.swift in Sources */,
 				22BC454525B04ED000516F75 /* CalendarPage.swift in Sources */,
@@ -1139,7 +1143,7 @@
 				221E0B8825A9A22800386FE1 /* Gender.swift in Sources */,
 				22C5D967258F3E4400131964 /* SetUpEngine.swift in Sources */,
 				229C5EEA25F4F1FD00C94B61 /* UIWindow.swift in Sources */,
-				22D7FBA125A18FE5006B1F28 /* DataModel.swift in Sources */,
+				22D7FBA125A18FE5006B1F28 /* CustomData.swift in Sources */,
 				2246D2F325CAD9F70001EFB7 /* GoBackToThePastStrategy.swift in Sources */,
 				2264C59E25F4B399009CE917 /* ItemCompletedPopUpViewBuilder.swift in Sources */,
 				22D6197725A06B7F00EC9396 /* PopUpViewTransitioningDelegate.swift in Sources */,
@@ -1322,7 +1326,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = Reborn/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1343,7 +1347,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = Reborn/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1485,6 +1489,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		22D00DD525FDE17500DB3F1D /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				22D00DD625FDE17500DB3F1D /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 22D00DD625FDE17500DB3F1D /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 220B7276258A288000E4BEDC /* Project object */;
 }

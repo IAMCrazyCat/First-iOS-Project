@@ -21,19 +21,19 @@ enum Frequency: Int, CaseIterable, Codable {
     case everyMonth
     case freedom
     
-    var dataModel: DataModel {
+    var dataModel: CustomData {
         switch self {
-        case .everyday: return DataModel(title: "每天", data: 1)
-        case .everyTwoDays: return DataModel(title: "每两天", data: 2)
-        case .everyThreeDays: return DataModel(title: "每三天", data: 3)
-        case .everyFourDays: return DataModel(title: "每四天", data: 4)
-        case .everyFiveDays: return DataModel(title: "每五天", data: 5)
-        case .everySixDays: return DataModel(title: "每六天", data: 6)
-        case .everyWeek: return DataModel(title: "每周", data: 7)
-        case .everyTwoWeeks: return DataModel(title: "每两周", data: 14)
-        case .everyThreeWeeks: return DataModel(title: "每三周", data: 21)
-        case .everyMonth: return DataModel(title: "每月", data: 30)
-        case .freedom: return DataModel(title: "自由打卡", data: 0)
+        case .everyday: return CustomData(title: "每天", data: 1)
+        case .everyTwoDays: return CustomData(title: "每两天", data: 2)
+        case .everyThreeDays: return CustomData(title: "每三天", data: 3)
+        case .everyFourDays: return CustomData(title: "每四天", data: 4)
+        case .everyFiveDays: return CustomData(title: "每五天", data: 5)
+        case .everySixDays: return CustomData(title: "每六天", data: 6)
+        case .everyWeek: return CustomData(title: "每周", data: 7)
+        case .everyTwoWeeks: return CustomData(title: "每两周", data: 14)
+        case .everyThreeWeeks: return CustomData(title: "每三周", data: 21)
+        case .everyMonth: return CustomData(title: "每月", data: 30)
+        case .freedom: return CustomData(title: "自由打卡", data: 0)
         }
     }
     

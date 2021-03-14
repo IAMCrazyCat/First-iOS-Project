@@ -7,10 +7,10 @@
 
 import Foundation
 struct PickerViewData {
-    public static var customTargetDays: Array<DataModel> {
-        var array = [DataModel]()
+    public static var customTargetDays: Array<CustomData> {
+        var array = [CustomData]()
         for day in 1...730 {
-            array.append(DataModel(data: day))
+            array.append(CustomData(data: day))
         }
         return array
     }

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct DataModel: Codable {
+struct CustomData: Codable {
     var data: Int?
     var title: String
     
