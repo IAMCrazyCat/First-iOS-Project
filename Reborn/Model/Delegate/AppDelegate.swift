@@ -34,8 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        print("TERMINATED")
+
         AppEngine.shared.saveUser(AppEngine.shared.currentUser)
+        AppEngine.shared.saveSetting()
 
         
     }

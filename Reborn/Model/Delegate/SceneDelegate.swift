@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = scene as? UIWindowScene else { return }
         
-        if AppEngine.shared.checkIfAppLaunchedBefore() {
+        if AppEngine.shared.appLaunchedBefore() {
             
             let viewController = storyboard.instantiateViewController (withIdentifier: "TabBarController") as? UITabBarController
             window = UIWindow(windowScene: windowScene)

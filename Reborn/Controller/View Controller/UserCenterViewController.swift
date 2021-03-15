@@ -150,24 +150,24 @@ class UserCenterViewController: UIViewController {
     }
     
     func updateNotificationTimeLabel() {
+//
+//        var notificationHour: String {
+//            if engine.userSetting.notificationHour < 10 {
+//                return "0\(engine.userSetting.notificationHour)"
+//            } else {
+//                return "\(engine.userSetting.notificationHour)"
+//            }
+//        }
+//
+//        var notificationMinute: String {
+//            if engine.userSetting.notificationMinute < 10 {
+//                return "0\(engine.userSetting.notificationMinute)"
+//            } else {
+//                return "\(engine.userSetting.notificationMinute)"
+//            }
+//        }
         
-        var notificationHour: String {
-            if engine.userSetting.notificationHour < 10 {
-                return "0\(engine.userSetting.notificationHour)"
-            } else {
-                return "\(engine.userSetting.notificationHour)"
-            }
-        }
-        
-        var notificationMinute: String {
-            if engine.userSetting.notificationMinute < 10 {
-                return "0\(engine.userSetting.notificationMinute)"
-            } else {
-                return "\(engine.userSetting.notificationMinute)"
-            }
-        }
-        
-        notificationTimeLabel.text = "\(notificationHour):\(notificationMinute)"
+        notificationTimeLabel.text = "\(engine.userSetting.notificationTime.count)次提醒"
         notificationTimeLabel.textColor = setting.grayColor
     }
     
@@ -224,9 +224,8 @@ extension UserCenterViewController: PopUpViewDelegate {
             
         } else if type == .notificationTimePopUp {
             
-            if let notificationTime = self.engine.storedDataFromPopUpView as? CustomTime {
-                self.engine.userSetting.notificationHour = notificationTime.hour
-                self.engine.userSetting.notificationMinute = notificationTime.minute
+            if let notificationTime = self.engine.storedDataFromPopUpView as? Array<CustomTime> {
+                self.engine.userSetting.notificationTime = notificationTime
                 self.engine.saveSetting()
                 self.engine.scheduleNotification()
             }

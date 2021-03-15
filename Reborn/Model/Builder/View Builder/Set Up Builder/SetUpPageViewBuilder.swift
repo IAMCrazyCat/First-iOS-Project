@@ -65,8 +65,9 @@ class SetUpPageViewBuilder {
          
            
             button = UIButton(frame: CGRect(x: buttonX, y: buttonY, width: buttonWidth, height: buttonHeight))
-    
-            button.layer.cornerRadius = button.frame.height / 2
+
+            
+            button.setCornerRadius()
             button.setShadow()
             button.setTitle(buttonTitle, for: .normal)
             button.setTitleColor(self.setting.optionButtonTitleColor, for: .normal)
@@ -75,7 +76,7 @@ class SetUpPageViewBuilder {
             
             button.setBackgroundColor(AppEngine.shared.userSetting.whiteAndBlackContent, for: .normal)
             button.setBackgroundColor(AppEngine.shared.userSetting.themeColor, for: .selected)
-            
+            //button.backgroundColor = AppEngine.shared.userSetting.themeColor
             button.titleLabel?.font = self.setting.optionButtonTitleFont
             button.addTarget(self, action: SetUpViewController.optionButtonAction, for: .touchDown)
 

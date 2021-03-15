@@ -20,7 +20,9 @@ extension UIView {
     func setCornerRadius() {
         self.layoutIfNeeded()
         self.layer.masksToBounds = true
-        self.layer.cornerRadius = self.frame.height / 2
+        
+        self.layer.cornerRadius = (self.frame.height / 2).rounded(toPlaces: 0)
+
     }
     
     func shake(duration: TimeInterval = 0.5, values: [CGFloat] = [-12.0, 12.0, -12.0, 12.0, -6.0, 6.0, -3.0, 3.0, 0.0]) {

@@ -70,12 +70,17 @@ class AppEngine {
         
         observerNotifier = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in self.checkUpdate() }
         loadUser()
-        loadSetting()
         scheduleNotification()
+        
+        if appLaunchedBefore() {
+            loadSetting()
+        } else {
+            saveSetting()
+        }
     }
     
     
-    func checkIfAppLaunchedBefore() -> Bool {
+    func appLaunchedBefore() -> Bool {
         let launchedBefore = UserDefaults.standard.bool(forKey: "LaunchedBefore")
         if launchedBefore {
             print("Not first launch.")
@@ -106,10 +111,10 @@ class AppEngine {
         }
     }
     
-    func scheduleNotification() {
+    func addNotification(at time: CustomTime) {
         
         if self.currentUser.items.count != 0 {
-            UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+            
             var item: Item {
                 var outputItem = self.currentUser.items.random!
                 while outputItem.state != .inProgress {
@@ -118,16 +123,17 @@ class AppEngine {
                 }
                 return outputItem
             }
-
+            
+            let itemToNotifyUser = item
             
             let content = UNMutableNotificationContent()
-            content.title = "\(currentUser.name), 今天\(item.type.rawValue)\(item.name)了吗"
-            content.body = "已打卡 \(item.finishedDays)天, 进度: \(item.progressInPercentageString)"
+            content.title = "\(currentUser.name), 今天\(itemToNotifyUser.type.rawValue)\(itemToNotifyUser.name)了吗"
+            content.body = "已打卡 \(itemToNotifyUser.finishedDays)天, 目标: \(itemToNotifyUser.targetDays)天, 进度: \(itemToNotifyUser.progressInPercentageString)"
             
             var dateComponents = DateComponents()
             dateComponents.calendar = Calendar.current
-            dateComponents.hour = userSetting.notificationHour
-            dateComponents.minute = userSetting.notificationMinute
+            dateComponents.hour = time.hour
+            dateComponents.minute = time.minute
             
             // Create the trigger as a repeating event.
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
@@ -147,8 +153,14 @@ class AppEngine {
                }
             }
         }
+    }
+    
+    func scheduleNotification() {
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+        for time in userSetting.notificationTime {
+            addNotification(at: time)
+        }
             
-       
     }
 
     
@@ -198,20 +210,22 @@ class AppEngine {
     
     public func saveSetting() {
         defaults.set(userSetting.themeColor, forKey: "ThemeColor")
-        defaults.set(userSetting.notificationHour, forKey: "NotificationHour")
-        defaults.set(userSetting.notificationMinute, forKey: "NotificationMinute")
+        defaults.set(userSetting.notificationTime, forKey: "NotificationTime")
         notifyAllUIObservers()
     }
     
     private func loadSetting() {
  
-        let themeColor = defaults.color(forKey: "ThemeColor")
-        let notificationHour = defaults.integer(forKey: "NotificationHour")
-        let notificationMinute = defaults.integer(forKey: "NotificationMinute")
+        if let themeColor = defaults.color(forKey: "ThemeColor") {
+            userSetting.themeColor = themeColor
+        }
+        
+        if let notificationTime = defaults.notificationTime(for: "NotificationTime") {
+            userSetting.notificationTime = notificationTime
+        }
     
-        userSetting.themeColor = themeColor!
-        userSetting.notificationHour = notificationHour
-        userSetting.notificationMinute = notificationMinute
+        
+        
         
     }
     

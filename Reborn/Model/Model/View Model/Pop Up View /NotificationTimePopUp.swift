@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 class NotificationTimePopUp: PopUpImpl {
     public var firstDatePicker: UIDatePicker {
-        return super.contentView?.getSubviewBy(idenifier: "FirstDatePicker") as! UIDatePicker
+        return super.contentView?.getSubviewBy(idenifier: "DatePicker") as! UIDatePicker
         
     }
     
@@ -21,17 +21,23 @@ class NotificationTimePopUp: PopUpImpl {
     }
     
     override func createWindow() -> UIView {
-        return NotificationTimePopUpViewBuilder(popUpViewController: super.popUpViewController, frame: super.frame).buildView()
+        return NotificationTimePopUpViewBuilder(popUpViewController: super.popUpViewController, frame: super.frame, notificationTime: AppEngine.shared.userSetting.notificationTime).buildView()
     }
     
     override func getStoredData() -> Any? {
-        let date = self.firstDatePicker.date
-        let components = Calendar.current.dateComponents([.hour, .minute], from: date)
-        return CustomTime(hour: components.hour!, minute: components.minute!)
+        var notificationTime: Array<CustomTime> = []
+        for subview in super.contentView!.subviews {
+            if let datePicker = subview as? UIDatePicker {
+                let date = datePicker.date
+                let components = Calendar.current.dateComponents([.hour, .minute], from: date)
+                notificationTime.append(CustomTime(hour: components.hour!, minute: components.minute!))
+            }
+        }
+      return notificationTime
     }
     
     func setPickerViewData() {
-        firstDatePicker.datePickerMode = .time
+        
     }
     
 }

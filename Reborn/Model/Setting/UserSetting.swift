@@ -8,13 +8,11 @@
 import Foundation
 import UIKit
 class UserSetting {
-    var themeColor = UIColor(named: ThemeColor.blue.rawValue) ?? UIColor.clear
+    var themeColor = UIColor(named: ThemeColor.blue.rawValue)!
     var largeFont = UIFont.systemFont(ofSize: 30)
     var mediumFont = UIFont.systemFont(ofSize: 17)
     var smallFont = UIFont.systemFont(ofSize: 14)
-    var notificationHour: Int = 22
-    var notificationMinute: Int = 10
-    
+    var notificationTime: Array<CustomTime> = [CustomTime(hour: 9, minute: 0), CustomTime(hour: 21, minute: 0)]
     
     let properThemeColor = UIColor { system in
         switch system.userInterfaceStyle {

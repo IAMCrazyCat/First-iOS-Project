@@ -46,7 +46,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if engine.checkIfAppLaunchedBefore() {
+        if engine.appLaunchedBefore() {
             
         } else {
             UserDefaults.standard.set(true, forKey: "LaunchedBefore")

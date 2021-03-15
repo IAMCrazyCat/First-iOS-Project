@@ -44,7 +44,7 @@ class SetUpViewController: UIViewController{
         middleView.frame = CGRect(x: middleView.frame.origin.x, y: middleView.frame.origin.y, width: view.frame.width, height: middleView.frame.height)
 
         questionLabel.font = setting.questionLabelFont
-        nextStepButton.layer.cornerRadius = nextStepButton.frame.height / 2
+        nextStepButton.setCornerRadius()
         nextStepButton.isEnabled = false
         
         //addAllPages()

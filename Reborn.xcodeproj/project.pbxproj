@@ -98,6 +98,7 @@
 		22C23A19258DC5D700D4BEB2 /* QuittingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C23A18258DC5D700D4BEB2 /* QuittingItem.swift */; };
 		22C23A1E258DC5FB00D4BEB2 /* PersistingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C23A1D258DC5FB00D4BEB2 /* PersistingItem.swift */; };
 		22C23A27258DCE4500D4BEB2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C23A26258DCE4500D4BEB2 /* HomeViewController.swift */; };
+		22C49A6125FF16AF00371E2B /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C49A6025FF16AF00371E2B /* CGFloat.swift */; };
 		22C4BFB825D21E7A00528A1C /* ViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4BFB725D21E7A00528A1C /* ViewBuilder.swift */; };
 		22C4BFC325D21F2400528A1C /* ItemDetailViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4BFC225D21F2400528A1C /* ItemDetailViewBuilder.swift */; };
 		22C5D967258F3E4400131964 /* SetUpEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5D966258F3E4400131964 /* SetUpEngine.swift */; };
@@ -250,6 +251,7 @@
 		22C23A18258DC5D700D4BEB2 /* QuittingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuittingItem.swift; sourceTree = "<group>"; };
 		22C23A1D258DC5FB00D4BEB2 /* PersistingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistingItem.swift; sourceTree = "<group>"; };
 		22C23A26258DCE4500D4BEB2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		22C49A6025FF16AF00371E2B /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
 		22C4BFB725D21E7A00528A1C /* ViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBuilder.swift; sourceTree = "<group>"; };
 		22C4BFC225D21F2400528A1C /* ItemDetailViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewBuilder.swift; sourceTree = "<group>"; };
 		22C5D966258F3E4400131964 /* SetUpEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpEngine.swift; sourceTree = "<group>"; };
@@ -780,6 +782,7 @@
 				229C5EE925F4F1FD00C94B61 /* UIWindow.swift */,
 				226C958425FCC8310029C2E6 /* UITextField.swift */,
 				22D00DDE25FE21D600DB3F1D /* UserDefaults.swift */,
+				22C49A6025FF16AF00371E2B /* CGFloat.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1058,6 +1061,7 @@
 				224E664C25C6469B00B71E8A /* BackwardForOneStrategy.swift in Sources */,
 				22D00DEC25FE2A5900DB3F1D /* NotificationTimePopUp.swift in Sources */,
 				22BC38E525E7388600AEFE44 /* CustomTargetDaysPopUpViewBuilder.swift in Sources */,
+				22C49A6125FF16AF00371E2B /* CGFloat.swift in Sources */,
 				22D00DFA25FE2F5700DB3F1D /* CustomTime.swift in Sources */,
 				224E665925C64F5F00B71E8A /* PresentStrategy.swift in Sources */,
 				228ED3E625B94D630054591F /* CalendarCell.swift in Sources */,
@@ -1342,7 +1346,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = Reborn/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1363,7 +1367,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = Reborn/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
