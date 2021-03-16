@@ -88,8 +88,16 @@ class ItemManagementViewController: UIViewController {
     func updateOptionBar() {
         optionBar.backgroundColor = engine.userSetting.themeColorAndBlack
         optionBar.layer.zPosition = -2
-        UISegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: AppEngine.shared.userSetting.themeColor], for: .selected)
-        UISegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
+        
+        
+        let backgroundImage = UIImage(color: .clear, size: CGSize(width: self.segmentedControl.frame.width, height: self.segmentedControl.frame.height))
+        let dividerImage = UIImage(color: .clear, size: CGSize(width: 1, height: self.segmentedControl.frame.height))
+        self.segmentedControl.setBackgroundImage(backgroundImage, for: .normal, barMetrics: .default)
+        self.segmentedControl.setDividerImage(dividerImage, forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
+        self.segmentedControl.setTitleTextAttributes([.foregroundColor: UIColor.green, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13, weight: .regular)], for: .selected)
+        
+//        UISegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: AppEngine.shared.userSetting.themeColor], for: .selected)
+//        UISegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
     }
     
     

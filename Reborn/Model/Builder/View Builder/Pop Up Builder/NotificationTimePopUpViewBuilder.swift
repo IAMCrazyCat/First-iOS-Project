@@ -28,6 +28,7 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
     func addTimePicker() {
         
         var lastPicker: UIDatePicker? = nil
+        var number = 1
         for time in notificationTime {
         
             let picker = UIDatePicker()
@@ -40,18 +41,30 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
             picker.date = date!
             picker.datePickerMode = .time
             self.contentView.addSubview(picker)
+            
+            
             picker.translatesAutoresizingMaskIntoConstraints = false
             if lastPicker != nil {
             
-                picker.leftAnchor.constraint(equalTo: lastPicker!.rightAnchor, constant: 20).isActive = true
+                picker.leftAnchor.constraint(equalTo: lastPicker!.rightAnchor, constant: 40).isActive = true
                 picker.centerYAnchor.constraint(equalTo: lastPicker!.centerYAnchor).isActive = true
             } else {
                 picker.leftAnchor.constraint(equalTo: super.contentView.leftAnchor, constant: 20).isActive = true
                 picker.centerYAnchor.constraint(equalTo: super.contentView.centerYAnchor).isActive = true
             }
-           
+            
+//            let label = UILabel()
+//            label.textColor = .label
+//            label.font = AppEngine.shared.userSetting.smallFont
+//            label.text = "第\(number)次通知"
+//            label.sizeToFit()
+//            self.contentView.addSubview(label)
+//            label.translatesAutoresizingMaskIntoConstraints = false
+//            label.leftAnchor.constraint(equalTo: picker.leftAnchor).isActive = true
+//            label.bottomAnchor.constraint(equalTo: picker.topAnchor, constant: -10).isActive = true
             
             lastPicker = picker
+            number += 1
         }
         
         

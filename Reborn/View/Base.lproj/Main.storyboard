@@ -288,7 +288,7 @@ Cg
             <objects>
                 <viewController id="yhk-VJ-4nb" customClass="NewItemViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5tU-dT-BVc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eis-9Y-9bk" userLabel="Horizental Scroll View">
@@ -835,7 +835,7 @@ Cg
             <objects>
                 <viewController storyboardIdentifier="ItemDetailView" hidesBottomBarWhenPushed="YES" id="ks2-0d-aBh" customClass="ItemDetailViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0fl-uJ-8UA">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FRC-Pg-OSb" userLabel="Vertical Scroll View">
@@ -1154,7 +1154,7 @@ Cg
             <objects>
                 <viewController id="5eW-DY-fpx" customClass="HomeViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uAb-zv-xSl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDY-Xd-Ccc">
@@ -1381,14 +1381,15 @@ Cg
             <objects>
                 <viewController id="7qU-RC-e4u" customClass="ItemManagementViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XJ8-ec-9K0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lt5-gF-RX7" userLabel="Option Bar">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="mH9-Nw-pG6">
-                                        <rect key="frame" x="15" y="9.5" width="291" height="32"/>
+                                    <segmentedControl opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="mH9-Nw-pG6">
+                                        <rect key="frame" x="15" y="9.5" width="384" height="32"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <segments>
                                             <segment title="全部项目"/>
                                             <segment title="今日项目"/>
@@ -1405,6 +1406,7 @@ Cg
                                     <constraint firstItem="mH9-Nw-pG6" firstAttribute="leading" secondItem="Lt5-gF-RX7" secondAttribute="leading" constant="15" id="Jpm-4f-LpJ"/>
                                     <constraint firstAttribute="height" constant="50" id="Skc-cN-Iws"/>
                                     <constraint firstItem="mH9-Nw-pG6" firstAttribute="centerY" secondItem="Lt5-gF-RX7" secondAttribute="centerY" id="Y9X-xt-PD2"/>
+                                    <constraint firstAttribute="trailing" secondItem="mH9-Nw-pG6" secondAttribute="trailing" constant="15" id="ocp-9F-Nuw"/>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVc-FF-Wj4" userLabel="Vertical Scroll View">
@@ -1468,7 +1470,7 @@ Cg
             <objects>
                 <viewController id="xEm-ah-agE" customClass="UserCenterViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Trs-NW-7D2">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gY-P1-gbC">
@@ -2484,7 +2486,7 @@ Cg
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="qHk-ov-wBz"/>
-        <segue reference="HdV-Uf-p4p"/>
+        <segue reference="LKv-l4-eYv"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
