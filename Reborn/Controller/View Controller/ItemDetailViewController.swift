@@ -98,9 +98,9 @@ class ItemDetailViewController: UIViewController {
     func updateNavigationBar() {
         navigationController?.navigationBar.barTintColor = engine.userSetting.themeColorAndBlack
         navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.foregroundColor: engine.userSetting.smartLabelColorAndThemeColor]
-        navigationController?.navigationBar.tintColor = engine.userSetting.smartLabelColorAndThemeColor
-        navigationItem.rightBarButtonItem?.tintColor = engine.userSetting.smartLabelColorAndThemeColor
-        navigationItem.leftBarButtonItem?.tintColor = engine.userSetting.smartLabelColorAndThemeColor
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: engine.userSetting.smartLabelColorAndThemeColor]
+//        navigationItem.rightBarButtonItem?.tintColor = engine.userSetting.smartLabelColorAndThemeColor
+//        navigationItem.leftBarButtonItem?.tintColor = engine.userSetting.smartLabelColorAndThemeColor
         if let itemType = item?.type.rawValue, let itemName = item?.name {
             self.title = itemType + itemName
         }

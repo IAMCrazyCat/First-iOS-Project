@@ -6,34 +6,33 @@
 //
 
 import UIKit
-
+import BetterSegmentedControl
 class ItemManagementViewController: UIViewController {
     
     @IBOutlet weak var optionBar: UIView!
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var verticalScrollView: UIScrollView!
     @IBOutlet weak var verticalContentView: UIView!
     @IBOutlet weak var verticalContentHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var optionBarContentView: UIView!
     
     var selectedSegment: ItemState? = nil
+    var selectedSegmentIndex: Int = 0
     let setting: SystemSetting = SystemSetting.shared
     let engine: AppEngine = AppEngine.shared
     var selectedButton: UIButton = UIButton()
+    let segmentTitles: Array<String> = ["全部项目", "今日计划", "今日休息", "已完成"]
+    var segmentedControl: BetterSegmentedControl!
     override func viewDidLoad() {
         super.viewDidLoad()
-        //customNavigationBar.backgroundColor = engine.userSetting.themeColorAndBlack
-//        optionBar.layer.cornerRadius = setting.customNavigationBarCornerRadius
-//        optionBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
-
+        
         engine.add(observer: self)
+        optionBarContentView.layoutIfNeeded()
+    
 
-        updateUI()
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        updateUI()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -42,14 +41,16 @@ class ItemManagementViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-       
+        updateUI()
         super.viewWillAppear(animated)
         //self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
 
-    @IBAction func optionButtonPressed(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
+    @objc func optionButtonPressed(_ sender: BetterSegmentedControl) {
+        
+        self.selectedSegmentIndex = sender.index
+        switch sender.index {
         case 0:
             self.selectedSegment = nil
         case 1:
@@ -58,12 +59,13 @@ class ItemManagementViewController: UIViewController {
             self.selectedSegment = .duringBreak
         case 3:
             self.selectedSegment = .completed
-            
+
         default:
             print("Segement Tag not found")
         }
 
-        updateUI()
+        verticalContentView.removeAllSubviews()
+        verticalContentView.renderItemCards(withCondition: self.selectedSegment, animated: true)
     }
     
     @IBAction func addNewItemsButtonPressed(_ sender: Any) {
@@ -78,37 +80,55 @@ class ItemManagementViewController: UIViewController {
         }
     }
     
+    func addSegmentedControl() {
+        
+    }
+    
     func updateNavigationBar() {
         navigationController?.navigationBar.removeBorder()
         navigationController?.navigationBar.barTintColor = engine.userSetting.themeColorAndBlack
-        navigationItem.rightBarButtonItem?.tintColor = engine.userSetting.smartLabelColorAndThemeColor
+        navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: engine.userSetting.smartLabelColorAndThemeColor.brightColor]
+        navigationItem.rightBarButtonItem?.tintColor = engine.userSetting.smartLabelColor.brightColor
         navigationItem.leftBarButtonItem?.tintColor = engine.userSetting.smartLabelColorAndThemeColor
     }
     
     func updateOptionBar() {
-        optionBar.backgroundColor = engine.userSetting.themeColorAndBlack
-        optionBar.layer.zPosition = -2
+        self.optionBarContentView.removeAllSubviews()
+        self.optionBar.backgroundColor = self.engine.userSetting.themeColorAndBlack
+        self.optionBarContentView.backgroundColor = self.optionBar.backgroundColor
+        
+        var segments: [LabelSegment] = []
+        for title in self.segmentTitles {
+            let labelSegment = LabelSegment(text: title, normalFont: self.engine.userSetting.smallFont, normalTextColor: self.engine.userSetting.smartLabelColor, selectedFont: self.engine.userSetting.smallFont, selectedTextColor: self.engine.userSetting.themeColorAndSmartLabelColor)
+            segments.append(labelSegment)
+    
+        }
+        
+        self.segmentedControl = BetterSegmentedControl(frame: optionBarContentView.bounds, segments: segments, options: nil)
+        self.segmentedControl.cornerRadius = self.segmentedControl.frame.height / 2
+        self.segmentedControl.backgroundColor = .clear
+        self.segmentedControl.indicatorViewBackgroundColor = self.engine.userSetting.whiteAndThemColor
+        self.segmentedControl.addTarget(self, action: #selector(self.optionButtonPressed(_:)), for: .valueChanged)
+       
+        self.segmentedControl.setIndex(self.selectedSegmentIndex)
+
         
         
-        let backgroundImage = UIImage(color: .clear, size: CGSize(width: self.segmentedControl.frame.width, height: self.segmentedControl.frame.height))
-        let dividerImage = UIImage(color: .clear, size: CGSize(width: 1, height: self.segmentedControl.frame.height))
-        self.segmentedControl.setBackgroundImage(backgroundImage, for: .normal, barMetrics: .default)
-        self.segmentedControl.setDividerImage(dividerImage, forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
-        self.segmentedControl.setTitleTextAttributes([.foregroundColor: UIColor.green, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13, weight: .regular)], for: .selected)
-        
-//        UISegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: AppEngine.shared.userSetting.themeColor], for: .selected)
-//        UISegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
+        optionBarContentView.addSubview(self.segmentedControl)
+        self.segmentedControl.cornerRadius = self.segmentedControl.frame.height / 2
+        self.segmentedControl.backgroundColor = .clear
+        self.segmentedControl.indicatorViewBackgroundColor = self.engine.userSetting.whiteAndThemColor
     }
     
     
     func updateVerticalContentView() {
         verticalContentView.removeAllSubviews()
-        verticalContentView.renderItemCards(withCondition: self.selectedSegment)
+        verticalContentView.renderItemCards(withCondition: self.selectedSegment, animated: false)
       
         if let lastItemCard = verticalContentView.subviews.last, lastItemCard.frame.maxY > self.verticalScrollView.frame.height {
-            verticalContentHeightConstraint.constant = lastItemCard.frame.maxY + setting.mainPadding
+            verticalContentHeightConstraint.constant = lastItemCard.frame.maxY + setting.contentToScrollViewBottomDistance
         } else {
-            verticalContentHeightConstraint.constant = verticalScrollView.frame.height + 1
+            verticalContentHeightConstraint.constant = verticalScrollView.frame.height + setting.contentToScrollViewBottomDistance
         }
         
         verticalContentView.layoutIfNeeded()

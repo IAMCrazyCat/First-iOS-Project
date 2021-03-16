@@ -174,12 +174,14 @@ class HomeViewController: UIViewController {
         self.itemCardsView.removeAllSubviews()
        
         self.view.layoutIfNeeded()
-        self.itemCardsView.renderItemCards(withCondition: .inProgress)
+        self.itemCardsView.renderItemCards(withCondition: .inProgress, animated: false)
     }
     
     func updateNavigationView() {
         
-        self.addNewItemButton.tintColor = self.engine.userSetting.smartLabelColorAndThemeColor.brightColor
+        self.overallProgressView.removeAllSubviews()
+        self.customNavigationBar.removeSubviewBy(idenifier: "SmallProgressCircle")
+        self.addNewItemButton.tintColor = self.engine.userSetting.smartLabelColor.brightColor
         self.todayProgressLabel.textColor = self.engine.userSetting.smartLabelColorAndThemeColor.brightColor
         self.customNavigationBar.backgroundColor = engine.userSetting.themeColorAndBlack
         self.spaceView.backgroundColor = engine.userSetting.themeColorAndBlack
@@ -193,7 +195,6 @@ class HomeViewController: UIViewController {
         circleView.center.y = self.addNewItemButton.center.y
         circleView.accessibilityIdentifier = "SmallProgressCircle"
         self.customNavigationBar.addSubview(circleView)
-        self.overallProgressView.removeAllSubviews()
         
         self.overallProgressView.layoutIfNeeded()
         builder = OverAllProgressViewBuilder(avatarImage: self.engine.currentUser.getAvatarImage(), progress: self.engine.getOverAllProgress(), frame: self.overallProgressView.bounds)

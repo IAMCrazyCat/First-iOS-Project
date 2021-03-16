@@ -40,6 +40,23 @@ class UserSetting {
             return AppEngine.shared.userSetting.themeColor
         }
     }
+    let themeColorAndWhite = UIColor { system in
+        switch system.userInterfaceStyle {
+        case .dark:
+            return UIColor.white
+        default:
+            return AppEngine.shared.userSetting.themeColor
+        }
+    }
+    let themeColorAndSmartLabelColor = UIColor { system in
+        switch system.userInterfaceStyle {
+        case .dark:
+            return AppEngine.shared.userSetting.smartLabelColor
+        default:
+            return AppEngine.shared.userSetting.themeColor
+            
+        }
+    }
     let whiteAndThemColor = UIColor { system in
         switch system.userInterfaceStyle {
         case .dark:

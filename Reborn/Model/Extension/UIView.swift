@@ -9,6 +9,12 @@ import Foundation
 import UIKit
 import SwiftConfettiView
 extension UIView {
+    
+    func delay(_ delay:Double, closure:@escaping ()->()) {
+        DispatchQueue.main.asyncAfter(
+            deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
+    }
+    
     func setShadow() {
 
         self.layer.shadowColor = SystemSetting.shared.UIViewShadowColor
@@ -66,14 +72,14 @@ extension UIView {
     }
     
     func getSubviewBy(idenifier: String) -> UIView? {
-        var subviewByEdentifier: UIView? = nil
+        var subviewByIdentifier: UIView? = nil
         
         for subview in self.subviews {
             if subview.accessibilityIdentifier == idenifier {
-                subviewByEdentifier = subview
+                subviewByIdentifier = subview
             }
         }
-        return subviewByEdentifier
+        return subviewByIdentifier
     }
     
     func getSubviewBy(tag: Int) -> UIView? {
@@ -85,6 +91,17 @@ extension UIView {
             }
         }
         return subviewByTag
+    }
+    
+    func removeSubviewBy(idenifier: String){
+        var subviewByIdentifier: UIView? = nil
+        
+        for subview in self.subviews {
+            if subview.accessibilityIdentifier == idenifier {
+                subviewByIdentifier = subview
+            }
+        }
+        subviewByIdentifier?.removeFromSuperview()
     }
     
     func removeAllSubviews() {
@@ -100,7 +117,7 @@ extension UIView {
         self.addSubview(itemCard)
     }
     
-    func renderItemCards(withCondition condition: ItemState?) {
+    func renderItemCards(withCondition condition: ItemState?, animated: Bool) {
         
         let isRenderingAll = condition == nil ? true : false
         let items = AppEngine.shared.currentUser.items
@@ -117,8 +134,10 @@ extension UIView {
         
         var noConditionedItemFound: Bool = true
         var userHasNoItem: Bool = true
+        
         if items.count > 0 {
             userHasNoItem = false
+            var itemNumber = 1
             while tag >= 0 {
                 let item = items[tag]
                 if item.state == condition || isRenderingAll {
@@ -126,10 +145,26 @@ extension UIView {
                     let itemCard = builder.buildView()
                     cordinateY += SystemSetting.shared.itemCardHeight + SystemSetting.shared.itemCardGap
                     self.frame.size.height = itemCard.frame.maxY
-                    self.addSubview(itemCard)
+                    
+                    
+                    if animated {
+                        itemCard.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                        self.addSubview(itemCard)
+                        UIView.animate(withDuration: 0.3, delay: TimeInterval(Double(itemNumber - 1) * 0.1), options: .curveEaseOut, animations: {
+                            itemCard.transform = CGAffineTransform(scaleX: 1, y: 1)
+                            itemCard.alpha = 1
+                        })
+                       
+                    } else {
+                        self.addSubview(itemCard)
+                    }
+                    
+                    itemNumber += 1
                     noConditionedItemFound = false
                     
                 }
+                
+               
                 tag -= 1
             }
 

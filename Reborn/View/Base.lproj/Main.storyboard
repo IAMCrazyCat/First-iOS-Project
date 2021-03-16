@@ -835,11 +835,11 @@ Cg
             <objects>
                 <viewController storyboardIdentifier="ItemDetailView" hidesBottomBarWhenPushed="YES" id="ks2-0d-aBh" customClass="ItemDetailViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0fl-uJ-8UA">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FRC-Pg-OSb" userLabel="Vertical Scroll View">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fhM-A8-SwE" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1400"/>
@@ -848,7 +848,7 @@ Cg
                                                 <rect key="frame" x="15" y="43" width="384" height="430"/>
                                                 <subviews>
                                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rPK-k0-tHl" userLabel="Calendar View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="384" height="428"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="384" height="430"/>
                                                         <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="430" id="AF9-H6-ena"/>
@@ -1296,7 +1296,6 @@ Cg
                         <outlet property="verticalScrollView" destination="BDY-Xd-Ccc" id="t6O-zo-dHw"/>
                         <outlet property="view" destination="uAb-zv-xSl" id="5u5-dj-8jZ"/>
                         <segue destination="yhk-VJ-4nb" kind="showDetail" identifier="GoToNewItemView" id="dzd-Jo-rYE"/>
-                        <segue destination="ks2-0d-aBh" kind="show" identifier="GoToItemDetailView" id="tkB-nE-CDt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zpd-ju-ZRL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1387,26 +1386,20 @@ Cg
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lt5-gF-RX7" userLabel="Option Bar">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="mH9-Nw-pG6">
-                                        <rect key="frame" x="15" y="9.5" width="384" height="32"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <segments>
-                                            <segment title="全部项目"/>
-                                            <segment title="今日项目"/>
-                                            <segment title="今日休息"/>
-                                            <segment title="已完成"/>
-                                        </segments>
-                                        <connections>
-                                            <action selector="optionButtonPressed:" destination="7qU-RC-e4u" eventType="valueChanged" id="Mej-dU-bIH"/>
-                                        </connections>
-                                    </segmentedControl>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LSc-aq-7eV" userLabel="Option Bar Content View">
+                                        <rect key="frame" x="15" y="10" width="339" height="30"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="cdO-RD-nuu"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
-                                <color key="backgroundColor" name="ThemeColorAndBlack"/>
+                                <color key="backgroundColor" name="RedColor"/>
                                 <constraints>
-                                    <constraint firstItem="mH9-Nw-pG6" firstAttribute="leading" secondItem="Lt5-gF-RX7" secondAttribute="leading" constant="15" id="Jpm-4f-LpJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="LSc-aq-7eV" secondAttribute="trailing" constant="60" id="6me-1q-baj"/>
+                                    <constraint firstItem="LSc-aq-7eV" firstAttribute="leading" secondItem="Lt5-gF-RX7" secondAttribute="leading" constant="15" id="AyP-z0-lEK"/>
                                     <constraint firstAttribute="height" constant="50" id="Skc-cN-Iws"/>
-                                    <constraint firstItem="mH9-Nw-pG6" firstAttribute="centerY" secondItem="Lt5-gF-RX7" secondAttribute="centerY" id="Y9X-xt-PD2"/>
-                                    <constraint firstAttribute="trailing" secondItem="mH9-Nw-pG6" secondAttribute="trailing" constant="15" id="ocp-9F-Nuw"/>
+                                    <constraint firstItem="LSc-aq-7eV" firstAttribute="centerY" secondItem="Lt5-gF-RX7" secondAttribute="centerY" id="ZmB-xb-743"/>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVc-FF-Wj4" userLabel="Vertical Scroll View">
@@ -1453,17 +1446,16 @@ Cg
                     </navigationItem>
                     <connections>
                         <outlet property="optionBar" destination="Lt5-gF-RX7" id="IHe-zO-fda"/>
-                        <outlet property="segmentedControl" destination="mH9-Nw-pG6" id="I2h-VE-h0R"/>
+                        <outlet property="optionBarContentView" destination="LSc-aq-7eV" id="Xh3-ZG-ys6"/>
                         <outlet property="verticalContentHeightConstraint" destination="Je9-ys-7df" id="zQK-DQ-bVv"/>
                         <outlet property="verticalContentView" destination="RlR-Ck-CHb" id="wks-Je-AOp"/>
                         <outlet property="verticalScrollView" destination="hVc-FF-Wj4" id="MRU-Bk-NTp"/>
-                        <segue destination="ks2-0d-aBh" kind="show" id="qHk-ov-wBz"/>
                         <segue destination="yhk-VJ-4nb" kind="presentation" identifier="GoToNewItemView" id="LKv-l4-eYv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bof-g5-eiZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4176.8000000000002" y="747.78325123152717"/>
+            <point key="canvasLocation" x="4175.36231884058" y="747.32142857142856"/>
         </scene>
         <!--个人中心-->
         <scene sceneID="3sl-C0-kae">
@@ -2248,7 +2240,7 @@ Cg
             <objects>
                 <viewController id="cr2-6I-Rrh" customClass="CalendarViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jX3-MM-9D0">
-                        <rect key="frame" x="0.0" y="0.0" width="384" height="428"/>
+                        <rect key="frame" x="0.0" y="0.0" width="384" height="430"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RwH-pK-cja" userLabel="Top View">
@@ -2410,10 +2402,10 @@ Cg
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CyJ-kQ-0F2" userLabel="Bottom View">
-                                <rect key="frame" x="0.0" y="140" width="384" height="288"/>
+                                <rect key="frame" x="0.0" y="140" width="384" height="290"/>
                                 <subviews>
                                     <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zYE-Pq-52Y">
-                                        <rect key="frame" x="30" y="0.0" width="324" height="268"/>
+                                        <rect key="frame" x="30" y="0.0" width="324" height="270"/>
                                         <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="mXR-mX-f4e">
                                             <size key="itemSize" width="128" height="128"/>
@@ -2485,7 +2477,6 @@ Cg
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="qHk-ov-wBz"/>
         <segue reference="LKv-l4-eYv"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2532,6 +2523,9 @@ Cg
         </namedColor>
         <namedColor name="GrayWhiteAndBlackContent">
             <color red="0.96399998664855957" green="0.96399998664855957" blue="0.96399998664855957" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="RedColor">
+            <color red="0.9089999794960022" green="0.14399999380111694" blue="0.010999999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="ThemeColor">
             <color red="0.18000000715255737" green="0.45500001311302185" blue="0.70999997854232788" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
