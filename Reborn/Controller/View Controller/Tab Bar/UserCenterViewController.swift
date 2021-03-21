@@ -70,6 +70,7 @@ class UserCenterViewController: UIViewController {
         self.avaterView.addGestureRecognizer(gesture)
  
         updateUI()
+        addBottomBannerAdIfNeeded()
     }
     
     override func viewDidLayoutSubviews() {
@@ -180,6 +181,7 @@ extension UserCenterViewController: UIObserver {
         updateDateLabel()
         updateNotificationTimeLabel()
         updateEnergyLabel()
+        removeBottomBannerAdIfVIP()
     }
 }
 

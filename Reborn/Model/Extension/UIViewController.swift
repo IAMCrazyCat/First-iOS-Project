@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import GoogleMobileAds
 
 extension UIViewController: UIViewControllerTransitioningDelegate  {
     
@@ -89,6 +90,34 @@ extension UIViewController: UIViewControllerTransitioningDelegate  {
         } else {
             self.view.window?.overrideUserInterfaceStyle = .unspecified
         }
+    }
+    
+    func addBottomBannerAdIfNeeded() {
+        if !AppEngine.shared.currentUser.vip {
+            
+            var bannerView: GADBannerView!
+            bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+            bannerView.accessibilityIdentifier = "BottomBannerAd"
+            bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+            bannerView.rootViewController = self
+            bannerView.load(GADRequest())
+            bannerView.translatesAutoresizingMaskIntoConstraints = false
+            self.view.addSubview(bannerView)
+            
+            bannerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+            bannerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+            bannerView.widthAnchor.constraint(equalToConstant: 320).isActive = true
+            bannerView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        }
+        
+        
+    }
+    
+    func removeBottomBannerAdIfVIP() {
+        if AppEngine.shared.currentUser.vip {
+            self.view.removeSubviewBy(idenifier: "BottomBannerAd")
+        }
+        
     }
 }
 

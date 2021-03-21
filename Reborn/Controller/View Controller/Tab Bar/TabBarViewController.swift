@@ -21,8 +21,7 @@ class TabBarViewController: UITabBarController {
 extension TabBarViewController: UIObserver {
     func updateUI() {
         self.tabBar.tintColor = AppEngine.shared.userSetting.themeColor.darkColor
-        
-        
+
     }
     
     

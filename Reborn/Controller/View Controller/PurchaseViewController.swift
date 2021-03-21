@@ -31,8 +31,8 @@ class PurchaseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SKPaymentQueue.default().add(self)
         
+        SKPaymentQueue.default().add(self)
         avatarView.contentMode = .scaleAspectFill
         functionViews.append(VIPFounctionOneView)
         functionViews.append(VIPFounctionTwoView)
@@ -66,7 +66,9 @@ class PurchaseViewController: UIViewController {
         purchaseApp()
     }
     
+    
     func purchaseApp() {
+        
         let productID = "com.crazycat.Reborn.VIPAccount"
         if SKPaymentQueue.canMakePayments() {
             let paymentRequest = SKMutablePayment()
@@ -110,9 +112,10 @@ extension PurchaseViewController: SKPaymentTransactionObserver {
                 print("Thanks for shopping")
                 SKPaymentQueue.default().finishTransaction(transaction)
                 self.engine.purchaseApp()
+                self.dismiss(animated: true, completion: nil)
                 
             } else if transaction.transactionState == .failed {
-                
+                print("Transaction Failed!")
                 SKPaymentQueue.default().finishTransaction(transaction)
                 if let error = transaction.error {
                     let errorDescription = error.localizedDescription

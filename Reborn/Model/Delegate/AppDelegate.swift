@@ -6,16 +6,17 @@
 //
 
 import UIKit
-
+import GoogleMobileAds
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        UIBarButtonItem.appearance().tintColor = .white
-        AppEngine.shared.notifyAllUIObservers()
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        AppEngine.shared.loadUser()
+        UIBarButtonItem.appearance().tintColor = AppEngine.shared.userSetting.smartLabelColor
+       
         return true
     }
 

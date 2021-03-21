@@ -70,10 +70,9 @@ class AppEngine {
         
         observerNotifier = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in self.changeDetactor() }
         
-        loadUser()
-        
         
         if appLaunchedBefore() {
+            loadUser()
             loadSetting()
             scheduleNotification()
         } else {
@@ -260,7 +259,7 @@ class AppEngine {
     }
     
     
-    private func loadUser() {
+    public func loadUser() {
         
         if let data = try? Data(contentsOf: dataFilePath!) {
            let decoder = JSONDecoder() //PropertyListDecoder()

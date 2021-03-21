@@ -78,6 +78,8 @@
 		22AACA1125AD910D0098D920 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AACA1025AD910D0098D920 /* Date.swift */; };
 		22AACA3225AE98B40098D920 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AACA3025AE98B40098D920 /* CalendarViewController.swift */; };
 		22AC22B825F1077C002A1F7F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22AC22B725F1077C002A1F7F /* StoreKit.framework */; };
+		22AF41012607443400B89031 /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 22AF41002607443400B89031 /* Configuration.storekit */; };
+		22AF41092607443F00B89031 /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 22AF41082607443F00B89031 /* StoreKitTestCertificate.cer */; };
 		22B1E8E425DCE3A5003ABF6C /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B1E8E325DCE3A5003ABF6C /* Actions.swift */; };
 		22B1E8E925DD47F3003ABF6C /* ItemSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B1E8E825DD47F3003ABF6C /* ItemSet.swift */; };
 		22B4B56325D10ACD00C0CFD7 /* UIObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B4B56225D10ACD00C0CFD7 /* UIObserver.swift */; };
@@ -233,6 +235,8 @@
 		22AACA1025AD910D0098D920 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		22AACA3025AE98B40098D920 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		22AC22B725F1077C002A1F7F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		22AF41002607443400B89031 /* Configuration.storekit */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
+		22AF41082607443F00B89031 /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		22B1E8E325DCE3A5003ABF6C /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
 		22B1E8E825DD47F3003ABF6C /* ItemSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSet.swift; sourceTree = "<group>"; };
 		22B4B56225D10ACD00C0CFD7 /* UIObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIObserver.swift; sourceTree = "<group>"; };
@@ -329,6 +333,8 @@
 		220B7275258A288000E4BEDC = {
 			isa = PBXGroup;
 			children = (
+				22AF41002607443400B89031 /* Configuration.storekit */,
+				22AF41082607443F00B89031 /* StoreKitTestCertificate.cer */,
 				220B7280258A288000E4BEDC /* Reborn */,
 				220B7297258A288300E4BEDC /* RebornTests */,
 				220B72A2258A288300E4BEDC /* RebornUITests */,
@@ -542,6 +548,17 @@
 			path = "View Factory";
 			sourceTree = "<group>";
 		};
+		228FF86126072E820067411F /* Tab Bar */ = {
+			isa = PBXGroup;
+			children = (
+				22C2C75A26023CEF0007249A /* TabBarViewController.swift */,
+				22C23A26258DCE4500D4BEB2 /* HomeViewController.swift */,
+				2293F38525DB7C18009B4753 /* ItemManagementViewController.swift */,
+				22D354B325A595B7004F5667 /* UserCenterViewController.swift */,
+			);
+			path = "Tab Bar";
+			sourceTree = "<group>";
+		};
 		22945D5425F5A7950065B511 /* Pop Up View  */ = {
 			isa = PBXGroup;
 			children = (
@@ -697,19 +714,16 @@
 		22D8A06B25CD141200A605D6 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				228FF86126072E820067411F /* Tab Bar */,
 				22A597F825986685008E2A06 /* NewItemViewController.swift */,
 				228ED3E525B94D630054591F /* CalendarCell.swift */,
 				22AACA3025AE98B40098D920 /* CalendarViewController.swift */,
-				22C23A26258DCE4500D4BEB2 /* HomeViewController.swift */,
 				225AD12E25A868F50040E356 /* ItemDetailViewController.swift */,
 				22E9A873259F33F50073D432 /* PopUpViewController.swift */,
 				22FCB1B4258D86BA006A0D39 /* SetUpViewController.swift */,
 				22916DA825BFE34C004A3EC4 /* TimeMachineViewController.swift */,
-				22D354B325A595B7004F5667 /* UserCenterViewController.swift */,
 				220B7285258A288000E4BEDC /* WelcomeViewController.swift */,
-				2293F38525DB7C18009B4753 /* ItemManagementViewController.swift */,
 				22E5A13525F33F76001AC3ED /* PurchaseViewController.swift */,
-				22C2C75A26023CEF0007249A /* TabBarViewController.swift */,
 				22A1E95C260315CA00AD2E7C /* EnergySettingViewController.swift */,
 			);
 			path = "View Controller";
@@ -944,7 +958,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22AF41092607443F00B89031 /* StoreKitTestCertificate.cer in Resources */,
 				220B728E258A288300E4BEDC /* LaunchScreen.storyboard in Resources */,
+				22AF41012607443400B89031 /* Configuration.storekit in Resources */,
 				220B728B258A288300E4BEDC /* Assets.xcassets in Resources */,
 				220B7289258A288000E4BEDC /* Main.storyboard in Resources */,
 			);

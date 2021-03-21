@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var verticalScrollView: UIScrollView!
@@ -25,9 +26,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var spaceViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var todayProgressLabel: UILabel!
 
-
-    
-    static var view: UIView!
     
     var setting = SystemSetting.shared
     
@@ -38,6 +36,9 @@ class HomeViewController: UIViewController {
     let engine = AppEngine.shared
     var keyboardFrame: CGRect? = nil
     
+   
+
+    
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         engine.notifyAllUIObservers()
@@ -45,6 +46,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         if engine.appLaunchedBefore() {
             
@@ -76,6 +78,9 @@ class HomeViewController: UIViewController {
         dateFormatter.setLocalizedDateFormatFromTemplate("dd MMMM EEEE")
     
         updateUI()
+        addBottomBannerAdIfNeeded()
+        
+        
 
     }
     
@@ -102,6 +107,8 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
+    
+   
     
     func sendNotification() {
         let userNotificationCenter = UNUserNotificationCenter.current()
@@ -291,7 +298,7 @@ extension HomeViewController: UIObserver {
         updateNavigationView()
         updateItemCardsView()
         updateVerticalContentViewHeight()
-
+        removeBottomBannerAdIfVIP()
     }
 }
 

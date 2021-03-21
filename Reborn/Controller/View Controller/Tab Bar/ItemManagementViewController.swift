@@ -28,7 +28,7 @@ class ItemManagementViewController: UIViewController {
         engine.add(observer: self)
         optionBarContentView.layoutIfNeeded()
     
-
+        addBottomBannerAdIfNeeded()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -122,6 +122,7 @@ class ItemManagementViewController: UIViewController {
     
     
     func updateVerticalContentView() {
+        verticalContentView.layoutIfNeeded()
         verticalContentView.removeAllSubviews()
         verticalContentView.renderItemCards(withCondition: self.selectedSegment, animated: false)
       
@@ -142,6 +143,7 @@ extension ItemManagementViewController: UIObserver {
         updateNavigationBar()
         updateOptionBar()
         updateVerticalContentView()
+        removeBottomBannerAdIfVIP()
     }
     
 }
