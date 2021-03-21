@@ -310,7 +310,7 @@ class ItemCardViewBuilder: ViewBuilder {
         punchInButton.accessibilityIdentifier = "PunchInButton"
         
         punchInButton.setTitle("打卡", for: .normal)
-        punchInButton.setTitle("打卡", for: .selected)
+        punchInButton.setTitle("撤销", for: .selected)
         punchInButton.setTitleColor(AppEngine.shared.userSetting.themeColor, for: .normal)
         punchInButton.setTitleColor(.white, for: .selected)
        
@@ -341,6 +341,17 @@ class ItemCardViewBuilder: ViewBuilder {
         if isInteractable {
             punchInButton.addTarget(Actions.shared, action: Actions.punchInAction, for: .touchUpInside)
         }
+        
+        if let lastPunchIndate = self.item.punchInDates.last {
+            
+            if self.item.state == .completed && lastPunchIndate != AppEngine.shared.currentDate {
+                punchInButton.isSelected = true
+                punchInButton.setTitle("完成", for: .selected)
+                punchInButton.isUserInteractionEnabled = false
+            }
+        }
+        
+        
     }
     
     private func addConfettiTopView() {

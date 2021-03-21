@@ -23,9 +23,9 @@ class AppEngine {
     private var observerNotifierTimePoints: Array<Int> = []
     private var observerIsNotifiedByNotifier: Bool = false
     
-    
+    public var userEnabledNotification = false
     public static let shared = AppEngine()
-    public var currentUser: User = User(name: "无名氏", gender: .undefined, avatar: #imageLiteral(resourceName: "Test"), keys: 3, items: [Item](), vip: false)
+    public var currentUser: User = User(name: "颠猫", gender: .undefined, avatar: #imageLiteral(resourceName: "Unknown"), keys: 3, items: [Item](), vip: false)
     public let userSetting: UserSetting = UserSetting()
     public var overAllProgress: Double = 0.0
     public var storedDataFromPopUpView: Any? = nil
@@ -68,14 +68,30 @@ class AppEngine {
             self.observerNotifierTimePoints.append(timePoint.range.first!)
         }
         
-        observerNotifier = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in self.checkUpdate() }
+        observerNotifier = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in self.changeDetactor() }
+        
         loadUser()
-        scheduleNotification()
+        
         
         if appLaunchedBefore() {
             loadSetting()
+            scheduleNotification()
         } else {
             saveSetting()
+        }
+        
+        userEnabledNotification = isNotificationEnabled()
+        UITabBar.appearance().tintColor = self.userSetting.themeColor
+        
+        
+    }
+    
+    func changeDetactor() {
+        self.checkUpdate()
+        
+        if self.userEnabledNotification != self.isNotificationEnabled() {
+            self.notifyAllUIObservers()
+            self.loadSetting()
         }
     }
     
@@ -111,8 +127,61 @@ class AppEngine {
         }
     }
     
-    func addNotification(at time: CustomTime) {
+    func isNotificationEnabled() -> Bool {
+        let semaphore = DispatchSemaphore(value: 0)
+        let center = UNUserNotificationCenter.current()
+        center.getNotificationSettings { (settings) in
+            
+          if settings.authorizationStatus == .authorized {
+            self.userEnabledNotification = true
+          }
+          else {
+            self.userEnabledNotification = false
+          }
+            semaphore.signal()
+        }
         
+        semaphore.wait()
+        return self.userEnabledNotification
+        
+//        center.getNotificationSettings(completionHandler: { permission in
+//            switch permission.authorizationStatus  {
+//            case .authorized:
+//                AppEngine.shared.storedUserNotificationPermission = true
+//                print("User granted permission for notification")
+//            case .denied:
+//                AppEngine.shared.storedUserNotificationPermission = false
+//                print("User denied notification permission")
+//            case .notDetermined:
+//                AppEngine.shared.storedUserNotificationPermission = false
+//                print("Notification permission haven't been asked yet")
+//            case .provisional:
+//                AppEngine.shared.storedUserNotificationPermission = true
+//                // @available(iOS 12.0, *)
+//                print("The application is authorized to post non-interruptive user notifications.")
+//            case .ephemeral:
+//                AppEngine.shared.storedUserNotificationPermission = true
+//                // @available(iOS 14.0, *)
+//                print("The application is temporarily authorized to post notifications. Only available to app clips.")
+//            @unknown default:
+//                AppEngine.shared.storedUserNotificationPermission = false
+//                print("Unknow Status")
+//            }
+//        })
+
+       
+    }
+    
+    func goToDeviceSystemSetting() {
+        if let bundleIdentifier = Bundle.main.bundleIdentifier, let appSettings = URL(string: UIApplication.openSettingsURLString + bundleIdentifier) {
+            if UIApplication.shared.canOpenURL(appSettings) {
+                UIApplication.shared.open(appSettings)
+            }
+        }
+    }
+    
+    func addNotification(at time: CustomTime) {
+
         if self.currentUser.items.count != 0 {
             
             var item: Item {
@@ -156,7 +225,7 @@ class AppEngine {
     }
     
     func scheduleNotification() {
-        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         for time in userSetting.notificationTime {
             addNotification(at: time)
         }
@@ -211,6 +280,7 @@ class AppEngine {
     public func saveSetting() {
         defaults.set(userSetting.themeColor, forKey: "ThemeColor")
         defaults.set(userSetting.notificationTime, forKey: "NotificationTime")
+        defaults.set(userSetting.appAppearanceMode, forKey: "AppAppearanceMode")
         notifyAllUIObservers()
     }
     
@@ -223,10 +293,12 @@ class AppEngine {
         if let notificationTime = defaults.notificationTime(for: "NotificationTime") {
             userSetting.notificationTime = notificationTime
         }
-    
+        if let appAppearanceMode = defaults.appAppearanceMode(for: "AppAppearanceMode") {
+            userSetting.appAppearanceMode = appAppearanceMode
+        }
         
-        
-        
+
+
     }
     
     public func add(newItem: Item) {
@@ -283,6 +355,15 @@ class AppEngine {
        
     }
     
+    public func add(punchInDates: Array<CustomDate>, to item: Item) {
+        for makingUpDate in punchInDates {
+            item.punchInDates.append(makingUpDate)
+        }
+       
+        self.notifyAllUIObservers()
+    }
+
+    
     public func getItemBy(tag index: Int) -> Item {
         return self.currentUser.items[index]
     }
@@ -328,10 +409,20 @@ class AppEngine {
     }
     
     public func notifyAllUIObservers() {
-
+        
+        
         for observer in self.observers {
-            observer.updateUI()
+            DispatchQueue.main.async {
+                observer.updateUI()
+            }
+            
         }
+        print("All Observers Notified")
+    }
+    
+    @objc func updateUIObservers() {
+        
+        
     }
     // ------------------------------------ observer ------------------------------------------------------
     

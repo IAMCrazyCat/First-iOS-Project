@@ -118,4 +118,27 @@ class DateCalculator {
         return dateResult
     }
     
+    static func calculateDayDifferenceBetween(_ from: CustomDate, and to: CustomDate) -> Int {
+        
+        let calendar = Calendar.current
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "YYYY MM DD"
+        var fromComponents = DateComponents()
+        fromComponents.year = from.year
+        fromComponents.month = from.month
+        fromComponents.day = from.day
+        
+        var toComponents = DateComponents()
+        toComponents.year = to.year
+        toComponents.month = to.month
+        toComponents.day = to.day
+        
+        let fromDate = calendar.startOfDay(for: calendar.date(from: fromComponents)!)
+        let toDate = calendar.startOfDay(for: calendar.date(from: toComponents)!)
+        let numberOfDays = calendar.dateComponents([.day], from: fromDate, to: toDate)
+        
+        return numberOfDays.day! + 1
+    }
+    
 }

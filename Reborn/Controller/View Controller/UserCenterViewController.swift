@@ -21,7 +21,8 @@ class UserCenterViewController: UIViewController {
     
     @IBOutlet weak var purchaseButton: UIButton!
     @IBOutlet weak var notificationButton: UIButton!
-    @IBOutlet weak var myKeysButton: UIButton!
+    @IBOutlet weak var energyButton: UIButton!
+    @IBOutlet weak var energyLabel: UILabel!
     @IBOutlet weak var themeColorButton: UIButton!
     @IBOutlet weak var lightAndDarkModeButton: UIButton!
     @IBOutlet weak var reviewButton: UIButton!
@@ -41,7 +42,7 @@ class UserCenterViewController: UIViewController {
     var setting: SystemSetting = SystemSetting.shared
     let engine: AppEngine = AppEngine.shared
     
-    var settingButtons: Array<UIButton> = []
+    @IBOutlet var settingButtons: [UIButton]!
     override func viewDidLoad() {
         super.viewDidLoad()
         AppEngine.shared.add(observer: self)
@@ -67,20 +68,7 @@ class UserCenterViewController: UIViewController {
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(avatarViewTapped))
         self.avaterView.addGestureRecognizer(gesture)
-        
-        //purchaseButton.setCornerRadius()
-        settingButtons.append(purchaseButton)
-        settingButtons.append(notificationButton)
-        settingButtons.append(myKeysButton)
-        settingButtons.append(themeColorButton)
-        settingButtons.append(lightAndDarkModeButton)
-        settingButtons.append(reviewButton)
-        settingButtons.append(feedbackButton)
-        settingButtons.append(shareButton)
-        settingButtons.append(restorePurchaseButton)
-        settingButtons.append(instructionButton)
-        
-        
+ 
         updateUI()
     }
     
@@ -98,30 +86,43 @@ class UserCenterViewController: UIViewController {
     }
     
     @IBAction func purchaseButtonPressed(_ sender: UIButton) {
-        self.showPurchaseView()
+        self.presentViewController(withIentifier: "PurchaseViewController")
 
     }
     @IBAction func notificationTimeButtonPressed(_ sender: UIButton) {
-        self.show(.notificationTimePopUp, animation: .slideInToCenter)
+  
+        self.present(.notificationTimePopUp, animation: .slideInToCenter)
     }
     
     @IBAction func settingButtonPressed(_ sender: UIButton) {
-        self.show(.customThemeColorPopUp, animation: .slideInToCenter)
+        self.present(.customThemeColorPopUp, animation: .slideInToCenter)
     }
     
     
     @IBAction func lightAndDarkButtonPressed(_ sender: UIButton) {
-       
+        self.present(.lightAndDarkModePopUp, animation: .slideInToCenter)
     }
     
-    @IBAction func userNameButtonPressed(_ sender: Any) {
-        self.show(.customUserNamePopUp, animation: .slideInToBottom)
+    @IBAction func userNameButtonPressed(_ sender: UIButton!) {
+        self.present(.customUserNamePopUp, animation: .slideInToBottom)
     }
     
-    func setButtonsAppearence() {
+    @IBAction func energyButtonPressed(_ sender: UIButton!) {
+        self.presentViewController(withIentifier: "EnergySettingViewController")
+    }
+    
+    @objc func settingButtonTouchedDown(_ sender: UIButton!) {
+        sender.isSelected = true
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { timer in
+            sender.isSelected = false
+        }
+    }
+    
+    func setButtonsAppearance() {
         self.themeColorButton.tintColor = AppEngine.shared.userSetting.themeColor
         for button in self.settingButtons {
-            button.setBackgroundColor(.systemGray3, for: .highlighted)
+            button.addTarget(self, action: #selector(self.settingButtonTouchedDown(_:)), for: .touchDown)
+            button.setBackgroundColor(.systemGray3, for: .selected)
             button.layer.cornerRadius = self.setting.itemCardCornerRadius - 5
         }
     }
@@ -150,25 +151,19 @@ class UserCenterViewController: UIViewController {
     }
     
     func updateNotificationTimeLabel() {
-//
-//        var notificationHour: String {
-//            if engine.userSetting.notificationHour < 10 {
-//                return "0\(engine.userSetting.notificationHour)"
-//            } else {
-//                return "\(engine.userSetting.notificationHour)"
-//            }
-//        }
-//
-//        var notificationMinute: String {
-//            if engine.userSetting.notificationMinute < 10 {
-//                return "0\(engine.userSetting.notificationMinute)"
-//            } else {
-//                return "\(engine.userSetting.notificationMinute)"
-//            }
-//        }
         
-        notificationTimeLabel.text = "\(engine.userSetting.notificationTime.count)次提醒"
-        notificationTimeLabel.textColor = setting.grayColor
+        if self.engine.isNotificationEnabled() {
+            self.notificationTimeLabel.text = "\(self.engine.userSetting.notificationTime.count)次提醒"
+            print(self.engine.userSetting.notificationTime)
+        } else {
+            self.notificationTimeLabel.text = "已禁用"
+        }
+        
+
+    }
+    
+    func updateEnergyLabel() {
+        energyLabel.text = "× \(engine.currentUser.keys)"
     }
     
 }
@@ -176,13 +171,15 @@ class UserCenterViewController: UIViewController {
 
 extension UserCenterViewController: UIObserver {
     func updateUI() {
+        
         updateNavigationBar()
-        setButtonsAppearence()
+        setButtonsAppearance()
         updateUserNameButton()
         updateAvatarView()
         updateVerticalContentViewHeight()
         updateDateLabel()
         updateNotificationTimeLabel()
+        updateEnergyLabel()
     }
 }
 

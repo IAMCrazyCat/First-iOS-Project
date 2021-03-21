@@ -19,16 +19,16 @@ extension UIViewController: UIViewControllerTransitioningDelegate  {
         self.present(presenting, animated:true, completion: nil)
      }
     
-    func showPurchaseView() {
-        
+
+    
+    func presentViewController(withIentifier identifier: String) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let purchaseViewController = storyboard.instantiateViewController(withIdentifier: "PurchaseViewController") as? PurchaseViewController {
-            self.present(purchaseViewController, animated: true, completion: nil)
-        }
-       
+        let toViewController = storyboard.instantiateViewController(withIdentifier: identifier)
+        self.present(toViewController, animated: true, completion: nil)
+
     }
     
-    func show(_ popUpType: PopUpType, animation animationType: PopUpAnimationType = .slideInToBottom, dataStartIndex: Int = 0) {
+    func present(_ popUpType: PopUpType, animation animationType: PopUpAnimationType = .slideInToBottom, dataStartIndex: Int = 0) {
         
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -38,23 +38,29 @@ extension UIViewController: UIViewControllerTransitioningDelegate  {
             
             switch popUpType {
             case .customFrequencyPopUp:
-                popUpViewController.popUp = CustomFrequencyPopUp(presentAnimationType: animationType, popUpViewController: popUpViewController, dataStartIndex: dataStartIndex)
+                popUpViewController.popUp = CustomFrequencyPopUp(presentAnimationType: animationType, dataStartIndex: dataStartIndex, popUpViewController: popUpViewController)
             case .customItemNamePopUp:
                 popUpViewController.popUp = CustomItemNamePopUpView(presentAnimationType: animationType, popUpViewController: popUpViewController)
             case .customTargetDaysPopUp:
-                popUpViewController.popUp = CustomTargetDaysPopUp(presentAnimationType: animationType, popUpViewController: popUpViewController, dataStartIndex: dataStartIndex)
+                popUpViewController.popUp = CustomTargetDaysPopUp(presentAnimationType: animationType, dataStartIndex: dataStartIndex, popUpViewController: popUpViewController)
             case .customThemeColorPopUp:
-                popUpViewController.popUp = CustomThemeColorPopUp(presentAnimationType: animationType, popUpViewController: popUpViewController)
+                popUpViewController.popUp = CustomThemeColorPopUp(presentAnimationType: animationType, size: .small, popUpViewController: popUpViewController)
             case .customUserNamePopUp:
                 popUpViewController.popUp = CustomUserNamePopUp(presentAnimationType: animationType, popUpViewController: popUpViewController)
             case .notificationTimePopUp:
-                popUpViewController.popUp = NotificationTimePopUp(presentAnimationType: animationType, popUpViewController: popUpViewController)
+                
+                if AppEngine.shared.isNotificationEnabled() {
+                    popUpViewController.popUp = NotificationTimePopUp(presentAnimationType: animationType, size: .small, popUpViewController: popUpViewController)
+                } else {
+                    popUpViewController.popUp = NotificationTimePopUp(presentAnimationType: animationType, size: .large, popUpViewController: popUpViewController)
+                }
+                
             case .itemCompletedPopUp:
                 print("You should not use this function")
                 print("Use 'showItemCompletedPopUp(for: Item)' instead")
+            case .lightAndDarkModePopUp:
+                popUpViewController.popUp = LightAndDarkModePopUp(presentAnimationType: animationType, size: .medium, popUpViewController: popUpViewController)
             }
-    
-            //popUpViewController.updateUI()
             
             self.present(to: popUpViewController)
         }
@@ -69,7 +75,7 @@ extension UIViewController: UIViewControllerTransitioningDelegate  {
         if let popUpViewController = storyboard.instantiateViewController(withIdentifier: "PopUpViewController") as? PopUpViewController {
             
             AppEngine.shared.delegate = self as? PopUpViewDelegate
-            popUpViewController.popUp = ItemCompletedPopUp(item: item, presentAnimationType: .fadeInFromCenter, popUpViewController: popUpViewController)
+            popUpViewController.popUp = ItemCompletedPopUp(item: item, presentAnimationType: .fadeInFromCenter, size: .medium, popUpViewController: popUpViewController)
             self.present(to: popUpViewController)
         }
     }

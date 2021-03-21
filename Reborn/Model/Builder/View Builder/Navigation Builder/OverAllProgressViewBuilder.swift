@@ -132,8 +132,8 @@ class OverAllProgressViewBuilder: ViewBuilder {
         imageView.contentMode = .scaleAspectFill
         imageView.setCornerRadius()
 
-        circleView.addSubview(imageView)
         
+        circleView.addSubview(imageView)
         outPutView.addSubview(circleView)
         
     }

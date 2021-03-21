@@ -16,8 +16,8 @@ class CustomItemNamePopUpView: PopUpImpl {
         return super.contentView?.getSubviewBy(idenifier: "PromptLabel") as? UILabel
     }
     
-    init(presentAnimationType: PopUpAnimationType, popUpViewController: PopUpViewController) {
-        super.init(presentAnimationType: presentAnimationType, popUpViewController: popUpViewController, type: .customItemNamePopUp)
+    init(presentAnimationType: PopUpAnimationType, size: PopUpSize = .small, popUpViewController: PopUpViewController) {
+        super.init(presentAnimationType: presentAnimationType, type: .customItemNamePopUp, size: size, popUpViewController: popUpViewController)
         
 
     }

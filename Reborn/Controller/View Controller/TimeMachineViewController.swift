@@ -12,7 +12,7 @@ class TimeMachineViewController: UIViewController {
     var calendarView: UIView? = nil
     var calendarViewOriginalPosition: CGPoint?
     var calendarViewController: CalendarViewController?
-    
+    let engine: AppEngine = AppEngine.shared
     let setting: SystemSetting = SystemSetting.shared
     var calendarPages: Array<UIView> = []
     var userDidGo: NewCalendarPage = .noWhere
@@ -26,10 +26,11 @@ class TimeMachineViewController: UIViewController {
     @IBOutlet weak var goBackToThePastButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var energyButton: UIButton?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        engine.add(observer: self)
         animationSpeed = self.setting.timeMachineAnimationNormalSpeed
         
         titleLabel.textColor = AppEngine.shared.userSetting.themeColor
@@ -37,50 +38,72 @@ class TimeMachineViewController: UIViewController {
         goBackToThePastButton.setShadow()
         goBackToThePastButton.setBackgroundColor(AppEngine.shared.userSetting.themeColor, for: .normal)
         goBackToThePastButton.setBackgroundColor(.gray, for: .disabled)
- 
+       
+        updateEnergyLabel()
     }
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
+        calendarViewController?.punchInMakingUpDates.removeAll()
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func goBackToThePastButtonPressed(_ sender: UIButton) {
-        
+
+       
         Vibrator.vibrate(withNotificationType: .success)
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true) {
+            guard let makingUpDates = self.calendarViewController?.punchInMakingUpDates,
+                  let item = self.calendarViewController?.item else { return }
+            
+            self.engine.add(punchInDates: makingUpDates, to: item)
+            self.calendarViewController?.punchInMakingUpDates.removeAll()
+            self.engine.notifyAllUIObservers()
+        }
+        
+        
     }
 
     public func presentCalendarPages() {
         
         self.strategy = PresentStrategy(timeMachineViewController : self)
+        //self.calendarViewController?.lastViewController = self
         updateUI()
-    
+        
     }
     
     public func dismissCalendarPages() {
-        self.calendarViewController?.userDidGo = .noWhere
+        self.calendarViewController?.userDidGo = .sameMonth
         self.calendarViewController?.state = .normal
         self.animationSpeed = self.setting.timeMachineAnimationNormalSpeed
         self.strategy = DismissStrategy(timeMachineViewController : self)
+
         updateUI()
     }
     
+    func updateEnergyLabel() {
+       
+        self.energyButton?.setTitle(" × \(self.engine.currentUser.keys)", for: .normal)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    }
   
     
 }
 
 extension TimeMachineViewController: UIObserver {
     func updateUI() {
-        //timeMachineLabel.tintColor = AppEngine.shared.userSetting.themeColor
-        //goBackToThePastButton.setBackgroundColor(AppEngine.shared.userSetting.themeColor, for: .normal)
-        
+        print("YES")
+        updateEnergyLabel()
         self.strategy?.performStrategy()
+        self.strategy = nil
     }
 }
 
 extension TimeMachineViewController: CalendarViewDegelagte {
     func calendarCellDidLayout(size: CGSize) {
-        
+       
     }
     
     func calendarPageDidGoLastMonth() {
@@ -119,7 +142,7 @@ extension TimeMachineViewController: CalendarViewDegelagte {
         updateUI()
     }
     
-    func calendarPageDidGoNowhere() {
+    func calendarPageDidGoSameMonth() {
         self.strategy = EnlargeStrategy(timeMachineViewController: self)
         updateUI()
     }

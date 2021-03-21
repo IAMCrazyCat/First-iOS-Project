@@ -11,8 +11,8 @@ import UIKit
 class CustomThemeColorPopUp: PopUpImpl {
 
     
-    init(presentAnimationType: PopUpAnimationType, popUpViewController: PopUpViewController) {
-        super.init(presentAnimationType: presentAnimationType, popUpViewController: popUpViewController, type: .customThemeColorPopUp)
+    init(presentAnimationType: PopUpAnimationType, size: PopUpSize = .small, popUpViewController: PopUpViewController) {
+        super.init(presentAnimationType: presentAnimationType, type: .customThemeColorPopUp, size: size, popUpViewController: popUpViewController)
     }
     override func createWindow() -> UIView {
         return CustomThemeColorPopUpViewBuilder(popUpViewController: super.popUpViewController, frame: super.frame).buildView()

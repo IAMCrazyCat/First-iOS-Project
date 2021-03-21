@@ -44,12 +44,12 @@ class TimeMachineCalendarPageViewBuilder {
     private func addTopView() {
         let topView = UIView()
         
-        if let referenceView = self.getSubviewByIdentifier(superview: self.calendarView, identifier: "TopView") {
+        if let referenceView = self.calendarView.getSubviewBy(idenifier: "TopView") {
             
             topView.frame = referenceView.frame
             
             
-            if let referenceLabel = self.getSubviewByIdentifier(superview: referenceView, identifier: "MonthLabel") as? UILabel {
+            if let referenceLabel = referenceView.getSubviewBy(idenifier: "MonthLabel") as? UILabel {
                 
                 let dateLabel = UILabel()
                 dateLabel.frame = referenceLabel.frame
@@ -67,7 +67,7 @@ class TimeMachineCalendarPageViewBuilder {
             
             for identifier in buttonsIdentifier {
                 
-                if let referenceButton = self.getSubviewByIdentifier(superview: referenceView, identifier: identifier) as? UIButton {
+                if let referenceButton = referenceView.getSubviewBy(idenifier: identifier) as? UIButton {
                     
                     let button = UIButton()
                     button.frame = referenceButton.frame
@@ -90,7 +90,7 @@ class TimeMachineCalendarPageViewBuilder {
     private func addMiddleView() {
         let middleView = UIView()
         
-        if let referenceView = self.getSubviewByIdentifier(superview: self.calendarView, identifier: "MiddleView") {
+        if let referenceView = self.calendarView.getSubviewBy(idenifier: "MiddleView") {
             middleView.frame = referenceView.frame
             
             
@@ -129,13 +129,5 @@ class TimeMachineCalendarPageViewBuilder {
     
   
     
-    private func getSubviewByIdentifier(superview: UIView, identifier: String) -> UIView? {
-        
-        for subview in superview.subviews {
-            if subview.accessibilityIdentifier == identifier {
-                return subview
-            }
-        }
-        return nil
-    }
+    
 }

@@ -177,12 +177,12 @@ class SetUpViewController: UIViewController{
         print(sender.tag)
         if sender.tag == self.setting.customItemNameButtonTag {
             
-            self.show(.customItemNamePopUp)
+            self.present(.customItemNamePopUp)
 
             
         } else if sender.tag == self.setting.customTargetDaysButtonTag {
 
-            self.show(.customTargetDaysPopUp)
+            self.present(.customTargetDaysPopUp)
 
         }
         

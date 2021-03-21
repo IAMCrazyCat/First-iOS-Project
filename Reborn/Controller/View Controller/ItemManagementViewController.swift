@@ -87,7 +87,7 @@ class ItemManagementViewController: UIViewController {
     func updateNavigationBar() {
         navigationController?.navigationBar.removeBorder()
         navigationController?.navigationBar.barTintColor = engine.userSetting.themeColorAndBlack
-        navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: engine.userSetting.smartLabelColorAndThemeColor.brightColor]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: engine.userSetting.smartLabelColorAndThemeColor.brightColor]
         navigationItem.rightBarButtonItem?.tintColor = engine.userSetting.smartLabelColor.brightColor
         navigationItem.leftBarButtonItem?.tintColor = engine.userSetting.smartLabelColorAndThemeColor
     }
@@ -104,7 +104,7 @@ class ItemManagementViewController: UIViewController {
     
         }
         
-        self.segmentedControl = BetterSegmentedControl(frame: optionBarContentView.bounds, segments: segments, options: nil)
+        self.segmentedControl = BetterSegmentedControl(frame: optionBarContentView.bounds, segments: segments, options: [])
         self.segmentedControl.cornerRadius = self.segmentedControl.frame.height / 2
         self.segmentedControl.backgroundColor = .clear
         self.segmentedControl.indicatorViewBackgroundColor = self.engine.userSetting.whiteAndThemColor

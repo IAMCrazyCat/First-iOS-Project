@@ -32,10 +32,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.rootViewController = viewController
             window?.makeKeyAndVisible()
             AppEngine.shared.requestNotificationPermission()
-            //AppEngine.shared.scheduleNotification()
         }
         
-
+        window?.overrideUserInterfaceStyle = AppEngine.shared.userSetting.uiUserInterfaceStyle
        
         
         guard let _ = (scene as? UIWindowScene) else { return }

@@ -16,8 +16,8 @@ class CustomUserNamePopUp: PopUpImpl {
     var promptLabel: UILabel? {
         return super.contentView?.getSubviewBy(idenifier: "PromptLabel") as? UILabel
     }
-    init(presentAnimationType: PopUpAnimationType, popUpViewController: PopUpViewController) {
-        super.init(presentAnimationType: presentAnimationType, popUpViewController: popUpViewController, type: .customUserNamePopUp)
+    init(presentAnimationType: PopUpAnimationType, size: PopUpSize = .small, popUpViewController: PopUpViewController) {
+        super.init(presentAnimationType: presentAnimationType, type: .customUserNamePopUp, size: size, popUpViewController: popUpViewController)
     }
    
     

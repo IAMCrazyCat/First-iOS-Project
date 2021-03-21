@@ -8,6 +8,50 @@
 import Foundation
 import UIKit
 extension UserDefaults {
+   
+    
+    func set(_ value: UIColor?, forKey key: String) {
+
+        if let color = value {
+            self.set(Double(color.value.red), forKey: "UIColorRed")
+            self.set(Double(color.value.green), forKey: "UIColorGreen")
+            self.set(Double(color.value.blue), forKey: "UIColorBlue")
+            self.set(Double(color.value.alpha), forKey: "UIColorAlpha")
+        }
+
+    }
+    
+    func set(_ value: Array<CustomTime>?, forKey key: String) {
+        
+        if value != nil {
+            
+            do {
+                let encodedData = try NSKeyedArchiver.archivedData(withRootObject: value!, requiringSecureCoding: false)
+                self.set(encodedData, forKey: key)
+                self.synchronize()
+            } catch {
+                print(error)
+            }
+            
+           
+        }
+
+        
+    }
+    
+    func set(_ value: AppAppearanceMode?, forKey key: String) {
+        if value != nil {
+            do {
+                let encodedData = try NSKeyedArchiver.archivedData(withRootObject: value!.rawValue, requiringSecureCoding: false)
+                self.set(encodedData, forKey: key)
+                self.synchronize()
+                print("CODED!!!!!")
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
     func color(forKey key: String) -> UIColor? {
 
         let r = CGFloat(self.double(forKey: "UIColorRed"))
@@ -23,16 +67,7 @@ extension UserDefaults {
 
     }
 
-    func set(_ value: UIColor?, forKey key: String) {
-
-        if let color = value {
-            self.set(Double(color.value.red), forKey: "UIColorRed")
-            self.set(Double(color.value.green), forKey: "UIColorGreen")
-            self.set(Double(color.value.blue), forKey: "UIColorBlue")
-            self.set(Double(color.value.alpha), forKey: "UIColorAlpha")
-        }
-
-    }
+    
     
     func notificationTime(for key: String) -> Array<CustomTime>? {
         
@@ -50,24 +85,24 @@ extension UserDefaults {
         
     }
     
-    func set(_ value: Array<CustomTime>?, forKey key: String) {
+    func appAppearanceMode(for key: String) -> AppAppearanceMode? {
         
-        if value != nil {
-            
+        if  let decoded = self.data(forKey: key) {
             do {
-                let encodedData = try NSKeyedArchiver.archivedData(withRootObject: value!, requiringSecureCoding: false)
-                self.set(encodedData, forKey: key)
-                self.synchronize()
+                let decodedAppAppearanceModeRawValue = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(decoded) as? String
+                
+                for appAppearanceMode in AppAppearanceMode.allCases {
+                    if appAppearanceMode.rawValue == decodedAppAppearanceModeRawValue {
+                        return appAppearanceMode
+                    }
+                }
             } catch {
                 print(error)
             }
             
-           
         }
-      
         
-       
-        
+      return nil
     }
 
 }

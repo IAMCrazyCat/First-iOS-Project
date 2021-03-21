@@ -26,6 +26,7 @@ class ItemDetailViewController: UIViewController {
     @IBOutlet weak var todayLabel: UILabel!
     @IBOutlet weak var goBackButton: UINavigationItem!
     @IBOutlet weak var editButton: UIBarButtonItem!
+    @IBOutlet weak var startDateLabel: UILabel!
     
     let setting: SystemSetting = SystemSetting.shared
     let engine: AppEngine = AppEngine.shared
@@ -41,6 +42,7 @@ class ItemDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        engine.add(observer: self)
         //topView.layer.cornerRadius = setting.itemCardCornerRadius
         topView.setShadow()
         
@@ -49,9 +51,13 @@ class ItemDetailViewController: UIViewController {
 
         calendarView.layer.cornerRadius = setting.itemCardCornerRadius
         
+        bottomShareButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 30, bottom: 10, right: 40)
         bottomShareButton.proportionallySetSizeWithScreen()
         bottomShareButton.setCornerRadius()
         bottomShareButton.setShadow()
+        
+        
+        bottomEditButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 30, bottom: 12, right: 40)
         bottomEditButton.proportionallySetSizeWithScreen()
         bottomEditButton.setCornerRadius()
         bottomEditButton.setShadow()
@@ -107,7 +113,8 @@ class ItemDetailViewController: UIViewController {
        
     }
     
-    func updateData() {
+    func updateItemData() {
+        print("ItemDetailsView Data Updated")
         if item != nil {
             self.verticalContentView.layoutIfNeeded()
             let builder = ItemDetailViewBuilder(item: item!, frame: self.progressView.bounds)
@@ -127,6 +134,12 @@ class ItemDetailViewController: UIViewController {
             //self.todayLabel.textColor = .red
             self.todayLabel.text = "未打卡"
         }
+        
+        if let item = item {
+            startDateLabel.text = "开始日期: \(item.creationDate.year)年 \(item.creationDate.month)月\(item.creationDate.day)日 (\(DateCalculator.calculateDayDifferenceBetween(item.creationDate, and: self.engine.currentDate))天前)"
+        }
+       
+        
     }
 
   
@@ -136,7 +149,7 @@ extension ItemDetailViewController: UIObserver {
     
     func updateUI() {
         updateNavigationBar()
-        updateData()
+        updateItemData()
 
     }
 }

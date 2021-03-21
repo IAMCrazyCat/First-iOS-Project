@@ -22,9 +22,9 @@ class ItemCompletedPopUp: PopUpImpl {
     
     
    
-    init(item: Item, presentAnimationType: PopUpAnimationType, popUpViewController: PopUpViewController) {
+    init(item: Item, presentAnimationType: PopUpAnimationType, size: PopUpSize = .small, popUpViewController: PopUpViewController) {
         self.item = item
-        super.init(presentAnimationType: presentAnimationType, popUpViewController: popUpViewController, type: .itemCompletedPopUp)
+        super.init(presentAnimationType: presentAnimationType, type: .itemCompletedPopUp, size: size, popUpViewController: popUpViewController)
         setUpUI()
     }
     

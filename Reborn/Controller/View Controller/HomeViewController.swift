@@ -54,8 +54,6 @@ class HomeViewController: UIViewController {
         
         
         engine.add(observer: self)
-
-        
         customNavigationBar.layer.cornerRadius = setting.customNavigationBarCornerRadius
         customNavigationBar.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         
@@ -82,7 +80,7 @@ class HomeViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-   
+  
         verticalContentViewHeightConstraint.constant = self.view.frame.height + overallProgressView.frame.maxY
         
     }
@@ -100,7 +98,7 @@ class HomeViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-       
+        
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
@@ -181,10 +179,11 @@ class HomeViewController: UIViewController {
         
         self.overallProgressView.removeAllSubviews()
         self.customNavigationBar.removeSubviewBy(idenifier: "SmallProgressCircle")
+        
         self.addNewItemButton.tintColor = self.engine.userSetting.smartLabelColor.brightColor
-        self.todayProgressLabel.textColor = self.engine.userSetting.smartLabelColorAndThemeColor.brightColor
         self.customNavigationBar.backgroundColor = engine.userSetting.themeColorAndBlack
         self.spaceView.backgroundColor = engine.userSetting.themeColorAndBlack
+        self.todayProgressLabel.textColor = self.engine.userSetting.smartLabelColorAndThemeColor.brightColor
         self.todayProgressLabel.text = "今日打卡: \(self.engine.getTodayProgress())"
         self.todayProgressLabel.layer.zPosition = 3
         
@@ -198,6 +197,7 @@ class HomeViewController: UIViewController {
         
         self.overallProgressView.layoutIfNeeded()
         builder = OverAllProgressViewBuilder(avatarImage: self.engine.currentUser.getAvatarImage(), progress: self.engine.getOverAllProgress(), frame: self.overallProgressView.bounds)
+        
         let overAllProgressView = builder.buildView()
         overAllProgressView.accessibilityIdentifier = "OverAllProgressView"
         self.overallProgressView.addSubview(overAllProgressView)
@@ -272,19 +272,26 @@ class HomeViewController: UIViewController {
             self.verticalContentViewHeightConstraint.constant = newHeight
         }
     }
+    
+    func updateAppearance() {
+        if AppEngine.shared.userSetting.appAppearanceMode == .lightMode {
+            view.window?.overrideUserInterfaceStyle = .light
+        } else if AppEngine.shared.userSetting.appAppearanceMode == .darkMode {
+            view.window?.overrideUserInterfaceStyle = .dark
+        } else {
+            view.window?.overrideUserInterfaceStyle = .unspecified
+        }
+    }
 
 }
 
 extension HomeViewController: UIObserver {
     func updateUI() {
         
-        
         updateNavigationView()
         updateItemCardsView()
         updateVerticalContentViewHeight()
 
-
-        
     }
 }
 

@@ -13,6 +13,17 @@ class UserSetting {
     var mediumFont = UIFont.systemFont(ofSize: 17)
     var smallFont = UIFont.systemFont(ofSize: 14)
     var notificationTime: Array<CustomTime> = [CustomTime(hour: 9, minute: 0), CustomTime(hour: 21, minute: 0)]
+    var appAppearanceMode: AppAppearanceMode = .followSystem
+    
+    var uiUserInterfaceStyle : UIUserInterfaceStyle {
+        if appAppearanceMode == .darkMode {
+            return .dark
+        } else if appAppearanceMode == .lightMode {
+            return .light
+        } else {
+            return .unspecified
+        }
+    }
     
     let properThemeColor = UIColor { system in
         switch system.userInterfaceStyle {
@@ -49,6 +60,7 @@ class UserSetting {
         }
     }
     let themeColorAndSmartLabelColor = UIColor { system in
+        
         switch system.userInterfaceStyle {
         case .dark:
             return AppEngine.shared.userSetting.smartLabelColor
@@ -85,6 +97,7 @@ class UserSetting {
     }
     
     let smartLabelColorAndThemeColor = UIColor { system in
+        
         switch system.userInterfaceStyle {
         case .dark:
             return AppEngine.shared.userSetting.themeColor

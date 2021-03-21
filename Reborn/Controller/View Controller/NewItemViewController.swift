@@ -53,7 +53,7 @@ class NewItemViewController: UIViewController {
     var selectedTargetDaysButton: UIButton? = nil
     var selectedFrequencyButton: UIButton? = nil
     var lastSelectedButton: UIButton? = nil
-    var item: Item = Item(ID: AppEngine.shared.getLargestItemID() + 1, name: "(项目名)", days: 1, finishedDays: 0, frequency: .everyday, creationDate: AppEngine.shared.currentDate, type: .undefined)
+    var item: Item = Item(ID: AppEngine.shared.getLargestItemID() + 1, name: "(项目名)", days: 1, frequency: .everyday, creationDate: AppEngine.shared.currentDate, type: .undefined)
     var preViewItemCard: UIView = UIView()
     var strategy: NewItemViewStrategy? = nil
     var lastViewController: UIViewController? = nil
@@ -327,7 +327,7 @@ extension NewItemViewController: PopUpViewDelegate { // Delegate extension
         if self.lastSelectedButton?.tag == setting.customTargetDaysButtonTag {
             
             guard let selectedData = (self.engine.getStoredDataFromPopUpView() as? CustomData) else { return }
-            print(selectedData)
+
             self.selectedTargetDaysButton?.setTitle(selectedData.title, for: .normal)
             self.item.targetDays = selectedData.data ?? 1
             

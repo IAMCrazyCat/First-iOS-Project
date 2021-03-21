@@ -10,7 +10,8 @@ import Foundation
 enum NewCalendarPage {
     case lastMonth
     case startMonth
-    case noWhere
+    case sameMonth
     case thisMonth
     case nextMonth
+    case noWhere
 }

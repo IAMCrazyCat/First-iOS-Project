@@ -779,9 +779,9 @@ Cg
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eyW-12-NFP">
-                                        <rect key="frame" x="178.5" y="32" width="57" height="28"/>
-                                        <color key="tintColor" systemColor="systemYellowColor"/>
-                                        <state key="normal" title=" x 3" image="KeyIcon">
+                                        <rect key="frame" x="175" y="32" width="64" height="28"/>
+                                        <color key="tintColor" systemColor="systemPinkColor"/>
+                                        <state key="normal" title=" ×  3" image="EnergyIcon">
                                             <color key="titleColor" systemColor="labelColor"/>
                                         </state>
                                     </button>
@@ -820,6 +820,7 @@ Cg
                     <connections>
                         <outlet property="bottomView" destination="Ylm-aW-HG0" id="mUP-za-qXx"/>
                         <outlet property="cancelButton" destination="sZk-IF-fVK" id="oCs-HN-Iux"/>
+                        <outlet property="energyButton" destination="eyW-12-NFP" id="0om-FM-DjH"/>
                         <outlet property="goBackToThePastButton" destination="hC6-oy-S3E" id="qNp-Nf-JEH"/>
                         <outlet property="middleView" destination="AmU-5F-f6n" id="84o-xe-iOK"/>
                         <outlet property="titleLabel" destination="TBC-dZ-hSy" id="dy9-jV-IUV"/>
@@ -859,7 +860,7 @@ Cg
                                                         </connections>
                                                     </containerView>
                                                 </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="rPK-k0-tHl" secondAttribute="trailing" id="HJP-3I-Gdv"/>
                                                     <constraint firstAttribute="height" priority="750" constant="430" id="jjR-yB-aby"/>
@@ -1093,7 +1094,7 @@ Cg
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DQ0-N6-onb"/>
-                        <color key="backgroundColor" name="GrayWhiteAndBlackBackground"/>
+                        <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                         <constraints>
                             <constraint firstItem="rPK-k0-tHl" firstAttribute="height" secondItem="0fl-uJ-8UA" secondAttribute="height" multiplier="0.529557" priority="750" id="1IY-X4-Xj4"/>
                             <constraint firstItem="FRC-Pg-OSb" firstAttribute="top" secondItem="DQ0-N6-onb" secondAttribute="top" id="1ac-Ni-m3U"/>
@@ -1120,6 +1121,7 @@ Cg
                         <outlet property="goBackButton" destination="dce-h9-NTD" id="k2q-Xt-WHk"/>
                         <outlet property="mediumView" destination="NaE-mY-8uJ" id="wkX-Xm-RMS"/>
                         <outlet property="progressView" destination="tlr-bf-UK5" id="WaN-YE-fak"/>
+                        <outlet property="startDateLabel" destination="j4B-XZ-0ft" id="xp7-SE-4of"/>
                         <outlet property="targetDayLabel" destination="hOS-1r-urJ" id="PBr-25-oZr"/>
                         <outlet property="todayLabel" destination="x57-Zm-H2h" id="1rP-Fk-CU9"/>
                         <outlet property="topView" destination="bQ8-um-Suf" id="VRJ-pb-aSQ"/>
@@ -1154,7 +1156,7 @@ Cg
             <objects>
                 <viewController id="5eW-DY-fpx" customClass="HomeViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uAb-zv-xSl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDY-Xd-Ccc">
@@ -1280,7 +1282,7 @@ Cg
                             <constraint firstItem="d1D-I0-rzL" firstAttribute="trailing" secondItem="6sH-n0-ndx" secondAttribute="trailing" id="nk7-o4-c7N"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="进行中" image="OverallIcon" id="LbD-Pb-pXy"/>
+                    <tabBarItem key="tabBarItem" title="进行中" image="ProgressIcon" id="LbD-Pb-pXy"/>
                     <navigationItem key="navigationItem" id="kKW-I5-ia5"/>
                     <connections>
                         <outlet property="addNewItemButton" destination="Zxq-bS-hHW" id="Tvl-9R-55q"/>
@@ -1302,11 +1304,11 @@ Cg
             </objects>
             <point key="canvasLocation" x="2881.1594202898555" y="746.65178571428567"/>
         </scene>
-        <!--进行中-->
+        <!--今日-->
         <scene sceneID="9aa-Ko-nlN">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jdV-7M-5pe" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="进行中" image="OverallIcon" id="sU1-NQ-WFC"/>
+                    <tabBarItem key="tabBarItem" title="今日" image="ProgressIcon" id="sU1-NQ-WFC"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" translucent="NO" id="WRg-cq-9vY">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -1332,7 +1334,7 @@ Cg
         <!--概览-->
         <scene sceneID="Xai-Dd-NaN">
             <objects>
-                <tabBarController storyboardIdentifier="TabBarController" automaticallyAdjustsScrollViewInsets="NO" id="HyW-tH-URj" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" automaticallyAdjustsScrollViewInsets="NO" id="HyW-tH-URj" customClass="TabBarViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="概览" id="EdY-bB-4Am"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="g2J-w4-n4e">
@@ -1357,7 +1359,7 @@ Cg
         <scene sceneID="qRa-3M-2d2">
             <objects>
                 <navigationController id="vqv-6z-2PO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="项目管理" image="HistoryIcon" selectedImage="HistoryIcon" id="5kR-Ma-zyI"/>
+                    <tabBarItem key="tabBarItem" title="项目管理" image="ItemsManagementIcon" selectedImage="ItemsManagementIcon" id="5kR-Ma-zyI"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="CRy-rA-s2G">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1380,7 +1382,7 @@ Cg
             <objects>
                 <viewController id="7qU-RC-e4u" customClass="ItemManagementViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XJ8-ec-9K0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lt5-gF-RX7" userLabel="Option Bar">
@@ -1462,7 +1464,7 @@ Cg
             <objects>
                 <viewController id="xEm-ah-agE" customClass="UserCenterViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Trs-NW-7D2">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gY-P1-gbC">
@@ -1559,9 +1561,9 @@ Cg
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ge1-y3-eIQ">
-                                                        <rect key="frame" x="322" y="12" width="42" height="21"/>
+                                                        <rect key="frame" x="322" y="12.5" width="42" height="20"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" name="GreyColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -1607,7 +1609,7 @@ Cg
                                                         <rect key="frame" x="0.0" y="145" width="384" height="45"/>
                                                         <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                        <color key="tintColor" red="0.22676768899999999" green="0.45767319200000001" blue="0.91769200559999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <color key="tintColor" red="0.40788567069999998" green="0.55731946229999996" blue="0.99905794859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <state key="normal" title="反馈" image="FeedbackIcon">
@@ -1697,24 +1699,42 @@ Cg
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0sp-V1-vxG">
                                                 <rect key="frame" x="15" y="419" width="384" height="45"/>
                                                 <subviews>
-                                                    <button opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7qb-Hl-aQ4" userLabel="My Keys Button">
+                                                    <button opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleAspectFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7qb-Hl-aQ4" userLabel="My Keys Button">
                                                         <rect key="frame" x="0.0" y="0.0" width="384" height="45"/>
                                                         <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                        <color key="tintColor" red="0.95815557240000004" green="0.73054325580000001" blue="0.25081610679999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <color key="tintColor" systemColor="systemPinkColor"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                        <state key="normal" title="我的钥匙" image="KeyIcon">
+                                                        <state key="normal" title="能量" image="EnergyIcon">
                                                             <color key="titleColor" systemColor="labelColor"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="energyButtonPressed:" destination="xEm-ah-agE" eventType="touchUpInside" id="9dy-5d-wcX"/>
+                                                        </connections>
                                                     </button>
+                                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzP-7t-cqg" userLabel="&gt;">
+                                                        <rect key="frame" x="344" y="12.5" width="20" height="20"/>
+                                                        <color key="tintColor" systemColor="systemGray4Color"/>
+                                                        <state key="normal" image="RightButton"/>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="× 10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CRB-ID-RCF">
+                                                        <rect key="frame" x="301" y="12.5" width="33" height="20"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" name="GreyColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="7qb-Hl-aQ4" secondAttribute="trailing" id="6oT-x6-jNJ"/>
+                                                    <constraint firstItem="CRB-ID-RCF" firstAttribute="centerY" secondItem="7qb-Hl-aQ4" secondAttribute="centerY" id="C23-d3-qj0"/>
+                                                    <constraint firstItem="yzP-7t-cqg" firstAttribute="centerY" secondItem="7qb-Hl-aQ4" secondAttribute="centerY" id="DPB-h7-jXS"/>
+                                                    <constraint firstItem="yzP-7t-cqg" firstAttribute="leading" secondItem="CRB-ID-RCF" secondAttribute="trailing" constant="10" id="ipd-mf-dyo"/>
                                                     <constraint firstItem="7qb-Hl-aQ4" firstAttribute="top" secondItem="0sp-V1-vxG" secondAttribute="top" id="iqr-1v-hzn"/>
                                                     <constraint firstItem="7qb-Hl-aQ4" firstAttribute="leading" secondItem="0sp-V1-vxG" secondAttribute="leading" id="mvx-hN-jx1"/>
                                                     <constraint firstAttribute="bottom" secondItem="7qb-Hl-aQ4" secondAttribute="bottom" id="rQd-Wj-ykL"/>
+                                                    <constraint firstAttribute="trailing" secondItem="yzP-7t-cqg" secondAttribute="trailing" constant="20" id="xR4-nQ-Mpa"/>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Rc-aS-e5C">
@@ -1762,6 +1782,8 @@ Cg
                                             <constraint firstItem="FzS-Z7-id6" firstAttribute="top" secondItem="Fg2-3d-xoe" secondAttribute="bottom" constant="10" id="FMl-7E-0BD"/>
                                             <constraint firstItem="uf7-hm-nUE" firstAttribute="top" secondItem="OaW-i9-p1v" secondAttribute="bottom" constant="20" id="Hhn-N7-fjf"/>
                                             <constraint firstItem="bXE-cc-vLl" firstAttribute="centerX" secondItem="fkI-Nx-UK5" secondAttribute="centerX" id="JbO-gP-S3b"/>
+                                            <constraint firstItem="CRB-ID-RCF" firstAttribute="height" secondItem="ux9-Yt-bMe" secondAttribute="height" id="Oeg-dJ-Cda"/>
+                                            <constraint firstItem="ge1-y3-eIQ" firstAttribute="height" secondItem="ux9-Yt-bMe" secondAttribute="height" id="R4p-pb-2Hc"/>
                                             <constraint firstItem="OeQ-hP-44X" firstAttribute="width" secondItem="KpG-66-JYl" secondAttribute="width" multiplier="0.9" id="SkZ-We-Wih"/>
                                             <constraint firstItem="0sp-V1-vxG" firstAttribute="width" secondItem="FzS-Z7-id6" secondAttribute="width" id="Thq-yZ-VM4"/>
                                             <constraint firstItem="OeQ-hP-44X" firstAttribute="centerX" secondItem="KpG-66-JYl" secondAttribute="centerX" id="Vnm-0V-c3d"/>
@@ -1770,7 +1792,9 @@ Cg
                                             <constraint firstItem="OaW-i9-p1v" firstAttribute="top" secondItem="uT8-OF-XzE" secondAttribute="bottom" constant="10" id="ZIl-yz-Pt3"/>
                                             <constraint firstItem="Fg2-3d-xoe" firstAttribute="top" secondItem="KpG-66-JYl" secondAttribute="bottom" constant="20" id="Zhb-NA-O0K"/>
                                             <constraint firstItem="0sp-V1-vxG" firstAttribute="top" secondItem="uf7-hm-nUE" secondAttribute="bottom" constant="10" id="bLG-43-lS6"/>
+                                            <constraint firstItem="yzP-7t-cqg" firstAttribute="width" secondItem="ux9-Yt-bMe" secondAttribute="width" id="cS3-P1-jEv"/>
                                             <constraint firstItem="kb1-p1-Yuj" firstAttribute="leading" secondItem="KpG-66-JYl" secondAttribute="trailing" constant="20" id="cvU-39-veC"/>
+                                            <constraint firstItem="yzP-7t-cqg" firstAttribute="height" secondItem="ux9-Yt-bMe" secondAttribute="height" id="dbU-Vc-Pci"/>
                                             <constraint firstItem="csn-GS-vqO" firstAttribute="top" secondItem="0sp-V1-vxG" secondAttribute="bottom" constant="20" id="e75-x9-lja"/>
                                             <constraint firstItem="bXE-cc-vLl" firstAttribute="top" secondItem="csn-GS-vqO" secondAttribute="bottom" constant="10" id="fEZ-aP-NGW"/>
                                             <constraint firstItem="1Rc-aS-e5C" firstAttribute="centerX" secondItem="fkI-Nx-UK5" secondAttribute="centerX" id="gPg-ff-4IR"/>
@@ -1834,10 +1858,11 @@ Cg
                         <outlet property="avaterView" destination="KpG-66-JYl" id="lht-Ht-8Bz"/>
                         <outlet property="dateLabel" destination="SVz-AJ-JZD" id="Ig1-U3-RZq"/>
                         <outlet property="editPartButton" destination="OeQ-hP-44X" id="j59-VI-A3l"/>
+                        <outlet property="energyButton" destination="7qb-Hl-aQ4" id="KPO-Jj-pzw"/>
+                        <outlet property="energyLabel" destination="CRB-ID-RCF" id="vYB-fH-IEj"/>
                         <outlet property="feedbackButton" destination="MMX-gO-o2H" id="Ky0-jN-2fU"/>
                         <outlet property="instructionButton" destination="WQX-Nq-SYU" id="ohY-Dx-8r7"/>
                         <outlet property="lightAndDarkModeButton" destination="rRc-pT-ow4" id="067-mS-ebl"/>
-                        <outlet property="myKeysButton" destination="7qb-Hl-aQ4" id="KPO-Jj-pzw"/>
                         <outlet property="notificationButton" destination="s8i-6y-kYV" id="Zyk-FZ-RlG"/>
                         <outlet property="notificationTimeLabel" destination="ge1-y3-eIQ" id="sP3-ba-nlf"/>
                         <outlet property="perchaseButton" destination="rRc-pT-ow4" id="M1j-T2-zSl"/>
@@ -1852,6 +1877,16 @@ Cg
                         <outlet property="userNameButton" destination="kb1-p1-Yuj" id="PaW-Pc-fJE"/>
                         <outlet property="verticalContentViewHeightConstraint" destination="vOf-b4-JEU" id="S4y-LC-OML"/>
                         <outlet property="verticalScrollView" destination="2gY-P1-gbC" id="ani-dJ-wxu"/>
+                        <outletCollection property="settingButtons" destination="DNH-Rd-qdE" collectionClass="NSMutableArray" id="6Yh-b2-DGw"/>
+                        <outletCollection property="settingButtons" destination="s8i-6y-kYV" collectionClass="NSMutableArray" id="F5i-Xn-iYa"/>
+                        <outletCollection property="settingButtons" destination="7qb-Hl-aQ4" collectionClass="NSMutableArray" id="ncU-a1-9Cr"/>
+                        <outletCollection property="settingButtons" destination="SZj-KF-5bx" collectionClass="NSMutableArray" id="DcT-Oh-ubp"/>
+                        <outletCollection property="settingButtons" destination="rRc-pT-ow4" collectionClass="NSMutableArray" id="Rrk-39-l3e"/>
+                        <outletCollection property="settingButtons" destination="lhG-N7-zSU" collectionClass="NSMutableArray" id="kLd-pw-iQj"/>
+                        <outletCollection property="settingButtons" destination="MMX-gO-o2H" collectionClass="NSMutableArray" id="XrD-pZ-T2N"/>
+                        <outletCollection property="settingButtons" destination="SX5-HU-KYh" collectionClass="NSMutableArray" id="hm9-GO-yu1"/>
+                        <outletCollection property="settingButtons" destination="h4L-GB-8hZ" collectionClass="NSMutableArray" id="HwH-oF-jng"/>
+                        <outletCollection property="settingButtons" destination="WQX-Nq-SYU" collectionClass="NSMutableArray" id="jaw-kH-zlp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H6n-5p-wfc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1961,13 +1996,13 @@ Cg
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="连续打卡14天免费获得一把钥匙" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0e-Am-UV9">
-                                                        <rect key="frame" x="60" y="27.5" width="173" height="15"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="连续打卡7天免费获得一把钥匙" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0e-Am-UV9">
+                                                        <rect key="frame" x="60" y="27.5" width="167" height="15"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="定期获得时光机器钥匙" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tpo-FZ-5XS">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="加速获得时光机器钥匙" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tpo-FZ-5XS">
                                                         <rect key="frame" x="60" y="7.5" width="153" height="18"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                         <nil key="textColor"/>
@@ -2207,6 +2242,11 @@ Cg
                         <outlet property="middleContentViewHeightConstraint" destination="Y4h-WQ-oPk" id="gFv-SE-Nb7"/>
                         <outlet property="middleScrollView" destination="7UQ-ts-Ghw" id="VxY-MQ-kSe"/>
                         <outlet property="purchaseButton" destination="Nsu-Ib-aY5" id="avV-2C-vQt"/>
+                        <outletCollection property="functionNumberButtons" destination="Vcf-Zs-cR5" collectionClass="NSMutableArray" id="zil-oJ-KgK"/>
+                        <outletCollection property="functionNumberButtons" destination="Fzf-QM-O0Z" collectionClass="NSMutableArray" id="pUi-Ul-dW1"/>
+                        <outletCollection property="functionNumberButtons" destination="BvY-PM-TgD" collectionClass="NSMutableArray" id="Yax-U7-OM1"/>
+                        <outletCollection property="functionNumberButtons" destination="GXR-o1-0ta" collectionClass="NSMutableArray" id="I4v-Yi-kdv"/>
+                        <outletCollection property="functionNumberButtons" destination="fKZ-ry-kbD" collectionClass="NSMutableArray" id="lTf-IB-eJR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Crj-64-Tch" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2460,6 +2500,130 @@ Cg
             </objects>
             <point key="canvasLocation" x="4079" y="1731"/>
         </scene>
+        <!--Energy Setting View Controller-->
+        <scene sceneID="XZ4-6t-9fw">
+            <objects>
+                <viewController storyboardIdentifier="EnergySettingViewController" id="EJ9-KC-HJw" customClass="EnergySettingViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ElJ-Nh-iTl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5je-IK-yIS" userLabel="Dynamic Energy Icon View">
+                                <rect key="frame" x="40" y="181" width="334" height="334"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FlashIcon-HD" translatesAutoresizingMaskIntoConstraints="NO" id="b75-bb-Hul">
+                                        <rect key="frame" x="93.5" y="93.5" width="147" height="147"/>
+                                        <color key="tintColor" name="YellowThemeColor"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EnergyHolo2-HD" translatesAutoresizingMaskIntoConstraints="NO" id="SVT-M6-aN6">
+                                        <rect key="frame" x="20" y="20" width="294" height="294"/>
+                                        <color key="tintColor" systemColor="systemPinkColor"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="SVT-M6-aN6" firstAttribute="top" secondItem="5je-IK-yIS" secondAttribute="top" constant="20" id="7mY-lE-Oql"/>
+                                    <constraint firstItem="b75-bb-Hul" firstAttribute="centerY" secondItem="5je-IK-yIS" secondAttribute="centerY" id="7sE-BA-4Tv"/>
+                                    <constraint firstAttribute="width" secondItem="5je-IK-yIS" secondAttribute="height" multiplier="1:1" id="D8w-ON-1IS"/>
+                                    <constraint firstAttribute="bottom" secondItem="SVT-M6-aN6" secondAttribute="bottom" constant="20" id="J7f-lw-cgL"/>
+                                    <constraint firstItem="b75-bb-Hul" firstAttribute="centerX" secondItem="5je-IK-yIS" secondAttribute="centerX" id="K5k-9t-z2J"/>
+                                    <constraint firstItem="b75-bb-Hul" firstAttribute="height" secondItem="SVT-M6-aN6" secondAttribute="height" multiplier="0.5" id="TNP-PW-rPG"/>
+                                    <constraint firstAttribute="trailing" secondItem="SVT-M6-aN6" secondAttribute="trailing" constant="20" id="TdY-gq-QGp"/>
+                                    <constraint firstItem="b75-bb-Hul" firstAttribute="width" secondItem="SVT-M6-aN6" secondAttribute="width" multiplier="0.5" id="ecj-f1-u77"/>
+                                    <constraint firstItem="SVT-M6-aN6" firstAttribute="leading" secondItem="5je-IK-yIS" secondAttribute="leading" constant="20" id="hRx-Oo-ex3"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="充能中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wGg-Wg-4W5">
+                                <rect key="frame" x="169" y="84" width="76" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wF-1F-akB">
+                                <rect key="frame" x="37" y="178" width="0.0" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的能量： " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V90-4m-ZfC">
+                                <rect key="frame" x="136.5" y="535" width="91" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="效能： 连续打卡21天  获得 1点能量 (普通用户)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fkb-6A-26B">
+                                <rect key="frame" x="70.5" y="576" width="273" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" name="GreyColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fkX-j7-GFk">
+                                <rect key="frame" x="60" y="667" width="0.0" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="[能量] 是使用时光机器时需要消耗的物品， 当您忘记打卡，您可以使用时光机器回到过去重新打卡，每重新打卡一天需要消耗1点能量，您可以通过连续打卡免费获得能量，也可以:" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pxM-D2-KgB">
+                                <rect key="frame" x="20" y="722.5" width="374" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="aiU-G6-8U5"/>
+                                </constraints>
+                                <color key="textColor" name="GreyColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gfL-oR-LC8">
+                                <rect key="frame" x="15" y="792.5" width="384" height="49.5"/>
+                                <color key="backgroundColor" name="BlueThemeColor"/>
+                                <state key="normal" title="购买能量"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FhC-Jg-bIU">
+                                <rect key="frame" x="227.5" y="531.5" width="55" height="28"/>
+                                <color key="tintColor" systemColor="systemPinkColor"/>
+                                <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="× 3" image="EnergyIcon">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="EgF-Uo-jMT"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="pxM-D2-KgB" firstAttribute="leading" secondItem="EgF-Uo-jMT" secondAttribute="leading" constant="20" id="1Cb-ax-xkG"/>
+                            <constraint firstItem="gfL-oR-LC8" firstAttribute="height" secondItem="ElJ-Nh-iTl" secondAttribute="height" multiplier="0.055" id="2FW-H5-aN1"/>
+                            <constraint firstItem="5je-IK-yIS" firstAttribute="centerX" secondItem="ElJ-Nh-iTl" secondAttribute="centerX" id="6hW-41-w43"/>
+                            <constraint firstItem="5je-IK-yIS" firstAttribute="leading" secondItem="EgF-Uo-jMT" secondAttribute="leading" constant="40" placeholder="YES" id="AaV-Ee-4dc"/>
+                            <constraint firstItem="V90-4m-ZfC" firstAttribute="centerX" secondItem="ElJ-Nh-iTl" secondAttribute="centerX" constant="-25" id="GFV-Tr-Cvr"/>
+                            <constraint firstItem="wGg-Wg-4W5" firstAttribute="top" secondItem="EgF-Uo-jMT" secondAttribute="top" constant="40" id="Hfh-6B-ZaB"/>
+                            <constraint firstItem="fkb-6A-26B" firstAttribute="top" secondItem="V90-4m-ZfC" secondAttribute="bottom" constant="20" id="L7T-Rx-fir"/>
+                            <constraint firstItem="EgF-Uo-jMT" firstAttribute="bottom" secondItem="gfL-oR-LC8" secondAttribute="bottom" constant="20" id="OvL-DF-Z6u"/>
+                            <constraint firstItem="fkb-6A-26B" firstAttribute="centerX" secondItem="ElJ-Nh-iTl" secondAttribute="centerX" id="Q9b-ZD-U4e"/>
+                            <constraint firstItem="gfL-oR-LC8" firstAttribute="leading" secondItem="EgF-Uo-jMT" secondAttribute="leading" constant="15" id="Trg-Ys-S1s"/>
+                            <constraint firstItem="V90-4m-ZfC" firstAttribute="top" secondItem="5je-IK-yIS" secondAttribute="bottom" constant="20" id="W4R-nx-LGE"/>
+                            <constraint firstItem="FhC-Jg-bIU" firstAttribute="leading" secondItem="V90-4m-ZfC" secondAttribute="trailing" id="WTR-AC-Znt"/>
+                            <constraint firstItem="gfL-oR-LC8" firstAttribute="top" secondItem="pxM-D2-KgB" secondAttribute="bottom" constant="20" id="bEM-p7-4gu"/>
+                            <constraint firstItem="wGg-Wg-4W5" firstAttribute="centerX" secondItem="ElJ-Nh-iTl" secondAttribute="centerX" id="e4U-aD-JJM"/>
+                            <constraint firstItem="EgF-Uo-jMT" firstAttribute="trailing" secondItem="gfL-oR-LC8" secondAttribute="trailing" constant="15" id="ow6-EI-Gfk"/>
+                            <constraint firstItem="5je-IK-yIS" firstAttribute="centerY" secondItem="ElJ-Nh-iTl" secondAttribute="centerY" constant="-100" id="ru2-Mc-cda"/>
+                            <constraint firstItem="EgF-Uo-jMT" firstAttribute="trailing" secondItem="5je-IK-yIS" secondAttribute="trailing" constant="40" id="vAQ-Gz-MFr"/>
+                            <constraint firstItem="FhC-Jg-bIU" firstAttribute="centerY" secondItem="V90-4m-ZfC" secondAttribute="centerY" id="wBv-5M-K3w"/>
+                            <constraint firstItem="EgF-Uo-jMT" firstAttribute="trailing" secondItem="pxM-D2-KgB" secondAttribute="trailing" constant="20" id="wO9-4q-vr3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="dynamicEnergyIconView" destination="5je-IK-yIS" id="1OH-tu-iaf"/>
+                        <outlet property="efficiencyLabel" destination="fkb-6A-26B" id="5gK-pG-Hte"/>
+                        <outlet property="energyButton" destination="FhC-Jg-bIU" id="D2f-hG-nEH"/>
+                        <outlet property="hollowEnergyImageView" destination="SVT-M6-aN6" id="eFq-VU-Jgs"/>
+                        <outlet property="purchaseButton" destination="gfL-oR-LC8" id="BhN-bg-Myy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ebn-b7-BGJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5362.3188405797109" y="1449.7767857142856"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="3UM-Ss-dT5">
             <objects>
@@ -2477,7 +2641,7 @@ Cg
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="LKv-l4-eYv"/>
+        <segue reference="HdV-Uf-p4p"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
@@ -2485,17 +2649,20 @@ Cg
         <image name="CancelButton" width="28" height="28"/>
         <image name="CirclePart" width="100" height="28"/>
         <image name="EditButton" width="28" height="28"/>
+        <image name="EnergyHolo2-HD" width="341" height="341"/>
+        <image name="EnergyIcon" width="28" height="28"/>
         <image name="FeedbackIcon" width="28" height="28"/>
+        <image name="FlashIcon-HD" width="170.5" height="170.5"/>
         <image name="GradingIcon" width="28" height="28"/>
         <image name="HistoryIcon" width="28" height="28"/>
         <image name="InstructionIcon" width="28" height="28"/>
-        <image name="KeyIcon" width="28" height="28"/>
+        <image name="ItemsManagementIcon" width="28" height="28"/>
         <image name="LeftButton" width="28" height="28"/>
         <image name="LightAndDarkIcon" width="28" height="28"/>
         <image name="MyIcon" width="28" height="28"/>
         <image name="NameIcon" width="28" height="28"/>
-        <image name="OverallIcon" width="28" height="28"/>
         <image name="PenIcon-HD" width="60" height="60"/>
+        <image name="ProgressIcon" width="28" height="28"/>
         <image name="PunchInSettingIcon" width="28" height="28"/>
         <image name="PurchaseIcon" width="28" height="28"/>
         <image name="RestoreIcon" width="28" height="28"/>
@@ -2518,11 +2685,11 @@ Cg
         <namedColor name="BlueThemeColor">
             <color red="0.31499999761581421" green="0.49700000882148743" blue="0.71399998664855957" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
-        <namedColor name="GrayWhiteAndBlackBackground">
-            <color red="0.96899998188018799" green="0.96899998188018799" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
         <namedColor name="GrayWhiteAndBlackContent">
             <color red="0.96399998664855957" green="0.96399998664855957" blue="0.96399998664855957" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="GreyColor">
+            <color red="0.73900002241134644" green="0.73900002241134644" blue="0.73900002241134644" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="RedColor">
             <color red="0.9089999794960022" green="0.14399999380111694" blue="0.010999999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2548,6 +2715,9 @@ Cg
         <namedColor name="WhiteAndBlackContent">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="YellowThemeColor">
+            <color red="0.97399997711181641" green="0.86100000143051147" blue="0.28600001335144043" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
@@ -2559,6 +2729,9 @@ Cg
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

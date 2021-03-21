@@ -20,6 +20,9 @@ class Actions {
     static var detailsViewAction: Selector = #selector(Actions.shared.itemDetailsButtonPressed(_:))
     static var themeColorChangedAction: Selector = #selector(Actions.shared.themeColorButtonPressed(_:))
     static var setUpTextFieldChangedAction: Selector = #selector(Actions.shared.setUpTextFieldTapped(_:))
+    static var appApperenceModeChangedAction: Selector = #selector(Actions.shared.appAppearanceOptionButtonPressed(_:))
+    static var goToSystemSettingAction: Selector = #selector(Actions.shared.goToSystemSettingButtonPressed(_:))
+    
     @objc func itemPunchInButtonPressed(_ sender: UIButton!) {
         AppEngine.shared.updateItem(withTag: sender.tag)
         AppEngine.shared.notifyAllUIObservers()
@@ -72,7 +75,26 @@ class Actions {
 
     
         }
+
+    }
+    
+    @objc func appAppearanceOptionButtonPressed(_ sender: UIButton!) {
         
-       
+  
+        if sender.accessibilityIdentifier == "FollowSystemButton" {
+            AppEngine.shared.userSetting.appAppearanceMode = .followSystem
+        } else if sender.accessibilityIdentifier == "LightModeButton" {
+            AppEngine.shared.userSetting.appAppearanceMode = .lightMode
+        } else if sender.accessibilityIdentifier == "DarkModeButton" {
+            AppEngine.shared.userSetting.appAppearanceMode = .darkMode
+        }
+        
+        AppEngine.shared.saveSetting()
+
+        
+    }
+    
+    @objc func goToSystemSettingButtonPressed(_ sender: UIButton!) {
+        AppEngine.shared.goToDeviceSystemSetting()
     }
 }

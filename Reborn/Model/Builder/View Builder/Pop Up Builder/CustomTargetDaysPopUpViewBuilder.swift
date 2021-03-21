@@ -39,7 +39,7 @@ class CustomTargetDaysPopUpViewBuilder: PopUpViewBuilder {
         super.contentView.addSubview(picker)
         picker.translatesAutoresizingMaskIntoConstraints = false
         picker.widthAnchor.constraint(equalTo: super.contentView.widthAnchor).isActive = true
-        picker.centerXAnchor.constraint(equalTo: super.contentView.centerXAnchor).isActive = true
-        picker.centerYAnchor.constraint(equalTo: super.contentView.centerYAnchor).isActive = true
+        picker.topAnchor.constraint(equalTo: super.contentView.topAnchor).isActive = true
+        picker.bottomAnchor.constraint(equalTo: super.contentView.bottomAnchor).isActive = true
     }
 }

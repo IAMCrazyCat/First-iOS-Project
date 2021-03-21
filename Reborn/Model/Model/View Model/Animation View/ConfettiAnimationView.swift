@@ -121,10 +121,10 @@ class ConfettiAnimationView: UIView {
     }
     
     func excuteAnimation() {
-     
+        print("Confetti animation")
         self.addFirstBurst()
         self.skScene?.physicsWorld.gravity = .zero
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { // Change `2.0` to the desired number of seconds.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.addSecondBurst()
             self.skScene?.physicsWorld.gravity = CGVector(dx: 0, dy: -1.62 * self.animationSpeed)
         }

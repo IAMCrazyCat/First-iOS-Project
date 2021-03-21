@@ -10,6 +10,8 @@ import UIKit
 
 class CustomThemeColorPopUpViewBuilder: PopUpViewBuilder {
     
+    
+    
     override func buildView() -> UIView {
         _ = super.buildView()
         self.setUpUI()
@@ -23,13 +25,14 @@ class CustomThemeColorPopUpViewBuilder: PopUpViewBuilder {
     
     private func addThemeColorOptions() {
         
-        let paddingToContentView: CGFloat = super.setting.mainDistance
+        let paddingToLeft: CGFloat = super.setting.mainPadding
+        let paddingToTop: CGFloat = 0
         let buttonSize: CGFloat = 30
         let maxNumberOfButtonsInOneRow: Int = 5
 
         var buttonHorizentalGap: CGFloat {
             let totalButtonWidth = CGFloat(maxNumberOfButtonsInOneRow) * buttonSize
-            let totalGapWidth = super.contentView.frame.width - totalButtonWidth - 2 * paddingToContentView
+            let totalGapWidth = super.contentView.frame.width - totalButtonWidth - 2 * paddingToLeft
             return totalGapWidth / CGFloat(maxNumberOfButtonsInOneRow - 1)
         }
         let buttonVerticalGap: CGFloat = 40
@@ -38,12 +41,12 @@ class CustomThemeColorPopUpViewBuilder: PopUpViewBuilder {
             return Int(ThemeColor.allCases.count / maxNumberOfButtonsInOneRow)
         }
         
-        var cordinateX: CGFloat = paddingToContentView
-        var cordinateY: CGFloat = 30
+        var cordinateX: CGFloat = paddingToLeft
+        var cordinateY: CGFloat = paddingToTop
         var buttonNumber: Int = 1
         for themeColorName in ThemeColor.allCases {
             
-            let themeColor = UIColor(named: themeColorName.rawValue) ?? UIColor.clear
+            let themeColor = UIColor(named: themeColorName.rawValue) ?? UIColor.blue
             let colorButton = UIButton()
             colorButton.accessibilityValue = themeColorName.rawValue
             colorButton.frame = CGRect(x: cordinateX, y: cordinateY, width: buttonSize, height: buttonSize)
@@ -55,14 +58,14 @@ class CustomThemeColorPopUpViewBuilder: PopUpViewBuilder {
             
         
             if buttonNumber > maxNumberOfButtonsInOneRow - 1 {
-                cordinateX = paddingToContentView
+                cordinateX = paddingToLeft
                 cordinateY += buttonVerticalGap + colorButton.frame.height
                 buttonNumber = 0
             } else {
                 cordinateX += buttonHorizentalGap + colorButton.frame.width
             }
             
-            if themeColor == AppEngine.shared.userSetting.themeColor {
+            if themeColor.value == AppEngine.shared.userSetting.themeColor.value {
                 let checkButton = UIButton()
                 checkButton.setImage(#imageLiteral(resourceName: "FinishedIcon"), for: .normal)
                 checkButton.tintColor = UIColor.label

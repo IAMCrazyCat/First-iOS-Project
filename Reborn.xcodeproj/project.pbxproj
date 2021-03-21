@@ -24,7 +24,6 @@
 		2246D2E625CA68230001EFB7 /* DismissStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246D2E525CA68230001EFB7 /* DismissStrategy.swift */; };
 		2246D2EE25CAD5110001EFB7 /* EnlargeStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246D2ED25CAD5110001EFB7 /* EnlargeStrategy.swift */; };
 		2246D2F325CAD9F70001EFB7 /* GoBackToThePastStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246D2F225CAD9F70001EFB7 /* GoBackToThePastStrategy.swift */; };
-		224A91842595FA7D00A896BE /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224A91832595FA7D00A896BE /* ItemType.swift */; };
 		224A919225971E9000A896BE /* ItemCardViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224A919125971E9000A896BE /* ItemCardViewBuilder.swift */; };
 		224E663525C6457900B71E8A /* TimeMachineAnimationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E663425C6457900B71E8A /* TimeMachineAnimationStrategy.swift */; };
 		224E663D25C6465D00B71E8A /* ForwardForOneStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E663C25C6465D00B71E8A /* ForwardForOneStrategy.swift */; };
@@ -41,7 +40,7 @@
 		225AD13425A86ED80040E356 /* FadeInSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AD13325A86ED80040E356 /* FadeInSegue.swift */; };
 		225EC25F25FA41BC00F2C69F /* CustomUserNamePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225EC25E25FA41BC00F2C69F /* CustomUserNamePopUp.swift */; };
 		225EC26C25FA427B00F2C69F /* CustomUserNamePopUpViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225EC26B25FA427B00F2C69F /* CustomUserNamePopUpViewBuilder.swift */; };
-		2264C59325F4B041009CE917 /* PopUpAnimationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2264C59225F4B041009CE917 /* PopUpAnimationType.swift */; };
+		2264C59325F4B041009CE917 /* PopUpSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2264C59225F4B041009CE917 /* PopUpSet.swift */; };
 		2264C59E25F4B399009CE917 /* ItemCompletedPopUpViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2264C59D25F4B399009CE917 /* ItemCompletedPopUpViewBuilder.swift */; };
 		226C958525FCC8310029C2E6 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C958425FCC8310029C2E6 /* UITextField.swift */; };
 		2278907625EBA65400613281 /* Frequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278907525EBA65400613281 /* Frequency.swift */; };
@@ -64,6 +63,7 @@
 		22945D7D25F70E4D0065B511 /* ConfettiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22945D7C25F70E4D0065B511 /* ConfettiCell.swift */; };
 		22945D8525F70FD30065B511 /* ConfettiSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22945D8425F70FD30065B511 /* ConfettiSize.swift */; };
 		229C5EEA25F4F1FD00C94B61 /* UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229C5EE925F4F1FD00C94B61 /* UIWindow.swift */; };
+		22A1E95D260315CA00AD2E7C /* EnergySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A1E95C260315CA00AD2E7C /* EnergySettingViewController.swift */; };
 		22A2EC6E25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A2EC6D25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift */; };
 		22A2EC7925C9862A00E97787 /* TimeMachineViewPresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A2EC7825C9862A00E97787 /* TimeMachineViewPresentAnimationController.swift */; };
 		22A2EC8425C9868C00E97787 /* TimeMachineViewDismissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A2EC8325C9868C00E97787 /* TimeMachineViewDismissAnimationController.swift */; };
@@ -72,16 +72,18 @@
 		22A597F925986685008E2A06 /* NewItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A597F825986685008E2A06 /* NewItemViewController.swift */; };
 		22A597FE2599C0AF008E2A06 /* WeekDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A597FD2599C0AF008E2A06 /* WeekDay.swift */; };
 		22A59811259AA31A008E2A06 /* PopUpViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A59810259AA31A008E2A06 /* PopUpViewBuilder.swift */; };
+		22A7DC272605957D00A55CE8 /* LightAndDarkModePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7DC262605957D00A55CE8 /* LightAndDarkModePopUp.swift */; };
+		22A7DC2C260595B400A55CE8 /* LightAndDarkModePopUpViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7DC2B260595B400A55CE8 /* LightAndDarkModePopUpViewBuilder.swift */; };
+		22A7DC312605B0B100A55CE8 /* AppAppearenceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7DC302605B0B100A55CE8 /* AppAppearenceMode.swift */; };
 		22AACA1125AD910D0098D920 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AACA1025AD910D0098D920 /* Date.swift */; };
 		22AACA3225AE98B40098D920 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AACA3025AE98B40098D920 /* CalendarViewController.swift */; };
 		22AC22B825F1077C002A1F7F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22AC22B725F1077C002A1F7F /* StoreKit.framework */; };
 		22B1E8E425DCE3A5003ABF6C /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B1E8E325DCE3A5003ABF6C /* Actions.swift */; };
-		22B1E8E925DD47F3003ABF6C /* ItemState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B1E8E825DD47F3003ABF6C /* ItemState.swift */; };
+		22B1E8E925DD47F3003ABF6C /* ItemSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B1E8E825DD47F3003ABF6C /* ItemSet.swift */; };
 		22B4B56325D10ACD00C0CFD7 /* UIObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B4B56225D10ACD00C0CFD7 /* UIObserver.swift */; };
 		22BABF2425C3ECBA00168AE1 /* TimeMachineCalendarPageViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BABF2325C3ECBA00168AE1 /* TimeMachineCalendarPageViewBuilder.swift */; };
 		22BABF2925C42ABB00168AE1 /* CGAffineTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BABF2825C42ABB00168AE1 /* CGAffineTransform.swift */; };
 		22BC200125D39C0F007D2822 /* OverAllProgressViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BC200025D39C0F007D2822 /* OverAllProgressViewBuilder.swift */; };
-		22BC38DF25E7361E00AEFE44 /* PopUpType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BC38DE25E7361E00AEFE44 /* PopUpType.swift */; };
 		22BC38E525E7388600AEFE44 /* CustomTargetDaysPopUpViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BC38E425E7388600AEFE44 /* CustomTargetDaysPopUpViewBuilder.swift */; };
 		22BC38EA25E738AA00AEFE44 /* CustomItemNamePopUpViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BC38E925E738AA00AEFE44 /* CustomItemNamePopUpViewBuilder.swift */; };
 		22BC38F225E738CD00AEFE44 /* CustomFrequencyPopUpViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BC38F125E738CD00AEFE44 /* CustomFrequencyPopUpViewBuilder.swift */; };
@@ -99,6 +101,7 @@
 		22C23A19258DC5D700D4BEB2 /* QuittingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C23A18258DC5D700D4BEB2 /* QuittingItem.swift */; };
 		22C23A1E258DC5FB00D4BEB2 /* PersistingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C23A1D258DC5FB00D4BEB2 /* PersistingItem.swift */; };
 		22C23A27258DCE4500D4BEB2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C23A26258DCE4500D4BEB2 /* HomeViewController.swift */; };
+		22C2C75B26023CEF0007249A /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C2C75A26023CEF0007249A /* TabBarViewController.swift */; };
 		22C49A6125FF16AF00371E2B /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C49A6025FF16AF00371E2B /* CGFloat.swift */; };
 		22C4BFB825D21E7A00528A1C /* ViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4BFB725D21E7A00528A1C /* ViewBuilder.swift */; };
 		22C4BFC325D21F2400528A1C /* ItemDetailViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4BFC225D21F2400528A1C /* ItemDetailViewBuilder.swift */; };
@@ -122,10 +125,8 @@
 		22D7FBA125A18FE5006B1F28 /* CustomData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7FBA025A18FE5006B1F28 /* CustomData.swift */; };
 		22D7FBA625A190E9006B1F28 /* SetUpPageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7FBA525A190E9006B1F28 /* SetUpPageData.swift */; };
 		22D7FBB125A1E065006B1F28 /* SetUpPageViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7FBB025A1E065006B1F28 /* SetUpPageViewBuilder.swift */; };
-		22D8A05225CCE1D500A605D6 /* CalendarCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8A05125CCE1D500A605D6 /* CalendarCellType.swift */; };
 		22D8A05725CCE21C00A605D6 /* NewCalendarPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8A05625CCE21C00A605D6 /* NewCalendarPage.swift */; };
-		22D8A05C25CCE24800A605D6 /* CalendarState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8A05B25CCE24800A605D6 /* CalendarState.swift */; };
-		22D8A06725CD13BA00A605D6 /* CalendarCellState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8A06625CD13BA00A605D6 /* CalendarCellState.swift */; };
+		22D8A06725CD13BA00A605D6 /* CalendaSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8A06625CD13BA00A605D6 /* CalendaSet.swift */; };
 		22E069A925D79250006DCE5C /* Vibrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E069A825D79250006DCE5C /* Vibrator.swift */; };
 		22E5A13625F33F76001AC3ED /* PurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E5A13525F33F76001AC3ED /* PurchaseViewController.swift */; };
 		22E9A855259ED1B40073D432 /* PikerViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E9A854259ED1B40073D432 /* PikerViewData.swift */; };
@@ -178,7 +179,6 @@
 		2246D2E525CA68230001EFB7 /* DismissStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissStrategy.swift; sourceTree = "<group>"; };
 		2246D2ED25CAD5110001EFB7 /* EnlargeStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnlargeStrategy.swift; sourceTree = "<group>"; };
 		2246D2F225CAD9F70001EFB7 /* GoBackToThePastStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoBackToThePastStrategy.swift; sourceTree = "<group>"; };
-		224A91832595FA7D00A896BE /* ItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
 		224A919125971E9000A896BE /* ItemCardViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCardViewBuilder.swift; sourceTree = "<group>"; };
 		224E663425C6457900B71E8A /* TimeMachineAnimationStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineAnimationStrategy.swift; sourceTree = "<group>"; };
 		224E663C25C6465D00B71E8A /* ForwardForOneStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForwardForOneStrategy.swift; sourceTree = "<group>"; };
@@ -195,7 +195,7 @@
 		225AD13325A86ED80040E356 /* FadeInSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeInSegue.swift; sourceTree = "<group>"; };
 		225EC25E25FA41BC00F2C69F /* CustomUserNamePopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUserNamePopUp.swift; sourceTree = "<group>"; };
 		225EC26B25FA427B00F2C69F /* CustomUserNamePopUpViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUserNamePopUpViewBuilder.swift; sourceTree = "<group>"; };
-		2264C59225F4B041009CE917 /* PopUpAnimationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpAnimationType.swift; sourceTree = "<group>"; };
+		2264C59225F4B041009CE917 /* PopUpSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpSet.swift; sourceTree = "<group>"; };
 		2264C59D25F4B399009CE917 /* ItemCompletedPopUpViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCompletedPopUpViewBuilder.swift; sourceTree = "<group>"; };
 		226C958425FCC8310029C2E6 /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		2278907525EBA65400613281 /* Frequency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frequency.swift; sourceTree = "<group>"; };
@@ -218,6 +218,7 @@
 		22945D7C25F70E4D0065B511 /* ConfettiCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiCell.swift; sourceTree = "<group>"; };
 		22945D8425F70FD30065B511 /* ConfettiSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiSize.swift; sourceTree = "<group>"; };
 		229C5EE925F4F1FD00C94B61 /* UIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindow.swift; sourceTree = "<group>"; };
+		22A1E95C260315CA00AD2E7C /* EnergySettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergySettingViewController.swift; sourceTree = "<group>"; };
 		22A2EC6D25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineTransitioningDelegate.swift; sourceTree = "<group>"; };
 		22A2EC7825C9862A00E97787 /* TimeMachineViewPresentAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineViewPresentAnimationController.swift; sourceTree = "<group>"; };
 		22A2EC8325C9868C00E97787 /* TimeMachineViewDismissAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineViewDismissAnimationController.swift; sourceTree = "<group>"; };
@@ -226,16 +227,18 @@
 		22A597F825986685008E2A06 /* NewItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemViewController.swift; sourceTree = "<group>"; };
 		22A597FD2599C0AF008E2A06 /* WeekDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDay.swift; sourceTree = "<group>"; };
 		22A59810259AA31A008E2A06 /* PopUpViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewBuilder.swift; sourceTree = "<group>"; };
+		22A7DC262605957D00A55CE8 /* LightAndDarkModePopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightAndDarkModePopUp.swift; sourceTree = "<group>"; };
+		22A7DC2B260595B400A55CE8 /* LightAndDarkModePopUpViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightAndDarkModePopUpViewBuilder.swift; sourceTree = "<group>"; };
+		22A7DC302605B0B100A55CE8 /* AppAppearenceMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAppearenceMode.swift; sourceTree = "<group>"; };
 		22AACA1025AD910D0098D920 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		22AACA3025AE98B40098D920 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		22AC22B725F1077C002A1F7F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		22B1E8E325DCE3A5003ABF6C /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
-		22B1E8E825DD47F3003ABF6C /* ItemState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemState.swift; sourceTree = "<group>"; };
+		22B1E8E825DD47F3003ABF6C /* ItemSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSet.swift; sourceTree = "<group>"; };
 		22B4B56225D10ACD00C0CFD7 /* UIObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIObserver.swift; sourceTree = "<group>"; };
 		22BABF2325C3ECBA00168AE1 /* TimeMachineCalendarPageViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineCalendarPageViewBuilder.swift; sourceTree = "<group>"; };
 		22BABF2825C42ABB00168AE1 /* CGAffineTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGAffineTransform.swift; sourceTree = "<group>"; };
 		22BC200025D39C0F007D2822 /* OverAllProgressViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverAllProgressViewBuilder.swift; sourceTree = "<group>"; };
-		22BC38DE25E7361E00AEFE44 /* PopUpType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpType.swift; sourceTree = "<group>"; };
 		22BC38E425E7388600AEFE44 /* CustomTargetDaysPopUpViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTargetDaysPopUpViewBuilder.swift; sourceTree = "<group>"; };
 		22BC38E925E738AA00AEFE44 /* CustomItemNamePopUpViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomItemNamePopUpViewBuilder.swift; sourceTree = "<group>"; };
 		22BC38F125E738CD00AEFE44 /* CustomFrequencyPopUpViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFrequencyPopUpViewBuilder.swift; sourceTree = "<group>"; };
@@ -253,6 +256,7 @@
 		22C23A18258DC5D700D4BEB2 /* QuittingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuittingItem.swift; sourceTree = "<group>"; };
 		22C23A1D258DC5FB00D4BEB2 /* PersistingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistingItem.swift; sourceTree = "<group>"; };
 		22C23A26258DCE4500D4BEB2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		22C2C75A26023CEF0007249A /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		22C49A6025FF16AF00371E2B /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
 		22C4BFB725D21E7A00528A1C /* ViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBuilder.swift; sourceTree = "<group>"; };
 		22C4BFC225D21F2400528A1C /* ItemDetailViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewBuilder.swift; sourceTree = "<group>"; };
@@ -276,10 +280,8 @@
 		22D7FBA025A18FE5006B1F28 /* CustomData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomData.swift; sourceTree = "<group>"; };
 		22D7FBA525A190E9006B1F28 /* SetUpPageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpPageData.swift; sourceTree = "<group>"; };
 		22D7FBB025A1E065006B1F28 /* SetUpPageViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpPageViewBuilder.swift; sourceTree = "<group>"; };
-		22D8A05125CCE1D500A605D6 /* CalendarCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellType.swift; sourceTree = "<group>"; };
 		22D8A05625CCE21C00A605D6 /* NewCalendarPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCalendarPage.swift; sourceTree = "<group>"; };
-		22D8A05B25CCE24800A605D6 /* CalendarState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarState.swift; sourceTree = "<group>"; };
-		22D8A06625CD13BA00A605D6 /* CalendarCellState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellState.swift; sourceTree = "<group>"; };
+		22D8A06625CD13BA00A605D6 /* CalendaSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendaSet.swift; sourceTree = "<group>"; };
 		22E069A825D79250006DCE5C /* Vibrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibrator.swift; sourceTree = "<group>"; };
 		22E5A13525F33F76001AC3ED /* PurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewController.swift; sourceTree = "<group>"; };
 		22E9A854259ED1B40073D432 /* PikerViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PikerViewData.swift; sourceTree = "<group>"; };
@@ -427,20 +429,17 @@
 		221E0B8625A9A20A00386FE1 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
-				22D8A06625CD13BA00A605D6 /* CalendarCellState.swift */,
-				22D8A05125CCE1D500A605D6 /* CalendarCellType.swift */,
-				22D8A05B25CCE24800A605D6 /* CalendarState.swift */,
-				221E0B8725A9A22800386FE1 /* Gender.swift */,
-				224A91832595FA7D00A896BE /* ItemType.swift */,
-				22D8A05625CCE21C00A605D6 /* NewCalendarPage.swift */,
-				22A597FD2599C0AF008E2A06 /* WeekDay.swift */,
-				22BC4C6C25D6A3FF009E905C /* TimeRange.swift */,
-				22B1E8E825DD47F3003ABF6C /* ItemState.swift */,
-				22BC38DE25E7361E00AEFE44 /* PopUpType.swift */,
-				22CBB97D25EA42C500994D33 /* ThemeColor.swift */,
-				2278907525EBA65400613281 /* Frequency.swift */,
-				2264C59225F4B041009CE917 /* PopUpAnimationType.swift */,
+				22A7DC302605B0B100A55CE8 /* AppAppearenceMode.swift */,
+				22D8A06625CD13BA00A605D6 /* CalendaSet.swift */,
 				22945D8425F70FD30065B511 /* ConfettiSize.swift */,
+				2278907525EBA65400613281 /* Frequency.swift */,
+				221E0B8725A9A22800386FE1 /* Gender.swift */,
+				22B1E8E825DD47F3003ABF6C /* ItemSet.swift */,
+				22D8A05625CCE21C00A605D6 /* NewCalendarPage.swift */,
+				2264C59225F4B041009CE917 /* PopUpSet.swift */,
+				22CBB97D25EA42C500994D33 /* ThemeColor.swift */,
+				22BC4C6C25D6A3FF009E905C /* TimeRange.swift */,
+				22A597FD2599C0AF008E2A06 /* WeekDay.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -555,6 +554,7 @@
 				22945D5525F5A8150065B511 /* ItemCompletedPopUp.swift */,
 				225EC25E25FA41BC00F2C69F /* CustomUserNamePopUp.swift */,
 				22D00DEB25FE2A5900DB3F1D /* NotificationTimePopUp.swift */,
+				22A7DC262605957D00A55CE8 /* LightAndDarkModePopUp.swift */,
 			);
 			path = "Pop Up View ";
 			sourceTree = "<group>";
@@ -709,6 +709,8 @@
 				220B7285258A288000E4BEDC /* WelcomeViewController.swift */,
 				2293F38525DB7C18009B4753 /* ItemManagementViewController.swift */,
 				22E5A13525F33F76001AC3ED /* PurchaseViewController.swift */,
+				22C2C75A26023CEF0007249A /* TabBarViewController.swift */,
+				22A1E95C260315CA00AD2E7C /* EnergySettingViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -733,6 +735,7 @@
 				2264C59D25F4B399009CE917 /* ItemCompletedPopUpViewBuilder.swift */,
 				225EC26B25FA427B00F2C69F /* CustomUserNamePopUpViewBuilder.swift */,
 				22D00DE325FE297D00DB3F1D /* NotificationTimePopUpViewBuilder.swift */,
+				22A7DC2B260595B400A55CE8 /* LightAndDarkModePopUpViewBuilder.swift */,
 			);
 			path = "Pop Up Builder";
 			sourceTree = "<group>";
@@ -1073,7 +1076,7 @@
 			files = (
 				224E663D25C6465D00B71E8A /* ForwardForOneStrategy.swift in Sources */,
 				22BC4C6D25D6A3FF009E905C /* TimeRange.swift in Sources */,
-				2264C59325F4B041009CE917 /* PopUpAnimationType.swift in Sources */,
+				2264C59325F4B041009CE917 /* PopUpSet.swift in Sources */,
 				22A2EC8425C9868C00E97787 /* TimeMachineViewDismissAnimationController.swift in Sources */,
 				22BC38EA25E738AA00AEFE44 /* CustomItemNamePopUpViewBuilder.swift in Sources */,
 				22E9A855259ED1B40073D432 /* PikerViewData.swift in Sources */,
@@ -1097,7 +1100,6 @@
 				22B1E8E425DCE3A5003ABF6C /* Actions.swift in Sources */,
 				22BC4C6825D6A3DB009E905C /* WelcomeTextData.swift in Sources */,
 				22D8A05725CCE21C00A605D6 /* NewCalendarPage.swift in Sources */,
-				22D8A05225CCE1D500A605D6 /* CalendarCellType.swift in Sources */,
 				2246D2EE25CAD5110001EFB7 /* EnlargeStrategy.swift in Sources */,
 				22D6195C25A0290600EC9396 /* UIViewController.swift in Sources */,
 				226C958525FCC8310029C2E6 /* UITextField.swift in Sources */,
@@ -1126,11 +1128,10 @@
 				22945D5625F5A8150065B511 /* ItemCompletedPopUp.swift in Sources */,
 				22CE4ED925D00AE3007EBD5B /* NewItemViewStrategy.swift in Sources */,
 				22945D7D25F70E4D0065B511 /* ConfettiCell.swift in Sources */,
-				224A91842595FA7D00A896BE /* ItemType.swift in Sources */,
 				22FCB1B5258D86BA006A0D39 /* SetUpViewController.swift in Sources */,
-				22D8A05C25CCE24800A605D6 /* CalendarState.swift in Sources */,
 				22945D3F25F5A70C0065B511 /* CustomTargetDaysPopUp.swift in Sources */,
 				22D6195225A0238E00EC9396 /* PopUpViewPresentationController.swift in Sources */,
+				22C2C75B26023CEF0007249A /* TabBarViewController.swift in Sources */,
 				22A597F925986685008E2A06 /* NewItemViewController.swift in Sources */,
 				22C23A19258DC5D700D4BEB2 /* QuittingItem.swift in Sources */,
 				22CE4EF025D00C65007EBD5B /* AddingItemStrategy.swift in Sources */,
@@ -1138,11 +1139,12 @@
 				22E9A875259F33F50073D432 /* PopUpViewController.swift in Sources */,
 				220B7286258A288000E4BEDC /* WelcomeViewController.swift in Sources */,
 				22945D4425F5A7700065B511 /* CustomItemNamePopUp.swift in Sources */,
-				22D8A06725CD13BA00A605D6 /* CalendarCellState.swift in Sources */,
+				22D8A06725CD13BA00A605D6 /* CalendaSet.swift in Sources */,
 				224E663525C6457900B71E8A /* TimeMachineAnimationStrategy.swift in Sources */,
 				22C5D975258F40E800131964 /* SetUpPage.swift in Sources */,
 				22945D8525F70FD30065B511 /* ConfettiSize.swift in Sources */,
 				220B7282258A288000E4BEDC /* AppDelegate.swift in Sources */,
+				22A1E95D260315CA00AD2E7C /* EnergySettingViewController.swift in Sources */,
 				225AD11625A6C8620040E356 /* UIColor.swift in Sources */,
 				22BDC91225F26131008E9C46 /* VIPStrategyImpl.swift in Sources */,
 				22916DB525C05F0D004A3EC4 /* PresentTimeMachineSegue.swift in Sources */,
@@ -1154,6 +1156,7 @@
 				22945D3525F5A43D0065B511 /* PopUp.swift in Sources */,
 				22945D6625F5ADED0065B511 /* CustomFrequencyPopUp.swift in Sources */,
 				22BC454525B04ED000516F75 /* CalendarPage.swift in Sources */,
+				22A7DC272605957D00A55CE8 /* LightAndDarkModePopUp.swift in Sources */,
 				22C23A14258DC58F00D4BEB2 /* Item.swift in Sources */,
 				22945D5E25F5AB2B0065B511 /* PopUpImpl.swift in Sources */,
 				22945D6F25F70AAD0065B511 /* ConfettiAnimationView.swift in Sources */,
@@ -1170,7 +1173,8 @@
 				22C23A1E258DC5FB00D4BEB2 /* PersistingItem.swift in Sources */,
 				224E664725C6468D00B71E8A /* ForwardForManyStrategy.swift in Sources */,
 				22A2EC7925C9862A00E97787 /* TimeMachineViewPresentAnimationController.swift in Sources */,
-				22B1E8E925DD47F3003ABF6C /* ItemState.swift in Sources */,
+				22B1E8E925DD47F3003ABF6C /* ItemSet.swift in Sources */,
+				22A7DC312605B0B100A55CE8 /* AppAppearenceMode.swift in Sources */,
 				2278907625EBA65400613281 /* Frequency.swift in Sources */,
 				22C23A0F258DC4FA00D4BEB2 /* AppEngine.swift in Sources */,
 				22A597FE2599C0AF008E2A06 /* WeekDay.swift in Sources */,
@@ -1179,7 +1183,7 @@
 				22D7FBA625A190E9006B1F28 /* SetUpPageData.swift in Sources */,
 				22A597EC2598091B008E2A06 /* UIButton.swift in Sources */,
 				22A59811259AA31A008E2A06 /* PopUpViewBuilder.swift in Sources */,
-				22BC38DF25E7361E00AEFE44 /* PopUpType.swift in Sources */,
+				22A7DC2C260595B400A55CE8 /* LightAndDarkModePopUpViewBuilder.swift in Sources */,
 				221E0B8825A9A22800386FE1 /* Gender.swift in Sources */,
 				22C5D967258F3E4400131964 /* SetUpEngine.swift in Sources */,
 				229C5EEA25F4F1FD00C94B61 /* UIWindow.swift in Sources */,
@@ -1366,7 +1370,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = Reborn/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1387,7 +1391,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = Reborn/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -81,8 +81,8 @@ class SetUpEngine {
         if !setUpIsSkipped {
             newUser.name = userName
             newUser.gender = userGender
-            newUser.items.append(QuittingItem(ID: 1, name: quittingItemName, days: quittingItemDays, finishedDays: 0, frequency: .everyday, creationDate: AppEngine.shared.currentDate))
-            newUser.items.append(PersistingItem(ID: 2, name: persistingItemName, days: persistingItemDays, finishedDays: 0, frequency: .everyday, creationDate: AppEngine.shared.currentDate))
+            newUser.items.append(QuittingItem(ID: 1, name: quittingItemName, days: quittingItemDays, frequency: .everyday, creationDate: AppEngine.shared.currentDate))
+            newUser.items.append(PersistingItem(ID: 2, name: persistingItemName, days: persistingItemDays, frequency: .everyday, creationDate: AppEngine.shared.currentDate))
             
 
         }
@@ -93,7 +93,7 @@ class SetUpEngine {
     
     func showPopUp(popUpType popUp: PopUpType, controller: UIViewController) {
   
-        controller.show(popUp)
+        controller.present(popUp)
     }
     
     func getStoredDataFromPopUpView() -> Any {

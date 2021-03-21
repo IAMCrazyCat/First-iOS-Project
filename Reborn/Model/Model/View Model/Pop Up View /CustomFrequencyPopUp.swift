@@ -17,10 +17,10 @@ class CustomFrequencyPopUp: PopUpImpl {
     
     var pikerViewData: Array<Any> = []
 
-    init(presentAnimationType: PopUpAnimationType, popUpViewController: PopUpViewController, dataStartIndex: Int) {
+    init(presentAnimationType: PopUpAnimationType, size: PopUpSize = .small, dataStartIndex: Int, popUpViewController: PopUpViewController) {
 
         self.dataStartIntex = dataStartIndex
-        super.init(presentAnimationType: presentAnimationType, popUpViewController: popUpViewController, type: .customFrequencyPopUp)
+        super.init(presentAnimationType: presentAnimationType, type: .customFrequencyPopUp, size: size, popUpViewController: popUpViewController)
        
         setPickerViewData()
     }

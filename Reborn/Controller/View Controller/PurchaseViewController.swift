@@ -24,6 +24,8 @@ class PurchaseViewController: UIViewController {
     
     @IBOutlet var purchaseButton: UIButton!
     
+    @IBOutlet var functionNumberButtons: [UIButton]!
+    
     let engine: AppEngine = AppEngine.shared
     var functionViews: Array<UIView> = []
     
@@ -79,12 +81,23 @@ class PurchaseViewController: UIViewController {
         avatarView.image = engine.currentUser.getAvatarImage()
     }
     
-    
+    func updateAllButtons() {
+        for button in functionNumberButtons {
+            button.setBackgroundColor(self.engine.userSetting.themeColor, for: .normal)
+        }
+        
+        purchaseButton.setBackgroundColor(self.engine.userSetting.themeColor, for: .normal)
+    }
+   
+
+}
+
+extension PurchaseViewController: UIObserver {
     func updateUI() {
         updateVIPFouctionViews()
         updateUserAvatar()
+        updateAllButtons()
     }
-
 }
 
 extension PurchaseViewController: SKPaymentTransactionObserver {

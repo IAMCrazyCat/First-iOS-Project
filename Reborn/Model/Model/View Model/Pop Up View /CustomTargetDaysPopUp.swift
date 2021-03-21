@@ -17,10 +17,10 @@ class CustomTargetDaysPopUp: PopUpImpl {
     public var dataStartIndex: Int
     public var pikerViewData: Array<Any> = []
     
-    init(presentAnimationType: PopUpAnimationType, popUpViewController: PopUpViewController, dataStartIndex: Int) {
+    init(presentAnimationType: PopUpAnimationType, size: PopUpSize = .small, dataStartIndex: Int, popUpViewController: PopUpViewController) {
         
         self.dataStartIndex = dataStartIndex
-        super.init(presentAnimationType: presentAnimationType, popUpViewController: popUpViewController, type: .customTargetDaysPopUp)
+        super.init(presentAnimationType: presentAnimationType, type: .customTargetDaysPopUp, size: size, popUpViewController: popUpViewController)
         
         setPickerViewData()
     }

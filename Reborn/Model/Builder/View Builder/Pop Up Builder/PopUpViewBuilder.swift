@@ -110,6 +110,7 @@ class PopUpViewBuilder: ViewBuilder {
         
         outPutView.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         titleLabel.topAnchor.constraint(equalTo: outPutView.topAnchor, constant: 50).isActive = true
         titleLabel.leftAnchor.constraint(equalTo: outPutView.leftAnchor, constant: setting.mainDistance).isActive = true
     }

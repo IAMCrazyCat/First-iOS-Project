@@ -9,7 +9,9 @@ import Foundation
 import UIKit
 class PopUpImpl: PopUp {
     
-    var frame: CGRect = .zero
+    var frame: CGRect {
+        return self.getFrame()
+    }
     var window: UIView = UIView()
     var contentView: UIView? {
         return self.window.getSubviewBy(idenifier: "ContentView")
@@ -28,14 +30,15 @@ class PopUpImpl: PopUp {
     
     let setting: SystemSetting = SystemSetting.shared
     var type: PopUpType
+    var size: PopUpSize
     
-    init(presentAnimationType: PopUpAnimationType, popUpViewController: PopUpViewController, type: PopUpType) {
+    init(presentAnimationType: PopUpAnimationType, type: PopUpType, size: PopUpSize, popUpViewController: PopUpViewController) {
         self.presentAnimationType = presentAnimationType
         self.popUpViewController = popUpViewController
         self.type = type
-        
-        self.frame =  self.getFrame()
+        self.size = size
         self.window = self.createWindow()
+
     }
     
     
@@ -48,26 +51,44 @@ class PopUpImpl: PopUp {
     }
     
     private func getFrame() -> CGRect {
-        let popUpWindowFrame: CGRect
-        switch presentAnimationType {
-        case .fadeInFromCenter:
+        var popUpWindowSize: CGSize
+        var popUpWindowPosition: CGPoint
+        let widthProportion: CGFloat
+        let heightProportion: CGFloat
+        
+        switch self.size {
             
-            let widthProportion: CGFloat = 0.9
-            let heightProportion: CGFloat = 0.6
-            popUpWindowFrame = CGRect(x: (self.setting.screenFrame.width - self.setting.screenFrame.width * widthProportion) / 2, y: (self.setting.screenFrame.height - self.setting.screenFrame.height * heightProportion) / 2, width: self.setting.screenFrame.width * widthProportion, height: self.setting.screenFrame.height * heightProportion)
+        case .small:
             
-        case .slideInToBottom:
+            widthProportion = 0.9
+            heightProportion = 0.5
+            popUpWindowSize =  CGSize(width: self.setting.screenFrame.width * widthProportion, height: self.setting.screenFrame.height * heightProportion)
             
-            popUpWindowFrame = CGRect(x: 0, y: self.setting.screenFrame.height - self.setting.popUpWindowHeight, width: setting.screenFrame.width, height: setting.popUpWindowHeight)
+        case .medium:
             
-        case .slideInToCenter:
+            widthProportion = 0.9
+            heightProportion = 0.6
+            popUpWindowSize =  CGSize(width: self.setting.screenFrame.width * widthProportion, height: self.setting.screenFrame.height * heightProportion)
             
-            let widthProportion: CGFloat = 0.9
-            let heightProportion: CGFloat = 0.5
-            popUpWindowFrame =  CGRect(x: (self.setting.screenFrame.width - self.setting.screenFrame.width * widthProportion) / 2, y: (self.setting.screenFrame.height - self.setting.screenFrame.height * heightProportion) / 2, width: self.setting.screenFrame.width * widthProportion, height: self.setting.screenFrame.height * heightProportion)
+        case .large:
+        
+            widthProportion = 0.9
+            heightProportion = 0.7
+            popUpWindowSize =  CGSize(width: self.setting.screenFrame.width * widthProportion, height: self.setting.screenFrame.height * heightProportion)
             
         }
-        return popUpWindowFrame
+        
+        switch presentAnimationType {
+        
+        case .slideInToBottom:
+            popUpWindowPosition = CGPoint(x: 0, y: self.setting.screenFrame.height - popUpWindowSize.height)
+            popUpWindowSize.width = self.setting.screenFrame.width
+            
+        case .fadeInFromCenter, .slideInToCenter:
+            popUpWindowPosition = CGPoint(x: (self.setting.screenFrame.width - self.setting.screenFrame.width * widthProportion) / 2, y: (self.setting.screenFrame.height - self.setting.screenFrame.height * heightProportion) / 2)
+        }
+        
+        return CGRect(origin: popUpWindowPosition, size: popUpWindowSize)
     }
     
     func createWindow() -> UIView {

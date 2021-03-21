@@ -26,6 +26,7 @@ class CalendarCell: UICollectionViewCell {
     
         state = .normal
         contentView.removeAllSubviews()
+        contentView.layoutIfNeeded()
         contentView.setCornerRadius()
         contentView.clipsToBounds = true
         contentView.backgroundColor = .white // or orange, whatever
@@ -45,8 +46,15 @@ class CalendarCell: UICollectionViewCell {
     }
     
     
-    public func updateAppearence(withType type: CalendarCellType, cellDay data: String) {
-
+    public func updateAppearance(withType type: CalendarCellType, cellDay data: String) {
+        
+        if self.state == .disabled {
+            self.dayButton.isUserInteractionEnabled = false
+        } else {
+            self.dayButton.isUserInteractionEnabled = true
+        }
+        
+        
         switch type {
         case .punchedInDay:
             self.state = .disabled
@@ -68,18 +76,32 @@ class CalendarCell: UICollectionViewCell {
                 self.state = .selected
                 self.dayButton.setTitle(data, for: .normal)
                 self.dayButton.setTitleColor(.label, for: .normal)
-                self.contentView.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-                UIView.animate(withDuration: 0.2, animations: {
-                    self.contentView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-                }) { _ in
-                    UIView.animate(withDuration: 0.1, animations: {
-                        self.contentView.transform = CGAffineTransform(scaleX: 1, y: 1)
-                    })
-                    
-                }
+                self.dayButton.contentMode = .scaleAspectFill
+                
+//                let imageView = UIImageView()
+//                imageView.frame = self.contentView.frame
+//                imageView.image = #imageLiteral(resourceName: "FrequencyIcon").withTintColor(.systemPink)
+//                imageView.tintColor = .systemPink
+//                imageView.contentMode = .scaleToFill
+//                imageView.layer.zPosition = 5
+//                imageView.frame.origin.x -= 1
+//                imageView.alpha = 0
+//                self.contentView.addSubview(imageView)
+//                UIView.animate(withDuration: 0.3, animations: {
+//                    imageView.alpha = 1
+//                })
+//                self.dayButton.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+//                UIView.animate(withDuration: 0.2, animations: {
+//                    self.dayButton.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+//                }) { _ in
+//                    UIView.animate(withDuration: 0.1, animations: {
+//                        self.dayButton.transform = CGAffineTransform(scaleX: 1, y: 1)
+//                    })
+//
+//                }
                 self.contentView.backgroundColor = .clear
-                self.contentView.layer.borderWidth = 1
                 self.contentView.layer.borderColor = AppEngine.shared.userSetting.themeColor.cgColor
+             
             }
             
         case .unselected:
@@ -105,7 +127,7 @@ class CalendarCell: UICollectionViewCell {
             self.dayButton.setTitle(data, for: .normal)
             self.dayButton.setTitleColor(UIColor.white, for: .normal)
         }
-        
+     
     }
     
     func addDotToBottom(withColor color: UIColor) {

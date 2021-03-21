@@ -22,11 +22,12 @@ class PopUpViewController: UIViewController {
         AppEngine.shared.add(observer: self)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(keyboardShowNotification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidHide(keyboardShowNotification:)), name: UIResponder.keyboardDidHideNotification, object: nil)
+        updateUI()
         
     }
     
     override func viewDidLayoutSubviews() {
-        popUp?.updateUI()
+        
         
     }
     
@@ -96,8 +97,12 @@ extension PopUpViewController: UIObserver {
     func updateUI() {
  
         if popUp != nil {
+            self.popUp!.updateUI()
+            self.view.removeAllSubviews()
             self.view.addSubview(self.popUp!.createWindow())
+            
         }
+        
         
         
     }

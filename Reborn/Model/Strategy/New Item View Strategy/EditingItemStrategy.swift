@@ -100,9 +100,9 @@ class EditingItemStrategy: NewItemViewStrategy {
     
     func show(_ popUpType: PopUpType) {
         if popUpType == .customTargetDaysPopUp {
-            newItemViewController.show(popUpType, dataStartIndex: newItemViewController.item.finishedDays)
+            newItemViewController.present(popUpType, dataStartIndex: newItemViewController.item.finishedDays)
         } else if popUpType == .customFrequencyPopUp {
-            newItemViewController.show(popUpType)
+            newItemViewController.present(popUpType)
         }
         
     }

@@ -15,7 +15,9 @@ class Item: Codable {
             self.updateScheduleDates()
         }
     }
-    var finishedDays: Int
+    var finishedDays: Int {
+        return punchInDates.count
+    }
     var creationDate: CustomDate
     var type: ItemType
     var scheduleDates: Array<CustomDate> = []
@@ -49,11 +51,11 @@ class Item: Codable {
         return String(format: "%.1f", progress * 100) + " %"
     }
     
-    init(ID: Int, name: String, days: Int, finishedDays: Int, frequency: Frequency, creationDate: CustomDate, type: ItemType) {
+    init(ID: Int, name: String, days: Int, frequency: Frequency, creationDate: CustomDate, type: ItemType) {
         self.ID = ID
         self.name = name
         self.targetDays = days
-        self.finishedDays = finishedDays
+        //self.finishedDays = finishedDays
         self.creationDate = creationDate
         self.type = type
         self.frequency = frequency
@@ -75,7 +77,7 @@ class Item: Codable {
     
     func punchIn(punchInDate: CustomDate) {
         self.punchInDates.append(punchInDate)
-        self.finishedDays += 1
+        //self.finishedDays += 1
         updateState()
     }
     
@@ -91,10 +93,10 @@ class Item: Codable {
                 index -= 1
             }
 
-            self.finishedDays -= 1
+            //self.finishedDays -= 1
         }
         updateState()
-        
+        print(punchInDates)
     }
     
     func updateScheduleDates() {

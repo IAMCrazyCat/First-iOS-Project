@@ -22,7 +22,7 @@ class AddingItemStrategy: NewItemViewStrategy {
     }
     
     func show(_ popUpType: PopUpType) {
-        newItemViewController.show(popUpType)
+        newItemViewController.present(popUpType)
     }
     
     func isRedyToDismiss() -> Bool {

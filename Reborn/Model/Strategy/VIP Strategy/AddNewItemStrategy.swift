@@ -22,7 +22,7 @@ class AddNewItemStrategy: VIPStrategyImpl {
         super.performNonVIPStrategy()
         if AppEngine.shared.currentUser.items.count >= 3 {
             print("Only VIP user can create more than 3 items")
-            newItemViewController.showPurchaseView()
+            newItemViewController.presentViewController(withIentifier: "PurchaseViewController")
         } else {
             addItem()
         }
