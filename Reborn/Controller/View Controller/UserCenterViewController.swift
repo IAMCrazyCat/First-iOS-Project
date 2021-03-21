@@ -77,12 +77,12 @@ class UserCenterViewController: UIViewController {
     }
     
     @objc func avatarViewTapped() {
-        print("TAPPED")
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
-        imagePicker.allowsEditing = false
+        imagePicker.allowsEditing = true
         self.present(imagePicker, animated: true, completion: nil)
+        
     }
     
     @IBAction func purchaseButtonPressed(_ sender: UIButton) {
@@ -129,8 +129,8 @@ class UserCenterViewController: UIViewController {
     
     func updateNavigationBar() {
         navigationController?.navigationBar.removeBorder()
-        navigationController?.navigationBar.barTintColor = engine.userSetting.themeColorAndBlack
-        navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.foregroundColor: engine.userSetting.smartLabelColorAndThemeColor]
+        navigationController?.navigationBar.barTintColor = engine.userSetting.themeColorAndBlackContent
+        navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.foregroundColor: engine.userSetting.smartLabelColorAndWhiteAndThemeColor]
     }
     
     func updateUserNameButton() {
@@ -271,15 +271,15 @@ extension UserCenterViewController: UIScrollViewDelegate {
             
             UIView.animate(withDuration: 0.2, animations: {
                 navigationBar!.barTintColor = self.view.backgroundColor
-                navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: self.engine.userSetting.smartLabelColorAndThemeColor.withAlphaComponent(0)]
+                navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: self.engine.userSetting.smartLabelColorAndWhiteAndThemeColor.withAlphaComponent(0)]
                 navigationBar!.layoutIfNeeded()
             })
             
         } else {
             
             UIView.animate(withDuration: 0.2, animations: {
-                navigationBar!.barTintColor = self.engine.userSetting.themeColorAndBlack
-                navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: self.engine.userSetting.smartLabelColorAndThemeColor.withAlphaComponent(1)]
+                navigationBar!.barTintColor = self.engine.userSetting.themeColorAndBlackContent
+                navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: self.engine.userSetting.smartLabelColorAndWhiteAndThemeColor.withAlphaComponent(1)]
                 navigationBar!.layoutIfNeeded()
             })
             

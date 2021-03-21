@@ -133,7 +133,7 @@ class ItemCardViewBuilder: ViewBuilder {
         goDetailsButton.setBackgroundImage(UIImage(named: "DetailsButton"), for: .normal)
         goDetailsButton.setTitleColor(.black, for: .normal)
         goDetailsButton.titleLabel!.font = AppEngine.shared.userSetting.smallFont
-        goDetailsButton.tintColor = AppEngine.shared.userSetting.themeColor
+        goDetailsButton.tintColor = AppEngine.shared.userSetting.themeColor.darkColor
         outPutView.addSubview(goDetailsButton)
         
         goDetailsButton.translatesAutoresizingMaskIntoConstraints = false
@@ -311,8 +311,8 @@ class ItemCardViewBuilder: ViewBuilder {
         
         punchInButton.setTitle("打卡", for: .normal)
         punchInButton.setTitle("撤销", for: .selected)
-        punchInButton.setTitleColor(AppEngine.shared.userSetting.themeColor, for: .normal)
-        punchInButton.setTitleColor(.white, for: .selected)
+        punchInButton.setTitleColor(AppEngine.shared.userSetting.themeColor.darkColor, for: .normal)
+        punchInButton.setTitleColor(AppEngine.shared.userSetting.smartLabelColor, for: .selected)
        
         punchInButton.titleLabel!.font = AppEngine.shared.userSetting.smallFont
         punchInButton.layer.cornerRadius = self.setting.checkButtonCornerRadius

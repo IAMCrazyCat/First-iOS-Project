@@ -410,14 +410,20 @@ class AppEngine {
     
     public func notifyAllUIObservers() {
         
-        
         for observer in self.observers {
             DispatchQueue.main.async {
+                if let viewController = observer as? UIViewController {
+                    viewController.updateViewStyle()
+                }
                 observer.updateUI()
             }
             
         }
         print("All Observers Notified")
+    }
+    
+    public func switchAppAppearanceMode() {
+        
     }
     
     @objc func updateUIObservers() {

@@ -72,6 +72,7 @@ class PopUpViewBuilder: ViewBuilder {
         doneButton.accessibilityIdentifier = "DoneButton"
         doneButton.backgroundColor = AppEngine.shared.userSetting.themeColor
         doneButton.setTitle("确定", for: .normal)
+        doneButton.setTitleColor(AppEngine.shared.userSetting.smartLabelColor, for: .normal)
         
         doneButton.tag = setting.popUpWindowDoneButtonTag
         doneButton.addTarget(popUpViewController, action: #selector(popUpViewController.doneButtonPressed(_:)), for: .touchUpInside)

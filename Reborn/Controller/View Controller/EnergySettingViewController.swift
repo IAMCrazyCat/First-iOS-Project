@@ -42,7 +42,7 @@ class EnergySettingViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
+        excuteEnergyChargingAnimation()
 //        UIView.animate(withDuration: 2, delay: 1, animations: {
 //            self.dynamicEnergyIconView.transform = CGAffineTransform(scaleX: 0.3, y: 0.3)
 //            self.dynamicEnergyIconView.frame.origin.y = 0
@@ -50,6 +50,10 @@ class EnergySettingViewController: UIViewController {
 //
 //        })
         
+        
+    }
+    
+    func excuteEnergyChargingAnimation() {
         UIView.animate(withDuration: 1, delay: 1, animations: {
             for subview in self.view.subviews {
                 subview.alpha = 1
@@ -79,16 +83,27 @@ class EnergySettingViewController: UIViewController {
         })
     }
     
+    func updateLabels() {
+        self.energyButton.setTitle("× \(self.engine.currentUser.keys)", for: .normal)
+        if self.engine.currentUser.vip {
+            self.efficiencyLabel.text = "效能：连续打卡7天 获得1点能量 (高级用户)"
+        }
+    }
+    
+    func updateButtons() {
+       
+        self.purchaseButton.setBackgroundColor(self.engine.userSetting.themeColor, for: .normal)
+        self.purchaseButton.setTitleColor(self.engine.userSetting.smartLabelColor, for: .normal)
+    }
 
 }
 
 extension EnergySettingViewController: UIObserver {
     func updateUI() {
         
-        self.energyButton.setTitle("× \(self.engine.currentUser.keys)", for: .normal)
-        if self.engine.currentUser.vip {
-            self.efficiencyLabel.text = "效能：连续打卡7天 获得1点能量 (高级用户)"
-        }
+        updateButtons()
+        updateLabels()
+        
     }
     
     

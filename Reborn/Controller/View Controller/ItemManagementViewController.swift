@@ -86,20 +86,20 @@ class ItemManagementViewController: UIViewController {
     
     func updateNavigationBar() {
         navigationController?.navigationBar.removeBorder()
-        navigationController?.navigationBar.barTintColor = engine.userSetting.themeColorAndBlack
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: engine.userSetting.smartLabelColorAndThemeColor.brightColor]
-        navigationItem.rightBarButtonItem?.tintColor = engine.userSetting.smartLabelColor.brightColor
-        navigationItem.leftBarButtonItem?.tintColor = engine.userSetting.smartLabelColorAndThemeColor
+        navigationController?.navigationBar.barTintColor = engine.userSetting.themeColorAndBlackContent
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: engine.userSetting.smartLabelColorAndWhiteAndThemeColor.brightColor]
+        navigationItem.rightBarButtonItem?.tintColor = engine.userSetting.smartLabelColorAndWhite.brightColor
+        navigationItem.leftBarButtonItem?.tintColor = engine.userSetting.smartLabelColorAndWhiteAndThemeColor
     }
     
     func updateOptionBar() {
         self.optionBarContentView.removeAllSubviews()
-        self.optionBar.backgroundColor = self.engine.userSetting.themeColorAndBlack
+        self.optionBar.backgroundColor = self.engine.userSetting.themeColorAndBlackContent
         self.optionBarContentView.backgroundColor = self.optionBar.backgroundColor
         
         var segments: [LabelSegment] = []
         for title in self.segmentTitles {
-            let labelSegment = LabelSegment(text: title, normalFont: self.engine.userSetting.smallFont, normalTextColor: self.engine.userSetting.smartLabelColor, selectedFont: self.engine.userSetting.smallFont, selectedTextColor: self.engine.userSetting.themeColorAndSmartLabelColor)
+            let labelSegment = LabelSegment(text: title, normalFont: self.engine.userSetting.smallFont, normalTextColor: self.engine.userSetting.smartLabelColorAndWhite, selectedFont: self.engine.userSetting.smallFont, selectedTextColor: self.engine.userSetting.smartThemeLabelColor)
             segments.append(labelSegment)
     
         }

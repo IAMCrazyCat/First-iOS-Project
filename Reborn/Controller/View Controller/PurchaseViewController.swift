@@ -87,6 +87,7 @@ class PurchaseViewController: UIViewController {
         }
         
         purchaseButton.setBackgroundColor(self.engine.userSetting.themeColor, for: .normal)
+        purchaseButton.setTitleColor(self.engine.userSetting.smartLabelColor, for: .normal)
     }
    
 

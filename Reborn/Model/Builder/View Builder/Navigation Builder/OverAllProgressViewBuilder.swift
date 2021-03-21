@@ -36,7 +36,7 @@ class OverAllProgressViewBuilder: ViewBuilder {
            
             createView()
             addTextLabel()
-            addProgressCircleView()
+            addBigProgressCircleView()
             addCircleAnimation()
             addProgressLabel()
             
@@ -57,7 +57,7 @@ class OverAllProgressViewBuilder: ViewBuilder {
     internal func createView() {
         outPutView.accessibilityIdentifier = "OverAllProgressView"
         outPutView.frame = self.outPutViewFrame
-        outPutView.backgroundColor = AppEngine.shared.userSetting.themeColorAndBlack
+        outPutView.backgroundColor = AppEngine.shared.userSetting.themeColorAndBlackContent
         outPutView.layer.cornerRadius = setting.itemCardCornerRadius
         outPutView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         
@@ -67,7 +67,7 @@ class OverAllProgressViewBuilder: ViewBuilder {
     private func createSmallCircleView() {
         outPutView.accessibilityIdentifier = "OverAllProgressView"
         outPutView.frame = self.outPutViewFrame
-        outPutView.backgroundColor = AppEngine.shared.userSetting.themeColorAndBlack
+        outPutView.backgroundColor = AppEngine.shared.userSetting.themeColorAndBlackContent
         
     }
     
@@ -76,7 +76,7 @@ class OverAllProgressViewBuilder: ViewBuilder {
 
         firstTextLabel.text = welcomeTextData.randomText(timeRange: AppEngine.shared.currentTimeRange).firstText
         firstTextLabel.font = AppEngine.shared.userSetting.largeFont
-        firstTextLabel.textColor = AppEngine.shared.userSetting.smartLabelColor
+        firstTextLabel.textColor = AppEngine.shared.userSetting.smartLabelColorAndWhite
         firstTextLabel.frame.origin = CGPoint(x: 15, y: 0)
         firstTextLabel.sizeToFit()
         self.outPutView.addSubview(firstTextLabel)
@@ -84,7 +84,7 @@ class OverAllProgressViewBuilder: ViewBuilder {
         let secondTextLabel = UILabel()
         secondTextLabel.font = AppEngine.shared.userSetting.smallFont
         secondTextLabel.text = welcomeTextData.randomText(timeRange: AppEngine.shared.currentTimeRange).secondText
-        secondTextLabel.textColor = AppEngine.shared.userSetting.smartLabelColor
+        secondTextLabel.textColor = AppEngine.shared.userSetting.smartLabelColorAndWhite
         secondTextLabel.sizeToFit()
         
         
@@ -100,57 +100,29 @@ class OverAllProgressViewBuilder: ViewBuilder {
         let circleRadius: CGFloat = self.outPutView.frame.width / 2 - progressWidth
         let circleViewCenter = CGPoint(x: self.outPutViewFrame.width / 2 , y: self.outPutViewFrame.height / 2)
         
-        circleView.frame.size = CGSize(width: circleRadius * 2, height: circleRadius * 2)
-        circleView.center = circleViewCenter
-        
-        let circleTrackPath = UIBezierPath(arcCenter: CGPoint(x: circleView.frame.width / 2, y: circleView.frame.height / 2), radius: circleRadius, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
-        let circleShapePath = UIBezierPath(arcCenter: CGPoint(x: circleView.frame.width / 2, y: circleView.frame.height / 2), radius: circleRadius, startAngle: -CGFloat.pi / 2, endAngle: CGFloat(progress) * 2 * CGFloat.pi - CGFloat.pi / 2, clockwise: true)
-        let shapeColor = AppEngine.shared.userSetting.themeColorDarkAndThemeCarlor.cgColor
-        let trackColor = AppEngine.shared.userSetting.themeColorAndBlack.brightColor.cgColor
-        
-        
-        self.circleTrackLayer.path = circleTrackPath.cgPath
-        self.circleTrackLayer.strokeColor = trackColor
-        self.circleTrackLayer.lineWidth = progressWidth
-        self.circleTrackLayer.fillColor = UIColor.clear.cgColor
-        self.circleTrackLayer.lineCap = CAShapeLayerLineCap.round
-        circleView.layer.addSublayer(circleTrackLayer)
-        
-        self.circleShapeLayer.path = circleShapePath.cgPath
-        self.circleShapeLayer.strokeColor = shapeColor
-        self.circleShapeLayer.lineWidth = progressWidth
-        self.circleShapeLayer.fillColor = UIColor.clear.cgColor
-        self.circleShapeLayer.lineCap = CAShapeLayerLineCap.round
-        self.circleShapeLayer.strokeEnd = 0
-        circleView.layer.addSublayer(circleShapeLayer)
-
-        
-        let imageView = UIImageView()
-        imageView.frame.size = CGSize(width: (circleRadius * 2 - progressWidth) * 0.9, height: (circleRadius * 2 - progressWidth ) * 0.9)
-        imageView.center = CGPoint(x: circleView.frame.width / 2, y: circleView.frame.height / 2)
-        imageView.image = self.avatarImage
-        imageView.contentMode = .scaleAspectFill
-        imageView.setCornerRadius()
-
-        
-        circleView.addSubview(imageView)
-        outPutView.addSubview(circleView)
+        self.renderView(circleRadius: circleRadius, circleViewCenter: circleViewCenter, progressWidth: progressWidth)
         
     }
     
-    private func addProgressCircleView() { // Circle progress bar
+    private func addBigProgressCircleView() { // Circle progress bar
        
+        let progressWidth: CGFloat = 8
         let circleRadius: CGFloat = 60
         let circleViewCenter = CGPoint(x: self.outPutViewFrame.width / 2 , y: self.outPutViewFrame.height / 2 + 20)
+        
+        self.renderView(circleRadius: circleRadius, circleViewCenter: circleViewCenter, progressWidth: progressWidth)
+    }
+    
+    private func renderView(circleRadius: CGFloat, circleViewCenter: CGPoint, progressWidth: CGFloat) {
         
         circleView.frame.size = CGSize(width: circleRadius * 2, height: circleRadius * 2)
         circleView.center = circleViewCenter
         
         let circleTrackPath = UIBezierPath(arcCenter: CGPoint(x: circleView.frame.width / 2, y: circleView.frame.height / 2), radius: circleRadius, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
         let circleShapePath = UIBezierPath(arcCenter: CGPoint(x: circleView.frame.width / 2, y: circleView.frame.height / 2), radius: circleRadius, startAngle: -CGFloat.pi / 2, endAngle: CGFloat(progress) * 2 * CGFloat.pi - CGFloat.pi / 2, clockwise: true)
-        let shapeColor = AppEngine.shared.userSetting.themeColorDarkAndThemeCarlor.cgColor
-        let trackColor = AppEngine.shared.userSetting.themeColorAndBlack.brightColor.cgColor
-        let progressWidth: CGFloat = 8
+        let shapeColor = AppEngine.shared.userSetting.themeColorDarkAndThemeColor.cgColor
+        let trackColor = AppEngine.shared.userSetting.themeColorAndBlackContent.brightColor.cgColor
+        let progressWidth: CGFloat = progressWidth
         
         self.circleTrackLayer.path = circleTrackPath.cgPath
         self.circleTrackLayer.strokeColor = trackColor
@@ -199,7 +171,7 @@ class OverAllProgressViewBuilder: ViewBuilder {
         let progressLabel = UILabel()
         progressLabel.text = "已完成: \(String(format: "%.1f", progress * 100))%"
         progressLabel.font = AppEngine.shared.userSetting.smallFont
-        progressLabel.textColor = AppEngine.shared.userSetting.smartLabelColor
+        progressLabel.textColor = AppEngine.shared.userSetting.smartLabelColorAndWhite
         progressLabel.sizeToFit()
         progressLabel.center = CGPoint(x: self.circleView.center.x, y: self.circleView.center.y + 90)
         

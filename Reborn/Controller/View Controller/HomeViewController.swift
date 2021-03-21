@@ -180,10 +180,10 @@ class HomeViewController: UIViewController {
         self.overallProgressView.removeAllSubviews()
         self.customNavigationBar.removeSubviewBy(idenifier: "SmallProgressCircle")
         
-        self.addNewItemButton.tintColor = self.engine.userSetting.smartLabelColor.brightColor
-        self.customNavigationBar.backgroundColor = engine.userSetting.themeColorAndBlack
-        self.spaceView.backgroundColor = engine.userSetting.themeColorAndBlack
-        self.todayProgressLabel.textColor = self.engine.userSetting.smartLabelColorAndThemeColor.brightColor
+        self.addNewItemButton.tintColor = self.engine.userSetting.smartLabelColorAndWhite
+        self.customNavigationBar.backgroundColor = engine.userSetting.themeColorAndBlackContent
+        self.spaceView.backgroundColor = engine.userSetting.themeColorAndBlackContent
+        self.todayProgressLabel.textColor = self.engine.userSetting.smartLabelColorAndWhiteAndThemeColor.brightColor
         self.todayProgressLabel.text = "今日打卡: \(self.engine.getTodayProgress())"
         self.todayProgressLabel.layer.zPosition = 3
         
@@ -213,7 +213,7 @@ class HomeViewController: UIViewController {
         let animationSpeed: TimeInterval = animated ? 0.3 : 0
         
         if scrollView.contentOffset.y <= 0 { // make sure that view background color will change when scrolling
-            self.view.backgroundColor = AppEngine.shared.userSetting.themeColorAndBlack
+            self.view.backgroundColor = AppEngine.shared.userSetting.themeColorAndBlackContent
         } else {
             self.view.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackBackground
         }

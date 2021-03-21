@@ -694,6 +694,20 @@ Cg
                         <outlet property="verticalContentView" destination="zHw-xi-vrL" id="Tfr-ou-JF5"/>
                         <outlet property="verticalScrollView" destination="ppR-2m-3uc" id="3FA-gS-jcl"/>
                         <outlet property="verticalScrollViewContentViewHeightConstraint" destination="wkm-ef-NiO" id="qd8-6v-HEn"/>
+                        <outletCollection property="optionButtons" destination="WpU-fd-JVR" collectionClass="NSMutableArray" id="Rfj-E0-Sfr"/>
+                        <outletCollection property="optionButtons" destination="eYH-kV-dcm" collectionClass="NSMutableArray" id="MC4-zU-ddO"/>
+                        <outletCollection property="optionButtons" destination="uum-ys-rdj" collectionClass="NSMutableArray" id="UrI-Oh-fQJ"/>
+                        <outletCollection property="optionButtons" destination="eVH-dn-gr1" collectionClass="NSMutableArray" id="dBc-Xa-OgI"/>
+                        <outletCollection property="optionButtons" destination="maG-bk-NyY" collectionClass="NSMutableArray" id="fLI-Zx-oYe"/>
+                        <outletCollection property="optionButtons" destination="RFy-ys-MHv" collectionClass="NSMutableArray" id="z1m-Sz-EBM"/>
+                        <outletCollection property="optionButtons" destination="QGd-7R-bfn" collectionClass="NSMutableArray" id="mSe-JO-eyk"/>
+                        <outletCollection property="optionButtons" destination="afP-fa-obf" collectionClass="NSMutableArray" id="j9D-7j-vQQ"/>
+                        <outletCollection property="optionButtons" destination="3i9-WH-Zt7" collectionClass="NSMutableArray" id="1BQ-7p-XcD"/>
+                        <outletCollection property="optionButtons" destination="wJB-1F-QUe" collectionClass="NSMutableArray" id="PaJ-vK-DRp"/>
+                        <outletCollection property="optionButtons" destination="rS9-xl-t7u" collectionClass="NSMutableArray" id="C6a-C1-fhQ"/>
+                        <outletCollection property="optionButtons" destination="uVK-qR-Otb" collectionClass="NSMutableArray" id="SaO-5b-W6Z"/>
+                        <outletCollection property="optionButtons" destination="NJD-UT-gB8" collectionClass="NSMutableArray" id="b92-xA-ZIE"/>
+                        <outletCollection property="optionButtons" destination="eEh-sX-wyw" collectionClass="NSMutableArray" id="V7O-ol-aFi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zsl-RN-1KK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1156,7 +1170,7 @@ Cg
             <objects>
                 <viewController id="5eW-DY-fpx" customClass="HomeViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uAb-zv-xSl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDY-Xd-Ccc">
@@ -1382,7 +1396,7 @@ Cg
             <objects>
                 <viewController id="7qU-RC-e4u" customClass="ItemManagementViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XJ8-ec-9K0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lt5-gF-RX7" userLabel="Option Bar">
@@ -1464,7 +1478,7 @@ Cg
             <objects>
                 <viewController id="xEm-ah-agE" customClass="UserCenterViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Trs-NW-7D2">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gY-P1-gbC">

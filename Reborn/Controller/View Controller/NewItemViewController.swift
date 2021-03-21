@@ -44,6 +44,7 @@ class NewItemViewController: UIViewController {
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var verticalScrollViewContentViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet var optionButtons: [UIButton]!
     
     let engine: AppEngine = AppEngine.shared
     let setting: SystemSetting = SystemSetting.shared
@@ -59,9 +60,7 @@ class NewItemViewController: UIViewController {
     var lastViewController: UIViewController? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        doneButton.setTitleColor(engine.userSetting.themeColor, for: .normal)
+ 
         itemNameTextfield.delegate = self
         verticalScrollView.delegate = self
         
@@ -75,18 +74,8 @@ class NewItemViewController: UIViewController {
         itemNameTextfield.addTarget(self, action: #selector(textfieldTextChanged(_:)), for: .editingChanged)
         itemNameTextfield.layer.cornerRadius = setting.textFieldCornerRadius
         
-        for subview in view.viewWithTag(4)!.subviews { // all buttons
-            if let button = subview as? UIButton {
-               
-                button.proportionallySetSizeWithScreen()
-                button.setCornerRadius()
-                button.setShadow()
-                button.setBackgroundColor(AppEngine.shared.userSetting.themeColor, for: .selected)
-                button.setTitleColor(.white, for: .selected)
-
-            }
-        }
         
+        setButtonsAppearance()
         view.layoutIfNeeded()
         verticalScrollViewContentViewHeightConstraint.constant = secondInstructionLabel.frame.origin.y + 40
         
@@ -170,6 +159,7 @@ class NewItemViewController: UIViewController {
     @objc func deleteItemButtonPressed(_ sender: UIButton) {
         showAlert()
     }
+    
     
     private func showAlert() {
         let alert = UIAlertController(title: "你真的想删除该项目吗", message: "该项目所有的数据将会被删除，且不能恢复", preferredStyle: .alert)
@@ -302,6 +292,18 @@ class NewItemViewController: UIViewController {
             
         }
        
+    }
+    
+    func setButtonsAppearance() {
+        doneButton.setTitleColor(self.engine.userSetting.smartThemeColor, for: .normal)
+        
+        for button in self.optionButtons {
+            button.proportionallySetSizeWithScreen()
+            button.setCornerRadius()
+            button.setShadow()
+            button.setBackgroundColor(self.engine.userSetting.themeColor, for: .selected)
+            button.setTitleColor(self.engine.userSetting.smartLabelColor, for: .selected)
+        }
     }
     
    

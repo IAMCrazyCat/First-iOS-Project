@@ -20,15 +20,9 @@ class TabBarViewController: UITabBarController {
 
 extension TabBarViewController: UIObserver {
     func updateUI() {
-        self.tabBar.tintColor = AppEngine.shared.userSetting.themeColor
+        self.tabBar.tintColor = AppEngine.shared.userSetting.themeColor.darkColor
         
-        if AppEngine.shared.userSetting.appAppearanceMode == .lightMode {
-            view.window?.overrideUserInterfaceStyle = .light
-        } else if AppEngine.shared.userSetting.appAppearanceMode == .darkMode {
-            view.window?.overrideUserInterfaceStyle = .dark
-        } else {
-            view.window?.overrideUserInterfaceStyle = .unspecified
-        }
+        
     }
     
     

@@ -34,7 +34,8 @@ class UserSetting {
         }
         
     }
-    let themeColorDarkAndThemeCarlor = UIColor { system in
+    let themeColorDarkAndThemeColor = UIColor { system in
+
         switch system.userInterfaceStyle {
         case.dark:
             return AppEngine.shared.userSetting.themeColor
@@ -43,13 +44,23 @@ class UserSetting {
         }
         
     }
-    let themeColorAndBlack = UIColor { system in
-        switch system.userInterfaceStyle {
-        case .dark:
-            return AppEngine.shared.userSetting.whiteAndBlackContent
-        default:
+    let themeColorAndBlackContent = UIColor { system in
+        
+        switch AppEngine.shared.userSetting.appAppearanceMode {
+        case .lightMode:
             return AppEngine.shared.userSetting.themeColor
+        case .darkMode:
+            return AppEngine.shared.userSetting.blackContent
+            
+        case .followSystem:
+            switch system.userInterfaceStyle {
+            case .dark:
+                return AppEngine.shared.userSetting.blackContent
+            default:
+                return AppEngine.shared.userSetting.themeColor
+            }
         }
+        
     }
     let themeColorAndWhite = UIColor { system in
         switch system.userInterfaceStyle {
@@ -63,7 +74,7 @@ class UserSetting {
         
         switch system.userInterfaceStyle {
         case .dark:
-            return AppEngine.shared.userSetting.smartLabelColor
+            return AppEngine.shared.userSetting.smartLabelColorAndWhite
         default:
             return AppEngine.shared.userSetting.themeColor
             
@@ -78,8 +89,8 @@ class UserSetting {
         }
     }
     
-    let smartLabelColor = UIColor { system in
-        
+    let smartLabelColorAndWhite = UIColor { system in
+
         switch system.userInterfaceStyle {
         case .dark:
             return .white
@@ -96,22 +107,100 @@ class UserSetting {
         
     }
     
-    let smartLabelColorAndThemeColor = UIColor { system in
-        
-        switch system.userInterfaceStyle {
-        case .dark:
-            return AppEngine.shared.userSetting.themeColor
-        default:
-            return AppEngine.shared.userSetting.smartLabelColor
+    let smartLabelColor = UIColor { _ in
+        let colorBrightness = ((AppEngine.shared.userSetting.themeColor.value.red * 299) + (AppEngine.shared.userSetting.themeColor.value.green * 587) + (AppEngine.shared.userSetting.themeColor.value.blue * 114)) / 1000
+
+        if colorBrightness <= 0.7 {
+            return .white
+        } else {
+            return UIColor.black.withAlphaComponent(0.7)
         }
     }
     
-    let whiteAndBlackContent: UIColor = UIColor(named: "WhiteAndBlackContent") ?? UIColor.clear
-    let whiteAndBlackBackground: UIColor = UIColor(named: "WhiteAndBlackBackground") ?? UIColor.clear
-    let grayAndBlack: UIColor = UIColor(named: "GrayAndBlack") ?? UIColor.clear
-    let grayWhiteAndBlackBackground: UIColor = UIColor(named: "grayWhiteAndBlackBackground") ?? UIColor.clear
-    let greenColor =  UIColor(named: "GreenColor") ?? UIColor.clear
-    let redColor =  UIColor(named: "RedColor") ?? UIColor.clear
+    let smartThemeColor = UIColor { _ in
+        let colorBrightness = ((AppEngine.shared.userSetting.themeColor.value.red * 299) + (AppEngine.shared.userSetting.themeColor.value.green * 587) + (AppEngine.shared.userSetting.themeColor.value.blue * 114)) / 1000
 
+        if colorBrightness <= 0.7 {
+            return AppEngine.shared.userSetting.themeColor
+        } else {
+            return AppEngine.shared.userSetting.themeColor.darkColor
+        }
+    }
+    
+    let smartThemeLabelColor = UIColor { system in
+        
+
+        switch system.userInterfaceStyle {
+        case .dark:
+            let colorBrightness = ((AppEngine.shared.userSetting.themeColor.value.red * 299) + (AppEngine.shared.userSetting.themeColor.value.green * 587) + (AppEngine.shared.userSetting.themeColor.value.blue * 114)) / 1000
+
+            if colorBrightness <= 0.7 {
+                return UIColor.white
+            } else {
+                return UIColor.black.withAlphaComponent(0.7)
+            }
+        default:
+            let colorBrightness = ((AppEngine.shared.userSetting.themeColor.value.red * 299) + (AppEngine.shared.userSetting.themeColor.value.green * 587) + (AppEngine.shared.userSetting.themeColor.value.blue * 114)) / 1000
+
+            if colorBrightness <= 0.7 {
+                return AppEngine.shared.userSetting.themeColor
+            } else {
+                return UIColor.black.withAlphaComponent(0.7)
+            }
+        }
+    }
+    
+    
+    
+    let smartLabelColorAndWhiteAndThemeColor = UIColor { system in
+        
+        switch AppEngine.shared.userSetting.appAppearanceMode {
+        case .lightMode:
+            return AppEngine.shared.userSetting.smartLabelColorAndWhite
+        case .darkMode:
+            return AppEngine.shared.userSetting.themeColor
+        case .followSystem:
+            
+            switch system.userInterfaceStyle {
+            case .dark:
+                return AppEngine.shared.userSetting.themeColor
+            default:
+                return AppEngine.shared.userSetting.smartLabelColorAndWhite
+            }
+        }
+       
+    }
+    
+    let smartLabelColorAndThemeColor = UIColor { system in
+        
+        switch AppEngine.shared.userSetting.appAppearanceMode {
+        case .lightMode:
+            return AppEngine.shared.userSetting.smartLabelColor
+        case .darkMode:
+            return AppEngine.shared.userSetting.themeColor
+        case .followSystem:
+            
+            switch system.userInterfaceStyle {
+            case .dark:
+                return AppEngine.shared.userSetting.themeColor
+            default:
+                return AppEngine.shared.userSetting.smartLabelColor
+            }
+        }
+       
+    }
+    
+
+    
+    
+    
+    let whiteAndBlackContent: UIColor = UIColor(named: "WhiteAndBlackContent") ?? UIColor.blue
+    let whiteAndBlackBackground: UIColor = UIColor(named: "WhiteAndBlackBackground") ?? UIColor.blue
+    let grayAndBlack: UIColor = UIColor(named: "GrayAndBlack") ?? UIColor.blue
+    let grayWhiteAndBlackBackground: UIColor = UIColor(named: "grayWhiteAndBlackBackground") ?? UIColor.blue
+    let greenColor =  UIColor(named: "GreenColor") ?? UIColor.blue
+    let redColor =  UIColor(named: "RedColor") ?? UIColor.blue
+    let blackContent = UIColor(named: "BlackContent") ?? UIColor.blue
+    let blackBackground = UIColor(named: "BlackBackGround") ?? UIColor.blue
 
 }

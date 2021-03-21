@@ -80,6 +80,16 @@ extension UIViewController: UIViewControllerTransitioningDelegate  {
         }
     }
     
+    func updateViewStyle() {
+        
+        if AppEngine.shared.userSetting.appAppearanceMode == .lightMode {
+            self.view.window?.overrideUserInterfaceStyle = .light
+        } else if AppEngine.shared.userSetting.appAppearanceMode == .darkMode {
+            self.view.window?.overrideUserInterfaceStyle = .dark
+        } else {
+            self.view.window?.overrideUserInterfaceStyle = .unspecified
+        }
+    }
 }
 
 class UpdateStyleMode: UIViewController {
