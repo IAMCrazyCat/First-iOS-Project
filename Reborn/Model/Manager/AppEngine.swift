@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit
+import WidgetKit
+
 protocol PopUpViewDelegate {
     func didDismissPopUpViewWithoutSave()
     func didSaveAndDismissPopUpView(type: PopUpType)
@@ -23,11 +25,9 @@ class AppEngine {
     private var observerNotifierTimePoints: Array<Int> = []
     private var observerIsNotifiedByNotifier: Bool = false
     
-    public var userEnabledNotification = false
     public static let shared = AppEngine()
     public var currentUser: User = User(name: "颠猫", gender: .undefined, avatar: #imageLiteral(resourceName: "Unknown"), keys: 3, items: [Item](), vip: false)
     public let userSetting: UserSetting = UserSetting()
-    public var overAllProgress: Double = 0.0
     public var storedDataFromPopUpView: Any? = nil
     public var currentViewController: UIViewController? {
         return UIApplication.shared.getTopViewController()
@@ -70,28 +70,28 @@ class AppEngine {
         
         observerNotifier = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in self.changeDetactor() }
         
-        
         if appLaunchedBefore() {
-            loadUser()
-            loadSetting()
-            scheduleNotification()
+            loadApp()
         } else {
             saveSetting()
         }
         
-        userEnabledNotification = isNotificationEnabled()
         UITabBar.appearance().tintColor = self.userSetting.themeColor
-        
-        
+        UINavigationBar.appearance().tintColor = self.userSetting.smartLabelColorAndWhite
+  
+       
     }
     
+    func loadApp() {
+        loadUser()
+        loadSetting()
+        scheduleNotification()
+        updateWidgetData()
+    }
+    
+ 
     func changeDetactor() {
-        self.checkUpdate()
-        
-        if self.userEnabledNotification != self.isNotificationEnabled() {
-            self.notifyAllUIObservers()
-            self.loadSetting()
-        }
+        self.checkTime()
     }
     
     
@@ -127,21 +127,22 @@ class AppEngine {
     }
     
     func isNotificationEnabled() -> Bool {
+        var isNotificationEnabled = false
         let semaphore = DispatchSemaphore(value: 0)
         let center = UNUserNotificationCenter.current()
         center.getNotificationSettings { (settings) in
             
           if settings.authorizationStatus == .authorized {
-            self.userEnabledNotification = true
+            isNotificationEnabled = true
           }
           else {
-            self.userEnabledNotification = false
+            isNotificationEnabled = false
           }
             semaphore.signal()
         }
         
         semaphore.wait()
-        return self.userEnabledNotification
+        return isNotificationEnabled
         
 //        center.getNotificationSettings(completionHandler: { permission in
 //            switch permission.authorizationStatus  {
@@ -180,13 +181,21 @@ class AppEngine {
     }
     
     func addNotification(at time: CustomTime) {
+        
+        let userHasItemsInProgress = { () -> Bool in
+            for item in self.currentUser.items {
+                if item.state == .inProgress {
+                    return true
+                }
+            }
+            return false
+        }
 
-        if self.currentUser.items.count != 0 {
+        if self.currentUser.items.count != 0, userHasItemsInProgress() == true {
             
             var item: Item {
                 var outputItem = self.currentUser.items.random!
                 while outputItem.state != .inProgress {
-                    
                     outputItem = self.currentUser.items.random!
                 }
                 return outputItem
@@ -226,7 +235,10 @@ class AppEngine {
     func scheduleNotification() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         for time in userSetting.notificationTime {
-            addNotification(at: time)
+            DispatchQueue.main.async {
+                self.addNotification(at: time)
+            }
+            
         }
             
     }
@@ -234,7 +246,7 @@ class AppEngine {
     
     
     
-    private func checkUpdate() {
+    private func checkTime() {
         if let currentHour = self.time.hour, let currentMinute = self.time.minute, self.observerNotifierTimePoints.contains(currentHour), currentMinute == 0, !observerIsNotifiedByNotifier { // notify observers once
             
             self.notifyAllUIObservers()
@@ -254,12 +266,13 @@ class AppEngine {
         } catch {
             print("Error encoding item array, \(error)")
         }
-    
+        
+        AppEngine.shared.updateWidgetData()
        
     }
     
     
-    public func loadUser() {
+    private func loadUser() {
         
         if let data = try? Data(contentsOf: dataFilePath!) {
            let decoder = JSONDecoder() //PropertyListDecoder()
@@ -280,7 +293,19 @@ class AppEngine {
         defaults.set(userSetting.themeColor, forKey: "ThemeColor")
         defaults.set(userSetting.notificationTime, forKey: "NotificationTime")
         defaults.set(userSetting.appAppearanceMode, forKey: "AppAppearanceMode")
-        notifyAllUIObservers()
+        if appLaunchedBefore() {
+            AppEngine.shared.updateWidgetData()
+        }
+        
+        
+        
+    }
+    
+    public func updateWidgetData() {
+        UserDefaults(suiteName: AppGroup.identifier.rawValue)!.set(self.currentUser.getOverAllProgress(), forKey: "OverAllProgress")
+        UserDefaults(suiteName: AppGroup.identifier.rawValue)!.set(self.userSetting.themeColor, forKey: "ThemeColor")
+        UserDefaults(suiteName: AppGroup.identifier.rawValue)!.set(self.currentUser.getAvatarImage(), forKey: "AvatarImage")
+        WidgetCenter.shared.reloadAllTimelines()
     }
     
     private func loadSetting() {
@@ -356,9 +381,8 @@ class AppEngine {
     
     public func add(punchInDates: Array<CustomDate>, to item: Item) {
         for makingUpDate in punchInDates {
-            item.punchInDates.append(makingUpDate)
+            item.add(punchInDate: makingUpDate)
         }
-       
         self.notifyAllUIObservers()
     }
 
@@ -368,29 +392,7 @@ class AppEngine {
     }
     
 
-    public func getOverAllProgress() -> Double {
-        
-        self.overAllProgress = 0.0
-        
-
-        for item in self.currentUser.items {
-           
-            if item.targetDays != 0 {
-                let itemProgress = Double(item.finishedDays) / Double(item.targetDays)
     
-                self.overAllProgress += itemProgress
-            }
-
-        }
-        
-        if self.currentUser.items.count != 0 {
-            self.overAllProgress /= Double(self.currentUser.items.count)
-        }
-        
-        
-        return self.overAllProgress
-       
-    }
     
     public func getTodayProgress() -> String {
         var numberOfPunchedInItems: Int = 0
@@ -409,11 +411,9 @@ class AppEngine {
     
     public func notifyAllUIObservers() {
         
+        
         for observer in self.observers {
             DispatchQueue.main.async {
-                if let viewController = observer as? UIViewController {
-                    viewController.updateViewStyle()
-                }
                 observer.updateUI()
             }
             
@@ -421,14 +421,18 @@ class AppEngine {
         print("All Observers Notified")
     }
     
-    public func switchAppAppearanceMode() {
+    public func notifyUIObservers(withIdentifier identifier: String) {
+
+        for observer in self.observers {
+            if let viewController = observer as? UIViewController, viewController.restorationIdentifier == identifier {
+                observer.updateUI()
+                print("ViewController: \(String(describing: viewController.restorationIdentifier)) notified")
+            }
+            
+        }
         
     }
     
-    @objc func updateUIObservers() {
-        
-        
-    }
     // ------------------------------------ observer ------------------------------------------------------
     
     
@@ -477,7 +481,12 @@ class AppEngine {
     
     // ------------------------------------ pop up ------------------------------------------------------
     
-  
+    public func getAppVersion() -> String {
+        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
+        let versionBuild = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "0"
+        return "\(appVersion).\(versionBuild)"
+    }
+   
     
 }
 

@@ -55,7 +55,6 @@ class Item: Codable {
         self.ID = ID
         self.name = name
         self.targetDays = days
-        //self.finishedDays = finishedDays
         self.creationDate = creationDate
         self.type = type
         self.frequency = frequency
@@ -77,7 +76,6 @@ class Item: Codable {
     
     func punchIn(punchInDate: CustomDate) {
         self.punchInDates.append(punchInDate)
-        //self.finishedDays += 1
         updateState()
     }
     
@@ -93,13 +91,12 @@ class Item: Codable {
                 index -= 1
             }
 
-            //self.finishedDays -= 1
         }
         updateState()
-        print(punchInDates)
     }
     
     func updateScheduleDates() {
+   
         self.scheduleDates.removeAll()
         var cycle = self.frequency.dataModel.data ?? 1
         var difference = 0
@@ -116,11 +113,15 @@ class Item: Codable {
                 self.scheduleDates.append(customDate)
                 cycle = 0
             }
-            
             difference += 1
         }
         updateState()
         print(self.scheduleDates)
+    }
+    
+    public func add(punchInDate: CustomDate) {
+        self.punchInDates.append(punchInDate)
+        updateState()
     }
     
     

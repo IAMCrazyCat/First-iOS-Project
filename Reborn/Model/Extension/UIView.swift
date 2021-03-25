@@ -136,10 +136,12 @@ extension UIView {
         var userHasNoItem: Bool = true
         
         if items.count > 0 {
+           
             userHasNoItem = false
             var itemNumber = 1
             while tag >= 0 {
                 let item = items[tag]
+                print(item.state)
                 if item.state == condition || isRenderingAll {
                     let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: SystemSetting.shared.mainPadding, y: cordinateY, width: self.frame.width - 2 * SystemSetting.shared.mainPadding, height: SystemSetting.shared.itemCardHeight), punchInButtonTag: tag, isInteractable: true)
                     let itemCard = builder.buildView()

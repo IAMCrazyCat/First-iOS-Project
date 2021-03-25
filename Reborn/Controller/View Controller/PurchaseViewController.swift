@@ -69,7 +69,7 @@ class PurchaseViewController: UIViewController {
     
     func purchaseApp() {
         
-        let productID = "com.crazycat.Reborn.VIPAccount"
+        let productID = "com.crazycat.Reborn.FullFuctionalities"
         if SKPaymentQueue.canMakePayments() {
             let paymentRequest = SKMutablePayment()
             paymentRequest.productIdentifier = productID
@@ -86,6 +86,7 @@ class PurchaseViewController: UIViewController {
     func updateAllButtons() {
         for button in functionNumberButtons {
             button.setBackgroundColor(self.engine.userSetting.themeColor, for: .normal)
+            button.setTitleColor(self.engine.userSetting.smartLabelColor, for: .normal)
         }
         
         purchaseButton.setBackgroundColor(self.engine.userSetting.themeColor, for: .normal)

@@ -45,10 +45,16 @@ extension UserDefaults {
                 let encodedData = try NSKeyedArchiver.archivedData(withRootObject: value!.rawValue, requiringSecureCoding: false)
                 self.set(encodedData, forKey: key)
                 self.synchronize()
-                print("CODED!!!!!")
             } catch {
                 print(error)
             }
+        }
+    }
+    
+    func set(_ value: UIImage?, forKey key: String) {
+        if value != nil {
+            let imageData = value!.pngData()
+            self.set(imageData, forKey: key)
         }
     }
     
@@ -103,6 +109,16 @@ extension UserDefaults {
         }
         
       return nil
+    }
+    
+    func image(forKey key: String) -> UIImage? {
+        
+        if let imageData = data(forKey: key) {
+            return UIImage(data: imageData)
+        }
+        
+        return nil
+        
     }
 
 }

@@ -1151,7 +1151,7 @@ Cg
         <!--Pop Up View Controller-->
         <scene sceneID="QDS-Zj-y7Z">
             <objects>
-                <viewController storyboardIdentifier="PopUpViewController" id="u3C-CX-GQX" customClass="PopUpViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PopUpViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="u3C-CX-GQX" customClass="PopUpViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZIG-S4-PcO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1476,7 +1476,7 @@ Cg
         <!--个人中心-->
         <scene sceneID="3sl-C0-kae">
             <objects>
-                <viewController id="xEm-ah-agE" customClass="UserCenterViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserCenterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xEm-ah-agE" customClass="UserCenterViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Trs-NW-7D2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1560,7 +1560,7 @@ Cg
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OaW-i9-p1v">
                                                 <rect key="frame" x="15" y="326" width="384" height="45"/>
                                                 <subviews>
-                                                    <button opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s8i-6y-kYV" userLabel="Notification Button">
+                                                    <button opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" restorationIdentifier="UserCenterViewController" contentHorizontalAlignment="leading" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s8i-6y-kYV" userLabel="Notification Button">
                                                         <rect key="frame" x="0.0" y="0.0" width="384" height="45"/>
                                                         <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -1592,13 +1592,13 @@ Cg
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bXE-cc-vLl">
-                                                <rect key="frame" x="15" y="512" width="384" height="400"/>
+                                                <rect key="frame" x="15" y="512" width="384" height="330"/>
                                                 <subviews>
                                                     <button opaque="NO" clipsSubviews="YES" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lhG-N7-zSU">
                                                         <rect key="frame" x="0.0" y="100" width="384" height="45"/>
                                                         <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                        <color key="tintColor" red="0.71905183790000005" green="0.90192311999999997" blue="0.89804255960000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <color key="tintColor" name="PinkThemeColor"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <state key="normal" title="给应用评分" image="GradingIcon">
@@ -1629,6 +1629,9 @@ Cg
                                                         <state key="normal" title="反馈" image="FeedbackIcon">
                                                             <color key="titleColor" systemColor="labelColor"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="feedBackButtonPressed:" destination="xEm-ah-agE" eventType="touchUpInside" id="Vy7-1W-KuQ"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" clipsSubviews="YES" tag="8" contentMode="scaleAspectFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SX5-HU-KYh">
                                                         <rect key="frame" x="0.0" y="190" width="384" height="45"/>
@@ -1656,7 +1659,7 @@ Cg
                                                         <rect key="frame" x="0.0" y="235" width="384" height="45"/>
                                                         <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                        <color key="tintColor" red="0.65920597309999995" green="0.48531031610000003" blue="0.71374875309999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <color key="tintColor" red="0.99997311830000002" green="0.71768051389999998" blue="0.0002054334182" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <state key="normal" title="恢复购买" image="RestoreIcon">
@@ -1702,7 +1705,7 @@ Cg
                                                     <constraint firstItem="rRc-pT-ow4" firstAttribute="top" secondItem="SZj-KF-5bx" secondAttribute="bottom" id="dAB-Ul-qKH"/>
                                                     <constraint firstAttribute="trailing" secondItem="h4L-GB-8hZ" secondAttribute="trailing" id="gJQ-WA-a7K"/>
                                                     <constraint firstItem="rRc-pT-ow4" firstAttribute="height" secondItem="SZj-KF-5bx" secondAttribute="height" id="gos-YX-sNG"/>
-                                                    <constraint firstAttribute="height" constant="400" id="kB1-7N-x9D"/>
+                                                    <constraint firstAttribute="height" constant="330" id="kB1-7N-x9D"/>
                                                     <constraint firstItem="lhG-N7-zSU" firstAttribute="height" secondItem="SZj-KF-5bx" secondAttribute="height" id="nEn-AD-gcg"/>
                                                     <constraint firstItem="WQX-Nq-SYU" firstAttribute="leading" secondItem="bXE-cc-vLl" secondAttribute="leading" id="q88-Wh-C69"/>
                                                     <constraint firstItem="SZj-KF-5bx" firstAttribute="leading" secondItem="bXE-cc-vLl" secondAttribute="leading" id="xKL-KU-zVG"/>
@@ -1752,7 +1755,7 @@ Cg
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Rc-aS-e5C">
-                                                <rect key="frame" x="170.5" y="932" width="73" height="22"/>
+                                                <rect key="frame" x="170.5" y="862" width="73" height="22"/>
                                                 <color key="tintColor" red="0.70197039839999997" green="0.70194357630000004" blue="0.70196175579999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <state key="normal" title="  v1.2.1" image="info.circle" catalog="system">
                                                     <color key="titleColor" red="0.70197039839999997" green="0.70194357630000004" blue="0.70196175579999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -2704,6 +2707,9 @@ Cg
         </namedColor>
         <namedColor name="GreyColor">
             <color red="0.73900002241134644" green="0.73900002241134644" blue="0.73900002241134644" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PinkThemeColor">
+            <color red="1" green="0.63999998569488525" blue="0.70999997854232788" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="RedColor">
             <color red="0.9089999794960022" green="0.14399999380111694" blue="0.010999999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

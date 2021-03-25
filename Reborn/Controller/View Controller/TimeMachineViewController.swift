@@ -57,6 +57,7 @@ class TimeMachineViewController: UIViewController {
             
             self.engine.add(punchInDates: makingUpDates, to: item)
             self.calendarViewController?.punchInMakingUpDates.removeAll()
+            self.engine.saveUser()
             self.engine.notifyAllUIObservers()
         }
         

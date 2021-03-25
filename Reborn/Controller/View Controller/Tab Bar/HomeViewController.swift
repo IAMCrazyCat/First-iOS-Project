@@ -52,6 +52,7 @@ class HomeViewController: UIViewController {
             
         } else {
             UserDefaults.standard.set(true, forKey: "LaunchedBefore")
+            self.engine.loadApp()
         }
         
         
@@ -72,7 +73,6 @@ class HomeViewController: UIViewController {
         verticalScrollView.contentSize = CGSize(width: view.frame.width, height: 2000)
         verticalScrollView.tag = setting.homeViewVerticalScrollViewTag
         
-
         
         dateFormatter.locale = Locale(identifier: "zh")
         dateFormatter.setLocalizedDateFormatFromTemplate("dd MMMM EEEE")
@@ -94,7 +94,7 @@ class HomeViewController: UIViewController {
         // make sure that the overall progress is not coverd by custom navigation bar
         let statusBarHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
         self.spaceViewHeightConstraint.constant = self.customNavigationBar.frame.height - statusBarHeight
-    
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -195,7 +195,7 @@ class HomeViewController: UIViewController {
         self.todayProgressLabel.layer.zPosition = 3
         
         let circleRadius: CGFloat = 40
-        var builder = OverAllProgressViewBuilder(avatarImage: self.engine.currentUser.getAvatarImage(), progress: self.engine.getOverAllProgress(), frame: CGRect(x: 15, y: 0, width: circleRadius, height: circleRadius))
+        var builder = OverAllProgressViewBuilder(avatarImage: self.engine.currentUser.getAvatarImage(), progress: self.engine.currentUser.getOverAllProgress(), frame: CGRect(x: 15, y: 0, width: circleRadius, height: circleRadius))
         let circleView = builder.buildView()
         
         circleView.center.y = self.addNewItemButton.center.y
@@ -203,7 +203,7 @@ class HomeViewController: UIViewController {
         self.customNavigationBar.addSubview(circleView)
         
         self.overallProgressView.layoutIfNeeded()
-        builder = OverAllProgressViewBuilder(avatarImage: self.engine.currentUser.getAvatarImage(), progress: self.engine.getOverAllProgress(), frame: self.overallProgressView.bounds)
+        builder = OverAllProgressViewBuilder(avatarImage: self.engine.currentUser.getAvatarImage(), progress: self.engine.currentUser.getOverAllProgress(), frame: self.overallProgressView.bounds)
         
         let overAllProgressView = builder.buildView()
         overAllProgressView.accessibilityIdentifier = "OverAllProgressView"

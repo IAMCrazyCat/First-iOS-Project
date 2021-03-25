@@ -39,7 +39,7 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
         
         let goToSettingButton = UIButton()
         goToSettingButton.setTitle("前往设置", for: .normal)
-        goToSettingButton.setTitleColor(AppEngine.shared.userSetting.themeColor.brightColor, for: .normal)
+        goToSettingButton.setTitleColor(AppEngine.shared.userSetting.smartThemeColor, for: .normal)
         goToSettingButton.titleLabel?.font = AppEngine.shared.userSetting.smallFont
         super.contentView.addSubview(goToSettingButton)
         
@@ -94,6 +94,7 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
             let date = dateFormatter.date(from: "\(time.hour) \(time.minute)")
             picker.accessibilityIdentifier = "DatePicker"
             picker.backgroundColor = AppEngine.shared.userSetting.themeColor
+            picker.tintColor = AppEngine.shared.userSetting.smartLabelColor
             picker.date = date!
             picker.datePickerMode = .time
             

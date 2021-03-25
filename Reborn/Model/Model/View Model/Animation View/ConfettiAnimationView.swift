@@ -15,7 +15,7 @@ class ConfettiAnimationView: UIView {
     
     private var confettiCells: Array<ConfettiCell> = []
     private var confettiImages: Array<UIImage> = [#imageLiteral(resourceName: "confetti"), #imageLiteral(resourceName: "star"), #imageLiteral(resourceName: "diamond"), #imageLiteral(resourceName: "triangle.png")]
-    private var confettiSize: Array<ConfettiSize> = [.small, .small, .medium, .large]
+    private var confettiSize: Array<ConfettiSize> = [.small, .medium, .medium, .large]
     private var confettiColors: Array<UIColor> = [UIColor(red:0.95, green:0.40, blue:0.27, alpha:1.0),
                                           UIColor(red:1.00, green:0.78, blue:0.36, alpha:1.0),
                                           UIColor(red:0.48, green:0.78, blue:0.64, alpha:1.0),

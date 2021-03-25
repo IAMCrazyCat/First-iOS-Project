@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import GoogleMobileAds
+import MessageUI
 
 extension UIViewController: UIViewControllerTransitioningDelegate  {
     
@@ -70,7 +71,7 @@ extension UIViewController: UIViewControllerTransitioningDelegate  {
         
     }
     
-    func showItemCompletedPopUp(for item: Item) {
+    func presentItemCompletedPopUp(for item: Item) {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let popUpViewController = storyboard.instantiateViewController(withIdentifier: "PopUpViewController") as? PopUpViewController {
@@ -119,6 +120,8 @@ extension UIViewController: UIViewControllerTransitioningDelegate  {
         }
         
     }
+    
+   
 }
 
 class UpdateStyleMode: UIViewController {

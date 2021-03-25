@@ -14,8 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         GADMobileAds.sharedInstance().start(completionHandler: nil)
-        AppEngine.shared.loadUser()
-        UIBarButtonItem.appearance().tintColor = AppEngine.shared.userSetting.smartLabelColor
+        _ = AppEngine.shared
+       
        
         return true
     }
@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidEnterBackground(_ application: UIApplication) {
         print("Went to Background")
-        AppEngine.shared.saveUser(AppEngine.shared.currentUser)
+        AppEngine.shared.saveUser()
     }
     
 

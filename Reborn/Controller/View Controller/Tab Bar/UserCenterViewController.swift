@@ -7,6 +7,7 @@
 
 import UIKit
 import StoreKit
+import MessageUI
 class UserCenterViewController: UIViewController {
     @IBOutlet weak var perchaseButton: UIButton!
     
@@ -63,8 +64,8 @@ class UserCenterViewController: UIViewController {
         verticalScrollView.delegate = self
         scrollViewTopOffset = avaterView.frame.origin.y - 10
  
-        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Error"
-        self.appVersionLabelButton.setTitle("  v\(appVersion)", for: .normal)
+        
+        self.appVersionLabelButton.setTitle("  v\(self.engine.getAppVersion())", for: .normal)
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(avatarViewTapped))
         self.avaterView.addGestureRecognizer(gesture)
@@ -112,6 +113,22 @@ class UserCenterViewController: UIViewController {
         self.presentViewController(withIentifier: "EnergySettingViewController")
     }
     
+    @IBAction func feedBackButtonPressed(_ sender: UIButton!) {
+        
+        if MFMailComposeViewController.canSendMail() {
+            
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["liuzimingjay@vip.qq.com"])
+            mail.setSubject("User feedback of Reborn from: \(self.engine.currentUser.name)")
+            mail.setMessageBody("<p>Hi CrazyCat, \n</p>", isHTML: true)
+
+            present(mail, animated: true)
+            
+            } else {
+        }
+    }
+    
     @objc func settingButtonTouchedDown(_ sender: UIButton!) {
         sender.isSelected = true
         Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { timer in
@@ -122,7 +139,7 @@ class UserCenterViewController: UIViewController {
     func setButtonsAppearance() {
         self.themeColorButton.tintColor = AppEngine.shared.userSetting.themeColor
         for button in self.settingButtons {
-            button.addTarget(self, action: #selector(self.settingButtonTouchedDown(_:)), for: .touchDown)
+            button.addTarget(self, action: #selector(self.settingButtonTouchedDown(_:)), for: .touchUpInside)
             button.setBackgroundColor(.systemGray3, for: .selected)
             button.layer.cornerRadius = self.setting.itemCardCornerRadius - 5
         }
@@ -183,6 +200,13 @@ extension UserCenterViewController: UIObserver {
         updateEnergyLabel()
         removeBottomBannerAdIfVIP()
     }
+}
+
+extension UserCenterViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
+   
 }
 
 extension UserCenterViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {

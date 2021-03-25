@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-
+import WidgetKit
 class Actions {
     
     static var shared: Actions = Actions()
@@ -29,8 +29,10 @@ class Actions {
         
         let item = AppEngine.shared.getItemBy(tag: sender.tag)
         if item.state == .completed {
-            UIApplication.shared.getTopViewController()?.showItemCompletedPopUp(for: item)
+            UIApplication.shared.getTopViewController()?.presentItemCompletedPopUp(for: item)
         }
+        
+    
     }
     
     @objc func itemDetailsButtonPressed(_ sender: UIButton!) {
@@ -62,6 +64,7 @@ class Actions {
             Vibrator.vibrate(withImpactLevel: .light)
             AppEngine.shared.userSetting.themeColor = UIColor(named: newThemeColor!.rawValue) ?? UIColor.clear
             AppEngine.shared.saveSetting()
+            AppEngine.shared.notifyAllUIObservers()
         }
         
     }
@@ -71,8 +74,6 @@ class Actions {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
         if let setUpViewController = storyBoard.instantiateViewController(withIdentifier: "SetUpViewController") as? SetUpViewController {
-
-
     
         }
 
@@ -88,9 +89,9 @@ class Actions {
         } else if sender.accessibilityIdentifier == "DarkModeButton" {
             AppEngine.shared.userSetting.appAppearanceMode = .darkMode
         }
-        
+        Vibrator.vibrate(withImpactLevel: .light)
         AppEngine.shared.saveSetting()
-
+        AppEngine.shared.notifyAllUIObservers()
         
     }
     
