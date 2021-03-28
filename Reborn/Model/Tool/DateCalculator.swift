@@ -97,7 +97,7 @@ class DateCalculator {
         dateFormatter.dateFormat = "yyyy M d"
         
         guard let originalDate = dateFormatter.date(from: "\(originalDate.year) \(originalDate.month) \(originalDate.day)"),
-              let nowDate = dateFormatter.date(from: "\(AppEngine.shared.currentDate.year) \(AppEngine.shared.currentDate.month) \(AppEngine.shared.currentDate.day)")
+              let nowDate = dateFormatter.date(from: "\(CustomDate.current.year) \(CustomDate.current.month) \(CustomDate.current.day)")
         else {
             return defaultResult
             
@@ -138,7 +138,7 @@ class DateCalculator {
         let toDate = calendar.startOfDay(for: calendar.date(from: toComponents)!)
         let numberOfDays = calendar.dateComponents([.day], from: fromDate, to: toDate)
         
-        return numberOfDays.day! + 1
+        return numberOfDays.day!
     }
     
 }

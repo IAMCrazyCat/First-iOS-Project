@@ -33,10 +33,10 @@ class TimeMachineViewController: UIViewController {
         engine.add(observer: self)
         animationSpeed = self.setting.timeMachineAnimationNormalSpeed
         
-        titleLabel.textColor = AppEngine.shared.userSetting.themeColor
+        titleLabel.textColor = AppEngine.shared.userSetting.themeColor.uiColor
         goBackToThePastButton.layer.cornerRadius = self.setting.mainButtonCornerRadius
         goBackToThePastButton.setShadow()
-        goBackToThePastButton.setBackgroundColor(AppEngine.shared.userSetting.themeColor, for: .normal)
+        goBackToThePastButton.setBackgroundColor(AppEngine.shared.userSetting.themeColor.uiColor, for: .normal)
         goBackToThePastButton.setBackgroundColor(.gray, for: .disabled)
        
         updateEnergyLabel()
@@ -55,7 +55,7 @@ class TimeMachineViewController: UIViewController {
             guard let makingUpDates = self.calendarViewController?.punchInMakingUpDates,
                   let item = self.calendarViewController?.item else { return }
             
-            self.engine.add(punchInDates: makingUpDates, to: item)
+            self.engine.currentUser.add(punchInDates: makingUpDates, to: item)
             self.calendarViewController?.punchInMakingUpDates.removeAll()
             self.engine.saveUser()
             self.engine.notifyAllUIObservers()
@@ -83,7 +83,7 @@ class TimeMachineViewController: UIViewController {
     
     func updateEnergyLabel() {
        
-        self.energyButton?.setTitle(" × \(self.engine.currentUser.keys)", for: .normal)
+        self.energyButton?.setTitle(" × \(self.engine.currentUser.energy)", for: .normal)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

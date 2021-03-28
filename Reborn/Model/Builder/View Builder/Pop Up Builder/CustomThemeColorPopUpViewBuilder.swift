@@ -65,7 +65,7 @@ class CustomThemeColorPopUpViewBuilder: PopUpViewBuilder {
                 cordinateX += buttonHorizentalGap + colorButton.frame.width
             }
             
-            if themeColor.value == AppEngine.shared.userSetting.themeColor.value {
+            if themeColor.value == AppEngine.shared.userSetting.themeColor.uiColor.value {
                 let checkButton = UIButton()
                 checkButton.setImage(#imageLiteral(resourceName: "FinishedIcon"), for: .normal)
                 checkButton.tintColor = UIColor.label

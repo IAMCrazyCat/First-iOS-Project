@@ -13,7 +13,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var verticalScrollView: UIScrollView!
 
     @IBOutlet weak var overallProgressView: UIView!
-    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var verticalContentView: UIView!
     @IBOutlet weak var itemsTitleLabel: UILabel!
 
     @IBOutlet weak var itemCardsView: UIView!
@@ -80,13 +80,10 @@ class HomeViewController: UIViewController {
         updateUI()
         addBottomBannerAdIfNeeded()
         
-        
-
     }
     
     override func viewDidLayoutSubviews() {
   
-        verticalContentViewHeightConstraint.constant = self.view.frame.height + overallProgressView.frame.maxY
         
     }
     
@@ -191,7 +188,7 @@ class HomeViewController: UIViewController {
         self.customNavigationBar.backgroundColor = engine.userSetting.themeColorAndBlackContent
         self.spaceView.backgroundColor = engine.userSetting.themeColorAndBlackContent
         self.todayProgressLabel.textColor = self.engine.userSetting.smartLabelColorAndWhiteAndThemeColor.brightColor
-        self.todayProgressLabel.text = "今日打卡: \(self.engine.getTodayProgress())"
+        self.todayProgressLabel.text = "今日打卡: \(self.engine.currentUser.getNumberOfTodayPunchedInItems())/\(self.engine.currentUser.getNumberOfTodayInProgresItems())"
         self.todayProgressLabel.layer.zPosition = 3
         
         let circleRadius: CGFloat = 40
@@ -274,10 +271,24 @@ class HomeViewController: UIViewController {
     
     func updateVerticalContentViewHeight() {
         
-        let newHeight = self.itemCardsView.frame.maxY + self.setting.contentToScrollViewBottomDistance
-        if self.verticalContentViewHeightConstraint.constant < newHeight {
-            self.verticalContentViewHeightConstraint.constant = newHeight
+        self.view.layoutIfNeeded()
+        let defaultHeight = self.view.frame.height + overallProgressView.frame.maxY
+        if let lastCardMaxY = self.itemCardsView.subviews.last?.frame.maxY {
+
+            let newHeight = self.itemCardsView.frame.minY + lastCardMaxY + self.setting.contentToScrollViewBottomDistance
+            if newHeight > defaultHeight {
+                self.verticalContentViewHeightConstraint.constant = newHeight
+
+            } else {
+                self.verticalContentViewHeightConstraint.constant = defaultHeight
+            }
+
+        } else {
+            self.verticalContentViewHeightConstraint.constant = defaultHeight
         }
+        
+
+    
     }
     
     func updateAppearance() {
@@ -289,6 +300,8 @@ class HomeViewController: UIViewController {
             view.window?.overrideUserInterfaceStyle = .unspecified
         }
     }
+    
+  
 
 }
 
@@ -340,9 +353,9 @@ extension HomeViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.tag == self.setting.homeViewVerticalScrollViewTag {
-            print("YES")
+           
             updateOverAllProgressView(scrollView: scrollView, animated: true)
-
+            print(self.verticalContentViewHeightConstraint.constant)
         }
     }
     

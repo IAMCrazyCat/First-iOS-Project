@@ -63,8 +63,8 @@ class ItemDetailViewBuilder: ViewBuilder {
         let barTrackPath = UIBezierPath(roundedRect: barFrame, cornerRadius: 10)
         let barTrackLayer = CAShapeLayer()
         
-        let shapeColor = AppEngine.shared.userSetting.themeColor.cgColor
-        let trackColor = AppEngine.shared.userSetting.themeColor.withAlphaComponent(0.3).cgColor
+        let shapeColor = AppEngine.shared.userSetting.themeColor.uiColor.cgColor
+        let trackColor = AppEngine.shared.userSetting.themeColor.uiColor.withAlphaComponent(0.3).cgColor
         let progressWidth: CGFloat = 10
 
         barTrackLayer.name = "progressTrack"

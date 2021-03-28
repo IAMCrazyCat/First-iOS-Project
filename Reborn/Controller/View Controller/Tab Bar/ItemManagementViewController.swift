@@ -132,7 +132,7 @@ class ItemManagementViewController: UIViewController {
             verticalContentHeightConstraint.constant = verticalScrollView.frame.height + setting.contentToScrollViewBottomDistance
         }
         
-        verticalContentView.layoutIfNeeded()
+        //verticalContentView.layoutIfNeeded()
     }
   
     

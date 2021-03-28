@@ -70,7 +70,7 @@ class PopUpViewBuilder: ViewBuilder {
     private func addDoneButton() { // Tag 3
         
         doneButton.accessibilityIdentifier = "DoneButton"
-        doneButton.backgroundColor = AppEngine.shared.userSetting.themeColor
+        doneButton.backgroundColor = AppEngine.shared.userSetting.themeColor.uiColor
         doneButton.setTitle("确定", for: .normal)
         doneButton.setTitleColor(AppEngine.shared.userSetting.smartLabelColor, for: .normal)
         

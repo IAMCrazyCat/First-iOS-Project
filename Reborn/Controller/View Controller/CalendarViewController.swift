@@ -39,7 +39,7 @@ class CalendarViewController: UIViewController {
     private let engine: AppEngine = AppEngine.shared
     private var storedState: CalendarState = .normal
     
-    public lazy var currentCalendarPage: CalendarPage = CalendarPage(year: self.engine.currentDate.year, month: self.engine.currentDate.month, item: item!)
+    public lazy var currentCalendarPage: CalendarPage = CalendarPage(year: CustomDate.current.year, month: CustomDate.current.month, item: item!)
     public var monthLabelOriginalCordinateX: CGFloat = 0
     public var item: Item?
     public var calendarLoaded: Bool = false
@@ -49,7 +49,7 @@ class CalendarViewController: UIViewController {
     public var storedMonthInterval: Int = 0
     public var userDidGo: NewCalendarPage = .sameMonth
     public var punchInMakingUpDates: Array<CustomDate> = []
-    private var originalKeys: Int = AppEngine.shared.currentUser.keys
+    private var originalKeys: Int = AppEngine.shared.currentUser.energy
     
 //    lazy var currentYear = self.currentCalendarPage.year
 //    lazy var currentMonth = self.currentCalendarPage.month
@@ -196,9 +196,9 @@ class CalendarViewController: UIViewController {
             let currentYear = self.currentCalendarPage.year
             let currentMonth = self.currentCalendarPage.month
             let currentDay = self.currentCalendarPage.days
-            self.storedMonthInterval = DateCalculator.calculateMonthDifference(withOriginalDate: CustomDate(year: currentYear, month: currentMonth, day: currentDay), andNewDate: self.engine.currentDate)
+            self.storedMonthInterval = DateCalculator.calculateMonthDifference(withOriginalDate: CustomDate(year: currentYear, month: currentMonth, day: currentDay), andNewDate: CustomDate.current)
 
-            self.currentCalendarPage = CalendarPage(year: self.engine.currentDate.year, month: self.engine.currentDate.month, item: item!)
+            self.currentCalendarPage = CalendarPage(year: CustomDate.current.year, month: CustomDate.current.month, item: item!)
             
         case .sameMonth:
             
@@ -227,7 +227,7 @@ class CalendarViewController: UIViewController {
     @IBAction func thisMonthButtonPressed(_ sender: UIButton!) {
         
         
-        if self.currentCalendarPage.month == self.engine.currentDate.month && self.currentCalendarPage.year == self.engine.currentDate.year {
+        if self.currentCalendarPage.month == CustomDate.current.month && self.currentCalendarPage.year == CustomDate.current.year {
             self.userDidGo = .sameMonth
         } else {
             self.userDidGo = .thisMonth
@@ -416,7 +416,7 @@ class CalendarViewController: UIViewController {
 
 extension CalendarViewController: UIObserver {
     func updateUI() {
-        self.timeMachineButton.tintColor = self.engine.userSetting.themeColor
+        self.timeMachineButton.tintColor = self.engine.userSetting.themeColor.uiColor
         
         self.callDelegateMethod()
         self.updateCalendarPage(type: userDidGo)
@@ -464,7 +464,7 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
             
         }
         
-        self.engine.currentUser.keys = self.originalKeys - self.punchInMakingUpDates.count
+        self.engine.currentUser.energy = self.originalKeys - self.punchInMakingUpDates.count
         self.userDidGo = .noWhere
         self.engine.notifyAllUIObservers()
        
@@ -488,14 +488,14 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
         cell.dayButton.addTarget(self, action: #selector(self.cellButtonPressed(_:)), for: .touchUpInside)
         
         
-        if self.currentCalendarPage.year == self.engine.currentDate.year && self.currentCalendarPage.month == self.engine.currentDate.month && dayNumber == self.engine.currentDate.day {// today dot
+        if self.currentCalendarPage.year == CustomDate.current.year && self.currentCalendarPage.month == CustomDate.current.month && dayNumber == CustomDate.current.day {// today dot
             
             cell.addDotToBottom(withColor: UIColor.label.withAlphaComponent(1))
             
             
         } else if self.currentCalendarPage.year == self.item!.creationDate.year && self.currentCalendarPage.month == self.item!.creationDate.month && dayNumber == self.item!.creationDate.day {
             // start date dot
-            cell.addDotToBottom(withColor: self.engine.userSetting.themeColor.withAlphaComponent(1))
+            cell.addDotToBottom(withColor: self.engine.userSetting.themeColor.uiColor.withAlphaComponent(1))
         }
         
 

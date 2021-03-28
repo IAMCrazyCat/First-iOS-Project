@@ -8,7 +8,7 @@
 import Foundation
 class VIPStrategyImpl: VIPStrategy {
     func performStrategy() {
-        if AppEngine.shared.currentUser.vip {
+        if AppEngine.shared.currentUser.isVip {
             performVIPStrategy()
         } else {
             performNonVIPStrategy()

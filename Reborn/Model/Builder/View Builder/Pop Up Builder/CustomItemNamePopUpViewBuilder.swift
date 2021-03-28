@@ -25,7 +25,7 @@ class CustomItemNamePopUpViewBuilder: PopUpViewBuilder {
     private func addTextField() {
         let textField = UITextField()
         textField.setPadding()
-        textField.tintColor = AppEngine.shared.userSetting.themeColor
+        textField.tintColor = AppEngine.shared.userSetting.themeColor.uiColor
         textField.accessibilityIdentifier = "TextField"
         textField.backgroundColor = SystemSetting.shared.grayColor.withAlphaComponent(0.3)
         textField.layer.cornerRadius = self.setting.textFieldCornerRadius

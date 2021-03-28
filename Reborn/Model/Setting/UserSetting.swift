@@ -8,13 +8,13 @@
 import Foundation
 import UIKit
 class UserSetting {
-    var themeColor = UIColor(named: ThemeColor.blue.rawValue)!
+    var themeColor = ThemeColor.blue//UIColor(named: ThemeColor.blue.rawValue)!
     var largeFont = UIFont.systemFont(ofSize: 30)
     var mediumFont = UIFont.systemFont(ofSize: 17)
     var smallFont = UIFont.systemFont(ofSize: 14)
     var notificationTime: Array<CustomTime> = [CustomTime(hour: 9, minute: 0), CustomTime(hour: 21, minute: 0)]
     var appAppearanceMode: AppAppearanceMode = .followSystem
-    
+    var hasViewedEnergyUpdate: Bool = false
     var uiUserInterfaceStyle : UIUserInterfaceStyle {
         if appAppearanceMode == .darkMode {
             return .dark
@@ -28,9 +28,9 @@ class UserSetting {
     let properThemeColor = UIColor { system in
         switch system.userInterfaceStyle {
         case .dark:
-            return AppEngine.shared.userSetting.themeColor.brightColor
+            return AppEngine.shared.userSetting.themeColor.uiColor.brightColor
         default:
-            return AppEngine.shared.userSetting.themeColor.darkColor
+            return AppEngine.shared.userSetting.themeColor.uiColor.darkColor
         }
         
     }
@@ -38,9 +38,9 @@ class UserSetting {
 
         switch system.userInterfaceStyle {
         case.dark:
-            return AppEngine.shared.userSetting.themeColor
+            return AppEngine.shared.userSetting.themeColor.uiColor
         default:
-            return AppEngine.shared.userSetting.themeColor.darkColor
+            return AppEngine.shared.userSetting.themeColor.uiColor.darkColor
         }
         
     }
@@ -48,7 +48,7 @@ class UserSetting {
         
         switch AppEngine.shared.userSetting.appAppearanceMode {
         case .lightMode:
-            return AppEngine.shared.userSetting.themeColor
+            return AppEngine.shared.userSetting.themeColor.uiColor
         case .darkMode:
             return AppEngine.shared.userSetting.blackContent
             
@@ -57,7 +57,7 @@ class UserSetting {
             case .dark:
                 return AppEngine.shared.userSetting.blackContent
             default:
-                return AppEngine.shared.userSetting.themeColor
+                return AppEngine.shared.userSetting.themeColor.uiColor
             }
         }
         
@@ -67,7 +67,7 @@ class UserSetting {
         case .dark:
             return UIColor.white
         default:
-            return AppEngine.shared.userSetting.themeColor
+            return AppEngine.shared.userSetting.themeColor.uiColor
         }
     }
     let themeColorAndSmartLabelColor = UIColor { system in
@@ -76,14 +76,14 @@ class UserSetting {
         case .dark:
             return AppEngine.shared.userSetting.smartLabelColorAndWhite
         default:
-            return AppEngine.shared.userSetting.themeColor
+            return AppEngine.shared.userSetting.themeColor.uiColor
             
         }
     }
     let whiteAndThemColor = UIColor { system in
         switch system.userInterfaceStyle {
         case .dark:
-            return AppEngine.shared.userSetting.themeColor
+            return AppEngine.shared.userSetting.themeColor.uiColor
         default:
             return AppEngine.shared.userSetting.whiteAndBlackContent
         }
@@ -95,7 +95,7 @@ class UserSetting {
         case .dark:
             return .white
         default:
-            let colorBrightness = ((AppEngine.shared.userSetting.themeColor.value.red * 299) + (AppEngine.shared.userSetting.themeColor.value.green * 587) + (AppEngine.shared.userSetting.themeColor.value.blue * 114)) / 1000
+            let colorBrightness = ((AppEngine.shared.userSetting.themeColor.uiColor.value.red * 299) + (AppEngine.shared.userSetting.themeColor.uiColor.value.green * 587) + (AppEngine.shared.userSetting.themeColor.uiColor.value.blue * 114)) / 1000
     
             if colorBrightness <= 0.7 {
                 return .white
@@ -108,7 +108,7 @@ class UserSetting {
     }
     
     let smartLabelColor = UIColor { _ in
-        let colorBrightness = ((AppEngine.shared.userSetting.themeColor.value.red * 299) + (AppEngine.shared.userSetting.themeColor.value.green * 587) + (AppEngine.shared.userSetting.themeColor.value.blue * 114)) / 1000
+        let colorBrightness = ((AppEngine.shared.userSetting.themeColor.uiColor.value.red * 299) + (AppEngine.shared.userSetting.themeColor.uiColor.value.green * 587) + (AppEngine.shared.userSetting.themeColor.uiColor.value.blue * 114)) / 1000
 
         if colorBrightness <= 0.7 {
             return .white
@@ -118,12 +118,12 @@ class UserSetting {
     }
     
     let smartThemeColor = UIColor { _ in
-        let colorBrightness = ((AppEngine.shared.userSetting.themeColor.value.red * 299) + (AppEngine.shared.userSetting.themeColor.value.green * 587) + (AppEngine.shared.userSetting.themeColor.value.blue * 114)) / 1000
+        let colorBrightness = ((AppEngine.shared.userSetting.themeColor.uiColor.value.red * 299) + (AppEngine.shared.userSetting.themeColor.uiColor.value.green * 587) + (AppEngine.shared.userSetting.themeColor.uiColor.value.blue * 114)) / 1000
 
         if colorBrightness <= 0.7 {
-            return AppEngine.shared.userSetting.themeColor
+            return AppEngine.shared.userSetting.themeColor.uiColor
         } else {
-            return AppEngine.shared.userSetting.themeColor.darkColor
+            return AppEngine.shared.userSetting.themeColor.uiColor.darkColor
         }
     }
     
@@ -132,7 +132,7 @@ class UserSetting {
 
         switch system.userInterfaceStyle {
         case .dark:
-            let colorBrightness = ((AppEngine.shared.userSetting.themeColor.value.red * 299) + (AppEngine.shared.userSetting.themeColor.value.green * 587) + (AppEngine.shared.userSetting.themeColor.value.blue * 114)) / 1000
+            let colorBrightness = ((AppEngine.shared.userSetting.themeColor.uiColor.value.red * 299) + (AppEngine.shared.userSetting.themeColor.uiColor.value.green * 587) + (AppEngine.shared.userSetting.themeColor.uiColor.value.blue * 114)) / 1000
 
             if colorBrightness <= 0.7 {
                 return UIColor.white
@@ -140,10 +140,10 @@ class UserSetting {
                 return UIColor.black.withAlphaComponent(0.7)
             }
         default:
-            let colorBrightness = ((AppEngine.shared.userSetting.themeColor.value.red * 299) + (AppEngine.shared.userSetting.themeColor.value.green * 587) + (AppEngine.shared.userSetting.themeColor.value.blue * 114)) / 1000
+            let colorBrightness = ((AppEngine.shared.userSetting.themeColor.uiColor.value.red * 299) + (AppEngine.shared.userSetting.themeColor.uiColor.value.green * 587) + (AppEngine.shared.userSetting.themeColor.uiColor.value.blue * 114)) / 1000
 
             if colorBrightness <= 0.7 {
-                return AppEngine.shared.userSetting.themeColor
+                return AppEngine.shared.userSetting.themeColor.uiColor
             } else {
                 return UIColor.black.withAlphaComponent(0.7)
             }
@@ -158,12 +158,12 @@ class UserSetting {
         case .lightMode:
             return AppEngine.shared.userSetting.smartLabelColorAndWhite
         case .darkMode:
-            return AppEngine.shared.userSetting.themeColor
+            return AppEngine.shared.userSetting.themeColor.uiColor
         case .followSystem:
             
             switch system.userInterfaceStyle {
             case .dark:
-                return AppEngine.shared.userSetting.themeColor
+                return AppEngine.shared.userSetting.themeColor.uiColor
             default:
                 return AppEngine.shared.userSetting.smartLabelColorAndWhite
             }
@@ -177,12 +177,12 @@ class UserSetting {
         case .lightMode:
             return AppEngine.shared.userSetting.smartLabelColor
         case .darkMode:
-            return AppEngine.shared.userSetting.themeColor
+            return AppEngine.shared.userSetting.themeColor.uiColor
         case .followSystem:
             
             switch system.userInterfaceStyle {
             case .dark:
-                return AppEngine.shared.userSetting.themeColor
+                return AppEngine.shared.userSetting.themeColor.uiColor
             default:
                 return AppEngine.shared.userSetting.smartLabelColor
             }

@@ -58,6 +58,13 @@ extension UserDefaults {
         }
     }
     
+    func set(_ value: ThemeColor?, forKey key: String) {
+        if value != nil {
+            self.set("\(value!.rawValue)", forKey: key)
+        }
+    }
+    
+    
     func color(forKey key: String) -> UIColor? {
 
         let r = CGFloat(self.double(forKey: "UIColorRed"))
@@ -71,6 +78,13 @@ extension UserDefaults {
             return UIColor(red: r, green: g, blue: b, alpha: a)
         }
 
+    }
+    
+    func themeColor(forKey key: String) -> ThemeColor? {
+        if let rawValue = self.string(forKey: key) {
+            return ThemeColor(rawValue: rawValue)
+        }
+        return nil
     }
 
     

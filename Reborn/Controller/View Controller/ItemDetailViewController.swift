@@ -20,8 +20,9 @@ class ItemDetailViewController: UIViewController {
     @IBOutlet weak var bottomEditButton: UIButton!
     @IBOutlet weak var bottomShareButton: UIButton!
     
-    @IBOutlet weak var finishedDayLabel: UILabel!
-    @IBOutlet weak var targetDayLabel: UILabel!
+    @IBOutlet weak var finishedDaysLabel: UILabel!
+    @IBOutlet weak var targetDaysLabel: UILabel!
+    @IBOutlet weak var bestConsecutiveDaysLabel: UILabel!
     @IBOutlet weak var frequencyLabel: UILabel!
     @IBOutlet weak var todayLabel: UILabel!
     @IBOutlet weak var goBackButton: UINavigationItem!
@@ -120,7 +121,43 @@ class ItemDetailViewController: UIViewController {
     }
     
     func updateItemData() {
+      
+        updateFinishedDaysLabel()
+        updateTargetDaysLabel()
+        updateBestConsecutiveDaysLabel()
+        updateFrequencyLabel()
+        updateTodayLabel()
+        updateProgressView()
+        updateStartDateLabel()
         print("ItemDetailsView Data Updated")
+        
+    }
+    
+   
+    
+    func updateFinishedDaysLabel() {
+        self.finishedDaysLabel.text = "\(String(self.item?.finishedDays ?? 0)) 天"
+    }
+    func updateTargetDaysLabel() {
+        self.targetDaysLabel.text = "\(String(self.item?.targetDays ?? 0)) 天"
+    }
+    func updateBestConsecutiveDaysLabel() {
+        self.bestConsecutiveDaysLabel.text = "\(String(self.item?.bestConsecutiveDays ?? 0)) 天"
+    }
+    func updateFrequencyLabel() {
+        self.frequencyLabel.text = "\(String(self.item?.frequency.dataModel.title ?? "加载错误"))"
+    }
+    func updateTodayLabel() {
+        
+        if item != nil, self.item!.punchInDates.contains(CustomDate.current)  {
+            self.todayLabel.textColor = ThemeColor.green.uiColor
+            self.todayLabel.text = "已打卡"
+        } else {
+            self.todayLabel.textColor = ThemeColor.red.uiColor
+            self.todayLabel.text = "未打卡"
+        }
+    }
+    func updateProgressView() {
         if item != nil {
             self.verticalContentView.layoutIfNeeded()
             let builder = ItemDetailViewBuilder(item: item!, frame: self.progressView.bounds)
@@ -128,24 +165,20 @@ class ItemDetailViewController: UIViewController {
             self.progressView.addSubview(detailsView)
             
         }
-        
-        self.finishedDayLabel.text = "\(String(self.item?.finishedDays ?? -1)) 天"
-        self.targetDayLabel.text = "\(String(self.item?.targetDays ?? -1)) 天"
-        self.frequencyLabel.text = "\(String(self.item?.frequency.dataModel.title ?? "加载错误"))"
-        
-        if self.item?.punchInDates.last == self.engine.currentDate {
-            //self.todayLabel.textColor = .green
-            self.todayLabel.text = "已打卡"
-        } else {
-            //self.todayLabel.textColor = .red
-            self.todayLabel.text = "未打卡"
-        }
-        
+    }
+    func updateStartDateLabel() {
         if let item = item {
-            startDateLabel.text = "开始日期: \(item.creationDate.year)年 \(item.creationDate.month)月\(item.creationDate.day)日 (\(DateCalculator.calculateDayDifferenceBetween(item.creationDate, and: self.engine.currentDate))天前)"
+            
+            let daysAgo: Int = DateCalculator.calculateDayDifferenceBetween(item.creationDate, and: CustomDate.current)
+            
+            switch daysAgo {
+            case 0: startDateLabel.text = "开始日期: \(item.creationDate.year)年 \(item.creationDate.month)月\(item.creationDate.day)日 (今天)"
+            case 1: startDateLabel.text = "开始日期: \(item.creationDate.year)年 \(item.creationDate.month)月\(item.creationDate.day)日 (昨天)"
+            default: startDateLabel.text = "开始日期: \(item.creationDate.year)年 \(item.creationDate.month)月\(item.creationDate.day)日 (\(daysAgo)天前)"
+             
+            }
+            
         }
-       
-        
     }
 
   

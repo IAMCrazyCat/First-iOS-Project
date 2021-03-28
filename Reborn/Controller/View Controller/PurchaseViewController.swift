@@ -23,22 +23,18 @@ class PurchaseViewController: UIViewController {
     @IBOutlet var VIPFounctionFiveView: UIView!
     
     @IBOutlet var purchaseButton: UIButton!
-    
     @IBOutlet var functionNumberButtons: [UIButton]!
+    @IBOutlet var functionViews: [UIView]!
     
+    var lastViewController: UIViewController?
     let engine: AppEngine = AppEngine.shared
-    var functionViews: Array<UIView> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         SKPaymentQueue.default().add(self)
         avatarView.contentMode = .scaleAspectFill
-        functionViews.append(VIPFounctionOneView)
-        functionViews.append(VIPFounctionTwoView)
-        functionViews.append(VIPFounctionThreeView)
-        functionViews.append(VIPFounctionFourView)
-        functionViews.append(VIPFounctionFiveView)
         
         updateUI()
     }
@@ -46,6 +42,10 @@ class PurchaseViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         avatarView.setCornerRadius()
         purchaseButton.setCornerRadius()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
     }
     
     func updateVIPFouctionViews() {
@@ -85,11 +85,11 @@ class PurchaseViewController: UIViewController {
     
     func updateAllButtons() {
         for button in functionNumberButtons {
-            button.setBackgroundColor(self.engine.userSetting.themeColor, for: .normal)
+            button.setBackgroundColor(self.engine.userSetting.themeColor.uiColor, for: .normal)
             button.setTitleColor(self.engine.userSetting.smartLabelColor, for: .normal)
         }
         
-        purchaseButton.setBackgroundColor(self.engine.userSetting.themeColor, for: .normal)
+        purchaseButton.setBackgroundColor(self.engine.userSetting.themeColor.uiColor, for: .normal)
         purchaseButton.setTitleColor(self.engine.userSetting.smartLabelColor, for: .normal)
     }
    
@@ -113,7 +113,14 @@ extension PurchaseViewController: SKPaymentTransactionObserver {
                 print("Thanks for shopping")
                 SKPaymentQueue.default().finishTransaction(transaction)
                 self.engine.purchaseApp()
-                self.dismiss(animated: true, completion: nil)
+                
+                if let userCenterViewController = self.lastViewController as? UserCenterViewController {
+                    userCenterViewController.excuteVipButtonAnimation()
+                }
+                
+                self.dismiss(animated: true, completion: {
+                    
+                })
                 
             } else if transaction.transactionState == .failed {
                 print("Transaction Failed!")

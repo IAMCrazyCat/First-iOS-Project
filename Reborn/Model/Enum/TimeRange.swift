@@ -12,7 +12,24 @@ enum TimeRange: Int, CaseIterable {
     case noon
     case afternoon
     case night
+    
+    
+    public static var time: DateComponents {
+        let date = Date()
+        return Calendar.current.dateComponents([.hour,.minute,.second], from: date)
+    }
+    
+    public static var current: TimeRange {
 
+        for timeRange in TimeRange.allCases {
+
+            if timeRange.range.contains(self.time.hour!) {
+                
+                return timeRange
+            }
+        }
+        return .morning
+    }
     
     var range: Range<Int> {
         switch self {

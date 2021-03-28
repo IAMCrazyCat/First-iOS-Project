@@ -22,8 +22,11 @@ class UserCenterViewController: UIViewController {
     
     @IBOutlet weak var purchaseButton: UIButton!
     @IBOutlet weak var notificationButton: UIButton!
+    @IBOutlet weak var themeColorLabel: UILabel!
     @IBOutlet weak var energyButton: UIButton!
     @IBOutlet weak var energyLabel: UILabel!
+    @IBOutlet weak var energyRedDot: UIButton!
+    @IBOutlet weak var energyRightButton: UIButton!
     @IBOutlet weak var themeColorButton: UIButton!
     @IBOutlet weak var lightAndDarkModeButton: UIButton!
     @IBOutlet weak var reviewButton: UIButton!
@@ -34,6 +37,9 @@ class UserCenterViewController: UIViewController {
     @IBOutlet weak var userNameButton: UIButton!
     @IBOutlet weak var editPartButton: UIButton!
     @IBOutlet weak var notificationTimeLabel: UILabel!
+    @IBOutlet weak var appAppearanceModeLabel: UILabel!
+    @IBOutlet weak var vipButton: UIButton!
+    @IBOutlet weak var genderImageView: UIImageView!
     
     @IBOutlet weak var verticalContentViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var dateLabel: UILabel!
@@ -48,7 +54,8 @@ class UserCenterViewController: UIViewController {
         super.viewDidLoad()
         AppEngine.shared.add(observer: self)
         
-      
+        energyRedDot.setCornerRadius()
+        vipButton.layer.cornerRadius = 5
         editPartButton.alpha = 0.7
         avaterView.setCornerRadius()
         purchaseView.layer.cornerRadius = setting.itemCardCornerRadius - 5
@@ -63,7 +70,6 @@ class UserCenterViewController: UIViewController {
         
         verticalScrollView.delegate = self
         scrollViewTopOffset = avaterView.frame.origin.y - 10
- 
         
         self.appVersionLabelButton.setTitle("  v\(self.engine.getAppVersion())", for: .normal)
         
@@ -93,20 +99,20 @@ class UserCenterViewController: UIViewController {
     }
     @IBAction func notificationTimeButtonPressed(_ sender: UIButton) {
   
-        self.present(.notificationTimePopUp, animation: .slideInToCenter)
+        self.present(.notificationTimePopUp, size: .small, animation: .slideInToCenter)
     }
     
-    @IBAction func settingButtonPressed(_ sender: UIButton) {
-        self.present(.customThemeColorPopUp, animation: .slideInToCenter)
+    @IBAction func themeColorButtonPressed(_ sender: UIButton) {
+        self.present(.customThemeColorPopUp, size: .small, animation: .slideInToCenter)
     }
     
     
     @IBAction func lightAndDarkButtonPressed(_ sender: UIButton) {
-        self.present(.lightAndDarkModePopUp, animation: .slideInToCenter)
+        self.present(.lightAndDarkModePopUp, size: .medium, animation: .slideInToCenter)
     }
     
     @IBAction func userNameButtonPressed(_ sender: UIButton!) {
-        self.present(.customUserNamePopUp, animation: .slideInToBottom)
+        self.present(.customUserInformationPopUp, size: .large, animation: .slideInToCenter)
     }
     
     @IBAction func energyButtonPressed(_ sender: UIButton!) {
@@ -126,6 +132,17 @@ class UserCenterViewController: UIViewController {
             present(mail, animated: true)
             
             } else {
+                
+                let alert = UIAlertController(title: "您的设备未设置邮箱", message: "您可以手动发送反馈邮件到liuzimingjay@vip.qq.com", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "知道了", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                
+        }
+    }
+    
+    @IBAction func reviewButtonPressed(_ sender: UIButton) {
+        if let windowScene = UIApplication.shared.windows.first?.windowScene {
+            SKStoreReviewController.requestReview(in: windowScene)
         }
     }
     
@@ -137,7 +154,7 @@ class UserCenterViewController: UIViewController {
     }
     
     func setButtonsAppearance() {
-        self.themeColorButton.tintColor = AppEngine.shared.userSetting.themeColor
+        self.themeColorButton.tintColor = AppEngine.shared.userSetting.themeColor.uiColor
         for button in self.settingButtons {
             button.addTarget(self, action: #selector(self.settingButtonTouchedDown(_:)), for: .touchUpInside)
             button.setBackgroundColor(.systemGray3, for: .selected)
@@ -165,7 +182,7 @@ class UserCenterViewController: UIViewController {
     }
     
     func updateDateLabel() {
-        dateLabel.text = "\(engine.currentDate.year)年\(engine.currentDate.month)月\(engine.currentDate.day)日"
+        dateLabel.text = "\(CustomDate.current.year)年\(CustomDate.current.month)月\(CustomDate.current.day)日"
     }
     
     func updateNotificationTimeLabel() {
@@ -180,9 +197,74 @@ class UserCenterViewController: UIViewController {
 
     }
     
-    func updateEnergyLabel() {
-        energyLabel.text = "× \(engine.currentUser.keys)"
+    func updateEnergyButton() {
+        
+        if self.engine.userSetting.hasViewedEnergyUpdate {
+            
+            self.energyRightButton.isHidden = false
+            self.energyRedDot.isHidden = true
+            self.energyLabel.text = "× \(engine.currentUser.energy)"
+            
+        } else {
+            
+            self.energyRightButton.isHidden = true
+            self.energyRedDot.isHidden = false
+            self.energyLabel.text = "新能量"
+        }
+        
+    
     }
+    
+    func updateThemeColorView() {
+        
+//        var themeColorName: String = ""
+//        for themeColor in ThemeColor.allCases {
+//            print(AppEngine.shared.userSetting.themeColor == themeColor.uiColor)
+//            if AppEngine.shared.userSetting.themeColor == themeColor.uiColor {
+//                themeColorName = themeColor.name
+//                
+//            }
+//        }
+        self.themeColorLabel.text = "\(AppEngine.shared.userSetting.themeColor.name)"
+    }
+    
+    func updateAppAppearanceModeLabel() {
+        appAppearanceModeLabel.text = "\(engine.userSetting.appAppearanceMode.name)"
+    }
+    
+    func updateVipButton() {
+        vipButton.titleLabel?.font = engine.userSetting.smallFont.withSize(13)
+        vipButton.isHidden = engine.currentUser.isVip ? false : true
+
+        
+    }
+    
+    func updateGenderImageView() {
+        switch engine.currentUser.gender {
+        case .male:
+            genderImageView.image = #imageLiteral(resourceName: "MaleIcon")
+            genderImageView.tintColor = ThemeColor.blue.uiColor
+        case .female:
+            genderImageView.image = #imageLiteral(resourceName: "FemaleIcon")
+            genderImageView.tintColor = ThemeColor.pink.uiColor
+        default:
+            genderImageView.image = UIImage()
+        }
+    }
+    
+    func excuteVipButtonAnimation() {
+        self.vipButton.isHidden = false
+        self.vipButton.transform = CGAffineTransform(scaleX: 0, y: 0)
+        UIView.animate(withDuration: 0.8, delay: 1 , animations: {
+            self.vipButton.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+        }) { _ in
+            UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
+                self.vipButton.transform = CGAffineTransform(scaleX: 1, y: 1)
+            })
+        }
+    }
+    
+
     
 }
 
@@ -195,10 +277,17 @@ extension UserCenterViewController: UIObserver {
         updateUserNameButton()
         updateAvatarView()
         updateVerticalContentViewHeight()
+        
+        
         updateDateLabel()
         updateNotificationTimeLabel()
-        updateEnergyLabel()
+        updateEnergyButton()
+        updateThemeColorView()
+        updateAppAppearanceModeLabel()
         removeBottomBannerAdIfVIP()
+        updateVipButton()
+        updateGenderImageView()
+
     }
 }
 
@@ -240,10 +329,13 @@ extension UserCenterViewController: PopUpViewDelegate {
     }
     
     func didSaveAndDismissPopUpView(type: PopUpType) {
-        if type == .customUserNamePopUp {
+        if type == .customUserInformationPopUp {
             
-            self.engine.currentUser.name = (AppEngine.shared.storedDataFromPopUpView as? String) ?? "没有名字"
+            let dataFromPopUp = (AppEngine.shared.storedDataFromPopUpView as? [String]) ?? ["没有名字", Gender.secret.rawValue]
             
+            self.engine.currentUser.name = dataFromPopUp.first!
+            self.engine.currentUser.gender = Gender(rawValue: dataFromPopUp.last!) ?? Gender.secret
+            self.engine.saveUser()
             
         } else if type == .notificationTimePopUp {
             

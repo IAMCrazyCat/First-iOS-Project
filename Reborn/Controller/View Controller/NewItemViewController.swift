@@ -54,7 +54,7 @@ class NewItemViewController: UIViewController {
     var selectedTargetDaysButton: UIButton? = nil
     var selectedFrequencyButton: UIButton? = nil
     var lastSelectedButton: UIButton? = nil
-    var item: Item = Item(ID: AppEngine.shared.getLargestItemID() + 1, name: "(项目名)", days: 1, frequency: .everyday, creationDate: AppEngine.shared.currentDate, type: .undefined)
+    var item: Item = Item(ID: AppEngine.shared.currentUser.getLargestItemID() + 1, name: "(项目名)", days: 1, frequency: .everyday, creationDate: CustomDate.current, type: .undefined)
     var preViewItemCard: UIView = UIView()
     var strategy: NewItemViewStrategy? = nil
     var lastViewController: UIViewController? = nil
@@ -70,7 +70,7 @@ class NewItemViewController: UIViewController {
         customFrequencyButton.tag = setting.customFrequencyButtonTag
         
         itemNameTextfield.setPadding()
-        itemNameTextfield.tintColor = engine.userSetting.themeColor
+        itemNameTextfield.tintColor = engine.userSetting.themeColor.uiColor
         itemNameTextfield.addTarget(self, action: #selector(textfieldTextChanged(_:)), for: .editingChanged)
         itemNameTextfield.layer.cornerRadius = setting.textFieldCornerRadius
         
@@ -179,7 +179,9 @@ class NewItemViewController: UIViewController {
         
         UIView.animate(withDuration: 1, animations: {
             self.preViewItemCard.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
-            self.engine.delete(item: self.item)
+            self.engine.currentUser.delete(item: self.item)
+            self.engine.saveUser()
+            self.engine.notifyAllUIObservers()
         }) { _ in
             self.dismiss(animated: true) {
   
@@ -301,7 +303,7 @@ class NewItemViewController: UIViewController {
             button.proportionallySetSizeWithScreen()
             button.setCornerRadius()
             button.setShadow()
-            button.setBackgroundColor(self.engine.userSetting.themeColor, for: .selected)
+            button.setBackgroundColor(self.engine.userSetting.themeColor.uiColor, for: .selected)
             button.setTitleColor(self.engine.userSetting.smartLabelColor, for: .selected)
         }
     }

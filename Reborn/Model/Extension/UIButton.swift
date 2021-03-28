@@ -66,4 +66,15 @@ extension UIButton {
         self.heightAnchor.constraint(equalToConstant: SystemSetting.shared.screenFrame.height *  SystemSetting.shared.optionButtonHeightRatio).isActive = true
         self.layoutIfNeeded()
     }
+    
+    func setOptionButtonAppearance() {
+        self.titleLabel?.font = AppEngine.shared.userSetting.smallFont
+        self.proportionallySetSizeWithScreen()
+        self.setCornerRadius()
+        self.setShadow()
+        self.setBackgroundColor(AppEngine.shared.userSetting.whiteAndBlackContent, for: .normal)
+        self.setBackgroundColor(AppEngine.shared.userSetting.themeColor.uiColor, for: .selected)
+        self.setTitleColor(.label, for: .normal)
+        self.setTitleColor(AppEngine.shared.userSetting.smartLabelColor, for: .selected)
+    }
 }

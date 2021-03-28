@@ -14,85 +14,103 @@ class EnergySettingViewController: UIViewController {
     @IBOutlet weak var purchaseButton: UIButton!
     @IBOutlet weak var energyButton: UIButton!
     @IBOutlet weak var efficiencyLabel: UILabel!
+    @IBOutlet weak var newEnergyPromptLabel: UILabel!
     
     let engine: AppEngine = AppEngine.shared
     override func viewDidLoad() {
         super.viewDidLoad()
         engine.add(observer: self)
-        
-        for subview in view.subviews {
-            subview.alpha = 0
-        }
-        dynamicEnergyIconView.alpha = 1
-        
+  
+        excuteEnergyChargingAnimation()
         updateUI()
         
+        if !engine.userSetting.hasViewedEnergyUpdate {
+            for subview in view.subviews {
+                subview.alpha = 0
+            }
+            dynamicEnergyIconView.alpha = 1
+        } else {
+            newEnergyPromptLabel.alpha = 0
+        }
         
-        //dynamicEnergyIconView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
-//        dynamicEnergyIconView.translatesAutoresizingMaskIntoConstraints = false
-//        dynamicEnergyIconView.widthAnchor.constraint(equalToConstant: self.view.frame.width - 80).isActive = true
-//        dynamicEnergyIconView.heightAnchor.constraint(equalTo: dynamicEnergyIconView.widthAnchor).isActive = true
-//        dynamicEnergyIconView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//        dynamicEnergyIconView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        
     }
     
     override func viewDidLayoutSubviews() {
         purchaseButton.setCornerRadius()
         
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        excuteEnergyChargingAnimation()
-//        UIView.animate(withDuration: 2, delay: 1, animations: {
-//            self.dynamicEnergyIconView.transform = CGAffineTransform(scaleX: 0.3, y: 0.3)
-//            self.dynamicEnergyIconView.frame.origin.y = 0
-//            self.dynamicEnergyIconView.frame.origin.x = 0
+        
+        if !engine.userSetting.hasViewedEnergyUpdate {
+            fadeInOtherViews()
+        }
+        
+        engine.userSetting.hasViewedEnergyUpdate = true
+        engine.saveSetting()
+        engine.notifyAllUIObservers()
+        
+    }
+    
+    func fadeInOtherViews() {
+        
+        UIView.animate(withDuration: 1, delay: 1, animations: {
+            for subview in self.view.subviews {
+                subview.alpha = 1
+            }
+        })
+    }
+    
+    func excuteEnergyChargingAnimation() {
+        
+        
+        let animationSpeed: TimeInterval = self.engine.currentUser.isVip ? 1.5 : 4.5
+        self.rotateView(targetView: self.hollowEnergyImageView, duration: animationSpeed)
+      
+//        UIView.animateKeyframes(withDuration: animationSpeed, delay: 0, options: [.repeat], animations: {
+//
+//
+//            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.25, animations: {
+//                self.hollowEnergyImageView.transform = CGAffineTransform(rotationAngle: -90.0 * CGFloat.pi/180.0)
+//            })
+//            UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 0.25, animations: {
+//                self.hollowEnergyImageView.transform = CGAffineTransform(rotationAngle: -180.0 * CGFloat.pi/180.0)
+//            })
+//            UIView.addKeyframe(withRelativeStartTime: 0.50, relativeDuration: 0.25, animations: {
+//                self.hollowEnergyImageView.transform = CGAffineTransform(rotationAngle: -270.0 * CGFloat.pi/180.0)
+//            })
+//            UIView.addKeyframe(withRelativeStartTime: 0.75, relativeDuration: 0.25, animations: {
+//                self.hollowEnergyImageView.transform = CGAffineTransform(rotationAngle: -360.0 * CGFloat.pi/180.0)
+//            })
+//
 //
 //        })
         
         
     }
     
-    func excuteEnergyChargingAnimation() {
-        UIView.animate(withDuration: 1, delay: 1, animations: {
-            for subview in self.view.subviews {
-                subview.alpha = 1
-            }
-        })
-        
-        var animationSpeed: TimeInterval = self.engine.currentUser.vip ? 5 : 10
-
-      
-        UIView.animateKeyframes(withDuration: animationSpeed, delay: 0, options: [.repeat], animations: {
-
+    private func rotateView(targetView: UIView, duration: Double = 1.0) {
+        UIView.animate(withDuration: duration, delay: 0.0, options: .curveLinear, animations: {
+            targetView.transform = targetView.transform.rotated(by: -1/2 * CGFloat.pi)
+        }) { finished in
             
-            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.25, animations: {
-                self.hollowEnergyImageView.transform = CGAffineTransform(rotationAngle: -90.0 * CGFloat.pi/180.0)
-            })
-            UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 0.25, animations: {
-                self.hollowEnergyImageView.transform = CGAffineTransform(rotationAngle: -180.0 * CGFloat.pi/180.0)
-            })
-            UIView.addKeyframe(withRelativeStartTime: 0.50, relativeDuration: 0.25, animations: {
-                self.hollowEnergyImageView.transform = CGAffineTransform(rotationAngle: -270.0 * CGFloat.pi/180.0)
-            })
-            UIView.addKeyframe(withRelativeStartTime: 0.75, relativeDuration: 0.25, animations: {
-                self.hollowEnergyImageView.transform = CGAffineTransform(rotationAngle: -360.0 * CGFloat.pi/180.0)
-            })
-            
-
-        })
+            self.rotateView(targetView: targetView, duration: duration)
+        }
     }
     
     func updateLabels() {
-        self.energyButton.setTitle("× \(self.engine.currentUser.keys)", for: .normal)
-        if self.engine.currentUser.vip {
+        self.energyButton.setTitle("× \(self.engine.currentUser.energy)", for: .normal)
+        if self.engine.currentUser.isVip {
             self.efficiencyLabel.text = "效能：连续打卡7天 获得1点能量 (高级用户)"
         }
     }
     
     func updateButtons() {
        
-        self.purchaseButton.setBackgroundColor(self.engine.userSetting.themeColor, for: .normal)
+        self.purchaseButton.setBackgroundColor(self.engine.userSetting.themeColor.uiColor, for: .normal)
         self.purchaseButton.setTitleColor(self.engine.userSetting.smartLabelColor, for: .normal)
     }
 

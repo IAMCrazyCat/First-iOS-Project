@@ -29,7 +29,7 @@ struct UserLoader {
     }
     
     static func getDummyUser() -> User {
-        return User(avatar: UIImage(), themeColor: .red, overAllProgress: 0.8)
+        return User(avatar: UIImage(named: "DefaultAvatar") ?? UIImage(), themeColor: UIColor(named: "BlueThemeColor") ?? UIColor.blue.withAlphaComponent(0.5), overAllProgress: 0.8)
     }
 }
 
@@ -91,13 +91,15 @@ struct ItemProgressWigetEntryView : View {
     
 
     var body: some View {
+        
 
-        ZStack {
+        ZStack(alignment: .bottom) {
             Image(uiImage: entry.user.avatar)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(width: 85, height: 85, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                //.frame(width: 85, height: 85, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .clipShape(Circle())
+                .padding(.all, 38)
             
             Circle()
                 .stroke(lineWidth: 10.0)
@@ -113,21 +115,20 @@ struct ItemProgressWigetEntryView : View {
                 .animation(.easeOut)
                 .padding(.all, 25.0)
             
-            
-            
-            VStack{
-                
+
+            HStack {
+                Spacer()
                 Text(String(format: "%.0f %%", min(entry.user.overAllProgress, 1.0)*100.0))
                     .bold()
-                    .font(.system(size: 12))
+                    .font(.system(size: 10))
                     .background(Color.clear)
-                    .position(x: 140, y: 152)
+                    .padding(.trailing, 12)
+                    .padding(.bottom, 12)
             }
-           
 
-
-            
         }
+        
+        
         
 
         
@@ -147,7 +148,7 @@ struct ItemProgressWiget: Widget {
             ItemProgressWigetEntryView(entry: entry)
                 .background(Color(UIColor(named: "WidgetBackground") ?? UIColor.white))
         }
-        .supportedFamilies([.systemSmall])
+        .supportedFamilies([.systemSmall, .systemMedium])
         .configurationDisplayName("综合进度")
         .description("显示你的头像和所有项目的综合进度")
     }

@@ -100,7 +100,7 @@ class LightAndDarkModePopUpViewBuilder: PopUpViewBuilder {
         
         
         let borderWidth: CGFloat = 3
-        let borderColor: CGColor = AppEngine.shared.userSetting.themeColor.cgColor
+        let borderColor: CGColor = AppEngine.shared.userSetting.themeColor.uiColor.cgColor
 
         switch self.currentMode {
         

@@ -93,7 +93,7 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
             dateFormatter.dateFormat =  "H m"
             let date = dateFormatter.date(from: "\(time.hour) \(time.minute)")
             picker.accessibilityIdentifier = "DatePicker"
-            picker.backgroundColor = AppEngine.shared.userSetting.themeColor
+            picker.backgroundColor = AppEngine.shared.userSetting.themeColor.uiColor
             picker.tintColor = AppEngine.shared.userSetting.smartLabelColor
             picker.date = date!
             picker.datePickerMode = .time

@@ -74,25 +74,47 @@ class OverAllProgressViewBuilder: ViewBuilder {
     private func addTextLabel() {
         let firstTextLabel = UILabel()
 
-        firstTextLabel.text = welcomeTextData.randomText(timeRange: AppEngine.shared.currentTimeRange).firstText
+        firstTextLabel.text = welcomeTextData.randomText(timeRange: TimeRange.current).firstText
         firstTextLabel.font = AppEngine.shared.userSetting.largeFont
         firstTextLabel.textColor = AppEngine.shared.userSetting.smartLabelColorAndWhite
         firstTextLabel.frame.origin = CGPoint(x: 15, y: 0)
         firstTextLabel.sizeToFit()
         self.outPutView.addSubview(firstTextLabel)
         
+        let vipButton = UIButton()
+        vipButton.accessibilityIdentifier = "VipButton"
+        vipButton.setTitle("VIP", for: .normal)
+        vipButton.titleLabel?.font = AppEngine.shared.userSetting.smallFont.withSize(13)
+        vipButton.setBackgroundColor(.systemRed, for: .normal)
+        vipButton.clipsToBounds = true
+        vipButton.layer.cornerRadius = 5
+        vipButton.isHidden = AppEngine.shared.currentUser.isVip ? false : true
+        self.outPutView.addSubview(vipButton)
+        
+        vipButton.translatesAutoresizingMaskIntoConstraints = false
+        vipButton.heightAnchor.constraint(equalToConstant: 15).isActive = true
+        vipButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        vipButton.leftAnchor.constraint(equalTo: firstTextLabel.rightAnchor, constant: 10).isActive = true
+        vipButton.centerYAnchor.constraint(equalTo: firstTextLabel.centerYAnchor, constant: -5).isActive = true
+        
+        
         let secondTextLabel = UILabel()
         secondTextLabel.font = AppEngine.shared.userSetting.smallFont
-        secondTextLabel.text = welcomeTextData.randomText(timeRange: AppEngine.shared.currentTimeRange).secondText
+        secondTextLabel.text = welcomeTextData.randomText(timeRange: TimeRange.current).secondText
         secondTextLabel.textColor = AppEngine.shared.userSetting.smartLabelColorAndWhite
+        secondTextLabel.lineBreakMode = .byWordWrapping
+        secondTextLabel.numberOfLines = 3
         secondTextLabel.sizeToFit()
-        
         
         self.outPutView.addSubview(secondTextLabel)
         secondTextLabel.translatesAutoresizingMaskIntoConstraints = false
         secondTextLabel.topAnchor.constraint(equalTo: firstTextLabel.bottomAnchor, constant: 10).isActive = true
         secondTextLabel.leftAnchor.constraint(equalTo: self.outPutView.leftAnchor, constant: 15).isActive = true
-    
+        
+        secondTextLabel.alpha = 0
+        UIView.animate(withDuration: 0.3, animations: {
+            secondTextLabel.alpha = 1
+        })
     }
     
     private func addSmallProgressCircleView() {

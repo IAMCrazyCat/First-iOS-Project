@@ -75,7 +75,7 @@ class SetUpPageViewBuilder {
             button.setTitleColor(.white, for: .selected)
             
             button.setBackgroundColor(AppEngine.shared.userSetting.whiteAndBlackContent, for: .normal)
-            button.setBackgroundColor(AppEngine.shared.userSetting.themeColor, for: .selected)
+            button.setBackgroundColor(AppEngine.shared.userSetting.themeColor.uiColor, for: .selected)
             //button.backgroundColor = AppEngine.shared.userSetting.themeColor
             button.titleLabel?.font = self.setting.optionButtonTitleFont
             button.addTarget(self, action: SetUpViewController.optionButtonAction, for: .touchDown)
@@ -110,7 +110,7 @@ class SetUpPageViewBuilder {
         let textField = UITextField()
         textField.setPadding()
         //textField.disableKeyBoard()
-        textField.tintColor = AppEngine.shared.userSetting.themeColor
+        textField.tintColor = AppEngine.shared.userSetting.themeColor.uiColor
         textField.accessibilityIdentifier = "TextField"
         textField.backgroundColor = SystemSetting.shared.grayColor.withAlphaComponent(0.3)
         textField.layer.cornerRadius = self.setting.textFieldCornerRadius

@@ -60,8 +60,8 @@ class CalendarCell: UICollectionViewCell {
             self.state = .disabled
             self.dayButton.setTitle(data, for: .normal)
             self.dayButton.setTitleColor(.white, for: .normal)
-            self.contentView.backgroundColor = AppEngine.shared.userSetting.themeColor
-            self.contentView.layer.borderColor = AppEngine.shared.userSetting.themeColor.cgColor
+            self.contentView.backgroundColor = AppEngine.shared.userSetting.themeColor.uiColor
+            self.contentView.layer.borderColor = AppEngine.shared.userSetting.themeColor.uiColor.cgColor
         case .breakDay:
             break
         case .missedDay:
@@ -100,7 +100,7 @@ class CalendarCell: UICollectionViewCell {
 //
 //                }
                 self.contentView.backgroundColor = .clear
-                self.contentView.layer.borderColor = AppEngine.shared.userSetting.themeColor.cgColor
+                self.contentView.layer.borderColor = AppEngine.shared.userSetting.themeColor.uiColor.cgColor
              
             }
             
@@ -123,7 +123,7 @@ class CalendarCell: UICollectionViewCell {
         case .nothThisMonthPunchedIn:
             
             self.state = .disabled
-            self.contentView.backgroundColor = AppEngine.shared.userSetting.themeColor.withAlphaComponent(0.3)
+            self.contentView.backgroundColor = AppEngine.shared.userSetting.themeColor.uiColor.withAlphaComponent(0.3)
             self.dayButton.setTitle(data, for: .normal)
             self.dayButton.setTitleColor(UIColor.white, for: .normal)
         }

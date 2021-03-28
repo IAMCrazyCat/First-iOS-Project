@@ -26,11 +26,16 @@ extension UIViewController: UIViewControllerTransitioningDelegate  {
     func presentViewController(withIentifier identifier: String) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let toViewController = storyboard.instantiateViewController(withIdentifier: identifier)
+        
+        if let purchaseViewController = toViewController as? PurchaseViewController {
+            purchaseViewController.lastViewController = self
+        }
         self.present(toViewController, animated: true, completion: nil)
+        
 
     }
     
-    func present(_ popUpType: PopUpType, animation animationType: PopUpAnimationType = .slideInToBottom, dataStartIndex: Int = 0) {
+    func present(_ popUpType: PopUpType, size: PopUpSize = .small, animation animationType: PopUpAnimationType = .slideInToBottom, dataStartIndex: Int = 0) {
         
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -40,28 +45,28 @@ extension UIViewController: UIViewControllerTransitioningDelegate  {
             
             switch popUpType {
             case .customFrequencyPopUp:
-                popUpViewController.popUp = CustomFrequencyPopUp(presentAnimationType: animationType, dataStartIndex: dataStartIndex, popUpViewController: popUpViewController)
+                popUpViewController.popUp = CustomFrequencyPopUp(presentAnimationType: animationType, size: size, dataStartIndex: dataStartIndex, popUpViewController: popUpViewController)
             case .customItemNamePopUp:
-                popUpViewController.popUp = CustomItemNamePopUpView(presentAnimationType: animationType, popUpViewController: popUpViewController)
+                popUpViewController.popUp = CustomItemNamePopUpView(presentAnimationType: animationType, size: size, popUpViewController: popUpViewController)
             case .customTargetDaysPopUp:
-                popUpViewController.popUp = CustomTargetDaysPopUp(presentAnimationType: animationType, dataStartIndex: dataStartIndex, popUpViewController: popUpViewController)
+                popUpViewController.popUp = CustomTargetDaysPopUp(presentAnimationType: animationType, size: size, dataStartIndex: dataStartIndex, popUpViewController: popUpViewController)
             case .customThemeColorPopUp:
-                popUpViewController.popUp = CustomThemeColorPopUp(presentAnimationType: animationType, size: .small, popUpViewController: popUpViewController)
-            case .customUserNamePopUp:
-                popUpViewController.popUp = CustomUserNamePopUp(presentAnimationType: animationType, popUpViewController: popUpViewController)
+                popUpViewController.popUp = CustomThemeColorPopUp(presentAnimationType: animationType, size: size, popUpViewController: popUpViewController)
+            case .customUserInformationPopUp:
+                popUpViewController.popUp = CustomUserInformationPopUp(presentAnimationType: animationType, size: size, popUpViewController: popUpViewController)
             case .notificationTimePopUp:
                 
                 if AppEngine.shared.isNotificationEnabled() {
-                    popUpViewController.popUp = NotificationTimePopUp(presentAnimationType: animationType, size: .small, popUpViewController: popUpViewController)
+                    popUpViewController.popUp = NotificationTimePopUp(presentAnimationType: animationType, size: size, popUpViewController: popUpViewController)
                 } else {
-                    popUpViewController.popUp = NotificationTimePopUp(presentAnimationType: animationType, size: .large, popUpViewController: popUpViewController)
+                    popUpViewController.popUp = NotificationTimePopUp(presentAnimationType: animationType, size: size, popUpViewController: popUpViewController)
                 }
                 
             case .itemCompletedPopUp:
                 print("You should not use this function")
                 print("Use 'showItemCompletedPopUp(for: Item)' instead")
             case .lightAndDarkModePopUp:
-                popUpViewController.popUp = LightAndDarkModePopUp(presentAnimationType: animationType, size: .medium, popUpViewController: popUpViewController)
+                popUpViewController.popUp = LightAndDarkModePopUp(presentAnimationType: animationType, size: size, popUpViewController: popUpViewController)
             }
             
             self.present(to: popUpViewController)
@@ -94,7 +99,7 @@ extension UIViewController: UIViewControllerTransitioningDelegate  {
     }
     
     func addBottomBannerAdIfNeeded() {
-        if !AppEngine.shared.currentUser.vip {
+        if !AppEngine.shared.currentUser.isVip {
             
             var bannerView: GADBannerView!
             bannerView = GADBannerView(adSize: kGADAdSizeBanner)
@@ -115,7 +120,7 @@ extension UIViewController: UIViewControllerTransitioningDelegate  {
     }
     
     func removeBottomBannerAdIfVIP() {
-        if AppEngine.shared.currentUser.vip {
+        if AppEngine.shared.currentUser.isVip {
             self.view.removeSubviewBy(idenifier: "BottomBannerAd")
         }
         

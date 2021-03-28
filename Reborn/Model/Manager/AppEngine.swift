@@ -26,38 +26,13 @@ class AppEngine {
     private var observerIsNotifiedByNotifier: Bool = false
     
     public static let shared = AppEngine()
-    public var currentUser: User = User(name: "颠猫", gender: .undefined, avatar: #imageLiteral(resourceName: "Unknown"), keys: 3, items: [Item](), vip: false)
+    public var currentUser: User = User(name: "颠猫", gender: .undefined, avatar: #imageLiteral(resourceName: "Unknown"), energy: 3, items: [Item](), isVip: false)
     public let userSetting: UserSetting = UserSetting()
     public var storedDataFromPopUpView: Any? = nil
     public var currentViewController: UIViewController? {
         return UIApplication.shared.getTopViewController()
     }
 
-    public var time: DateComponents {
-        let date = Date()
-        return Calendar.current.dateComponents([.hour,.minute,.second], from: date)
-    }
-    
-    public var currentTimeRange: TimeRange {
-        
-        for timeRange in TimeRange.allCases {
-
-            if timeRange.range.contains(self.time.hour!) {
-                
-                return timeRange
-            }
-        }
-        return .morning
-    }
-    
-    public var currentDate: CustomDate {
-        let date = Date()
-        let currentYear: Int = Calendar.current.component(.year, from: date)
-        let currentMonth: Int = Calendar.current.component(.month, from: date)
-        let currentDay: Int = Calendar.current.component(.day, from: date)
-        return CustomDate(year: currentYear, month: currentMonth, day: currentDay)
-    }
- 
     public var delegate: PopUpViewDelegate?
 
     private init() {
@@ -76,7 +51,7 @@ class AppEngine {
             saveSetting()
         }
         
-        UITabBar.appearance().tintColor = self.userSetting.themeColor
+        UITabBar.appearance().tintColor = self.userSetting.themeColor.uiColor
         UINavigationBar.appearance().tintColor = self.userSetting.smartLabelColorAndWhite
   
        
@@ -109,7 +84,7 @@ class AppEngine {
     }
     
     func purchaseApp() {
-        self.currentUser.vip = true
+        self.currentUser.isVip = true
         self.saveUser(self.currentUser)
         self.notifyAllUIObservers()
     }
@@ -143,32 +118,6 @@ class AppEngine {
         
         semaphore.wait()
         return isNotificationEnabled
-        
-//        center.getNotificationSettings(completionHandler: { permission in
-//            switch permission.authorizationStatus  {
-//            case .authorized:
-//                AppEngine.shared.storedUserNotificationPermission = true
-//                print("User granted permission for notification")
-//            case .denied:
-//                AppEngine.shared.storedUserNotificationPermission = false
-//                print("User denied notification permission")
-//            case .notDetermined:
-//                AppEngine.shared.storedUserNotificationPermission = false
-//                print("Notification permission haven't been asked yet")
-//            case .provisional:
-//                AppEngine.shared.storedUserNotificationPermission = true
-//                // @available(iOS 12.0, *)
-//                print("The application is authorized to post non-interruptive user notifications.")
-//            case .ephemeral:
-//                AppEngine.shared.storedUserNotificationPermission = true
-//                // @available(iOS 14.0, *)
-//                print("The application is temporarily authorized to post notifications. Only available to app clips.")
-//            @unknown default:
-//                AppEngine.shared.storedUserNotificationPermission = false
-//                print("Unknow Status")
-//            }
-//        })
-
        
     }
     
@@ -243,15 +192,13 @@ class AppEngine {
             
     }
 
-    
-    
-    
+ 
     private func checkTime() {
-        if let currentHour = self.time.hour, let currentMinute = self.time.minute, self.observerNotifierTimePoints.contains(currentHour), currentMinute == 0, !observerIsNotifiedByNotifier { // notify observers once
+        if let currentHour = TimeRange.time.hour, let currentMinute = TimeRange.time.minute, self.observerNotifierTimePoints.contains(currentHour), currentMinute == 0, !observerIsNotifiedByNotifier { // notify observers once
             
             self.notifyAllUIObservers()
             observerIsNotifiedByNotifier = true
-        } else if let currentHour = self.time.hour, self.observerNotifierTimePoints.contains(currentHour + 1) { // ready to notifiy all observers one hour before hour points
+        } else if let currentHour = TimeRange.time.hour, self.observerNotifierTimePoints.contains(currentHour + 1) { // ready to notifiy all observers one hour before hour points
             observerIsNotifiedByNotifier = false
         }
     }
@@ -284,7 +231,7 @@ class AppEngine {
            }
         }
         
-        if self.currentUser.vip {
+        if self.currentUser.isVip {
             print("Welcome back VIP!")
         }
     }
@@ -293,24 +240,17 @@ class AppEngine {
         defaults.set(userSetting.themeColor, forKey: "ThemeColor")
         defaults.set(userSetting.notificationTime, forKey: "NotificationTime")
         defaults.set(userSetting.appAppearanceMode, forKey: "AppAppearanceMode")
+        defaults.set(userSetting.hasViewedEnergyUpdate, forKey: "HasViewedEnergyUpdate")
         if appLaunchedBefore() {
             AppEngine.shared.updateWidgetData()
         }
+
         
-        
-        
-    }
-    
-    public func updateWidgetData() {
-        UserDefaults(suiteName: AppGroup.identifier.rawValue)!.set(self.currentUser.getOverAllProgress(), forKey: "OverAllProgress")
-        UserDefaults(suiteName: AppGroup.identifier.rawValue)!.set(self.userSetting.themeColor, forKey: "ThemeColor")
-        UserDefaults(suiteName: AppGroup.identifier.rawValue)!.set(self.currentUser.getAvatarImage(), forKey: "AvatarImage")
-        WidgetCenter.shared.reloadAllTimelines()
     }
     
     private func loadSetting() {
  
-        if let themeColor = defaults.color(forKey: "ThemeColor") {
+        if let themeColor = defaults.themeColor(forKey: "ThemeColor") {
             userSetting.themeColor = themeColor
         }
         
@@ -321,90 +261,18 @@ class AppEngine {
             userSetting.appAppearanceMode = appAppearanceMode
         }
         
-
-
+        let hasViewedEnergyUpdate = defaults.bool(forKey: "HasViewedEnergyUpdate")
+        userSetting.hasViewedEnergyUpdate = hasViewedEnergyUpdate
+ 
     }
     
-    public func add(newItem: Item) {
-        
-        self.currentUser.items.append(newItem)
-        
-        self.saveUser(self.currentUser)
-
-    }
-    
-    public func delete(item itemforDeleting: Item) {
-        var index = 0
-        for item in self.currentUser.items {
-            if item.ID == itemforDeleting.ID {
-                self.currentUser.items.remove(at: index)
-            }
-            index += 1
-        }
-
-        self.saveUser(self.currentUser)
-        self.notifyAllUIObservers()
-    }
-    
-    
-    public func getLargestItemID() -> Int {
-        var largestID = 0
-        for item in self.currentUser.items {
-            let ID = item.ID
-            if ID > largestID {
-                largestID = ID
-            }
-        }
-        return largestID
-    }
-    
-    
-    public func updateItem(withTag index: Int) {
-        
-        let item = self.currentUser.items[index]
-        if !item.isPunchedIn {
-            
-            let currentYear: Int = Calendar.current.component(.year, from: Date())
-            let currentMonth: Int = Calendar.current.component(.month, from: Date())
-            let currentDay: Int = Calendar.current.component(.day, from: Date())
-            item.punchIn(punchInDate: CustomDate(year: currentYear, month: currentMonth, day: currentDay))
-            Vibrator.vibrate(withNotificationType: .success)
-        } else {
-            self.currentUser.items[index].revokePunchIn()
-            Vibrator.vibrate(withImpactLevel: .light)
-        }
-        
-        self.saveUser(self.currentUser)
-        
-       
-    }
-    
-    public func add(punchInDates: Array<CustomDate>, to item: Item) {
-        for makingUpDate in punchInDates {
-            item.add(punchInDate: makingUpDate)
-        }
-        self.notifyAllUIObservers()
+    public func updateWidgetData() {
+        UserDefaults(suiteName: AppGroup.identifier.rawValue)!.set(self.currentUser.getOverAllProgress(), forKey: "OverAllProgress")
+        UserDefaults(suiteName: AppGroup.identifier.rawValue)!.set(self.userSetting.themeColor.uiColor, forKey: "ThemeColor")
+        UserDefaults(suiteName: AppGroup.identifier.rawValue)!.set(self.currentUser.getAvatarImage(), forKey: "AvatarImage")
+        WidgetCenter.shared.reloadAllTimelines()
     }
 
-    
-    public func getItemBy(tag index: Int) -> Item {
-        return self.currentUser.items[index]
-    }
-    
-
-    
-    
-    public func getTodayProgress() -> String {
-        var numberOfPunchedInItems: Int = 0
-        for item in self.currentUser.items {
-            if item.isPunchedIn {
-                numberOfPunchedInItems += 1
-            }
-        }
-        return "\(numberOfPunchedInItems)/\(self.currentUser.items.count)"
-    }
-    
-    // ------------------------------------ observer ------------------------------------------------------
     public func add(observer: UIObserver) {
         self.observers.append(observer)
     }
@@ -432,9 +300,7 @@ class AppEngine {
         }
         
     }
-    
-    // ------------------------------------ observer ------------------------------------------------------
-    
+
     
     
     // ------------------------------------ pop up ------------------------------------------------------
@@ -486,6 +352,8 @@ class AppEngine {
         let versionBuild = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "0"
         return "\(appVersion).\(versionBuild)"
     }
+    
+    
    
     
 }

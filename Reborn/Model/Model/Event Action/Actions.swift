@@ -22,12 +22,14 @@ class Actions {
     static var setUpTextFieldChangedAction: Selector = #selector(Actions.shared.setUpTextFieldTapped(_:))
     static var appApperenceModeChangedAction: Selector = #selector(Actions.shared.appAppearanceOptionButtonPressed(_:))
     static var goToSystemSettingAction: Selector = #selector(Actions.shared.goToSystemSettingButtonPressed(_:))
+
     
     @objc func itemPunchInButtonPressed(_ sender: UIButton!) {
-        AppEngine.shared.updateItem(withTag: sender.tag)
+        AppEngine.shared.currentUser.updateItem(withTag: sender.tag)
+        AppEngine.shared.saveUser()
         AppEngine.shared.notifyAllUIObservers()
         
-        let item = AppEngine.shared.getItemBy(tag: sender.tag)
+        let item = AppEngine.shared.currentUser.getItemBy(tag: sender.tag)
         if item.state == .completed {
             UIApplication.shared.getTopViewController()?.presentItemCompletedPopUp(for: item)
         }
@@ -62,7 +64,7 @@ class Actions {
         
         if newThemeColor != nil {
             Vibrator.vibrate(withImpactLevel: .light)
-            AppEngine.shared.userSetting.themeColor = UIColor(named: newThemeColor!.rawValue) ?? UIColor.clear
+            AppEngine.shared.userSetting.themeColor = newThemeColor ?? ThemeColor.blue
             AppEngine.shared.saveSetting()
             AppEngine.shared.notifyAllUIObservers()
         }
@@ -98,4 +100,6 @@ class Actions {
     @objc func goToSystemSettingButtonPressed(_ sender: UIButton!) {
         AppEngine.shared.goToDeviceSystemSetting()
     }
+    
+    
 }

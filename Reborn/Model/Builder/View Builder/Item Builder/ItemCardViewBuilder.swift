@@ -133,7 +133,7 @@ class ItemCardViewBuilder: ViewBuilder {
         goDetailsButton.setBackgroundImage(UIImage(named: "DetailsButton"), for: .normal)
         goDetailsButton.setTitleColor(.black, for: .normal)
         goDetailsButton.titleLabel!.font = AppEngine.shared.userSetting.smallFont
-        goDetailsButton.tintColor = AppEngine.shared.userSetting.themeColor.darkColor
+        goDetailsButton.tintColor = AppEngine.shared.userSetting.themeColor.uiColor.darkColor
         outPutView.addSubview(goDetailsButton)
         
         goDetailsButton.translatesAutoresizingMaskIntoConstraints = false
@@ -215,8 +215,8 @@ class ItemCardViewBuilder: ViewBuilder {
         let barTrackPath = UIBezierPath(roundedRect: barFrame, cornerRadius: 10)
         let barTrackLayer = CAShapeLayer()
         
-        let shapeColor = AppEngine.shared.userSetting.themeColor.cgColor
-        let trackColor = AppEngine.shared.userSetting.themeColor.withAlphaComponent(0.3).cgColor
+        let shapeColor = AppEngine.shared.userSetting.themeColor.uiColor.cgColor
+        let trackColor = AppEngine.shared.userSetting.themeColor.uiColor.withAlphaComponent(0.3).cgColor
         let progressWidth: CGFloat = 10
 
         barTrackLayer.name = "ProgressTrack"
@@ -311,14 +311,14 @@ class ItemCardViewBuilder: ViewBuilder {
         
         punchInButton.setTitle("打卡", for: .normal)
         punchInButton.setTitle("撤销", for: .selected)
-        punchInButton.setTitleColor(AppEngine.shared.userSetting.themeColor.darkColor, for: .normal)
+        punchInButton.setTitleColor(AppEngine.shared.userSetting.themeColor.uiColor.darkColor, for: .normal)
         punchInButton.setTitleColor(AppEngine.shared.userSetting.smartLabelColor, for: .selected)
        
         punchInButton.titleLabel!.font = AppEngine.shared.userSetting.smallFont
         punchInButton.layer.cornerRadius = self.setting.checkButtonCornerRadius
         punchInButton.layer.zPosition = 3
         punchInButton.setBackgroundColor(.clear, for: .normal)
-        punchInButton.setBackgroundColor(AppEngine.shared.userSetting.themeColor, for: .selected)
+        punchInButton.setBackgroundColor(AppEngine.shared.userSetting.themeColor.uiColor, for: .selected)
     
         punchInButton.isSelected = self.item.isPunchedIn ? true : false
         
@@ -327,7 +327,7 @@ class ItemCardViewBuilder: ViewBuilder {
             
         } else {
             punchInButton.layer.borderWidth = 1
-            punchInButton.layer.borderColor = AppEngine.shared.userSetting.themeColor.cgColor
+            punchInButton.layer.borderColor = AppEngine.shared.userSetting.themeColor.uiColor.cgColor
             
         }
         
@@ -344,7 +344,7 @@ class ItemCardViewBuilder: ViewBuilder {
         
         if let lastPunchIndate = self.item.punchInDates.last {
             
-            if self.item.state == .completed && lastPunchIndate != AppEngine.shared.currentDate {
+            if self.item.state == .completed && lastPunchIndate != CustomDate.current {
                 punchInButton.isSelected = true
                 punchInButton.setTitle("完成", for: .selected)
                 punchInButton.isUserInteractionEnabled = false

@@ -10,24 +10,40 @@ import UIKit
 
 
 class User: Codable {
-    //public static var shared = User(name: String, gender: Gender, avater: UIImageView, keys: Int, items: Array<Item>, vip: Bool)
+
     var name: String
     var gender: Gender
     var avatar: Data
-    var keys: Int
+    var energy: Int
     var items: Array<Item>
-    var vip: Bool
+    var isVip: Bool
     
-    //var themeColorSetting: ThemeColor? = nil
+    var energyChargingEfficiencyDays: Int {
+        if self.isVip {
+            return 1
+        } else {
+            return 1
+        }
+    }
+    
+    var inProgressItems: Array<Item> {
+        var inProgressItems: Array<Item> = []
+        for item in self.items {
+            if item.state == .inProgress {
+                inProgressItems.append(item)
+            }
+        }
+        return inProgressItems
+    }
 
     
-    public init(name: String, gender: Gender, avatar: UIImage, keys: Int, items: Array<Item>, vip: Bool) {
+    public init(name: String, gender: Gender, avatar: UIImage, energy: Int, items: Array<Item>, isVip: Bool) {
         self.name = name
         self.gender = gender
         self.avatar = avatar.pngData() ?? Data()
-        self.keys = keys
+        self.energy = energy
         self.items = items
-        self.vip = vip
+        self.isVip = isVip
     }
     
     public func getAvatarImage() -> UIImage {
@@ -61,6 +77,93 @@ class User: Codable {
         
         return overAllProgress
        
+    }
+    
+    public func add(newItem: Item) {
+        
+        self.items.append(newItem)
+
+    }
+    
+    public func delete(item itemforDeleting: Item) {
+        var index = 0
+        for item in self.items {
+            if item.ID == itemforDeleting.ID {
+                self.items.remove(at: index)
+            }
+            index += 1
+        }
+
+        
+    }
+    
+    public func updateItem(withTag index: Int) {
+        
+        let item = self.items[index]
+        if !item.isPunchedIn {
+            item.punchIn()
+            
+            Vibrator.vibrate(withNotificationType: .success)
+        } else {
+            item.revokePunchIn()
+
+            Vibrator.vibrate(withImpactLevel: .light)
+        }
+        
+        updateEnergy(by: item)
+        
+    }
+    
+    public func updateEnergy(by item: Item) {
+
+        if item.lastEnergyConsecutiveDays >= self.energyChargingEfficiencyDays && !item.todayIsAddedEnergy {
+            self.energy += 1
+            item.lastEnergyConsecutiveDays = 0
+            item.energyRedeemDates.append(CustomDate.current)
+            AppEngine.shared.userSetting.hasViewedEnergyUpdate = false
+            AppEngine.shared.saveSetting()
+        }
+    }
+    
+    public func add(punchInDates: Array<CustomDate>, to item: Item) {
+        for makingUpDate in punchInDates {
+            item.add(punchInDate: makingUpDate)
+        }
+        
+    }
+    
+    public func getItemBy(tag index: Int) -> Item {
+        return self.items[index]
+    }
+    
+    public func getLargestItemID() -> Int {
+        var largestID = 0
+        for item in self.items {
+            let ID = item.ID
+            if ID > largestID {
+                largestID = ID
+            }
+        }
+        return largestID
+    }
+    
+    public func getNumberOfTodayInProgresItems() -> Int {
+
+        let numberOfInProgressItems: Int = self.inProgressItems.count
+
+        return numberOfInProgressItems
+    }
+    
+    public func getNumberOfTodayPunchedInItems() -> Int {
+    
+        var numberOfPunchedInItems: Int = 0
+        for item in self.inProgressItems {
+            if item.isPunchedIn {
+                numberOfPunchedInItems += 1
+            }
+        }
+        
+        return numberOfPunchedInItems
     }
     
 

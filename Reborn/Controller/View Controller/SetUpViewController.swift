@@ -221,7 +221,7 @@ class SetUpViewController: UIViewController{
         }
         
         //update button background color
-        nextStepButton.backgroundColor = nextStepButton.isEnabled ? AppEngine.shared.userSetting.themeColor : SystemSetting.shared.grayColor.withAlphaComponent(0.5)
+        nextStepButton.backgroundColor = nextStepButton.isEnabled ? AppEngine.shared.userSetting.themeColor.uiColor : SystemSetting.shared.grayColor.withAlphaComponent(0.5)
         
        
         if engine.progress == engine.getPagesCount() {
