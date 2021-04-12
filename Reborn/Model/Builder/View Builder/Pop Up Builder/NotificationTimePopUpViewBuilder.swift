@@ -24,6 +24,7 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
         addTimePicker()
         
         if notificationIsEnabled {
+            addExplanationLabel()
         } else {
             addInstruction()
         }
@@ -41,12 +42,15 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
         goToSettingButton.setTitle("前往设置", for: .normal)
         goToSettingButton.setTitleColor(AppEngine.shared.userSetting.smartThemeColor, for: .normal)
         goToSettingButton.titleLabel?.font = AppEngine.shared.userSetting.smallFont
+        goToSettingButton.addTarget(Actions.shared, action: Actions.goToSystemSettingAction, for: .touchUpInside)
+       
         super.contentView.addSubview(goToSettingButton)
         
         goToSettingButton.translatesAutoresizingMaskIntoConstraints = false
         goToSettingButton.bottomAnchor.constraint(equalTo: super.contentView.bottomAnchor, constant: -super.setting.mainPadding).isActive = true
         goToSettingButton.centerXAnchor.constraint(equalTo: super.contentView.centerXAnchor).isActive = true
-        goToSettingButton.addTarget(Actions.shared, action: Actions.goToSystemSettingAction, for: .touchUpInside)
+        goToSettingButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        goToSettingButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
         
         let instructionLabel = UILabel()
         instructionLabel.lineBreakMode = .byWordWrapping
@@ -88,10 +92,10 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
         for time in notificationTime {
         
             let picker = UIDatePicker()
-            
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat =  "H m"
             let date = dateFormatter.date(from: "\(time.hour) \(time.minute)")
+
             picker.accessibilityIdentifier = "DatePicker"
             picker.backgroundColor = AppEngine.shared.userSetting.themeColor.uiColor
             picker.tintColor = AppEngine.shared.userSetting.smartLabelColor
@@ -107,29 +111,50 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
             
             
             picker.translatesAutoresizingMaskIntoConstraints = false
+            
+            super.contentView.layoutIfNeeded()
+            let leftConstant: CGFloat = ((super.contentView.frame.width) - (picker.frame.width * 2 + 80)) / 2 // Only works for two notifications, should be changed in future
+            print("???\(leftConstant)")
             if lastPicker != nil {
             
-                picker.leftAnchor.constraint(equalTo: lastPicker!.rightAnchor, constant: 40).isActive = true
+                picker.leftAnchor.constraint(equalTo: lastPicker!.rightAnchor, constant: 80).isActive = true
                 picker.centerYAnchor.constraint(equalTo: lastPicker!.centerYAnchor).isActive = true
             } else {
-                picker.leftAnchor.constraint(equalTo: super.contentView.leftAnchor, constant: 20).isActive = true
-                picker.centerYAnchor.constraint(equalTo: super.contentView.centerYAnchor).isActive = true
+                picker.leftAnchor.constraint(equalTo: super.contentView.leftAnchor, constant: leftConstant).isActive = true
+                picker.centerYAnchor.constraint(equalTo: super.contentView.centerYAnchor, constant: -20).isActive = true
             }
             
-//            let label = UILabel()
-//            label.textColor = .label
-//            label.font = AppEngine.shared.userSetting.smallFont
-//            label.text = "第\(number)次通知"
-//            label.sizeToFit()
-//            self.contentView.addSubview(label)
-//            label.translatesAutoresizingMaskIntoConstraints = false
-//            label.leftAnchor.constraint(equalTo: picker.leftAnchor).isActive = true
-//            label.bottomAnchor.constraint(equalTo: picker.topAnchor, constant: -10).isActive = true
+            let label = UILabel()
+            label.textColor = .label
+            label.font = AppEngine.shared.userSetting.smallFont
+            label.text = "第\(number)次通知"
+            label.sizeToFit()
+            self.contentView.addSubview(label)
+            label.translatesAutoresizingMaskIntoConstraints = false
+            label.leftAnchor.constraint(equalTo: picker.leftAnchor).isActive = true
+            label.bottomAnchor.constraint(equalTo: picker.topAnchor, constant: -10).isActive = true
             
             lastPicker = picker
             number += 1
         }
+
         
+    }
+ 
+    
+    private func addExplanationLabel() {
+        let explanationLabel = UILabel()
+        explanationLabel.lineBreakMode = .byWordWrapping
+        explanationLabel.numberOfLines = 2
+        explanationLabel.font = AppEngine.shared.userSetting.smallFont
+        explanationLabel.textColor = super.setting.grayColor
+        explanationLabel.text = "为了不打扰您的日常生活，2次通知是最科学的提醒，若想禁用通知，您可以在系统设置里关闭"
         
+        super.contentView.addSubview(explanationLabel)
+        explanationLabel.translatesAutoresizingMaskIntoConstraints = false
+        explanationLabel.leftAnchor.constraint(equalTo: super.contentView.leftAnchor, constant: 5).isActive = true
+        explanationLabel.rightAnchor.constraint(equalTo: super.contentView.rightAnchor, constant: 5).isActive = true
+        explanationLabel.bottomAnchor.constraint(equalTo: super.contentView.bottomAnchor).isActive = true
+        explanationLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
 }

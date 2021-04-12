@@ -40,6 +40,7 @@ class AddingItemStrategy: NewItemViewStrategy {
             isRedyToDismiss = false
             print("SHAKE")
             newItemViewController.preViewItemCard.shake()
+            newItemViewController.promptLabel.isHidden = false
         }
         
         

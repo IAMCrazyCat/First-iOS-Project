@@ -10,6 +10,22 @@ import UIKit
 import SwiftConfettiView
 extension UIView {
     
+    func asImage() -> UIImage {
+        if #available(iOS 10.0, *) {
+            let renderer = UIGraphicsImageRenderer(bounds: bounds)
+            return renderer.image { rendererContext in
+                layer.render(in: rendererContext.cgContext)
+            }
+        } else {
+            UIGraphicsBeginImageContext(self.frame.size)
+            self.layer.render(in:UIGraphicsGetCurrentContext()!)
+            let image = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            return UIImage(cgImage: image!.cgImage!)
+        }
+    }
+
+    
     func delay(_ delay:Double, closure:@escaping ()->()) {
         DispatchQueue.main.asyncAfter(
             deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
@@ -150,11 +166,13 @@ extension UIView {
                     
                     
                     if animated {
+                        let originalAlpha = itemCard.alpha
+                        itemCard.alpha /= 2
                         itemCard.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
                         self.addSubview(itemCard)
                         UIView.animate(withDuration: 0.3, delay: TimeInterval(Double(itemNumber - 1) * 0.1), options: .curveEaseOut, animations: {
                             itemCard.transform = CGAffineTransform(scaleX: 1, y: 1)
-                            itemCard.alpha = 1
+                            itemCard.alpha = originalAlpha
                         })
                        
                     } else {
@@ -207,7 +225,7 @@ extension UIView {
         }
     }
     
-   
+    
     
     
 

@@ -7,16 +7,19 @@
 
 import UIKit
 import GoogleMobileAds
+import UserNotifications
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
-        _ = AppEngine.shared
-       
-       
+        
+        if !AppEngine.shared.currentUser.isVip {
+            GADMobileAds.sharedInstance().start(completionHandler: nil)
+        }
+        
         return true
     }
 
@@ -36,21 +39,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-
-        AppEngine.shared.saveUser(AppEngine.shared.currentUser)
-        AppEngine.shared.saveSetting()
-
+        print("Terminated")
+        
+        CustomTimer.killTimer()
+        CustomTimer.saveTimer()
+        SettingStrategy().saveUserSetting()
         
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        print("Went to Background")
-        AppEngine.shared.saveUser()
+        CustomTimer.saveTimer()
+        SettingStrategy().saveUserSetting()
     }
     
+   
+    
+    
+   
 
     
 
 
 }
+
+
 

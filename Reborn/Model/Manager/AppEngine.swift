@@ -11,8 +11,9 @@ import WidgetKit
 
 protocol PopUpViewDelegate {
     func didDismissPopUpViewWithoutSave()
-    func didSaveAndDismissPopUpView(type: PopUpType)
+    func didSaveAndDismiss(_ type: PopUpType)
 }
+
 
 
 class AppEngine {
@@ -34,6 +35,7 @@ class AppEngine {
     }
 
     public var delegate: PopUpViewDelegate?
+    
 
     private init() {
         
@@ -54,12 +56,13 @@ class AppEngine {
         UITabBar.appearance().tintColor = self.userSetting.themeColor.uiColor
         UINavigationBar.appearance().tintColor = self.userSetting.smartLabelColorAndWhite
   
-       
+
     }
     
     func loadApp() {
         loadUser()
         loadSetting()
+        updateUserItems()
         scheduleNotification()
         updateWidgetData()
     }
@@ -68,6 +71,22 @@ class AppEngine {
     func changeDetactor() {
         self.checkTime()
     }
+    
+    private func checkTime() {
+        if let currentHour = TimeRange.time.hour, let currentMinute = TimeRange.time.minute, self.observerNotifierTimePoints.contains(currentHour), currentMinute == 0, !observerIsNotifiedByNotifier { // notify observers once
+            
+            self.notifyAllUIObservers()
+            self.updateUserItems()
+            observerIsNotifiedByNotifier = true
+        } else if let currentHour = TimeRange.time.hour, self.observerNotifierTimePoints.contains(currentHour + 1) { // ready to notifiy all observers one hour before hour points
+            observerIsNotifiedByNotifier = false
+        }
+    }
+    
+    func updateUserItems() {
+        self.currentUser.updateAllItems()
+    }
+    
     
     
     func appLaunchedBefore() -> Bool {
@@ -85,7 +104,15 @@ class AppEngine {
     
     func purchaseApp() {
         self.currentUser.isVip = true
-        self.saveUser(self.currentUser)
+        self.currentUser.energy += 5
+        self.userSetting.hasViewedEnergyUpdate = false
+        self.saveUser()
+        self.notifyAllUIObservers()
+    }
+    
+    func purchaseEnergy() {
+        self.currentUser.energy += 3
+        self.saveUser()
         self.notifyAllUIObservers()
     }
     
@@ -191,17 +218,32 @@ class AppEngine {
         }
             
     }
-
- 
-    private func checkTime() {
-        if let currentHour = TimeRange.time.hour, let currentMinute = TimeRange.time.minute, self.observerNotifierTimePoints.contains(currentHour), currentMinute == 0, !observerIsNotifiedByNotifier { // notify observers once
-            
-            self.notifyAllUIObservers()
-            observerIsNotifiedByNotifier = true
-        } else if let currentHour = TimeRange.time.hour, self.observerNotifierTimePoints.contains(currentHour + 1) { // ready to notifiy all observers one hour before hour points
-            observerIsNotifiedByNotifier = false
+    
+    func scheduleTemporaryNotification(title: String, body: String, after timeInterval: TimeInterval, identifier: String) {
+        let content = UNMutableNotificationContent()
+        let soundName = UNNotificationSoundName("DigitalAlarmTwice.m4a")
+        content.title = title
+        content.body = body
+        content.sound = UNNotificationSound(named: soundName)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request) { (error) in
+           if let error = error{
+               print("Error posting notification:\(error.localizedDescription)")
+           } else{
+               print("notification scheduled")
+           }
         }
     }
+    
+    func removeTemporaryNotification(withIdenifier identifier: String) {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
+    }
+    
+    
+
+ 
+   
     
     public func saveUser(_ newUser: User = AppEngine.shared.currentUser) {
 
@@ -248,13 +290,13 @@ class AppEngine {
         
     }
     
-    private func loadSetting() {
+    public func loadSetting() {
  
         if let themeColor = defaults.themeColor(forKey: "ThemeColor") {
             userSetting.themeColor = themeColor
         }
         
-        if let notificationTime = defaults.notificationTime(for: "NotificationTime") {
+        if let notificationTime = defaults.customTimes(for: "NotificationTime") {
             userSetting.notificationTime = notificationTime
         }
         if let appAppearanceMode = defaults.appAppearanceMode(for: "AppAppearanceMode") {
@@ -263,6 +305,7 @@ class AppEngine {
         
         let hasViewedEnergyUpdate = defaults.bool(forKey: "HasViewedEnergyUpdate")
         userSetting.hasViewedEnergyUpdate = hasViewedEnergyUpdate
+        
  
     }
     
@@ -278,11 +321,12 @@ class AppEngine {
     }
     
     public func notifyAllUIObservers() {
-        
+        print(observers)
         
         for observer in self.observers {
             DispatchQueue.main.async {
                 observer.updateUI()
+                print("\((observer as! UIViewController).restorationIdentifier) notified")
             }
             
         }
@@ -292,6 +336,7 @@ class AppEngine {
     public func notifyUIObservers(withIdentifier identifier: String) {
 
         for observer in self.observers {
+       
             if let viewController = observer as? UIViewController, viewController.restorationIdentifier == identifier {
                 observer.updateUI()
                 print("ViewController: \(String(describing: viewController.restorationIdentifier)) notified")
@@ -325,7 +370,7 @@ class AppEngine {
         if let popUp = viewController.popUp {
             self.storedDataFromPopUpView = viewController.getStoredData()
             viewController.dismiss(animated: true, completion: nil)
-            self.delegate?.didSaveAndDismissPopUpView(type: popUp.type)
+            self.delegate?.didSaveAndDismiss(popUp.type)
         }
         
         var index = 0
@@ -353,8 +398,25 @@ class AppEngine {
         return "\(appVersion).\(versionBuild)"
     }
     
+    public func saveTemproraryUserDefaults(value: Any?, forKey key: String) {
+        
+        if value != nil {
+            do {
+                let encodedData = try NSKeyedArchiver.archivedData(withRootObject: value!, requiringSecureCoding: false)
+                defaults.set(encodedData, forKey: key)
+                defaults.synchronize()
+            } catch {
+                print(error)
+            }
+        }
+        
+        
+       
+    }
     
-   
+    public func loadTemproraryUserDefaults(withKey key: String) -> Any? {
+        return defaults.value(forKey: key)
+    }
     
 }
 

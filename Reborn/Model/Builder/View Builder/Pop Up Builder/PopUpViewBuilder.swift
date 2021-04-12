@@ -53,6 +53,7 @@ class PopUpViewBuilder: ViewBuilder {
     
     private func addCancelButton() { // Tag 2
     
+        cancelButton.accessibilityIdentifier = "CancelButton"
         cancelButton.setBackgroundImage(#imageLiteral(resourceName: "CancelButton"), for: .normal)
         cancelButton.tag = 2
         cancelButton.addTarget(popUpViewController, action: #selector(popUpViewController.cancelButtonPressed(_:)), for: .touchUpInside)
@@ -70,9 +71,8 @@ class PopUpViewBuilder: ViewBuilder {
     private func addDoneButton() { // Tag 3
         
         doneButton.accessibilityIdentifier = "DoneButton"
-        doneButton.backgroundColor = AppEngine.shared.userSetting.themeColor.uiColor
         doneButton.setTitle("确定", for: .normal)
-        doneButton.setTitleColor(AppEngine.shared.userSetting.smartLabelColor, for: .normal)
+        doneButton.setSmartColor()
         
         doneButton.tag = setting.popUpWindowDoneButtonTag
         doneButton.addTarget(popUpViewController, action: #selector(popUpViewController.doneButtonPressed(_:)), for: .touchUpInside)

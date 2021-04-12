@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-class ItemDetailViewBuilder: ViewBuilder {
+class ItemProgressViewBuilder: ViewBuilder {
     
     let setting: SystemSetting = SystemSetting.shared
     let item: Item

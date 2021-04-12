@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class Vibrator {
+struct Vibrator {
     
     static func vibrate(withImpactLevel feedbackStyle: UIImpactFeedbackGenerator.FeedbackStyle) {
         let generator = UIImpactFeedbackGenerator(style: feedbackStyle)

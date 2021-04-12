@@ -14,12 +14,12 @@ class AddNewItemStrategy: VIPStrategyImpl {
     }
     
     override func performVIPStrategy() {
-        super.performVIPStrategy()
+
         addItem()
     }
     
     override func performNonVIPStrategy() {
-        super.performNonVIPStrategy()
+
         if AppEngine.shared.currentUser.items.count >= 2 {
             print("Only VIP user can create more than 2 items")
             newItemViewController.presentViewController(withIentifier: "PurchaseViewController")

@@ -27,8 +27,8 @@ class ItemManagementViewController: UIViewController {
         
         engine.add(observer: self)
         optionBarContentView.layoutIfNeeded()
-    
-        addBottomBannerAdIfNeeded()
+        AdStrategy().addAd(to: self)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -44,6 +44,11 @@ class ItemManagementViewController: UIViewController {
         updateUI()
         super.viewWillAppear(animated)
         //self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        self.updateUI()
     }
     
 
@@ -85,11 +90,12 @@ class ItemManagementViewController: UIViewController {
     }
     
     func updateNavigationBar() {
-        navigationController?.navigationBar.removeBorder()
-        navigationController?.navigationBar.barTintColor = engine.userSetting.themeColorAndBlackContent
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: engine.userSetting.smartLabelColorAndWhiteAndThemeColor.brightColor]
-        navigationItem.rightBarButtonItem?.tintColor = engine.userSetting.smartLabelColorAndWhite.brightColor
-        navigationItem.leftBarButtonItem?.tintColor = engine.userSetting.smartLabelColorAndWhiteAndThemeColor
+        self.setNavigationBarAppearance()
+//        navigationController?.navigationBar.removeBorder()
+//        navigationController?.navigationBar.barTintColor = engine.userSetting.themeColorAndBlackContent
+//        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: engine.userSetting.smartLabelColorAndWhiteAndThemeColor.brightColor]
+//        navigationItem.rightBarButtonItem?.tintColor = engine.userSetting.smartLabelColorAndWhite.brightColor
+//        navigationItem.leftBarButtonItem?.tintColor = engine.userSetting.smartLabelColorAndWhiteAndThemeColor
     }
     
     func updateOptionBar() {
@@ -143,7 +149,7 @@ extension ItemManagementViewController: UIObserver {
         updateNavigationBar()
         updateOptionBar()
         updateVerticalContentView()
-        removeBottomBannerAdIfVIP()
+        AdStrategy().removeAd(from: self)
     }
     
 }

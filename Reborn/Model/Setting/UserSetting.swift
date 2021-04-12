@@ -12,7 +12,7 @@ class UserSetting {
     var largeFont = UIFont.systemFont(ofSize: 30)
     var mediumFont = UIFont.systemFont(ofSize: 17)
     var smallFont = UIFont.systemFont(ofSize: 14)
-    var notificationTime: Array<CustomTime> = [CustomTime(hour: 9, minute: 0), CustomTime(hour: 21, minute: 0)]
+    var notificationTime: Array<CustomTime> = [CustomTime(hour: 9, minute: 0, second: 0), CustomTime(hour: 21, minute: 0, second: 0)]
     var appAppearanceMode: AppAppearanceMode = .followSystem
     var hasViewedEnergyUpdate: Bool = false
     var uiUserInterfaceStyle : UIUserInterfaceStyle {
@@ -36,12 +36,22 @@ class UserSetting {
     }
     let themeColorDarkAndThemeColor = UIColor { system in
 
-        switch system.userInterfaceStyle {
-        case.dark:
-            return AppEngine.shared.userSetting.themeColor.uiColor
-        default:
+        switch AppEngine.shared.userSetting.appAppearanceMode {
+        case .lightMode:
             return AppEngine.shared.userSetting.themeColor.uiColor.darkColor
+        case .darkMode:
+            return AppEngine.shared.userSetting.themeColor.uiColor
+            
+        case .followSystem:
+            switch system.userInterfaceStyle {
+            case.dark:
+                return AppEngine.shared.userSetting.themeColor.uiColor
+            default:
+                return AppEngine.shared.userSetting.themeColor.uiColor.darkColor
+            }
         }
+        
+        
         
     }
     let themeColorAndBlackContent = UIColor { system in
@@ -190,8 +200,25 @@ class UserSetting {
        
     }
     
+    let brightAndDarkThemeColor = UIColor { system in
+        
+        switch AppEngine.shared.userSetting.appAppearanceMode {
+        case .lightMode:
+            return AppEngine.shared.userSetting.themeColor.uiColor.brightColor
+        case .darkMode:
+            return AppEngine.shared.userSetting.themeColor.uiColor.darkColor.withAlphaComponent(0.4)
+        case .followSystem:
+            
+            switch system.userInterfaceStyle {
+            case .dark:
+                return AppEngine.shared.userSetting.themeColor.uiColor.darkColor.withAlphaComponent(0.4)
+            default:
+                return AppEngine.shared.userSetting.themeColor.uiColor.brightColor
+            }
+        }
+       
+    }
 
-    
     
     
     let whiteAndBlackContent: UIColor = UIColor(named: "WhiteAndBlackContent") ?? UIColor.blue
@@ -200,7 +227,7 @@ class UserSetting {
     let grayWhiteAndBlackBackground: UIColor = UIColor(named: "grayWhiteAndBlackBackground") ?? UIColor.blue
     let greenColor =  UIColor(named: "GreenColor") ?? UIColor.blue
     let redColor =  UIColor(named: "RedColor") ?? UIColor.blue
-    let blackContent = UIColor(named: "BlackContent") ?? UIColor.blue
-    let blackBackground = UIColor(named: "BlackBackGround") ?? UIColor.blue
+    let blackContent = UIColor(named: "BlackContent") ?? UIColor.black.withAlphaComponent(0.8)
+    let blackBackground = UIColor(named: "BlackBackground") ?? UIColor.black
 
 }

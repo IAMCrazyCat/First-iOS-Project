@@ -35,14 +35,7 @@ class HomeViewController: UIViewController {
     let dateFormatter = DateFormatter()
     let engine = AppEngine.shared
     var keyboardFrame: CGRect? = nil
-    
-   
 
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        engine.notifyAllUIObservers()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,16 +69,16 @@ class HomeViewController: UIViewController {
         
         dateFormatter.locale = Locale(identifier: "zh")
         dateFormatter.setLocalizedDateFormatFromTemplate("dd MMMM EEEE")
-    
+        AdStrategy().addAd(to: self)
         updateUI()
-        addBottomBannerAdIfNeeded()
-        
+
     }
     
     override func viewDidLayoutSubviews() {
   
         
     }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         // make sure that the overall progress is not coverd by custom navigation bar
@@ -103,6 +96,11 @@ class HomeViewController: UIViewController {
         
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        self.updateUI()
     }
     
    
@@ -311,7 +309,9 @@ extension HomeViewController: UIObserver {
         updateNavigationView()
         updateItemCardsView()
         updateVerticalContentViewHeight()
-        removeBottomBannerAdIfVIP()
+        AdStrategy().removeAd(from: self)
+        
+
     }
 }
 
@@ -334,7 +334,7 @@ extension HomeViewController: PopUpViewDelegate {
         
     }
     
-    func didSaveAndDismissPopUpView(type: PopUpType) {
+    func didSaveAndDismiss(_ type: PopUpType) {
         
     }
 }

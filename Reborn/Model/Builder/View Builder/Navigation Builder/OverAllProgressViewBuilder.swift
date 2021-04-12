@@ -58,6 +58,7 @@ class OverAllProgressViewBuilder: ViewBuilder {
         outPutView.accessibilityIdentifier = "OverAllProgressView"
         outPutView.frame = self.outPutViewFrame
         outPutView.backgroundColor = AppEngine.shared.userSetting.themeColorAndBlackContent
+        
         outPutView.layer.cornerRadius = setting.itemCardCornerRadius
         outPutView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         
@@ -82,12 +83,7 @@ class OverAllProgressViewBuilder: ViewBuilder {
         self.outPutView.addSubview(firstTextLabel)
         
         let vipButton = UIButton()
-        vipButton.accessibilityIdentifier = "VipButton"
-        vipButton.setTitle("VIP", for: .normal)
-        vipButton.titleLabel?.font = AppEngine.shared.userSetting.smallFont.withSize(13)
-        vipButton.setBackgroundColor(.systemRed, for: .normal)
-        vipButton.clipsToBounds = true
-        vipButton.layer.cornerRadius = 5
+        vipButton.renderVipIcon()
         vipButton.isHidden = AppEngine.shared.currentUser.isVip ? false : true
         self.outPutView.addSubview(vipButton)
         
@@ -143,7 +139,7 @@ class OverAllProgressViewBuilder: ViewBuilder {
         let circleTrackPath = UIBezierPath(arcCenter: CGPoint(x: circleView.frame.width / 2, y: circleView.frame.height / 2), radius: circleRadius, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
         let circleShapePath = UIBezierPath(arcCenter: CGPoint(x: circleView.frame.width / 2, y: circleView.frame.height / 2), radius: circleRadius, startAngle: -CGFloat.pi / 2, endAngle: CGFloat(progress) * 2 * CGFloat.pi - CGFloat.pi / 2, clockwise: true)
         let shapeColor = AppEngine.shared.userSetting.themeColorDarkAndThemeColor.cgColor
-        let trackColor = AppEngine.shared.userSetting.themeColorAndBlackContent.brightColor.cgColor
+        let trackColor = AppEngine.shared.userSetting.brightAndDarkThemeColor.cgColor
         let progressWidth: CGFloat = progressWidth
         
         self.circleTrackLayer.path = circleTrackPath.cgPath

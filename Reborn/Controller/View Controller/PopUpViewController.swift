@@ -31,6 +31,8 @@ class PopUpViewController: UIViewController {
         
     }
     
+
+    
     override func viewDidAppear(_ animated: Bool) {
         popUp?.excuteAnimation()
     }
@@ -97,9 +99,10 @@ extension PopUpViewController: UIObserver {
     func updateUI() {
  
         if popUp != nil {
-            self.popUp!.updateUI()
+            
             self.view.removeAllSubviews()
             self.view.addSubview(self.popUp!.createWindow())
+            self.popUp!.updateUI()
             
         }
         
@@ -108,6 +111,13 @@ extension PopUpViewController: UIObserver {
     }
     
     
+}
+
+extension PopUpViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
 
 extension PopUpViewController: UIPickerViewDelegate, UIPickerViewDataSource {

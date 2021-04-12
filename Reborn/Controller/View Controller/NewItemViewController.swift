@@ -45,6 +45,8 @@ class NewItemViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var verticalScrollViewContentViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet var optionButtons: [UIButton]!
+    @IBOutlet var promptTextView: UIView!
+    @IBOutlet var promptLabel: UILabel!
     
     let engine: AppEngine = AppEngine.shared
     let setting: SystemSetting = SystemSetting.shared
@@ -75,6 +77,9 @@ class NewItemViewController: UIViewController {
         itemNameTextfield.layer.cornerRadius = setting.textFieldCornerRadius
         
         
+        
+        
+        
         setButtonsAppearance()
         view.layoutIfNeeded()
         verticalScrollViewContentViewHeightConstraint.constant = secondInstructionLabel.frame.origin.y + 40
@@ -83,6 +88,11 @@ class NewItemViewController: UIViewController {
         self.strategy?.initializeUI()
         self.updateUI()
         
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        self.updateUI()
     }
     
 
@@ -136,6 +146,7 @@ class NewItemViewController: UIViewController {
         for frequency in Frequency.allCases {
             if sender.currentTitle == frequency.dataModel.title {
                 self.item.frequency = frequency
+                print(item.scheduleDates)
             }
         }
         
@@ -199,7 +210,7 @@ class NewItemViewController: UIViewController {
             self.firstInstructionLabel.text = "戒除项目需要您坚持每天打卡"
             self.secondInstructionLabel.isHidden = true
         } else {
-            self.firstInstructionLabel.text = "频率计划外为休息日，无需打卡"
+            self.firstInstructionLabel.text = "频率计划外为休息日，项目不会出现在今日打卡中"
             self.secondInstructionLabel.isHidden = false
         }
     }
@@ -308,7 +319,24 @@ class NewItemViewController: UIViewController {
         }
     }
     
-   
+    func updatePromptLabel() {
+        if selectedTypeButton != nil && selectedFrequencyButton != nil && selectedTargetDaysButton != nil && itemNameTextfield.text != "" {
+            promptLabel.isHidden = true
+        }
+    }
+    
+    func updatePromptTextView() {
+        promptTextView.layoutIfNeeded()
+        let gradient: CAGradientLayer = CAGradientLayer()
+
+        gradient.colors = [AppEngine.shared.userSetting.whiteAndBlackBackground.cgColor, AppEngine.shared.userSetting.whiteAndBlackBackground.withAlphaComponent(0).cgColor]
+        //gradient.locations = [0.5, 1.0]
+        gradient.startPoint = CGPoint(x: 0.5, y: 0.0)
+        gradient.endPoint = CGPoint(x: 0.5, y: 1)
+        gradient.frame = promptTextView.bounds
+
+        self.promptTextView.layer.insertSublayer(gradient, at: 0)
+    }
     
     func updateUI() {
         
@@ -317,6 +345,8 @@ class NewItemViewController: UIViewController {
         removeOldPreviewItemCard()
         excuteItemCardAimation()
         updatePreViewItemCard()
+        updatePromptLabel()
+        updatePromptTextView()
     }
 }
 
@@ -326,7 +356,7 @@ extension NewItemViewController: PopUpViewDelegate { // Delegate extension
         print("PopUpDidDismiss")
     }
     
-    func didSaveAndDismissPopUpView(type: PopUpType) {
+    func didSaveAndDismiss(_ type: PopUpType) {
         
         if self.lastSelectedButton?.tag == setting.customTargetDaysButtonTag {
             

@@ -16,6 +16,15 @@
 		220B728E258A288300E4BEDC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 220B728C258A288300E4BEDC /* LaunchScreen.storyboard */; };
 		220B7299258A288300E4BEDC /* RebornTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B7298258A288300E4BEDC /* RebornTests.swift */; };
 		220B72A4258A288300E4BEDC /* RebornUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B72A3258A288300E4BEDC /* RebornUITests.swift */; };
+		2219960426155F4D001038FF /* DigitalAlarm.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2219960326155F4D001038FF /* DigitalAlarm.m4a */; };
+		2219960526155F4D001038FF /* DigitalAlarm.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2219960326155F4D001038FF /* DigitalAlarm.m4a */; };
+		2219960626155F4D001038FF /* DigitalAlarm.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2219960326155F4D001038FF /* DigitalAlarm.m4a */; };
+		2219961026155F55001038FF /* Tone1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2219960F26155F55001038FF /* Tone1.m4a */; };
+		2219961126155F55001038FF /* Tone1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2219960F26155F55001038FF /* Tone1.m4a */; };
+		2219961226155F55001038FF /* Tone1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2219960F26155F55001038FF /* Tone1.m4a */; };
+		2219961C26156269001038FF /* DigitalAlarmTwice.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2219961B26156269001038FF /* DigitalAlarmTwice.m4a */; };
+		2219961D26156269001038FF /* DigitalAlarmTwice.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2219961B26156269001038FF /* DigitalAlarmTwice.m4a */; };
+		2219961E26156269001038FF /* DigitalAlarmTwice.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2219961B26156269001038FF /* DigitalAlarmTwice.m4a */; };
 		221E0B7C25A9273E00386FE1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E0B7B25A9273E00386FE1 /* User.swift */; };
 		221E0B8825A9A22800386FE1 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E0B8725A9A22800386FE1 /* Gender.swift */; };
 		221E0BA425A9D38100386FE1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E0BA325A9D38100386FE1 /* Image.swift */; };
@@ -63,11 +72,18 @@
 		22945D7D25F70E4D0065B511 /* ConfettiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22945D7C25F70E4D0065B511 /* ConfettiCell.swift */; };
 		22945D8525F70FD30065B511 /* ConfettiSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22945D8425F70FD30065B511 /* ConfettiSize.swift */; };
 		229C5EEA25F4F1FD00C94B61 /* UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229C5EE925F4F1FD00C94B61 /* UIWindow.swift */; };
+		22A1B5632614206E008CBE94 /* TomatoClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A1B5622614206E008CBE94 /* TomatoClockViewController.swift */; };
+		22A1B5692614207E008CBE94 /* BreathViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A1B5682614207E008CBE94 /* BreathViewController.swift */; };
+		22A1B56F26149BEF008CBE94 /* CustomTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A1B56E26149BEF008CBE94 /* CustomTimer.swift */; };
 		22A1E95D260315CA00AD2E7C /* EnergySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A1E95C260315CA00AD2E7C /* EnergySettingViewController.swift */; };
 		22A2EC6E25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A2EC6D25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift */; };
 		22A2EC7925C9862A00E97787 /* TimeMachineViewPresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A2EC7825C9862A00E97787 /* TimeMachineViewPresentAnimationController.swift */; };
 		22A2EC8425C9868C00E97787 /* TimeMachineViewDismissAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A2EC8325C9868C00E97787 /* TimeMachineViewDismissAnimationController.swift */; };
 		22A2EC9525CA2AAB00E97787 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A2EC9425CA2AAB00E97787 /* Array.swift */; };
+		22A584C32611F7D0001B83E1 /* SystemAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A584C22611F7D0001B83E1 /* SystemAlert.swift */; };
+		22A584C92611FBE9001B83E1 /* SettingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A584C82611FBE9001B83E1 /* SettingStrategy.swift */; };
+		22A584CF2611FF40001B83E1 /* EnergyStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A584CE2611FF40001B83E1 /* EnergyStrategy.swift */; };
+		22A584DD2612048E001B83E1 /* AdStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A584DC2612048E001B83E1 /* AdStrategy.swift */; };
 		22A597EC2598091B008E2A06 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A597EB2598091B008E2A06 /* UIButton.swift */; };
 		22A597F925986685008E2A06 /* NewItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A597F825986685008E2A06 /* NewItemViewController.swift */; };
 		22A597FE2599C0AF008E2A06 /* WeekDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A597FD2599C0AF008E2A06 /* WeekDay.swift */; };
@@ -117,7 +133,7 @@
 		22C2C75B26023CEF0007249A /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C2C75A26023CEF0007249A /* TabBarViewController.swift */; };
 		22C49A6125FF16AF00371E2B /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C49A6025FF16AF00371E2B /* CGFloat.swift */; };
 		22C4BFB825D21E7A00528A1C /* ViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4BFB725D21E7A00528A1C /* ViewBuilder.swift */; };
-		22C4BFC325D21F2400528A1C /* ItemDetailViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4BFC225D21F2400528A1C /* ItemDetailViewBuilder.swift */; };
+		22C4BFC325D21F2400528A1C /* ItemProgressViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4BFC225D21F2400528A1C /* ItemProgressViewBuilder.swift */; };
 		22C5D967258F3E4400131964 /* SetUpEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5D966258F3E4400131964 /* SetUpEngine.swift */; };
 		22C5D975258F40E800131964 /* SetUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5D974258F40E800131964 /* SetUpPage.swift */; };
 		22CBB97E25EA42C500994D33 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CBB97D25EA42C500994D33 /* ThemeColor.swift */; };
@@ -139,10 +155,12 @@
 		22D7FBB125A1E065006B1F28 /* SetUpPageViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7FBB025A1E065006B1F28 /* SetUpPageViewBuilder.swift */; };
 		22D8A05725CCE21C00A605D6 /* NewCalendarPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8A05625CCE21C00A605D6 /* NewCalendarPage.swift */; };
 		22D8A06725CD13BA00A605D6 /* CalendaSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8A06625CD13BA00A605D6 /* CalendaSet.swift */; };
+		22DBC3DC2619FAC40016C6F3 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DBC3DB2619FAC40016C6F3 /* ShareViewController.swift */; };
 		22E069A925D79250006DCE5C /* Vibrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E069A825D79250006DCE5C /* Vibrator.swift */; };
 		22E5A13625F33F76001AC3ED /* PurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E5A13525F33F76001AC3ED /* PurchaseViewController.swift */; };
 		22E9A855259ED1B40073D432 /* PikerViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E9A854259ED1B40073D432 /* PikerViewData.swift */; };
 		22E9A875259F33F50073D432 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E9A873259F33F50073D432 /* PopUpViewController.swift */; };
+		22F004892613EC240080A5DD /* SelfDisciplineToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F004882613EC240080A5DD /* SelfDisciplineToolsViewController.swift */; };
 		22FCB1B5258D86BA006A0D39 /* SetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FCB1B4258D86BA006A0D39 /* SetUpViewController.swift */; };
 		22FCB1BA258D907C006A0D39 /* SystemSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FCB1B9258D907C006A0D39 /* SystemSetting.swift */; };
 		378F133BB1E91F6A674DE7AC /* Pods_Reborn_RebornUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C4533996E1B3FEF9192966A /* Pods_Reborn_RebornUITests.framework */; };
@@ -204,6 +222,9 @@
 		220B729F258A288300E4BEDC /* RebornUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RebornUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		220B72A3258A288300E4BEDC /* RebornUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebornUITests.swift; sourceTree = "<group>"; };
 		220B72A5258A288300E4BEDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2219960326155F4D001038FF /* DigitalAlarm.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = DigitalAlarm.m4a; path = ../../../.Trash/DigitalAlarm.m4a; sourceTree = "<group>"; };
+		2219960F26155F55001038FF /* Tone1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = Tone1.m4a; path = ../../../.Trash/Tone1.m4a; sourceTree = "<group>"; };
+		2219961B26156269001038FF /* DigitalAlarmTwice.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = DigitalAlarmTwice.m4a; path = ../../../../../../Downloads/DigitalAlarmTwice.m4a; sourceTree = "<group>"; };
 		221E0B7B25A9273E00386FE1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		221E0B8725A9A22800386FE1 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		221E0BA325A9D38100386FE1 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
@@ -251,11 +272,18 @@
 		22945D7C25F70E4D0065B511 /* ConfettiCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiCell.swift; sourceTree = "<group>"; };
 		22945D8425F70FD30065B511 /* ConfettiSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiSize.swift; sourceTree = "<group>"; };
 		229C5EE925F4F1FD00C94B61 /* UIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindow.swift; sourceTree = "<group>"; };
+		22A1B5622614206E008CBE94 /* TomatoClockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TomatoClockViewController.swift; sourceTree = "<group>"; };
+		22A1B5682614207E008CBE94 /* BreathViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathViewController.swift; sourceTree = "<group>"; };
+		22A1B56E26149BEF008CBE94 /* CustomTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTimer.swift; sourceTree = "<group>"; };
 		22A1E95C260315CA00AD2E7C /* EnergySettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergySettingViewController.swift; sourceTree = "<group>"; };
 		22A2EC6D25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineTransitioningDelegate.swift; sourceTree = "<group>"; };
 		22A2EC7825C9862A00E97787 /* TimeMachineViewPresentAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineViewPresentAnimationController.swift; sourceTree = "<group>"; };
 		22A2EC8325C9868C00E97787 /* TimeMachineViewDismissAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineViewDismissAnimationController.swift; sourceTree = "<group>"; };
 		22A2EC9425CA2AAB00E97787 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		22A584C22611F7D0001B83E1 /* SystemAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemAlert.swift; sourceTree = "<group>"; };
+		22A584C82611FBE9001B83E1 /* SettingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingStrategy.swift; sourceTree = "<group>"; };
+		22A584CE2611FF40001B83E1 /* EnergyStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyStrategy.swift; sourceTree = "<group>"; };
+		22A584DC2612048E001B83E1 /* AdStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdStrategy.swift; sourceTree = "<group>"; };
 		22A597EB2598091B008E2A06 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		22A597F825986685008E2A06 /* NewItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemViewController.swift; sourceTree = "<group>"; };
 		22A597FD2599C0AF008E2A06 /* WeekDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDay.swift; sourceTree = "<group>"; };
@@ -305,7 +333,7 @@
 		22C2C75A26023CEF0007249A /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		22C49A6025FF16AF00371E2B /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
 		22C4BFB725D21E7A00528A1C /* ViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBuilder.swift; sourceTree = "<group>"; };
-		22C4BFC225D21F2400528A1C /* ItemDetailViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewBuilder.swift; sourceTree = "<group>"; };
+		22C4BFC225D21F2400528A1C /* ItemProgressViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemProgressViewBuilder.swift; sourceTree = "<group>"; };
 		22C5D966258F3E4400131964 /* SetUpEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpEngine.swift; sourceTree = "<group>"; };
 		22C5D974258F40E800131964 /* SetUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpPage.swift; sourceTree = "<group>"; };
 		22CBB97D25EA42C500994D33 /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
@@ -328,10 +356,12 @@
 		22D7FBB025A1E065006B1F28 /* SetUpPageViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpPageViewBuilder.swift; sourceTree = "<group>"; };
 		22D8A05625CCE21C00A605D6 /* NewCalendarPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCalendarPage.swift; sourceTree = "<group>"; };
 		22D8A06625CD13BA00A605D6 /* CalendaSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendaSet.swift; sourceTree = "<group>"; };
+		22DBC3DB2619FAC40016C6F3 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		22E069A825D79250006DCE5C /* Vibrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibrator.swift; sourceTree = "<group>"; };
 		22E5A13525F33F76001AC3ED /* PurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewController.swift; sourceTree = "<group>"; };
 		22E9A854259ED1B40073D432 /* PikerViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PikerViewData.swift; sourceTree = "<group>"; };
 		22E9A873259F33F50073D432 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		22F004882613EC240080A5DD /* SelfDisciplineToolsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfDisciplineToolsViewController.swift; sourceTree = "<group>"; };
 		22FCB1B4258D86BA006A0D39 /* SetUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewController.swift; sourceTree = "<group>"; };
 		22FCB1B9258D907C006A0D39 /* SystemSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSetting.swift; sourceTree = "<group>"; };
 		5AE27D89D9638F0EFD870D9C /* Pods-RebornTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RebornTests.release.xcconfig"; path = "Target Support Files/Pods-RebornTests/Pods-RebornTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -384,6 +414,7 @@
 		220B7275258A288000E4BEDC = {
 			isa = PBXGroup;
 			children = (
+				221995F426155EC7001038FF /* Sound */,
 				22AE80C8260A08CA00F0806D /* ItemProgressWigetExtension.entitlements */,
 				22AF411B2607460C00B89031 /* Configuration.storekit */,
 				22AF41202607461400B89031 /* StoreKitTestCertificate.cer */,
@@ -476,6 +507,16 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		221995F426155EC7001038FF /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				2219960F26155F55001038FF /* Tone1.m4a */,
+				2219961B26156269001038FF /* DigitalAlarmTwice.m4a */,
+				2219960326155F4D001038FF /* DigitalAlarm.m4a */,
+			);
+			path = Sound;
+			sourceTree = "<group>";
+		};
 		221E0B7A25A9273300386FE1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -538,6 +579,8 @@
 			children = (
 				224E668925C6A76600B71E8A /* DateCalculator.swift */,
 				22E069A825D79250006DCE5C /* Vibrator.swift */,
+				22A584C22611F7D0001B83E1 /* SystemAlert.swift */,
+				22A1B56E26149BEF008CBE94 /* CustomTimer.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -611,6 +654,7 @@
 				22C23A26258DCE4500D4BEB2 /* HomeViewController.swift */,
 				2293F38525DB7C18009B4753 /* ItemManagementViewController.swift */,
 				22D354B325A595B7004F5667 /* UserCenterViewController.swift */,
+				22F004882613EC240080A5DD /* SelfDisciplineToolsViewController.swift */,
 			);
 			path = "Tab Bar";
 			sourceTree = "<group>";
@@ -740,6 +784,9 @@
 				22BDC90925F260E1008E9C46 /* VIPStrategy.swift */,
 				22BDC91125F26131008E9C46 /* VIPStrategyImpl.swift */,
 				22BDC91D25F262F4008E9C46 /* AddNewItemStrategy.swift */,
+				22A584C82611FBE9001B83E1 /* SettingStrategy.swift */,
+				22A584CE2611FF40001B83E1 /* EnergyStrategy.swift */,
+				22A584DC2612048E001B83E1 /* AdStrategy.swift */,
 			);
 			path = "VIP Strategy";
 			sourceTree = "<group>";
@@ -801,6 +848,9 @@
 				220B7285258A288000E4BEDC /* WelcomeViewController.swift */,
 				22E5A13525F33F76001AC3ED /* PurchaseViewController.swift */,
 				22A1E95C260315CA00AD2E7C /* EnergySettingViewController.swift */,
+				22A1B5622614206E008CBE94 /* TomatoClockViewController.swift */,
+				22A1B5682614207E008CBE94 /* BreathViewController.swift */,
+				22DBC3DB2619FAC40016C6F3 /* ShareViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -847,7 +897,7 @@
 			isa = PBXGroup;
 			children = (
 				224A919125971E9000A896BE /* ItemCardViewBuilder.swift */,
-				22C4BFC225D21F2400528A1C /* ItemDetailViewBuilder.swift */,
+				22C4BFC225D21F2400528A1C /* ItemProgressViewBuilder.swift */,
 			);
 			path = "Item Builder";
 			sourceTree = "<group>";
@@ -1060,10 +1110,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				22AF41212607461400B89031 /* StoreKitTestCertificate.cer in Resources */,
+				2219961026155F55001038FF /* Tone1.m4a in Resources */,
 				220B728E258A288300E4BEDC /* LaunchScreen.storyboard in Resources */,
 				22AF411C2607460C00B89031 /* Configuration.storekit in Resources */,
+				2219961C26156269001038FF /* DigitalAlarmTwice.m4a in Resources */,
 				220B728B258A288300E4BEDC /* Assets.xcassets in Resources */,
 				220B7289258A288000E4BEDC /* Main.storyboard in Resources */,
+				2219960426155F4D001038FF /* DigitalAlarm.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1071,6 +1124,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2219961126155F55001038FF /* Tone1.m4a in Resources */,
+				2219960526155F4D001038FF /* DigitalAlarm.m4a in Resources */,
+				2219961D26156269001038FF /* DigitalAlarmTwice.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1078,6 +1134,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2219961226155F55001038FF /* Tone1.m4a in Resources */,
+				2219960626155F4D001038FF /* DigitalAlarm.m4a in Resources */,
+				2219961E26156269001038FF /* DigitalAlarmTwice.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1209,6 +1268,7 @@
 				22D00DEC25FE2A5900DB3F1D /* NotificationTimePopUp.swift in Sources */,
 				22BC38E525E7388600AEFE44 /* CustomTargetDaysPopUpViewBuilder.swift in Sources */,
 				22C49A6125FF16AF00371E2B /* CGFloat.swift in Sources */,
+				22A1B5692614207E008CBE94 /* BreathViewController.swift in Sources */,
 				22D00DFA25FE2F5700DB3F1D /* CustomTime.swift in Sources */,
 				224E665925C64F5F00B71E8A /* PresentStrategy.swift in Sources */,
 				228ED3E625B94D630054591F /* CalendarCell.swift in Sources */,
@@ -1245,6 +1305,7 @@
 				223072A825E3A99D00AE6ECB /* UINavigationBar.swift in Sources */,
 				22BDC90A25F260E1008E9C46 /* VIPStrategy.swift in Sources */,
 				22A2EC6E25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift in Sources */,
+				22A584DD2612048E001B83E1 /* AdStrategy.swift in Sources */,
 				2293F39C25DC00CE009B4753 /* UIImage.swift in Sources */,
 				22AE80E5260A119E00F0806D /* UserDefaults.swift in Sources */,
 				225EC25F25FA41BC00F2C69F /* CustomUserInformationPopUp.swift in Sources */,
@@ -1255,6 +1316,8 @@
 				22CE4ED925D00AE3007EBD5B /* NewItemViewStrategy.swift in Sources */,
 				22945D7D25F70E4D0065B511 /* ConfettiCell.swift in Sources */,
 				22AE80CE260A0C1900F0806D /* AppGroup.swift in Sources */,
+				22A1B5632614206E008CBE94 /* TomatoClockViewController.swift in Sources */,
+				22A584CF2611FF40001B83E1 /* EnergyStrategy.swift in Sources */,
 				22FCB1B5258D86BA006A0D39 /* SetUpViewController.swift in Sources */,
 				22945D3F25F5A70C0065B511 /* CustomTargetDaysPopUp.swift in Sources */,
 				22D6195225A0238E00EC9396 /* PopUpViewPresentationController.swift in Sources */,
@@ -1267,17 +1330,20 @@
 				220B7286258A288000E4BEDC /* WelcomeViewController.swift in Sources */,
 				22945D4425F5A7700065B511 /* CustomItemNamePopUp.swift in Sources */,
 				22D8A06725CD13BA00A605D6 /* CalendaSet.swift in Sources */,
+				22A1B56F26149BEF008CBE94 /* CustomTimer.swift in Sources */,
 				224E663525C6457900B71E8A /* TimeMachineAnimationStrategy.swift in Sources */,
 				22C5D975258F40E800131964 /* SetUpPage.swift in Sources */,
 				22945D8525F70FD30065B511 /* ConfettiSize.swift in Sources */,
 				220B7282258A288000E4BEDC /* AppDelegate.swift in Sources */,
 				22A1E95D260315CA00AD2E7C /* EnergySettingViewController.swift in Sources */,
 				225AD11625A6C8620040E356 /* UIColor.swift in Sources */,
+				22F004892613EC240080A5DD /* SelfDisciplineToolsViewController.swift in Sources */,
 				22BDC91225F26131008E9C46 /* VIPStrategyImpl.swift in Sources */,
 				22916DB525C05F0D004A3EC4 /* PresentTimeMachineSegue.swift in Sources */,
+				22DBC3DC2619FAC40016C6F3 /* ShareViewController.swift in Sources */,
 				220B7284258A288000E4BEDC /* SceneDelegate.swift in Sources */,
 				228A1CFA2600173100023CCF /* PillSegmentedControlImageFactory.swift in Sources */,
-				22C4BFC325D21F2400528A1C /* ItemDetailViewBuilder.swift in Sources */,
+				22C4BFC325D21F2400528A1C /* ItemProgressViewBuilder.swift in Sources */,
 				22D00DE425FE297D00DB3F1D /* NotificationTimePopUpViewBuilder.swift in Sources */,
 				22D00DD725FDE17500DB3F1D /* DataModel.xcdatamodeld in Sources */,
 				22945D3525F5A43D0065B511 /* PopUp.swift in Sources */,
@@ -1285,6 +1351,7 @@
 				22BC454525B04ED000516F75 /* CalendarPage.swift in Sources */,
 				22A7DC272605957D00A55CE8 /* LightAndDarkModePopUp.swift in Sources */,
 				22C23A14258DC58F00D4BEB2 /* Item.swift in Sources */,
+				22A584C92611FBE9001B83E1 /* SettingStrategy.swift in Sources */,
 				22945D5E25F5AB2B0065B511 /* PopUpImpl.swift in Sources */,
 				22945D6F25F70AAD0065B511 /* ConfettiAnimationView.swift in Sources */,
 				22B4B56325D10ACD00C0CFD7 /* UIObserver.swift in Sources */,
@@ -1309,6 +1376,7 @@
 				22945D3A25F5A6EC0065B511 /* CustomThemeColorPopUp.swift in Sources */,
 				22D7FBA625A190E9006B1F28 /* SetUpPageData.swift in Sources */,
 				22A597EC2598091B008E2A06 /* UIButton.swift in Sources */,
+				22A584C32611F7D0001B83E1 /* SystemAlert.swift in Sources */,
 				22A59811259AA31A008E2A06 /* PopUpViewBuilder.swift in Sources */,
 				22A7DC2C260595B400A55CE8 /* LightAndDarkModePopUpViewBuilder.swift in Sources */,
 				221E0B8825A9A22800386FE1 /* Gender.swift in Sources */,
@@ -1515,7 +1583,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Reborn/Reborn.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = Reborn/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1538,7 +1606,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Reborn/Reborn.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = Reborn/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1647,7 +1715,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ItemProgressWigetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = ItemProgressWiget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
@@ -1671,7 +1739,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ItemProgressWigetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = ItemProgressWiget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;

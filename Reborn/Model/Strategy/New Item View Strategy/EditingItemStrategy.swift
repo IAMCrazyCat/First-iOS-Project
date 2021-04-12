@@ -123,6 +123,7 @@ class EditingItemStrategy: NewItemViewStrategy {
             
             isRedyToDismiss = false
             newItemViewController.preViewItemCard.shake()
+            newItemViewController.promptLabel.isHidden = false
         }
         
         return isRedyToDismiss

@@ -16,6 +16,7 @@ extension UIButton {
 //            self.setBackgroundImage(nil, for: state)
 //            return
 //        }
+        //self.superview?.layoutIfNeeded()
         self.layoutIfNeeded()
         let cornerRadius = self.layer.cornerRadius
         let length = 1 + cornerRadius * 2
@@ -31,7 +32,6 @@ extension UIButton {
         // Apply the `color` to the `backgroundImage` as a tint color
         // so that the `backgroundImage` can update its color automatically when the currently active traits are changed.
         
-        print(cornerRadius)
         backgroundImage = backgroundImage.resizableImage(withCapInsets: UIEdgeInsets(top: cornerRadius, left: cornerRadius, bottom: cornerRadius, right: cornerRadius))
         if #available(iOS 13.0, *) {
             backgroundImage = backgroundImage.withTintColor(color, renderingMode: .alwaysOriginal)
@@ -76,5 +76,21 @@ extension UIButton {
         self.setBackgroundColor(AppEngine.shared.userSetting.themeColor.uiColor, for: .selected)
         self.setTitleColor(.label, for: .normal)
         self.setTitleColor(AppEngine.shared.userSetting.smartLabelColor, for: .selected)
+    }
+    
+    func renderVipIcon() {
+        self.accessibilityIdentifier = "VipButton"
+        self.setTitle("VIP", for: .normal)
+        self.titleLabel?.font = AppEngine.shared.userSetting.smallFont.withSize(13)
+        self.setBackgroundColor(.systemRed, for: .normal)
+        self.clipsToBounds = true
+        self.layer.cornerRadius = 5
+    }
+    
+    func setSmartColor() {
+        self.setBackgroundColor(AppEngine.shared.userSetting.themeColor.uiColor, for: .normal)
+        self.setBackgroundColor(AppEngine.shared.userSetting.themeColor.uiColor.withAlphaComponent(0.7), for: .highlighted)
+        self.setTitleColor(AppEngine.shared.userSetting.smartLabelColor, for: .normal)
+        
     }
 }

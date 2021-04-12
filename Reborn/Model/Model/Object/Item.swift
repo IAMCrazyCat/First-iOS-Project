@@ -110,7 +110,7 @@ class Item: Codable {
         
     }
     
-    private func updateState() {
+    public func updateState() {
         
         if self.finishedDays == self.targetDays {
             self.state = .completed
@@ -126,7 +126,7 @@ class Item: Codable {
         self.scheduleDates.removeAll()
         var cycle = self.frequency.dataModel.data ?? 1
         var difference = 0
-        while self.scheduleDates.count < self.targetDays  {
+        while self.scheduleDates.count < self.targetDays - self.finishedDays  {
 
             if cycle < (self.frequency.dataModel.data ?? 1) - 1 {
                 
@@ -134,7 +134,7 @@ class Item: Codable {
                 
             } else {
                 
-                let customDate = DateCalculator.calculateDate(withDayDifference: difference, originalDate: self.creationDate)
+                let customDate = DateCalculator.calculateDate(withDayDifference: difference, originalDate: CustomDate.current)
                 
                 self.scheduleDates.append(customDate)
                 cycle = 0

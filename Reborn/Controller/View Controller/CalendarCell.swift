@@ -59,7 +59,7 @@ class CalendarCell: UICollectionViewCell {
         case .punchedInDay:
             self.state = .disabled
             self.dayButton.setTitle(data, for: .normal)
-            self.dayButton.setTitleColor(.white, for: .normal)
+            self.dayButton.setTitleColor(AppEngine.shared.userSetting.smartLabelColor, for: .normal)
             self.contentView.backgroundColor = AppEngine.shared.userSetting.themeColor.uiColor
             self.contentView.layer.borderColor = AppEngine.shared.userSetting.themeColor.uiColor.cgColor
         case .breakDay:

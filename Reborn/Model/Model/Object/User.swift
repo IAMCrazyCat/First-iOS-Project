@@ -20,9 +20,9 @@ class User: Codable {
     
     var energyChargingEfficiencyDays: Int {
         if self.isVip {
-            return 1
+            return 7
         } else {
-            return 1
+            return 21
         }
     }
     
@@ -164,6 +164,12 @@ class User: Codable {
         }
         
         return numberOfPunchedInItems
+    }
+    
+    public func updateAllItems() {
+        for item in self.items {
+            item.updateState()
+        }
     }
     
 

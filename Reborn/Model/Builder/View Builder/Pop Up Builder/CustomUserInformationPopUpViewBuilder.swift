@@ -51,6 +51,7 @@ class CustomUserInformationPopUpViewBuilder: PopUpViewBuilder {
         textField.layer.cornerRadius = self.setting.textFieldCornerRadius
         textField.text = "\(self.userName)"
         textField.tag = self.setting.popUpWindowTextFieldTag
+        textField.returnKeyType = .done
         textField.addTarget(popUpViewController, action: #selector(popUpViewController.textFieldTapped(_:)), for: .touchDown)
         
         super.contentView.addSubview(textField)

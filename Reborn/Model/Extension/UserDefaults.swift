@@ -36,8 +36,38 @@ extension UserDefaults {
            
         }
 
-        
     }
+    
+    func set(_ value: CustomTime?, forKey key: String) {
+        
+        if value != nil {
+            
+            do {
+                let encodedData = try NSKeyedArchiver.archivedData(withRootObject: value!, requiringSecureCoding: false)
+                self.set(encodedData, forKey: key)
+                self.synchronize()
+            } catch {
+                print(error)
+            }
+            
+           
+        }
+
+    }
+    
+    func set(_ value: CustomDate?, forKey key: String) {
+        
+        if value != nil {
+            
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(value!) {
+                self.set(encoded, forKey: key)
+            }
+
+        }
+
+    }
+    
     
     func set(_ value: AppAppearanceMode?, forKey key: String) {
         if value != nil {
@@ -89,7 +119,7 @@ extension UserDefaults {
 
     
     
-    func notificationTime(for key: String) -> Array<CustomTime>? {
+    func customTimes(for key: String) -> Array<CustomTime>? {
         
         if  let decoded = self.data(forKey: key) {
             do {
@@ -99,6 +129,35 @@ extension UserDefaults {
                 print(error)
             }
             
+        }
+        
+      return nil
+        
+    }
+    
+    func customTime(for key: String) -> CustomTime? {
+        
+        if  let decoded = self.data(forKey: key) {
+            do {
+                let decodedNotificationTime = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(decoded) as? CustomTime
+                return decodedNotificationTime
+            } catch {
+                print(error)
+            }
+            
+        }
+        
+      return nil
+        
+    }
+    
+    func customDate(for key: String) -> CustomDate? {
+        
+        if let savedDate = self.object(forKey: key) as? Data {
+            let decoder = JSONDecoder()
+            if let loadedDate = try? decoder.decode(CustomDate.self, from: savedDate) {
+                return loadedDate
+            }
         }
         
       return nil

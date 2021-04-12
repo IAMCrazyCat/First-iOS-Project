@@ -22,8 +22,11 @@ class NotificationTimePopUp: PopUpImpl {
     }
     
     override func createWindow() -> UIView {
-        print("WTF")
-        print(super.frame)
+        if AppEngine.shared.isNotificationEnabled() {
+            super.size = .small
+        } else {
+            super.size = .large
+        }
         return NotificationTimePopUpViewBuilder(popUpViewController: super.popUpViewController, frame: super.frame, notificationTime: AppEngine.shared.userSetting.notificationTime, notificationIsEnabled: AppEngine.shared.isNotificationEnabled()).buildView()
         
     }
@@ -35,7 +38,7 @@ class NotificationTimePopUp: PopUpImpl {
             if let datePicker = subview as? UIDatePicker {
                 let date = datePicker.date
                 let components = Calendar.current.dateComponents([.hour, .minute], from: date)
-                notificationTime.append(CustomTime(hour: components.hour!, minute: components.minute!))
+                notificationTime.append(CustomTime(hour: components.hour!, minute: components.minute!, second: 0))
             }
         }
         
@@ -43,11 +46,7 @@ class NotificationTimePopUp: PopUpImpl {
     }
     
     override func updateUI() {
-        if AppEngine.shared.isNotificationEnabled() {
-            self.size = .small
-        } else {
-            self.size = .large
-        }
+        super.cancelButton?.removeFromSuperview()
 
     }
     

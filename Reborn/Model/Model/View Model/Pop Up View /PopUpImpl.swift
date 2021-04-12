@@ -20,7 +20,7 @@ class PopUpImpl: PopUp {
         return self.window.getSubviewBy(idenifier: "TitleLabel")
     }
     var cancelButton: UIButton? {
-        return self.contentView?.getSubviewBy(idenifier: "CancelButton") as? UIButton
+        return self.window.getSubviewBy(idenifier: "CancelButton") as? UIButton
     }
     var doneButton: UIButton? {
         return self.window.getSubviewBy(idenifier: "DoneButton") as? UIButton
@@ -38,7 +38,7 @@ class PopUpImpl: PopUp {
         self.type = type
         self.size = size
         self.window = self.createWindow()
-
+        self.updateUI()
     }
     
     
@@ -54,27 +54,23 @@ class PopUpImpl: PopUp {
         var popUpWindowSize: CGSize
         var popUpWindowPosition: CGPoint
         let widthProportion: CGFloat
-        let heightProportion: CGFloat
         
         switch self.size {
             
         case .small:
             
             widthProportion = 0.9
-            heightProportion = 0.5
-            popUpWindowSize =  CGSize(width: self.setting.screenFrame.width * widthProportion, height: self.setting.screenFrame.height * heightProportion)
+            popUpWindowSize =  CGSize(width: self.setting.screenFrame.width * widthProportion, height: 450)
             
         case .medium:
             
             widthProportion = 0.9
-            heightProportion = 0.6
-            popUpWindowSize =  CGSize(width: self.setting.screenFrame.width * widthProportion, height: self.setting.screenFrame.height * heightProportion)
+            popUpWindowSize =  CGSize(width: self.setting.screenFrame.width * widthProportion, height: 500)
             
         case .large:
         
             widthProportion = 0.9
-            heightProportion = 0.7
-            popUpWindowSize =  CGSize(width: self.setting.screenFrame.width * widthProportion, height: self.setting.screenFrame.height * heightProportion)
+            popUpWindowSize =  CGSize(width: self.setting.screenFrame.width * widthProportion, height: 550)
             
         }
         
@@ -85,7 +81,7 @@ class PopUpImpl: PopUp {
             popUpWindowSize.width = self.setting.screenFrame.width
             
         case .fadeInFromCenter, .slideInToCenter:
-            popUpWindowPosition = CGPoint(x: (self.setting.screenFrame.width - self.setting.screenFrame.width * widthProportion) / 2, y: (self.setting.screenFrame.height - self.setting.screenFrame.height * heightProportion) / 2)
+            popUpWindowPosition = CGPoint(x: (self.setting.screenFrame.width - self.setting.screenFrame.width * widthProportion) / 2, y: self.setting.screenFrame.height / 2 - popUpWindowSize.height / 2)
         }
         
         return CGRect(origin: popUpWindowPosition, size: popUpWindowSize)

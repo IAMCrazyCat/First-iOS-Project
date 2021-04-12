@@ -20,7 +20,9 @@ class UserCenterViewController: UIViewController {
     @IBOutlet weak var appVersionLabelButton: UIButton!
     @IBOutlet weak var verticalScrollView: UIScrollView!
     
+
     @IBOutlet weak var purchaseButton: UIButton!
+    @IBOutlet weak var purchaseRightButton: UIButton!
     @IBOutlet weak var notificationButton: UIButton!
     @IBOutlet weak var themeColorLabel: UILabel!
     @IBOutlet weak var energyButton: UIButton!
@@ -75,22 +77,28 @@ class UserCenterViewController: UIViewController {
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(avatarViewTapped))
         self.avaterView.addGestureRecognizer(gesture)
- 
+        AdStrategy().addAd(to: self)
         updateUI()
-        addBottomBannerAdIfNeeded()
+
     }
     
     override func viewDidLayoutSubviews() {
        
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        self.updateUI()
+    }
+    
     @objc func avatarViewTapped() {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
-        imagePicker.allowsEditing = true
-        self.present(imagePicker, animated: true, completion: nil)
-        
+        Vibrator.vibrate(withImpactLevel: .medium)
+        presentImagePicker()
+    }
+    
+    @IBAction func editAvatarButtonPressed(_ sender: UIButton) {
+        Vibrator.vibrate(withImpactLevel: .medium)
+        presentImagePicker()
     }
     
     @IBAction func purchaseButtonPressed(_ sender: UIButton) {
@@ -98,25 +106,28 @@ class UserCenterViewController: UIViewController {
 
     }
     @IBAction func notificationTimeButtonPressed(_ sender: UIButton) {
-  
+        Vibrator.vibrate(withImpactLevel: .medium)
         self.present(.notificationTimePopUp, size: .small, animation: .slideInToCenter)
     }
     
     @IBAction func themeColorButtonPressed(_ sender: UIButton) {
-        self.present(.customThemeColorPopUp, size: .small, animation: .slideInToCenter)
+        Vibrator.vibrate(withImpactLevel: .medium)
+        self.present(.customThemeColorPopUp, size: .medium, animation: .slideInToCenter)
     }
     
     
     @IBAction func lightAndDarkButtonPressed(_ sender: UIButton) {
-        self.present(.lightAndDarkModePopUp, size: .medium, animation: .slideInToCenter)
+        Vibrator.vibrate(withImpactLevel: .medium)
+        self.present(.lightAndDarkModePopUp, size: .large, animation: .slideInToCenter)
     }
     
     @IBAction func userNameButtonPressed(_ sender: UIButton!) {
-        self.present(.customUserInformationPopUp, size: .large, animation: .slideInToCenter)
+        Vibrator.vibrate(withImpactLevel: .medium)
+        self.present(.customUserInformationPopUp, size: .large, animation: .fadeInFromCenter)
     }
     
     @IBAction func energyButtonPressed(_ sender: UIButton!) {
-        self.presentViewController(withIentifier: "EnergySettingViewController")
+        self.pushViewController(withIentifier: "EnergySettingViewController")
     }
     
     @IBAction func feedBackButtonPressed(_ sender: UIButton!) {
@@ -132,10 +143,7 @@ class UserCenterViewController: UIViewController {
             present(mail, animated: true)
             
             } else {
-                
-                let alert = UIAlertController(title: "您的设备未设置邮箱", message: "您可以手动发送反馈邮件到liuzimingjay@vip.qq.com", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "知道了", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                SystemAlert.present("您的设备未设置邮箱", and: "您可以手动发送反馈邮件到liuzimingjay@vip.qq.com", from: self)
                 
         }
     }
@@ -153,19 +161,28 @@ class UserCenterViewController: UIViewController {
         }
     }
     
+    func presentImagePicker() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+        imagePicker.allowsEditing = true
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
     func setButtonsAppearance() {
         self.themeColorButton.tintColor = AppEngine.shared.userSetting.themeColor.uiColor
         for button in self.settingButtons {
             button.addTarget(self, action: #selector(self.settingButtonTouchedDown(_:)), for: .touchUpInside)
-            button.setBackgroundColor(.systemGray3, for: .selected)
+            button.setBackgroundColor(SystemSetting.shared.smartLabelGrayColor, for: .selected)
             button.layer.cornerRadius = self.setting.itemCardCornerRadius - 5
         }
     }
     
     func updateNavigationBar() {
-        navigationController?.navigationBar.removeBorder()
-        navigationController?.navigationBar.barTintColor = engine.userSetting.themeColorAndBlackContent
-        navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.foregroundColor: engine.userSetting.smartLabelColorAndWhiteAndThemeColor]
+//        navigationController?.navigationBar.removeBorder()
+//        navigationController?.navigationBar.barTintColor = engine.userSetting.themeColorAndBlackContent
+//        navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.foregroundColor: engine.userSetting.smartLabelColorAndWhiteAndThemeColor]
+        self.setNavigationBarAppearance()
     }
     
     func updateUserNameButton() {
@@ -252,7 +269,8 @@ class UserCenterViewController: UIViewController {
         }
     }
     
-    func excuteVipButtonAnimation() {
+    func purchaseDidFinish() {
+        
         self.vipButton.isHidden = false
         self.vipButton.transform = CGAffineTransform(scaleX: 0, y: 0)
         UIView.animate(withDuration: 0.8, delay: 1 , animations: {
@@ -260,11 +278,25 @@ class UserCenterViewController: UIViewController {
         }) { _ in
             UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
                 self.vipButton.transform = CGAffineTransform(scaleX: 1, y: 1)
-            })
+            })  { _ in
+                SystemAlert.present("感谢您的购买！", and: "所有内容已解锁", from: self)
+            }
         }
+        
+       
     }
     
-
+    func updatePurchaseButton() {
+        if engine.currentUser.isVip {
+            purchaseButton.setTitle("您正在使用重生-高级版", for: .normal)
+            //purchaseButton.isUserInteractionEnabled = false
+            purchaseRightButton.isHidden = true
+        } else {
+            purchaseButton.setTitle("升级成为完整版", for: .normal)
+            purchaseButton.isUserInteractionEnabled = true
+            purchaseRightButton.isHidden = false
+        }
+    }
     
 }
 
@@ -284,9 +316,10 @@ extension UserCenterViewController: UIObserver {
         updateEnergyButton()
         updateThemeColorView()
         updateAppAppearanceModeLabel()
-        removeBottomBannerAdIfVIP()
         updateVipButton()
         updateGenderImageView()
+        updatePurchaseButton()
+        AdStrategy().removeAd(from: self)
 
     }
 }
@@ -325,29 +358,35 @@ extension UserCenterViewController: PopUpViewDelegate {
     }
 
     func didDismissPopUpViewWithoutSave() {
-
+        
+        self.engine.saveSetting()
+        self.engine.notifyAllUIObservers()
+        //Vibrator.vibrate(withImpactLevel: .medium)
     }
     
-    func didSaveAndDismissPopUpView(type: PopUpType) {
-        if type == .customUserInformationPopUp {
+    func didSaveAndDismiss(_ type: PopUpType) {
+
+        switch type {
+        case .customUserInformationPopUp:
             
             let dataFromPopUp = (AppEngine.shared.storedDataFromPopUpView as? [String]) ?? ["没有名字", Gender.secret.rawValue]
-            
             self.engine.currentUser.name = dataFromPopUp.first!
             self.engine.currentUser.gender = Gender(rawValue: dataFromPopUp.last!) ?? Gender.secret
             self.engine.saveUser()
-            
-        } else if type == .notificationTimePopUp {
+        case .notificationTimePopUp:
             
             if let notificationTime = self.engine.storedDataFromPopUpView as? Array<CustomTime> {
                 self.engine.userSetting.notificationTime = notificationTime
                 self.engine.saveSetting()
                 self.engine.scheduleNotification()
             }
-
+        default:
+            break
         }
         
+        self.engine.saveSetting()
         self.engine.notifyAllUIObservers()
+        Vibrator.vibrate(withImpactLevel: .medium)
     }
 }
 
@@ -387,19 +426,19 @@ extension UserCenterViewController: UIScrollViewDelegate {
         let navigationBar = self.navigationController?.navigationBar
         if scrollView.contentOffset.y < self.scrollViewTopOffset - 10 {
             
-            UIView.animate(withDuration: 0.2, animations: {
-                navigationBar!.barTintColor = self.view.backgroundColor
-                navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: self.engine.userSetting.smartLabelColorAndWhiteAndThemeColor.withAlphaComponent(0)]
-                navigationBar!.layoutIfNeeded()
-            })
+//            UIView.animate(withDuration: 0.2, animations: {
+//                navigationBar!.barTintColor = self.view.backgroundColor
+//                navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: self.engine.userSetting.smartLabelColorAndWhiteAndThemeColor.withAlphaComponent(0)]
+//                navigationBar!.layoutIfNeeded()
+//            })
             
         } else {
             
-            UIView.animate(withDuration: 0.2, animations: {
-                navigationBar!.barTintColor = self.engine.userSetting.themeColorAndBlackContent
-                navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: self.engine.userSetting.smartLabelColorAndWhiteAndThemeColor.withAlphaComponent(1)]
-                navigationBar!.layoutIfNeeded()
-            })
+//            UIView.animate(withDuration: 0.2, animations: {
+//                navigationBar!.barTintColor = self.engine.userSetting.themeColorAndBlackContent
+//                navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: self.engine.userSetting.smartLabelColorAndWhiteAndThemeColor.withAlphaComponent(1)]
+//                navigationBar!.layoutIfNeeded()
+//            })
             
         }
     }

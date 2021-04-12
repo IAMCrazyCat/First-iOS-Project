@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import StoreKit
 class EnergySettingViewController: UIViewController {
 
     @IBOutlet weak var dynamicEnergyIconView: UIView!
@@ -16,9 +16,14 @@ class EnergySettingViewController: UIViewController {
     @IBOutlet weak var efficiencyLabel: UILabel!
     @IBOutlet weak var newEnergyPromptLabel: UILabel!
     
+    var rotationSpeed: TimeInterval = 1
     let engine: AppEngine = AppEngine.shared
+    var vipStrategy: VIPStrategy!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //title = "能量"
+        vipStrategy = EnergyStrategy(energySettingViewController: self)
         engine.add(observer: self)
   
         excuteEnergyChargingAnimation()
@@ -33,15 +38,19 @@ class EnergySettingViewController: UIViewController {
             newEnergyPromptLabel.alpha = 0
         }
         
-        
+    
         
     }
     
     override func viewDidLayoutSubviews() {
         purchaseButton.setCornerRadius()
         
-        
     }
+    
+//    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+//        super.traitCollectionDidChange(previousTraitCollection)
+//        self.updateUI()
+//    }
     
     override func viewDidAppear(_ animated: Bool) {
         
@@ -53,6 +62,31 @@ class EnergySettingViewController: UIViewController {
         engine.saveSetting()
         engine.notifyAllUIObservers()
         
+        
+    }
+    
+    @IBAction func purchaseButtonPressed(_ sender: Any) {
+        
+        purchaseEnergy()
+    }
+    
+    func purchaseEnergy() {
+        self.rotationSpeed = 0.5
+        SKPaymentQueue.default().add(self)
+        let productID = "com.crazycat.Reborn.threePointOfEnergy"
+        if SKPaymentQueue.canMakePayments() {
+            let paymentRequest = SKMutablePayment()
+            paymentRequest.productIdentifier = productID
+            SKPaymentQueue.default().add(paymentRequest)
+        } else {
+            SystemAlert.present("您暂时无法购买", and: "请检查您的账户设置", from: self)
+            print("Can't make payments")
+        }
+    }
+    
+    func PurchaseDidFinish() {
+        SystemAlert.present("感谢您的购买", and: "您获得了3点能量", from: self)
+        self.engine.purchaseEnergy()
     }
     
     func fadeInOtherViews() {
@@ -66,9 +100,8 @@ class EnergySettingViewController: UIViewController {
     
     func excuteEnergyChargingAnimation() {
         
-        
-        let animationSpeed: TimeInterval = self.engine.currentUser.isVip ? 1.5 : 4.5
-        self.rotateView(targetView: self.hollowEnergyImageView, duration: animationSpeed)
+        self.rotationSpeed = (self.vipStrategy as! EnergyStrategy).getAnimationSpeed()
+        self.rotateView(targetView: self.hollowEnergyImageView, duration: self.rotationSpeed)
       
 //        UIView.animateKeyframes(withDuration: animationSpeed, delay: 0, options: [.repeat], animations: {
 //
@@ -92,37 +125,61 @@ class EnergySettingViewController: UIViewController {
         
     }
     
-    private func rotateView(targetView: UIView, duration: Double = 1.0) {
+    private func rotateView(targetView: UIView, duration: Double) {
         UIView.animate(withDuration: duration, delay: 0.0, options: .curveLinear, animations: {
             targetView.transform = targetView.transform.rotated(by: -1/2 * CGFloat.pi)
         }) { finished in
             
-            self.rotateView(targetView: targetView, duration: duration)
+            self.rotateView(targetView: targetView, duration: self.rotationSpeed)
         }
     }
     
     func updateLabels() {
-        self.energyButton.setTitle("× \(self.engine.currentUser.energy)", for: .normal)
-        if self.engine.currentUser.isVip {
-            self.efficiencyLabel.text = "效能：连续打卡7天 获得1点能量 (高级用户)"
-        }
+        (self.vipStrategy as! EnergyStrategy).updateLabels()
     }
     
     func updateButtons() {
-       
-        self.purchaseButton.setBackgroundColor(self.engine.userSetting.themeColor.uiColor, for: .normal)
-        self.purchaseButton.setTitleColor(self.engine.userSetting.smartLabelColor, for: .normal)
+        self.purchaseButton.setSmartColor()
     }
-
+    
+    func updateNavigationBar() {
+        navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.foregroundColor: engine.userSetting.smartLabelColorAndWhiteAndThemeColor]
+    }
 }
 
 extension EnergySettingViewController: UIObserver {
     func updateUI() {
-        
+        updateNavigationBar()
         updateButtons()
         updateLabels()
         
     }
     
     
+}
+
+extension EnergySettingViewController: SKPaymentTransactionObserver {
+    
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        for transaction in transactions {
+            if transaction.transactionState == .purchased {
+                
+                print("Thanks for shopping")
+                SKPaymentQueue.default().finishTransaction(transaction)
+                self.rotationSpeed = (self.vipStrategy as! EnergyStrategy).getAnimationSpeed()
+                self.PurchaseDidFinish()
+                
+                
+            } else if transaction.transactionState == .failed {
+                print("Transaction Failed!")
+                SystemAlert.present("购买失败", and: "请重新尝试", from: self)
+                SKPaymentQueue.default().finishTransaction(transaction)
+                self.rotationSpeed = (self.vipStrategy as! EnergyStrategy).getAnimationSpeed()
+                if let error = transaction.error {
+                    let errorDescription = error.localizedDescription
+                    print(errorDescription)
+                }
+            }
+        }
+    }
 }

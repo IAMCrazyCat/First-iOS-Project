@@ -30,6 +30,8 @@ class Actions {
         AppEngine.shared.notifyAllUIObservers()
         
         let item = AppEngine.shared.currentUser.getItemBy(tag: sender.tag)
+        print(item.isPunchedIn)
+        print(item.scheduleDates)
         if item.state == .completed {
             UIApplication.shared.getTopViewController()?.presentItemCompletedPopUp(for: item)
         }
@@ -38,6 +40,7 @@ class Actions {
     }
     
     @objc func itemDetailsButtonPressed(_ sender: UIButton!) {
+        Vibrator.vibrate(withImpactLevel: .medium)
         
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
@@ -55,9 +58,11 @@ class Actions {
     }
     
     @objc func themeColorButtonPressed(_ sender: UIButton!) {
+        print("Pressed")
+        let selectedThemeColor = sender.accessibilityValue
         var newThemeColor: ThemeColor? = nil
         for themeColor in ThemeColor.allCases {
-            if themeColor.rawValue == sender.accessibilityValue {
+            if themeColor.rawValue == selectedThemeColor {
                 newThemeColor = themeColor
             }
         }
@@ -65,9 +70,28 @@ class Actions {
         if newThemeColor != nil {
             Vibrator.vibrate(withImpactLevel: .light)
             AppEngine.shared.userSetting.themeColor = newThemeColor ?? ThemeColor.blue
-            AppEngine.shared.saveSetting()
-            AppEngine.shared.notifyAllUIObservers()
+            AppEngine.shared.notifyUIObservers(withIdentifier: "PopUpViewController")
+            AppEngine.shared.notifyUIObservers(withIdentifier: "UserCenterViewController")
         }
+        
+      
+        guard
+            let rawValue = selectedThemeColor,
+            let themeColor = ThemeColor(rawValue: rawValue),
+            let themeColorView = sender.superview,
+            let contentView = themeColorView.superview,
+            let vipThemeColorPromptLabel = contentView.getSubviewBy(idenifier: "VipThemeColorPromptLabel")
+        else {
+            return
+        }
+        
+        if themeColor.isVipColor && !AppEngine.shared.currentUser.isVip {
+            vipThemeColorPromptLabel.isHidden = false
+        } else {
+            vipThemeColorPromptLabel.isHidden = true
+        }
+
+       
         
     }
     
@@ -98,6 +122,7 @@ class Actions {
     }
     
     @objc func goToSystemSettingButtonPressed(_ sender: UIButton!) {
+
         AppEngine.shared.goToDeviceSystemSetting()
     }
     

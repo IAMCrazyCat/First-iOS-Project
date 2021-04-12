@@ -12,7 +12,9 @@ import MessageUI
 
 extension UIViewController: UIViewControllerTransitioningDelegate  {
     
-
+    
+    
+    
     private func present(to presenting: PopUpViewController) {
   
         let detailsTransitioningDelegate = PopUpViewTransitioningDelegate(from: self, to: presenting)
@@ -32,7 +34,22 @@ extension UIViewController: UIViewControllerTransitioningDelegate  {
         }
         self.present(toViewController, animated: true, completion: nil)
         
-
+    }
+    
+    func pushViewController(withIentifier identifier: String) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let toViewController = storyboard.instantiateViewController(withIdentifier: identifier)
+        
+        if let purchaseViewController = toViewController as? PurchaseViewController {
+            purchaseViewController.lastViewController = self
+        }
+        
+        if let navigationController = self.navigationController {
+            navigationController.pushViewController(toViewController, animated: true)
+        }
+        
+        
+        
     }
     
     func present(_ popUpType: PopUpType, size: PopUpSize = .small, animation animationType: PopUpAnimationType = .slideInToBottom, dataStartIndex: Int = 0) {
@@ -98,34 +115,15 @@ extension UIViewController: UIViewControllerTransitioningDelegate  {
         }
     }
     
-    func addBottomBannerAdIfNeeded() {
-        if !AppEngine.shared.currentUser.isVip {
-            
-            var bannerView: GADBannerView!
-            bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-            bannerView.accessibilityIdentifier = "BottomBannerAd"
-            bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-            bannerView.rootViewController = self
-            bannerView.load(GADRequest())
-            bannerView.translatesAutoresizingMaskIntoConstraints = false
-            self.view.addSubview(bannerView)
-            
-            bannerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-            bannerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-            bannerView.widthAnchor.constraint(equalToConstant: 320).isActive = true
-            bannerView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        }
-        
-        
+    func setNavigationBarAppearance() {
+        navigationController?.navigationBar.removeBorder()
+        navigationController?.navigationBar.barTintColor = AppEngine.shared.userSetting.themeColorAndBlackContent
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: AppEngine.shared.userSetting.smartLabelColorAndWhiteAndThemeColor.brightColor]
+        navigationItem.rightBarButtonItem?.tintColor = AppEngine.shared.userSetting.smartLabelColorAndWhite.brightColor
+        navigationItem.leftBarButtonItem?.tintColor = AppEngine.shared.userSetting.smartLabelColorAndWhiteAndThemeColor
     }
     
-    func removeBottomBannerAdIfVIP() {
-        if AppEngine.shared.currentUser.isVip {
-            self.view.removeSubviewBy(idenifier: "BottomBannerAd")
-        }
-        
-    }
-    
+  
    
 }
 

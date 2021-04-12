@@ -64,7 +64,6 @@ class ItemCardViewBuilder: ViewBuilder {
         } else {
             outPutView.alpha = 1
         }
-        
         if item.finishedDays == item.targetDays {
             addConfettiTopView()
         }

@@ -15,7 +15,9 @@ class CustomThemeColorPopUpViewBuilder: PopUpViewBuilder {
     override func buildView() -> UIView {
         _ = super.buildView()
         self.setUpUI()
-        self.addThemeColorOptions()
+        self.addThemeColorView()
+        self.addThemeColorNameLabel()
+        self.addVipThemeColorPromptLabel()
         return super.outPutView
     }
     
@@ -23,8 +25,8 @@ class CustomThemeColorPopUpViewBuilder: PopUpViewBuilder {
         super.titleLabel.text = "主题颜色"
     }
     
-    private func addThemeColorOptions() {
-        
+    private func addThemeColorView() {
+
         let paddingToLeft: CGFloat = super.setting.mainPadding
         let paddingToTop: CGFloat = 0
         let buttonSize: CGFloat = 30
@@ -44,32 +46,58 @@ class CustomThemeColorPopUpViewBuilder: PopUpViewBuilder {
         var cordinateX: CGFloat = paddingToLeft
         var cordinateY: CGFloat = paddingToTop
         var buttonNumber: Int = 1
-        for themeColorName in ThemeColor.allCases {
+        var themeColors: Array<ThemeColor> {
+            var colors: Array<ThemeColor> = []
+            for themeColor in ThemeColor.allCases {
+                colors.append(themeColor)
+            }
             
-            let themeColor = UIColor(named: themeColorName.rawValue) ?? UIColor.blue
+            colors.sort {
+                !$0.isVipColor && $1.isVipColor
+            }
+            return colors
+        }
+
+        let themeColorView = UIView()
+        themeColorView.accessibilityIdentifier = "ThemeColorView"
+        themeColorView.frame = CGRect(x: 0, y: 0, width: super.contentView.frame.width, height: buttonSize)
+
+        for themeColor in themeColors  {
+            
             let colorButton = UIButton()
-            colorButton.accessibilityValue = themeColorName.rawValue
+            colorButton.accessibilityIdentifier = "ThemeColorButton"
+            colorButton.accessibilityValue = themeColor.rawValue
             colorButton.frame = CGRect(x: cordinateX, y: cordinateY, width: buttonSize, height: buttonSize)
             colorButton.setBackgroundImage(#imageLiteral(resourceName: "ThemeColorIcon"), for: .normal)
             colorButton.imageView?.contentMode = .scaleToFill
-            colorButton.tintColor = themeColor
+            colorButton.tintColor = themeColor.uiColor
             colorButton.addTarget(Actions.shared, action: Actions.themeColorChangedAction, for: .touchUpInside)
-            super.contentView.addSubview(colorButton)
+            if themeColor.isVipColor {
+
+                let vipButton = UIButton()
+                vipButton.frame = CGRect(x: colorButton.frame.maxX - 8, y: colorButton.frame.maxY - 8, width: buttonSize, height: buttonSize / 2)
+                vipButton.titleLabel?.font = AppEngine.shared.userSetting.smallFont.withSize(1)
+                vipButton.renderVipIcon()
+                vipButton.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
+                themeColorView.addSubview(vipButton)
+            }
+            themeColorView.addSubview(colorButton)
             
         
             if buttonNumber > maxNumberOfButtonsInOneRow - 1 {
                 cordinateX = paddingToLeft
                 cordinateY += buttonVerticalGap + colorButton.frame.height
+                themeColorView.frame.size.height += buttonVerticalGap + colorButton.frame.height
                 buttonNumber = 0
             } else {
                 cordinateX += buttonHorizentalGap + colorButton.frame.width
             }
             
-            if themeColor.value == AppEngine.shared.userSetting.themeColor.uiColor.value {
+            if themeColor == AppEngine.shared.userSetting.themeColor {
                 let checkButton = UIButton()
                 checkButton.setImage(#imageLiteral(resourceName: "FinishedIcon"), for: .normal)
                 checkButton.tintColor = UIColor.label
-                super.contentView.addSubview(checkButton)
+                themeColorView.addSubview(checkButton)
                 checkButton.translatesAutoresizingMaskIntoConstraints = false
                 checkButton.topAnchor.constraint(equalTo: colorButton.bottomAnchor, constant: 10).isActive = true
                 checkButton.centerXAnchor.constraint(equalTo: colorButton.centerXAnchor).isActive = true
@@ -81,9 +109,47 @@ class CustomThemeColorPopUpViewBuilder: PopUpViewBuilder {
             
     
             buttonNumber += 1
-            
-            
+
         }
         
+        super.contentView.addSubview(themeColorView)
+        super.contentView.layoutIfNeeded()
+        themeColorView.center.y = super.contentView.center.y / 2
+        
+    }
+    
+    func addThemeColorNameLabel() {
+        let themeColorNameLabel = UILabel()
+        themeColorNameLabel.font = AppEngine.shared.userSetting.mediumFont
+        themeColorNameLabel.text = AppEngine.shared.userSetting.themeColor.name
+        themeColorNameLabel.textColor = super.setting.grayColor
+        themeColorNameLabel.sizeToFit()
+        
+        super.outPutView.addSubview(themeColorNameLabel)
+        themeColorNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        themeColorNameLabel.leftAnchor.constraint(equalTo: super.contentView.leftAnchor, constant: 0).isActive = true
+        themeColorNameLabel.topAnchor.constraint(equalTo: super.titleLabel.bottomAnchor, constant: super.setting.mainGap).isActive = true
+       
+    }
+    
+    func addVipThemeColorPromptLabel() {
+        let vipThemeColorPromptLabel = UILabel()
+        vipThemeColorPromptLabel.accessibilityIdentifier = "VipThemeColorPromptLabel"
+        vipThemeColorPromptLabel.text = "您选择了vip主题颜色，您还不是vip，您可以试用颜色，但配色不会被保存"
+        vipThemeColorPromptLabel.font = AppEngine.shared.userSetting.smallFont
+        vipThemeColorPromptLabel.textColor = .red
+        vipThemeColorPromptLabel.alpha = 0.7
+        vipThemeColorPromptLabel.lineBreakMode = .byWordWrapping
+        vipThemeColorPromptLabel.numberOfLines = 2
+        vipThemeColorPromptLabel.sizeToFit()
+        vipThemeColorPromptLabel.isHidden = !AppEngine.shared.currentUser.isVip && AppEngine.shared.userSetting.themeColor.isVipColor ? false : true
+
+
+        super.contentView.addSubview(vipThemeColorPromptLabel)
+        vipThemeColorPromptLabel.translatesAutoresizingMaskIntoConstraints = false
+        vipThemeColorPromptLabel.leftAnchor.constraint(equalTo: super.contentView.leftAnchor, constant: 5).isActive = true
+        vipThemeColorPromptLabel.rightAnchor.constraint(equalTo: super.contentView.rightAnchor, constant: -5).isActive = true
+        vipThemeColorPromptLabel.centerXAnchor.constraint(equalTo: super.contentView.centerXAnchor).isActive = true
+        vipThemeColorPromptLabel.bottomAnchor.constraint(equalTo: super.contentView.bottomAnchor).isActive = true
     }
 }

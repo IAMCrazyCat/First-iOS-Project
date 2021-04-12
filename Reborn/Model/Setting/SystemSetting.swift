@@ -24,7 +24,7 @@ struct SystemSetting{
     let UIViewShadowOpacity: Float = 1.0
     
     let grayColor: UIColor = UIColor(named: "GreyColor")!
-    
+    let smartLabelGrayColor: UIColor = UIColor(named: "SmartLabelGrayColor")!
     
     var customTargetDaysButtonTag = 10
     var customItemNameButtonTag = 20
@@ -109,6 +109,8 @@ struct SystemSetting{
     let timeMachineAnimationSlowSpeed: TimeInterval = 0.8
     
     let contentToScrollViewBottomDistance: CGFloat = 20
+    
+    let selfDisciplineToolsButtonCornerRadius: CGFloat = 10
     
 }
 

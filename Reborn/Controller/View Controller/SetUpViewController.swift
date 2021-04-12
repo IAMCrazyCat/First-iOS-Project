@@ -54,6 +54,11 @@ class SetUpViewController: UIViewController{
         textField?.delegate = self
     }
     
+//    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+//        super.traitCollectionDidChange(previousTraitCollection)
+//        self.updateUI()
+//    }
+    
     override func viewDidLayoutSubviews() {
         
     }
@@ -256,7 +261,7 @@ extension SetUpViewController: PopUpViewDelegate {
         self.deSelectButton()
     }
     
-    func didSaveAndDismissPopUpView(type: PopUpType) {
+    func didSaveAndDismiss(_ type: PopUpType) {
         
 
         switch type {

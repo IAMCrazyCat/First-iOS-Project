@@ -34,6 +34,8 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var bottomCollectionView: UICollectionView!
     @IBOutlet weak var timeMachineButton: UIButton!
 
+    @IBOutlet var startDayDot: UIView!
+    @IBOutlet var todayDot: UIView!
     
     private let setting: SystemSetting = SystemSetting.shared
     private let engine: AppEngine = AppEngine.shared
@@ -50,7 +52,9 @@ class CalendarViewController: UIViewController {
     public var userDidGo: NewCalendarPage = .sameMonth
     public var punchInMakingUpDates: Array<CustomDate> = []
     private var originalKeys: Int = AppEngine.shared.currentUser.energy
-    
+    public var selectedDays: Int {
+        return punchInMakingUpDates.count
+    }
 //    lazy var currentYear = self.currentCalendarPage.year
 //    lazy var currentMonth = self.currentCalendarPage.month
 //    lazy var currentDay = self.currentCalendarPage.days
@@ -121,11 +125,18 @@ class CalendarViewController: UIViewController {
         
         view.layer.cornerRadius = setting.itemCardCornerRadius
         view.clipsToBounds = true
-      
+        
+        
         lastMonthButton.setCornerRadius()
         thisMonthButton.setCornerRadius()
         nextMonthButton.setCornerRadius()
         startMonthButton.setCornerRadius()
+        
+        todayDot.setCornerRadius()
+        startDayDot.setCornerRadius()
+        
+        todayDot.backgroundColor = .label
+        startDayDot.backgroundColor = engine.userSetting.themeColor.uiColor
     
         monthLabelOriginalCordinateX = currentMonthLabel.frame.origin.x
         updateUI()
@@ -148,6 +159,11 @@ class CalendarViewController: UIViewController {
         calendarLoaded = true
         
         
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        self.updateUI()
     }
     
     
@@ -212,7 +228,8 @@ class CalendarViewController: UIViewController {
     }
     
     @IBAction func startMonthButtonPressed(_ sender: UIButton!) {
-        self.item!.creationDate = CustomDate(year: 2018, month: 12, day: 12) // For Test
+        Vibrator.vibrate(withImpactLevel: .light)
+        //self.item!.creationDate = CustomDate(year: 2018, month: 12, day: 12) // For Test
         
         if self.currentCalendarPage.month == self.item!.creationDate.month && self.currentCalendarPage.year == self.item!.creationDate.year {
             self.userDidGo = .sameMonth
@@ -226,7 +243,7 @@ class CalendarViewController: UIViewController {
 
     @IBAction func thisMonthButtonPressed(_ sender: UIButton!) {
         
-        
+        Vibrator.vibrate(withImpactLevel: .light)
         if self.currentCalendarPage.month == CustomDate.current.month && self.currentCalendarPage.year == CustomDate.current.year {
             self.userDidGo = .sameMonth
         } else {
@@ -236,13 +253,13 @@ class CalendarViewController: UIViewController {
     }
     
     @IBAction func lastMonthButtonPressed(_ sender: Any) {
-        
+        Vibrator.vibrate(withImpactLevel: .light)
         self.userDidGo = .lastMonth
         updateUI()
     }
     
     @IBAction func nextMonthButtonPressed(_ sender: Any) {
-       
+        Vibrator.vibrate(withImpactLevel: .light)
         self.userDidGo = .nextMonth
         updateUI()
     }
@@ -335,7 +352,19 @@ class CalendarViewController: UIViewController {
         case .thisMonth, .nextMonth:
             excuteMonthLabelMoveToLeftAnimation()
         case .sameMonth:
-            Vibrator.vibrate(withImpactLevel: .light)
+            
+            if self.state == .normal {
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.currentMonthLabel.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+                }) { _ in
+                    UIView.animate(withDuration: 0.2, animations: {
+                        self.currentMonthLabel.transform = CGAffineTransform(scaleX: 1, y: 1)
+                    })
+                }
+            }
+            
+        
+        //Vibrator.vibrate(withNotificationType: .error)
         case .noWhere:
             break
         }
@@ -410,6 +439,7 @@ class CalendarViewController: UIViewController {
         
     }
     
+    
    
 
 }
@@ -464,9 +494,9 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
             
         }
         
-        self.engine.currentUser.energy = self.originalKeys - self.punchInMakingUpDates.count
         self.userDidGo = .noWhere
-        self.engine.notifyAllUIObservers()
+        self.updateUI()
+        self.engine.notifyUIObservers(withIdentifier: "TimeMachineViewController")
        
      
           

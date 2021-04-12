@@ -31,11 +31,7 @@ class LightAndDarkModePopUp: PopUpImpl {
     }
     
     override func updateUI() {
-        
-      
-        
-        print("FUCK!!!!")
-        
+        super.cancelButton?.removeFromSuperview()
     }
 }
 

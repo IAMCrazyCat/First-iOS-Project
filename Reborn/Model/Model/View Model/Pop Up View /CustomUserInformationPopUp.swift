@@ -52,7 +52,7 @@ class CustomUserInformationPopUp: PopUpImpl {
     }
     
     override func updateUI() {
-        
+        textField?.delegate = super.popUpViewController
     }
     
     override func isReadyToDismiss() -> Bool {

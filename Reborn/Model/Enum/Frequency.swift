@@ -19,7 +19,7 @@ enum Frequency: Int, CaseIterable, Codable {
     case everyTwoWeeks
     case everyThreeWeeks
     case everyMonth
-    case freedom
+    //case freedom
     
     var dataModel: CustomData {
         switch self {
@@ -33,7 +33,7 @@ enum Frequency: Int, CaseIterable, Codable {
         case .everyTwoWeeks: return CustomData(title: "每两周", data: 14)
         case .everyThreeWeeks: return CustomData(title: "每三周", data: 21)
         case .everyMonth: return CustomData(title: "每月", data: 30)
-        case .freedom: return CustomData(title: "自由打卡", data: 0)
+        //case .freedom: return CustomData(title: "自由打卡", data: 0)
         }
     }
     

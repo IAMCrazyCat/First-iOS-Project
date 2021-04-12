@@ -23,7 +23,7 @@ class TimeMachineViewController: UIViewController {
     @IBOutlet weak var middleView: UIView!
     @IBOutlet weak var bottomView: UIView!
     
-    @IBOutlet weak var goBackToThePastButton: UIButton!
+    @IBOutlet weak var goBackToThePastButton: UIButton?
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var energyButton: UIButton?
@@ -34,13 +34,27 @@ class TimeMachineViewController: UIViewController {
         animationSpeed = self.setting.timeMachineAnimationNormalSpeed
         
         titleLabel.textColor = AppEngine.shared.userSetting.themeColor.uiColor
-        goBackToThePastButton.layer.cornerRadius = self.setting.mainButtonCornerRadius
-        goBackToThePastButton.setShadow()
-        goBackToThePastButton.setBackgroundColor(AppEngine.shared.userSetting.themeColor.uiColor, for: .normal)
-        goBackToThePastButton.setBackgroundColor(.gray, for: .disabled)
-       
+        goBackToThePastButton?.layer.cornerRadius = self.setting.mainButtonCornerRadius
+        goBackToThePastButton?.setShadow()
+        goBackToThePastButton?.setBackgroundColor(AppEngine.shared.userSetting.themeColor.uiColor, for: .normal)
+        goBackToThePastButton?.setBackgroundColor(SystemSetting.shared.smartLabelGrayColor, for: .disabled)
+        goBackToThePastButton?.setTitleColor(AppEngine.shared.userSetting.smartLabelColor, for: .normal)
+        goBackToThePastButton?.isEnabled = false
         updateEnergyLabel()
     }
+    
+    override func viewDidLayoutSubviews() {
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+    }
+    
+//    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+//        super.traitCollectionDidChange(previousTraitCollection)
+//        self.updateUI()
+//    }
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
         calendarViewController?.punchInMakingUpDates.removeAll()
@@ -56,7 +70,9 @@ class TimeMachineViewController: UIViewController {
                   let item = self.calendarViewController?.item else { return }
             
             self.engine.currentUser.add(punchInDates: makingUpDates, to: item)
+            self.engine.currentUser.energy -= self.calendarViewController?.selectedDays ?? 0
             self.calendarViewController?.punchInMakingUpDates.removeAll()
+            
             self.engine.saveUser()
             self.engine.notifyAllUIObservers()
         }
@@ -82,21 +98,40 @@ class TimeMachineViewController: UIViewController {
     }
     
     func updateEnergyLabel() {
-       
-        self.energyButton?.setTitle(" × \(self.engine.currentUser.energy)", for: .normal)
-    }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let calendarViewController = self.calendarViewController {
+            
+            if calendarViewController.selectedDays <= 0 {
+                self.energyButton?.setTitle(" × \(self.engine.currentUser.energy)", for: .normal)
+   
+            } else {
+                
+                self.energyButton?.setTitle(" × \(self.engine.currentUser.energy) - \(calendarViewController.selectedDays)", for: .normal)
+                self.energyButton?.setTitleColor(self.engine.currentUser.energy >= calendarViewController.selectedDays ? .label : .red, for: .normal)
+            }
+            
+        }
         
     }
+    
+    func updateGoBackToThePastButton() {
+        if let calendarViewController = self.calendarViewController {
+            
+            goBackToThePastButton?.isEnabled = calendarViewController.selectedDays > 0 && self.engine.currentUser.energy >= calendarViewController.selectedDays ? true : false
+            goBackToThePastButton?.setTitle(calendarViewController.selectedDays > 0 ? "能量不足" : "回到过去", for: .disabled)
+        }
+        
+    }
+    
   
     
 }
 
 extension TimeMachineViewController: UIObserver {
     func updateUI() {
-        print("YES")
+        updateGoBackToThePastButton()
         updateEnergyLabel()
+    
         self.strategy?.performStrategy()
         self.strategy = nil
     }

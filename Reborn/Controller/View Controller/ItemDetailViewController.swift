@@ -31,7 +31,7 @@ class ItemDetailViewController: UIViewController {
     
     let setting: SystemSetting = SystemSetting.shared
     let engine: AppEngine = AppEngine.shared
-    var item: Item? = nil
+    var item: Item?
     var embeddedCalendarViewController: CalendarViewController? = nil
     var lastViewController: UIViewController? = nil
     var dayCellFrame: CGRect? {
@@ -74,11 +74,21 @@ class ItemDetailViewController: UIViewController {
         self.verticalScrollView.layoutIfNeeded()
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        self.updateUI()
+    }
+    
+
+    
     @IBAction func bottomEidtItemButtonPressed(_ sender: Any) {
         self.performSegue(withIdentifier: "GoToEditItemView", sender: nil)
     }
     
-
+    @IBAction func bottomShareButtonPressed(_ sender: UIButton) {
+        Vibrator.vibrate(withImpactLevel: .medium)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         
@@ -93,6 +103,9 @@ class ItemDetailViewController: UIViewController {
             destinationViewController.item = self.item!
             destinationViewController.lastViewController = self
             destinationViewController.strategy = EditingItemStrategy(newItemViewController: destinationViewController)
+            
+        } else if segue.identifier == "GoToShareView", let destinationViewController = segue.destination as? ShareViewController {
+            destinationViewController.item = self.item!
         }
         
         
@@ -129,7 +142,7 @@ class ItemDetailViewController: UIViewController {
         updateTodayLabel()
         updateProgressView()
         updateStartDateLabel()
-        print("ItemDetailsView Data Updated")
+
         
     }
     
@@ -160,7 +173,7 @@ class ItemDetailViewController: UIViewController {
     func updateProgressView() {
         if item != nil {
             self.verticalContentView.layoutIfNeeded()
-            let builder = ItemDetailViewBuilder(item: item!, frame: self.progressView.bounds)
+            let builder = ItemProgressViewBuilder(item: item!, frame: self.progressView.bounds)
             let detailsView = builder.buildView()
             self.progressView.addSubview(detailsView)
             
@@ -180,7 +193,8 @@ class ItemDetailViewController: UIViewController {
             
         }
     }
-
+    
+   
   
 }
 
