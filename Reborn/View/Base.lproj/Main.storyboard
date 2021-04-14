@@ -288,7 +288,7 @@ Cg
             <objects>
                 <viewController id="yhk-VJ-4nb" customClass="NewItemViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5tU-dT-BVc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eis-9Y-9bk" userLabel="Horizental Scroll View">
@@ -797,7 +797,7 @@ Cg
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hC6-oy-S3E">
                                         <rect key="frame" x="15" y="70.5" width="384" height="49.5"/>
-                                        <color key="backgroundColor" name="ThemeColor"/>
+                                        <color key="backgroundColor" systemColor="systemGray3Color"/>
                                         <state key="normal" title="回到过去">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -1191,9 +1191,9 @@ Cg
         <!--进行中-->
         <scene sceneID="Faw-1M-obz">
             <objects>
-                <viewController id="5eW-DY-fpx" customClass="HomeViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5eW-DY-fpx" customClass="HomeViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uAb-zv-xSl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDY-Xd-Ccc">
@@ -1417,9 +1417,9 @@ Cg
         <!--自律管理-->
         <scene sceneID="Kgu-Mx-dOV">
             <objects>
-                <viewController id="7qU-RC-e4u" customClass="ItemManagementViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="ItemManagementViewController" storyboardIdentifier="ItemManagementViewController" id="7qU-RC-e4u" customClass="ItemManagementViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XJ8-ec-9K0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lt5-gF-RX7" userLabel="Option Bar">
@@ -1501,7 +1501,7 @@ Cg
             <objects>
                 <viewController restorationIdentifier="SelfDisciplineToolsViewController" storyboardIdentifier="SelfDisciplineToolsViewController" id="bem-id-UUc" customClass="SelfDisciplineToolsViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1LM-le-iSu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HxE-xH-ay6">
@@ -1723,7 +1723,7 @@ Cg
             <objects>
                 <viewController storyboardIdentifier="UserCenterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xEm-ah-agE" customClass="UserCenterViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Trs-NW-7D2">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gY-P1-gbC">
@@ -3496,7 +3496,7 @@ Cg
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Wo-jG-FNH">
                                         <rect key="frame" x="15" y="13.5" width="384" height="46.5"/>
-                                        <color key="backgroundColor" name="ThemeColor"/>
+                                        <color key="backgroundColor" systemColor="systemGray3Color"/>
                                         <state key="normal" title="保存到相册">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -3755,7 +3755,7 @@ Cg
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bkT-rw-0eZ"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                         <constraints>
                             <constraint firstItem="u4N-Gy-g5i" firstAttribute="top" secondItem="bkT-rw-0eZ" secondAttribute="top" id="0Jr-yj-6cR"/>
                             <constraint firstItem="1Wo-jG-FNH" firstAttribute="height" secondItem="e7m-LF-eQ6" secondAttribute="height" multiplier="0.055" id="0S7-PT-M1K"/>
@@ -3785,6 +3785,7 @@ Cg
                         <outlet property="previewMiddleContentView" destination="Dsj-nQ-Wth" id="5AQ-W7-dJY"/>
                         <outlet property="punchInTextLabel" destination="doh-fb-7dN" id="wml-3V-YR6"/>
                         <outlet property="saveToLibraryButton" destination="1Wo-jG-FNH" id="5cE-ad-aL9"/>
+                        <outlet property="sharePosterText" destination="Qd3-lH-gFA" id="AHe-sH-Oj8"/>
                         <outlet property="topLineView" destination="QCb-6e-8Tc" id="scH-Gl-XWh"/>
                         <outlet property="userNameLabel" destination="V5B-yH-Aki" id="RIo-jF-vvV"/>
                         <outlet property="vipButton" destination="r3E-2r-u9S" id="xQj-7A-y7E"/>
@@ -3947,7 +3948,7 @@ Cg
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="HdV-Uf-p4p"/>
+        <segue reference="LKv-l4-eYv"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
@@ -4051,7 +4052,7 @@ Cg
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="YellowThemeColor">
-            <color red="0.93900001049041748" green="0.8880000114440918" blue="0.34099999070167542" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.83099997043609619" green="0.77600002288818359" blue="0.164000004529953" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

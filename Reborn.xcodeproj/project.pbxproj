@@ -109,6 +109,7 @@
 		22AF41212607461400B89031 /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 22AF41202607461400B89031 /* StoreKitTestCertificate.cer */; };
 		22B1E8E425DCE3A5003ABF6C /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B1E8E325DCE3A5003ABF6C /* Actions.swift */; };
 		22B1E8E925DD47F3003ABF6C /* ItemSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B1E8E825DD47F3003ABF6C /* ItemSet.swift */; };
+		22B347022626B8D90087350C /* SharePosterTextData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B347012626B8D90087350C /* SharePosterTextData.swift */; };
 		22B4B56325D10ACD00C0CFD7 /* UIObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B4B56225D10ACD00C0CFD7 /* UIObserver.swift */; };
 		22BABF2425C3ECBA00168AE1 /* TimeMachineCalendarPageViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BABF2325C3ECBA00168AE1 /* TimeMachineCalendarPageViewBuilder.swift */; };
 		22BABF2925C42ABB00168AE1 /* CGAffineTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BABF2825C42ABB00168AE1 /* CGAffineTransform.swift */; };
@@ -309,6 +310,7 @@
 		22AF41202607461400B89031 /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		22B1E8E325DCE3A5003ABF6C /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
 		22B1E8E825DD47F3003ABF6C /* ItemSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSet.swift; sourceTree = "<group>"; };
+		22B347012626B8D90087350C /* SharePosterTextData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePosterTextData.swift; sourceTree = "<group>"; };
 		22B4B56225D10ACD00C0CFD7 /* UIObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIObserver.swift; sourceTree = "<group>"; };
 		22BABF2325C3ECBA00168AE1 /* TimeMachineCalendarPageViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineCalendarPageViewBuilder.swift; sourceTree = "<group>"; };
 		22BABF2825C42ABB00168AE1 /* CGAffineTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGAffineTransform.swift; sourceTree = "<group>"; };
@@ -758,6 +760,7 @@
 				22E9A854259ED1B40073D432 /* PikerViewData.swift */,
 				22D7FBA525A190E9006B1F28 /* SetUpPageData.swift */,
 				22BC4C6725D6A3DB009E905C /* WelcomeTextData.swift */,
+				22B347012626B8D90087350C /* SharePosterTextData.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -1365,6 +1368,7 @@
 				221E0B7C25A9273E00386FE1 /* User.swift in Sources */,
 				22FCB1BA258D907C006A0D39 /* SystemSetting.swift in Sources */,
 				22C23A1E258DC5FB00D4BEB2 /* PersistingItem.swift in Sources */,
+				22B347022626B8D90087350C /* SharePosterTextData.swift in Sources */,
 				224E664725C6468D00B71E8A /* ForwardForManyStrategy.swift in Sources */,
 				22A2EC7925C9862A00E97787 /* TimeMachineViewPresentAnimationController.swift in Sources */,
 				22B1E8E925DD47F3003ABF6C /* ItemSet.swift in Sources */,
@@ -1583,7 +1587,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Reborn/Reborn.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = Reborn/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1606,7 +1610,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Reborn/Reborn.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = Reborn/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1715,7 +1719,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ItemProgressWigetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = ItemProgressWiget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
@@ -1728,7 +1732,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1739,7 +1743,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ItemProgressWigetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = ItemProgressWiget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
@@ -1752,7 +1756,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

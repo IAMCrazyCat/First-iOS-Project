@@ -27,7 +27,8 @@ class Actions {
     @objc func itemPunchInButtonPressed(_ sender: UIButton!) {
         AppEngine.shared.currentUser.updateItem(withTag: sender.tag)
         AppEngine.shared.saveUser()
-        AppEngine.shared.notifyAllUIObservers()
+        AppEngine.shared.notifyUIObservers(withIdentifier: "HomeViewController")
+        AppEngine.shared.notifyUIObservers(withIdentifier: "ItemManagementViewController")
         
         let item = AppEngine.shared.currentUser.getItemBy(tag: sender.tag)
         print(item.isPunchedIn)

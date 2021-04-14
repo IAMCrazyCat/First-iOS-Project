@@ -17,10 +17,13 @@ class EditingItemStrategy: NewItemViewStrategy {
     
     func initializeUI() {
         
+        newItemViewController.quittingTypeButton.alpha = 0.5
+        newItemViewController.persistingTypeButton.alpha = 0.5
+        newItemViewController.quittingTypeButton.isUserInteractionEnabled = false
+        newItemViewController.persistingTypeButton.isUserInteractionEnabled = false
+        
         newItemViewController.doneButton.setTitle("保存", for: .normal)
         newItemViewController.titleLabel.text = "编辑项目"
-     
-            
         newItemViewController.itemNameTextfield.text = newItemViewController.item.name
             
         if newItemViewController.item.type == .persisting {

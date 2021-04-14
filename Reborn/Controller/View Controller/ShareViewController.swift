@@ -30,6 +30,7 @@ class ShareViewController: UIViewController {
     @IBOutlet var itemFinishedDaysLabel: UILabel!
     @IBOutlet var itemTargetDaysLabel: UILabel!
     @IBOutlet var vipButton: UIButton!
+    @IBOutlet var sharePosterText: UILabel!
     
     var item: Item!
     
@@ -122,6 +123,10 @@ class ShareViewController: UIViewController {
         itemTargetDaysLabel.text = "\(item.targetDays)"
     }
     
+    func updateSharePosterText() {
+        sharePosterText.text = "\"\(SharePosterTextData.randomText)\""
+    }
+    
     
 
 }
@@ -131,5 +136,6 @@ extension ShareViewController: UIObserver {
         updateSaveToLibraryButton()
         updatePreview()
         updateLabels()
+        updateSharePosterText()
     }
 }

@@ -34,12 +34,7 @@ class TimeMachineViewController: UIViewController {
         animationSpeed = self.setting.timeMachineAnimationNormalSpeed
         
         titleLabel.textColor = AppEngine.shared.userSetting.themeColor.uiColor
-        goBackToThePastButton?.layer.cornerRadius = self.setting.mainButtonCornerRadius
-        goBackToThePastButton?.setShadow()
-        goBackToThePastButton?.setBackgroundColor(AppEngine.shared.userSetting.themeColor.uiColor, for: .normal)
-        goBackToThePastButton?.setBackgroundColor(SystemSetting.shared.smartLabelGrayColor, for: .disabled)
-        goBackToThePastButton?.setTitleColor(AppEngine.shared.userSetting.smartLabelColor, for: .normal)
-        goBackToThePastButton?.isEnabled = false
+       
         updateEnergyLabel()
     }
     
@@ -115,6 +110,12 @@ class TimeMachineViewController: UIViewController {
     }
     
     func updateGoBackToThePastButton() {
+        goBackToThePastButton?.setCornerRadius()
+        goBackToThePastButton?.setShadow()
+        goBackToThePastButton?.setSmartColor()
+        goBackToThePastButton?.setBackgroundColor(.systemGray3, for: .disabled)
+        goBackToThePastButton?.isEnabled = false
+        
         if let calendarViewController = self.calendarViewController {
             
             goBackToThePastButton?.isEnabled = calendarViewController.selectedDays > 0 && self.engine.currentUser.energy >= calendarViewController.selectedDays ? true : false
@@ -122,6 +123,7 @@ class TimeMachineViewController: UIViewController {
         }
         
     }
+    
     
   
     
@@ -131,7 +133,7 @@ extension TimeMachineViewController: UIObserver {
     func updateUI() {
         updateGoBackToThePastButton()
         updateEnergyLabel()
-    
+        updateGoBackToThePastButton()
         self.strategy?.performStrategy()
         self.strategy = nil
     }

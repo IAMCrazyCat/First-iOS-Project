@@ -48,6 +48,8 @@ class NewItemViewController: UIViewController {
     @IBOutlet var promptTextView: UIView!
     @IBOutlet var promptLabel: UILabel!
     
+    var originalItemForRecovery: Item?
+    
     let engine: AppEngine = AppEngine.shared
     let setting: SystemSetting = SystemSetting.shared
     var frequency: CustomData? = nil
@@ -160,7 +162,16 @@ class NewItemViewController: UIViewController {
 
     
     @IBAction func cancelButtonPressed(_ sender: UIButton) {
+        
+        if let originalItem = self.originalItemForRecovery {
+            self.item.name = originalItem.name
+            self.item.targetDays = originalItem.targetDays
+            self.item.frequency = originalItem.frequency
+            self.item.type = originalItem.type
+        }
+        
         self.dismiss(animated: true, completion: nil)
+       
     }
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
