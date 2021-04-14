@@ -66,12 +66,12 @@ class EditingItemStrategy: NewItemViewStrategy {
         case "每周":
             newItemViewController.everyWeekFreqencyButton.isSelected = true
             newItemViewController.selectedFrequencyButton = newItemViewController.everyWeekFreqencyButton
+        case "每两周":
+            newItemViewController.everyTwoWeeksFrequencyButton.isSelected = true
+            newItemViewController.selectedFrequencyButton = newItemViewController.everyTwoWeeksFrequencyButton
         case "每月":
             newItemViewController.everyMonthFrequencyButton.isSelected = true
             newItemViewController.selectedFrequencyButton = newItemViewController.everyMonthFrequencyButton
-        case "自由打卡":
-            newItemViewController.freedomFrequencyButton.isSelected = true
-            newItemViewController.selectedFrequencyButton = newItemViewController.freedomFrequencyButton
         default:
             newItemViewController.customFrequencyButton.isSelected = true
             newItemViewController.selectedFrequencyButton = newItemViewController.customFrequencyButton

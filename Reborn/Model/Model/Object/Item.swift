@@ -12,6 +12,7 @@ class Item: Codable {
     var name: String
     var targetDays: Int {
         didSet {
+            
             self.updateScheduleDates()
         }
     }
@@ -30,7 +31,7 @@ class Item: Codable {
         }
     }
     var isPunchedIn: Bool{
-        print(CustomDate.current.day)
+
         if punchInDates.contains(CustomDate.current) {
             return true
         } else {
@@ -51,12 +52,18 @@ class Item: Codable {
         return self.getConsecutiveDaysArray().max() ?? 0
     }
     
-    var currentConsecutiveDays: Int {
+    var currentEnergyConsecutiveDays: Int {
 
         return self.getConsecutiveDaysArray().last ?? 0
     }
     
-    var lastEnergyConsecutiveDays: Int = 0
+    var lastEnergyConsecutiveDays: Int = 0 {
+        didSet {
+            if lastEnergyConsecutiveDays < 0 {
+                lastEnergyConsecutiveDays = 0
+            }
+        }
+    }
     var energyRedeemDates: Array<CustomDate> = []
     var todayIsAddedEnergy: Bool {
         if energyRedeemDates.contains(CustomDate.current) {
@@ -122,37 +129,44 @@ class Item: Codable {
     }
     
     private func updateScheduleDates() {
-   
-        self.scheduleDates.removeAll()
-        var cycle = self.frequency.dataModel.data ?? 1
-        var difference = 0
-        while self.scheduleDates.count < self.targetDays - self.finishedDays  {
+        DispatchQueue.main.async {
+            
+            self.scheduleDates.removeAll()
+            var cycle = self.frequency.dataModel.data ?? 1
+            var difference = 0
+            
+            while self.scheduleDates.count < self.targetDays - self.finishedDays + (self.isPunchedIn ? 1 : 0)  {
 
-            if cycle < (self.frequency.dataModel.data ?? 1) - 1 {
-                
-                cycle += 1
-                
-            } else {
-                
-                let customDate = DateCalculator.calculateDate(withDayDifference: difference, originalDate: CustomDate.current)
-                
-                self.scheduleDates.append(customDate)
-                cycle = 0
+                if cycle < (self.frequency.dataModel.data ?? 1) - 1 {
+                    
+                    cycle += 1
+                    
+                } else {
+                    
+                    let customDate = DateCalculator.calculateDate(withDayDifference: difference, originalDate: CustomDate.current)
+                    
+                    self.scheduleDates.append(customDate)
+                    cycle = 0
+                }
+                difference += 1
             }
-            difference += 1
+            
+            self.updateState()
+            self.sortDateArray()
         }
-        
-        updateState()
-        sortDateArray()
     }
     
     private func sortDateArray() {
-        self.punchInDates.sort {
-            DateCalculator.calculateDayDifferenceBetween($0, and: $1) > 0
+        
+        DispatchQueue.main.async {
+            self.punchInDates.sort {
+                DateCalculator.calculateDayDifferenceBetween($0, and: $1) > 0
+            }
+            self.scheduleDates.sort {
+                DateCalculator.calculateDayDifferenceBetween($0, and: $1) > 0
+            }
         }
-        self.scheduleDates.sort {
-            DateCalculator.calculateDayDifferenceBetween($0, and: $1) > 0
-        }
+        
         print("PunchIn Dates Sorted")
         //print(self.punchInDates)
         
@@ -189,7 +203,6 @@ class Item: Codable {
             let date2 = self.punchInDates[index + 1]
             
             if DateCalculator.calculateDayDifferenceBetween(date1, and: date2) == 1 {
-                print(consecutiveDays)
                 consecutiveDays += 1
             } else {
                 consecutiveDaysArray.append(consecutiveDays)

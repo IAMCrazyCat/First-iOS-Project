@@ -34,8 +34,8 @@ class NewItemViewController: UIViewController {
     @IBOutlet weak var everydayFrequencyButton: UIButton!
     @IBOutlet weak var everyTwoDaysFreqencyButton: UIButton!
     @IBOutlet weak var everyWeekFreqencyButton: UIButton!
+    @IBOutlet weak var everyTwoWeeksFrequencyButton: UIButton!
     @IBOutlet weak var everyMonthFrequencyButton: UIButton!
-    @IBOutlet weak var freedomFrequencyButton: UIButton!
     @IBOutlet weak var customFrequencyButton: UIButton!
     
     @IBOutlet weak var firstInstructionLabel: UILabel!
@@ -148,7 +148,6 @@ class NewItemViewController: UIViewController {
         for frequency in Frequency.allCases {
             if sender.currentTitle == frequency.dataModel.title {
                 self.item.frequency = frequency
-                print(item.scheduleDates)
             }
         }
         
@@ -167,6 +166,7 @@ class NewItemViewController: UIViewController {
             self.item.name = originalItem.name
             self.item.targetDays = originalItem.targetDays
             self.item.frequency = originalItem.frequency
+            self.item.scheduleDates = originalItem.scheduleDates
             self.item.type = originalItem.type
         }
         
@@ -235,15 +235,15 @@ class NewItemViewController: UIViewController {
   
                 self.everyTwoDaysFreqencyButton.alpha = 0
                 self.everyWeekFreqencyButton.alpha = 0
+                self.everyTwoWeeksFrequencyButton.alpha = 0
                 self.everyMonthFrequencyButton.alpha = 0
-                self.freedomFrequencyButton.alpha = 0
                 self.customFrequencyButton.alpha = 0
                 
             }) { _ in
                 self.everyTwoDaysFreqencyButton.isHidden = true
                 self.everyWeekFreqencyButton.isHidden = true
+                self.everyTwoWeeksFrequencyButton.isHidden = true
                 self.everyMonthFrequencyButton.isHidden = true
-                self.freedomFrequencyButton.isHidden = true
                 self.customFrequencyButton.isHidden = true
             }
             
@@ -252,14 +252,14 @@ class NewItemViewController: UIViewController {
             UIView.animate(withDuration: 0.3, animations: {
                 self.everyTwoDaysFreqencyButton.isHidden = false
                 self.everyWeekFreqencyButton.isHidden = false
+                self.everyTwoWeeksFrequencyButton.isHidden = false
                 self.everyMonthFrequencyButton.isHidden = false
-                self.freedomFrequencyButton.isHidden = false
                 self.customFrequencyButton.isHidden = false
                 
                 self.everyTwoDaysFreqencyButton.alpha = 1
                 self.everyWeekFreqencyButton.alpha = 1
+                self.everyTwoWeeksFrequencyButton.alpha = 1
                 self.everyMonthFrequencyButton.alpha = 1
-                self.freedomFrequencyButton.alpha = 1
                 self.customFrequencyButton.alpha = 1
                 
                
@@ -354,7 +354,7 @@ class NewItemViewController: UIViewController {
         updateFrequencyButtons()
         updateInstructionLabels()
         removeOldPreviewItemCard()
-        excuteItemCardAimation()
+        //excuteItemCardAimation()
         updatePreViewItemCard()
         updatePromptLabel()
         updatePromptTextView()
@@ -363,8 +363,22 @@ class NewItemViewController: UIViewController {
 
 extension NewItemViewController: PopUpViewDelegate { // Delegate extension
  
-    func didDismissPopUpViewWithoutSave() {
-        print("PopUpDidDismiss")
+    func didDismissPopUpViewWithoutSave(_ type: PopUpType) {
+        print("WTF!!" + "\(type)")
+        if type == .customFrequencyPopUp {
+
+            self.selectedFrequencyButton = nil
+            self.customFrequencyButton.setTitle("自定义", for: .normal)
+            self.customFrequencyButton.isSelected = false
+            
+        } else if type == .customTargetDaysPopUp {
+
+            self.selectedTargetDaysButton = nil
+            self.customTargetDaysButton.setTitle("自定义", for: .normal)
+            self.customTargetDaysButton.isSelected = false
+        }
+        
+        updateUI()
     }
     
     func didSaveAndDismiss(_ type: PopUpType) {

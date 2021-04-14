@@ -22,7 +22,7 @@ class EnergySettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //title = "能量"
+        newEnergyPromptLabel.textColor = ThemeColor.green.uiColor
         vipStrategy = EnergyStrategy(energySettingViewController: self)
         engine.add(observer: self)
   

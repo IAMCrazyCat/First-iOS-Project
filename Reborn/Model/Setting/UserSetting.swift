@@ -221,8 +221,33 @@ class UserSetting {
 
     
     
-    let whiteAndBlackContent: UIColor = UIColor(named: "WhiteAndBlackContent") ?? UIColor.blue
-    let whiteAndBlackBackground: UIColor = UIColor(named: "WhiteAndBlackBackground") ?? UIColor.blue
+    let whiteAndBlackContent: UIColor = UIColor { system in
+        
+        switch AppEngine.shared.userSetting.appAppearanceMode {
+        case .lightMode:
+            return .white
+        case .darkMode:
+            return AppEngine.shared.userSetting.blackContent
+        case .followSystem:
+            return UIColor(named: "WhiteAndBlackContent") ?? UIColor.blue
+        }
+       
+    }
+   
+    let whiteAndBlackBackground: UIColor = UIColor { system in
+        
+        switch AppEngine.shared.userSetting.appAppearanceMode {
+        case .lightMode:
+            return .white
+        case .darkMode:
+            return AppEngine.shared.userSetting.blackBackground
+        case .followSystem:
+            return UIColor(named: "WhiteAndBlackBackground") ?? UIColor.blue
+        }
+       
+    }
+    
+   
     let grayAndBlack: UIColor = UIColor(named: "GrayAndBlack") ?? UIColor.blue
     let grayWhiteAndBlackBackground: UIColor = UIColor(named: "grayWhiteAndBlackBackground") ?? UIColor.blue
     let greenColor =  UIColor(named: "GreenColor") ?? UIColor.blue

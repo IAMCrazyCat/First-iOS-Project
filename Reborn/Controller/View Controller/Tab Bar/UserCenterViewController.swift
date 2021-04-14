@@ -357,7 +357,7 @@ extension UserCenterViewController: PopUpViewDelegate {
         
     }
 
-    func didDismissPopUpViewWithoutSave() {
+    func didDismissPopUpViewWithoutSave(_ type: PopUpType) {
         
         self.engine.saveSetting()
         self.engine.notifyAllUIObservers()

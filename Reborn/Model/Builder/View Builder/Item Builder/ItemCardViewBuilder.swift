@@ -307,7 +307,7 @@ class ItemCardViewBuilder: ViewBuilder {
     private func addPunInButton() {
         let punchInButton = UIButton()
         punchInButton.accessibilityIdentifier = "PunchInButton"
-        
+        punchInButton.accessibilityValue = "\(self.item.ID)"
         punchInButton.setTitle("打卡", for: .normal)
         punchInButton.setTitle("撤销", for: .selected)
         punchInButton.setTitleColor(AppEngine.shared.userSetting.themeColor.uiColor.darkColor, for: .normal)

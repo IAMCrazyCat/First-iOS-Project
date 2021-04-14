@@ -23,7 +23,9 @@ class ItemDetailViewController: UIViewController {
     @IBOutlet weak var finishedDaysLabel: UILabel!
     @IBOutlet weak var targetDaysLabel: UILabel!
     @IBOutlet weak var bestConsecutiveDaysLabel: UILabel!
+    @IBOutlet weak var energyProgressLabel: UILabel!
     @IBOutlet weak var frequencyLabel: UILabel!
+    @IBOutlet weak var nextPunchInDateLabel: UILabel!
     @IBOutlet weak var todayLabel: UILabel!
     @IBOutlet weak var goBackButton: UINavigationItem!
     @IBOutlet weak var editButton: UIBarButtonItem!
@@ -31,7 +33,7 @@ class ItemDetailViewController: UIViewController {
     
     let setting: SystemSetting = SystemSetting.shared
     let engine: AppEngine = AppEngine.shared
-    var item: Item?
+    var item: Item!
     var embeddedCalendarViewController: CalendarViewController? = nil
     var lastViewController: UIViewController? = nil
     var dayCellFrame: CGRect? {
@@ -128,49 +130,102 @@ class ItemDetailViewController: UIViewController {
         
         navigationItem.rightBarButtonItem?.tintColor = engine.userSetting.smartLabelColorAndWhite
         
-        if let itemType = item?.type.rawValue, let itemName = item?.name {
-            self.title = itemType + itemName
-        }
+        self.title = item.type.rawValue + item.name
        
     }
     
-    func updateItemData() {
-      
-        updateFinishedDaysLabel()
-        updateTargetDaysLabel()
-        updateBestConsecutiveDaysLabel()
-        updateFrequencyLabel()
-        updateTodayLabel()
-        updateProgressView()
-        updateStartDateLabel()
+    
 
+    func updateFinishedDaysLabel() {
+        self.finishedDaysLabel.text = "\(String(self.item.finishedDays)) 天"
+    }
+    
+    func updateTargetDaysLabel() {
+        self.targetDaysLabel.text = "\(String(self.item.targetDays)) 天"
+    }
+    
+    func updateBestConsecutiveDaysLabel() {
+        self.bestConsecutiveDaysLabel.text = "\(String(self.item.bestConsecutiveDays)) 天"
+    }
+    
+    func updateEnergyProgressLabel() {
+        if item.todayIsAddedEnergy {
+            self.energyProgressLabel.textColor = ThemeColor.green.uiColor
+            self.energyProgressLabel.text = "新能量+1"
+        } else {
+            self.energyProgressLabel.text = "\(item.lastEnergyConsecutiveDays) / \(self.engine.currentUser.energyChargingEfficiencyDays)"
+        }
         
     }
     
-   
-    
-    func updateFinishedDaysLabel() {
-        self.finishedDaysLabel.text = "\(String(self.item?.finishedDays ?? 0)) 天"
-    }
-    func updateTargetDaysLabel() {
-        self.targetDaysLabel.text = "\(String(self.item?.targetDays ?? 0)) 天"
-    }
-    func updateBestConsecutiveDaysLabel() {
-        self.bestConsecutiveDaysLabel.text = "\(String(self.item?.bestConsecutiveDays ?? 0)) 天"
-    }
     func updateFrequencyLabel() {
-        self.frequencyLabel.text = "\(String(self.item?.frequency.dataModel.title ?? "加载错误"))"
+        self.frequencyLabel.text = "\(String(self.item.frequency.dataModel.title))"
     }
+    
+    func updateNextPunchInDateLabel() {
+        let scheduleDate = self.item.scheduleDates
+        var nextPunchInDate: CustomDate?
+        var index = 0
+        print(scheduleDate)
+        for date in scheduleDate {
+            
+        
+            if date >= CustomDate.current {
+                
+                if self.item.isPunchedIn {
+                    if index + 1 <= self.item.scheduleDates.count - 1 {
+                        nextPunchInDate = self.item.scheduleDates[index + 1]
+                    }
+                    
+                } else {
+                    nextPunchInDate = date
+                }
+                
+                break
+            }
+            
+            index += 1
+        }
+        
+        var labelText = ""
+        if nextPunchInDate == CustomDate.current {
+            
+            labelText = "今天"
+            
+        } else if nextPunchInDate == DateCalculator.calculateDate(withDayDifference: 1, originalDate: CustomDate.current) {
+            
+            labelText = "明天"
+            
+        } else {
+            
+            if nextPunchInDate != nil {
+                labelText = "\(nextPunchInDate!.month)月\(nextPunchInDate!.day)日"
+            } else {
+                labelText = "暂无计划"
+            }
+           
+        }
+        
+        self.nextPunchInDateLabel.text = labelText
+    }
+    
     func updateTodayLabel() {
         
-        if item != nil, self.item!.punchInDates.contains(CustomDate.current)  {
+        if self.item.punchInDates.contains(CustomDate.current) && self.item.state != .completed  {
             self.todayLabel.textColor = ThemeColor.green.uiColor
             self.todayLabel.text = "已打卡"
+        } else if item.state == .completed {
+            self.todayLabel.textColor = ThemeColor.green.uiColor
+            self.todayLabel.text = "已完成"
+        } else if item.state == .duringBreak {
+            self.todayLabel.textColor = ThemeColor.green.uiColor
+            self.todayLabel.text = "休息中"
         } else {
             self.todayLabel.textColor = ThemeColor.red.uiColor
             self.todayLabel.text = "未打卡"
         }
     }
+    
     func updateProgressView() {
         if item != nil {
             self.verticalContentView.layoutIfNeeded()
@@ -180,6 +235,8 @@ class ItemDetailViewController: UIViewController {
             
         }
     }
+    
+    
     func updateStartDateLabel() {
         if let item = item {
             
@@ -193,6 +250,20 @@ class ItemDetailViewController: UIViewController {
             }
             
         }
+    }
+    
+    func updateItemData() {
+      
+        updateFinishedDaysLabel()
+        updateTargetDaysLabel()
+        updateBestConsecutiveDaysLabel()
+        updateEnergyProgressLabel()
+        updateFrequencyLabel()
+        updateTodayLabel()
+        updateProgressView()
+        updateNextPunchInDateLabel()
+        updateStartDateLabel()
+
     }
     
    

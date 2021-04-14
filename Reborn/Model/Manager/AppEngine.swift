@@ -10,7 +10,7 @@ import UIKit
 import WidgetKit
 
 protocol PopUpViewDelegate {
-    func didDismissPopUpViewWithoutSave()
+    func didDismissPopUpViewWithoutSave(_ type: PopUpType)
     func didSaveAndDismiss(_ type: PopUpType)
 }
 
@@ -349,8 +349,8 @@ class AppEngine {
     
     
     // ------------------------------------ pop up ------------------------------------------------------
-    public func dismissBottomPopUpWithoutSave(thenGoBackTo viewController: PopUpViewController) {
-        self.delegate?.didDismissPopUpViewWithoutSave()
+    public func dismissBottomPopUpWithoutSave(_ viewController: PopUpViewController) {
+        self.delegate?.didDismissPopUpViewWithoutSave(viewController.popUp.type)
         viewController.dismiss(animated: true, completion: nil)
         
         var index = 0
@@ -365,13 +365,11 @@ class AppEngine {
         
     }
     
-    public func dismissBottomPopUpAndSave(thenGoBackTo viewController: PopUpViewController) {
+    public func dismissBottomPopUpAndSave(_ viewController: PopUpViewController) {
         
-        if let popUp = viewController.popUp {
-            self.storedDataFromPopUpView = viewController.getStoredData()
-            viewController.dismiss(animated: true, completion: nil)
-            self.delegate?.didSaveAndDismiss(popUp.type)
-        }
+        self.storedDataFromPopUpView = viewController.getStoredData()
+        viewController.dismiss(animated: true, completion: nil)
+        self.delegate?.didSaveAndDismiss(viewController.popUp.type)
         
         var index = 0
         for observer in self.observers {

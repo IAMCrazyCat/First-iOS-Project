@@ -326,7 +326,7 @@ extension HomeViewController: PopUpViewDelegate {
         
     }
     
-    func didDismissPopUpViewWithoutSave() {
+    func didDismissPopUpViewWithoutSave(_ type: PopUpType) {
         print("AddItemViewDidDismiss")
         self.updateUI()
         

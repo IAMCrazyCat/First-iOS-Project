@@ -15,7 +15,7 @@ class PopUpViewController: UIViewController {
     private var keyboardDidShowFully: Bool = false
     private var pickerViewSelectedRow: Int = 0
     
-    public var popUp: PopUpImpl?
+    public var popUp: PopUpImpl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,7 @@ class PopUpViewController: UIViewController {
     func doneButtonPressed(_ sender: UIButton!) {
        
         if popUp != nil, popUp!.isReadyToDismiss() {
-            AppEngine.shared.dismissBottomPopUpAndSave(thenGoBackTo: self)
+            AppEngine.shared.dismissBottomPopUpAndSave(self)
         }
     }
     
@@ -49,7 +49,7 @@ class PopUpViewController: UIViewController {
     
     @objc
     func cancelButtonPressed(_ sender: UIButton!) {
-        AppEngine.shared.dismissBottomPopUpWithoutSave(thenGoBackTo: self)
+        AppEngine.shared.dismissBottomPopUpWithoutSave(self)
     }
 
     

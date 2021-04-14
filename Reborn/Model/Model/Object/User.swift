@@ -20,7 +20,7 @@ class User: Codable {
     
     var energyChargingEfficiencyDays: Int {
         if self.isVip {
-            return 7
+            return 2
         } else {
             return 21
         }
@@ -97,21 +97,40 @@ class User: Codable {
         
     }
     
-    public func updateItem(withTag index: Int) {
+    public func updateItem(with ID: Int) {
         
-        let item = self.items[index]
-        if !item.isPunchedIn {
-            item.punchIn()
-            
-            Vibrator.vibrate(withNotificationType: .success)
-        } else {
-            item.revokePunchIn()
-
-            Vibrator.vibrate(withImpactLevel: .light)
+        var cathedItem: Item?
+        
+        for item in self.items {
+            if item.ID == ID {
+                cathedItem = item
+            }
         }
         
-        updateEnergy(by: item)
+        if let item = cathedItem {
+            
+            if !item.isPunchedIn {
+                item.punchIn()
+                
+                Vibrator.vibrate(withNotificationType: .success)
+            } else {
+                item.revokePunchIn()
+
+                Vibrator.vibrate(withImpactLevel: .light)
+            }
+            
+            updateEnergy(by: item)
+        }
         
+       
+        
+        
+    }
+    
+    public func sortItems() {
+        self.items.sort {
+            ($0.state.priority, $0.type.priority) > ($1.state.priority, $1.type.priority)
+        }
     }
     
     public func updateEnergy(by item: Item) {
@@ -132,8 +151,14 @@ class User: Codable {
         
     }
     
-    public func getItemBy(tag index: Int) -> Item {
-        return self.items[index]
+    public func getItemBy(_ ID: Int) -> Item? {
+        for item in self.items {
+            if item.ID == ID {
+                return item
+            }
+        }
+        
+        return nil
     }
     
     public func getLargestItemID() -> Int {

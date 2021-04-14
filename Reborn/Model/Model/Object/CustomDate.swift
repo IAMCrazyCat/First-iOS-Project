@@ -7,7 +7,16 @@
 
 import Foundation
 
-struct CustomDate: Codable, Equatable {
+struct CustomDate: Codable, Equatable, Comparable {
+    static func < (lhs: CustomDate, rhs: CustomDate) -> Bool {
+        let dayDifference = DateCalculator.calculateDayDifferenceBetween(lhs, and: rhs)
+        if dayDifference > 0 {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     
     public static var current: CustomDate {
         let date = Date()

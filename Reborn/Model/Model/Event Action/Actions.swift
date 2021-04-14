@@ -25,15 +25,16 @@ class Actions {
 
     
     @objc func itemPunchInButtonPressed(_ sender: UIButton!) {
-        AppEngine.shared.currentUser.updateItem(withTag: sender.tag)
+        let ID = Int(sender.accessibilityValue ?? "-1")!
+        AppEngine.shared.currentUser.updateItem(with: ID)
         AppEngine.shared.saveUser()
         AppEngine.shared.notifyUIObservers(withIdentifier: "HomeViewController")
         AppEngine.shared.notifyUIObservers(withIdentifier: "ItemManagementViewController")
         
-        let item = AppEngine.shared.currentUser.getItemBy(tag: sender.tag)
-        print(item.isPunchedIn)
-        print(item.scheduleDates)
-        if item.state == .completed {
+        
+        
+       
+        if let item = AppEngine.shared.currentUser.getItemBy(ID), item.state == .completed {
             UIApplication.shared.getTopViewController()?.presentItemCompletedPopUp(for: item)
         }
         

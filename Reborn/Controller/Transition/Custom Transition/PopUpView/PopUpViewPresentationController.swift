@@ -106,7 +106,7 @@ final class PopUpViewPresentationController: UIPresentationController {
             case ...0:
                 changeScale(to: .interaction)
             default:
-                AppEngine.shared.dismissBottomPopUpWithoutSave(thenGoBackTo: presentedViewController as! PopUpViewController)
+                AppEngine.shared.dismissBottomPopUpWithoutSave(presentedViewController as! PopUpViewController)
             }
         default:
             break
@@ -114,7 +114,7 @@ final class PopUpViewPresentationController: UIPresentationController {
     }
     
     @objc func didTap(tap: UITapGestureRecognizer) {
-        AppEngine.shared.dismissBottomPopUpWithoutSave(thenGoBackTo: presentedViewController as! PopUpViewController)
+        AppEngine.shared.dismissBottomPopUpWithoutSave(presentedViewController as! PopUpViewController)
     }
     
     func changeScale(to state: ModalScaleState) {

@@ -49,7 +49,7 @@ class RebornTests: XCTestCase {
         let testItem = engine.currentUser.items[0]
         for i in 1 ... 10 {
             let nextDay = DateCalculator.calculateDate(withDayDifference: i, originalDate: today)
-            self.engine.currentUser.updateItem(withTag: 0)
+            self.engine.currentUser.updateItem(withID: 0)
         }
         
         XCTAssertTrue(self.engine.currentUser.items.first!.finishedDays == 0)
@@ -61,7 +61,7 @@ class RebornTests: XCTestCase {
         let targetNumberOfEnergy = 1
         for i in 1 ... engine.currentUser.energyChargingEfficiencyDays * targetNumberOfEnergy{
             let nextDate = DateCalculator.calculateDate(withDayDifference: 1, originalDate: CustomDate.current)
-            engine.currentUser.updateItem(withTag: 0)
+            engine.currentUser.updateItem(withID: 0)
 
         }
         
@@ -77,7 +77,7 @@ class RebornTests: XCTestCase {
         for i in 1 ... engine.currentUser.energyChargingEfficiencyDays * targetNumberOfEnergy{
             
             let nextDate = DateCalculator.calculateDate(withDayDifference: i, originalDate: originalDate)
-            engine.currentUser.updateItem(withTag: 0)
+            engine.currentUser.updateItem(withID: 0)
         }
         
         XCTAssertTrue(user.energy == 2 + targetNumberOfEnergy)
@@ -91,12 +91,12 @@ class RebornTests: XCTestCase {
         
         for i in 1 ... engine.currentUser.energyChargingEfficiencyDays * targetNumberOfEnergy{
             let nextDate = DateCalculator.calculateDate(withDayDifference: 1, originalDate: CustomDate.current)
-            engine.currentUser.updateItem(withTag: 0)
+            engine.currentUser.updateItem(withID: 0)
         }
-        engine.currentUser.updateItem(withTag: 0)
-        engine.currentUser.updateItem(withTag: 0)
-        engine.currentUser.updateItem(withTag: 0)
-        engine.currentUser.updateItem(withTag: 0)
+        engine.currentUser.updateItem(withID: 0)
+        engine.currentUser.updateItem(withID: 0)
+        engine.currentUser.updateItem(withID: 0)
+        engine.currentUser.updateItem(withID: 0)
         
         XCTAssertTrue(user.energy == 2 + targetNumberOfEnergy)
         

@@ -257,7 +257,7 @@ extension SetUpViewController: PopUpViewDelegate {
     }
 
     
-    func didDismissPopUpViewWithoutSave() {
+    func didDismissPopUpViewWithoutSave(_ type: PopUpType) {
         self.deSelectButton()
     }
     
