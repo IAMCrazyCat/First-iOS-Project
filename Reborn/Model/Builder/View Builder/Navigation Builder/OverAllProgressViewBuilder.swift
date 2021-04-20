@@ -57,8 +57,14 @@ class OverAllProgressViewBuilder: ViewBuilder {
     internal func createView() {
         outPutView.accessibilityIdentifier = "OverAllProgressView"
         outPutView.frame = self.outPutViewFrame
-        outPutView.backgroundColor = AppEngine.shared.userSetting.themeColorAndBlackContent
         
+//        let text = UIImageView(frame: outPutView.bounds)
+//        let text1 = UIImage(named: "Test2")!
+//        text.image = text1
+//        text.contentMode = .scaleAspectFill
+//        outPutView.addSubview(text)
+        outPutView.backgroundColor = AppEngine.shared.userSetting.themeColorAndBlackContent
+
         outPutView.layer.cornerRadius = setting.itemCardCornerRadius
         outPutView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         

@@ -35,17 +35,17 @@ class AppEngine {
     }
 
     public var delegate: PopUpViewDelegate?
-    
+    public var storedDate: CustomDate
 
     private init() {
         
         print(dataFilePath!)
-        
+        storedDate = CustomDate.current
         for timePoint in TimeRange.allCases {
             self.observerNotifierTimePoints.append(timePoint.range.first!)
         }
         
-        observerNotifier = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in self.changeDetactor() }
+        observerNotifier = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in self.updateUIByTime() }
         
         if appLaunchedBefore() {
             loadApp()
@@ -68,11 +68,8 @@ class AppEngine {
     }
     
  
-    func changeDetactor() {
-        self.checkTime()
-    }
-    
-    private func checkTime() {
+    func updateUIByTime() {
+        
         if let currentHour = TimeRange.time.hour, let currentMinute = TimeRange.time.minute, self.observerNotifierTimePoints.contains(currentHour), currentMinute == 0, !observerIsNotifiedByNotifier { // notify observers once
             
             self.notifyAllUIObservers()
@@ -81,8 +78,15 @@ class AppEngine {
         } else if let currentHour = TimeRange.time.hour, self.observerNotifierTimePoints.contains(currentHour + 1) { // ready to notifiy all observers one hour before hour points
             observerIsNotifiedByNotifier = false
         }
+        
+        if storedDate != CustomDate.current {
+            self.notifyAllUIObservers()
+            self.updateUserItems()
+            storedDate = CustomDate.current
+        }
+        
     }
-    
+
     func updateUserItems() {
         self.currentUser.updateAllItems()
     }

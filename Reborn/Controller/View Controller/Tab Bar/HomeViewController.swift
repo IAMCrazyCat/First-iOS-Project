@@ -181,9 +181,10 @@ class HomeViewController: UIViewController {
         
         self.overallProgressView.removeAllSubviews()
         self.customNavigationBar.removeSubviewBy(idenifier: "SmallProgressCircle")
+        self.customNavigationBar.backgroundColor = self.engine.userSetting.themeColorAndBlackContent//.withAlphaComponent(0)
         
         self.addNewItemButton.tintColor = self.engine.userSetting.smartLabelColorAndWhite
-        self.customNavigationBar.backgroundColor = engine.userSetting.themeColorAndBlackContent
+        
         self.spaceView.backgroundColor = engine.userSetting.themeColorAndBlackContent
         self.todayProgressLabel.textColor = self.engine.userSetting.smartLabelColorAndWhiteAndThemeColor.brightColor
         self.todayProgressLabel.text = "今日打卡: \(self.engine.currentUser.getNumberOfTodayPunchedInItems())/\(self.engine.currentUser.getNumberOfTodayInProgresItems())"

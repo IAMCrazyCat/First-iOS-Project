@@ -20,7 +20,7 @@ class User: Codable {
     
     var energyChargingEfficiencyDays: Int {
         if self.isVip {
-            return 2
+            return 7
         } else {
             return 21
         }

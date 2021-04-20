@@ -202,7 +202,7 @@ class Item: Codable {
             let date1 = self.punchInDates[index]
             let date2 = self.punchInDates[index + 1]
             
-            if DateCalculator.calculateDayDifferenceBetween(date1, and: date2) == 1 {
+            if DateCalculator.calculateDayDifferenceBetween(date1, and: date2) == self.frequency.dataModel.data {
                 consecutiveDays += 1
             } else {
                 consecutiveDaysArray.append(consecutiveDays)
@@ -226,7 +226,7 @@ class Item: Codable {
         if punchInDates.count - 2 >= 0 {
             let yesterday = self.punchInDates[punchInDates.count - 2]
             let today = self.punchInDates[punchInDates.count - 1]
-            if DateCalculator.calculateDayDifferenceBetween(yesterday, and: today) == 1 {
+            if DateCalculator.calculateDayDifferenceBetween(yesterday, and: today) == self.frequency.dataModel.data {
                 return true
             } else {
                 return false

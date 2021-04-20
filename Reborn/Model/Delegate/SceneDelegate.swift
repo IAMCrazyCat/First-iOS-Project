@@ -56,6 +56,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         SettingStrategy().saveUserSetting()
         CustomTimer.recoverTimer()
+        AppEngine.shared.updateUIByTime()
         AppEngine.shared.notifyUIObservers(withIdentifier: "UserCenterViewController")
         AppEngine.shared.notifyUIObservers(withIdentifier: "PopUpViewController")
         AppEngine.shared.notifyUIObservers(withIdentifier: "PotatoClockViewController")
@@ -64,12 +65,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func sceneWillResignActive(_ scene: UIScene) {
         CustomTimer.saveTimer()
+        
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
         CustomTimer.recoverTimer()
+        AppEngine.shared.updateUIByTime()
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
     }
@@ -104,9 +107,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if navigationController?.visibleViewController?.restorationIdentifier != "TomatoClockViewController" {
             let tomatoClockViewController = self.storyboard.instantiateViewController(withIdentifier: "TomatoClockViewController") as? TomatoClockViewController
-            navigationController?.pushViewController(tomatoClockViewController!, animated: false)
+            navigationController?.pushViewController(tomatoClockViewController!, animated: true)
         } else {
-            //(navigationController?.visibleViewController as? TomatoClockViewController)?.updateUI()
+
         }
 //
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {

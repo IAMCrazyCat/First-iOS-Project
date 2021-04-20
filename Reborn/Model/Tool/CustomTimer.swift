@@ -57,12 +57,12 @@ class CustomTimer {
             
 
             if timesOfExecution > Int(seconds) - 1 {
-
-                timer.invalidate()
-                CustomTimer.shared.storedTimerState = .idle
-                if CustomTimer.finish != nil {
-                    CustomTimer.finish!()
-                }
+                CustomTimer.killTimer()
+//                timer.invalidate()
+//                CustomTimer.shared.storedTimerState = .idle
+//                if CustomTimer.finish != nil {
+//                    CustomTimer.finish!()
+//                }
                 
                 
             } else {

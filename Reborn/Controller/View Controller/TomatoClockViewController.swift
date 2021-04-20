@@ -80,7 +80,7 @@ class TomatoClockViewController: UIViewController {
         
         CustomTimer.createNew(timer: seconds, update: {
             self.updateTimerLabel()
-        }) {
+        }) { 
             self.updateUI()
         }
         

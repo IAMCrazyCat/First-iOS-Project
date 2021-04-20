@@ -148,7 +148,7 @@ struct ItemProgressWiget: Widget {
             ItemProgressWigetEntryView(entry: entry)
                 .background(Color(UIColor(named: "WidgetBackground") ?? UIColor.white))
         }
-        .supportedFamilies([.systemSmall, .systemMedium])
+        .supportedFamilies([.systemSmall])
         .configurationDisplayName("综合进度")
         .description("显示你的头像和所有项目的综合进度")
     }
