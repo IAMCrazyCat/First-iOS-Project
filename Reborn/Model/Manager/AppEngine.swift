@@ -23,27 +23,25 @@ class AppEngine {
     private let setting: SystemSetting = SystemSetting()
     private var observers: Array<UIObserver> = []
     private var observerNotifier: Timer = Timer()
-    private var observerNotifierTimePoints: Array<Int> = []
-    private var observerIsNotifiedByNotifier: Bool = false
+    private var storedDate: CustomDate
+    private var storedTimeRange: TimeRange
     
     public static let shared = AppEngine()
     public var currentUser: User = User(name: "颠猫", gender: .undefined, avatar: #imageLiteral(resourceName: "Unknown"), energy: 3, items: [Item](), isVip: false)
     public let userSetting: UserSetting = UserSetting()
     public var storedDataFromPopUpView: Any? = nil
+    public var delegate: PopUpViewDelegate?
     public var currentViewController: UIViewController? {
         return UIApplication.shared.getTopViewController()
     }
 
-    public var delegate: PopUpViewDelegate?
-    public var storedDate: CustomDate
-
+   
+    
     private init() {
         
         print(dataFilePath!)
         storedDate = CustomDate.current
-        for timePoint in TimeRange.allCases {
-            self.observerNotifierTimePoints.append(timePoint.range.first!)
-        }
+        storedTimeRange = TimeRange.current
         
         observerNotifier = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in self.updateUIByTime() }
         
@@ -70,13 +68,10 @@ class AppEngine {
  
     func updateUIByTime() {
         
-        if let currentHour = TimeRange.time.hour, let currentMinute = TimeRange.time.minute, self.observerNotifierTimePoints.contains(currentHour), currentMinute == 0, !observerIsNotifiedByNotifier { // notify observers once
-            
+        if storedTimeRange != TimeRange.current {
             self.notifyAllUIObservers()
             self.updateUserItems()
-            observerIsNotifiedByNotifier = true
-        } else if let currentHour = TimeRange.time.hour, self.observerNotifierTimePoints.contains(currentHour + 1) { // ready to notifiy all observers one hour before hour points
-            observerIsNotifiedByNotifier = false
+            storedTimeRange = TimeRange.current
         }
         
         if storedDate != CustomDate.current {
