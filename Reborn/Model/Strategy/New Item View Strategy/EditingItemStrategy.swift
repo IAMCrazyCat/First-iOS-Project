@@ -55,6 +55,19 @@ class EditingItemStrategy: NewItemViewStrategy {
                 newItemViewController.selectedTargetDaysButton = newItemViewController.customTargetDaysButton
                 
             }
+//        if newItemViewController.item.finishedDays 7 ..< 30:
+//            newItemViewController.sevenDaysButton.alpha = 0.5
+//            newItemViewController.sevenDaysButton.isUserInteractionEnabled = false
+//        case 30 ..< 60:
+//            newItemViewController.thirtyDaysButton.alpha = 0.5
+//            newItemViewController.thirtyDaysButton.isUserInteractionEnabled = false
+//        case 60 ..< 100:
+//            newItemViewController.sixtyDaysButton.alpha = 0.5
+//            newItemViewController.sixtyDaysButton.isUserInteractionEnabled = false
+//        case 100 ..< 365:
+//            newItemViewController.oneHundredDaysButton.alpha = 0.5
+//            newItemViewController.oneHundredDaysButton.isUserInteractionEnabled = false
+//        }
             
         switch newItemViewController.item.frequency.dataModel.title {
         case "每天":

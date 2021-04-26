@@ -364,7 +364,7 @@ class NewItemViewController: UIViewController {
 extension NewItemViewController: PopUpViewDelegate { // Delegate extension
  
     func didDismissPopUpViewWithoutSave(_ type: PopUpType) {
-        print("WTF!!" + "\(type)")
+   
         if type == .customFrequencyPopUp {
 
             self.selectedFrequencyButton = nil

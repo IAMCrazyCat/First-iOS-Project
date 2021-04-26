@@ -1483,7 +1483,7 @@ Cg
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" name="RedColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="LSc-aq-7eV" secondAttribute="trailing" constant="60" id="6me-1q-baj"/>
                                     <constraint firstItem="LSc-aq-7eV" firstAttribute="leading" secondItem="Lt5-gF-RX7" secondAttribute="leading" constant="15" id="AyP-z0-lEK"/>
