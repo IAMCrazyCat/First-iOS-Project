@@ -180,8 +180,9 @@ class Item: Codable {
 
         if isConsecutivePunchIn() {
             self.lastEnergyConsecutiveDays += days
-        } else {
-            self.lastEnergyConsecutiveDays = 0
+        }
+        else {
+            self.lastEnergyConsecutiveDays = 1
         }
         
     }

@@ -96,12 +96,12 @@ class ItemManagementViewController: UIViewController {
     func updateOptionBar() {
         self.optionBarContentView.removeAllSubviews()
         self.optionBar.layer.zPosition = 2
-        self.optionBar.backgroundColor = .clear //self.engine.userSetting.whiteAndBlackBackground //self.engine.userSetting.themeColorAndBlackContent
+        self.optionBar.backgroundColor = self.engine.userSetting.themeColorAndBlackContent
         self.optionBarContentView.backgroundColor = self.optionBar.backgroundColor
         
         var segments: [LabelSegment] = []
         for title in self.segmentTitles {
-            let labelSegment = LabelSegment(text: title, normalFont: self.engine.userSetting.smallFont, normalTextColor: .label /*self.engine.userSetting.smartLabelColorAndWhite*/, selectedFont: self.engine.userSetting.smallFont, selectedTextColor: .label/*self.engine.userSetting.smartThemeLabelColor*/)
+            let labelSegment = LabelSegment(text: title, normalFont: self.engine.userSetting.smallFont, normalTextColor: self.engine.userSetting.smartLabelColorAndWhite, selectedFont: self.engine.userSetting.smallFont, selectedTextColor: self.engine.userSetting.smartThemeLabelColor)
             segments.append(labelSegment)
     
         }
@@ -109,7 +109,7 @@ class ItemManagementViewController: UIViewController {
         self.segmentedControl = BetterSegmentedControl(frame: optionBarContentView.bounds, segments: segments, options: [])
         self.segmentedControl.cornerRadius = self.segmentedControl.frame.height / 2
         self.segmentedControl.backgroundColor = .clear
-        self.segmentedControl.indicatorViewBackgroundColor = self.engine.userSetting.themeColor.uiColor.withAlphaComponent(0.3)//self.engine.userSetting.whiteAndThemColor
+        self.segmentedControl.indicatorViewBackgroundColor = self.engine.userSetting.whiteAndThemColor
         self.segmentedControl.addTarget(self, action: #selector(self.optionButtonPressed(_:)), for: .valueChanged)
        
         self.segmentedControl.setIndex(self.selectedSegmentIndex)

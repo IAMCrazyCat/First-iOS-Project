@@ -56,10 +56,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         SettingStrategy().saveUserSetting()
         CustomTimer.recoverTimer()
-        AppEngine.shared.updateUIByTime()
-        AppEngine.shared.notifyUIObservers(withIdentifier: "UserCenterViewController")
-        AppEngine.shared.notifyUIObservers(withIdentifier: "PopUpViewController")
-        AppEngine.shared.notifyUIObservers(withIdentifier: "PotatoClockViewController")
+        //AppEngine.shared.updateUIByTime()
+        AppEngine.shared.notifyAllUIObservers()
+//        AppEngine.shared.notifyUIObservers(withIdentifier: "UserCenterViewController")
+//        AppEngine.shared.notifyUIObservers(withIdentifier: "PopUpViewController")
+//        AppEngine.shared.notifyUIObservers(withIdentifier: "PotatoClockViewController")
 
     }
 

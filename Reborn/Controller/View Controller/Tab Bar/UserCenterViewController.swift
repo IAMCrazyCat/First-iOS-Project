@@ -199,7 +199,7 @@ class UserCenterViewController: UIViewController {
     }
     
     func updateDateLabel() {
-        dateLabel.text = "\(CustomDate.current.year)年\(CustomDate.current.month)月\(CustomDate.current.day)日"
+        dateLabel.text = "\(CustomDate.current.month)月\(CustomDate.current.day)日\( CustomDate.current.weekday!.str)"
     }
     
     func updateNotificationTimeLabel() {

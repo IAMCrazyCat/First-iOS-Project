@@ -29,4 +29,16 @@ struct CustomDate: Codable, Equatable, Comparable {
     var year: Int
     var month: Int
     var day: Int
+    var weekday: WeekDay? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy MM dd"
+        
+        if let date = formatter.date(from: "\(year) \(month) \(day)") {
+            let weekday = Calendar.current.component(.weekday, from: date)
+            let weekDay = WeekDay(rawValue: weekday)
+            return weekDay
+        }
+       
+        return nil
+    }
 }
