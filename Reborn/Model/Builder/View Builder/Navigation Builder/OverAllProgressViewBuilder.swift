@@ -87,17 +87,10 @@ class OverAllProgressViewBuilder: ViewBuilder {
         firstTextLabel.frame.origin = CGPoint(x: 15, y: 0)
         firstTextLabel.sizeToFit()
         self.outPutView.addSubview(firstTextLabel)
-        
-        let vipButton = UIButton()
-        vipButton.renderVipIcon()
+        self.outPutView.layoutIfNeeded()
+        let vipButton = VipIcon.render(by: CGRect(x: firstTextLabel.frame.width + 25, y: firstTextLabel.frame.minY + 5, width: 40, height: 15), scale: 1)
         vipButton.isHidden = AppEngine.shared.currentUser.isVip ? false : true
         self.outPutView.addSubview(vipButton)
-        
-        vipButton.translatesAutoresizingMaskIntoConstraints = false
-        vipButton.heightAnchor.constraint(equalToConstant: 15).isActive = true
-        vipButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        vipButton.leftAnchor.constraint(equalTo: firstTextLabel.rightAnchor, constant: 10).isActive = true
-        vipButton.centerYAnchor.constraint(equalTo: firstTextLabel.centerYAnchor, constant: -5).isActive = true
         
         
         let secondTextLabel = UILabel()

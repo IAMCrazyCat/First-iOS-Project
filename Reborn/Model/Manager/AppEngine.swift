@@ -25,6 +25,7 @@ class AppEngine {
     private var observerNotifier: Timer = Timer()
     private var storedDate: CustomDate
     private var storedTimeRange: TimeRange
+    private var itemCardIcons: Array<Icon> = []
     
     public static let shared = AppEngine()
     public var currentUser: User = User(name: "颠猫", gender: .undefined, avatar: #imageLiteral(resourceName: "Unknown"), energy: 3, items: [Item](), isVip: false)
@@ -34,7 +35,6 @@ class AppEngine {
     public var currentViewController: UIViewController? {
         return UIApplication.shared.getTopViewController()
     }
-
    
     
     private init() {
@@ -63,6 +63,37 @@ class AppEngine {
         updateUserItems()
         scheduleNotification()
         updateWidgetData()
+        loadtItemCardIcons()
+    }
+    
+    func loadtItemCardIcons() {
+        let path = Bundle.main.resourcePath! + "/ItemCardIcons"
+        let fileManager = FileManager.default
+        let url = URL(fileURLWithPath: path)
+        let properties = [URLResourceKey.localizedNameKey, URLResourceKey.creationDateKey, URLResourceKey.localizedTypeDescriptionKey]
+        do {
+            let imageURLs = try fileManager.contentsOfDirectory(at: url, includingPropertiesForKeys: properties, options:FileManager.DirectoryEnumerationOptions.skipsHiddenFiles)
+            
+            print("image URLs: \(imageURLs)")
+            // Create image from URL
+            for url in imageURLs {
+                let imageFileName = url.lastPathComponent
+                let lastCharacters = imageFileName.suffix(7)
+                let icon = Icon(image: UIImage(data: try Data(contentsOf: url))!, isVipIcon: lastCharacters == "vip.png" ? true : false)
+                self.itemCardIcons.append(icon)
+            }
+            self.itemCardIcons.sort {
+                !$0.isVipIcon && $1.isVipIcon
+            }
+            
+
+        } catch let error1 as NSError {
+            print(error1.description)
+        }
+    }
+    
+    func getItemCardIcons() -> Array<Icon> {
+        return itemCardIcons
     }
     
  

@@ -59,21 +59,18 @@ class User: Codable {
     public func getOverAllProgress() -> Double {
         
         var overAllProgress = 0.0
+        var allItemsTargetDays = 0
+        var allItemsFinishedDays = 0
         
         for item in self.items {
-           
-            if item.targetDays != 0 {
-                let itemProgress = Double(item.finishedDays) / Double(item.targetDays)
-    
-                overAllProgress += itemProgress
-            }
-
+            
+            allItemsTargetDays += item.targetDays
+            allItemsFinishedDays += item.finishedDays
         }
         
-        if self.items.count != 0 {
-            overAllProgress /= Double(self.items.count)
+        if allItemsTargetDays != 0 {
+            overAllProgress =  Double(allItemsFinishedDays) / Double(allItemsTargetDays)
         }
-        
         
         return overAllProgress
        

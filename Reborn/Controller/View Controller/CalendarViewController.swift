@@ -472,7 +472,7 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
             
             if pressedCell.state == .selected {
     
-                pressedCell.updateAppearance(withType: .unselected, cellDay: sender.currentTitle ?? "?")
+                pressedCell.updateUI(withType: .unselected, cellDay: sender.currentTitle ?? "?")
                 
                 var index = 0
                 for makingUpDate in self.punchInMakingUpDates {
@@ -485,7 +485,7 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
 
             } else {
                 
-                pressedCell.updateAppearance(withType: .selected, cellDay: sender.currentTitle ?? "?")
+                pressedCell.updateUI(withType: .selected, cellDay: sender.currentTitle ?? "?")
                 self.punchInMakingUpDates.append(CustomDate(year: self.currentCalendarPage.year, month: self.currentCalendarPage.month, day: Int(sender.currentTitle ?? "1") ?? 1))
                 
               
@@ -539,9 +539,9 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
             
             if lastMonthCalendarPage.punchedInDays.contains(lastMonthDayNumber) {
                 // last month punchedIn day
-                cell.updateAppearance(withType: .nothThisMonthPunchedIn, cellDay: String(lastMonthDayNumber))
+                cell.updateUI(withType: .nothThisMonthPunchedIn, cellDay: String(lastMonthDayNumber))
             } else {
-                cell.updateAppearance(withType: .notThisMonthMissedDay, cellDay: String(lastMonthDayNumber))
+                cell.updateUI(withType: .notThisMonthMissedDay, cellDay: String(lastMonthDayNumber))
             }
             
 
@@ -551,11 +551,11 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
             
             if self.currentCalendarPage.punchedInDays.contains(dayNumber) { // punchedIn day
                 cell.state = .disabled
-                cell.updateAppearance(withType: .punchedInDay, cellDay: String(dayNumber))
+                cell.updateUI(withType: .punchedInDay, cellDay: String(dayNumber))
             
             } else if self.punchInMakingUpDates.contains(CustomDate(year: self.currentCalendarPage.year, month: self.currentCalendarPage.month, day: dayNumber)) {
                 // selected punched in day
-                cell.updateAppearance(withType: .selected, cellDay: String(dayNumber))
+                cell.updateUI(withType: .selected, cellDay: String(dayNumber))
             } else {
                 
                 if self.state == .timeMachine {
@@ -564,7 +564,7 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
                     cell.state = .disabled
                 }
                 
-                cell.updateAppearance(withType: .missedDay, cellDay: String(dayNumber))
+                cell.updateUI(withType: .missedDay, cellDay: String(dayNumber))
             }
             
 
@@ -578,9 +578,9 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
             let nextMonthDayNumber = (indexPath.row + 1) - (self.currentCalendarPage.days + self.currentCalendarPage.weekdayOfFirstDay)
             
             if nextMonthCalendarPage.punchedInDays.contains(nextMonthDayNumber) { // next month punchedIn day
-                cell.updateAppearance(withType: .nothThisMonthPunchedIn, cellDay: String(nextMonthDayNumber))
+                cell.updateUI(withType: .nothThisMonthPunchedIn, cellDay: String(nextMonthDayNumber))
             } else {
-                cell.updateAppearance(withType: .notThisMonthMissedDay, cellDay: String(nextMonthDayNumber))
+                cell.updateUI(withType: .notThisMonthMissedDay, cellDay: String(nextMonthDayNumber))
             }
             
         }
@@ -593,7 +593,7 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         return CGSize(width: (collectionView.frame.width - 2) / 9, height: (collectionView.frame.width - 2) / 9)
-      }
+    }
     
     
    

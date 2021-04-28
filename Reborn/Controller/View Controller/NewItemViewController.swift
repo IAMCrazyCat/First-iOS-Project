@@ -20,6 +20,8 @@ class NewItemViewController: UIViewController {
     @IBOutlet weak var doneButton: UIButton!
     //ItemName
     @IBOutlet weak var itemNameTextfield: UITextField!
+    //Icon picker
+    @IBOutlet weak var iconCollectionView: UICollectionView!
     //Item Type
     @IBOutlet weak var persistingTypeButton: UIButton!
     @IBOutlet weak var quittingTypeButton: UIButton!
@@ -62,11 +64,15 @@ class NewItemViewController: UIViewController {
     var preViewItemCard: UIView = UIView()
     var strategy: NewItemViewStrategy? = nil
     var lastViewController: UIViewController? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
  
         itemNameTextfield.delegate = self
         verticalScrollView.delegate = self
+        iconCollectionView.delegate = self
+        iconCollectionView.dataSource = self
+        iconCollectionView.register(IconCell.self, forCellWithReuseIdentifier: IconCell.identifier)
         
         customFrequencyButton.setTitle(setting.customButtonTitle, for: .normal)
         customTargetDaysButton.setTitle(setting.customButtonTitle, for: .normal)
@@ -416,4 +422,41 @@ extension NewItemViewController: UIScrollViewDelegate, UITextFieldDelegate {
         self.itemNameTextfield.resignFirstResponder()
         return true
     }
+}
+
+extension NewItemViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    @objc func cellButtonPressed(_ sender: UIButton) {
+        if let image = sender.image(for: .normal) {
+            self.item.setIcon(withImage: image)
+        }
+        self.updateUI()
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.engine.getItemCardIcons().count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IconCell.identifier, for: indexPath) as! IconCell
+
+        cell.iconButton.addTarget(self, action: #selector(self.cellButtonPressed(_:)), for: .touchUpInside)
+        cell.updateUI(withIcon: self.engine.getItemCardIcons()[indexPath.row])
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: collectionView.frame.height - 10, height: collectionView.frame.height - 10)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 100
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 30
+    }
+
+    
 }

@@ -73,12 +73,8 @@ class CustomThemeColorPopUpViewBuilder: PopUpViewBuilder {
             colorButton.tintColor = themeColor.uiColor
             colorButton.addTarget(Actions.shared, action: Actions.themeColorChangedAction, for: .touchUpInside)
             if themeColor.isVipColor {
+                let vipButton = VipIcon.render(by: CGRect(x: colorButton.frame.maxX - 8, y: colorButton.frame.maxY - 8, width: buttonSize, height: buttonSize / 2), scale: 0.7)
 
-                let vipButton = UIButton()
-                vipButton.frame = CGRect(x: colorButton.frame.maxX - 8, y: colorButton.frame.maxY - 8, width: buttonSize, height: buttonSize / 2)
-                vipButton.titleLabel?.font = AppEngine.shared.userSetting.smallFont.withSize(1)
-                vipButton.renderVipIcon()
-                vipButton.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
                 themeColorView.addSubview(vipButton)
             }
             themeColorView.addSubview(colorButton)

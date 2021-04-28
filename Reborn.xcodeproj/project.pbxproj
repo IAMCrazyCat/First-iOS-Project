@@ -162,6 +162,14 @@
 		22E9A855259ED1B40073D432 /* PikerViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E9A854259ED1B40073D432 /* PikerViewData.swift */; };
 		22E9A875259F33F50073D432 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E9A873259F33F50073D432 /* PopUpViewController.swift */; };
 		22F004892613EC240080A5DD /* SelfDisciplineToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F004882613EC240080A5DD /* SelfDisciplineToolsViewController.swift */; };
+		22F619BB263919B5007F91AF /* IconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F619BA263919B5007F91AF /* IconCell.swift */; };
+		22F619BD26392EBF007F91AF /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F619BC26392EBF007F91AF /* Icon.swift */; };
+		22F619BF263934E0007F91AF /* ItemCardIcons in Resources */ = {isa = PBXBuildFile; fileRef = 22F619BE263934E0007F91AF /* ItemCardIcons */; };
+		22F619C0263934E0007F91AF /* ItemCardIcons in Resources */ = {isa = PBXBuildFile; fileRef = 22F619BE263934E0007F91AF /* ItemCardIcons */; };
+		22F619C1263934E0007F91AF /* ItemCardIcons in Resources */ = {isa = PBXBuildFile; fileRef = 22F619BE263934E0007F91AF /* ItemCardIcons */; };
+		22F619C2263934E0007F91AF /* ItemCardIcons in Resources */ = {isa = PBXBuildFile; fileRef = 22F619BE263934E0007F91AF /* ItemCardIcons */; };
+		22F619C426393A75007F91AF /* IconStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F619C326393A75007F91AF /* IconStrategy.swift */; };
+		22F619C926393D46007F91AF /* VipIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F619C826393D46007F91AF /* VipIcon.swift */; };
 		22FCB1B5258D86BA006A0D39 /* SetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FCB1B4258D86BA006A0D39 /* SetUpViewController.swift */; };
 		22FCB1BA258D907C006A0D39 /* SystemSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FCB1B9258D907C006A0D39 /* SystemSetting.swift */; };
 		378F133BB1E91F6A674DE7AC /* Pods_Reborn_RebornUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C4533996E1B3FEF9192966A /* Pods_Reborn_RebornUITests.framework */; };
@@ -364,6 +372,11 @@
 		22E9A854259ED1B40073D432 /* PikerViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PikerViewData.swift; sourceTree = "<group>"; };
 		22E9A873259F33F50073D432 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		22F004882613EC240080A5DD /* SelfDisciplineToolsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfDisciplineToolsViewController.swift; sourceTree = "<group>"; };
+		22F619BA263919B5007F91AF /* IconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCell.swift; sourceTree = "<group>"; };
+		22F619BC26392EBF007F91AF /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		22F619BE263934E0007F91AF /* ItemCardIcons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ItemCardIcons; sourceTree = "<group>"; };
+		22F619C326393A75007F91AF /* IconStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconStrategy.swift; sourceTree = "<group>"; };
+		22F619C826393D46007F91AF /* VipIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VipIcon.swift; sourceTree = "<group>"; };
 		22FCB1B4258D86BA006A0D39 /* SetUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewController.swift; sourceTree = "<group>"; };
 		22FCB1B9258D907C006A0D39 /* SystemSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSetting.swift; sourceTree = "<group>"; };
 		5AE27D89D9638F0EFD870D9C /* Pods-RebornTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RebornTests.release.xcconfig"; path = "Target Support Files/Pods-RebornTests/Pods-RebornTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -416,6 +429,7 @@
 		220B7275258A288000E4BEDC = {
 			isa = PBXGroup;
 			children = (
+				22F619BE263934E0007F91AF /* ItemCardIcons */,
 				221995F426155EC7001038FF /* Sound */,
 				22AE80C8260A08CA00F0806D /* ItemProgressWigetExtension.entitlements */,
 				22AF411B2607460C00B89031 /* Configuration.storekit */,
@@ -583,6 +597,7 @@
 				22E069A825D79250006DCE5C /* Vibrator.swift */,
 				22A584C22611F7D0001B83E1 /* SystemAlert.swift */,
 				22A1B56E26149BEF008CBE94 /* CustomTimer.swift */,
+				22F619C826393D46007F91AF /* VipIcon.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -777,6 +792,7 @@
 				22BC4C7D25D6A517009E905C /* WelcomeText.swift */,
 				221E0BA325A9D38100386FE1 /* Image.swift */,
 				22D00DF925FE2F5700DB3F1D /* CustomTime.swift */,
+				22F619BC26392EBF007F91AF /* Icon.swift */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -790,6 +806,7 @@
 				22A584C82611FBE9001B83E1 /* SettingStrategy.swift */,
 				22A584CE2611FF40001B83E1 /* EnergyStrategy.swift */,
 				22A584DC2612048E001B83E1 /* AdStrategy.swift */,
+				22F619C326393A75007F91AF /* IconStrategy.swift */,
 			);
 			path = "VIP Strategy";
 			sourceTree = "<group>";
@@ -854,6 +871,7 @@
 				22A1B5622614206E008CBE94 /* TomatoClockViewController.swift */,
 				22A1B5682614207E008CBE94 /* BreathViewController.swift */,
 				22DBC3DB2619FAC40016C6F3 /* ShareViewController.swift */,
+				22F619BA263919B5007F91AF /* IconCell.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -1113,6 +1131,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22AF41212607461400B89031 /* StoreKitTestCertificate.cer in Resources */,
+				22F619BF263934E0007F91AF /* ItemCardIcons in Resources */,
 				2219961026155F55001038FF /* Tone1.m4a in Resources */,
 				220B728E258A288300E4BEDC /* LaunchScreen.storyboard in Resources */,
 				22AF411C2607460C00B89031 /* Configuration.storekit in Resources */,
@@ -1129,6 +1148,7 @@
 			files = (
 				2219961126155F55001038FF /* Tone1.m4a in Resources */,
 				2219960526155F4D001038FF /* DigitalAlarm.m4a in Resources */,
+				22F619C0263934E0007F91AF /* ItemCardIcons in Resources */,
 				2219961D26156269001038FF /* DigitalAlarmTwice.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1139,6 +1159,7 @@
 			files = (
 				2219961226155F55001038FF /* Tone1.m4a in Resources */,
 				2219960626155F4D001038FF /* DigitalAlarm.m4a in Resources */,
+				22F619C1263934E0007F91AF /* ItemCardIcons in Resources */,
 				2219961E26156269001038FF /* DigitalAlarmTwice.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1147,6 +1168,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22F619C2263934E0007F91AF /* ItemCardIcons in Resources */,
 				22AE80902609EE8A00F0806D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1270,11 +1292,13 @@
 				224E664C25C6469B00B71E8A /* BackwardForOneStrategy.swift in Sources */,
 				22D00DEC25FE2A5900DB3F1D /* NotificationTimePopUp.swift in Sources */,
 				22BC38E525E7388600AEFE44 /* CustomTargetDaysPopUpViewBuilder.swift in Sources */,
+				22F619BD26392EBF007F91AF /* Icon.swift in Sources */,
 				22C49A6125FF16AF00371E2B /* CGFloat.swift in Sources */,
 				22A1B5692614207E008CBE94 /* BreathViewController.swift in Sources */,
 				22D00DFA25FE2F5700DB3F1D /* CustomTime.swift in Sources */,
 				224E665925C64F5F00B71E8A /* PresentStrategy.swift in Sources */,
 				228ED3E625B94D630054591F /* CalendarCell.swift in Sources */,
+				22F619BB263919B5007F91AF /* IconCell.swift in Sources */,
 				22CE4EF525D00C73007EBD5B /* EditingItemStrategy.swift in Sources */,
 				2279C17E2592ED2F00566CD7 /* UserSetting.swift in Sources */,
 				22BC200125D39C0F007D2822 /* OverAllProgressViewBuilder.swift in Sources */,
@@ -1332,6 +1356,7 @@
 				22E9A875259F33F50073D432 /* PopUpViewController.swift in Sources */,
 				220B7286258A288000E4BEDC /* WelcomeViewController.swift in Sources */,
 				22945D4425F5A7700065B511 /* CustomItemNamePopUp.swift in Sources */,
+				22F619C926393D46007F91AF /* VipIcon.swift in Sources */,
 				22D8A06725CD13BA00A605D6 /* CalendaSet.swift in Sources */,
 				22A1B56F26149BEF008CBE94 /* CustomTimer.swift in Sources */,
 				224E663525C6457900B71E8A /* TimeMachineAnimationStrategy.swift in Sources */,
@@ -1388,6 +1413,7 @@
 				229C5EEA25F4F1FD00C94B61 /* UIWindow.swift in Sources */,
 				22D7FBA125A18FE5006B1F28 /* CustomData.swift in Sources */,
 				2246D2F325CAD9F70001EFB7 /* GoBackToThePastStrategy.swift in Sources */,
+				22F619C426393A75007F91AF /* IconStrategy.swift in Sources */,
 				2264C59E25F4B399009CE917 /* ItemCompletedPopUpViewBuilder.swift in Sources */,
 				22D6197725A06B7F00EC9396 /* PopUpViewTransitioningDelegate.swift in Sources */,
 				2293F39725DC004E009B4753 /* UISegmentedControl.swift in Sources */,

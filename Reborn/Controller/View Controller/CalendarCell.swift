@@ -22,6 +22,21 @@ class CalendarCell: UICollectionViewCell {
         self.contentView.addSubview(dayButton)
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        //dayButton.frame = self.contentView.frame
+        //dayButton.layer.cornerRadius = dayButton.frame.width / 2
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        setUpUI()
+    }
+    
+    
     private func setUpUI() {
     
         state = .normal
@@ -46,7 +61,7 @@ class CalendarCell: UICollectionViewCell {
     }
     
     
-    public func updateAppearance(withType type: CalendarCellType, cellDay data: String) {
+    public func updateUI(withType type: CalendarCellType, cellDay data: String) {
         
         if self.state == .disabled {
             self.dayButton.isUserInteractionEnabled = false
@@ -145,20 +160,7 @@ class CalendarCell: UICollectionViewCell {
     
 
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func layoutSubviews() {
-        //dayButton.frame = self.contentView.frame
-        //dayButton.layer.cornerRadius = dayButton.frame.width / 2
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        setUpUI()
-    }
-    
+   
     
    
     

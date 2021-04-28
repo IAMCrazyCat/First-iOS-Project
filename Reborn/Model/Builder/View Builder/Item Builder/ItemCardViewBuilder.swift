@@ -73,7 +73,18 @@ class ItemCardViewBuilder: ViewBuilder {
     
     
     private func addIconAndNameLabel() {
-       
+        
+        
+        let icon = UIImageView()
+        icon.image = self.item.getIcon()
+        icon.contentMode = .scaleAspectFill
+
+        outPutView.addSubview(icon)
+        icon.translatesAutoresizingMaskIntoConstraints = false
+        icon.leftAnchor.constraint(equalTo: outPutView.leftAnchor, constant: self.setting.mainDistance).isActive = true
+        icon.topAnchor.constraint(equalTo: outPutView.topAnchor, constant: self.setting.mainPadding).isActive = true
+        icon.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        icon.widthAnchor.constraint(equalToConstant: 25).isActive = true
         
         let nameLabel = UILabel()
         nameLabel.accessibilityIdentifier = "NameLabel"
@@ -84,19 +95,11 @@ class ItemCardViewBuilder: ViewBuilder {
         
         outPutView.addSubview(nameLabel)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.leftAnchor.constraint(equalTo: icon.rightAnchor, constant: 10).isActive = true
+        nameLabel.centerYAnchor.constraint(equalTo: icon.centerYAnchor).isActive = true
         nameLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
-        nameLabel.topAnchor.constraint(equalTo: outPutView.topAnchor, constant: self.setting.mainDistance).isActive = true
-        nameLabel.leftAnchor.constraint(equalTo: outPutView.leftAnchor, constant: self.setting.mainDistance).isActive = true
         
-//        let icon = UIImageView()
-//        icon.image = #imageLiteral(resourceName: "StarIcon")
-//        icon.tintColor = .red
-//        outPutView.addSubview(icon)
-//        icon.translatesAutoresizingMaskIntoConstraints = false
-//        icon.leftAnchor.constraint(equalTo: outPutView.leftAnchor, constant: self.setting.mainDistance).isActive = true
-//        icon.centerYAnchor.constraint(equalTo: nameLabel.centerYAnchor).isActive = true
-//
-//        nameLabel.leftAnchor.constraint(equalTo: icon.rightAnchor, constant: 10).isActive = true
+       
     }
     
     private func addItemCardFreqencyLabel() {
