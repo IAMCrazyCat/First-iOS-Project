@@ -41,15 +41,9 @@ class EditingItemStrategy: NewItemViewStrategy {
             case 30:
                 newItemViewController.thirtyDaysButton.isSelected = true
                 newItemViewController.selectedTargetDaysButton = newItemViewController.thirtyDaysButton
-            case 60:
-                newItemViewController.sixtyDaysButton.isSelected = true
-                newItemViewController.selectedTargetDaysButton = newItemViewController.sixtyDaysButton
             case 100:
                 newItemViewController.oneHundredDaysButton.isSelected = true
                 newItemViewController.selectedTargetDaysButton = newItemViewController.oneHundredDaysButton
-            case 365:
-                newItemViewController.oneYearButton.isSelected = true
-                newItemViewController.selectedTargetDaysButton = newItemViewController.oneYearButton
             default:
                 newItemViewController.customTargetDaysButton.isSelected = true
                 newItemViewController.selectedTargetDaysButton = newItemViewController.customTargetDaysButton
@@ -73,15 +67,9 @@ class EditingItemStrategy: NewItemViewStrategy {
         case "每天":
             newItemViewController.everydayFrequencyButton.isSelected = true
             newItemViewController.selectedFrequencyButton = newItemViewController.everydayFrequencyButton
-        case "每两天":
-            newItemViewController.everyTwoDaysFreqencyButton.isSelected = true
-            newItemViewController.selectedFrequencyButton = newItemViewController.everyTwoDaysFreqencyButton
         case "每周":
             newItemViewController.everyWeekFreqencyButton.isSelected = true
             newItemViewController.selectedFrequencyButton = newItemViewController.everyWeekFreqencyButton
-        case "每两周":
-            newItemViewController.everyTwoWeeksFrequencyButton.isSelected = true
-            newItemViewController.selectedFrequencyButton = newItemViewController.everyTwoWeeksFrequencyButton
         case "每月":
             newItemViewController.everyMonthFrequencyButton.isSelected = true
             newItemViewController.selectedFrequencyButton = newItemViewController.everyMonthFrequencyButton

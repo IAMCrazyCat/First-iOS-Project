@@ -16,12 +16,6 @@
 		220B728E258A288300E4BEDC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 220B728C258A288300E4BEDC /* LaunchScreen.storyboard */; };
 		220B7299258A288300E4BEDC /* RebornTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B7298258A288300E4BEDC /* RebornTests.swift */; };
 		220B72A4258A288300E4BEDC /* RebornUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B72A3258A288300E4BEDC /* RebornUITests.swift */; };
-		2219960426155F4D001038FF /* DigitalAlarm.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2219960326155F4D001038FF /* DigitalAlarm.m4a */; };
-		2219960526155F4D001038FF /* DigitalAlarm.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2219960326155F4D001038FF /* DigitalAlarm.m4a */; };
-		2219960626155F4D001038FF /* DigitalAlarm.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2219960326155F4D001038FF /* DigitalAlarm.m4a */; };
-		2219961026155F55001038FF /* Tone1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2219960F26155F55001038FF /* Tone1.m4a */; };
-		2219961126155F55001038FF /* Tone1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2219960F26155F55001038FF /* Tone1.m4a */; };
-		2219961226155F55001038FF /* Tone1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2219960F26155F55001038FF /* Tone1.m4a */; };
 		2219961C26156269001038FF /* DigitalAlarmTwice.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2219961B26156269001038FF /* DigitalAlarmTwice.m4a */; };
 		2219961D26156269001038FF /* DigitalAlarmTwice.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2219961B26156269001038FF /* DigitalAlarmTwice.m4a */; };
 		2219961E26156269001038FF /* DigitalAlarmTwice.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2219961B26156269001038FF /* DigitalAlarmTwice.m4a */; };
@@ -111,6 +105,7 @@
 		22B1E8E925DD47F3003ABF6C /* ItemSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B1E8E825DD47F3003ABF6C /* ItemSet.swift */; };
 		22B347022626B8D90087350C /* SharePosterTextData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B347012626B8D90087350C /* SharePosterTextData.swift */; };
 		22B4B56325D10ACD00C0CFD7 /* UIObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B4B56225D10ACD00C0CFD7 /* UIObserver.swift */; };
+		22BA665F263AA5B7003193E9 /* EraserViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA665E263AA5B7003193E9 /* EraserViewBuilder.swift */; };
 		22BABF2425C3ECBA00168AE1 /* TimeMachineCalendarPageViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BABF2325C3ECBA00168AE1 /* TimeMachineCalendarPageViewBuilder.swift */; };
 		22BABF2925C42ABB00168AE1 /* CGAffineTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BABF2825C42ABB00168AE1 /* CGAffineTransform.swift */; };
 		22BC200125D39C0F007D2822 /* OverAllProgressViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BC200025D39C0F007D2822 /* OverAllProgressViewBuilder.swift */; };
@@ -135,6 +130,7 @@
 		22C49A6125FF16AF00371E2B /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C49A6025FF16AF00371E2B /* CGFloat.swift */; };
 		22C4BFB825D21E7A00528A1C /* ViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4BFB725D21E7A00528A1C /* ViewBuilder.swift */; };
 		22C4BFC325D21F2400528A1C /* ItemProgressViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4BFC225D21F2400528A1C /* ItemProgressViewBuilder.swift */; };
+		22C535F4263D0E3D0036B0D7 /* Tone1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 22C535F3263D0E3D0036B0D7 /* Tone1.m4a */; };
 		22C5D967258F3E4400131964 /* SetUpEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5D966258F3E4400131964 /* SetUpEngine.swift */; };
 		22C5D975258F40E800131964 /* SetUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5D974258F40E800131964 /* SetUpPage.swift */; };
 		22CBB97E25EA42C500994D33 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CBB97D25EA42C500994D33 /* ThemeColor.swift */; };
@@ -231,8 +227,6 @@
 		220B729F258A288300E4BEDC /* RebornUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RebornUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		220B72A3258A288300E4BEDC /* RebornUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebornUITests.swift; sourceTree = "<group>"; };
 		220B72A5258A288300E4BEDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2219960326155F4D001038FF /* DigitalAlarm.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = DigitalAlarm.m4a; path = ../../../.Trash/DigitalAlarm.m4a; sourceTree = "<group>"; };
-		2219960F26155F55001038FF /* Tone1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = Tone1.m4a; path = ../../../.Trash/Tone1.m4a; sourceTree = "<group>"; };
 		2219961B26156269001038FF /* DigitalAlarmTwice.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = DigitalAlarmTwice.m4a; path = ../../../../../../Downloads/DigitalAlarmTwice.m4a; sourceTree = "<group>"; };
 		221E0B7B25A9273E00386FE1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		221E0B8725A9A22800386FE1 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
@@ -320,6 +314,7 @@
 		22B1E8E825DD47F3003ABF6C /* ItemSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSet.swift; sourceTree = "<group>"; };
 		22B347012626B8D90087350C /* SharePosterTextData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePosterTextData.swift; sourceTree = "<group>"; };
 		22B4B56225D10ACD00C0CFD7 /* UIObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIObserver.swift; sourceTree = "<group>"; };
+		22BA665E263AA5B7003193E9 /* EraserViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EraserViewBuilder.swift; sourceTree = "<group>"; };
 		22BABF2325C3ECBA00168AE1 /* TimeMachineCalendarPageViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineCalendarPageViewBuilder.swift; sourceTree = "<group>"; };
 		22BABF2825C42ABB00168AE1 /* CGAffineTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGAffineTransform.swift; sourceTree = "<group>"; };
 		22BC200025D39C0F007D2822 /* OverAllProgressViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverAllProgressViewBuilder.swift; sourceTree = "<group>"; };
@@ -344,6 +339,7 @@
 		22C49A6025FF16AF00371E2B /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
 		22C4BFB725D21E7A00528A1C /* ViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBuilder.swift; sourceTree = "<group>"; };
 		22C4BFC225D21F2400528A1C /* ItemProgressViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemProgressViewBuilder.swift; sourceTree = "<group>"; };
+		22C535F3263D0E3D0036B0D7 /* Tone1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = Tone1.m4a; path = ../../../../../../Downloads/Tone1.m4a; sourceTree = "<group>"; };
 		22C5D966258F3E4400131964 /* SetUpEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpEngine.swift; sourceTree = "<group>"; };
 		22C5D974258F40E800131964 /* SetUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpPage.swift; sourceTree = "<group>"; };
 		22CBB97D25EA42C500994D33 /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
@@ -526,9 +522,8 @@
 		221995F426155EC7001038FF /* Sound */ = {
 			isa = PBXGroup;
 			children = (
-				2219960F26155F55001038FF /* Tone1.m4a */,
+				22C535F3263D0E3D0036B0D7 /* Tone1.m4a */,
 				2219961B26156269001038FF /* DigitalAlarmTwice.m4a */,
-				2219960326155F4D001038FF /* DigitalAlarm.m4a */,
 			);
 			path = Sound;
 			sourceTree = "<group>";
@@ -583,6 +578,7 @@
 		224E663325C6454100B71E8A /* Strategy */ = {
 			isa = PBXGroup;
 			children = (
+				22C535F2263D0A790036B0D7 /* Calendar Cell Strategy */,
 				22BDC90825F26096008E9C46 /* VIP Strategy */,
 				22CE4ED025D007B4007EBD5B /* New Item View Strategy */,
 				22CE4ECC25D0078F007EBD5B /* Time Machine Strategy */,
@@ -811,6 +807,13 @@
 			path = "VIP Strategy";
 			sourceTree = "<group>";
 		};
+		22C535F2263D0A790036B0D7 /* Calendar Cell Strategy */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Calendar Cell Strategy";
+			sourceTree = "<group>";
+		};
 		22C5D987258F646700131964 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -919,6 +922,7 @@
 			children = (
 				224A919125971E9000A896BE /* ItemCardViewBuilder.swift */,
 				22C4BFC225D21F2400528A1C /* ItemProgressViewBuilder.swift */,
+				22BA665E263AA5B7003193E9 /* EraserViewBuilder.swift */,
 			);
 			path = "Item Builder";
 			sourceTree = "<group>";
@@ -1132,13 +1136,12 @@
 			files = (
 				22AF41212607461400B89031 /* StoreKitTestCertificate.cer in Resources */,
 				22F619BF263934E0007F91AF /* ItemCardIcons in Resources */,
-				2219961026155F55001038FF /* Tone1.m4a in Resources */,
 				220B728E258A288300E4BEDC /* LaunchScreen.storyboard in Resources */,
 				22AF411C2607460C00B89031 /* Configuration.storekit in Resources */,
 				2219961C26156269001038FF /* DigitalAlarmTwice.m4a in Resources */,
+				22C535F4263D0E3D0036B0D7 /* Tone1.m4a in Resources */,
 				220B728B258A288300E4BEDC /* Assets.xcassets in Resources */,
 				220B7289258A288000E4BEDC /* Main.storyboard in Resources */,
-				2219960426155F4D001038FF /* DigitalAlarm.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1146,8 +1149,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2219961126155F55001038FF /* Tone1.m4a in Resources */,
-				2219960526155F4D001038FF /* DigitalAlarm.m4a in Resources */,
 				22F619C0263934E0007F91AF /* ItemCardIcons in Resources */,
 				2219961D26156269001038FF /* DigitalAlarmTwice.m4a in Resources */,
 			);
@@ -1157,8 +1158,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2219961226155F55001038FF /* Tone1.m4a in Resources */,
-				2219960626155F4D001038FF /* DigitalAlarm.m4a in Resources */,
 				22F619C1263934E0007F91AF /* ItemCardIcons in Resources */,
 				2219961E26156269001038FF /* DigitalAlarmTwice.m4a in Resources */,
 			);
@@ -1385,6 +1384,7 @@
 				22B4B56325D10ACD00C0CFD7 /* UIObserver.swift in Sources */,
 				22BABF2425C3ECBA00168AE1 /* TimeMachineCalendarPageViewBuilder.swift in Sources */,
 				221E0BA425A9D38100386FE1 /* Image.swift in Sources */,
+				22BA665F263AA5B7003193E9 /* EraserViewBuilder.swift in Sources */,
 				22D354B425A595B7004F5667 /* UserCenterViewController.swift in Sources */,
 				22BABF2925C42ABB00168AE1 /* CGAffineTransform.swift in Sources */,
 				224E665125C6483E00B71E8A /* TimeMachineAnimationStrategyImpl.swift in Sources */,
@@ -1613,7 +1613,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Reborn/Reborn.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = Reborn/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1636,7 +1636,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Reborn/Reborn.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = Reborn/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1745,7 +1745,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ItemProgressWigetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = ItemProgressWiget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
@@ -1769,7 +1769,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ItemProgressWigetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = ItemProgressWiget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;

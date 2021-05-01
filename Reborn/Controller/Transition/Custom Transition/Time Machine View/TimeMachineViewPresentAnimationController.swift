@@ -33,7 +33,6 @@ class TimeMachineViewPresentAnimationController: NSObject, UIViewControllerAnima
         let navBarheight = (originalParentViewController.view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0) + (originalParentViewController.navigationController?.navigationBar.frame.height ?? 0.0)
         
         toViewController.calendarView = fromView
-        toViewController.calendarViewController = fromViewController
         toViewController.calendarViewOriginalPosition = originalParentViewController.topView.frame.origin
         toViewController.topView.heightAnchor.constraint(equalToConstant: navBarheight).isActive = true // Make sure that the topview height is equal to nav bar
 

@@ -76,7 +76,7 @@ class ItemCardViewBuilder: ViewBuilder {
         
         
         let icon = UIImageView()
-        icon.image = self.item.getIcon()
+        icon.image = self.item.icon.image
         icon.contentMode = .scaleAspectFill
 
         outPutView.addSubview(icon)
@@ -85,6 +85,25 @@ class ItemCardViewBuilder: ViewBuilder {
         icon.topAnchor.constraint(equalTo: outPutView.topAnchor, constant: self.setting.mainPadding).isActive = true
         icon.heightAnchor.constraint(equalToConstant: 25).isActive = true
         icon.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        
+       
+        if self.item.type == .quitting {
+        
+            let forbiddenIcon = UIImageView()
+            outPutView.layoutIfNeeded()
+            forbiddenIcon.image = Icon.forbidden.image
+            forbiddenIcon.frame = icon.frame
+            forbiddenIcon.alpha = 0.5
+            //icon.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
+            outPutView.addSubview(forbiddenIcon)
+           
+//            forbiddenIcon.translatesAutoresizingMaskIntoConstraints = false
+//            forbiddenIcon.centerXAnchor.constraint(equalTo: icon.centerXAnchor).isActive = true
+//            forbiddenIcon.centerYAnchor.constraint(equalTo: icon.centerYAnchor).isActive = true
+//            forbiddenIcon.heightAnchor.constraint(equalToConstant: icon.frame.height + 5).isActive = true
+//            forbiddenIcon.widthAnchor.constraint(equalToConstant: icon.frame.width + 5).isActive = true
+            
+        }
         
         let nameLabel = UILabel()
         nameLabel.accessibilityIdentifier = "NameLabel"

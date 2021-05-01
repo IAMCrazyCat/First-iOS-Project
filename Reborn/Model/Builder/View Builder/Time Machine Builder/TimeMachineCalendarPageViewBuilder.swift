@@ -8,38 +8,37 @@
 import Foundation
 import UIKit
 
-class TimeMachineCalendarPageViewBuilder {
+class TimeMachineCalendarPageViewBuilder: ViewBuilder {
     
     
-    var calendarViewController: CalendarViewController
-    var outputCalendarpageView: UIView? = nil
+    
+    var referenceCalendarPage: CalendarPage
+    var outputView: UIView = UIView()
     var calendarView: UIView
     var monthDifference: Int
     
-    init(interactableCalendarView calendarView: UIView, calendarViewController: CalendarViewController, monthDifference: Int) {
+    init(interactableCalendarView calendarView: UIView, referenceCalendarPage: CalendarPage, monthDifference: Int) {
         
         self.calendarView = calendarView
-        self.calendarViewController = calendarViewController
+        self.referenceCalendarPage = referenceCalendarPage
         self.monthDifference = monthDifference
     }
     
-    public func buildCalendarPage() -> UIView {
-        createCalendarPageView()
-        
+    func buildView() -> UIView {
+        createView()
         addTopView()
         addMiddleView()
         addBottomView()
-        return outputCalendarpageView!
-        
+        return outputView
     }
     
-    private func createCalendarPageView() {
-        self.outputCalendarpageView = UIView()
-        self.outputCalendarpageView?.frame = calendarView.frame
-        self.outputCalendarpageView?.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackContent
-        self.outputCalendarpageView?.layer.cornerRadius = calendarView.layer.cornerRadius
-        
+    func createView() {
+        self.outputView.accessibilityIdentifier = "TempCalendarPageView"
+        self.outputView.frame = calendarView.frame
+        self.outputView.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackContent
+        self.outputView.layer.cornerRadius = calendarView.layer.cornerRadius
     }
+    
     
     private func addTopView() {
         let topView = UIView()
@@ -54,9 +53,9 @@ class TimeMachineCalendarPageViewBuilder {
                 let dateLabel = UILabel()
                 dateLabel.frame = referenceLabel.frame
                 
-                let currentYear = self.calendarViewController.currentCalendarPage.year
-                let currentMonth = self.calendarViewController.currentCalendarPage.month
-                let currentDay = self.calendarViewController.currentCalendarPage.days
+                let currentYear = referenceCalendarPage.year
+                let currentMonth = referenceCalendarPage.month
+                let currentDay = referenceCalendarPage.days
                 
                 let newDate = DateCalculator.calculateDate(withMonthDifference: self.monthDifference, originalDate: CustomDate(year: currentYear, month: currentMonth, day: currentDay))
                 dateLabel.text = "\(newDate.year)年 \(newDate.month)月"
@@ -73,7 +72,7 @@ class TimeMachineCalendarPageViewBuilder {
                     button.frame = referenceButton.frame
                     button.setImage(referenceButton.currentImage, for: .normal)
                     button.setTitle(referenceButton.currentTitle, for: .normal)
-
+                    button.alpha = referenceButton.alpha
                     button.setTitleColor(referenceButton.currentTitleColor, for: .normal)
                     button.tintColor = referenceButton.tintColor
                     topView.addSubview(button)
@@ -84,7 +83,7 @@ class TimeMachineCalendarPageViewBuilder {
         
         }
         
-        self.outputCalendarpageView?.addSubview(topView)
+        self.outputView.addSubview(topView)
     }
     
     private func addMiddleView() {
@@ -119,7 +118,7 @@ class TimeMachineCalendarPageViewBuilder {
             }
             
         }
-        self.outputCalendarpageView?.addSubview(middleView)
+        self.outputView.addSubview(middleView)
     }
     
     private func addBottomView() {

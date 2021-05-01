@@ -9,7 +9,7 @@ import Foundation
 class QuittingItem: Item {
     
     init(ID: Int, name: String, days: Int, frequency: Frequency, creationDate: CustomDate) {
-        super.init(ID: ID, name: name, days: days, frequency: frequency, creationDate: creationDate, type: .quitting)
+        super.init(ID: ID, name: name, days: days, frequency: frequency, creationDate: creationDate, type: .quitting, icon: Icon.defaultIcon2)
     }
     
     required init(from decoder: Decoder) throws {

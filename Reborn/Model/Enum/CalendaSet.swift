@@ -20,6 +20,8 @@ enum CalendarCellType {
     case nothThisMonthPunchedIn
     case selected
     case unselected
+    case unselectedInTimeMachine
+    case dayAfterTodayInTimeMachine
 }
 
 enum CalendarState {

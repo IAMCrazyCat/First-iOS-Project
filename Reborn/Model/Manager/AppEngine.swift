@@ -67,33 +67,66 @@ class AppEngine {
     }
     
     func loadtItemCardIcons() {
-        let path = Bundle.main.resourcePath! + "/ItemCardIcons"
-        let fileManager = FileManager.default
-        let url = URL(fileURLWithPath: path)
-        let properties = [URLResourceKey.localizedNameKey, URLResourceKey.creationDateKey, URLResourceKey.localizedTypeDescriptionKey]
-        do {
-            let imageURLs = try fileManager.contentsOfDirectory(at: url, includingPropertiesForKeys: properties, options:FileManager.DirectoryEnumerationOptions.skipsHiddenFiles)
-            
-            print("image URLs: \(imageURLs)")
-            // Create image from URL
-            for url in imageURLs {
-                let imageFileName = url.lastPathComponent
-                let lastCharacters = imageFileName.suffix(7)
-                let icon = Icon(image: UIImage(data: try Data(contentsOf: url))!, isVipIcon: lastCharacters == "vip.png" ? true : false)
-                self.itemCardIcons.append(icon)
-            }
-            self.itemCardIcons.sort {
-                !$0.isVipIcon && $1.isVipIcon
-            }
-            
+        
+        DispatchQueue.main.async {
+            let path = Bundle.main.resourcePath! + "/ItemCardIcons"
+            let fileManager = FileManager.default
+            let url = URL(fileURLWithPath: path)
+            let properties = [URLResourceKey.localizedNameKey, URLResourceKey.creationDateKey, URLResourceKey.localizedTypeDescriptionKey]
+            do {
+                let imageURLs = try fileManager.contentsOfDirectory(at: url, includingPropertiesForKeys: properties, options:FileManager.DirectoryEnumerationOptions.skipsHiddenFiles)
+                
+                print("image URLs: \(imageURLs)")
+                // Create image from URL
+                for url in imageURLs {
+                    let imageFileName = url.lastPathComponent
+                    let lastCharacters = imageFileName.suffix(7)
+                    let icon = Icon(image: UIImage(data: try Data(contentsOf: url))!, isVipIcon: lastCharacters == "vip.png" ? true : false, name: imageFileName)
+                    self.itemCardIcons.append(icon)
+                }
+                self.itemCardIcons.sort {
+                    if $0.isVipIcon == $1.isVipIcon {
+                        return $0.name < $1.name
+                    } else {
+                        return !$0.isVipIcon && $1.isVipIcon
+                    }
+                    
+                                    
+                }
 
-        } catch let error1 as NSError {
-            print(error1.description)
+                    
+                
+
+            } catch let error1 as NSError {
+                print(error1.description)
+            }
         }
+        
     }
     
     func getItemCardIcons() -> Array<Icon> {
         return itemCardIcons
+    }
+    
+    func getItemCardIcon(by name: String) -> Icon? {
+        for icon in self.itemCardIcons {
+            if name == icon.name {
+                return icon
+            }
+        }
+        
+        return nil
+    }
+    
+    func getItemCardIconIndex(by name: String) -> Int? {
+        var index = 0
+        for icon in self.itemCardIcons {
+            if name == icon.name {
+                return index
+            }
+            index += 1
+        }
+        return nil
     }
     
  

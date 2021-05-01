@@ -11,6 +11,8 @@ class ItemDetailViewController: UIViewController {
 
 
     @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var itemNameLabel: UILabel!
     @IBOutlet weak var calendarView: UIView!
     @IBOutlet weak var mediumView: UIView!
     @IBOutlet weak var verticalScrollView: UIScrollView!
@@ -48,7 +50,9 @@ class ItemDetailViewController: UIViewController {
         engine.add(observer: self)
         //topView.layer.cornerRadius = setting.itemCardCornerRadius
         topView.setShadow()
-        
+        iconImageView.image = item.icon.image
+        title = "项目详情"
+        itemNameLabel.text = item.getFullName()
         //mediumView.layer.cornerRadius = setting.itemCardCornerRadius
         mediumView.setShadow()
 
@@ -64,6 +68,7 @@ class ItemDetailViewController: UIViewController {
         bottomEditButton.proportionallySetSizeWithScreen()
         bottomEditButton.setCornerRadius()
         bottomEditButton.setShadow()
+        
         updateUI()
     }
     
@@ -74,6 +79,8 @@ class ItemDetailViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         self.verticalContentViewHeightConstraint.constant = self.bottomEditButton.frame.maxY + self.setting.contentToScrollViewBottomDistance
         self.verticalScrollView.layoutIfNeeded()
+        
+
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -102,7 +109,7 @@ class ItemDetailViewController: UIViewController {
   
         } else if segue.identifier == "GoToEditItemView", let destinationViewController = segue.destination as? NewItemViewController {
             
-            destinationViewController.originalItemForRecovery = Item(ID: self.item!.ID, name: self.item!.name, days: self.item!.targetDays, frequency: self.item!.frequency, creationDate: self.item!.creationDate, type: self.item!.type)
+            destinationViewController.originalItemForRecovery = Item(ID: self.item!.ID, name: self.item!.name, days: self.item!.targetDays, frequency: self.item!.frequency, creationDate: self.item!.creationDate, type: self.item!.type, icon: self.item!.icon)
             destinationViewController.item = self.item!
             destinationViewController.lastViewController = self
             destinationViewController.strategy = EditingItemStrategy(newItemViewController: destinationViewController)
@@ -130,7 +137,8 @@ class ItemDetailViewController: UIViewController {
         
         navigationItem.rightBarButtonItem?.tintColor = engine.userSetting.smartLabelColorAndWhite
         
-        self.title = item.type.rawValue + item.name
+       
+        
        
     }
     

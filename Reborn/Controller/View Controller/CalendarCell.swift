@@ -63,11 +63,7 @@ class CalendarCell: UICollectionViewCell {
     
     public func updateUI(withType type: CalendarCellType, cellDay data: String) {
         
-        if self.state == .disabled {
-            self.dayButton.isUserInteractionEnabled = false
-        } else {
-            self.dayButton.isUserInteractionEnabled = true
-        }
+        
         
         
         switch type {
@@ -120,15 +116,19 @@ class CalendarCell: UICollectionViewCell {
             }
             
         case .unselected:
+            self.state = .normal
+            self.dayButton.setTitle(data, for: .normal)
+            self.dayButton.setTitleColor(.label, for: .normal)
+            self.contentView.backgroundColor = .clear
+            self.contentView.layer.borderWidth = 0
             
-            if self.state != .disabled {
-                self.state = .normal
-                self.dayButton.setTitle(data, for: .normal)
-                self.dayButton.setTitleColor(.label, for: .normal)
-                self.contentView.backgroundColor = .clear
-                self.contentView.layer.borderWidth = 0
-            }
-        case .notThisMonthMissedDay:
+        case.unselectedInTimeMachine:
+            self.state = .disabled
+            self.dayButton.setTitle(data, for: .normal)
+            self.dayButton.setTitleColor(.label, for: .normal)
+            self.contentView.backgroundColor = .clear
+            self.contentView.layer.borderWidth = 0
+        case .notThisMonthMissedDay, .dayAfterTodayInTimeMachine:
             
             self.state = .disabled
             self.contentView.backgroundColor = .clear
@@ -141,6 +141,12 @@ class CalendarCell: UICollectionViewCell {
             self.contentView.backgroundColor = AppEngine.shared.userSetting.themeColor.uiColor.withAlphaComponent(0.3)
             self.dayButton.setTitle(data, for: .normal)
             self.dayButton.setTitleColor(UIColor.white, for: .normal)
+        }
+        
+        if self.state == .disabled {
+            self.dayButton.isUserInteractionEnabled = false
+        } else {
+            self.dayButton.isUserInteractionEnabled = true
         }
      
     }

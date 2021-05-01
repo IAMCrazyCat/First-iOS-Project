@@ -89,7 +89,7 @@ class OverAllProgressViewBuilder: ViewBuilder {
         self.outPutView.addSubview(firstTextLabel)
         self.outPutView.layoutIfNeeded()
         let vipButton = VipIcon.render(by: CGRect(x: firstTextLabel.frame.width + 25, y: firstTextLabel.frame.minY + 5, width: 40, height: 15), scale: 1)
-        vipButton.isHidden = AppEngine.shared.currentUser.isVip ? false : true
+        vipButton.isHidden = true//AppEngine.shared.currentUser.isVip ? false : true
         self.outPutView.addSubview(vipButton)
         
         

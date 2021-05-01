@@ -23,7 +23,7 @@ enum ItemState: String, Codable {
 
 enum ItemType: String, CaseIterable, Codable {
     case undefined = ""
-    case quitting = "戒除"
+    case quitting = "戒"
     case persisting = "坚持"
     
     var priority: Int {

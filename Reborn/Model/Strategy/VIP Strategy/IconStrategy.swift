@@ -15,12 +15,17 @@ class IconStrategy: VIPStrategyImpl {
     }
     
     func setAppearance(with icon: Icon) {
+
         iconCell.iconButton.setImage(icon.image, for: .normal)
+        iconCell.iconButton.accessibilityIdentifier = icon.name
         
-        let vipButton = VipIcon.render(by: CGRect(x: iconCell.iconButton.frame.width / 2, y: iconCell.iconButton.frame.height / 2, width: 40, height: 20), scale: 0.7)
+        let width: CGFloat = 40
+        let height: CGFloat = 20
+        let scale: CGFloat = 0.5
+        let vipButton = VipIcon.render(by: CGRect(x: iconCell.iconButton.frame.width - width * scale, y: iconCell.iconButton.frame.height - height * scale, width: width, height: height), scale: scale)
         
         if icon.isVipIcon && !AppEngine.shared.currentUser.isVip {
-            iconCell.iconButton.alpha = 0.5
+            iconCell.iconButton.alpha = 0.3
             iconCell.iconButton.isUserInteractionEnabled = false
             iconCell.contentView.addSubview(vipButton)
         } else if icon.isVipIcon && AppEngine.shared.currentUser.isVip {

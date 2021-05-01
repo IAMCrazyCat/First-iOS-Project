@@ -315,7 +315,7 @@ Cg
                                     <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zHw-xi-vrL" userLabel="Vertical Contetnt View">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="900"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NameIcon" translatesAutoresizingMaskIntoConstraints="NO" id="aAy-4f-o1J">
+                                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Name" translatesAutoresizingMaskIntoConstraints="NO" id="aAy-4f-o1J">
                                                 <rect key="frame" x="15" y="21.5" width="28" height="28"/>
                                                 <color key="tintColor" systemColor="systemRedColor"/>
                                                 <constraints>
@@ -324,19 +324,19 @@ Cg
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0g-iC-UgG">
-                                                <rect key="frame" x="53" y="237" width="35" height="21"/>
+                                                <rect key="frame" x="15" y="277" width="35" height="21"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目标" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I5N-Yf-LFv">
-                                                <rect key="frame" x="53" y="328" width="35" height="21"/>
+                                                <rect key="frame" x="15" y="388" width="35" height="21"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  想坚持/戒除的事" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dF6-S4-tMX">
-                                                <rect key="frame" x="15" y="66" width="384" height="40"/>
+                                                <rect key="frame" x="15" y="86" width="384" height="40"/>
                                                 <color key="backgroundColor" name="GrayWhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -346,7 +346,7 @@ Cg
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYH-kV-dcm">
-                                                <rect key="frame" x="343" y="278" width="31" height="30"/>
+                                                <rect key="frame" x="343" y="328" width="31" height="30"/>
                                                 <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="戒除">
@@ -357,7 +357,7 @@ Cg
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uum-ys-rdj">
-                                                <rect key="frame" x="40" y="369" width="30" height="30"/>
+                                                <rect key="frame" x="40" y="439" width="30" height="30"/>
                                                 <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <size key="titleShadowOffset" width="3" height="0.0"/>
@@ -368,19 +368,8 @@ Cg
                                                     <action selector="targetDaysButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="Idp-Ne-BIc"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="maG-bk-NyY">
-                                                <rect key="frame" x="40" y="419" width="34" height="30"/>
-                                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
-                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="60天">
-                                                    <color key="titleColor" systemColor="labelColor"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="targetDaysButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="WAm-bf-awP"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WpU-fd-JVR">
-                                                <rect key="frame" x="40" y="278" width="31" height="30"/>
+                                                <rect key="frame" x="40" y="328" width="31" height="30"/>
                                                 <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="坚持">
@@ -391,7 +380,7 @@ Cg
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eVH-dn-gr1">
-                                                <rect key="frame" x="340" y="369" width="34" height="30"/>
+                                                <rect key="frame" x="340" y="439" width="34" height="30"/>
                                                 <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="30天">
@@ -401,19 +390,8 @@ Cg
                                                     <action selector="targetDaysButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="LD0-Sp-RF6"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RFy-ys-MHv">
-                                                <rect key="frame" x="333" y="419" width="41" height="30"/>
-                                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
-                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="100天">
-                                                    <color key="titleColor" systemColor="labelColor"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="targetDaysButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="vpi-Yg-Di9"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afP-fa-obf">
-                                                <rect key="frame" x="328" y="469" width="46" height="30"/>
+                                                <rect key="frame" x="328" y="489" width="46" height="30"/>
                                                 <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="自定义">
@@ -423,25 +401,14 @@ Cg
                                                     <action selector="targetDaysButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="kYQ-YN-dQI"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGd-7R-bfn">
-                                                <rect key="frame" x="40" y="469" width="43" height="30"/>
-                                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
-                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="365天">
-                                                    <color key="titleColor" systemColor="labelColor"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="targetDaysButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="Zpk-bg-n8l"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="频率" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wH2-TB-oP3">
-                                                <rect key="frame" x="53" y="519" width="35" height="21"/>
+                                                <rect key="frame" x="15" y="549" width="35" height="21"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3i9-WH-Zt7">
-                                                <rect key="frame" x="40" y="560" width="31" height="30"/>
+                                                <rect key="frame" x="40" y="600" width="31" height="30"/>
                                                 <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="每天">
@@ -451,41 +418,8 @@ Cg
                                                     <action selector="frequencyButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="rhT-XC-q7N"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rS9-xl-t7u">
-                                                <rect key="frame" x="40" y="610" width="31" height="30"/>
-                                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
-                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="每周">
-                                                    <color key="titleColor" systemColor="labelColor"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="frequencyButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="6OK-oY-CJr"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uVK-qR-Otb">
-                                                <rect key="frame" x="328" y="610" width="46" height="30"/>
-                                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
-                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="每两周">
-                                                    <color key="titleColor" systemColor="labelColor"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="frequencyButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="gdB-1B-1CH"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJB-1F-QUe">
-                                                <rect key="frame" x="328" y="560" width="46" height="30"/>
-                                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
-                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="每两天">
-                                                    <color key="titleColor" systemColor="labelColor"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="frequencyButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="UQ6-x6-D5W"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEh-sX-wyw">
-                                                <rect key="frame" x="328" y="660" width="46" height="30"/>
+                                                <rect key="frame" x="328" y="650" width="46" height="30"/>
                                                 <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="自定义">
@@ -495,26 +429,26 @@ Cg
                                                     <action selector="frequencyButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="hbi-Gi-Qtc"/>
                                                 </connections>
                                             </button>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TargetIcon" translatesAutoresizingMaskIntoConstraints="NO" id="a3D-ld-P7d">
-                                                <rect key="frame" x="15" y="324.5" width="28" height="28"/>
+                                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Target-HD" translatesAutoresizingMaskIntoConstraints="NO" id="a3D-ld-P7d">
+                                                <rect key="frame" x="15" y="384.5" width="28" height="28"/>
                                                 <color key="tintColor" red="0.95815557240000004" green="0.73054325580000001" blue="0.25081610679999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HistoryIcon" translatesAutoresizingMaskIntoConstraints="NO" id="TtZ-0J-0EP">
-                                                <rect key="frame" x="15" y="515.5" width="28" height="28"/>
+                                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Freqency" translatesAutoresizingMaskIntoConstraints="NO" id="TtZ-0J-0EP">
+                                                <rect key="frame" x="15" y="545.5" width="28" height="28"/>
                                                 <color key="tintColor" red="0.40788567069999998" green="0.55731946229999996" blue="0.99905794859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="nS3-iZ-Nkf">
-                                                <rect key="frame" x="15" y="233.5" width="28" height="28"/>
+                                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Flag" translatesAutoresizingMaskIntoConstraints="NO" id="nS3-iZ-Nkf">
+                                                <rect key="frame" x="15" y="273.5" width="28" height="28"/>
                                                 <color key="tintColor" name="ThemeColor"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="项目名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N9a-6t-lce">
-                                                <rect key="frame" x="53" y="25" width="52" height="21"/>
+                                                <rect key="frame" x="15" y="25" width="52" height="21"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJD-UT-gB8">
-                                                <rect key="frame" x="40" y="660" width="31" height="30"/>
+                                                <rect key="frame" x="40" y="650" width="31" height="30"/>
                                                 <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="每月">
@@ -525,24 +459,24 @@ Cg
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="频率计划外为休息日，该项目不会出现在今日打卡中" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZL-a6-T5M">
-                                                <rect key="frame" x="40" y="730" width="334" height="16"/>
+                                                <rect key="frame" x="40" y="720" width="334" height="16"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="FirstInstructionLabel"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="textColor" name="ThemeColorInvert"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设定频率后，第一次打卡日将会被设定为今天" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WKm-RK-W4j">
-                                                <rect key="frame" x="40" y="766" width="334" height="16"/>
+                                                <rect key="frame" x="40" y="756" width="334" height="16"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="SecondInstructionLabel"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="textColor" name="ThemeColorInvert"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yXF-rH-r1e">
-                                                <rect key="frame" x="15" y="167" width="384" height="50"/>
+                                                <rect key="frame" x="20" y="197" width="374" height="60"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="TkN-Dc-JVK"/>
+                                                    <constraint firstAttribute="height" constant="60" id="TkN-Dc-JVK"/>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zIo-h8-Tad">
                                                     <size key="itemSize" width="56" height="48"/>
@@ -552,7 +486,7 @@ Cg
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="e2I-gB-gvT">
-                                                        <rect key="frame" x="0.0" y="3" width="44" height="44"/>
+                                                        <rect key="frame" x="0.0" y="8" width="44" height="44"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="rIm-yy-fLY">
                                                             <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
@@ -562,7 +496,7 @@ Cg
                                                         <size key="customSize" width="44" height="44"/>
                                                     </collectionViewCell>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="M9m-oL-F8j">
-                                                        <rect key="frame" x="54" y="3" width="44" height="44"/>
+                                                        <rect key="frame" x="54" y="8" width="44" height="44"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Zjo-Jn-VeY">
                                                             <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
@@ -572,7 +506,7 @@ Cg
                                                         <size key="customSize" width="44" height="44"/>
                                                     </collectionViewCell>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="oqu-Jg-PIs">
-                                                        <rect key="frame" x="108" y="3" width="44" height="44"/>
+                                                        <rect key="frame" x="108" y="8" width="44" height="44"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="1sG-1q-vnd">
                                                             <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
@@ -582,7 +516,7 @@ Cg
                                                         <size key="customSize" width="44" height="44"/>
                                                     </collectionViewCell>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="RK3-27-ga2">
-                                                        <rect key="frame" x="162" y="3" width="44" height="44"/>
+                                                        <rect key="frame" x="162" y="8" width="44" height="44"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="1zW-e6-YPK">
                                                             <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
@@ -594,88 +528,118 @@ Cg
                                                 </cells>
                                             </collectionView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="图标" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bA0-L1-bEH">
-                                                <rect key="frame" x="53" y="126" width="35" height="21"/>
+                                                <rect key="frame" x="15" y="156" width="35" height="21"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="9hT-r7-gOk">
-                                                <rect key="frame" x="15" y="122.5" width="28" height="28"/>
+                                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rewards2" translatesAutoresizingMaskIntoConstraints="NO" id="9hT-r7-gOk">
+                                                <rect key="frame" x="15" y="152.5" width="28" height="28"/>
                                                 <color key="tintColor" name="ThemeColor"/>
                                             </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RFy-ys-MHv">
+                                                <rect key="frame" x="40" y="489" width="41" height="30"/>
+                                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="100天">
+                                                    <color key="titleColor" systemColor="labelColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="targetDaysButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="vpi-Yg-Di9"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rS9-xl-t7u">
+                                                <rect key="frame" x="343" y="600" width="31" height="30"/>
+                                                <color key="backgroundColor" name="WhiteAndBlackContent"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="每周">
+                                                    <color key="titleColor" systemColor="labelColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="frequencyButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="6OK-oY-CJr"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4fa-gf-3ju">
+                                                <rect key="frame" x="182" y="257" width="50" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="5lL-oA-Sqp"/>
+                                                    <constraint firstAttribute="width" constant="50" id="d6e-sn-fYl"/>
+                                                </constraints>
+                                                <color key="tintColor" systemColor="labelColor"/>
+                                                <state key="normal" image="chevron.down" catalog="system">
+                                                    <color key="titleColor" systemColor="labelColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="unfoldButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="N7W-NS-NKG"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                         <constraints>
                                             <constraint firstItem="nS3-iZ-Nkf" firstAttribute="height" secondItem="aAy-4f-o1J" secondAttribute="height" id="0Nh-BX-Fpq"/>
-                                            <constraint firstItem="QGd-7R-bfn" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="40" id="1fy-nX-Y7D"/>
                                             <constraint firstItem="TtZ-0J-0EP" firstAttribute="centerY" secondItem="wH2-TB-oP3" secondAttribute="centerY" id="24z-ny-OP7"/>
+                                            <constraint firstItem="wH2-TB-oP3" firstAttribute="leading" secondItem="N9a-6t-lce" secondAttribute="leading" id="2ZD-Pc-4uO"/>
                                             <constraint firstItem="xZL-a6-T5M" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="40" id="3Ye-6p-byn"/>
                                             <constraint firstItem="TtZ-0J-0EP" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="15" id="4G7-oC-jQv"/>
+                                            <constraint firstItem="RFy-ys-MHv" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="40" id="5Or-wL-Vtd"/>
                                             <constraint firstAttribute="trailing" secondItem="eYH-kV-dcm" secondAttribute="trailing" constant="40" id="5bY-sF-AS0"/>
-                                            <constraint firstItem="wH2-TB-oP3" firstAttribute="leading" secondItem="TtZ-0J-0EP" secondAttribute="trailing" constant="10" id="5lL-DI-ki2"/>
                                             <constraint firstItem="yXF-rH-r1e" firstAttribute="top" secondItem="bA0-L1-bEH" secondAttribute="bottom" constant="20" id="5ok-Cc-edc"/>
-                                            <constraint firstItem="eYH-kV-dcm" firstAttribute="top" secondItem="p0g-iC-UgG" secondAttribute="bottom" constant="20" id="8Se-OY-f6t"/>
-                                            <constraint firstItem="I5N-Yf-LFv" firstAttribute="leading" secondItem="a3D-ld-P7d" secondAttribute="trailing" constant="10" id="8bu-7w-MHm"/>
-                                            <constraint firstItem="bA0-L1-bEH" firstAttribute="leading" secondItem="9hT-r7-gOk" secondAttribute="trailing" constant="10" id="8kV-i7-awn"/>
-                                            <constraint firstItem="QGd-7R-bfn" firstAttribute="top" secondItem="maG-bk-NyY" secondAttribute="bottom" constant="20" id="AM5-On-v51"/>
-                                            <constraint firstAttribute="trailing" secondItem="RFy-ys-MHv" secondAttribute="trailing" constant="40" id="B7M-ZF-sKP"/>
-                                            <constraint firstItem="I5N-Yf-LFv" firstAttribute="top" secondItem="eYH-kV-dcm" secondAttribute="bottom" constant="20" id="Bae-Ok-Yh2"/>
-                                            <constraint firstItem="afP-fa-obf" firstAttribute="top" secondItem="RFy-ys-MHv" secondAttribute="bottom" constant="20" id="C9B-hI-qn2"/>
+                                            <constraint firstItem="RFy-ys-MHv" firstAttribute="top" secondItem="uum-ys-rdj" secondAttribute="bottom" constant="20" id="Ar7-9D-aPc"/>
+                                            <constraint firstItem="I5N-Yf-LFv" firstAttribute="top" secondItem="eYH-kV-dcm" secondAttribute="bottom" constant="30" id="Bae-Ok-Yh2"/>
                                             <constraint firstItem="p0g-iC-UgG" firstAttribute="top" secondItem="yXF-rH-r1e" secondAttribute="bottom" constant="20" id="Ctb-y5-f1O"/>
-                                            <constraint firstItem="yXF-rH-r1e" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="15" id="DcI-TO-6p1"/>
+                                            <constraint firstItem="yXF-rH-r1e" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="20" id="DcI-TO-6p1"/>
                                             <constraint firstItem="9hT-r7-gOk" firstAttribute="height" secondItem="aAy-4f-o1J" secondAttribute="height" id="Dsi-8G-f8Z"/>
-                                            <constraint firstItem="rS9-xl-t7u" firstAttribute="top" secondItem="3i9-WH-Zt7" secondAttribute="bottom" constant="20" id="EvS-IT-YCr"/>
                                             <constraint firstItem="nS3-iZ-Nkf" firstAttribute="centerY" secondItem="p0g-iC-UgG" secondAttribute="centerY" id="Flt-v5-jkg"/>
+                                            <constraint firstItem="N9a-6t-lce" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="15" id="HN0-AG-0UF"/>
                                             <constraint firstAttribute="trailing" secondItem="eEh-sX-wyw" secondAttribute="trailing" constant="40" id="Iva-12-VmY"/>
-                                            <constraint firstItem="eYH-kV-dcm" firstAttribute="top" secondItem="p0g-iC-UgG" secondAttribute="bottom" constant="20" id="KVW-1h-Ocq"/>
-                                            <constraint firstItem="dF6-S4-tMX" firstAttribute="top" secondItem="N9a-6t-lce" secondAttribute="bottom" constant="20" id="Kim-vM-7yQ"/>
-                                            <constraint firstItem="eEh-sX-wyw" firstAttribute="top" secondItem="uVK-qR-Otb" secondAttribute="bottom" constant="20" id="Kjx-ji-7Ib"/>
+                                            <constraint firstItem="dF6-S4-tMX" firstAttribute="top" secondItem="N9a-6t-lce" secondAttribute="bottom" constant="40" id="Kim-vM-7yQ"/>
                                             <constraint firstItem="dF6-S4-tMX" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="15" id="L30-Sy-KP3"/>
+                                            <constraint firstItem="afP-fa-obf" firstAttribute="centerY" secondItem="RFy-ys-MHv" secondAttribute="centerY" id="LUX-Ax-g1r"/>
                                             <constraint firstItem="TtZ-0J-0EP" firstAttribute="height" secondItem="aAy-4f-o1J" secondAttribute="height" id="M3b-ck-51R"/>
                                             <constraint firstItem="TtZ-0J-0EP" firstAttribute="width" secondItem="aAy-4f-o1J" secondAttribute="width" id="OHY-DI-kYq"/>
                                             <constraint firstAttribute="trailing" secondItem="afP-fa-obf" secondAttribute="trailing" constant="40" id="OTW-Xm-5De"/>
                                             <constraint firstItem="xZL-a6-T5M" firstAttribute="top" secondItem="eEh-sX-wyw" secondAttribute="bottom" constant="40" id="OwC-13-1I1"/>
                                             <constraint firstItem="a3D-ld-P7d" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="15" id="Pf5-XJ-aF9"/>
                                             <constraint firstAttribute="trailing" secondItem="dF6-S4-tMX" secondAttribute="trailing" constant="15" id="R8R-rX-amo"/>
+                                            <constraint firstAttribute="trailing" secondItem="rS9-xl-t7u" secondAttribute="trailing" constant="40" id="RCW-UJ-hpu"/>
                                             <constraint firstAttribute="trailing" secondItem="xZL-a6-T5M" secondAttribute="trailing" constant="40" id="RDW-VB-gKV"/>
-                                            <constraint firstItem="uum-ys-rdj" firstAttribute="top" secondItem="I5N-Yf-LFv" secondAttribute="bottom" constant="20" id="SqT-sp-jqv"/>
+                                            <constraint firstItem="uum-ys-rdj" firstAttribute="top" secondItem="I5N-Yf-LFv" secondAttribute="bottom" constant="30" id="SqT-sp-jqv"/>
+                                            <constraint firstItem="4fa-gf-3ju" firstAttribute="centerX" secondItem="yXF-rH-r1e" secondAttribute="centerX" id="Tnw-Ot-Aeq"/>
                                             <constraint firstItem="RFy-ys-MHv" firstAttribute="top" secondItem="eVH-dn-gr1" secondAttribute="bottom" constant="20" id="UH0-Z4-jue"/>
                                             <constraint firstItem="nS3-iZ-Nkf" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="15" id="UkV-Oy-dGC"/>
                                             <constraint firstItem="a3D-ld-P7d" firstAttribute="width" secondItem="aAy-4f-o1J" secondAttribute="width" id="Y47-uD-Q6x"/>
                                             <constraint firstItem="a3D-ld-P7d" firstAttribute="centerY" secondItem="I5N-Yf-LFv" secondAttribute="centerY" id="ZVn-kz-Lmv"/>
                                             <constraint firstItem="WpU-fd-JVR" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="40" id="ZjC-Xz-XKD"/>
+                                            <constraint firstItem="eEh-sX-wyw" firstAttribute="top" secondItem="rS9-xl-t7u" secondAttribute="bottom" constant="20" id="b8v-Km-tBl"/>
                                             <constraint firstItem="9hT-r7-gOk" firstAttribute="centerY" secondItem="bA0-L1-bEH" secondAttribute="centerY" id="c0P-4M-Zgp"/>
-                                            <constraint firstItem="uVK-qR-Otb" firstAttribute="top" secondItem="wJB-1F-QUe" secondAttribute="bottom" constant="20" id="c3E-wn-dWb"/>
                                             <constraint firstItem="WKm-RK-W4j" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="40" id="cI5-JS-iqX"/>
                                             <constraint firstItem="N9a-6t-lce" firstAttribute="top" secondItem="zHw-xi-vrL" secondAttribute="top" constant="25" id="cb1-Lk-RJF"/>
                                             <constraint firstItem="aAy-4f-o1J" firstAttribute="centerY" secondItem="N9a-6t-lce" secondAttribute="centerY" id="cke-Rh-bct"/>
-                                            <constraint firstItem="wH2-TB-oP3" firstAttribute="top" secondItem="afP-fa-obf" secondAttribute="bottom" constant="20" id="d8A-Zb-4g3"/>
-                                            <constraint firstItem="eVH-dn-gr1" firstAttribute="top" secondItem="I5N-Yf-LFv" secondAttribute="bottom" constant="20" id="dwL-IC-a7d"/>
-                                            <constraint firstItem="3i9-WH-Zt7" firstAttribute="top" secondItem="wH2-TB-oP3" secondAttribute="bottom" constant="20" id="f6h-AJ-YH5"/>
-                                            <constraint firstItem="rS9-xl-t7u" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="40" id="f71-AV-715"/>
-                                            <constraint firstItem="p0g-iC-UgG" firstAttribute="leading" secondItem="nS3-iZ-Nkf" secondAttribute="trailing" constant="10" id="gnB-BA-ePW"/>
-                                            <constraint firstItem="WpU-fd-JVR" firstAttribute="top" secondItem="p0g-iC-UgG" secondAttribute="bottom" constant="20" id="hZr-Pz-jJA"/>
-                                            <constraint firstItem="N9a-6t-lce" firstAttribute="leading" secondItem="aAy-4f-o1J" secondAttribute="trailing" constant="10" id="ih2-FJ-mIS"/>
-                                            <constraint firstItem="bA0-L1-bEH" firstAttribute="top" secondItem="dF6-S4-tMX" secondAttribute="bottom" constant="20" id="m4Y-XU-0ik"/>
+                                            <constraint firstItem="wH2-TB-oP3" firstAttribute="top" secondItem="afP-fa-obf" secondAttribute="bottom" constant="30" id="d8A-Zb-4g3"/>
+                                            <constraint firstItem="3i9-WH-Zt7" firstAttribute="top" secondItem="wH2-TB-oP3" secondAttribute="bottom" constant="30" id="f6h-AJ-YH5"/>
+                                            <constraint firstItem="WpU-fd-JVR" firstAttribute="top" secondItem="p0g-iC-UgG" secondAttribute="bottom" constant="30" id="hZr-Pz-jJA"/>
+                                            <constraint firstItem="eYH-kV-dcm" firstAttribute="centerY" secondItem="WpU-fd-JVR" secondAttribute="centerY" id="kQr-T9-O6a"/>
+                                            <constraint firstItem="I5N-Yf-LFv" firstAttribute="leading" secondItem="N9a-6t-lce" secondAttribute="leading" id="l6s-4K-AjT"/>
+                                            <constraint firstItem="bA0-L1-bEH" firstAttribute="top" secondItem="dF6-S4-tMX" secondAttribute="bottom" constant="30" id="m4Y-XU-0ik"/>
                                             <constraint firstItem="3i9-WH-Zt7" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="40" id="mcB-ZX-dew"/>
                                             <constraint firstItem="aAy-4f-o1J" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="15" id="nIM-BA-PiT"/>
-                                            <constraint firstAttribute="trailing" secondItem="uVK-qR-Otb" secondAttribute="trailing" constant="40" id="nMb-eB-GGx"/>
                                             <constraint firstItem="nS3-iZ-Nkf" firstAttribute="width" secondItem="aAy-4f-o1J" secondAttribute="width" id="nMg-VZ-Zc8"/>
+                                            <constraint firstItem="rS9-xl-t7u" firstAttribute="centerY" secondItem="3i9-WH-Zt7" secondAttribute="centerY" id="pJa-c4-nAG"/>
                                             <constraint firstItem="a3D-ld-P7d" firstAttribute="height" secondItem="aAy-4f-o1J" secondAttribute="height" id="pYa-KK-CpH"/>
                                             <constraint firstItem="uum-ys-rdj" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="40" id="qE1-UG-HSg"/>
-                                            <constraint firstAttribute="trailing" secondItem="wJB-1F-QUe" secondAttribute="trailing" constant="40" id="ret-TS-tT8"/>
+                                            <constraint firstItem="4fa-gf-3ju" firstAttribute="top" secondItem="yXF-rH-r1e" secondAttribute="bottom" id="r3m-jZ-7vc"/>
                                             <constraint firstItem="9hT-r7-gOk" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="15" id="s3N-a4-o4f"/>
                                             <constraint firstItem="NJD-UT-gB8" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="40" id="sg7-U7-aC6"/>
                                             <constraint firstItem="WKm-RK-W4j" firstAttribute="top" secondItem="xZL-a6-T5M" secondAttribute="bottom" constant="20" id="u7d-O8-Rgh"/>
-                                            <constraint firstItem="wJB-1F-QUe" firstAttribute="top" secondItem="wH2-TB-oP3" secondAttribute="bottom" constant="20" id="uEf-Wk-xhU"/>
                                             <constraint firstItem="9hT-r7-gOk" firstAttribute="width" secondItem="aAy-4f-o1J" secondAttribute="width" id="urU-be-Mpf"/>
-                                            <constraint firstItem="maG-bk-NyY" firstAttribute="top" secondItem="uum-ys-rdj" secondAttribute="bottom" constant="20" id="vZl-A5-ihL"/>
                                             <constraint firstAttribute="trailing" secondItem="eVH-dn-gr1" secondAttribute="trailing" constant="40" id="w0T-7p-4Rq"/>
+                                            <constraint firstItem="eVH-dn-gr1" firstAttribute="centerY" secondItem="uum-ys-rdj" secondAttribute="centerY" id="w6R-1C-lTW"/>
                                             <constraint firstAttribute="trailing" secondItem="WKm-RK-W4j" secondAttribute="trailing" constant="40" id="wYc-ma-SPh"/>
                                             <constraint firstAttribute="height" constant="900" identifier="HeightConstraint" id="wkm-ef-NiO"/>
                                             <constraint firstItem="NJD-UT-gB8" firstAttribute="top" secondItem="rS9-xl-t7u" secondAttribute="bottom" constant="20" id="wqq-Bz-Oja"/>
-                                            <constraint firstAttribute="trailing" secondItem="yXF-rH-r1e" secondAttribute="trailing" constant="15" id="wu3-HH-R5p"/>
-                                            <constraint firstItem="maG-bk-NyY" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="40" id="yA1-jb-13r"/>
+                                            <constraint firstAttribute="trailing" secondItem="yXF-rH-r1e" secondAttribute="trailing" constant="20" id="wu3-HH-R5p"/>
+                                            <constraint firstItem="bA0-L1-bEH" firstAttribute="leading" secondItem="N9a-6t-lce" secondAttribute="leading" id="z0O-jq-QIC"/>
+                                            <constraint firstItem="p0g-iC-UgG" firstAttribute="leading" secondItem="N9a-6t-lce" secondAttribute="leading" id="z3h-q2-Ynk"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -777,28 +741,26 @@ Cg
                         <outlet property="customTargetDaysButton" destination="afP-fa-obf" id="5yl-9D-oLr"/>
                         <outlet property="doneButton" destination="VYb-iy-kVx" id="MeK-Ms-4D0"/>
                         <outlet property="everyMonthFrequencyButton" destination="NJD-UT-gB8" id="RFS-gG-9fp"/>
-                        <outlet property="everyTwoDaysFreqencyButton" destination="wJB-1F-QUe" id="IOY-NJ-kPk"/>
-                        <outlet property="everyTwoWeeksFrequencyButton" destination="uVK-qR-Otb" id="eXN-KO-znz"/>
                         <outlet property="everyWeekFreqencyButton" destination="rS9-xl-t7u" id="oGw-pl-fPk"/>
                         <outlet property="everydayFrequencyButton" destination="3i9-WH-Zt7" id="f4t-aB-Low"/>
                         <outlet property="firstInstructionLabel" destination="xZL-a6-T5M" id="Xxn-TD-XFp"/>
                         <outlet property="horizentalContentView" destination="75g-jl-Rdo" id="24b-cA-trw"/>
                         <outlet property="horizentalScrollView" destination="ppR-2m-3uc" id="DwT-Yu-3cA"/>
                         <outlet property="iconCollectionView" destination="yXF-rH-r1e" id="WDG-GO-amq"/>
+                        <outlet property="iconCollectionViewHeightConstraint" destination="TkN-Dc-JVK" id="udQ-3K-oa9"/>
                         <outlet property="itemNameTextfield" destination="dF6-S4-tMX" id="z3x-eW-GOP"/>
                         <outlet property="oneHundredDaysButton" destination="RFy-ys-MHv" id="b52-Y0-84E"/>
-                        <outlet property="oneYearButton" destination="QGd-7R-bfn" id="WP6-yI-Jic"/>
                         <outlet property="persistingTypeButton" destination="WpU-fd-JVR" id="A3d-QG-oK0"/>
                         <outlet property="promptLabel" destination="ATG-Ej-lf4" id="8Yk-rs-8YX"/>
                         <outlet property="promptTextView" destination="ltj-7g-daF" id="gFW-nE-re8"/>
                         <outlet property="quittingTypeButton" destination="eYH-kV-dcm" id="9Hg-8N-m4R"/>
                         <outlet property="secondInstructionLabel" destination="WKm-RK-W4j" id="bc4-RE-AkC"/>
                         <outlet property="sevenDaysButton" destination="uum-ys-rdj" id="UbE-lG-BKG"/>
-                        <outlet property="sixtyDaysButton" destination="maG-bk-NyY" id="IlD-wh-zdV"/>
                         <outlet property="thirtyDaysButton" destination="eVH-dn-gr1" id="Fv6-1F-g39"/>
                         <outlet property="titleLabel" destination="FTM-I4-dC0" id="0ML-wu-Mbo"/>
                         <outlet property="typeIcon" destination="nS3-iZ-Nkf" id="JKG-kN-x97"/>
                         <outlet property="typeLabel" destination="p0g-iC-UgG" id="dsh-GP-MDg"/>
+                        <outlet property="unfoldButton" destination="4fa-gf-3ju" id="PVA-Ct-qzt"/>
                         <outlet property="verticalContentView" destination="zHw-xi-vrL" id="Tfr-ou-JF5"/>
                         <outlet property="verticalScrollView" destination="ppR-2m-3uc" id="3FA-gS-jcl"/>
                         <outlet property="verticalScrollViewContentViewHeightConstraint" destination="wkm-ef-NiO" id="qd8-6v-HEn"/>
@@ -806,14 +768,10 @@ Cg
                         <outletCollection property="optionButtons" destination="eYH-kV-dcm" collectionClass="NSMutableArray" id="MC4-zU-ddO"/>
                         <outletCollection property="optionButtons" destination="uum-ys-rdj" collectionClass="NSMutableArray" id="UrI-Oh-fQJ"/>
                         <outletCollection property="optionButtons" destination="eVH-dn-gr1" collectionClass="NSMutableArray" id="dBc-Xa-OgI"/>
-                        <outletCollection property="optionButtons" destination="maG-bk-NyY" collectionClass="NSMutableArray" id="fLI-Zx-oYe"/>
                         <outletCollection property="optionButtons" destination="RFy-ys-MHv" collectionClass="NSMutableArray" id="z1m-Sz-EBM"/>
-                        <outletCollection property="optionButtons" destination="QGd-7R-bfn" collectionClass="NSMutableArray" id="mSe-JO-eyk"/>
                         <outletCollection property="optionButtons" destination="afP-fa-obf" collectionClass="NSMutableArray" id="j9D-7j-vQQ"/>
                         <outletCollection property="optionButtons" destination="3i9-WH-Zt7" collectionClass="NSMutableArray" id="1BQ-7p-XcD"/>
-                        <outletCollection property="optionButtons" destination="wJB-1F-QUe" collectionClass="NSMutableArray" id="PaJ-vK-DRp"/>
                         <outletCollection property="optionButtons" destination="rS9-xl-t7u" collectionClass="NSMutableArray" id="C6a-C1-fhQ"/>
-                        <outletCollection property="optionButtons" destination="uVK-qR-Otb" collectionClass="NSMutableArray" id="SaO-5b-W6Z"/>
                         <outletCollection property="optionButtons" destination="NJD-UT-gB8" collectionClass="NSMutableArray" id="b92-xA-ZIE"/>
                         <outletCollection property="optionButtons" destination="eEh-sX-wyw" collectionClass="NSMutableArray" id="V7O-ol-aFi"/>
                     </connections>
@@ -900,7 +858,7 @@ Cg
                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eyW-12-NFP">
                                         <rect key="frame" x="175" y="32.5" width="64" height="28"/>
                                         <color key="tintColor" systemColor="systemPinkColor"/>
-                                        <state key="normal" title=" ×  3" image="EnergyIcon">
+                                        <state key="normal" title=" ×  3" image="Energy">
                                             <color key="titleColor" systemColor="labelColor"/>
                                         </state>
                                     </button>
@@ -966,7 +924,7 @@ Cg
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1400"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bQ8-um-Suf">
-                                                <rect key="frame" x="15" y="43" width="384" height="430"/>
+                                                <rect key="frame" x="15" y="80" width="384" height="430"/>
                                                 <subviews>
                                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rPK-k0-tHl" userLabel="Calendar View">
                                                         <rect key="frame" x="0.0" y="0.0" width="384" height="430"/>
@@ -990,7 +948,7 @@ Cg
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NaE-mY-8uJ" userLabel="Medium View">
-                                                <rect key="frame" x="15" y="493" width="384" height="580"/>
+                                                <rect key="frame" x="15" y="530" width="384" height="580"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开始日期: 2020年 12月12日 (140天前)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4B-XZ-0ft">
                                                         <rect key="frame" x="63" y="522" width="258" height="18"/>
@@ -1028,7 +986,7 @@ Cg
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ClockIn-HD" translatesAutoresizingMaskIntoConstraints="NO" id="bJk-kE-D3W">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Freqency" translatesAutoresizingMaskIntoConstraints="NO" id="bJk-kE-D3W">
                                                         <rect key="frame" x="25" y="285" width="30" height="30"/>
                                                         <color key="tintColor" red="0.51872617009999999" green="0.78829997780000005" blue="0.9804186225" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </imageView>
@@ -1198,14 +1156,8 @@ Cg
                                                     <constraint firstAttribute="trailing" secondItem="Axy-dD-Kcg" secondAttribute="trailing" constant="15" id="zfh-uj-5WY"/>
                                                 </constraints>
                                             </view>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="打卡记录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8bT-sp-N4j">
-                                                <rect key="frame" x="15" y="10" width="384" height="23"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wc5-Hz-1bB">
-                                                <rect key="frame" x="40" y="1113" width="74" height="28"/>
+                                                <rect key="frame" x="40" y="1150" width="74" height="28"/>
                                                 <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" name="ThemeColorPair"/>
                                                 <state key="normal" title="  编辑" image="EditButton">
@@ -1217,7 +1169,7 @@ Cg
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Stx-iB-4so">
-                                                <rect key="frame" x="300" y="1113" width="74" height="28"/>
+                                                <rect key="frame" x="300" y="1150" width="74" height="28"/>
                                                 <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" name="ThemeColor"/>
                                                 <state key="normal" title="  分享" image="ShareButton">
@@ -1229,24 +1181,39 @@ Cg
                                                     <segue destination="gom-Ia-N2V" kind="showDetail" identifier="GoToShareView" id="c2I-y0-3Hu"/>
                                                 </connections>
                                             </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Oe5-3c-bY3">
+                                                <rect key="frame" x="15" y="20" width="40" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="SKP-u5-Jv3"/>
+                                                    <constraint firstAttribute="width" constant="40" id="vBK-9V-Kg8"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="打卡记录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8bT-sp-N4j">
+                                                <rect key="frame" x="65" y="28.5" width="77.5" height="23"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="Oe5-3c-bY3" firstAttribute="leading" secondItem="fhM-A8-SwE" secondAttribute="leading" constant="15" id="3om-Zc-EiK"/>
+                                            <constraint firstItem="Oe5-3c-bY3" firstAttribute="top" secondItem="fhM-A8-SwE" secondAttribute="top" constant="20" id="66K-TQ-K4R"/>
                                             <constraint firstItem="bQ8-um-Suf" firstAttribute="centerX" secondItem="fhM-A8-SwE" secondAttribute="centerX" id="70M-ol-Het"/>
-                                            <constraint firstItem="8bT-sp-N4j" firstAttribute="top" secondItem="fhM-A8-SwE" secondAttribute="top" constant="10" id="M7B-EJ-P1U"/>
+                                            <constraint firstItem="8bT-sp-N4j" firstAttribute="leading" secondItem="Oe5-3c-bY3" secondAttribute="trailing" constant="10" id="KFx-92-H76"/>
                                             <constraint firstItem="NaE-mY-8uJ" firstAttribute="top" secondItem="bQ8-um-Suf" secondAttribute="bottom" constant="20" id="MAg-s7-9yL"/>
                                             <constraint firstAttribute="trailing" secondItem="bQ8-um-Suf" secondAttribute="trailing" constant="15" id="MH3-kO-EaG"/>
                                             <constraint firstItem="wc5-Hz-1bB" firstAttribute="top" secondItem="NaE-mY-8uJ" secondAttribute="bottom" constant="40" id="MTI-Ih-WwR"/>
                                             <constraint firstItem="NaE-mY-8uJ" firstAttribute="leading" secondItem="fhM-A8-SwE" secondAttribute="leading" constant="15" id="NaI-XJ-XDG"/>
-                                            <constraint firstItem="8bT-sp-N4j" firstAttribute="leading" secondItem="fhM-A8-SwE" secondAttribute="leading" constant="15" id="QkH-HS-cK1"/>
                                             <constraint firstItem="wc5-Hz-1bB" firstAttribute="leading" secondItem="fhM-A8-SwE" secondAttribute="leading" constant="40" id="ULe-yO-DiP"/>
                                             <constraint firstItem="bQ8-um-Suf" firstAttribute="leading" secondItem="fhM-A8-SwE" secondAttribute="leading" priority="750" constant="15" id="bww-bm-eMc"/>
                                             <constraint firstItem="Stx-iB-4so" firstAttribute="top" secondItem="NaE-mY-8uJ" secondAttribute="bottom" constant="40" id="dXu-tP-yzy"/>
-                                            <constraint firstAttribute="trailing" secondItem="8bT-sp-N4j" secondAttribute="trailing" constant="15" id="f5X-Xx-a03"/>
+                                            <constraint firstItem="Oe5-3c-bY3" firstAttribute="top" secondItem="fhM-A8-SwE" secondAttribute="top" constant="20" id="gNy-Fq-JsD"/>
+                                            <constraint firstItem="bQ8-um-Suf" firstAttribute="top" secondItem="Oe5-3c-bY3" secondAttribute="bottom" constant="20" id="oyU-Oj-gQG"/>
                                             <constraint firstAttribute="trailing" secondItem="Stx-iB-4so" secondAttribute="trailing" constant="40" id="pVG-Xv-Gim"/>
                                             <constraint firstAttribute="trailing" secondItem="NaE-mY-8uJ" secondAttribute="trailing" constant="15" id="tu0-D6-M9t"/>
-                                            <constraint firstItem="bQ8-um-Suf" firstAttribute="top" secondItem="8bT-sp-N4j" secondAttribute="bottom" constant="10" id="yK2-B1-sE6"/>
+                                            <constraint firstItem="8bT-sp-N4j" firstAttribute="centerY" secondItem="Oe5-3c-bY3" secondAttribute="centerY" id="wQ7-lF-Dvt"/>
                                             <constraint firstAttribute="height" constant="1400" id="yu5-Ii-eGl"/>
                                         </constraints>
                                     </view>
@@ -1291,6 +1258,8 @@ Cg
                         <outlet property="finishedDaysLabel" destination="7gg-Tq-GuY" id="InL-Av-fXb"/>
                         <outlet property="frequencyLabel" destination="str-sO-Pcx" id="Tcm-bF-txo"/>
                         <outlet property="goBackButton" destination="dce-h9-NTD" id="k2q-Xt-WHk"/>
+                        <outlet property="iconImageView" destination="Oe5-3c-bY3" id="HaA-9w-qTL"/>
+                        <outlet property="itemNameLabel" destination="8bT-sp-N4j" id="93o-Qw-PAy"/>
                         <outlet property="mediumView" destination="NaE-mY-8uJ" id="wkX-Xm-RMS"/>
                         <outlet property="nextPunchInDateLabel" destination="xK7-CN-D6k" id="yoB-Dj-Xmt"/>
                         <outlet property="progressView" destination="tlr-bf-UK5" id="WaN-YE-fak"/>
@@ -1305,7 +1274,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HgK-x9-47n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2844" y="1731"/>
+            <point key="canvasLocation" x="2843.4782608695655" y="1730.3571428571429"/>
         </scene>
         <!--Pop Up View Controller-->
         <scene sceneID="QDS-Zj-y7Z">
@@ -1329,7 +1298,7 @@ Cg
             <objects>
                 <viewController storyboardIdentifier="HomeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5eW-DY-fpx" customClass="HomeViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uAb-zv-xSl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDY-Xd-Ccc">
@@ -1555,7 +1524,7 @@ Cg
             <objects>
                 <viewController restorationIdentifier="ItemManagementViewController" storyboardIdentifier="ItemManagementViewController" id="7qU-RC-e4u" customClass="ItemManagementViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XJ8-ec-9K0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lt5-gF-RX7" userLabel="Option Bar">
@@ -1637,10 +1606,10 @@ Cg
             <objects>
                 <viewController restorationIdentifier="SelfDisciplineToolsViewController" storyboardIdentifier="SelfDisciplineToolsViewController" id="bem-id-UUc" customClass="SelfDisciplineToolsViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1LM-le-iSu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HxE-xH-ay6">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HxE-xH-ay6">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xhn-6m-dVf" userLabel="Vertical Content View">
@@ -1719,7 +1688,7 @@ Cg
                                                         <color key="textColor" name="SmartLabelGrayColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BreathIcon-HD" translatesAutoresizingMaskIntoConstraints="NO" id="06d-qf-w4K">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Heart" translatesAutoresizingMaskIntoConstraints="NO" id="06d-qf-w4K">
                                                         <rect key="frame" x="10" y="10" width="47" height="47"/>
                                                     </imageView>
                                                 </subviews>
@@ -1843,7 +1812,7 @@ Cg
             <objects>
                 <viewController storyboardIdentifier="UserCenterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xEm-ah-agE" customClass="UserCenterViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Trs-NW-7D2">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gY-P1-gbC">
@@ -1861,7 +1830,7 @@ Cg
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="打卡设置" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uT8-OF-XzE">
-                                                <rect key="frame" x="15" y="263" width="62" height="18"/>
+                                                <rect key="frame" x="15" y="268" width="62" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1873,28 +1842,28 @@ Cg
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时光机器" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uf7-hm-nUE">
-                                                <rect key="frame" x="15" y="356" width="62" height="18"/>
+                                                <rect key="frame" x="15" y="366" width="62" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="应用设置" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csn-GS-vqO">
-                                                <rect key="frame" x="15" y="449" width="61.5" height="18"/>
+                                                <rect key="frame" x="15" y="464" width="61.5" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FzS-Z7-id6">
-                                                <rect key="frame" x="15" y="198" width="384" height="45"/>
+                                                <rect key="frame" x="15" y="198" width="384" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DNH-Rd-qdE" userLabel="Purchase Button">
-                                                        <rect key="frame" x="0.0" y="0.0" width="384" height="45"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="384" height="50"/>
                                                         <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="tintColor" red="0.95815557240000004" green="0.73054325580000001" blue="0.25081610679999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                        <state key="normal" title="升级成为完整版" image="PurchaseIcon">
+                                                        <state key="normal" title="升级成为完整版" image="Purchase">
                                                             <color key="titleColor" systemColor="labelColor"/>
                                                         </state>
                                                         <connections>
@@ -1902,7 +1871,7 @@ Cg
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ux9-Yt-bMe" userLabel="&gt;">
-                                                        <rect key="frame" x="344" y="12.5" width="20" height="20"/>
+                                                        <rect key="frame" x="344" y="15" width="20" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="20" id="3J8-QF-oXz"/>
                                                             <constraint firstAttribute="height" constant="20" id="F3h-1w-Is6"/>
@@ -1918,21 +1887,21 @@ Cg
                                                     <constraint firstAttribute="trailing" secondItem="ux9-Yt-bMe" secondAttribute="trailing" constant="20" id="L7f-k5-21c"/>
                                                     <constraint firstItem="ux9-Yt-bMe" firstAttribute="centerY" secondItem="DNH-Rd-qdE" secondAttribute="centerY" id="RhV-xx-V66"/>
                                                     <constraint firstAttribute="bottom" secondItem="DNH-Rd-qdE" secondAttribute="bottom" id="UxJ-s9-2ZH"/>
-                                                    <constraint firstAttribute="height" constant="45" id="mom-j4-Wbd"/>
+                                                    <constraint firstAttribute="height" constant="50" id="mom-j4-Wbd"/>
                                                     <constraint firstItem="DNH-Rd-qdE" firstAttribute="leading" secondItem="FzS-Z7-id6" secondAttribute="leading" id="puL-CM-k3T"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OaW-i9-p1v">
-                                                <rect key="frame" x="15" y="291" width="384" height="45"/>
+                                                <rect key="frame" x="15" y="296" width="384" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" restorationIdentifier="UserCenterViewController" contentHorizontalAlignment="leading" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s8i-6y-kYV" userLabel="Notification Button">
-                                                        <rect key="frame" x="0.0" y="0.0" width="384" height="45"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="384" height="50"/>
                                                         <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="tintColor" systemColor="labelColor"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                        <state key="normal" title="通知时间" image="PunchInSettingIcon">
+                                                        <state key="normal" title="通知时间" image="Notification">
                                                             <color key="titleColor" systemColor="labelColor"/>
                                                         </state>
                                                         <connections>
@@ -1940,7 +1909,7 @@ Cg
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ge1-y3-eIQ">
-                                                        <rect key="frame" x="326.5" y="12.5" width="37.5" height="20"/>
+                                                        <rect key="frame" x="326.5" y="15" width="37.5" height="20"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="textColor" name="GreyColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1957,16 +1926,16 @@ Cg
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bXE-cc-vLl">
-                                                <rect key="frame" x="15" y="477" width="384" height="330"/>
+                                                <rect key="frame" x="15" y="492" width="384" height="330"/>
                                                 <subviews>
                                                     <button opaque="NO" clipsSubviews="YES" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lhG-N7-zSU">
-                                                        <rect key="frame" x="0.0" y="100" width="384" height="45"/>
+                                                        <rect key="frame" x="0.0" y="110" width="384" height="50"/>
                                                         <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="tintColor" name="PinkThemeColor"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                        <state key="normal" title="给应用评分" image="GradingIcon">
+                                                        <state key="normal" title="给应用评分" image="Review2">
                                                             <color key="titleColor" systemColor="labelColor"/>
                                                         </state>
                                                         <connections>
@@ -1974,7 +1943,7 @@ Cg
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Njj-Pe-B56" userLabel="&gt;">
-                                                        <rect key="frame" x="344" y="112.5" width="20" height="20"/>
+                                                        <rect key="frame" x="344" y="125" width="20" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="20" id="3Dt-o9-yiO"/>
                                                             <constraint firstAttribute="height" constant="20" id="YnG-NK-QpI"/>
@@ -1983,13 +1952,13 @@ Cg
                                                         <state key="normal" image="RightButton"/>
                                                     </button>
                                                     <button opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRc-pT-ow4" userLabel="Light And Dark Mode Button">
-                                                        <rect key="frame" x="0.0" y="55" width="384" height="45"/>
+                                                        <rect key="frame" x="0.0" y="60" width="384" height="50"/>
                                                         <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="tintColor" systemColor="labelColor"/>
-                                                        <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                        <state key="normal" title="白天/黑夜模式" image="LightAndDarkIcon">
+                                                        <state key="normal" title="白天 / 黑夜模式" image="StyleMode">
                                                             <color key="titleColor" systemColor="labelColor"/>
                                                         </state>
                                                         <connections>
@@ -1997,13 +1966,13 @@ Cg
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" clipsSubviews="YES" tag="7" contentMode="scaleAspectFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MMX-gO-o2H">
-                                                        <rect key="frame" x="0.0" y="145" width="384" height="45"/>
+                                                        <rect key="frame" x="0.0" y="160" width="384" height="50"/>
                                                         <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="tintColor" red="0.40788567069999998" green="0.55731946229999996" blue="0.99905794859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                        <state key="normal" title="反馈" image="FeedbackIcon">
+                                                        <state key="normal" title="反馈" image="Feedback2">
                                                             <color key="titleColor" systemColor="labelColor"/>
                                                         </state>
                                                         <connections>
@@ -2011,18 +1980,21 @@ Cg
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" clipsSubviews="YES" tag="8" contentMode="scaleAspectFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SX5-HU-KYh">
-                                                        <rect key="frame" x="0.0" y="190" width="384" height="45"/>
+                                                        <rect key="frame" x="0.0" y="210" width="384" height="50"/>
                                                         <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="tintColor" red="0.70978838209999995" green="0.71782344580000002" blue="0.70588189359999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                        <state key="normal" title="分享" image="ShareIcon">
+                                                        <state key="normal" title="分享 App 给朋友" image="Share">
                                                             <color key="titleColor" systemColor="labelColor"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="shareButtonPressed:" destination="xEm-ah-agE" eventType="touchUpInside" id="GfV-HR-ngs"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UAX-Mz-MAS" userLabel="&gt;">
-                                                        <rect key="frame" x="344" y="202.5" width="20" height="20"/>
+                                                        <rect key="frame" x="344" y="225" width="20" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="ZAF-dx-BYr"/>
                                                             <constraint firstAttribute="width" constant="20" id="g0v-OJ-UTS"/>
@@ -2030,8 +2002,8 @@ Cg
                                                         <color key="tintColor" systemColor="systemGray4Color"/>
                                                         <state key="normal" image="RightButton"/>
                                                     </button>
-                                                    <button opaque="NO" clipsSubviews="YES" tag="10" contentMode="scaleAspectFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WQX-Nq-SYU">
-                                                        <rect key="frame" x="0.0" y="280" width="384" height="45"/>
+                                                    <button hidden="YES" opaque="NO" clipsSubviews="YES" tag="10" contentMode="scaleAspectFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WQX-Nq-SYU">
+                                                        <rect key="frame" x="0.0" y="310" width="384" height="50"/>
                                                         <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="tintColor" red="0.6111382246" green="0.72451680900000004" blue="0.5019256473" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -2041,8 +2013,8 @@ Cg
                                                             <color key="titleColor" systemColor="labelColor"/>
                                                         </state>
                                                     </button>
-                                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J5v-vC-99q" userLabel="&gt;">
-                                                        <rect key="frame" x="344" y="292.5" width="20" height="20"/>
+                                                    <button hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J5v-vC-99q" userLabel="&gt;">
+                                                        <rect key="frame" x="344" y="325" width="20" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="20" id="YLs-dp-k3a"/>
                                                             <constraint firstAttribute="height" constant="20" id="fXM-IK-spy"/>
@@ -2051,18 +2023,18 @@ Cg
                                                         <state key="normal" image="RightButton"/>
                                                     </button>
                                                     <button opaque="NO" clipsSubviews="YES" tag="9" contentMode="scaleAspectFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h4L-GB-8hZ" userLabel="Restore Purchase Button">
-                                                        <rect key="frame" x="0.0" y="235" width="384" height="45"/>
+                                                        <rect key="frame" x="0.0" y="260" width="384" height="50"/>
                                                         <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="tintColor" red="0.99997311830000002" green="0.71768051389999998" blue="0.0002054334182" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                        <state key="normal" title="恢复购买" image="RestoreIcon">
+                                                        <state key="normal" title="恢复购买" image="Recovery">
                                                             <color key="titleColor" systemColor="labelColor"/>
                                                         </state>
                                                     </button>
                                                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cON-fP-iBw" userLabel="&gt;">
-                                                        <rect key="frame" x="344" y="247.5" width="20" height="20"/>
+                                                        <rect key="frame" x="344" y="275" width="20" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="20" id="29C-9K-8PX"/>
                                                             <constraint firstAttribute="height" constant="20" id="zfT-6W-zE4"/>
@@ -2071,11 +2043,11 @@ Cg
                                                         <state key="normal" image="RightButton"/>
                                                     </button>
                                                     <button opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZj-KF-5bx" userLabel="Theme Color Button">
-                                                        <rect key="frame" x="0.0" y="10" width="384" height="45"/>
+                                                        <rect key="frame" x="0.0" y="10" width="384" height="50"/>
                                                         <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="tintColor" name="ThemeColor"/>
-                                                        <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <inset key="contentEdgeInsets" minX="17" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <state key="normal" title="主题色" image="ThemeColorIcon">
                                                             <color key="titleColor" systemColor="labelColor"/>
@@ -2085,13 +2057,13 @@ Cg
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="黑夜模式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y2B-Vc-bYI">
-                                                        <rect key="frame" x="302.5" y="68.5" width="61.5" height="18"/>
+                                                        <rect key="frame" x="302.5" y="76" width="61.5" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="textColor" name="GreyColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXn-Vp-1TM" userLabel="&gt;">
-                                                        <rect key="frame" x="344" y="157.5" width="20" height="20"/>
+                                                        <rect key="frame" x="344" y="175" width="20" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="20" id="P8v-MR-g4g"/>
                                                             <constraint firstAttribute="height" constant="20" id="cnB-oL-xVj"/>
@@ -2100,7 +2072,7 @@ Cg
                                                         <state key="normal" image="RightButton"/>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="颜色" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KHp-wB-cfM">
-                                                        <rect key="frame" x="333" y="23.5" width="31" height="18"/>
+                                                        <rect key="frame" x="333" y="26" width="31" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="textColor" name="GreyColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2153,16 +2125,16 @@ Cg
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0sp-V1-vxG">
-                                                <rect key="frame" x="15" y="384" width="384" height="45"/>
+                                                <rect key="frame" x="15" y="394" width="384" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleAspectFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7qb-Hl-aQ4" userLabel="My Keys Button">
-                                                        <rect key="frame" x="0.0" y="0.0" width="384" height="45"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="384" height="50"/>
                                                         <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="tintColor" systemColor="systemPinkColor"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                        <state key="normal" title="能量" image="EnergyIcon">
+                                                        <state key="normal" title="能量" image="Energy">
                                                             <color key="titleColor" systemColor="labelColor"/>
                                                         </state>
                                                         <connections>
@@ -2170,18 +2142,18 @@ Cg
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzP-7t-cqg" userLabel="&gt;">
-                                                        <rect key="frame" x="344" y="12.5" width="20" height="20"/>
+                                                        <rect key="frame" x="344" y="15" width="20" height="20"/>
                                                         <color key="tintColor" systemColor="systemGray4Color"/>
                                                         <state key="normal" image="RightButton"/>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="× 100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CRB-ID-RCF">
-                                                        <rect key="frame" x="295.5" y="12.5" width="38.5" height="20"/>
+                                                        <rect key="frame" x="295.5" y="15" width="38.5" height="20"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="textColor" name="GreyColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j3f-gH-3RZ">
-                                                        <rect key="frame" x="350" y="18.5" width="8" height="8"/>
+                                                        <rect key="frame" x="350" y="21" width="8" height="8"/>
                                                         <color key="backgroundColor" systemColor="systemRedColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="8" id="PfF-ae-4u2"/>
@@ -2204,7 +2176,7 @@ Cg
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Rc-aS-e5C">
-                                                <rect key="frame" x="170.5" y="827" width="73" height="22"/>
+                                                <rect key="frame" x="170.5" y="842" width="73" height="22"/>
                                                 <color key="tintColor" red="0.70197039839999997" green="0.70194357630000004" blue="0.70196175579999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <state key="normal" title="  v1.2.1" image="info.circle" catalog="system">
                                                     <color key="titleColor" red="0.70197039839999997" green="0.70194357630000004" blue="0.70196175579999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -3493,7 +3465,7 @@ Cg
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueCircle" translatesAutoresizingMaskIntoConstraints="NO" id="390-z9-vxl">
                                                         <rect key="frame" x="0.0" y="0.0" width="334" height="334"/>
-                                                        <color key="backgroundColor" name="WhiteAndBlackBackground"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3957,7 +3929,7 @@ Cg
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="效能： 连续打卡21天  获得 1点能量 (普通用户)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fkb-6A-26B">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="能效： 连续打卡21天  获得 1点能量 (普通用户)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fkb-6A-26B">
                                 <rect key="frame" x="70.5" y="576" width="273" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" name="SmartLabelGrayColor"/>
@@ -3970,11 +3942,11 @@ Cg
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="[能量] 是使用时光机器时需要消耗的物品， 当您忘记打卡，您可以使用时光机器回到过去重新打卡，每重新打卡一天需要消耗1点能量，您可以通过连续打卡免费获得能量，也可以:" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pxM-D2-KgB">
-                                <rect key="frame" x="20" y="722.5" width="374" height="50"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="[能量] 是使用时光机器时需要消耗的物品， 当您忘记打卡，您可以使用时光机器回到过去重新打卡(点击日历右上角的时光机器图标)，每重新打卡一天需要消耗1点能量，您可以通过连续打卡免费获得能量，也可以购买能量" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pxM-D2-KgB">
+                                <rect key="frame" x="20" y="702.5" width="374" height="70"/>
                                 <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="aiU-G6-8U5"/>
+                                    <constraint firstAttribute="height" constant="70" id="aiU-G6-8U5"/>
                                 </constraints>
                                 <color key="textColor" name="SmartLabelGrayColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -3992,7 +3964,7 @@ Cg
                                 <rect key="frame" x="227.5" y="531.5" width="55" height="28"/>
                                 <color key="tintColor" systemColor="systemPinkColor"/>
                                 <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="× 3" image="EnergyIcon">
+                                <state key="normal" title="× 3" image="Energy">
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
                             </button>
@@ -4036,6 +4008,7 @@ Cg
                         <outlet property="hollowEnergyImageView" destination="SVT-M6-aN6" id="eFq-VU-Jgs"/>
                         <outlet property="newEnergyPromptLabel" destination="QVc-vL-AUJ" id="Fvg-Sk-VhO"/>
                         <outlet property="purchaseButton" destination="gfL-oR-LC8" id="BhN-bg-Myy"/>
+                        <outlet property="titleLabel" destination="wGg-Wg-4W5" id="Dbr-9E-0Oe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ebn-b7-BGJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -4059,49 +4032,48 @@ Cg
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="LKv-l4-eYv"/>
+        <segue reference="HdV-Uf-p4p"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <image name="AppIconWithShadow-Blue" width="60" height="60"/>
         <image name="AvatarMale" width="256" height="256"/>
         <image name="BlueCircle" width="580" height="580"/>
-        <image name="BreathIcon-HD" width="170.5" height="170.5"/>
         <image name="CancelButton" width="28" height="28"/>
         <image name="CirclePart" width="100" height="28"/>
-        <image name="ClockIn-HD" width="512" height="512"/>
         <image name="Complete2-HD" width="512" height="512"/>
-        <image name="Crown2-HD" width="512" height="512"/>
+        <image name="Crown2-HD" width="256" height="256"/>
         <image name="EditButton" width="28" height="28"/>
+        <image name="Energy" width="28" height="28"/>
         <image name="EnergyHolo2-HD" width="341" height="341"/>
-        <image name="EnergyIcon" width="28" height="28"/>
-        <image name="FeedbackIcon" width="28" height="28"/>
+        <image name="Feedback2" width="28" height="28"/>
         <image name="FemaleIcon" width="60" height="60"/>
+        <image name="Flag" width="512" height="512"/>
         <image name="Flash-HD" width="512" height="512"/>
         <image name="FlashIcon-HD" width="170.5" height="170.5"/>
-        <image name="GradingIcon" width="28" height="28"/>
+        <image name="Freqency" width="512" height="512"/>
         <image name="HammerIcon-HD" width="170.5" height="170.5"/>
-        <image name="HistoryIcon" width="28" height="28"/>
+        <image name="Heart" width="512" height="512"/>
         <image name="InstructionIcon" width="28" height="28"/>
         <image name="ItemsManagementIcon" width="28" height="28"/>
         <image name="LeftButton" width="28" height="28"/>
-        <image name="LightAndDarkIcon" width="28" height="28"/>
         <image name="MyIcon" width="28" height="28"/>
-        <image name="NameIcon" width="28" height="28"/>
+        <image name="Name" width="512" height="512"/>
         <image name="NextDay-HD" width="512" height="512"/>
+        <image name="Notification" width="28" height="28"/>
         <image name="PenIcon" width="28" height="28"/>
         <image name="ProgressIcon" width="28" height="28"/>
-        <image name="PunchInSettingIcon" width="28" height="28"/>
-        <image name="PurchaseIcon" width="28" height="28"/>
+        <image name="Purchase" width="28" height="28"/>
         <image name="QRCode-TestFlight" width="392" height="380"/>
-        <image name="RestoreIcon" width="28" height="28"/>
+        <image name="Recovery" width="28" height="28"/>
+        <image name="Review2" width="28" height="28"/>
+        <image name="Rewards2" width="512" height="512"/>
         <image name="RightButton" width="28" height="28"/>
         <image name="SelfDisciplineIcon" width="28" height="28"/>
+        <image name="Share" width="28" height="28"/>
         <image name="ShareButton" width="28" height="28"/>
-        <image name="ShareIcon" width="28" height="28"/>
-        <image name="StarIcon" width="28" height="28"/>
+        <image name="StyleMode" width="31.5" height="31.5"/>
         <image name="Target-HD" width="512" height="512"/>
-        <image name="TargetIcon" width="28" height="28"/>
         <image name="Test" width="170.5" height="170.5"/>
         <image name="ThemeColorIcon" width="28" height="28"/>
         <image name="TimeMachine1" width="28" height="28"/>
@@ -4111,7 +4083,7 @@ Cg
         <image name="Unknown" width="225" height="225"/>
         <image name="Welcome2Icon1" width="512" height="512"/>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
-        <image name="heart" width="512" height="512"/>
+        <image name="chevron.down" catalog="system" width="128" height="72"/>
         <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="triangle.fill" catalog="system" width="128" height="112"/>
@@ -4176,7 +4148,7 @@ Cg
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="YellowThemeColor">
-            <color red="0.83099997043609619" green="0.77600002288818359" blue="0.164000004529953" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.95399999618530273" green="0.88899999856948853" blue="0.19300000369548798" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

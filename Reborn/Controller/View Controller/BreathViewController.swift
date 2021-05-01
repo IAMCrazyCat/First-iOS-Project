@@ -44,9 +44,9 @@ class BreathViewController: UIViewController {
 //    }
     
     @IBAction func startBreathingButtonPressed(_ sender: Any) {
-        print("YES")
         Vibrator.vibrate(withImpactLevel: .medium)
         startBreathing()
+        
         updateUI()
     }
     
@@ -57,7 +57,7 @@ class BreathViewController: UIViewController {
         self.stopInitialAnimation = true
        
         
-        let breathDuration: TimeInterval = 70
+        let _: TimeInterval = 70
 
         UIView.animate(withDuration: 3, delay: 0, options: .curveEaseOut, animations: {
             self.guidingLabel.text = "调整呼吸节奏"
@@ -152,7 +152,7 @@ class BreathViewController: UIViewController {
             UIView.animate(withDuration: 5, animations: {
                 self.view.backgroundColor = AppEngine.shared.userSetting.blackBackground
                 self.verticalContentView.backgroundColor = AppEngine.shared.userSetting.blackBackground
-                self.circleView.backgroundColor = AppEngine.shared.userSetting.blackBackground
+                self.introductionTextView.alpha = 0
                 self.introductionTextView.backgroundColor = AppEngine.shared.userSetting.blackBackground
                 self.guidingLabel.textColor = .white
                 self.introductionTextView.backgroundColor = AppEngine.shared.userSetting.blackBackground
@@ -162,7 +162,7 @@ class BreathViewController: UIViewController {
                 self.view.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackBackground
                 self.verticalContentView.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackBackground
                 self.introductionTextView.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackBackground
-                self.circleView.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackBackground
+                self.introductionTextView.alpha = 1
                 self.guidingLabel.textColor = .label
                 self.introductionTextView.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackBackground
             })
@@ -174,7 +174,11 @@ class BreathViewController: UIViewController {
         
         startBreathingButton.setCornerRadius()
         startBreathingButton.setSmartColor()
+        
+        startBreathingButton.setTitle(self.state == .breathing ? "呼吸中..." : "开始呼吸", for: .normal)
     }
+    
+
 
 }
 

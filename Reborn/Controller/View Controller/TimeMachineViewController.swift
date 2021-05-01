@@ -11,7 +11,7 @@ class TimeMachineViewController: UIViewController {
     
     var calendarView: UIView? = nil
     var calendarViewOriginalPosition: CGPoint?
-    var calendarViewController: CalendarViewController?
+    var calendarViewController: CalendarViewController!
     let engine: AppEngine = AppEngine.shared
     let setting: SystemSetting = SystemSetting.shared
     var calendarPages: Array<UIView> = []
@@ -52,7 +52,7 @@ class TimeMachineViewController: UIViewController {
 //    }
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
-        calendarViewController?.punchInMakingUpDates.removeAll()
+        calendarViewController.punchInMakingUpDates.removeAll()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -61,15 +61,16 @@ class TimeMachineViewController: UIViewController {
        
         Vibrator.vibrate(withNotificationType: .success)
         self.dismiss(animated: true) {
-            guard let makingUpDates = self.calendarViewController?.punchInMakingUpDates,
-                  let item = self.calendarViewController?.item else { return }
+            let makingUpDates = self.calendarViewController.punchInMakingUpDates
+            let item = self.calendarViewController.item
             
-            self.engine.currentUser.add(punchInDates: makingUpDates, to: item)
-            self.engine.currentUser.energy -= self.calendarViewController?.selectedDays ?? 0
-            self.calendarViewController?.punchInMakingUpDates.removeAll()
-            
+            self.engine.currentUser.add(punchInDates: makingUpDates, to: item!)
+            self.engine.currentUser.energy -= self.calendarViewController.selectedDays
+            self.calendarViewController.punchInMakingUpDates.removeAll()
+            self.calendarViewController.userDidGo = .sameMonth
             self.engine.saveUser()
             self.engine.notifyAllUIObservers()
+
         }
         
         
@@ -78,14 +79,14 @@ class TimeMachineViewController: UIViewController {
     public func presentCalendarPages() {
         
         self.strategy = PresentStrategy(timeMachineViewController : self)
-        //self.calendarViewController?.lastViewController = self
+        //self.calendarViewController.lastViewController = self
         updateUI()
         
     }
     
     public func dismissCalendarPages() {
-        self.calendarViewController?.userDidGo = .sameMonth
-        self.calendarViewController?.state = .normal
+        self.calendarViewController.userDidGo = .sameMonth
+        self.calendarViewController.state = .normal
         self.animationSpeed = self.setting.timeMachineAnimationNormalSpeed
         self.strategy = DismissStrategy(timeMachineViewController : self)
 
@@ -94,18 +95,15 @@ class TimeMachineViewController: UIViewController {
     
     func updateEnergyLabel() {
     
-        if let calendarViewController = self.calendarViewController {
+        if calendarViewController.selectedDays <= 0 {
+            self.energyButton?.setTitle(" × \(self.engine.currentUser.energy)", for: .normal)
+
+        } else {
             
-            if calendarViewController.selectedDays <= 0 {
-                self.energyButton?.setTitle(" × \(self.engine.currentUser.energy)", for: .normal)
-   
-            } else {
-                
-                self.energyButton?.setTitle(" × \(self.engine.currentUser.energy) - \(calendarViewController.selectedDays)", for: .normal)
-                self.energyButton?.setTitleColor(self.engine.currentUser.energy >= calendarViewController.selectedDays ? .label : .red, for: .normal)
-            }
-            
+            self.energyButton?.setTitle(" × \(self.engine.currentUser.energy) - \(calendarViewController.selectedDays)", for: .normal)
+            self.energyButton?.setTitleColor(self.engine.currentUser.energy >= calendarViewController.selectedDays ? .label : .red, for: .normal)
         }
+
         
     }
     
@@ -159,23 +157,32 @@ extension TimeMachineViewController: CalendarViewDegelagte {
     }
     
     func calendarPageDidGoStartMonth() {
+        
+        let originalDate = CustomDate(year: self.calendarViewController.currentCalendarPage.year, month: self.calendarViewController.currentCalendarPage.month, day: 1)
+        let newDate = self.calendarViewController.item.creationDate
+        let monthInterval = DateCalculator.calculateMonthDifference(withOriginalDate: originalDate, andNewDate: newDate)
+        
         self.animationSpeed = self.setting.timeMachineAnimationFastSpeed
-        if let monthInterval = self.calendarViewController?.storedMonthInterval, monthInterval < 0 {
-            self.strategy = ForwardForManyStrategy(timeMachineViewController: self)
-            
-        } else if let monthInterval = self.calendarViewController?.storedMonthInterval, monthInterval > 0 {
-            self.strategy = BackwardForManyStrategy(timeMachineViewController: self)
+        if monthInterval < 0 {
+            self.strategy = ForwardForManyStrategy(timeMachineViewController: self, numberOfMovingPages: abs(monthInterval))
+        } else if monthInterval > 0 {
+            self.strategy = BackwardForManyStrategy(timeMachineViewController: self, numberOfMovingPages: abs(monthInterval))
         }
         updateUI()
     }
     
     func calendarPageDidGoThisMonth() {
+        
+        let originalDate = CustomDate(year: self.calendarViewController.currentCalendarPage.year, month: self.calendarViewController.currentCalendarPage.month, day: 1)
+        let newDate = CustomDate.current
+        let monthInterval = DateCalculator.calculateMonthDifference(withOriginalDate: originalDate, andNewDate: newDate)
+        
         self.animationSpeed = self.setting.timeMachineAnimationFastSpeed
-        if let monthInterval = self.calendarViewController?.storedMonthInterval, monthInterval < 0 {
-            self.strategy = ForwardForManyStrategy(timeMachineViewController: self)
-            
-        } else if let monthInterval = self.calendarViewController?.storedMonthInterval, monthInterval > 0 {
-            self.strategy = BackwardForManyStrategy(timeMachineViewController: self)
+        
+        if monthInterval < 0 {
+            self.strategy = ForwardForManyStrategy(timeMachineViewController: self, numberOfMovingPages: abs(monthInterval))
+        } else if monthInterval > 0 {
+            self.strategy = BackwardForManyStrategy(timeMachineViewController: self, numberOfMovingPages: abs(monthInterval))
         }
         updateUI()
     }

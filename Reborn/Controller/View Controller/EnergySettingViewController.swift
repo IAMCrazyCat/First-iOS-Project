@@ -9,6 +9,7 @@ import UIKit
 import StoreKit
 class EnergySettingViewController: UIViewController {
 
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dynamicEnergyIconView: UIView!
     @IBOutlet weak var hollowEnergyImageView: UIImageView!
     @IBOutlet weak var purchaseButton: UIButton!
@@ -66,7 +67,7 @@ class EnergySettingViewController: UIViewController {
     }
     
     @IBAction func purchaseButtonPressed(_ sender: Any) {
-        
+        self.titleLabel.text = "请勿离开界面"
         purchaseEnergy()
     }
     
@@ -85,8 +86,10 @@ class EnergySettingViewController: UIViewController {
     }
     
     func PurchaseDidFinish() {
-        SystemAlert.present("感谢您的购买", and: "您获得了3点能量", from: self)
         self.engine.purchaseEnergy()
+        SystemAlert.present("感谢您的购买", and: "您获得了3点能量", from: self)
+        self.titleLabel.text = "充能中"
+        
     }
     
     func fadeInOtherViews() {
@@ -172,7 +175,7 @@ extension EnergySettingViewController: SKPaymentTransactionObserver {
                 
             } else if transaction.transactionState == .failed {
                 print("Transaction Failed!")
-                SystemAlert.present("购买失败", and: "请重新尝试", from: self)
+                SystemAlert.present("购买失败", and: "如有问题请回到个人中心发送反馈邮件，我们会尽快解决", from: self)
                 SKPaymentQueue.default().finishTransaction(transaction)
                 self.rotationSpeed = (self.vipStrategy as! EnergyStrategy).getAnimationSpeed()
                 if let error = transaction.error {

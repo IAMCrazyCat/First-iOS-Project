@@ -24,16 +24,24 @@ class TimeMachineAnimationStrategyImpl: TimeMachineAnimationStrategy {
     }
     
     internal func removeOldTempCalendarPage(superview: UIView) {
-        for subview in superview.subviews {
-            if subview.accessibilityIdentifier == "TempCalendarPageView" {
-                subview.removeFromSuperview()
-            }
-           
-        }
+        superview.removeSubviewBy(idenifier: "TempCalendarPageView")
+    
     }
     
     internal func updateCalendarPagesColor() {
-        
+
+        if var lastCalendarPageColorValue = self.timeMachineViewController.calendarPages.first?.subviews.first?.backgroundColor?.value, AppEngine.shared.userSetting.uiUserInterfaceStyle == .light
+        {
+            for calendarPage in self.timeMachineViewController.calendarPages {
+               
+                calendarPage.subviews.first?.backgroundColor = UIColor(red: lastCalendarPageColorValue.red - self.setting.calendarPageColorDifference, green: lastCalendarPageColorValue.green - self.setting.calendarPageColorDifference, blue: lastCalendarPageColorValue.blue - self.setting.calendarPageColorDifference, alpha: 1)
+                
+                lastCalendarPageColorValue = (calendarPage.subviews.first?.backgroundColor?.value)!
+               
+            }
+        }
+       
+
     }
     
     internal func addNewCalendarPage() {

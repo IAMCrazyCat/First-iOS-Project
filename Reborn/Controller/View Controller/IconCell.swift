@@ -31,12 +31,32 @@ class IconCell: UICollectionViewCell {
         contentView.removeAllSubviews()
         contentView.layoutIfNeeded()
         contentView.backgroundColor = .clear
-        iconButton.frame = contentView.bounds
+        contentView.layer.cornerRadius = 5
+        contentView.layer.borderWidth = 2
+        contentView.layer.borderColor = UIColor.clear.cgColor
+        iconButton.isUserInteractionEnabled = true
+        iconButton.frame.size = CGSize(width: contentView.frame.width - 10, height: contentView.frame.height - 10)
+        iconButton.center = contentView.center
         contentView.addSubview(iconButton)
     }
     
-    func updateUI(withIcon icon: Icon) {
+    func updateUI(withIcon icon: Icon, selectedIcon: Icon?) {
         IconStrategy(iconCell: self).setAppearance(with: icon)
+        if self.iconButton.accessibilityIdentifier == selectedIcon?.name {
+            self.selectIcon()
+        } else {
+            self.unselectIcon()
+        }
     }
+    
+    func selectIcon() {
+        contentView.layer.borderColor = AppEngine.shared.userSetting.themeColor.uiColor.cgColor
+    }
+
+    func unselectIcon() {
+        contentView.layer.borderColor = UIColor.clear.cgColor
+    }
+    
+    
     
 }

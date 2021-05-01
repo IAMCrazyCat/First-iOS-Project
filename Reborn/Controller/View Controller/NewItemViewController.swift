@@ -22,21 +22,18 @@ class NewItemViewController: UIViewController {
     @IBOutlet weak var itemNameTextfield: UITextField!
     //Icon picker
     @IBOutlet weak var iconCollectionView: UICollectionView!
+    @IBOutlet weak var unfoldButton: UIButton!
     //Item Type
     @IBOutlet weak var persistingTypeButton: UIButton!
     @IBOutlet weak var quittingTypeButton: UIButton!
     //Item Target
     @IBOutlet weak var sevenDaysButton: UIButton!
     @IBOutlet weak var thirtyDaysButton: UIButton!
-    @IBOutlet weak var sixtyDaysButton: UIButton!
     @IBOutlet weak var oneHundredDaysButton: UIButton!
-    @IBOutlet weak var oneYearButton: UIButton!
     @IBOutlet weak var customTargetDaysButton: UIButton!
     //Item Frequency
     @IBOutlet weak var everydayFrequencyButton: UIButton!
-    @IBOutlet weak var everyTwoDaysFreqencyButton: UIButton!
     @IBOutlet weak var everyWeekFreqencyButton: UIButton!
-    @IBOutlet weak var everyTwoWeeksFrequencyButton: UIButton!
     @IBOutlet weak var everyMonthFrequencyButton: UIButton!
     @IBOutlet weak var customFrequencyButton: UIButton!
     
@@ -46,6 +43,7 @@ class NewItemViewController: UIViewController {
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var verticalScrollViewContentViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet var iconCollectionViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet var optionButtons: [UIButton]!
     @IBOutlet var promptTextView: UIView!
     @IBOutlet var promptLabel: UILabel!
@@ -60,19 +58,36 @@ class NewItemViewController: UIViewController {
     var selectedTargetDaysButton: UIButton? = nil
     var selectedFrequencyButton: UIButton? = nil
     var lastSelectedButton: UIButton? = nil
-    var item: Item = Item(ID: AppEngine.shared.currentUser.getLargestItemID() + 1, name: "(项目名)", days: 1, frequency: .everyday, creationDate: CustomDate.current, type: .undefined)
+    var item: Item = Item(ID: AppEngine.shared.currentUser.getLargestItemID() + 1, name: "一件事", days: 1, frequency: .everyday, creationDate: CustomDate.current, type: .undefined, icon: Icon.defaultIcon1)
     var preViewItemCard: UIView = UIView()
     var strategy: NewItemViewStrategy? = nil
     var lastViewController: UIViewController? = nil
+    //var selectedIcon: Icon? = nil
+    var selectedIconIndex: IndexPath? {
+        if let row = self.engine.getItemCardIconIndex(by: item.icon.name) {
+            return IndexPath(row: row, section: 0)
+        } else if let firstCell = self.iconCollectionView.visibleCells.first {
+            return self.iconCollectionView.indexPath(for: firstCell)
+        } else {
+            return nil
+        }
+            
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
- 
+        engine.add(observer: self)
+        persistingTypeButton.setTitle(ItemType.persisting.rawValue, for: .normal)
+        quittingTypeButton.setTitle(ItemType.quitting.rawValue, for: .normal)
+        
         itemNameTextfield.delegate = self
         verticalScrollView.delegate = self
         iconCollectionView.delegate = self
         iconCollectionView.dataSource = self
         iconCollectionView.register(IconCell.self, forCellWithReuseIdentifier: IconCell.identifier)
+        iconCollectionView.scrollToItem(at: selectedIconIndex ?? IndexPath(row: 0, section: 0), at: .left, animated: true)
+        originalCollectionViewHeight = iconCollectionViewHeightConstraint.constant
+        //selectedIcon = item.icon
         
         customFrequencyButton.setTitle(setting.customButtonTitle, for: .normal)
         customTargetDaysButton.setTitle(setting.customButtonTitle, for: .normal)
@@ -83,11 +98,6 @@ class NewItemViewController: UIViewController {
         itemNameTextfield.tintColor = engine.userSetting.themeColor.uiColor
         itemNameTextfield.addTarget(self, action: #selector(textfieldTextChanged(_:)), for: .editingChanged)
         itemNameTextfield.layer.cornerRadius = setting.textFieldCornerRadius
-        
-        
-        
-        
-        
         setButtonsAppearance()
         view.layoutIfNeeded()
         verticalScrollViewContentViewHeightConstraint.constant = secondInstructionLabel.frame.origin.y + 40
@@ -184,8 +194,40 @@ class NewItemViewController: UIViewController {
         self.strategy?.doneButtonPressed(sender)
     }
     
+    
+    
+    var unfolded: Bool = true
+    var originalCollectionViewHeight: CGFloat!
+    
+    @IBAction func unfoldButtonPressed(_ sender: Any) {
+        Vibrator.vibrate(withImpactLevel: .light)
+        foldAndUnfoldCollectionView()
+    }
+    
     @objc func deleteItemButtonPressed(_ sender: UIButton) {
+        //self.preViewItemCard.addSubview(EraserViewBuilder(frame: self.preViewItemCard.bounds, item: self.item).buildView())
         showAlert()
+    }
+    
+    func foldAndUnfoldCollectionView() {
+        let layout = iconCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
+        layout?.scrollDirection  = self.unfolded ? .vertical : .horizontal
+        self.iconCollectionViewHeightConstraint.constant = unfolded ? 200 : originalCollectionViewHeight
+        
+        //self.iconCollectionView.layoutIfNeeded()
+       
+        UIView.animate(withDuration: 0.5, animations: {
+            self.unfoldButton.transform = CGAffineTransform(rotationAngle: self.unfolded ? .pi : 0)
+            self.verticalContentView.layoutIfNeeded()
+        }) { _ in
+            self.verticalScrollViewContentViewHeightConstraint.constant += self.unfolded ? -200 : 200
+        }
+        self.iconCollectionView.scrollToItem(at: self.selectedIconIndex ?? IndexPath(row: 0, section: 0), at: self.unfolded ? .centeredVertically : .centeredHorizontally, animated: true)
+        
+        
+
+        
+        unfolded = !unfolded
     }
     
     
@@ -205,12 +247,15 @@ class NewItemViewController: UIViewController {
     
     private func deleteItemWithAnimation() {
         
+        
         UIView.animate(withDuration: 1, animations: {
             self.preViewItemCard.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
+            
+        }) { _ in
+            
             self.engine.currentUser.delete(item: self.item)
             self.engine.saveUser()
             self.engine.notifyAllUIObservers()
-        }) { _ in
             self.dismiss(animated: true) {
   
                 if let parentViewController = self.lastViewController as? ItemDetailViewController {
@@ -238,17 +283,14 @@ class NewItemViewController: UIViewController {
         if self.item.type == .quitting {
             UIView.animate(withDuration: 0.3, animations: {
                 
-  
-                self.everyTwoDaysFreqencyButton.alpha = 0
                 self.everyWeekFreqencyButton.alpha = 0
-                self.everyTwoWeeksFrequencyButton.alpha = 0
                 self.everyMonthFrequencyButton.alpha = 0
                 self.customFrequencyButton.alpha = 0
                 
             }) { _ in
-                self.everyTwoDaysFreqencyButton.isHidden = true
+
                 self.everyWeekFreqencyButton.isHidden = true
-                self.everyTwoWeeksFrequencyButton.isHidden = true
+
                 self.everyMonthFrequencyButton.isHidden = true
                 self.customFrequencyButton.isHidden = true
             }
@@ -256,15 +298,12 @@ class NewItemViewController: UIViewController {
         } else {
             
             UIView.animate(withDuration: 0.3, animations: {
-                self.everyTwoDaysFreqencyButton.isHidden = false
+
                 self.everyWeekFreqencyButton.isHidden = false
-                self.everyTwoWeeksFrequencyButton.isHidden = false
                 self.everyMonthFrequencyButton.isHidden = false
                 self.customFrequencyButton.isHidden = false
                 
-                self.everyTwoDaysFreqencyButton.alpha = 1
                 self.everyWeekFreqencyButton.alpha = 1
-                self.everyTwoWeeksFrequencyButton.alpha = 1
                 self.everyMonthFrequencyButton.alpha = 1
                 self.customFrequencyButton.alpha = 1
                 
@@ -343,18 +382,36 @@ class NewItemViewController: UIViewController {
     }
     
     func updatePromptTextView() {
+        
+        if let sublayers = promptTextView.layer.sublayers {
+            for layer in sublayers {
+                if layer.name == "Gradient" {
+                    layer.removeFromSuperlayer()
+                }
+            }
+        }
+        
         promptTextView.layoutIfNeeded()
         let gradient: CAGradientLayer = CAGradientLayer()
-
         gradient.colors = [AppEngine.shared.userSetting.whiteAndBlackBackground.cgColor, AppEngine.shared.userSetting.whiteAndBlackBackground.withAlphaComponent(0).cgColor]
         //gradient.locations = [0.5, 1.0]
-        gradient.startPoint = CGPoint(x: 0.5, y: 0.0)
+        gradient.startPoint = CGPoint(x: 0.5, y: 0.5)
         gradient.endPoint = CGPoint(x: 0.5, y: 1)
         gradient.frame = promptTextView.bounds
-
+        gradient.name = "Gradient"
         self.promptTextView.layer.insertSublayer(gradient, at: 0)
     }
     
+    func updateIconCollectionView() {
+       
+        iconCollectionView.reloadData()
+        
+    }
+    
+    
+}
+
+extension NewItemViewController: UIObserver {
     func updateUI() {
         
         updateFrequencyButtons()
@@ -364,6 +421,7 @@ class NewItemViewController: UIViewController {
         updatePreViewItemCard()
         updatePromptLabel()
         updatePromptTextView()
+        updateIconCollectionView()
     }
 }
 
@@ -425,11 +483,17 @@ extension NewItemViewController: UIScrollViewDelegate, UITextFieldDelegate {
 }
 
 extension NewItemViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    
+    
     @objc func cellButtonPressed(_ sender: UIButton) {
-        if let image = sender.image(for: .normal) {
-            self.item.setIcon(withImage: image)
+        if let iconName = sender.accessibilityIdentifier {
+            self.item.icon = self.engine.getItemCardIcon(by: iconName) ?? (self.item.type == .quitting ? Icon.defaultIcon2 : Icon.defaultIcon1)
+            //self.selectedIcon = self.engine.getItemCardIcon(by: iconName)
         }
+        
         self.updateUI()
+
         
     }
     
@@ -439,23 +503,23 @@ extension NewItemViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IconCell.identifier, for: indexPath) as! IconCell
-
         cell.iconButton.addTarget(self, action: #selector(self.cellButtonPressed(_:)), for: .touchUpInside)
-        cell.updateUI(withIcon: self.engine.getItemCardIcons()[indexPath.row])
+        cell.updateUI(withIcon: self.engine.getItemCardIcons()[indexPath.row], selectedIcon: self.item.icon)
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: collectionView.frame.height - 10, height: collectionView.frame.height - 10)
+        return CGSize(width: 50, height: 50)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 100
+        return 22
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 30
+        return 20
     }
 
     

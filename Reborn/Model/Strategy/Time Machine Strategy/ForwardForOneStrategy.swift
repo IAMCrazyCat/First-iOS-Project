@@ -10,24 +10,7 @@ import UIKit
 
 class ForwardForOneStrategy: TimeMachineAnimationStrategyImpl {
     
-    override func updateCalendarPagesColor() {
-        var r: CGFloat = 1
-        var g: CGFloat = 1
-        var b: CGFloat = 1
 
-        for index in 1 ... self.timeMachineViewController.calendarPages.count - 1 {
-            
-            let calendarPage = self.timeMachineViewController.calendarPages[index]
-            calendarPage.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1)
-            
-            r -= self.setting.calendarPageColorDifference
-            g -= self.setting.calendarPageColorDifference
-            b -= self.setting.calendarPageColorDifference
-           
-        }
-
-    }
-    
     override func addNewCalendarPage() {
         let newCalendarPage = UIView()
         let scale = CGFloat(pow(Double(self.setting.newCalendarPageSizeDifference), Double(self.timeMachineViewController.calendarPages.count)))
@@ -38,7 +21,7 @@ class ForwardForOneStrategy: TimeMachineAnimationStrategyImpl {
         newCalendarPage.transform =  CGAffineTransform(scaleX: scale, y: scale) // scale it accroding to first page to its proper size
         
         // set style
-        newCalendarPage.backgroundColor = self.setting.calendarPageColor
+        newCalendarPage.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackBackground
         newCalendarPage.alpha = 0
         newCalendarPage.layer.cornerRadius = self.setting.itemCardCornerRadius
         newCalendarPage.setShadow()
@@ -52,9 +35,9 @@ class ForwardForOneStrategy: TimeMachineAnimationStrategyImpl {
         if self.timeMachineViewController.calendarViewController != nil {
 
             for index in 0 ... self.timeMachineViewController.calendarPages.count - 1 {
-                let builder = TimeMachineCalendarPageViewBuilder(interactableCalendarView: self.timeMachineViewController.calendarPages.first!.subviews.first!, calendarViewController: self.timeMachineViewController.calendarViewController!, monthDifference: -index + 1)
-                let tempCalendarPage = builder.buildCalendarPage()
-                tempCalendarPage.accessibilityIdentifier = "TempCalendarPageView"
+                let builder = TimeMachineCalendarPageViewBuilder(interactableCalendarView: self.timeMachineViewController.calendarPages.first!.subviews.first!, referenceCalendarPage: self.timeMachineViewController.calendarViewController.currentCalendarPage, monthDifference: -index)
+                let tempCalendarPage = builder.buildView()
+
                 super.removeOldTempCalendarPage(superview: self.timeMachineViewController.calendarPages[index])
                 self.timeMachineViewController.calendarPages[index].addSubview(tempCalendarPage) // add temp calendar page to that will disapear
             }

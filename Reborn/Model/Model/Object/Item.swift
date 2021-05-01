@@ -75,32 +75,34 @@ class Item: Codable {
         }
     }
     
-    var icon: Data? = nil
+    var icon: Icon
     
-    init(ID: Int, name: String, days: Int, frequency: Frequency, creationDate: CustomDate, type: ItemType) {
+    init(ID: Int, name: String, days: Int, frequency: Frequency, creationDate: CustomDate, type: ItemType, icon: Icon) {
         self.ID = ID
         self.name = name
         self.targetDays = days
         self.creationDate = creationDate
         self.type = type
         self.frequency = frequency
-        
+        self.icon = icon
         updateScheduleDates()
         updateState()
     }
     
-    public func setIcon(withImage image: UIImage) {
-        self.icon = image.pngData()
-    }
-    
-    public func getIcon() -> UIImage {
-        let defaultIcon = self.type == .persisting ? #imageLiteral(resourceName: "StarIcon") : #imageLiteral(resourceName: "Cigratte")
-        if icon != nil {
-            return UIImage(data: self.icon!) ?? defaultIcon
-        } else {
-            return defaultIcon        }
-       
-    }
+//    public func setIcon(withImage image: UIImage) {
+//        self.icon = image.pngData()
+//    }
+//
+//    public func getIcon() -> UIImage {
+//        let defaultIcon = self.type == .persisting ? Icon.defaultIcon1 : Icon.defaultIcon2
+//        if icon != nil {
+//            return UIImage(data: self.icon!) ?? defaultIcon
+//        } else {
+//            return defaultIcon
+//
+//        }
+//       
+//    }
     
     public func punchIn(on date: CustomDate = CustomDate.current) {
         self.punchInDates.append(date)
@@ -252,11 +254,11 @@ class Item: Codable {
         } else {
            return true
         }
-
-        
     }
     
-    
+    public func getFullName() -> String {
+        return "\(self.type.rawValue)\(self.name)"
+    }
     
     
     

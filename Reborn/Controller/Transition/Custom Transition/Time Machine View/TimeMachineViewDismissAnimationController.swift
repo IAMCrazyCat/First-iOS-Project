@@ -31,7 +31,7 @@ class TimeMachineViewDismissAnimationController: NSObject, UIViewControllerAnima
             return
         }
 
-        
+
         fromViewController.dismissCalendarPages()
         originalParentViewController.topView.alpha = 0
         
@@ -48,9 +48,9 @@ class TimeMachineViewDismissAnimationController: NSObject, UIViewControllerAnima
             originalParentViewController.topView.alpha = 1
             originalParentViewController.addChild(toViewController)
             originalParentViewController.topView.addSubview(toView)
+            
             transitionContext.completeTransition(true)
-
-           
+            
         }
         
 

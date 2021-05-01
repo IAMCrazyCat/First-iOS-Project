@@ -92,12 +92,12 @@ class UserCenterViewController: UIViewController {
     }
     
     @objc func avatarViewTapped() {
-        Vibrator.vibrate(withImpactLevel: .medium)
+       
         presentImagePicker()
     }
     
     @IBAction func editAvatarButtonPressed(_ sender: UIButton) {
-        Vibrator.vibrate(withImpactLevel: .medium)
+
         presentImagePicker()
     }
     
@@ -106,23 +106,23 @@ class UserCenterViewController: UIViewController {
 
     }
     @IBAction func notificationTimeButtonPressed(_ sender: UIButton) {
-        Vibrator.vibrate(withImpactLevel: .medium)
+    
         self.present(.notificationTimePopUp, size: .small, animation: .slideInToCenter)
     }
     
     @IBAction func themeColorButtonPressed(_ sender: UIButton) {
-        Vibrator.vibrate(withImpactLevel: .medium)
+
         self.present(.customThemeColorPopUp, size: .medium, animation: .slideInToCenter)
     }
     
     
     @IBAction func lightAndDarkButtonPressed(_ sender: UIButton) {
-        Vibrator.vibrate(withImpactLevel: .medium)
+
         self.present(.lightAndDarkModePopUp, size: .large, animation: .slideInToCenter)
     }
     
     @IBAction func userNameButtonPressed(_ sender: UIButton!) {
-        Vibrator.vibrate(withImpactLevel: .medium)
+
         self.present(.customUserInformationPopUp, size: .large, animation: .fadeInFromCenter)
     }
     
@@ -151,6 +151,15 @@ class UserCenterViewController: UIViewController {
     @IBAction func reviewButtonPressed(_ sender: UIButton) {
         if let windowScene = UIApplication.shared.windows.first?.windowScene {
             SKStoreReviewController.requestReview(in: windowScene)
+        }
+    }
+    @IBAction func shareButtonPressed(_ sender: UIButton) {
+        if let name = URL(string: "https://testflight.apple.com/join/0mAd8SqV"), !name.absoluteString.isEmpty {
+          let objectsToShare = [name]
+          let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+          self.present(activityVC, animated: true, completion: nil)
+        } else {
+          // show alert for not available
         }
     }
     
@@ -361,7 +370,7 @@ extension UserCenterViewController: PopUpViewDelegate {
         
         self.engine.saveSetting()
         self.engine.notifyAllUIObservers()
-        //Vibrator.vibrate(withImpactLevel: .medium)
+    
     }
     
     func didSaveAndDismiss(_ type: PopUpType) {
@@ -386,7 +395,7 @@ extension UserCenterViewController: PopUpViewDelegate {
         
         self.engine.saveSetting()
         self.engine.notifyAllUIObservers()
-        Vibrator.vibrate(withImpactLevel: .medium)
+        Vibrator.vibrate(withNotificationType: .success)
     }
 }
 

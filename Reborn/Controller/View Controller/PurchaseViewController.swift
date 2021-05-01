@@ -205,7 +205,7 @@ extension PurchaseViewController: SKPaymentTransactionObserver {
                 
             } else if transaction.transactionState == .failed {
                 print("Transaction Failed!")
-                SystemAlert.present("购买失败", and: "请重新尝试", from: self)
+                SystemAlert.present("购买失败", and: "如有问题请回到个人中心发送反馈邮件，我们会尽快解决", from: self)
                 SKPaymentQueue.default().finishTransaction(transaction)
                 if let error = transaction.error {
                     let errorDescription = error.localizedDescription
