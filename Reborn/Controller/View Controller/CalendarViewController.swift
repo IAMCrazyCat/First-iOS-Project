@@ -437,36 +437,48 @@ extension CalendarViewController: UIObserver {
 
 extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
+    func renderLastMonthCells() {
+        
+    }
+    
+    func renderThisMonthCells() {
+        
+    }
+    
+    func renderNextMonthCells() {
+        
+    }
+    
     @objc func cellButtonPressed(_ sender: UIButton) {
         
         Vibrator.vibrate(withImpactLevel: .light)
+
         if let pressedCell = self.bottomCollectionView.cellForItem(at: IndexPath(row: sender.tag, section: 0)) as? CalendarCell {
             
-            if pressedCell.state == .selected {
-    
-                pressedCell.updateUI(withType: .unselected, cellDay: sender.currentTitle ?? "?")
-                
-                var index = 0
+            if self.punchInMakingUpDates.contains(pressedCell.date) {
+
+                var index = 0 // Delete making up day
                 for makingUpDate in self.punchInMakingUpDates {
-            
+
                     if makingUpDate == CustomDate(year: self.currentCalendarPage.year, month: self.currentCalendarPage.month, day: Int(sender.currentTitle ?? "1") ?? 1) {
                         self.punchInMakingUpDates.remove(at: index)
                     }
                     index += 1
                 }
 
-            } else {
-                
-                pressedCell.updateUI(withType: .selected, cellDay: sender.currentTitle ?? "?")
-                self.punchInMakingUpDates.append(CustomDate(year: self.currentCalendarPage.year, month: self.currentCalendarPage.month, day: Int(sender.currentTitle ?? "1") ?? 1))
+            } else { // add making up day
 
+                self.punchInMakingUpDates.append(CustomDate(year: self.currentCalendarPage.year, month: self.currentCalendarPage.month, day: Int(sender.currentTitle ?? "1") ?? 1))
+//
             }
 
+            self.updateUI()
+            self.engine.notifyUIObservers(withIdentifier: "TimeMachineViewController")
+            
             
         }
         
-        self.updateUI()
-        self.engine.notifyUIObservers(withIdentifier: "TimeMachineViewController")
+        
        
     }
     
@@ -488,82 +500,81 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
         if indexPath.row <= self.currentCalendarPage.weekdayOfFirstDay - 1 {
             //Before the first day
         
-            cell.state = .disabled
             
             let lastMonthCalendarPage = CalendarPage(year: self.lastPageYear, month: self.lastPageMonth, item: item)
             let lastMonthDayNumber = (lastMonthCalendarPage.days - self.currentCalendarPage.weekdayOfFirstDay) + (indexPath.row + 1)
             
+            cell.date = CustomDate(year: lastMonthCalendarPage.year, month: lastMonthCalendarPage.month, day: lastMonthDayNumber)
             if lastMonthCalendarPage.punchedInDays.contains(lastMonthDayNumber) {
                 // last month punchedIn day
-                cell.updateUI(withType: .nothThisMonthPunchedIn, cellDay: String(lastMonthDayNumber))
+                cell.updateUI(withType: .grayedOutWithColorFill, selectable: false, cellDay: String(lastMonthDayNumber))
             } else {
-                cell.updateUI(withType: .notThisMonthMissedDay, cellDay: String(lastMonthDayNumber))
+                cell.updateUI(withType: .grayedOutWithoutColorFill, selectable: false, cellDay: String(lastMonthDayNumber))
             }
             
             if self.state == .timeMachine && DateCalculator.calculateDayDifferenceBetween(CustomDate(year: self.currentCalendarPage.year, month: self.currentCalendarPage.month, day: dayNumber), and: CustomDate.current) < 0 { // day after today in timemachine
-                               cell.updateUI(withType: .dayAfterTodayInTimeMachine, cellDay: String(lastMonthDayNumber))
+                cell.updateUI(withType: .grayedOutWithoutColorFill, selectable: false, cellDay: String(lastMonthDayNumber))
                           
             }
             
 
         } else if indexPath.row >  self.currentCalendarPage.weekdayOfFirstDay - 1 && indexPath.row < self.currentCalendarPage.days + self.currentCalendarPage.weekdayOfFirstDay {
             // Between the firstday And Last Day
-            
+            cell.date = CustomDate(year: currentCalendarPage.year, month: currentCalendarPage.month, day: dayNumber)
             
             if self.currentCalendarPage.punchedInDays.contains(dayNumber) { // punchedIn day
-                cell.state = .disabled
-                cell.updateUI(withType: .punchedInDay, cellDay: String(dayNumber))
+
+                cell.updateUI(withType: .normalWithColorFill, selectable: false, cellDay: String(dayNumber))
             
             } else if self.punchInMakingUpDates.contains(CustomDate(year: self.currentCalendarPage.year, month: self.currentCalendarPage.month, day: dayNumber)) {
-                // selected punched in day
-                cell.updateUI(withType: .selected, cellDay: String(dayNumber))
+                // selected making up day
+                cell.updateUI(withType: .normalWithColorEdge, selectable: self.state == .timeMachine ? true : false, cellDay: String(dayNumber))
                 
             } else if self.state == .timeMachine && DateCalculator.calculateDayDifferenceBetween(CustomDate(year: self.currentCalendarPage.year, month: self.currentCalendarPage.month, day: dayNumber), and: CustomDate.current) < 0 { // day after today in timemachine
-                cell.updateUI(withType: .dayAfterTodayInTimeMachine, cellDay: String(dayNumber))
+                cell.updateUI(withType: .grayedOutWithoutColorFill, selectable: false, cellDay: String(dayNumber))
                 
             } else {
-                
-                if self.state == .timeMachine {
-                    cell.state = .normal
-                } else {
-                    cell.state = .disabled
-                }
-                
-                cell.updateUI(withType: .missedDay, cellDay: String(dayNumber))
+
+                cell.updateUI(withType: .normalWithoutColorFill, selectable: self.state == .timeMachine ? true : false, cellDay: String(dayNumber))
             }
             
             
             
-        } else { // After lastday
             
-            cell.state = .disabled
+        
+            if self.currentCalendarPage.year == CustomDate.current.year && self.currentCalendarPage.month == CustomDate.current.month && dayNumber == CustomDate.current.day {
+                // today dot
+                cell.addDotToBottom(withColor: UIColor.label.withAlphaComponent(1))
+            }
+            
+            if self.currentCalendarPage.year == self.item.creationDate.year && self.currentCalendarPage.month == self.item.creationDate.month && dayNumber == self.item.creationDate.day {
+                // start date dot
+                cell.addDotToBottom(withColor: self.engine.userSetting.themeColor.uiColor.withAlphaComponent(1))
+
+            }
+            
+            
+        } else { // After lastday
+           
 
            
             let nextMonthCalendarPage = CalendarPage(year: self.nextPageYear, month: self.nextPageMonth, item: item)
             let nextMonthDayNumber = (indexPath.row + 1) - (self.currentCalendarPage.days + self.currentCalendarPage.weekdayOfFirstDay)
-            
+            cell.date = CustomDate(year: nextMonthCalendarPage.year, month: nextMonthCalendarPage.month, day: nextMonthDayNumber)
             if nextMonthCalendarPage.punchedInDays.contains(nextMonthDayNumber) { // next month punchedIn day
-                cell.updateUI(withType: .nothThisMonthPunchedIn, cellDay: String(nextMonthDayNumber))
+                cell.updateUI(withType: .grayedOutWithColorFill, selectable: false, cellDay: String(nextMonthDayNumber))
             } else {
-                cell.updateUI(withType: .notThisMonthMissedDay, cellDay: String(nextMonthDayNumber))
+                cell.updateUI(withType: .grayedOutWithoutColorFill, selectable: false, cellDay: String(nextMonthDayNumber))
             }
             
             if self.state == .timeMachine && DateCalculator.calculateDayDifferenceBetween(CustomDate(year: self.currentCalendarPage.year, month: self.currentCalendarPage.month, day: dayNumber), and: CustomDate.current) < 0 { // day after today in timemachine
-                               cell.updateUI(withType: .dayAfterTodayInTimeMachine, cellDay: String(nextMonthDayNumber))
+                               cell.updateUI(withType: .grayedOutWithoutColorFill, selectable: false, cellDay: String(nextMonthDayNumber))
                           
             }
             
         }
         
-        if self.currentCalendarPage.year == CustomDate.current.year && self.currentCalendarPage.month == CustomDate.current.month && dayNumber == CustomDate.current.day {// today dot
-            
-            cell.addDotToBottom(withColor: UIColor.label.withAlphaComponent(1))
-            
-            
-        } else if self.currentCalendarPage.year == self.item.creationDate.year && self.currentCalendarPage.month == self.item.creationDate.month && dayNumber == self.item.creationDate.day {
-            // start date dot
-            cell.addDotToBottom(withColor: self.engine.userSetting.themeColor.uiColor.withAlphaComponent(1))
-        }
+        
         
         
        

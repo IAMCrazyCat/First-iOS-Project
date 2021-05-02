@@ -23,6 +23,8 @@
 		221E0B8825A9A22800386FE1 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E0B8725A9A22800386FE1 /* Gender.swift */; };
 		221E0BA425A9D38100386FE1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E0BA325A9D38100386FE1 /* Image.swift */; };
 		223072A825E3A99D00AE6ECB /* UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223072A725E3A99D00AE6ECB /* UINavigationBar.swift */; };
+		223132CF263D188F0020BA70 /* CalendarCellStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223132CE263D188F0020BA70 /* CalendarCellStrategy.swift */; };
+		223132D1263D2F570020BA70 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223132D0263D2F570020BA70 /* Double.swift */; };
 		223A777B25A41184004B3324 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223A777A25A41184004B3324 /* UIView.swift */; };
 		2246D2E625CA68230001EFB7 /* DismissStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246D2E525CA68230001EFB7 /* DismissStrategy.swift */; };
 		2246D2EE25CAD5110001EFB7 /* EnlargeStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246D2ED25CAD5110001EFB7 /* EnlargeStrategy.swift */; };
@@ -151,7 +153,7 @@
 		22D7FBA625A190E9006B1F28 /* SetUpPageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7FBA525A190E9006B1F28 /* SetUpPageData.swift */; };
 		22D7FBB125A1E065006B1F28 /* SetUpPageViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7FBB025A1E065006B1F28 /* SetUpPageViewBuilder.swift */; };
 		22D8A05725CCE21C00A605D6 /* NewCalendarPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8A05625CCE21C00A605D6 /* NewCalendarPage.swift */; };
-		22D8A06725CD13BA00A605D6 /* CalendaSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8A06625CD13BA00A605D6 /* CalendaSet.swift */; };
+		22D8A06725CD13BA00A605D6 /* CalendarSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8A06625CD13BA00A605D6 /* CalendarSet.swift */; };
 		22DBC3DC2619FAC40016C6F3 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DBC3DB2619FAC40016C6F3 /* ShareViewController.swift */; };
 		22E069A925D79250006DCE5C /* Vibrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E069A825D79250006DCE5C /* Vibrator.swift */; };
 		22E5A13625F33F76001AC3ED /* PurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E5A13525F33F76001AC3ED /* PurchaseViewController.swift */; };
@@ -232,6 +234,8 @@
 		221E0B8725A9A22800386FE1 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		221E0BA325A9D38100386FE1 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		223072A725E3A99D00AE6ECB /* UINavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBar.swift; sourceTree = "<group>"; };
+		223132CE263D188F0020BA70 /* CalendarCellStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellStrategy.swift; sourceTree = "<group>"; };
+		223132D0263D2F570020BA70 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		223A777A25A41184004B3324 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		2246D2E525CA68230001EFB7 /* DismissStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissStrategy.swift; sourceTree = "<group>"; };
 		2246D2ED25CAD5110001EFB7 /* EnlargeStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnlargeStrategy.swift; sourceTree = "<group>"; };
@@ -361,7 +365,7 @@
 		22D7FBA525A190E9006B1F28 /* SetUpPageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpPageData.swift; sourceTree = "<group>"; };
 		22D7FBB025A1E065006B1F28 /* SetUpPageViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpPageViewBuilder.swift; sourceTree = "<group>"; };
 		22D8A05625CCE21C00A605D6 /* NewCalendarPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCalendarPage.swift; sourceTree = "<group>"; };
-		22D8A06625CD13BA00A605D6 /* CalendaSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendaSet.swift; sourceTree = "<group>"; };
+		22D8A06625CD13BA00A605D6 /* CalendarSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarSet.swift; sourceTree = "<group>"; };
 		22DBC3DB2619FAC40016C6F3 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		22E069A825D79250006DCE5C /* Vibrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibrator.swift; sourceTree = "<group>"; };
 		22E5A13525F33F76001AC3ED /* PurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewController.swift; sourceTree = "<group>"; };
@@ -543,7 +547,7 @@
 			isa = PBXGroup;
 			children = (
 				22A7DC302605B0B100A55CE8 /* AppAppearenceMode.swift */,
-				22D8A06625CD13BA00A605D6 /* CalendaSet.swift */,
+				22D8A06625CD13BA00A605D6 /* CalendarSet.swift */,
 				22945D8425F70FD30065B511 /* ConfettiSize.swift */,
 				2278907525EBA65400613281 /* Frequency.swift */,
 				221E0B8725A9A22800386FE1 /* Gender.swift */,
@@ -810,6 +814,7 @@
 		22C535F2263D0A790036B0D7 /* Calendar Cell Strategy */ = {
 			isa = PBXGroup;
 			children = (
+				223132CE263D188F0020BA70 /* CalendarCellStrategy.swift */,
 			);
 			path = "Calendar Cell Strategy";
 			sourceTree = "<group>";
@@ -970,6 +975,7 @@
 				226C958425FCC8310029C2E6 /* UITextField.swift */,
 				22D00DDE25FE21D600DB3F1D /* UserDefaults.swift */,
 				22C49A6025FF16AF00371E2B /* CGFloat.swift */,
+				223132D0263D2F570020BA70 /* Double.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1316,6 +1322,7 @@
 				226C958525FCC8310029C2E6 /* UITextField.swift in Sources */,
 				22C23A27258DCE4500D4BEB2 /* HomeViewController.swift in Sources */,
 				225AD12F25A868F50040E356 /* ItemDetailViewController.swift in Sources */,
+				223132D1263D2F570020BA70 /* Double.swift in Sources */,
 				225AD12225A80EB30040E356 /* UIApplication.swift in Sources */,
 				225AD12A25A848A30040E356 /* Selector.swift in Sources */,
 				22BC4C7E25D6A517009E905C /* WelcomeText.swift in Sources */,
@@ -1356,7 +1363,7 @@
 				220B7286258A288000E4BEDC /* WelcomeViewController.swift in Sources */,
 				22945D4425F5A7700065B511 /* CustomItemNamePopUp.swift in Sources */,
 				22F619C926393D46007F91AF /* VipIcon.swift in Sources */,
-				22D8A06725CD13BA00A605D6 /* CalendaSet.swift in Sources */,
+				22D8A06725CD13BA00A605D6 /* CalendarSet.swift in Sources */,
 				22A1B56F26149BEF008CBE94 /* CustomTimer.swift in Sources */,
 				224E663525C6457900B71E8A /* TimeMachineAnimationStrategy.swift in Sources */,
 				22C5D975258F40E800131964 /* SetUpPage.swift in Sources */,
@@ -1411,6 +1418,7 @@
 				221E0B8825A9A22800386FE1 /* Gender.swift in Sources */,
 				22C5D967258F3E4400131964 /* SetUpEngine.swift in Sources */,
 				229C5EEA25F4F1FD00C94B61 /* UIWindow.swift in Sources */,
+				223132CF263D188F0020BA70 /* CalendarCellStrategy.swift in Sources */,
 				22D7FBA125A18FE5006B1F28 /* CustomData.swift in Sources */,
 				2246D2F325CAD9F70001EFB7 /* GoBackToThePastStrategy.swift in Sources */,
 				22F619C426393A75007F91AF /* IconStrategy.swift in Sources */,

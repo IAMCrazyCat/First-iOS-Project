@@ -62,7 +62,6 @@ class NewItemViewController: UIViewController {
     var preViewItemCard: UIView = UIView()
     var strategy: NewItemViewStrategy? = nil
     var lastViewController: UIViewController? = nil
-    //var selectedIcon: Icon? = nil
     var selectedIconIndex: IndexPath? {
         if let row = self.engine.getItemCardIconIndex(by: item.icon.name) {
             return IndexPath(row: row, section: 0)
@@ -73,6 +72,7 @@ class NewItemViewController: UIViewController {
         }
             
     }
+    var userDidSaveChange: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,6 +111,20 @@ class NewItemViewController: UIViewController {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         self.updateUI()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if !userDidSaveChange {
+            if let originalItem = self.originalItemForRecovery {
+                self.item.icon = originalItem.icon
+                self.item.name = originalItem.name
+                self.item.targetDays = originalItem.targetDays
+                self.item.frequency = originalItem.frequency
+                self.item.scheduleDates = originalItem.scheduleDates
+                self.item.type = originalItem.type
+            }
+            
+        }
     }
     
 
@@ -177,20 +191,14 @@ class NewItemViewController: UIViewController {
 
     
     @IBAction func cancelButtonPressed(_ sender: UIButton) {
-        
-        if let originalItem = self.originalItemForRecovery {
-            self.item.name = originalItem.name
-            self.item.targetDays = originalItem.targetDays
-            self.item.frequency = originalItem.frequency
-            self.item.scheduleDates = originalItem.scheduleDates
-            self.item.type = originalItem.type
-        }
-        
+        userDidSaveChange = false
         self.dismiss(animated: true, completion: nil)
+        
        
     }
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
+        userDidSaveChange = true
         self.strategy?.doneButtonPressed(sender)
     }
     

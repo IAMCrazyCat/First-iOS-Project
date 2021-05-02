@@ -15,12 +15,7 @@ class CustomTimer {
     
     fileprivate var storedSeconds: Int = 0
     fileprivate var storedMinutes: Int = 0
-    public static var seconds: Int {
-        return CustomTimer.shared.storedSeconds
-    }
-    public static var minutes: Int {
-        return CustomTimer.shared.storedMinutes
-    }
+    fileprivate var storedOneTenthSeconds: Int = 0
     fileprivate var timer: Timer = Timer()
     fileprivate var storedTimerState: TimerState = .idle {
         didSet {
@@ -31,6 +26,16 @@ class CustomTimer {
         }
     }
     fileprivate static var shared = CustomTimer()
+    
+    public static var seconds: Int {
+        return CustomTimer.shared.storedSeconds
+    }
+    public static var minutes: Int {
+        return CustomTimer.shared.storedMinutes
+    }
+    public static var oneTenthSeconds: Int {
+        return CustomTimer.shared.storedOneTenthSeconds
+    }
     public static var update: () -> Void = {}
     public static var finish: (() -> Void)? = {}
     public static var state: TimerState {
@@ -49,35 +54,39 @@ class CustomTimer {
         
         CustomTimer.shared.storedMinutes = Int(seconds / 60)
         CustomTimer.shared.storedSeconds = Int(seconds.truncatingRemainder(dividingBy: 60))
-        
+        CustomTimer.shared.storedOneTenthSeconds = 10
         CustomTimer.shared.storedTimerState = .running
         CustomTimer.update = update
         CustomTimer.finish = finish
-        CustomTimer.shared.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+        CustomTimer.shared.timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
             
 
-            if timesOfExecution > Int(seconds) - 1 {
-                CustomTimer.killTimer()
-//                timer.invalidate()
-//                CustomTimer.shared.storedTimerState = .idle
-//                if CustomTimer.finish != nil {
-//                    CustomTimer.finish!()
-//                }
+            if CustomTimer.shared.storedOneTenthSeconds <= 0 {
                 
-                
-            } else {
-                
-                if CustomTimer.shared.storedSeconds <= 0 {
+                if timesOfExecution > Int(seconds) - 1 {
+                    CustomTimer.killTimer()
                     
-                    CustomTimer.shared.storedMinutes -= 1
-                    CustomTimer.shared.storedSeconds = 60
+                } else {
+                    
+                    if CustomTimer.shared.storedSeconds <= 0 {
+                        
+                        CustomTimer.shared.storedMinutes -= 1
+                        CustomTimer.shared.storedSeconds = 60
+                    }
+                    
+                    timesOfExecution += 1
+                    CustomTimer.shared.storedSeconds -= 1
+                    CustomTimer.update()
                 }
                 
-                timesOfExecution += 1
-                CustomTimer.shared.storedSeconds -= 1
-                CustomTimer.update()
+                CustomTimer.shared.storedOneTenthSeconds = 10
+                
             }
+            
+            CustomTimer.shared.storedOneTenthSeconds -= 1
         }
+            
+           
  
     }
     
@@ -102,54 +111,53 @@ class CustomTimer {
         
         if CustomTimer.state == .running {
             
-            let timerOriginalMinutes = UserDefaults.standard.integer(forKey: "TimerSavedMinutes")
-            let timerOriginalSeconds = UserDefaults.standard.integer(forKey: "TimerSavedSeconds")
-            guard let timerSavedTime = UserDefaults.standard.customTime(for: "TimerSavedTime"),
-                  let timerSavedDate =  UserDefaults.standard.customDate(for: "TimerSavedDate")
-            else {
-                return
-            }
-
-            let secondsOfUserBeingInactive = DateCalculator.calculateTimeDifferenceBetween(timerSavedTime, and: CustomTime.current)
+            guard let timerSavingDateStr = UserDefaults.standard.string(forKey: "TimerSavingDate") else {return}
+            let timerOriginalTotalOneTenthSeconds = UserDefaults.standard.integer(forKey: "TimerOriginalTotalOneTenthSeconds")
+            print("WTF!!!!")
+            print(timerOriginalTotalOneTenthSeconds)
+            let formatter = DateFormatter()
+            formatter.dateFormat = "y-MM-dd H:m:ss.SSSS"
+            let timerSavingDate = formatter.date(from: timerSavingDateStr)
+            //print(formatter.string(from: timerSavingDate!))
+            //print(formatter.string(from: Date()))
+            let oneTenthSecondsOfUserBeingInactive = DateCalculator.calculateTimeDifference(from: timerSavingDate!, to: Date())
             
-            let timerOriginalTotalSeconds = timerOriginalMinutes * 60 + timerOriginalSeconds
-
-            let totalSecondsDifference = timerOriginalTotalSeconds - secondsOfUserBeingInactive
-            let minutesDifference = totalSecondsDifference > 60 ? Int(totalSecondsDifference / 60) : 0
-            let secondsDifference = totalSecondsDifference > 0 ? Int(totalSecondsDifference % 60) : 0
+            let totalOneTenthSecondsDifference = timerOriginalTotalOneTenthSeconds - oneTenthSecondsOfUserBeingInactive
             
-            if DateCalculator.calculateDayDifferenceBetween(timerSavedDate, and: CustomDate.current) > 0 {
-                CustomTimer.killTimer()
-                
+    
+            let minutesDifference = Int(totalOneTenthSecondsDifference / 600)
+            let secondsDifference = Int((totalOneTenthSecondsDifference % 600) / 10)
+            let oneTenthDifference = Int((totalOneTenthSecondsDifference % 600) % 10)
+            
+  
+            print("\(minutesDifference)minites \(secondsDifference)seconds 0.\(oneTenthDifference)seconds")
+            
+            if totalOneTenthSecondsDifference > 0 {
+                CustomTimer.shared.storedMinutes = minutesDifference
+                CustomTimer.shared.storedSeconds = secondsDifference
+                CustomTimer.shared.storedOneTenthSeconds = oneTenthDifference
             } else {
-                
-                if totalSecondsDifference > 0 {
-                    CustomTimer.shared.storedMinutes = minutesDifference
-                    CustomTimer.shared.storedSeconds = secondsDifference
-                } else {
-                    CustomTimer.killTimer()
-                }
-                
-                
+                CustomTimer.killTimer()
             }
             
             
         }
         
-        
-        
-        
-        
-       
+        AppEngine.shared.notifyUIObservers(withIdentifier: "PotatoClockViewController")
+  
     }
     
     public static func saveTimer() {
         print("Timer Saved")
-        UserDefaults.standard.set(CustomTimer.state.rawValue, forKey: "TimerState")
-        UserDefaults.standard.set(CustomTimer.minutes, forKey: "TimerSavedMinutes")
-        UserDefaults.standard.set(CustomTimer.seconds, forKey: "TimerSavedSeconds")
-        UserDefaults.standard.set(CustomTime.current, forKey: "TimerSavedTime")
-        UserDefaults.standard.set(CustomDate.current, forKey: "TimerSavedDate")
+        let formatter = DateFormatter()
+        formatter.dateFormat = "y-MM-dd H:m:ss.SSSS"
+        let dateStr = formatter.string(from: Date())
+        
+        let currentTotalOneTenthSeconds = CustomTimer.minutes * 600 + CustomTimer.seconds * 10 + CustomTimer.oneTenthSeconds
+
+        UserDefaults.standard.set(currentTotalOneTenthSeconds, forKey: "TimerOriginalTotalOneTenthSeconds")
+        UserDefaults.standard.set(dateStr, forKey: "TimerSavingDate")
+        
     }
     
     

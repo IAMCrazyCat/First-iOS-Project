@@ -71,7 +71,7 @@ class Actions {
         
         if newThemeColor != nil {
             Vibrator.vibrate(withImpactLevel: .light)
-            AppEngine.shared.userSetting.themeColor = newThemeColor ?? ThemeColor.blue
+            AppEngine.shared.userSetting.themeColor = newThemeColor ?? ThemeColor.default
             AppEngine.shared.notifyUIObservers(withIdentifier: "PopUpViewController")
             AppEngine.shared.notifyUIObservers(withIdentifier: "UserCenterViewController")
         }

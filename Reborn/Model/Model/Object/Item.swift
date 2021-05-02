@@ -89,21 +89,6 @@ class Item: Codable {
         updateState()
     }
     
-//    public func setIcon(withImage image: UIImage) {
-//        self.icon = image.pngData()
-//    }
-//
-//    public func getIcon() -> UIImage {
-//        let defaultIcon = self.type == .persisting ? Icon.defaultIcon1 : Icon.defaultIcon2
-//        if icon != nil {
-//            return UIImage(data: self.icon!) ?? defaultIcon
-//        } else {
-//            return defaultIcon
-//
-//        }
-//       
-//    }
-    
     public func punchIn(on date: CustomDate = CustomDate.current) {
         self.punchInDates.append(date)
         updateState()
@@ -148,31 +133,27 @@ class Item: Codable {
     }
     
     private func updateScheduleDates() {
-        DispatchQueue.main.async {
+        self.scheduleDates.removeAll()
+        var cycle = self.frequency.dataModel.data ?? 1
+        var difference = 0
+        
+        while self.scheduleDates.count < self.targetDays - self.finishedDays + (self.isPunchedIn ? 1 : 0)  {
             
-            self.scheduleDates.removeAll()
-            var cycle = self.frequency.dataModel.data ?? 1
-            var difference = 0
-            
-            while self.scheduleDates.count < self.targetDays - self.finishedDays + (self.isPunchedIn ? 1 : 0)  {
-
-                if cycle < (self.frequency.dataModel.data ?? 1) - 1 {
-                    
-                    cycle += 1
-                    
-                } else {
-                    
-                    let customDate = DateCalculator.calculateDate(withDayDifference: difference, originalDate: CustomDate.current)
-                    
-                    self.scheduleDates.append(customDate)
-                    cycle = 0
-                }
-                difference += 1
+            if cycle < (self.frequency.dataModel.data ?? 1) - 1 {
+                
+                cycle += 1
+                
+            } else {
+                
+                let customDate = DateCalculator.calculateDate(withDayDifference: difference, originalDate: CustomDate.current)
+                self.scheduleDates.append(customDate)
+                cycle = 0
             }
-            
-            self.updateState()
-            self.sortDateArray()
+            difference += 1
         }
+        
+        self.updateState()
+        self.sortDateArray()
     }
     
     private func sortDateArray() {
@@ -185,13 +166,7 @@ class Item: Codable {
                 DateCalculator.calculateDayDifferenceBetween($0, and: $1) > 0
             }
         }
-        
-        print("PunchIn Dates Sorted")
-        //print(self.punchInDates)
-        
-        print("Schedule Dates Sorted")
-        //print(self.scheduleDates)
-        
+
     }
 
     

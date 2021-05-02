@@ -289,7 +289,7 @@ Cg
             <objects>
                 <viewController id="yhk-VJ-4nb" customClass="NewItemViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5tU-dT-BVc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eis-9Y-9bk" userLabel="Horizental Scroll View">
@@ -901,6 +901,7 @@ Cg
                         <outlet property="energyButton" destination="eyW-12-NFP" id="0om-FM-DjH"/>
                         <outlet property="goBackToThePastButton" destination="hC6-oy-S3E" id="qNp-Nf-JEH"/>
                         <outlet property="middleView" destination="AmU-5F-f6n" id="84o-xe-iOK"/>
+                        <outlet property="promptLabel" destination="vgh-l2-8hx" id="Svs-0m-ogH"/>
                         <outlet property="titleLabel" destination="TBC-dZ-hSy" id="dy9-jV-IUV"/>
                         <outlet property="topView" destination="wHS-8t-ghg" id="Rcj-dO-lUa"/>
                     </connections>
@@ -3688,13 +3689,13 @@ Cg
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="坚持健身" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVJ-m7-pFk">
                                                                 <rect key="frame" x="20" y="188" width="61.5" height="18"/>
-                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="15"/>
                                                                 <color key="textColor" name="BlackContent"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目标" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AP0-St-wkZ">
                                                                 <rect key="frame" x="20" y="246" width="31" height="18"/>
-                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                 <color key="textColor" name="BlackBackground"/>
                                                                 <color key="highlightedColor" name="BlackBackground"/>
                                                             </label>
@@ -3719,7 +3720,7 @@ Cg
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r3E-2r-u9S">
-                                                                <rect key="frame" x="110" y="12.5" width="40" height="15"/>
+                                                                <rect key="frame" x="107" y="12.5" width="40" height="15"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="40" id="QU0-tP-9BA"/>
                                                                     <constraint firstAttribute="height" constant="15" id="zch-C3-Pda"/>
@@ -3738,7 +3739,7 @@ Cg
                                                             <constraint firstAttribute="trailing" secondItem="OIE-Ou-46M" secondAttribute="trailing" constant="20" id="SVa-6M-yjx"/>
                                                             <constraint firstItem="OIE-Ou-46M" firstAttribute="bottom" secondItem="AVJ-m7-pFk" secondAttribute="bottom" id="Xs3-Ua-flf"/>
                                                             <constraint firstItem="OsT-CP-wLK" firstAttribute="height" secondItem="v3T-ku-bnC" secondAttribute="height" id="c2q-xI-0HC"/>
-                                                            <constraint firstItem="r3E-2r-u9S" firstAttribute="leading" secondItem="V5B-yH-Aki" secondAttribute="leading" id="e9S-cf-hha"/>
+                                                            <constraint firstItem="r3E-2r-u9S" firstAttribute="leading" secondItem="V5B-yH-Aki" secondAttribute="leading" constant="-3" id="e9S-cf-hha"/>
                                                             <constraint firstAttribute="trailing" secondItem="v3T-ku-bnC" secondAttribute="trailing" constant="20" id="emS-3J-a7z"/>
                                                             <constraint firstItem="doh-fb-7dN" firstAttribute="leading" secondItem="V5B-yH-Aki" secondAttribute="leading" id="fO3-zz-djH"/>
                                                             <constraint firstItem="V5B-yH-Aki" firstAttribute="top" secondItem="r3E-2r-u9S" secondAttribute="bottom" constant="5" id="fcG-Is-tkO"/>
@@ -4032,7 +4033,7 @@ Cg
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="HdV-Uf-p4p"/>
+        <segue reference="dzd-Jo-rYE"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>

@@ -19,6 +19,20 @@ class TimeMachineViewController: UIViewController {
     var animationSpeed: TimeInterval = 0.0
     var strategy: TimeMachineAnimationStrategy? = nil
     
+    var currentItemProgress: Double {
+        return calendarViewController.item.progress
+    }
+    var newItemProgress: Double {
+        return (Double(calendarViewController.item.finishedDays) + Double(calendarViewController.selectedDays)) / Double(calendarViewController.item.targetDays)
+    }
+
+    var currentProgressInString: String {
+        return "\((currentItemProgress * 100).round(toPlaces: 1))%"
+    }
+    var newProgressInString: String {
+        return "\((newItemProgress * 100).round(toPlaces: 1))%"
+    }
+    
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var middleView: UIView!
     @IBOutlet weak var bottomView: UIView!
@@ -27,6 +41,7 @@ class TimeMachineViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var energyButton: UIButton?
+    @IBOutlet weak var promptLabel: UILabel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,40 +115,97 @@ class TimeMachineViewController: UIViewController {
 
         } else {
             
-            self.energyButton?.setTitle(" × \(self.engine.currentUser.energy) - \(calendarViewController.selectedDays)", for: .normal)
-            self.energyButton?.setTitleColor(self.engine.currentUser.energy >= calendarViewController.selectedDays ? .label : .red, for: .normal)
+            self.energyButton?.setTitle(" × \(self.engine.currentUser.energy) → \(self.engine.currentUser.energy - self.calendarViewController.selectedDays)", for: .normal)
+            self.energyButton?.setTitleColor(self.engine.currentUser.energy >= self.calendarViewController.selectedDays ? .label : .red, for: .normal)
         }
 
         
     }
     
+    func userSlectedDate() -> Bool {
+        return calendarViewController.selectedDays > 0
+    }
+    
+    func userSelectedTooManyDate() -> Bool {
+        return newItemProgress > 1
+    }
+    
+    func userHasNotEnoughEnergy() -> Bool {
+        return AppEngine.shared.currentUser.energy < calendarViewController.selectedDays
+    }
+    
     func updateGoBackToThePastButton() {
+        
         goBackToThePastButton?.setCornerRadius()
         goBackToThePastButton?.setShadow()
         goBackToThePastButton?.setSmartColor()
         goBackToThePastButton?.setBackgroundColor(.systemGray3, for: .disabled)
-        goBackToThePastButton?.isEnabled = false
+        goBackToThePastButton?.isEnabled = userSlectedDate() ? true : false
         
-        if let calendarViewController = self.calendarViewController {
+        
+        if !userSlectedDate() {
+            goBackToThePastButton?.isEnabled = false
+            goBackToThePastButton?.setTitle("回到过去", for: .normal)
+        } else {
+            goBackToThePastButton?.setTitle("回到过去 项目进度: \(currentProgressInString) → \(newProgressInString)", for: .normal)
             
-            goBackToThePastButton?.isEnabled = calendarViewController.selectedDays > 0 && self.engine.currentUser.energy >= calendarViewController.selectedDays ? true : false
-            goBackToThePastButton?.setTitle(calendarViewController.selectedDays > 0 ? "能量不足" : "回到过去", for: .disabled)
+            if userSelectedTooManyDate() || userHasNotEnoughEnergy() {
+                goBackToThePastButton?.isEnabled = false
+            } else {
+                goBackToThePastButton?.isEnabled = true
+            }
+            
+            
+            
         }
+        
+        
+        
+        
+        
+
+       
         
     }
     
+    func updatePromptLabel() {
+        
+        
+        if userSelectedTooManyDate() {
+            promptLabel?.text = "请选择更少的补打卡天数"
+            promptLabel?.textColor = .systemRed
+        } else {
+            
+            if userHasNotEnoughEnergy() {
+                promptLabel?.text = "能量不足，请获得更多的能量"
+                promptLabel?.textColor = .systemRed
+            } else {
+                promptLabel?.text = "请选择您想补打卡的日期"
+                promptLabel?.textColor = .label
+            }
+            
+            
+            
+        }
+    }
     
-  
+    func updateStrategy() {
+        self.strategy?.performStrategy()
+        self.strategy = nil
+    }
+    
+
     
 }
 
 extension TimeMachineViewController: UIObserver {
     func updateUI() {
+
         updateGoBackToThePastButton()
         updateEnergyLabel()
         updateGoBackToThePastButton()
-        self.strategy?.performStrategy()
-        self.strategy = nil
+        updatePromptLabel()
+        updateStrategy()
     }
 }
 

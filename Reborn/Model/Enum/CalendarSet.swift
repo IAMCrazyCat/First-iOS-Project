@@ -13,15 +13,13 @@ enum CalendarCellState {
 }
 
 enum CalendarCellType {
-    case punchedInDay
-    case breakDay
-    case missedDay
-    case notThisMonthMissedDay
-    case nothThisMonthPunchedIn
-    case selected
+    case normalWithColorFill
+    case normalWithoutColorFill
+    case normalWithColorEdge
+    case grayedOutWithColorFill
+    case grayedOutWithoutColorFill
     case unselected
-    case unselectedInTimeMachine
-    case dayAfterTodayInTimeMachine
+
 }
 
 enum CalendarState {

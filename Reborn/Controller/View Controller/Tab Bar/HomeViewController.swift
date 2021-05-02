@@ -310,6 +310,7 @@ extension HomeViewController: UIObserver {
         updateNavigationView()
         updateItemCardsView()
         updateVerticalContentViewHeight()
+        updateOverAllProgressView(scrollView: verticalScrollView, animated: true)
         AdStrategy().removeAd(from: self)
         
 
@@ -356,7 +357,7 @@ extension HomeViewController: UIScrollViewDelegate {
         if scrollView.tag == self.setting.homeViewVerticalScrollViewTag {
            
             updateOverAllProgressView(scrollView: scrollView, animated: true)
-            print(self.verticalContentViewHeightConstraint.constant)
+
         }
     }
     

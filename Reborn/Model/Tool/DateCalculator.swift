@@ -141,22 +141,11 @@ class DateCalculator {
         return numberOfDays.day!
     }
     
-    static func calculateTimeDifferenceBetween(_ from: CustomTime, and to: CustomTime) -> Int {
-
-        let time1 = "\(from.hour) \(from.minute) \(from.second)"
-        let time2 = "\(to.hour) \(to.minute) \(to.second)"
+    static func calculateTimeDifference(from: Date, to: Date) -> Int {
         
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH mm ss"
-        
-        let date1 = formatter.date(from: time1)
-        let date2 = formatter.date(from: time2)
-        
-        print(date1)
-        print(date2)
-        
-        let difference = date2!.timeIntervalSince(date1!)
-        return Int(difference)
+        let difference = Calendar.current.dateComponents([.second], from: from, to: to).second
+        let oneTenthSecondDifference = difference! * 10
+        return oneTenthSecondDifference
     }
     
 }

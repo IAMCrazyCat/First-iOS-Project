@@ -38,7 +38,7 @@ class NotificationTimePopUp: PopUpImpl {
             if let datePicker = subview as? UIDatePicker {
                 let date = datePicker.date
                 let components = Calendar.current.dateComponents([.hour, .minute], from: date)
-                notificationTime.append(CustomTime(hour: components.hour!, minute: components.minute!, second: 0))
+                notificationTime.append(CustomTime(hour: components.hour!, minute: components.minute!, second: 0, oneTenthSecond: 0))
             }
         }
         

@@ -50,9 +50,9 @@ class ItemDetailViewController: UIViewController {
         engine.add(observer: self)
         //topView.layer.cornerRadius = setting.itemCardCornerRadius
         topView.setShadow()
-        iconImageView.image = item.icon.image
+        
         title = "项目详情"
-        itemNameLabel.text = item.getFullName()
+        
         //mediumView.layer.cornerRadius = setting.itemCardCornerRadius
         mediumView.setShadow()
 
@@ -260,8 +260,13 @@ class ItemDetailViewController: UIViewController {
         }
     }
     
+    func updateItemIconAndName() {
+        iconImageView.image = item.icon.image
+        itemNameLabel.text = item.getFullName()
+    }
+    
     func updateItemData() {
-      
+        updateItemIconAndName()
         updateFinishedDaysLabel()
         updateTargetDaysLabel()
         updateBestConsecutiveDaysLabel()

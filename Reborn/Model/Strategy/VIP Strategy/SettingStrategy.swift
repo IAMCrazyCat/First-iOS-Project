@@ -10,14 +10,10 @@ import UIKit
 class SettingStrategy: VIPStrategyImpl {
     
     func saveUserSetting() {
-        
-        if AppEngine.shared.currentUser.isVip {
-            AppEngine.shared.saveUser()
-            AppEngine.shared.saveSetting()
-        } else {
-            if AppEngine.shared.userSetting.themeColor.isVipColor {
-                AppEngine.shared.userSetting.themeColor = ThemeColor.blue
-            }
+
+        if !AppEngine.shared.currentUser.isVip && AppEngine.shared.userSetting.themeColor.isVipColor {
+            AppEngine.shared.userSetting.themeColor = ThemeColor.default
+            AppEngine.shared.notifyAllUIObservers()
         }
         
         AppEngine.shared.saveUser()

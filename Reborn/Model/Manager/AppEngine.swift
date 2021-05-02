@@ -76,7 +76,6 @@ class AppEngine {
             do {
                 let imageURLs = try fileManager.contentsOfDirectory(at: url, includingPropertiesForKeys: properties, options:FileManager.DirectoryEnumerationOptions.skipsHiddenFiles)
                 
-                print("image URLs: \(imageURLs)")
                 // Create image from URL
                 for url in imageURLs {
                     let imageFileName = url.lastPathComponent

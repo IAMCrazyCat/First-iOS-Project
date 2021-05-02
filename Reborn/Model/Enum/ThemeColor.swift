@@ -10,6 +10,8 @@ import UIKit
 
 enum ThemeColor: String, Codable, CaseIterable {
 
+    
+    static let `default` = ThemeColor.blue
     case blue = "BlueThemeColor"
     case blue2 = "BlueThemeColor2"
     case pink = "PinkThemeColor"

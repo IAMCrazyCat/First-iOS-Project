@@ -107,6 +107,7 @@ class ShareViewController: UIViewController {
     func updatePreview() {
         if AppEngine.shared.currentUser.isVip {
             vipButton.renderVipIcon()
+            vipButton.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
         } else {
             vipButton.setBackgroundColor(.clear, for: .normal)
         }

@@ -83,11 +83,11 @@ class SetUpEngine {
             newUser.gender = userGender
             newUser.items.append(QuittingItem(ID: 1, name: quittingItemName, days: quittingItemDays, frequency: .everyday, creationDate: CustomDate.current))
             newUser.items.append(PersistingItem(ID: 2, name: persistingItemName, days: persistingItemDays, frequency: .everyday, creationDate: CustomDate.current))
-            
-
+            print(newUser.items.first!.scheduleDates)
         }
 
         AppEngine.shared.currentUser = newUser
+        AppEngine.shared.saveUser()
     }
     
     
