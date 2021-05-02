@@ -248,7 +248,7 @@ class ItemDetailViewController: UIViewController {
     func updateStartDateLabel() {
         if let item = item {
             
-            let daysAgo: Int = DateCalculator.calculateDayDifferenceBetween(item.creationDate, and: CustomDate.current)
+            let daysAgo: Int = DateCalculator.calculateDayDifferenceBetween(item.creationDate, to: CustomDate.current)
             
             switch daysAgo {
             case 0: startDateLabel.text = "开始日期: \(item.creationDate.year)年 \(item.creationDate.month)月\(item.creationDate.day)日 (今天)"

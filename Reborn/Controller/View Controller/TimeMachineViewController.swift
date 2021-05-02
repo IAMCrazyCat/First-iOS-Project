@@ -147,7 +147,17 @@ class TimeMachineViewController: UIViewController {
             goBackToThePastButton?.isEnabled = false
             goBackToThePastButton?.setTitle("回到过去", for: .normal)
         } else {
-            goBackToThePastButton?.setTitle("回到过去 项目进度: \(currentProgressInString) → \(newProgressInString)", for: .normal)
+            
+            let attrs = [NSAttributedString.Key.foregroundColor: newItemProgress > 1 ? UIColor.red : newItemProgress == 1 ? UIColor.green : .label]
+            
+            let normalText = "回到过去 项目进度: \(currentProgressInString) → "
+            let mutableText = "\(newProgressInString)"
+            let mutableString = NSMutableAttributedString(string: mutableText, attributes: attrs)
+            let normalString = NSMutableAttributedString(string: normalText)
+            
+            normalString.append(mutableString)
+            
+            goBackToThePastButton?.setAttributedTitle(normalString, for: .normal)
             
             if userSelectedTooManyDate() || userHasNotEnoughEnergy() {
                 goBackToThePastButton?.isEnabled = false

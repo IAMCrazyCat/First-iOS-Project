@@ -10,7 +10,11 @@ struct SharePosterTextData {
     private static let text = ["自由不是随心所欲，而是自我主宰",
                 "每天进步一点点",
                 "要重返生活就须有所奉献",
-                "生活是天籁,需要凝神静听"]
+                "一切的付出只为了更好的自己",
+                "只想更加自由",
+                "越努力，越幸运",
+                "乐观面对每一天",
+                "坚持也不过如此"]
     
     static var randomText: String {
         return SharePosterTextData.text.random ?? "自由不是随心所欲，而是自我主宰"

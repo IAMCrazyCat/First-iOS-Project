@@ -13,6 +13,7 @@ enum BreathingState {
 
 class BreathViewController: UIViewController {
 
+    @IBOutlet var titleLabel: UILabel!
     @IBOutlet var heartImageView: UIImageView!
     @IBOutlet var startBreathingButton: UIButton!
     @IBOutlet var guidingLabel: UILabel!
@@ -150,6 +151,7 @@ class BreathViewController: UIViewController {
         
         if self.state == .breathing {
             UIView.animate(withDuration: 5, animations: {
+                self.titleLabel.alpha = 0
                 self.view.backgroundColor = AppEngine.shared.userSetting.blackBackground
                 self.verticalContentView.backgroundColor = AppEngine.shared.userSetting.blackBackground
                 self.introductionTextView.alpha = 0
@@ -159,6 +161,7 @@ class BreathViewController: UIViewController {
             })
         } else {
             UIView.animate(withDuration: 5, animations: {
+                self.titleLabel.alpha = 1
                 self.view.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackBackground
                 self.verticalContentView.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackBackground
                 self.introductionTextView.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackBackground

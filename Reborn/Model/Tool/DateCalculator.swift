@@ -118,7 +118,7 @@ class DateCalculator {
         return dateResult
     }
     
-    static func calculateDayDifferenceBetween(_ from: CustomDate, and to: CustomDate) -> Int {
+    static func calculateDayDifferenceBetween(_ from: CustomDate, to: CustomDate) -> Int {
         
         let calendar = Calendar.current
         
@@ -144,7 +144,7 @@ class DateCalculator {
     static func calculateTimeDifference(from: Date, to: Date) -> Int {
         
         let difference = Calendar.current.dateComponents([.second], from: from, to: to).second
-        let oneTenthSecondDifference = difference! * 10
+        let oneTenthSecondDifference = difference! * 1000
         return oneTenthSecondDifference
     }
     

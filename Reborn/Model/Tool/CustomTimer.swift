@@ -15,7 +15,7 @@ class CustomTimer {
     
     fileprivate var storedSeconds: Int = 0
     fileprivate var storedMinutes: Int = 0
-    fileprivate var storedOneTenthSeconds: Int = 0
+    fileprivate var storedMilliSeconds: Int = 0
     fileprivate var timer: Timer = Timer()
     fileprivate var storedTimerState: TimerState = .idle {
         didSet {
@@ -33,8 +33,8 @@ class CustomTimer {
     public static var minutes: Int {
         return CustomTimer.shared.storedMinutes
     }
-    public static var oneTenthSeconds: Int {
-        return CustomTimer.shared.storedOneTenthSeconds
+    public static var milliSeconds: Int {
+        return CustomTimer.shared.storedMilliSeconds
     }
     public static var update: () -> Void = {}
     public static var finish: (() -> Void)? = {}
@@ -49,41 +49,37 @@ class CustomTimer {
     
     public static func createNew(timer seconds: TimeInterval, update: @escaping () -> Void, finish: (() -> Void)?) {
         
-        
-        var timesOfExecution: Int = 0
-        
         CustomTimer.shared.storedMinutes = Int(seconds / 60)
         CustomTimer.shared.storedSeconds = Int(seconds.truncatingRemainder(dividingBy: 60))
-        CustomTimer.shared.storedOneTenthSeconds = 10
+        CustomTimer.shared.storedMilliSeconds = 0
         CustomTimer.shared.storedTimerState = .running
         CustomTimer.update = update
         CustomTimer.finish = finish
-        CustomTimer.shared.timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+        CustomTimer.shared.timer = Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true) { timer in
             
 
-            if CustomTimer.shared.storedOneTenthSeconds <= 0 {
+            if CustomTimer.shared.storedMilliSeconds <= 0 {
                 
-                if timesOfExecution > Int(seconds) - 1 {
-                    CustomTimer.killTimer()
+               
+                
+                CustomTimer.update()
+                if CustomTimer.shared.storedSeconds <= 0 {
                     
-                } else {
-                    
-                    if CustomTimer.shared.storedSeconds <= 0 {
-                        
-                        CustomTimer.shared.storedMinutes -= 1
-                        CustomTimer.shared.storedSeconds = 60
-                    }
-                    
-                    timesOfExecution += 1
-                    CustomTimer.shared.storedSeconds -= 1
-                    CustomTimer.update()
+                    CustomTimer.shared.storedMinutes -= 1
+                    CustomTimer.shared.storedSeconds = 60
                 }
                 
-                CustomTimer.shared.storedOneTenthSeconds = 10
+                CustomTimer.shared.storedSeconds -= 1
+                CustomTimer.shared.storedMilliSeconds = 1000
+    
+                
+                let totolMilliSeconds = CustomTimer.minutes * 60000 + CustomTimer.seconds * 1000 + CustomTimer.milliSeconds
+                totolMilliSeconds <= 0 ? killTimer() : ()
+                
                 
             }
             
-            CustomTimer.shared.storedOneTenthSeconds -= 1
+            CustomTimer.shared.storedMilliSeconds -= 1
         }
             
            
@@ -112,30 +108,25 @@ class CustomTimer {
         if CustomTimer.state == .running {
             
             guard let timerSavingDateStr = UserDefaults.standard.string(forKey: "TimerSavingDate") else {return}
-            let timerOriginalTotalOneTenthSeconds = UserDefaults.standard.integer(forKey: "TimerOriginalTotalOneTenthSeconds")
-            print("WTF!!!!")
-            print(timerOriginalTotalOneTenthSeconds)
+            let timerOriginalTotalMilliSeconds = UserDefaults.standard.integer(forKey: "TimerOriginalTotalMilliSeconds")
+         
             let formatter = DateFormatter()
             formatter.dateFormat = "y-MM-dd H:m:ss.SSSS"
             let timerSavingDate = formatter.date(from: timerSavingDateStr)
-            //print(formatter.string(from: timerSavingDate!))
-            //print(formatter.string(from: Date()))
-            let oneTenthSecondsOfUserBeingInactive = DateCalculator.calculateTimeDifference(from: timerSavingDate!, to: Date())
+            let milliSecondsOfUserBeingInactive = DateCalculator.calculateTimeDifference(from: timerSavingDate!, to: Date())
             
-            let totalOneTenthSecondsDifference = timerOriginalTotalOneTenthSeconds - oneTenthSecondsOfUserBeingInactive
+            let totalMilliSecondsDifference = timerOriginalTotalMilliSeconds - milliSecondsOfUserBeingInactive
             
     
-            let minutesDifference = Int(totalOneTenthSecondsDifference / 600)
-            let secondsDifference = Int((totalOneTenthSecondsDifference % 600) / 10)
-            let oneTenthDifference = Int((totalOneTenthSecondsDifference % 600) % 10)
+            let minutesDifference = Int(totalMilliSecondsDifference / 60000)
+            let secondsDifference = Int((totalMilliSecondsDifference % 60000) / 1000)
+            let milliSecondsDifference = Int((totalMilliSecondsDifference % 60000) % 1000)
+ 
             
-  
-            print("\(minutesDifference)minites \(secondsDifference)seconds 0.\(oneTenthDifference)seconds")
-            
-            if totalOneTenthSecondsDifference > 0 {
+            if totalMilliSecondsDifference > 0 {
                 CustomTimer.shared.storedMinutes = minutesDifference
                 CustomTimer.shared.storedSeconds = secondsDifference
-                CustomTimer.shared.storedOneTenthSeconds = oneTenthDifference
+                CustomTimer.shared.storedMilliSeconds = milliSecondsDifference
             } else {
                 CustomTimer.killTimer()
             }
@@ -153,9 +144,9 @@ class CustomTimer {
         formatter.dateFormat = "y-MM-dd H:m:ss.SSSS"
         let dateStr = formatter.string(from: Date())
         
-        let currentTotalOneTenthSeconds = CustomTimer.minutes * 600 + CustomTimer.seconds * 10 + CustomTimer.oneTenthSeconds
+        let currentTotalMilliSeconds = CustomTimer.minutes * 60000 + CustomTimer.seconds * 1000 + CustomTimer.milliSeconds
 
-        UserDefaults.standard.set(currentTotalOneTenthSeconds, forKey: "TimerOriginalTotalOneTenthSeconds")
+        UserDefaults.standard.set(currentTotalMilliSeconds, forKey: "TimerOriginalTotalMilliSeconds")
         UserDefaults.standard.set(dateStr, forKey: "TimerSavingDate")
         
     }

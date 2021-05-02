@@ -97,7 +97,7 @@ class UserCenterViewController: UIViewController {
     }
     
     @IBAction func editAvatarButtonPressed(_ sender: UIButton) {
-
+        Vibrator.vibrate(withImpactLevel: .medium)
         presentImagePicker()
     }
     
@@ -118,11 +118,11 @@ class UserCenterViewController: UIViewController {
     
     @IBAction func lightAndDarkButtonPressed(_ sender: UIButton) {
 
-        self.present(.lightAndDarkModePopUp, size: .large, animation: .slideInToCenter)
+        self.present(.lightAndDarkModePopUp, size: .medium, animation: .slideInToCenter)
     }
     
     @IBAction func userNameButtonPressed(_ sender: UIButton!) {
-
+        Vibrator.vibrate(withImpactLevel: .medium)
         self.present(.customUserInformationPopUp, size: .large, animation: .fadeInFromCenter)
     }
     

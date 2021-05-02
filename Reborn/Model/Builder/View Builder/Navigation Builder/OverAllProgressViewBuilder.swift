@@ -158,7 +158,7 @@ class OverAllProgressViewBuilder: ViewBuilder {
 
         
         let imageView = UIImageView() // Avatar
-        imageView.frame.size = CGSize(width: (circleRadius * 2 - progressWidth) * 0.8, height: (circleRadius * 2 - progressWidth ) * 0.8)
+        imageView.frame.size = CGSize(width: (circleRadius * 2 - progressWidth) * 0.85, height: (circleRadius * 2 - progressWidth ) * 0.85)
         imageView.center = CGPoint(x: circleView.frame.width / 2, y: circleView.frame.height / 2)
         imageView.image = self.avatarImage
         imageView.contentMode = .scaleAspectFill

@@ -82,7 +82,7 @@ class CalendarCell: UICollectionViewCell {
         case .normalWithoutColorFill:
             self.dayButton.setTitle(data, for: .normal)
             self.dayButton.setTitleColor(.label, for: .normal)
-            self.contentView.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackContent
+            self.contentView.backgroundColor = .clear
 
         case .normalWithColorEdge:
             

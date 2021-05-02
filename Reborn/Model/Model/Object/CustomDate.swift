@@ -9,7 +9,7 @@ import Foundation
 
 struct CustomDate: Codable, Equatable, Comparable {
     static func < (lhs: CustomDate, rhs: CustomDate) -> Bool {
-        let dayDifference = DateCalculator.calculateDayDifferenceBetween(lhs, and: rhs)
+        let dayDifference = DateCalculator.calculateDayDifferenceBetween(lhs, to: rhs)
         if dayDifference > 0 {
             return true
         } else {

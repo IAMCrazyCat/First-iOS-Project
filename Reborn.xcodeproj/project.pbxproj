@@ -25,6 +25,7 @@
 		223072A825E3A99D00AE6ECB /* UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223072A725E3A99D00AE6ECB /* UINavigationBar.swift */; };
 		223132CF263D188F0020BA70 /* CalendarCellStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223132CE263D188F0020BA70 /* CalendarCellStrategy.swift */; };
 		223132D1263D2F570020BA70 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223132D0263D2F570020BA70 /* Double.swift */; };
+		223132D3263E694D0020BA70 /* UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223132D2263E694D0020BA70 /* UIScrollView.swift */; };
 		223A777B25A41184004B3324 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223A777A25A41184004B3324 /* UIView.swift */; };
 		2246D2E625CA68230001EFB7 /* DismissStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246D2E525CA68230001EFB7 /* DismissStrategy.swift */; };
 		2246D2EE25CAD5110001EFB7 /* EnlargeStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246D2ED25CAD5110001EFB7 /* EnlargeStrategy.swift */; };
@@ -236,6 +237,7 @@
 		223072A725E3A99D00AE6ECB /* UINavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBar.swift; sourceTree = "<group>"; };
 		223132CE263D188F0020BA70 /* CalendarCellStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellStrategy.swift; sourceTree = "<group>"; };
 		223132D0263D2F570020BA70 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		223132D2263E694D0020BA70 /* UIScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollView.swift; sourceTree = "<group>"; };
 		223A777A25A41184004B3324 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		2246D2E525CA68230001EFB7 /* DismissStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissStrategy.swift; sourceTree = "<group>"; };
 		2246D2ED25CAD5110001EFB7 /* EnlargeStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnlargeStrategy.swift; sourceTree = "<group>"; };
@@ -976,6 +978,7 @@
 				22D00DDE25FE21D600DB3F1D /* UserDefaults.swift */,
 				22C49A6025FF16AF00371E2B /* CGFloat.swift */,
 				223132D0263D2F570020BA70 /* Double.swift */,
+				223132D2263E694D0020BA70 /* UIScrollView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1394,6 +1397,7 @@
 				22BA665F263AA5B7003193E9 /* EraserViewBuilder.swift in Sources */,
 				22D354B425A595B7004F5667 /* UserCenterViewController.swift in Sources */,
 				22BABF2925C42ABB00168AE1 /* CGAffineTransform.swift in Sources */,
+				223132D3263E694D0020BA70 /* UIScrollView.swift in Sources */,
 				224E665125C6483E00B71E8A /* TimeMachineAnimationStrategyImpl.swift in Sources */,
 				225EC26C25FA427B00F2C69F /* CustomUserInformationPopUpViewBuilder.swift in Sources */,
 				22BC38F225E738CD00AEFE44 /* CustomFrequencyPopUpViewBuilder.swift in Sources */,

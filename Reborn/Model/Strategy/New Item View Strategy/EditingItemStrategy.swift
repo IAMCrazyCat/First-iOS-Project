@@ -126,8 +126,14 @@ class EditingItemStrategy: NewItemViewStrategy {
         } else {
             
             isRedyToDismiss = false
-            newItemViewController.preViewItemCard.shake()
+            //newItemViewController.preViewItemCard.shake()
             newItemViewController.promptLabel.isHidden = false
+            
+            if newItemViewController.itemNameTextfield.text == "" {
+                
+                newItemViewController.verticalScrollView.scrollToTop(animated: true)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { self.newItemViewController.itemNameTextfield.shake() }
+            }
         }
         
         return isRedyToDismiss

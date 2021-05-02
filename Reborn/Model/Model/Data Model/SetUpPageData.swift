@@ -9,7 +9,7 @@ import Foundation
 struct SetUpPageData {
 
     static let data = [
-        SetUpPage(ID: 1,question: "请选择一项您现在最想戒除的习惯", buttons:
+        SetUpPage(ID: 1,question: "请选择一项您想戒除的习惯", buttons:
                     [CustomData(title: "拖延"), CustomData(title: "性瘾"),
                      CustomData(title: "吸烟"), CustomData(title: "熬夜"),
                      CustomData(title: "喝酒"), CustomData(title: "蹦迪"),
@@ -25,7 +25,7 @@ struct SetUpPageData {
                      CustomData(data: 365), CustomData(title:  SystemSetting.shared.customButtonTitle)
                     ]),
         
-        SetUpPage(ID: 3, question: "请选择一项您现在最想坚持的习惯",buttons:
+        SetUpPage(ID: 3, question: "请选择一项您想坚持的习惯",buttons:
                     [CustomData(title: "跑步"), CustomData(title: "学英语"),
                      CustomData(title: "瑜伽"), CustomData(title: "阅读"),
                      CustomData(title: "减肥"), CustomData(title: "健身"),
@@ -41,9 +41,11 @@ struct SetUpPageData {
                       CustomData(data: 365),
                       CustomData(title: SystemSetting.shared.customButtonTitle)
                       ]),
-        SetUpPage(ID: 5, question: "请想一个好听的名称", buttons: []),
-        SetUpPage(ID: 6, question: "您的性别？", buttons: [CustomData(title: "男生"),
-                                                         CustomData(title: "女生")
+        SetUpPage(ID: 5, question: "请设置您的名称", buttons: []),
+        SetUpPage(ID: 6, question: "请设置您的性别", buttons: [CustomData(title: "男生"),
+                                                         CustomData(title: "女生"),
+                                                         CustomData(title: "其他"),
+                                                         CustomData(title: "保密")
         ])
     ]
 }

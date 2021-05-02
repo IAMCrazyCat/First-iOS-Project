@@ -83,7 +83,21 @@ class SetUpEngine {
             newUser.gender = userGender
             newUser.items.append(QuittingItem(ID: 1, name: quittingItemName, days: quittingItemDays, frequency: .everyday, creationDate: CustomDate.current))
             newUser.items.append(PersistingItem(ID: 2, name: persistingItemName, days: persistingItemDays, frequency: .everyday, creationDate: CustomDate.current))
-            print(newUser.items.first!.scheduleDates)
+            newUser.energy = 3
+            newUser.isVip = false
+            
+            switch newUser.gender {
+            case .male: newUser.setAvatarImage(#imageLiteral(resourceName: "DefaultAvatarMale"))
+            case .female: newUser.setAvatarImage(#imageLiteral(resourceName: "DefaultAvatar"))
+            default: newUser.setAvatarImage(#imageLiteral(resourceName: "DefaultAvatar"))
+            }
+            
+        } else {
+            newUser.name = "努力的人"
+            newUser.gender = .undefined
+            newUser.setAvatarImage(#imageLiteral(resourceName: "DefaultAvatar"))
+            newUser.energy = 3
+            newUser.isVip = false
         }
 
         AppEngine.shared.currentUser = newUser

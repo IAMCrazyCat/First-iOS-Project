@@ -70,8 +70,10 @@ class PurchaseViewController: UIViewController {
         purchaseButton.setCornerRadius()
     }
     
+    
+    
     override func viewDidAppear(_ animated: Bool) {
-        
+        middleScrollView.flashScrollIndicators()
     }
     
 //    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

@@ -37,7 +37,7 @@ class ItemProgressViewBuilder: ViewBuilder {
     }
     
     internal func createView() {
-        outPutView.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackContent
+        outPutView.backgroundColor = .clear
         //outPutView.layer.cornerRadius = setting.itemCardCornerRadius
         outPutView.frame = CGRect(x: cordinateX, y: cordinateY, width: width, height: height)
     }
@@ -100,7 +100,6 @@ class ItemProgressViewBuilder: ViewBuilder {
             let labelY = barFrame.origin.y - barFrame.height - 10
             
             if labelX - 10 > 0 {
-                print(">")
                 labelX -= 10
             }
             
@@ -109,8 +108,11 @@ class ItemProgressViewBuilder: ViewBuilder {
             progressLabel.text = self.item.progressInPercentageString
             progressLabel.sizeToFit()
             
-            if progressLabel.frame.origin.x + progressLabel.frame.width > barFrame.width {
-                progressLabel.frame.origin.x =  barFrame.width - progressLabel.frame.width
+            progressLabel.layoutIfNeeded()
+            if progressLabel.frame.maxX > barFrame.maxX { // if stretched out keep it in proper position
+                progressLabel.frame.origin.x = barFrame.maxX - progressLabel.frame.width
+            } else if progressLabel.frame.minX < barFrame.minX {
+                progressLabel.frame.origin.x = barFrame.minX
             }
             outPutView.addSubview(progressLabel)
         }

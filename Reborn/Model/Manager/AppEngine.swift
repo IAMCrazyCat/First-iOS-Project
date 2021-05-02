@@ -28,13 +28,14 @@ class AppEngine {
     private var itemCardIcons: Array<Icon> = []
     
     public static let shared = AppEngine()
-    public var currentUser: User = User(name: "颠猫", gender: .undefined, avatar: #imageLiteral(resourceName: "Unknown"), energy: 3, items: [Item](), isVip: false)
+    public var currentUser: User = User(name: "颠猫", gender: .undefined, avatar: #imageLiteral(resourceName: "DefaultAvatar"), energy: 3, items: [Item](), isVip: false)
     public let userSetting: UserSetting = UserSetting()
     public var storedDataFromPopUpView: Any? = nil
     public var delegate: PopUpViewDelegate?
     public var currentViewController: UIViewController? {
         return UIApplication.shared.getTopViewController()
     }
+
    
     
     private init() {

@@ -54,6 +54,7 @@ class ItemManagementViewController: UIViewController {
 
     @objc func optionButtonPressed(_ sender: BetterSegmentedControl) {
         
+        Vibrator.vibrate(withImpactLevel: .light)
         self.selectedSegmentIndex = sender.index
         switch sender.index {
         case 0:
@@ -68,9 +69,8 @@ class ItemManagementViewController: UIViewController {
         default:
             print("Segement Tag not found")
         }
-
-        verticalContentView.removeAllSubviews()
-        verticalContentView.renderItemCards(withCondition: self.selectedSegment, animated: true)
+        
+        updateVerticalContentView(animated: true, scrollToTop: true)
     }
     
     @IBAction func addNewItemsButtonPressed(_ sender: Any) {
@@ -118,10 +118,11 @@ class ItemManagementViewController: UIViewController {
     }
     
     
-    func updateVerticalContentView() {
+    func updateVerticalContentView(animated: Bool, scrollToTop: Bool) {
         verticalContentView.layoutIfNeeded()
         verticalContentView.removeAllSubviews()
-        verticalContentView.renderItemCards(withCondition: self.selectedSegment, animated: false)
+        scrollToTop ? verticalScrollView.scrollToTop(animated: true) : ()
+        verticalContentView.renderItemCards(withCondition: self.selectedSegment, animated: animated)
       
         if let lastItemCard = verticalContentView.subviews.last, lastItemCard.frame.maxY > self.verticalScrollView.frame.height {
             verticalContentHeightConstraint.constant = lastItemCard.frame.maxY + setting.contentToScrollViewBottomDistance
@@ -139,7 +140,7 @@ extension ItemManagementViewController: UIObserver {
     func updateUI() {
         updateNavigationBar()
         updateOptionBar()
-        updateVerticalContentView()
+        updateVerticalContentView(animated: false, scrollToTop: false)
         AdStrategy().removeAd(from: self)
     }
     

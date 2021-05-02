@@ -39,11 +39,12 @@ extension UIView {
         self.layer.masksToBounds = false
     }
     
-    func setCornerRadius() {
+    func setCornerRadius(rounded: Bool = false) {
         self.layoutIfNeeded()
         self.layer.masksToBounds = true
         
-        self.layer.cornerRadius = (self.frame.height / 2)//.rounded(toPlaces: 0)
+        self.layer.cornerRadius = rounded ? (self.frame.height / 2).rounded(toPlaces: 0) : self.frame.height / 2
+        print(layer.cornerRadius)
 
     }
     

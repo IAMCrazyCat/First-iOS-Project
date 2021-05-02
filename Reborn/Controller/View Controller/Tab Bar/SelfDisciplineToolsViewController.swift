@@ -12,6 +12,8 @@ class SelfDisciplineToolsViewController: UIViewController {
     
     let setting: SystemSetting = SystemSetting.shared
     let engine: AppEngine = AppEngine.shared
+    
+    @IBOutlet var toolLabels: [UILabel]!
     @IBOutlet var tomatoClockButton: UIButton!
     
     @IBOutlet var toolButtons: [UIButton]!
@@ -19,13 +21,23 @@ class SelfDisciplineToolsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         AppEngine.shared.add(observer: self)
-        
+        AdStrategy().addAd(to: self)
         updateUI()
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         self.updateUI()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        
+    }
+    
+    func adjustLabelSizeToFit() {
+        for label in toolLabels {
+            label.adjustsFontSizeToFitWidth = true
+        }
     }
     
     func updateToolButtons() {
@@ -84,9 +96,10 @@ class SelfDisciplineToolsViewController: UIViewController {
 extension SelfDisciplineToolsViewController: UIObserver {
     
     func updateUI() {
-        print("WTFWTFWTF")
+        adjustLabelSizeToFit()
         updateNavigationBar()
         updateToolButtons()
+        AdStrategy().removeAd(from: self)
     }
     
     

@@ -34,12 +34,16 @@ class AddingItemStrategy: NewItemViewStrategy {
             && newItemViewController.selectedTargetDaysButton != nil {
             
             isRedyToDismiss = true
-            
         } else {
-            
             isRedyToDismiss = false
             newItemViewController.preViewItemCard.shake()
             newItemViewController.promptLabel.isHidden = false
+            
+            if newItemViewController.selectedFrequencyButton == nil {
+                newItemViewController.verticalScrollView.scrollToBottom(animated: true)
+            } else if newItemViewController.itemNameTextfield.text == "" {
+                newItemViewController.verticalScrollView.scrollToTop(animated: true)
+            }
         }
         
         

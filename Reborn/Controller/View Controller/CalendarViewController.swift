@@ -274,7 +274,7 @@ class CalendarViewController: UIViewController {
        
     }
     
-    private func excuteMonthLabelMoveToRightAnimation() {
+    private func monthLabelMoveToRight() {
         let directionAttribute = -1
         
         UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseOut, animations: {
@@ -284,7 +284,7 @@ class CalendarViewController: UIViewController {
             UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseOut, animations: {
                 self.currentMonthLabel.frame.origin.x += CGFloat(40 * directionAttribute)
             }) { _ in
-                self.currentMonthLabel.text = self.currentCalendarPage.currentYearAndMonthInString
+                self.changeMonthLabelText()
                 UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseOut, animations: {
                     self.currentMonthLabel.layer.opacity = 1
                     self.currentMonthLabel.frame.origin.x = self.monthLabelOriginalCordinateX
@@ -293,7 +293,7 @@ class CalendarViewController: UIViewController {
         }
     }
     
-    private func excuteMonthLabelMoveToLeftAnimation() {
+    private func monthLabelMoveToLeft() {
         let directionAttribute = 1
         
         UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseOut, animations: {
@@ -303,7 +303,7 @@ class CalendarViewController: UIViewController {
             UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseOut, animations: {
                 self.currentMonthLabel.frame.origin.x += CGFloat(40 * directionAttribute)
             }) { _ in
-                self.currentMonthLabel.text = self.currentCalendarPage.currentYearAndMonthInString
+                self.changeMonthLabelText()
                 UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseOut, animations: {
                     self.currentMonthLabel.layer.opacity = 1
                     self.currentMonthLabel.frame.origin.x = self.monthLabelOriginalCordinateX
@@ -327,19 +327,37 @@ class CalendarViewController: UIViewController {
         }
     }
     
+    private func monthLabelFadeIn() {
+        UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseOut, animations: {
+            
+            self.currentMonthLabel.alpha = 0
+        }) { _ in
+            UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseOut, animations: {
+                self.changeMonthLabelText()
+                self.currentMonthLabel.alpha = 1
+            }) { _ in
+            }
+        }
+    }
+    
+    private func changeMonthLabelText() {
+        self.currentMonthLabel.text = self.currentCalendarPage.currentYearAndMonthInString
+    }
+    
     private func updateMonthLabel(animated: Bool) {
         
         if animated {
             
             switch userDidGo {
-            case .lastMonth, .startMonth: excuteMonthLabelMoveToRightAnimation()
-            case .thisMonth, .nextMonth: excuteMonthLabelMoveToLeftAnimation()
+            case .lastMonth: monthLabelMoveToRight()
+            case .nextMonth: monthLabelMoveToLeft()
+            case .thisMonth, .startMonth: monthLabelFadeIn()
             case .sameMonth: break
             case .noWhere: break
             }
             
         } else {
-            self.currentMonthLabel.text = self.currentCalendarPage.currentYearAndMonthInString
+            changeMonthLabelText()
         }
     }
 
@@ -512,7 +530,7 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
                 cell.updateUI(withType: .grayedOutWithoutColorFill, selectable: false, cellDay: String(lastMonthDayNumber))
             }
             
-            if self.state == .timeMachine && DateCalculator.calculateDayDifferenceBetween(CustomDate(year: self.currentCalendarPage.year, month: self.currentCalendarPage.month, day: dayNumber), and: CustomDate.current) < 0 { // day after today in timemachine
+            if self.state == .timeMachine && DateCalculator.calculateDayDifferenceBetween(CustomDate(year: self.currentCalendarPage.year, month: self.currentCalendarPage.month, day: dayNumber), to: CustomDate.current) < 0 { // day after today in timemachine
                 cell.updateUI(withType: .grayedOutWithoutColorFill, selectable: false, cellDay: String(lastMonthDayNumber))
                           
             }
@@ -530,7 +548,7 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
                 // selected making up day
                 cell.updateUI(withType: .normalWithColorEdge, selectable: self.state == .timeMachine ? true : false, cellDay: String(dayNumber))
                 
-            } else if self.state == .timeMachine && DateCalculator.calculateDayDifferenceBetween(CustomDate(year: self.currentCalendarPage.year, month: self.currentCalendarPage.month, day: dayNumber), and: CustomDate.current) < 0 { // day after today in timemachine
+            } else if self.state == .timeMachine && DateCalculator.calculateDayDifferenceBetween(CustomDate(year: self.currentCalendarPage.year, month: self.currentCalendarPage.month, day: dayNumber), to: CustomDate.current) < 0 { // day after today in timemachine
                 cell.updateUI(withType: .grayedOutWithoutColorFill, selectable: false, cellDay: String(dayNumber))
                 
             } else {
@@ -567,7 +585,7 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
                 cell.updateUI(withType: .grayedOutWithoutColorFill, selectable: false, cellDay: String(nextMonthDayNumber))
             }
             
-            if self.state == .timeMachine && DateCalculator.calculateDayDifferenceBetween(CustomDate(year: self.currentCalendarPage.year, month: self.currentCalendarPage.month, day: dayNumber), and: CustomDate.current) < 0 { // day after today in timemachine
+            if self.state == .timeMachine && DateCalculator.calculateDayDifferenceBetween(CustomDate(year: self.currentCalendarPage.year, month: self.currentCalendarPage.month, day: dayNumber), to: CustomDate.current) < 0 { // day after today in timemachine
                                cell.updateUI(withType: .grayedOutWithoutColorFill, selectable: false, cellDay: String(nextMonthDayNumber))
                           
             }

@@ -179,7 +179,7 @@ class SetUpViewController: UIViewController{
     }
     
     @objc func optionButtonPressed(_ sender: UIButton! ) { // option button selected action
-        print(sender.tag)
+        Vibrator.vibrate(withImpactLevel: .light)
         if sender.tag == self.setting.customItemNameButtonTag {
             
             self.present(.customItemNamePopUp)

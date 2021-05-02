@@ -67,7 +67,7 @@ class SetUpPageViewBuilder {
             button = UIButton(frame: CGRect(x: buttonX, y: buttonY, width: buttonWidth, height: buttonHeight))
 
             
-            button.setCornerRadius()
+            button.setCornerRadius(rounded: true)
             button.setShadow()
             button.setTitle(buttonTitle, for: .normal)
             button.setTitleColor(self.setting.optionButtonTitleColor, for: .normal)

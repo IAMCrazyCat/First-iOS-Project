@@ -56,7 +56,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         SettingStrategy().saveUserSetting()
         CustomTimer.recoverTimer()
-        
+        AppEngine.shared.notifyUIObservers(withIdentifier: "UserCenterViewController")
+        AppEngine.shared.notifyUIObservers(withIdentifier: "PopUpViewController")
 
     }
 
