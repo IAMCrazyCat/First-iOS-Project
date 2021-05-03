@@ -194,5 +194,15 @@ class User: Codable {
         }
     }
     
+    public func removeItemWith(id: Int) {
+        var index = 0
+        for item in self.items {
+            if item.ID == id {
+                self.items.remove(at: index)
+            }
+            index += 1
+        }
+    }
+    
 
 }

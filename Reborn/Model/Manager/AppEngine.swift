@@ -65,6 +65,23 @@ class AppEngine {
         scheduleNotification()
         updateWidgetData()
         loadtItemCardIcons()
+        checkUserSubsriptionStatus()
+    }
+    
+    func checkUserSubsriptionStatus() {
+        if let appStoreReceiptURL = Bundle.main.appStoreReceiptURL,
+            FileManager.default.fileExists(atPath: appStoreReceiptURL.path) {
+
+            do {
+                let receiptData = try Data(contentsOf: appStoreReceiptURL, options: .alwaysMapped)
+                print(receiptData)
+
+                let receiptString = receiptData.base64EncodedString(options: [])
+
+                print(receiptString)
+            }
+            catch { print("Couldn't read receipt data with error: " + error.localizedDescription) }
+        }
     }
     
     func loadtItemCardIcons() {

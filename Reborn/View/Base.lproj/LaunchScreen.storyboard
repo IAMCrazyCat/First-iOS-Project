@@ -5,7 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,22 +20,22 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PVr-nf-xuY" userLabel="Top View">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="284"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="355"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="重生" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMY-G1-WgY">
-                                                <rect key="frame" x="131.5" y="202" width="57" height="33.5"/>
+                                                <rect key="frame" x="131.5" y="237.5" width="57" height="33.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开启自律生活" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3a-lw-6aZ">
-                                                <rect key="frame" x="111" y="245.5" width="98" height="19.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <rect key="frame" x="117" y="281" width="86" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dlO-SR-m6m">
-                                                <rect key="frame" x="110" y="92" width="100" height="100"/>
+                                                <rect key="frame" x="110" y="127.5" width="100" height="100"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="QIe-OW-ByG"/>
                                                     <constraint firstAttribute="height" constant="100" id="tlW-aV-Qqr"/>
@@ -44,7 +43,7 @@
                                                 <state key="normal" backgroundImage="AppIconWithShadow-Blue"/>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="wMY-G1-WgY" firstAttribute="top" secondItem="dlO-SR-m6m" secondAttribute="bottom" constant="10" id="FEi-Cf-byu"/>
                                             <constraint firstItem="dlO-SR-m6m" firstAttribute="centerX" secondItem="PVr-nf-xuY" secondAttribute="centerX" id="Mvb-86-2gb"/>
@@ -55,12 +54,12 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EYp-zO-iY7" userLabel="Bottom View">
-                                        <rect key="frame" x="0.0" y="284" width="320" height="284"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <rect key="frame" x="0.0" y="355" width="320" height="213"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="EYp-zO-iY7" firstAttribute="height" secondItem="PVr-nf-xuY" secondAttribute="height" id="spH-lJ-T98"/>
+                                    <constraint firstItem="EYp-zO-iY7" firstAttribute="height" secondItem="PVr-nf-xuY" secondAttribute="height" multiplier="0.6" id="spH-lJ-T98"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -84,8 +83,5 @@
         <namedColor name="WhiteAndBlackBackground">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

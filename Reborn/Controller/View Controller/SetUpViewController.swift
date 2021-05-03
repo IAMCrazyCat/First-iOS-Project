@@ -122,9 +122,15 @@ class SetUpViewController: UIViewController{
             self.deSelectButton()
             //
         } else {
+            print("WTF")
+            print(self.engine.progress)
+            if self.engine.progress <= 1 {
+                self.performSegue(withIdentifier: "GoBackToWelcomeView", sender: nil)
+            } else {
+                self.engine.previousPage()
+                self.deSelectButton()
+            }
             
-            self.engine.previousPage()
-            self.deSelectButton()
         }
        
 
@@ -167,16 +173,27 @@ class SetUpViewController: UIViewController{
         self.updateUI()
     }
     
+    func showAlert() {
+        let alert = UIAlertController(title: "确定跳过简短的习惯设置吗", message: "完成设置有助于获得更好的用户体验", preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: "跳过", style: .destructive) { _ in
+            self.engine.createUser(setUpIsSkipped: true)
+            self.goToHomeView()
+        }
+        alert.addAction(cancelAction)
+        alert.addAction(deleteAction)
+        
+
+        self.present(alert, animated: true)
+    }
+    
     
     @IBAction func skipSetUpButtonPressed(_ sender: UIButton) {
-    
-        self.engine.createUser(setUpIsSkipped: true)
-        self.goToHomeView()
+        showAlert()
+        
     }
     
-    @IBAction func skipButtonPressed(_ sender: UIButton) {
-        goToHomeView()
-    }
     
     @objc func optionButtonPressed(_ sender: UIButton! ) { // option button selected action
         Vibrator.vibrate(withImpactLevel: .light)

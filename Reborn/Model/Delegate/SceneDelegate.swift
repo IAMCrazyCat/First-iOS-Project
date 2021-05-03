@@ -29,7 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
         } else {
             
-            let viewController = storyboard.instantiateViewController (withIdentifier: "SetUpViewController") as? SetUpViewController
+            let viewController = storyboard.instantiateViewController (withIdentifier: "WelcomeViewController") as? WelcomViewController
             window = UIWindow(windowScene: windowScene)
             window?.rootViewController = viewController
             window?.makeKeyAndVisible()

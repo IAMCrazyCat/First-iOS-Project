@@ -79,6 +79,7 @@ class SetUpEngine {
         let newUser = AppEngine.shared.currentUser
         
         if !setUpIsSkipped {
+            
             newUser.name = userName
             newUser.gender = userGender
             newUser.items.append(QuittingItem(ID: 1, name: quittingItemName, days: quittingItemDays, frequency: .everyday, creationDate: CustomDate.current))
@@ -92,11 +93,21 @@ class SetUpEngine {
             default: newUser.setAvatarImage(#imageLiteral(resourceName: "DefaultAvatar"))
             }
             
+            if quittingItemName != "" {
+                newUser.removeItemWith(id: 1)
+            }
+            
+            if persistingItemName != "" {
+                newUser.removeItemWith(id: 2)
+            }
+            
+            
         } else {
             newUser.name = "努力的人"
             newUser.gender = .undefined
             newUser.setAvatarImage(#imageLiteral(resourceName: "DefaultAvatar"))
             newUser.energy = 3
+            newUser.items.removeAll()
             newUser.isVip = false
         }
 
