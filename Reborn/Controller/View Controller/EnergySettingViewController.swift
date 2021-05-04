@@ -67,30 +67,14 @@ class EnergySettingViewController: UIViewController {
     }
     
     @IBAction func purchaseButtonPressed(_ sender: Any) {
+        Vibrator.vibrate(withImpactLevel: .medium)
+        LoadingAnimation.add(to: self.view, withRespondingTime: 120, proportionallyOnYPosition: 0.38)
         self.titleLabel.text = "请勿离开界面"
-        purchaseEnergy()
-    }
-    
-    func purchaseEnergy() {
         self.rotationSpeed = 0.5
-        SKPaymentQueue.default().add(self)
-        let productID = "com.crazycat.Reborn.threePointOfEnergy"
-        if SKPaymentQueue.canMakePayments() {
-            let paymentRequest = SKMutablePayment()
-            paymentRequest.productIdentifier = productID
-            SKPaymentQueue.default().add(paymentRequest)
-        } else {
-            SystemAlert.present("您暂时无法购买", and: "请检查您的账户设置", from: self)
-            print("Can't make payments")
-        }
+        InAppPurchaseManager.shared.purchaseEnergy(in: self)
+
     }
-    
-    func PurchaseDidFinish() {
-        self.engine.purchaseEnergy()
-        SystemAlert.present("感谢您的购买", and: "您获得了3点能量", from: self)
-        self.titleLabel.text = "充能中"
-        
-    }
+
     
     func fadeInOtherViews() {
         
@@ -105,27 +89,7 @@ class EnergySettingViewController: UIViewController {
         
         self.rotationSpeed = (self.vipStrategy as! EnergyStrategy).getAnimationSpeed()
         self.rotateView(targetView: self.hollowEnergyImageView, duration: self.rotationSpeed)
-      
-//        UIView.animateKeyframes(withDuration: animationSpeed, delay: 0, options: [.repeat], animations: {
-//
-//
-//            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.25, animations: {
-//                self.hollowEnergyImageView.transform = CGAffineTransform(rotationAngle: -90.0 * CGFloat.pi/180.0)
-//            })
-//            UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 0.25, animations: {
-//                self.hollowEnergyImageView.transform = CGAffineTransform(rotationAngle: -180.0 * CGFloat.pi/180.0)
-//            })
-//            UIView.addKeyframe(withRelativeStartTime: 0.50, relativeDuration: 0.25, animations: {
-//                self.hollowEnergyImageView.transform = CGAffineTransform(rotationAngle: -270.0 * CGFloat.pi/180.0)
-//            })
-//            UIView.addKeyframe(withRelativeStartTime: 0.75, relativeDuration: 0.25, animations: {
-//                self.hollowEnergyImageView.transform = CGAffineTransform(rotationAngle: -360.0 * CGFloat.pi/180.0)
-//            })
-//
-//
-//        })
-        
-        
+    
     }
     
     private func rotateView(targetView: UIView, duration: Double) {
@@ -165,24 +129,34 @@ extension EnergySettingViewController: SKPaymentTransactionObserver {
     
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions {
+            print(transaction)
             if transaction.transactionState == .purchased {
                 
                 print("Thanks for shopping")
-                SKPaymentQueue.default().finishTransaction(transaction)
-                self.rotationSpeed = (self.vipStrategy as! EnergyStrategy).getAnimationSpeed()
-                self.PurchaseDidFinish()
+                InAppPurchaseManager.shared.puchaseEnergySuccessed()
                 
+                
+                self.rotationSpeed = (self.vipStrategy as! EnergyStrategy).getAnimationSpeed()
+                self.titleLabel.text = "充能中"
+                SKPaymentQueue.default().finishTransaction(transaction)
+                SKPaymentQueue.default().remove(self)
+                LoadingAnimation.remove()
                 
             } else if transaction.transactionState == .failed {
                 print("Transaction Failed!")
-                SystemAlert.present("购买失败", and: "如有问题请回到个人中心发送反馈邮件，我们会尽快解决", from: self)
-                SKPaymentQueue.default().finishTransaction(transaction)
+                InAppPurchaseManager.shared.purchaseEnergyFailed()
+
                 self.rotationSpeed = (self.vipStrategy as! EnergyStrategy).getAnimationSpeed()
                 if let error = transaction.error {
                     let errorDescription = error.localizedDescription
                     print(errorDescription)
                 }
+                SKPaymentQueue.default().finishTransaction(transaction)
+                SKPaymentQueue.default().remove(self)
+                LoadingAnimation.remove()
             }
+            
         }
+        
     }
 }

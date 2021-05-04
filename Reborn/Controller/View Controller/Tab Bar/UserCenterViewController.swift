@@ -163,6 +163,19 @@ class UserCenterViewController: UIViewController {
         }
     }
     
+    @IBAction func restoredPurchaseButtonPressed(_ sender: UIButton) {
+        
+        self.verticalScrollView.scrollToTop(animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+            self.presentViewController(withIentifier: "PurchaseViewController")
+        })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            if let purchaseViewController = UIApplication.shared.getTopViewController() as? PurchaseViewController {
+                purchaseViewController.restoreApp()
+            }
+        })
+        
+    }
     @objc func settingButtonTouchedDown(_ sender: UIButton!) {
         sender.isSelected = true
         Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { timer in
@@ -171,11 +184,16 @@ class UserCenterViewController: UIViewController {
     }
     
     func presentImagePicker() {
+        LoadingAnimation.add(to: self.view, withRespondingTime: 5)
+        
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
         imagePicker.allowsEditing = true
-        self.present(imagePicker, animated: true, completion: nil)
+        
+        self.present(imagePicker, animated: true) {
+            LoadingAnimation.remove()
+        }
     }
     
     func setButtonsAppearance() {
@@ -278,7 +296,7 @@ class UserCenterViewController: UIViewController {
         }
     }
     
-    func purchaseDidFinish() {
+    func showVipIcon() {
         
         self.vipButton.isHidden = false
         self.vipButton.transform = CGAffineTransform(scaleX: 0, y: 0)
@@ -288,7 +306,7 @@ class UserCenterViewController: UIViewController {
             UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
                 self.vipButton.transform = CGAffineTransform(scaleX: 1, y: 1)
             })  { _ in
-                SystemAlert.present("感谢您的购买！", and: "所有内容已解锁", from: self)
+
             }
         }
         

@@ -158,6 +158,8 @@ class BreathViewController: UIViewController {
                 self.introductionTextView.backgroundColor = AppEngine.shared.userSetting.blackBackground
                 self.guidingLabel.textColor = .white
                 self.introductionTextView.backgroundColor = AppEngine.shared.userSetting.blackBackground
+                self.startBreathingButton.alpha = 0
+                self.startBreathingButton.isUserInteractionEnabled = false
             })
         } else {
             UIView.animate(withDuration: 5, animations: {
@@ -168,6 +170,8 @@ class BreathViewController: UIViewController {
                 self.introductionTextView.alpha = 1
                 self.guidingLabel.textColor = .label
                 self.introductionTextView.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackBackground
+                self.startBreathingButton.alpha = 1
+                self.startBreathingButton.isUserInteractionEnabled = true
             })
         }
         

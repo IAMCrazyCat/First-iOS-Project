@@ -41,6 +41,8 @@ class Item: Codable {
         }
     }
     
+    var hasSanction: Bool = false
+    
     var progress: Double {
         return Double(self.finishedDays) / Double(self.targetDays)
     }

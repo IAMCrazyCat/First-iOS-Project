@@ -12,6 +12,8 @@ struct SystemSetting{
     
     static let shared = SystemSetting()
     
+    
+    let nonVipUserMaxItems: Int = 3
     // for all use
     let screenFrame: CGRect = UIScreen.main.bounds
     let mainButtonHeight: CGFloat = 50

@@ -58,12 +58,9 @@ class ItemCardViewBuilder: ViewBuilder {
         outPutView.setShadow()
         outPutView.frame = CGRect(x: cordinateX, y: cordinateY, width: width, height: height)
         
-        if self.item.state == .duringBreak {
-            outPutView.alpha = 0.5
-            
-        } else {
-            outPutView.alpha = 1
-        }
+        outPutView.alpha = self.item.hasSanction ? 0.5 : 1
+        outPutView.isUserInteractionEnabled = self.item.hasSanction ? false : true
+   
         if item.finishedDays == item.targetDays {
             addConfettiTopView()
         }
@@ -139,7 +136,19 @@ class ItemCardViewBuilder: ViewBuilder {
             freqencyLabel.leftAnchor.constraint(equalTo: nameLabel.rightAnchor, constant: 10).isActive = true
         }
         
+        let stateLabel = UILabel()
+        stateLabel.accessibilityIdentifier = "StateLabel"
+        stateLabel.text = item.state == .duringBreak ? "（休息中）" : ""
+        stateLabel.textColor = AppEngine.shared.userSetting.properThemeColor
+        stateLabel.font = AppEngine.shared.userSetting.smallFont
+        stateLabel.sizeToFit()
         
+        outPutView.addSubview(stateLabel)
+        
+        stateLabel.translatesAutoresizingMaskIntoConstraints = false
+        stateLabel.leftAnchor.constraint(equalTo: freqencyLabel.rightAnchor, constant: 0).isActive = true
+        stateLabel.centerYAnchor.constraint(equalTo: freqencyLabel.centerYAnchor).isActive = true
+        stateLabel.heightAnchor.constraint(equalTo: freqencyLabel.heightAnchor).isActive = true
 
     }
     

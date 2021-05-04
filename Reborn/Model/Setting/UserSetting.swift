@@ -127,7 +127,7 @@ class UserSetting {
         }
     }
     
-    let smartThemeColor = UIColor { _ in
+    let smartVisibleThemeColor = UIColor { _ in
         let colorBrightness = ((AppEngine.shared.userSetting.themeColor.uiColor.value.red * 299) + (AppEngine.shared.userSetting.themeColor.uiColor.value.green * 587) + (AppEngine.shared.userSetting.themeColor.uiColor.value.blue * 114)) / 1000
 
         if colorBrightness <= 0.7 {

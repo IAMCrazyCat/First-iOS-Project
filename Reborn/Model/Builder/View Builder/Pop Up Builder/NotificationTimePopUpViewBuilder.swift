@@ -40,7 +40,7 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
         
         let goToSettingButton = UIButton()
         goToSettingButton.setTitle("前往设置", for: .normal)
-        goToSettingButton.setTitleColor(AppEngine.shared.userSetting.smartThemeColor, for: .normal)
+        goToSettingButton.setTitleColor(AppEngine.shared.userSetting.smartVisibleThemeColor, for: .normal)
         goToSettingButton.titleLabel?.font = AppEngine.shared.userSetting.smallFont
         goToSettingButton.addTarget(Actions.shared, action: Actions.goToSystemSettingAction, for: .touchUpInside)
        

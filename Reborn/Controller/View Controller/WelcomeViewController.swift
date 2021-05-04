@@ -144,7 +144,7 @@ class WelcomViewController: UIViewController {
         
 //        animationView.frame.size = CGSize(width: circleRadius * 2, height: circleRadius * 2)
 //        animationView.center = circleViewCenter
-        let progress = 1.25
+        let progress = 0.75
         let circleTrackPath = UIBezierPath(arcCenter: CGPoint(x: animationView.frame.width / 2, y: animationView.frame.height / 2), radius: circleRadius, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
         let circleShapePath = UIBezierPath(arcCenter: CGPoint(x: animationView.frame.width / 2, y: animationView.frame.height / 2), radius: circleRadius, startAngle: -CGFloat.pi / 2, endAngle: CGFloat(progress) * 2 * CGFloat.pi - CGFloat.pi / 2, clockwise: true)
         let shapeColor = AppEngine.shared.userSetting.themeColor.uiColor.cgColor
@@ -176,7 +176,7 @@ class WelcomViewController: UIViewController {
         
         let moveCircleProgressBar = CABasicAnimation(keyPath: "strokeEnd")
         moveCircleProgressBar.beginTime = CACurrentMediaTime() + 0.8
-        moveCircleProgressBar.toValue = 0.6
+        moveCircleProgressBar.toValue = 1
         moveCircleProgressBar.duration = 2
         moveCircleProgressBar.fillMode = CAMediaTimingFillMode.forwards
         moveCircleProgressBar.timingFunction = CAMediaTimingFunction(controlPoints: 0.29, 0.34, 0.02, 1)
@@ -184,6 +184,7 @@ class WelcomViewController: UIViewController {
         circleShapeLayer.add(moveCircleProgressBar, forKey: "basicAnimation")
         
         self.circleTrackLayer.lineWidth = 0
+        
         let borderAnimation = CABasicAnimation(keyPath: "lineWidth")
         
         borderAnimation.duration = 1.5
@@ -261,7 +262,7 @@ class WelcomViewController: UIViewController {
         
         self.animationView.layer.add(shadowAnimation, forKey: nil)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.animationView.layer.shadowOpacity = 1
         }
         

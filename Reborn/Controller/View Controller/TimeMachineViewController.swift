@@ -114,9 +114,17 @@ class TimeMachineViewController: UIViewController {
             self.energyButton?.setTitle(" × \(self.engine.currentUser.energy)", for: .normal)
 
         } else {
+
+            let attrs = [NSAttributedString.Key.foregroundColor: self.engine.currentUser.energy < self.calendarViewController.selectedDays ? UIColor.red : newItemProgress == 1 ? UIColor.green : AppEngine.shared.userSetting.smartLabelColor]
             
-            self.energyButton?.setTitle(" × \(self.engine.currentUser.energy) → \(self.engine.currentUser.energy - self.calendarViewController.selectedDays)", for: .normal)
-            self.energyButton?.setTitleColor(self.engine.currentUser.energy >= self.calendarViewController.selectedDays ? .label : .red, for: .normal)
+            let normalText = " × \(self.engine.currentUser.energy) → "
+            let mutableText = "\(self.engine.currentUser.energy - self.calendarViewController.selectedDays)"
+            let mutableString = NSMutableAttributedString(string: mutableText, attributes: attrs)
+            let normalString = NSMutableAttributedString(string: normalText)
+            
+            normalString.append(mutableString)
+            self.energyButton?.setAttributedTitle(normalString, for: .normal)
+            //self.energyButton?.setTitleColor( ? .label : .red, for: .normal)
         }
 
         
@@ -148,7 +156,7 @@ class TimeMachineViewController: UIViewController {
             goBackToThePastButton?.setTitle("回到过去", for: .normal)
         } else {
             
-            let attrs = [NSAttributedString.Key.foregroundColor: newItemProgress > 1 ? UIColor.red : newItemProgress == 1 ? UIColor.green : .label]
+            let attrs = [NSAttributedString.Key.foregroundColor: newItemProgress > 1 ? UIColor.red : newItemProgress == 1 ? UIColor.green : AppEngine.shared.userSetting.smartLabelColor]
             
             let normalText = "回到过去 项目进度: \(currentProgressInString) → "
             let mutableText = "\(newProgressInString)"

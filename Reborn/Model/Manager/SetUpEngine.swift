@@ -85,7 +85,6 @@ class SetUpEngine {
             newUser.items.append(QuittingItem(ID: 1, name: quittingItemName, days: quittingItemDays, frequency: .everyday, creationDate: CustomDate.current))
             newUser.items.append(PersistingItem(ID: 2, name: persistingItemName, days: persistingItemDays, frequency: .everyday, creationDate: CustomDate.current))
             newUser.energy = 3
-            newUser.isVip = false
             
             switch newUser.gender {
             case .male: newUser.setAvatarImage(#imageLiteral(resourceName: "DefaultAvatarMale"))
@@ -93,11 +92,11 @@ class SetUpEngine {
             default: newUser.setAvatarImage(#imageLiteral(resourceName: "DefaultAvatar"))
             }
             
-            if quittingItemName != "" {
+            if quittingItemName == "" {
                 newUser.removeItemWith(id: 1)
             }
             
-            if persistingItemName != "" {
+            if persistingItemName == "" {
                 newUser.removeItemWith(id: 2)
             }
             
@@ -108,7 +107,6 @@ class SetUpEngine {
             newUser.setAvatarImage(#imageLiteral(resourceName: "DefaultAvatar"))
             newUser.energy = 3
             newUser.items.removeAll()
-            newUser.isVip = false
         }
 
         AppEngine.shared.currentUser = newUser

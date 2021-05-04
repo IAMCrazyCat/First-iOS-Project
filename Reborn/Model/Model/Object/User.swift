@@ -16,7 +16,11 @@ class User: Codable {
     var avatar: Data
     var energy: Int
     var items: Array<Item>
-    var isVip: Bool
+    var purchasedType: PurchaseType = .none
+    var isVip: Bool {
+        return purchasedType != .none
+    }
+    
     
     var energyChargingEfficiencyDays: Int {
         if self.isVip {
@@ -37,13 +41,12 @@ class User: Codable {
     }
 
     
-    public init(name: String, gender: Gender, avatar: UIImage, energy: Int, items: Array<Item>, isVip: Bool) {
+    public init(name: String, gender: Gender, avatar: UIImage, energy: Int, items: Array<Item>) {
         self.name = name
         self.gender = gender
         self.avatar = avatar.pngData() ?? Data()
         self.energy = energy
         self.items = items
-        self.isVip = isVip
     }
     
     public func getAvatarImage() -> UIImage {
@@ -191,7 +194,10 @@ class User: Codable {
     public func updateAllItems() {
         for item in self.items {
             item.updateState()
+            item.hasSanction = false
         }
+        
+        self.disableItems()
     }
     
     public func removeItemWith(id: Int) {
@@ -202,6 +208,31 @@ class User: Codable {
             }
             index += 1
         }
+    }
+    
+    func disableItems() {
+        
+        if !self.isVip && self.items.count > SystemSetting.shared.nonVipUserMaxItems {
+            var items = [Item]()
+            for item in self.items {
+                items.append(item)
+            }
+            
+            items.sort {
+                $0.creationDate < $1.creationDate
+            }
+            
+            var index = 0
+            for item in items {
+                if index + 1 > SystemSetting.shared.nonVipUserMaxItems {
+                    item.hasSanction = true
+                } else {
+                    item.hasSanction = false
+                }
+                index += 1
+            }
+        }
+       
     }
     
 

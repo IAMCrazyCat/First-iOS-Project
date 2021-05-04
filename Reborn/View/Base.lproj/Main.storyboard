@@ -2004,6 +2004,9 @@
                                                         <state key="normal" title="恢复购买" image="Recovery">
                                                             <color key="titleColor" systemColor="labelColor"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="restoredPurchaseButtonPressed:" destination="xEm-ah-agE" eventType="touchUpInside" id="YNH-F1-Ibw"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cON-fP-iBw" userLabel="&gt;">
                                                         <rect key="frame" x="344" y="275" width="20" height="20"/>
@@ -2340,7 +2343,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7UQ-ts-Ghw" userLabel="Middle Scroll View">
-                                <rect key="frame" x="0.0" y="244" width="414" height="368"/>
+                                <rect key="frame" x="0.0" y="244" width="414" height="358"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CcI-IA-Fo4" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="550"/>
@@ -2673,6 +2676,14 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QsF-Yz-4OV">
+                                        <rect key="frame" x="332" y="15" width="62" height="30"/>
+                                        <color key="tintColor" name="BlueThemeColor"/>
+                                        <state key="normal" title="恢复购买"/>
+                                        <connections>
+                                            <action selector="restorePurchaseButtonPressed:" destination="Nul-gc-mLq" eventType="touchUpInside" id="Hm0-le-diM"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                 <constraints>
@@ -2681,15 +2692,17 @@
                                     <constraint firstAttribute="height" constant="200" id="8nG-fx-RNJ"/>
                                     <constraint firstItem="vie-T5-U2n" firstAttribute="top" secondItem="AKx-vV-LsX" secondAttribute="bottom" constant="10" id="Bw2-Up-crR"/>
                                     <constraint firstItem="kVU-mn-dvE" firstAttribute="centerX" secondItem="TX0-5Q-bfo" secondAttribute="centerX" id="Wbq-RO-YjG"/>
+                                    <constraint firstItem="QsF-Yz-4OV" firstAttribute="top" secondItem="TX0-5Q-bfo" secondAttribute="top" constant="15" id="XW1-ms-XGv"/>
                                     <constraint firstItem="AKx-vV-LsX" firstAttribute="top" secondItem="kVU-mn-dvE" secondAttribute="bottom" constant="15" id="YID-pV-MUw"/>
                                     <constraint firstItem="kVU-mn-dvE" firstAttribute="top" secondItem="TX0-5Q-bfo" secondAttribute="top" constant="30" id="hiA-Ft-EvW"/>
+                                    <constraint firstAttribute="trailing" secondItem="QsF-Yz-4OV" secondAttribute="trailing" constant="20" id="u9U-VH-V5U"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bUp-rS-iLV" userLabel="Bottom View">
-                                <rect key="frame" x="0.0" y="612" width="414" height="250"/>
+                                <rect key="frame" x="0.0" y="602" width="414" height="260"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nsu-Ib-aY5">
-                                        <rect key="frame" x="15" y="180.5" width="384" height="49.5"/>
+                                        <rect key="frame" x="15" y="190.5" width="384" height="49.5"/>
                                         <color key="backgroundColor" systemColor="systemGray3Color"/>
                                         <state key="normal" title="现在购买">
                                             <color key="titleColor" red="0.94858902690000002" green="0.94918686149999998" blue="0.96842974420000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2722,10 +2735,10 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fou-fg-3vL" userLabel="Purchase Option View">
-                                        <rect key="frame" x="0.0" y="69" width="414" height="111.5"/>
+                                        <rect key="frame" x="0.0" y="69" width="414" height="121.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rx4-KL-Zj0" userLabel="Year View">
-                                                <rect key="frame" x="155" y="4" width="104" height="104"/>
+                                                <rect key="frame" x="155" y="9" width="104" height="104"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vtR-Jf-LdT">
                                                         <rect key="frame" x="0.0" y="0.0" width="104" height="104"/>
@@ -2772,7 +2785,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MEb-Tq-u1Y" userLabel="Month View">
-                                                <rect key="frame" x="20" y="4" width="104" height="104"/>
+                                                <rect key="frame" x="20" y="9" width="104" height="104"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zfe-83-aAJ">
                                                         <rect key="frame" x="0.0" y="0.0" width="104" height="104"/>
@@ -2820,7 +2833,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iKJ-je-XOr" userLabel="Permanent View">
-                                                <rect key="frame" x="290" y="4" width="104" height="104"/>
+                                                <rect key="frame" x="290" y="9" width="104" height="104"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2vu-DP-EEo">
                                                         <rect key="frame" x="0.0" y="0.0" width="104" height="104"/>
@@ -2891,7 +2904,7 @@
                                     <constraint firstAttribute="bottom" secondItem="Nsu-Ib-aY5" secondAttribute="bottom" constant="20" id="K7L-2d-661"/>
                                     <constraint firstItem="Nsu-Ib-aY5" firstAttribute="leading" secondItem="bUp-rS-iLV" secondAttribute="leading" constant="15" id="MQK-N3-H3O"/>
                                     <constraint firstItem="Fou-fg-3vL" firstAttribute="leading" secondItem="bUp-rS-iLV" secondAttribute="leading" id="Sd7-kJ-bGR"/>
-                                    <constraint firstAttribute="height" constant="250" id="TaL-vy-g45"/>
+                                    <constraint firstAttribute="height" constant="260" id="TaL-vy-g45"/>
                                     <constraint firstItem="DFu-fg-Hix" firstAttribute="leading" secondItem="bUp-rS-iLV" secondAttribute="leading" constant="20" id="bQ9-1p-XbX"/>
                                     <constraint firstAttribute="trailing" secondItem="DFu-fg-Hix" secondAttribute="trailing" constant="20" id="biB-g7-XBj"/>
                                     <constraint firstItem="DFu-fg-Hix" firstAttribute="top" secondItem="bUp-rS-iLV" secondAttribute="top" constant="10" id="eUP-as-Gh9"/>
@@ -2932,12 +2945,14 @@
                         <outlet property="VIPFounctionTwoView" destination="1bU-a7-FrP" id="hhK-gu-IDq"/>
                         <outlet property="avatarView" destination="kVU-mn-dvE" id="CIz-KZ-ClE"/>
                         <outlet property="bottomView" destination="bUp-rS-iLV" id="3Sz-YV-cua"/>
+                        <outlet property="itemLimitLabel" destination="A7A-Do-hr3" id="ETA-Vm-RKE"/>
                         <outlet property="middleContentView" destination="CcI-IA-Fo4" id="IZg-Mv-AYk"/>
                         <outlet property="middleContentViewHeightConstraint" destination="Y4h-WQ-oPk" id="gFv-SE-Nb7"/>
                         <outlet property="middleScrollView" destination="7UQ-ts-Ghw" id="VxY-MQ-kSe"/>
                         <outlet property="monthSubscriptionButton" destination="zfe-83-aAJ" id="f14-s9-elh"/>
                         <outlet property="permanentSubscriptionButton" destination="2vu-DP-EEo" id="Lrt-PV-zNp"/>
                         <outlet property="purchaseButton" destination="Nsu-Ib-aY5" id="avV-2C-vQt"/>
+                        <outlet property="restorePurchaseButton" destination="QsF-Yz-4OV" id="xqr-3Z-Tog"/>
                         <outlet property="shadowCoverView" destination="1aA-Zz-GHQ" id="hJt-4y-JuO"/>
                         <outlet property="textView" destination="DFu-fg-Hix" id="cSr-X6-0qr"/>
                         <outlet property="yearSubscriptionButton" destination="vtR-Jf-LdT" id="rfd-Ar-mO6"/>

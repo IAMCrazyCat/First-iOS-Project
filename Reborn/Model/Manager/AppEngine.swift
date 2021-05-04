@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 import WidgetKit
-
+import TPInAppReceipt
 protocol PopUpViewDelegate {
     func didDismissPopUpViewWithoutSave(_ type: PopUpType)
     func didSaveAndDismiss(_ type: PopUpType)
@@ -28,7 +28,7 @@ class AppEngine {
     private var itemCardIcons: Array<Icon> = []
     
     public static let shared = AppEngine()
-    public var currentUser: User = User(name: "颠猫", gender: .undefined, avatar: #imageLiteral(resourceName: "DefaultAvatar"), energy: 3, items: [Item](), isVip: false)
+    public var currentUser: User = User(name: "努力的人", gender: .undefined, avatar: #imageLiteral(resourceName: "DefaultAvatar"), energy: 3, items: [Item]())
     public let userSetting: UserSetting = UserSetting()
     public var storedDataFromPopUpView: Any? = nil
     public var delegate: PopUpViewDelegate?
@@ -68,21 +68,16 @@ class AppEngine {
         checkUserSubsriptionStatus()
     }
     
-    func checkUserSubsriptionStatus() {
-        if let appStoreReceiptURL = Bundle.main.appStoreReceiptURL,
-            FileManager.default.fileExists(atPath: appStoreReceiptURL.path) {
-
-            do {
-                let receiptData = try Data(contentsOf: appStoreReceiptURL, options: .alwaysMapped)
-                print(receiptData)
-
-                let receiptString = receiptData.base64EncodedString(options: [])
-
-                print(receiptString)
-            }
-            catch { print("Couldn't read receipt data with error: " + error.localizedDescription) }
-        }
+    private func checkUserSubsriptionStatus() {
+        InAppPurchaseManager.shared.checkUserSubsriptionStatus()
+        
     }
+    
+    
+    
+   
+    
+    
     
     func loadtItemCardIcons() {
         
@@ -165,6 +160,7 @@ class AppEngine {
 
     func updateUserItems() {
         self.currentUser.updateAllItems()
+
     }
     
     
@@ -182,19 +178,6 @@ class AppEngine {
         return launchedBefore
     }
     
-    func purchaseApp() {
-        self.currentUser.isVip = true
-        self.currentUser.energy += 5
-        self.userSetting.hasViewedEnergyUpdate = false
-        self.saveUser()
-        self.notifyAllUIObservers()
-    }
-    
-    func purchaseEnergy() {
-        self.currentUser.energy += 3
-        self.saveUser()
-        self.notifyAllUIObservers()
-    }
     
     func requestNotificationPermission() {
         let center = UNUserNotificationCenter.current()
@@ -401,12 +384,11 @@ class AppEngine {
     }
     
     public func notifyAllUIObservers() {
-        print(observers)
+        self.updateUserItems()
         
         for observer in self.observers {
             DispatchQueue.main.async {
                 observer.updateUI()
-                print("\((observer as! UIViewController).restorationIdentifier) notified")
             }
             
         }

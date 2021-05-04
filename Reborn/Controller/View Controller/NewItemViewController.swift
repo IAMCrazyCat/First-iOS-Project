@@ -372,7 +372,7 @@ class NewItemViewController: UIViewController {
     }
     
     func setButtonsAppearance() {
-        doneButton.setTitleColor(self.engine.userSetting.smartThemeColor, for: .normal)
+        doneButton.setTitleColor(self.engine.userSetting.smartVisibleThemeColor, for: .normal)
         
         for button in self.optionButtons {
             button.proportionallySetSizeWithScreen()

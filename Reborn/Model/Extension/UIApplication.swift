@@ -41,16 +41,40 @@ extension UIApplication {
            
             while let presentedViewController = topController.presentedViewController {
                 topController = presentedViewController
-                return topController
             }
+            
             
             if let tabBarController = topController as? UITabBarController {
                 return tabBarController.selectedViewController
             }
             
+            return topController
         }
         
         return nil
+    }
+    
+    class public func getCurrentVc() -> UIViewController {
+        let rootVc = UIApplication.shared.keyWindow?.rootViewController
+        let currentVc = getCurrentVcFrom(rootVc!)
+        return currentVc
+    }
+    
+    class private func getCurrentVcFrom(_ rootVc:UIViewController) -> UIViewController {
+        
+        var currentVc:UIViewController
+        var rootCtr = rootVc
+        if(rootCtr.presentedViewController != nil) {
+            rootCtr = rootVc.presentedViewController!
+        }
+        if rootVc.isKind(of:UITabBarController.classForCoder()) {
+            currentVc = getCurrentVcFrom((rootVc as! UITabBarController).selectedViewController!)
+        } else if rootVc.isKind(of:UINavigationController.classForCoder()) {
+            currentVc = getCurrentVcFrom((rootVc as! UINavigationController).visibleViewController!)
+        } else {
+            currentVc = rootCtr
+        }
+        return currentVc
     }
 
 }
