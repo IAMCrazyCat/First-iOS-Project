@@ -280,7 +280,7 @@ class WelcomViewController: UIViewController {
             self.appIntrocutionLabel.alpha = 1
         })
         
-        UIView.animate(withDuration: 1, delay: 0.3, options: [], animations: {
+        UIView.animate(withDuration: 1, delay: 1, options: [], animations: {
             self.startButton.alpha = 1
         })
         

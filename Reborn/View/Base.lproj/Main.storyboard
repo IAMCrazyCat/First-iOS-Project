@@ -68,7 +68,7 @@
                                                 <rect key="frame" x="15" y="237" width="384" height="49.5"/>
                                                 <color key="backgroundColor" systemColor="systemGray3Color"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <state key="normal" title="开始自律生活">
+                                                <state key="normal" title="重启自律生活">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -945,7 +945,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Target-HD" translatesAutoresizingMaskIntoConstraints="NO" id="zF5-J8-1ZO">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Target" translatesAutoresizingMaskIntoConstraints="NO" id="zF5-J8-1ZO">
                                                         <rect key="frame" x="25" y="115" width="30" height="30"/>
                                                         <color key="tintColor" systemColor="systemYellowColor"/>
                                                     </imageView>
@@ -1126,10 +1126,10 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wc5-Hz-1bB">
-                                                <rect key="frame" x="40" y="1150" width="74" height="28"/>
+                                                <rect key="frame" x="40" y="1150" width="37" height="34"/>
                                                 <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" name="ThemeColorPair"/>
-                                                <state key="normal" title="  编辑" image="EditButton">
+                                                <state key="normal" title="编辑">
                                                     <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
                                                 <connections>
@@ -1138,10 +1138,10 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Stx-iB-4so">
-                                                <rect key="frame" x="300" y="1150" width="74" height="28"/>
+                                                <rect key="frame" x="337" y="1150" width="37" height="34"/>
                                                 <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" name="ThemeColor"/>
-                                                <state key="normal" title="  分享" image="ShareButton">
+                                                <state key="normal" title="分享">
                                                     <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
                                                 <connections>
@@ -1704,19 +1704,19 @@
                                                         <color key="textColor" name="SmartLabelGrayColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HammerIcon-HD" translatesAutoresizingMaskIntoConstraints="NO" id="aF9-4I-oju">
-                                                        <rect key="frame" x="10" y="10" width="47" height="47"/>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hammer" translatesAutoresizingMaskIntoConstraints="NO" id="aF9-4I-oju">
+                                                        <rect key="frame" x="10" y="10" width="42" height="42"/>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="jyW-Yl-iOQ" secondAttribute="trailing" constant="15" id="Ckc-mn-DHX"/>
                                                     <constraint firstItem="JTV-Kc-Epj" firstAttribute="centerY" secondItem="wZU-qf-Hxm" secondAttribute="centerY" id="GrO-Ip-YIZ"/>
-                                                    <constraint firstItem="aF9-4I-oju" firstAttribute="width" secondItem="wZU-qf-Hxm" secondAttribute="width" multiplier="0.3" id="LDf-sY-jlc"/>
+                                                    <constraint firstItem="aF9-4I-oju" firstAttribute="width" secondItem="wZU-qf-Hxm" secondAttribute="width" multiplier="0.3" constant="-5" id="LDf-sY-jlc"/>
                                                     <constraint firstAttribute="bottom" secondItem="yNb-sx-kul" secondAttribute="bottom" id="LTk-Y0-KI9"/>
                                                     <constraint firstItem="aF9-4I-oju" firstAttribute="top" secondItem="wZU-qf-Hxm" secondAttribute="top" constant="10" id="Ot9-2F-NDl"/>
                                                     <constraint firstItem="yNb-sx-kul" firstAttribute="top" secondItem="wZU-qf-Hxm" secondAttribute="top" id="SIL-nu-M3d"/>
-                                                    <constraint firstItem="aF9-4I-oju" firstAttribute="height" secondItem="wZU-qf-Hxm" secondAttribute="height" multiplier="0.3" id="WVo-MJ-b1H"/>
+                                                    <constraint firstItem="aF9-4I-oju" firstAttribute="height" secondItem="wZU-qf-Hxm" secondAttribute="height" multiplier="0.3" constant="-5" id="WVo-MJ-b1H"/>
                                                     <constraint firstItem="yNb-sx-kul" firstAttribute="leading" secondItem="wZU-qf-Hxm" secondAttribute="leading" id="YYU-Q7-3Gi"/>
                                                     <constraint firstItem="aF9-4I-oju" firstAttribute="leading" secondItem="wZU-qf-Hxm" secondAttribute="leading" constant="10" id="ZD7-mT-oIo"/>
                                                     <constraint firstItem="jyW-Yl-iOQ" firstAttribute="leading" secondItem="wZU-qf-Hxm" secondAttribute="leading" constant="15" id="afl-sR-Dce"/>
@@ -2024,7 +2024,7 @@
                                                         <color key="tintColor" name="ThemeColor"/>
                                                         <inset key="contentEdgeInsets" minX="17" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                        <state key="normal" title="主题色" image="ThemeColorIcon">
+                                                        <state key="normal" title=" 主题色" image="ThemeColorIcon">
                                                             <color key="titleColor" systemColor="labelColor"/>
                                                         </state>
                                                         <connections>
@@ -2196,13 +2196,13 @@
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ews-TR-Tf9">
-                                                <rect key="frame" x="239" y="88" width="25" height="25"/>
+                                                <rect key="frame" x="239" y="93" width="15" height="15"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="25" id="B7j-m1-8Sn"/>
-                                                    <constraint firstAttribute="width" constant="25" id="UJd-Ht-Olr"/>
+                                                    <constraint firstAttribute="height" constant="15" id="B7j-m1-8Sn"/>
+                                                    <constraint firstAttribute="width" constant="15" id="UJd-Ht-Olr"/>
                                                 </constraints>
                                                 <color key="tintColor" systemColor="labelColor"/>
-                                                <state key="normal" image="PenIcon"/>
+                                                <state key="normal" image="Pencil"/>
                                                 <connections>
                                                     <action selector="userNameButtonPressed:" destination="xEm-ah-agE" eventType="touchUpInside" id="YJU-wg-n9w"/>
                                                 </connections>
@@ -2400,14 +2400,14 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用能量可以开启时光机器补打卡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cww-Y8-X48">
-                                                        <rect key="frame" x="60" y="27.5" width="184" height="15"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VIP图标持续更新中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cww-Y8-X48">
+                                                        <rect key="frame" x="60" y="27.5" width="105" height="15"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="获得5点时光机器能量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3D5-um-DLf">
-                                                        <rect key="frame" x="60" y="7.5" width="148" height="18"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="解锁全部图标" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3D5-um-DLf">
+                                                        <rect key="frame" x="60" y="7.5" width="92" height="18"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2437,14 +2437,14 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="连续打卡7天免费获得1点能量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0e-Am-UV9">
-                                                        <rect key="frame" x="60" y="27.5" width="160" height="15"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="享受多款深度设计的自然主题颜色" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0e-Am-UV9">
+                                                        <rect key="frame" x="60" y="27.5" width="184" height="15"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="加速获得时光机器能量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tpo-FZ-5XS">
-                                                        <rect key="frame" x="60" y="7.5" width="153" height="18"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="解锁所有主题颜色" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tpo-FZ-5XS">
+                                                        <rect key="frame" x="60" y="7.5" width="123" height="18"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2474,14 +2474,14 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="享受多款深度设计的自然主题颜色" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBN-Hf-u7I">
-                                                        <rect key="frame" x="60" y="27.5" width="184" height="15"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="享受纯净无广告版，专注自律" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBN-Hf-u7I">
+                                                        <rect key="frame" x="60" y="27.5" width="160" height="15"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="解锁所有主题颜色" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFA-s4-ERm">
-                                                        <rect key="frame" x="60" y="7.5" width="123" height="18"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="移除广告" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFA-s4-ERm">
+                                                        <rect key="frame" x="60" y="7.5" width="62" height="18"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2511,14 +2511,14 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="享受纯净无广告版，专注自律" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lwU-A7-uAY">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用能量开启时光机器补打卡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lwU-A7-uAY">
                                                         <rect key="frame" x="60" y="27.5" width="160" height="15"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="移除广告" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRP-mg-Bzi">
-                                                        <rect key="frame" x="60" y="7.5" width="62" height="18"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="获得5点时光机器能量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRP-mg-Bzi">
+                                                        <rect key="frame" x="60" y="7.5" width="148" height="18"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2548,14 +2548,14 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标签将会出现在多个地方，包括分享海报中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5zc-9X-Vof">
-                                                        <rect key="frame" x="60" y="27.5" width="233" height="15"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="连续打卡7天免费获得1点能量 （普通用户21天）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5zc-9X-Vof">
+                                                        <rect key="frame" x="60" y="27.5" width="262" height="15"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VIP专属标签" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O19-Uf-Mmr">
-                                                        <rect key="frame" x="60" y="7.5" width="87" height="18"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="加速获得时光机器能量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O19-Uf-Mmr">
+                                                        <rect key="frame" x="60" y="7.5" width="153" height="18"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2571,8 +2571,8 @@
                                                     <constraint firstItem="5zc-9X-Vof" firstAttribute="bottom" secondItem="WOm-XI-zX8" secondAttribute="bottom" id="w3x-0h-F5T"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ak4-lP-eyo" userLabel="VIP Founction Seven">
-                                                <rect key="frame" x="15" y="440" width="384" height="50"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ak4-lP-eyo" userLabel="VIP Founction Eight">
+                                                <rect key="frame" x="15" y="510" width="384" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izP-IJ-2pM">
                                                         <rect key="frame" x="15" y="7.5" width="35" height="35"/>
@@ -2581,7 +2581,7 @@
                                                             <constraint firstAttribute="height" constant="35" id="JN1-Kb-FjW"/>
                                                             <constraint firstAttribute="width" constant="35" id="RYn-wt-ZzS"/>
                                                         </constraints>
-                                                        <state key="normal" title="7">
+                                                        <state key="normal" title="8">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                     </button>
@@ -2608,10 +2608,49 @@
                                                     <constraint firstItem="lUh-I3-IGM" firstAttribute="leading" secondItem="izP-IJ-2pM" secondAttribute="trailing" constant="10" id="w7x-JX-3iD"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lh1-pk-Ebu" userLabel="VIP Founction Seven">
+                                                <rect key="frame" x="15" y="440" width="384" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8rC-hy-Pjf">
+                                                        <rect key="frame" x="15" y="7.5" width="35" height="35"/>
+                                                        <color key="backgroundColor" name="BlueThemeColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="35" id="5dA-nM-YpI"/>
+                                                            <constraint firstAttribute="width" constant="35" id="cfY-DF-YxI"/>
+                                                        </constraints>
+                                                        <state key="normal" title="7">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分享海报中展示VIP标签" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZMz-a3-j9Z">
+                                                        <rect key="frame" x="60" y="27.5" width="130" height="15"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VIP专属标签" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Soh-2c-Zfe">
+                                                        <rect key="frame" x="60" y="7.5" width="87" height="18"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" name="WhiteAndBlackBackground"/>
+                                                <constraints>
+                                                    <constraint firstItem="8rC-hy-Pjf" firstAttribute="leading" secondItem="lh1-pk-Ebu" secondAttribute="leading" constant="15" id="2Fp-d7-OHF"/>
+                                                    <constraint firstItem="8rC-hy-Pjf" firstAttribute="centerY" secondItem="lh1-pk-Ebu" secondAttribute="centerY" id="RQ1-V2-Q2f"/>
+                                                    <constraint firstItem="ZMz-a3-j9Z" firstAttribute="bottom" secondItem="8rC-hy-Pjf" secondAttribute="bottom" id="cPf-2E-UOh"/>
+                                                    <constraint firstItem="Soh-2c-Zfe" firstAttribute="top" secondItem="8rC-hy-Pjf" secondAttribute="top" id="qCV-jP-fwN"/>
+                                                    <constraint firstItem="ZMz-a3-j9Z" firstAttribute="leading" secondItem="8rC-hy-Pjf" secondAttribute="trailing" constant="10" id="wUn-yY-oGs"/>
+                                                    <constraint firstItem="Soh-2c-Zfe" firstAttribute="leading" secondItem="8rC-hy-Pjf" secondAttribute="trailing" constant="10" id="y30-5r-Zlm"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                         <constraints>
                                             <constraint firstItem="rPF-jZ-Aoe" firstAttribute="centerX" secondItem="H79-hx-hQE" secondAttribute="centerX" id="13v-CM-HXS"/>
+                                            <constraint firstItem="lh1-pk-Ebu" firstAttribute="height" secondItem="H79-hx-hQE" secondAttribute="height" id="15j-tz-bZo"/>
+                                            <constraint firstItem="Ak4-lP-eyo" firstAttribute="top" secondItem="lh1-pk-Ebu" secondAttribute="bottom" constant="20" id="6pN-Lp-xzQ"/>
                                             <constraint firstItem="YhA-we-a1G" firstAttribute="width" secondItem="H79-hx-hQE" secondAttribute="width" id="9wu-xd-fJL"/>
                                             <constraint firstItem="2gR-qV-msb" firstAttribute="height" secondItem="H79-hx-hQE" secondAttribute="height" id="Bu6-0H-r37"/>
                                             <constraint firstAttribute="trailing" secondItem="H79-hx-hQE" secondAttribute="trailing" constant="15" id="Cqe-6b-1gX"/>
@@ -2623,19 +2662,21 @@
                                             <constraint firstItem="1bU-a7-FrP" firstAttribute="height" secondItem="H79-hx-hQE" secondAttribute="height" id="UUS-Pq-Ooa"/>
                                             <constraint firstItem="iJs-TO-3ch" firstAttribute="centerX" secondItem="CcI-IA-Fo4" secondAttribute="centerX" id="UuN-hl-70g"/>
                                             <constraint firstAttribute="height" constant="550" id="Y4h-WQ-oPk"/>
-                                            <constraint firstItem="Ak4-lP-eyo" firstAttribute="top" secondItem="iJs-TO-3ch" secondAttribute="bottom" constant="20" id="api-je-aRs"/>
                                             <constraint firstItem="rPF-jZ-Aoe" firstAttribute="height" secondItem="H79-hx-hQE" secondAttribute="height" id="b0Y-yi-jny"/>
                                             <constraint firstItem="2gR-qV-msb" firstAttribute="width" secondItem="H79-hx-hQE" secondAttribute="width" id="bBO-oi-wNq"/>
                                             <constraint firstItem="iJs-TO-3ch" firstAttribute="height" secondItem="H79-hx-hQE" secondAttribute="height" id="cMz-9T-fVP"/>
+                                            <constraint firstItem="lh1-pk-Ebu" firstAttribute="top" secondItem="iJs-TO-3ch" secondAttribute="bottom" constant="20" id="d0p-lF-VMH"/>
                                             <constraint firstItem="Ak4-lP-eyo" firstAttribute="centerX" secondItem="CcI-IA-Fo4" secondAttribute="centerX" id="dyR-Ma-h6w"/>
                                             <constraint firstItem="iJs-TO-3ch" firstAttribute="top" secondItem="rPF-jZ-Aoe" secondAttribute="bottom" constant="20" id="dyg-lq-5ah"/>
                                             <constraint firstItem="YhA-we-a1G" firstAttribute="top" secondItem="1bU-a7-FrP" secondAttribute="bottom" constant="20" id="eNS-HD-96P"/>
+                                            <constraint firstItem="lh1-pk-Ebu" firstAttribute="centerX" secondItem="CcI-IA-Fo4" secondAttribute="centerX" id="enw-IN-RtN"/>
                                             <constraint firstItem="rPF-jZ-Aoe" firstAttribute="width" secondItem="H79-hx-hQE" secondAttribute="width" id="ewl-Ti-wPe"/>
                                             <constraint firstItem="Ak4-lP-eyo" firstAttribute="width" secondItem="YhA-we-a1G" secondAttribute="width" id="f0n-MQ-Erb"/>
                                             <constraint firstItem="H79-hx-hQE" firstAttribute="top" secondItem="CcI-IA-Fo4" secondAttribute="top" constant="20" id="mrI-EP-NfP"/>
                                             <constraint firstItem="YhA-we-a1G" firstAttribute="height" secondItem="H79-hx-hQE" secondAttribute="height" id="qJF-OZ-DDZ"/>
                                             <constraint firstItem="2gR-qV-msb" firstAttribute="centerX" secondItem="H79-hx-hQE" secondAttribute="centerX" id="t0p-4K-KWi"/>
                                             <constraint firstItem="YhA-we-a1G" firstAttribute="centerX" secondItem="H79-hx-hQE" secondAttribute="centerX" id="vK8-Zj-Dim"/>
+                                            <constraint firstItem="lh1-pk-Ebu" firstAttribute="width" secondItem="H79-hx-hQE" secondAttribute="width" id="xQM-f3-fHX"/>
                                             <constraint firstItem="H79-hx-hQE" firstAttribute="leading" secondItem="CcI-IA-Fo4" secondAttribute="leading" constant="15" id="y6h-W5-MBp"/>
                                             <constraint firstItem="rPF-jZ-Aoe" firstAttribute="top" secondItem="2gR-qV-msb" secondAttribute="bottom" constant="20" id="y7T-Kx-qzg"/>
                                             <constraint firstItem="2gR-qV-msb" firstAttribute="top" secondItem="YhA-we-a1G" secondAttribute="bottom" constant="20" id="zUr-Lg-UNE"/>
@@ -2938,11 +2979,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="ud1-3J-x4K"/>
                     <connections>
-                        <outlet property="VIPFounctionFiveView" destination="rPF-jZ-Aoe" id="2CH-eg-Prg"/>
-                        <outlet property="VIPFounctionFourView" destination="2gR-qV-msb" id="7kJ-Du-52w"/>
-                        <outlet property="VIPFounctionOneView" destination="H79-hx-hQE" id="Pu8-nD-hPB"/>
-                        <outlet property="VIPFounctionThreeView" destination="YhA-we-a1G" id="kWK-cQ-mfY"/>
-                        <outlet property="VIPFounctionTwoView" destination="1bU-a7-FrP" id="hhK-gu-IDq"/>
                         <outlet property="avatarView" destination="kVU-mn-dvE" id="CIz-KZ-ClE"/>
                         <outlet property="bottomView" destination="bUp-rS-iLV" id="3Sz-YV-cua"/>
                         <outlet property="itemLimitLabel" destination="A7A-Do-hr3" id="ETA-Vm-RKE"/>
@@ -2950,6 +2986,11 @@
                         <outlet property="middleContentViewHeightConstraint" destination="Y4h-WQ-oPk" id="gFv-SE-Nb7"/>
                         <outlet property="middleScrollView" destination="7UQ-ts-Ghw" id="VxY-MQ-kSe"/>
                         <outlet property="monthSubscriptionButton" destination="zfe-83-aAJ" id="f14-s9-elh"/>
+                        <outlet property="oneDayOfOneMonthPrice" destination="Eg6-Y1-zqr" id="zzA-lp-fqq"/>
+                        <outlet property="oneDayOfOneYearPrice" destination="lbO-WY-m67" id="bf8-qE-LVw"/>
+                        <outlet property="oneMonthPrice" destination="coh-Uy-Axg" id="AhV-i5-J3o"/>
+                        <outlet property="oneYearPrice" destination="cbu-El-dxs" id="fOX-NJ-dNX"/>
+                        <outlet property="permanentPrice" destination="SQg-88-kWN" id="tH8-4w-VhB"/>
                         <outlet property="permanentSubscriptionButton" destination="2vu-DP-EEo" id="Lrt-PV-zNp"/>
                         <outlet property="purchaseButton" destination="Nsu-Ib-aY5" id="avV-2C-vQt"/>
                         <outlet property="restorePurchaseButton" destination="QsF-Yz-4OV" id="xqr-3Z-Tog"/>
@@ -3287,7 +3328,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t36-hd-ges" userLabel="Tomato View">
                                                 <rect key="frame" x="40" y="142" width="334" height="334"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tomato2" translatesAutoresizingMaskIntoConstraints="NO" id="uoy-50-hYU">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tomato3" translatesAutoresizingMaskIntoConstraints="NO" id="uoy-50-hYU">
                                                         <rect key="frame" x="0.0" y="0.0" width="334" height="334"/>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="triangle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="yMV-tw-SxO">
@@ -4093,7 +4134,6 @@
         <image name="CirclePart" width="100" height="28"/>
         <image name="Complete2-HD" width="512" height="512"/>
         <image name="Crown2-HD" width="256" height="256"/>
-        <image name="EditButton" width="28" height="28"/>
         <image name="Energy" width="28" height="28"/>
         <image name="EnergyHolo2-HD" width="341" height="341"/>
         <image name="Feedback2" width="28" height="28"/>
@@ -4102,7 +4142,7 @@
         <image name="Flash-HD" width="512" height="512"/>
         <image name="FlashIcon-HD" width="170.5" height="170.5"/>
         <image name="Freqency" width="512" height="512"/>
-        <image name="HammerIcon-HD" width="170.5" height="170.5"/>
+        <image name="Hammer" width="512" height="512"/>
         <image name="Heart" width="512" height="512"/>
         <image name="InstructionIcon" width="28" height="28"/>
         <image name="ItemsManagementIcon" width="28" height="28"/>
@@ -4111,7 +4151,7 @@
         <image name="Name" width="512" height="512"/>
         <image name="NextDay-HD" width="512" height="512"/>
         <image name="Notification" width="28" height="28"/>
-        <image name="PenIcon" width="28" height="28"/>
+        <image name="Pencil" width="28" height="28"/>
         <image name="ProgressIcon" width="28" height="28"/>
         <image name="Purchase" width="28" height="28"/>
         <image name="QRCode-TestFlight" width="392" height="380"/>
@@ -4121,14 +4161,14 @@
         <image name="RightButton" width="28" height="28"/>
         <image name="SelfDisciplineIcon" width="28" height="28"/>
         <image name="Share" width="28" height="28"/>
-        <image name="ShareButton" width="28" height="28"/>
         <image name="StyleMode" width="31.5" height="31.5"/>
+        <image name="Target" width="512" height="512"/>
         <image name="Target-HD" width="512" height="512"/>
         <image name="Test" width="170.5" height="170.5"/>
         <image name="ThemeColorIcon" width="28" height="28"/>
         <image name="TimeMachine1" width="28" height="28"/>
         <image name="Today2-HD" width="512" height="512"/>
-        <image name="Tomato2" width="512" height="512"/>
+        <image name="Tomato3" width="504" height="512"/>
         <image name="TomatoClockIcon-HD" width="170.5" height="170.5"/>
         <image name="Unknown" width="225" height="225"/>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>

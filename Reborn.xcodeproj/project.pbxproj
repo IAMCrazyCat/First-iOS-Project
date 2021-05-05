@@ -41,6 +41,7 @@
 		224E668A25C6A76600B71E8A /* DateCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E668925C6A76600B71E8A /* DateCalculator.swift */; };
 		22569F84264036F8001459C3 /* PurchaseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22569F83264036F8001459C3 /* PurchaseType.swift */; };
 		22569F862640F013001459C3 /* ItemsStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22569F852640F013001459C3 /* ItemsStrategy.swift */; };
+		22569F89264136D5001459C3 /* SwiftyStoreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 22569F88264136D5001459C3 /* SwiftyStoreKit */; };
 		225AD11625A6C8620040E356 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AD11525A6C8620040E356 /* UIColor.swift */; };
 		225AD12225A80EB30040E356 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AD12125A80EB30040E356 /* UIApplication.swift */; };
 		225AD12A25A848A30040E356 /* Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AD12925A848A30040E356 /* Selector.swift */; };
@@ -136,7 +137,7 @@
 		22C4BFB825D21E7A00528A1C /* ViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4BFB725D21E7A00528A1C /* ViewBuilder.swift */; };
 		22C4BFC325D21F2400528A1C /* ItemProgressViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C4BFC225D21F2400528A1C /* ItemProgressViewBuilder.swift */; };
 		22C535F4263D0E3D0036B0D7 /* Tone1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 22C535F3263D0E3D0036B0D7 /* Tone1.m4a */; };
-		22C5D967258F3E4400131964 /* SetUpEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5D966258F3E4400131964 /* SetUpEngine.swift */; };
+		22C5D967258F3E4400131964 /* SetUpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5D966258F3E4400131964 /* SetUpManager.swift */; };
 		22C5D975258F40E800131964 /* SetUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5D974258F40E800131964 /* SetUpPage.swift */; };
 		22C6ACF3263FBA5900FAFCC5 /* TPInAppReceipt in Frameworks */ = {isa = PBXBuildFile; productRef = 22C6ACF2263FBA5900FAFCC5 /* TPInAppReceipt */; };
 		22C6ACF5263FC81500FAFCC5 /* InAppPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C6ACF4263FC81500FAFCC5 /* InAppPurchaseManager.swift */; };
@@ -353,7 +354,7 @@
 		22C4BFB725D21E7A00528A1C /* ViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBuilder.swift; sourceTree = "<group>"; };
 		22C4BFC225D21F2400528A1C /* ItemProgressViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemProgressViewBuilder.swift; sourceTree = "<group>"; };
 		22C535F3263D0E3D0036B0D7 /* Tone1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = Tone1.m4a; path = ../../../../../../Downloads/Tone1.m4a; sourceTree = "<group>"; };
-		22C5D966258F3E4400131964 /* SetUpEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpEngine.swift; sourceTree = "<group>"; };
+		22C5D966258F3E4400131964 /* SetUpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpManager.swift; sourceTree = "<group>"; };
 		22C5D974258F40E800131964 /* SetUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpPage.swift; sourceTree = "<group>"; };
 		22C6ACF4263FC81500FAFCC5 /* InAppPurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseManager.swift; sourceTree = "<group>"; };
 		22C6ACF626400ECA00FAFCC5 /* LoadingAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingAnimation.swift; sourceTree = "<group>"; };
@@ -405,6 +406,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				53EE2A465F2776989018DF07 /* Pods_Reborn.framework in Frameworks */,
+				22569F89264136D5001459C3 /* SwiftyStoreKit in Frameworks */,
 				22AF41172607457A00B89031 /* StoreKit.framework in Frameworks */,
 				22C6ACF3263FBA5900FAFCC5 /* TPInAppReceipt in Frameworks */,
 			);
@@ -749,7 +751,7 @@
 			isa = PBXGroup;
 			children = (
 				22C23A0E258DC4FA00D4BEB2 /* AppEngine.swift */,
-				22C5D966258F3E4400131964 /* SetUpEngine.swift */,
+				22C5D966258F3E4400131964 /* SetUpManager.swift */,
 				22C6ACF4263FC81500FAFCC5 /* InAppPurchaseManager.swift */,
 			);
 			path = Manager;
@@ -1045,6 +1047,7 @@
 			name = Reborn;
 			packageProductDependencies = (
 				22C6ACF2263FBA5900FAFCC5 /* TPInAppReceipt */,
+				22569F88264136D5001459C3 /* SwiftyStoreKit */,
 			);
 			productName = Reborn;
 			productReference = 220B727E258A288000E4BEDC /* Reborn.app */;
@@ -1145,6 +1148,7 @@
 			mainGroup = 220B7275258A288000E4BEDC;
 			packageReferences = (
 				22C6ACF1263FBA5900FAFCC5 /* XCRemoteSwiftPackageReference "TPInAppReceipt" */,
+				22569F87264136D5001459C3 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
 			);
 			productRefGroup = 220B727F258A288000E4BEDC /* Products */;
 			projectDirPath = "";
@@ -1444,7 +1448,7 @@
 				22A59811259AA31A008E2A06 /* PopUpViewBuilder.swift in Sources */,
 				22A7DC2C260595B400A55CE8 /* LightAndDarkModePopUpViewBuilder.swift in Sources */,
 				221E0B8825A9A22800386FE1 /* Gender.swift in Sources */,
-				22C5D967258F3E4400131964 /* SetUpEngine.swift in Sources */,
+				22C5D967258F3E4400131964 /* SetUpManager.swift in Sources */,
 				229C5EEA25F4F1FD00C94B61 /* UIWindow.swift in Sources */,
 				223132CF263D188F0020BA70 /* CalendarCellStrategy.swift in Sources */,
 				22D7FBA125A18FE5006B1F28 /* CustomData.swift in Sources */,
@@ -1873,6 +1877,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		22569F87264136D5001459C3 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bizz84/SwiftyStoreKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.16.3;
+			};
+		};
 		22C6ACF1263FBA5900FAFCC5 /* XCRemoteSwiftPackageReference "TPInAppReceipt" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/tikhop/TPInAppReceipt.git";
@@ -1884,6 +1896,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		22569F88264136D5001459C3 /* SwiftyStoreKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 22569F87264136D5001459C3 /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */;
+			productName = SwiftyStoreKit;
+		};
 		22C6ACF2263FBA5900FAFCC5 /* TPInAppReceipt */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 22C6ACF1263FBA5900FAFCC5 /* XCRemoteSwiftPackageReference "TPInAppReceipt" */;

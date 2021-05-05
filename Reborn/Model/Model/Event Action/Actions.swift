@@ -30,10 +30,7 @@ class Actions {
         AppEngine.shared.saveUser()
         AppEngine.shared.notifyUIObservers(withIdentifier: "HomeViewController")
         AppEngine.shared.notifyUIObservers(withIdentifier: "ItemManagementViewController")
-        
-        
-        
-       
+ 
         if let item = AppEngine.shared.currentUser.getItemBy(ID), item.state == .completed {
             UIApplication.shared.getTopViewController()?.presentItemCompletedPopUp(for: item)
         }

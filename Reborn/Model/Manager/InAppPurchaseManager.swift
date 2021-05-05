@@ -9,14 +9,25 @@ import Foundation
 import TPInAppReceipt
 import UIKit
 import StoreKit
+import Alamofire
+import SwiftyStoreKit
+import Purchases
+
+protocol InAppPurchaseObserver {
+    func puchaseSuccessed()
+    func puchaseFailed()
+}
 
 class InAppPurchaseManager {
     static var shared = InAppPurchaseManager()
+    private var observers = [InAppPurchaseObserver]()
+    let sharedSecret = "2add70b904c74e33bf3bdc9681d34b67"
     
-    var oneMonthProductID = "com.crazycat.Reborn.OneMonthVip"
-    var oneYearProductID = "com.crazycat.Reborn.OneYearVip"
-    var permanentProductID = "com.crazycat.Reborn.PermanentVip"
-    
+    var packages: Array<Purchases.Package> = []
+//    var oneMonthPackage: Purchases.Package? = nil
+//    var oneYearPackage: Purchases.Package? = nil
+//    var permanentPackage: Purchases.Package? = nil
+//    var energyPackage: Purchases.Package? = nil
     init() {
     }
     
@@ -44,168 +55,217 @@ class InAppPurchaseManager {
         }
     }
     
-    public func restorePurchase(in viewController: SKPaymentTransactionObserver) {
-        SKPaymentQueue.default().add(viewController)
-        if SKPaymentQueue.canMakePayments() {
-            SKPaymentQueue.default().restoreCompletedTransactions()
+    func getPriceOf(_ purchaseType: PurchaseType) -> Double? {
+        var pakageForFetch: Purchases.Package?
+        for pakage in self.packages {
+            print(pakage.product.productIdentifier)
+            if pakage.product.productIdentifier == purchaseType.productID{
+                pakageForFetch = pakage
+            }
+        }
+        if let price = pakageForFetch?.product.price {
+            return Double(truncating: price)
         } else {
-            self.userIsNotAbleToPurchase()
+            return nil
+        }
+    }
+    
+    
+    func add(_ observer: InAppPurchaseObserver) {
+        self.observers.append(observer)
+    }
+    
+    func deleteAll() {
+        self.observers.removeAll()
+    }
+    
+    func fetchOfferingFromRevenueCat() {
+        Purchases.shared.offerings { (offerings, error) in
+            if let offerings = offerings {
+              // Display current offering with offerings.current
+                let pacakges = offerings.current?.availablePackages
+                guard pacakges != nil else { return }
+                
+                for index in 0 ... pacakges!.count - 1 {
+                    let pakage = pacakges![index]
+                    let product = pakage.product
+//                    let title = product.localizedTitle
+//                    let price = product.price
+//                    var duration = ""
+//                    let subscriptionPeriod = product.subscriptionPeriod
+                    
+                    self.packages.append(pakage)
+
+                }
+                    
+            }
+        }
+    }
+    
+    
+    public func restorePurchase() {
+        Purchases.shared.restoreTransactions { (purchaserInfo, error) in
+            if purchaserInfo?.entitlements["pro"]?.isActive == true {
+                
+                self.updateAfterAppPurchased(withType: self.getUserPurchaseType())
+                
+            } else {
+                self.notifyAllObservers(withState: .failed)
+            }
+        }
+    }
+    
+ 
+    
+    func finishPendingTransactions() {
+        SwiftyStoreKit.completeTransactions(atomically: true) { purchases in
+            
+            for purchase in purchases {
+                switch purchase.transaction.transactionState {
+                case .purchased, .restored:
+                    if purchase.needsFinishTransaction {
+                        // Deliver content from server, then:
+                        SwiftyStoreKit.finishTransaction(purchase.transaction)
+                        print("Pending transaction \(purchase.productId) finished")
+                    }
+                case .failed, .purchasing, .deferred:
+                    break // do nothing
+                @unknown default:
+                    break
+                }
+            }
+            self.checkUserSubsriptionStatus()
         }
     }
     
     public func checkUserSubsriptionStatus() {
-        DispatchQueue.main.async {
-            if let receipt = try? InAppReceipt.localReceipt() {
-                self.checkUserPermanentSubsriptionStatus(with: receipt)
-                
-                for test in receipt.autoRenewablePurchases {
-                    print("购买时间 \(test.originalPurchaseDate) 过期时间 \(test.subscriptionExpirationDate)")
-                }
-                receipt.
-                print("有效订阅 \(receipt.hasActiveAutoRenewablePurchases)")
+        Purchases.shared.purchaserInfo { (purchaserInfo, error) in
+            guard purchaserInfo != nil else {
+                return
                 
             }
-        }
-        
-    }
-    
-    func refreshRecipt() {
-        let receiptURL = Bundle.main.appStoreReceiptURL
-        let receipt = NSData(contentsOf: receiptURL!)
-        let requestContents: [String: Any] = [
-            "receipt-data": receipt!.base64EncodedString(options: []),
-            "password": "your iTunes Connect shared secret"
-        ]
-
-        let appleServer = receiptURL?.lastPathComponent == "sandboxReceipt" ? "sandbox" : "buy"
-
-        let stringURL = "https://\(appleServer).itunes.apple.com/verifyReceipt"
-
-        print("Loading user receipt: \(stringURL)...")
-
-        Alamofire.request(stringURL, method: .post, parameters: requestContents, encoding: JSONEncoding.default)
-            .responseJSON { response in
-                if let value = response.result.value as? NSDictionary {
-                    print(value)
-                } else {
-                    print("Receiving receipt from App Store failed: \(response.result)")
-                }
-        }
-    }
-    
-
-    private func checkUserPermanentSubsriptionStatus(with receipt: InAppReceipt) {
-        if let receipt = try? InAppReceipt.localReceipt() { //Check permsnent subscription
             
-            if receipt.containsPurchase(ofProductIdentifier: PurchaseType.permanent.productID) {
-                print("User has permament permission")
-                if !AppEngine.shared.currentUser.isVip {
-                    self.updateAfterAppPurchased(withType: .permanent)
-                }
+            var transactionIDs = [String]()
+            for transcation in purchaserInfo!.nonSubscriptionTransactions {
+                transactionIDs.append(transcation.productId)
+            }
+            
+            print("History non-consumable transcations \(transactionIDs)")
+            
+            if transactionIDs.contains(PurchaseType.permanent.productID) {
+                self.subsrptionCheckSuccessed(withPurchasedType: .permanent)
+                print("User has permanent subscription")
             } else {
-                self.checkUserAutoRenewableSubsrption(with: receipt)
+                let activeSubscriptions = purchaserInfo!.activeSubscriptions
+                if activeSubscriptions.contains(PurchaseType.oneYear.productID) {
+                    self.subsrptionCheckSuccessed(withPurchasedType: .oneYear)
+                    print("User has valid annual subscription")
+                } else if activeSubscriptions.contains(PurchaseType.oneMonth.productID) {
+                    self.subsrptionCheckSuccessed(withPurchasedType: .oneMonth)
+                    print("User has valid monthly subscription")
+
+                } else {
+                    print("User subscription expired")
+                    self.subsrptionCheckFailed()
+                }
+                
+                
                 
             }
+           
             
         }
     }
     
-    private func checkUserAutoRenewableSubsrption(with receipt: InAppReceipt) {
-        if receipt.hasActiveAutoRenewablePurchases {
-            print("Subsription still valid")
-            if !AppEngine.shared.currentUser.isVip {
-                let purchaseType = InAppPurchaseManager.shared.getUserPurchaseType()
-                updateAfterAppPurchased(withType: purchaseType)
+    func notifyAllObservers(withState state: SKPaymentTransactionState) {
+        for observer in self.observers {
+            if state == .purchased {
+                observer.puchaseSuccessed()
+            } else if state == .failed {
+                observer.puchaseFailed()
             }
-        } else {
-            print("Subsription expired")
             
-            if AppEngine.shared.currentUser.isVip {
-                self.subsrptionCheckFailed()
-            }
         }
+        self.deleteAll()
     }
-    
-  
-    
     
     private func updateAfterAppPurchased(withType purchaseType: PurchaseType) {
+        self.notifyAllObservers(withState: .purchased)
         AppEngine.shared.currentUser.purchasedType = purchaseType
         AppEngine.shared.currentUser.energy += 5
         AppEngine.shared.userSetting.hasViewedEnergyUpdate = false
         AppEngine.shared.saveUser()
+        self.notifyAllObservers(withState: .purchased)
         AppEngine.shared.notifyAllUIObservers()
     }
     
     public func updateAfterEnergyPurchased() {
+        self.notifyAllObservers(withState: .purchased)
         AppEngine.shared.currentUser.energy += 3
         AppEngine.shared.saveUser()
         AppEngine.shared.notifyAllUIObservers()
     }
     
-    public func purchaseApp(with purchaseType: PurchaseType, in viewController: SKPaymentTransactionObserver) {
-        SKPaymentQueue.default().add(viewController)
+    public func purchase(_ purchaseType: PurchaseType) {
         
-        if SKPaymentQueue.canMakePayments() {
-            let paymentRequest = SKMutablePayment()
-            paymentRequest.productIdentifier = purchaseType.productID
-            SKPaymentQueue.default().add(paymentRequest)
-        } else {
-            self.userIsNotAbleToPurchase()
+        var pakageForPurchase: Purchases.Package?
+        for pakage in self.packages {
+            print(pakage.product.productIdentifier)
+            if pakage.product.productIdentifier == purchaseType.productID{
+                pakageForPurchase = pakage
+            }
         }
-    }
-    
-    public func purchaseEnergy(in viewController: SKPaymentTransactionObserver) {
-        SKPaymentQueue.default().add(viewController)
-        let productID = "com.crazycat.Reborn.threePointOfEnergy"
-        if SKPaymentQueue.canMakePayments() {
-            let paymentRequest = SKMutablePayment()
-            paymentRequest.productIdentifier = productID
-            SKPaymentQueue.default().add(paymentRequest)
-        } else {
-            self.userIsNotAbleToPurchase()
+        guard pakageForPurchase != nil else {
+           return
         }
-    }
-    
-
-}
-
-extension InAppPurchaseManager {
-    public func purchaseAppFailed() {
-        if let currentVC = UIApplication.shared.getTopViewController() {
-            SystemAlert.present("购买失败", and: "请重新尝试，如有问题请在 个人中心-反馈 发送邮件", from: currentVC)
-        }
-    }
-    
-    public func purchaseEnergyFailed() {
-        if let currentVC = UIApplication.shared.getTopViewController() {
-            SystemAlert.present("购买失败", and: "请重新尝试，如有问题请在 个人中心-反馈 发送邮件", from: currentVC)
-        }
-    }
-    
-    public func puchaseEnergySuccessed() {
-        if let currentVC = UIApplication.shared.getTopViewController() {
-            SystemAlert.present("购买成功", and: "您获得了3点能量，快去使用时光机器吧", from: currentVC)
-        }
-        self.updateAfterEnergyPurchased()
-    }
-    
-    public func puchaseAppSuccessed(withType purchaseType: PurchaseType) {
-        if let currentVC = UIApplication.shared.getTopViewController() {
-            SystemAlert.present("订阅成功", and: "所有内容已经解锁", from: currentVC)
+        
+        switch purchaseType {
+        case .oneMonth, .oneYear, .permanent:
             
+            Purchases.shared.purchasePackage(pakageForPurchase!) { (transaction, purchaserInfo, error, userCancelled) in
+              if purchaserInfo?.entitlements["pro"]?.isActive == true {
+                self.updateAfterAppPurchased(withType: purchaseType)
+                
+              } else {
+                self.notifyAllObservers(withState: .failed)
+              }
+            }
+        case .energy:
+
+            Purchases.shared.purchasePackage(pakageForPurchase!) { (transaction, purchaserInfo, error, userCancelled) in
+              if purchaserInfo?.entitlements["consumable"]?.isActive == true {
+                self.updateAfterEnergyPurchased()
+                self.notifyAllObservers(withState: .purchased)
+              } else {
+                self.notifyAllObservers(withState: .failed)
+              }
+            }
+        default: self.notifyAllObservers(withState: .failed)
         }
-        self.updateAfterAppPurchased(withType: purchaseType)
+        
+    }
+    
+    private func subsrptionCheckFailed() {
+        
+        if AppEngine.shared.currentUser.isVip {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                let currentVC = UIApplication.shared.getTopViewController()
+                currentVC != nil ? SystemAlert.present("订阅验证失败", and: "请检查您的订阅", from: currentVC!) : ()
+            })
+            
+        
+            AppEngine.shared.currentUser.purchasedType = .none
+            AppEngine.shared.saveUser()
+            AppEngine.shared.notifyAllUIObservers()
+        }
        
     }
     
-    public func subsrptionCheckFailed() {
-        let currentVC = UIApplication.shared.getTopViewController()
-        currentVC != nil ? SystemAlert.present("订阅验证失败", and: "请检查您的订阅", from: currentVC!) : ()
-    
-        AppEngine.shared.currentUser.purchasedType = .none
-        AppEngine.shared.saveUser()
-        AppEngine.shared.notifyAllUIObservers()
+    private func subsrptionCheckSuccessed(withPurchasedType purchasedType: PurchaseType) {
+
+        if !AppEngine.shared.currentUser.isVip {
+            self.updateAfterAppPurchased(withType: purchasedType)
+        }
     }
     
     public func userIsNotAbleToPurchase() {
@@ -214,4 +274,5 @@ extension InAppPurchaseManager {
         }
         print("Can't make payments")
     }
+
 }

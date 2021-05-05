@@ -58,13 +58,13 @@ class ItemDetailViewController: UIViewController {
 
         calendarView.layer.cornerRadius = setting.itemCardCornerRadius
         
-        bottomShareButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 30, bottom: 10, right: 40)
+//        bottomShareButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 30, bottom: 10, right: 40)
         bottomShareButton.proportionallySetSizeWithScreen()
         bottomShareButton.setCornerRadius()
         bottomShareButton.setShadow()
         
         
-        bottomEditButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 30, bottom: 12, right: 40)
+//        bottomEditButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 30, bottom: 12, right: 40)
         bottomEditButton.proportionallySetSizeWithScreen()
         bottomEditButton.setCornerRadius()
         bottomEditButton.setShadow()
@@ -203,12 +203,16 @@ class ItemDetailViewController: UIViewController {
         } else if nextPunchInDate == DateCalculator.calculateDate(withDayDifference: 1, originalDate: CustomDate.current) {
             
             labelText = "明天"
+            if self.item.state == .completed {
+                labelText = "暂无计划"
+            }
             
         } else {
             
             if nextPunchInDate != nil {
                 labelText = "\(nextPunchInDate!.month)月\(nextPunchInDate!.day)日"
             } else {
+               
                 labelText = "暂无计划"
             }
            
@@ -265,6 +269,12 @@ class ItemDetailViewController: UIViewController {
         itemNameLabel.text = item.getFullName()
     }
     
+    func presentItemCompletedPopUpIfNeeded() {
+        if self.item.state == .completed {
+            self.presentItemCompletedPopUp(for: self.item)
+        }
+    }
+    
     func updateItemData() {
         updateItemIconAndName()
         updateFinishedDaysLabel()
@@ -276,7 +286,7 @@ class ItemDetailViewController: UIViewController {
         updateProgressView()
         updateNextPunchInDateLabel()
         updateStartDateLabel()
-
+        presentItemCompletedPopUpIfNeeded()
     }
     
    

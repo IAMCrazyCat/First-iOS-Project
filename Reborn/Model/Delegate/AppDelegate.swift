@@ -8,7 +8,7 @@
 import UIKit
 import GoogleMobileAds
 import UserNotifications
-
+import Purchases
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -19,6 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             GADMobileAds.sharedInstance().start(completionHandler: nil)
         }
         
+        Purchases.debugLogsEnabled = true
+        Purchases.configure(withAPIKey: "bSAXvlaUIFweatIwfeZryIrUUYJhnRMZ")
+        InAppPurchaseManager.shared.fetchOfferingFromRevenueCat()
+        //InAppPurchaseManager.shared.finishPendingTransactions()
+        InAppPurchaseManager.shared.checkUserSubsriptionStatus()
         return true
     }
 

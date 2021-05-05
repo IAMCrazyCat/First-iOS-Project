@@ -65,13 +65,8 @@ class AppEngine {
         scheduleNotification()
         updateWidgetData()
         loadtItemCardIcons()
-        checkUserSubsriptionStatus()
     }
-    
-    private func checkUserSubsriptionStatus() {
-        InAppPurchaseManager.shared.checkUserSubsriptionStatus()
-        
-    }
+
     
     
     
@@ -241,10 +236,15 @@ class AppEngine {
             }
             
             let itemToNotifyUser = item
+            let earlyTitle = "\(currentUser.name), 今天记得\(itemToNotifyUser.type.rawValue)\(itemToNotifyUser.name)"
+            let earlyBody = "你已经坚持了 \(itemToNotifyUser.finishedDays)天, 目标: \(itemToNotifyUser.targetDays)天, 进度: \(itemToNotifyUser.progressInPercentageString)"
+            let lateTitle = "\(currentUser.name), 今天\(itemToNotifyUser.type.rawValue)\(itemToNotifyUser.name)了吗"
+            let lateBody = SharePosterTextData.randomText
+            
             
             let content = UNMutableNotificationContent()
-            content.title = "\(currentUser.name), 今天\(itemToNotifyUser.type.rawValue)\(itemToNotifyUser.name)了吗"
-            content.body = "已打卡 \(itemToNotifyUser.finishedDays)天, 目标: \(itemToNotifyUser.targetDays)天, 进度: \(itemToNotifyUser.progressInPercentageString)"
+            content.title = time < CustomTime(hour: 18, minute: 0, second: 0, oneTenthSecond: 0) ? earlyTitle : lateTitle
+            content.body = time < CustomTime(hour: 14, minute: 0, second: 0, oneTenthSecond: 0) ? earlyBody : lateBody
             
             var dateComponents = DateComponents()
             dateComponents.calendar = Calendar.current
@@ -273,6 +273,7 @@ class AppEngine {
     
     func scheduleNotification() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        
         for time in userSetting.notificationTime {
             DispatchQueue.main.async {
                 self.addNotification(at: time)

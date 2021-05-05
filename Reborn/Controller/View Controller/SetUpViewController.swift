@@ -18,7 +18,7 @@ class SetUpViewController: UIViewController{
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var skipSetUpButton: UIButton!
     
-    var engine = SetUpEngine()
+    var engine = SetUpManager()
     var setting = SystemSetting()
 
     var scrollViewWidth: CGFloat = 0
@@ -82,16 +82,31 @@ class SetUpViewController: UIViewController{
                 
             } else if selectedButton.currentTitle == self.setting.skipButtonTitle {
                 
+                if self.engine.getCurrentPage().ID == 1 {
+                    self.engine.quittingItemIsSkipped = true
+                } else if self.engine.getCurrentPage().ID == 3{
+                    self.engine.persistingItemIsSkipped = true
+                }
+                
                 self.engine.nextPage()
                 self.engine.nextPage()
                 self.deSelectButton()
                 self.itemIsSkipped = true
                 
+                
             } else {
+                if self.engine.getCurrentPage().ID == 1 {
+                    self.engine.quittingItemIsSkipped = false
+                } else if self.engine.getCurrentPage().ID == 3{
+                    self.engine.persistingItemIsSkipped = false
+                }
                 self.engine.save(data: self.selectedButton.currentTitle ?? "")
                 self.engine.nextPage()
                 self.deSelectButton()
                 self.itemIsSkipped = false
+                
+                
+                
             }
             
         } else {

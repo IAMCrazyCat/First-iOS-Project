@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import StoreKit
 
 class PurchaseViewController: UIViewController {
 
@@ -19,12 +18,6 @@ class PurchaseViewController: UIViewController {
     @IBOutlet var shadowCoverView: UIView!
     @IBOutlet var middleContentViewHeightConstraint: NSLayoutConstraint!
     
-    @IBOutlet var VIPFounctionOneView: UIView!
-    @IBOutlet var VIPFounctionTwoView: UIView!
-    @IBOutlet var VIPFounctionThreeView: UIView!
-    @IBOutlet var VIPFounctionFourView: UIView!
-    @IBOutlet var VIPFounctionFiveView: UIView!
-    
     @IBOutlet var purchaseButton: UIButton!
     @IBOutlet var functionNumberButtons: [UIButton]!
     @IBOutlet var functionViews: [UIView]!
@@ -36,12 +29,21 @@ class PurchaseViewController: UIViewController {
     
     @IBOutlet var subscriptionButtons: [UIButton]!
     @IBOutlet var textView: UITextView!
+    
+    
+    @IBOutlet weak var oneMonthPrice: UILabel!
+    @IBOutlet weak var oneDayOfOneMonthPrice: UILabel!
+    @IBOutlet weak var oneYearPrice: UILabel!
+    @IBOutlet weak var oneDayOfOneYearPrice: UILabel!
+    @IBOutlet weak var permanentPrice: UILabel!
+    
     var selectedSubscriptionButton: UIButton!
     
     var lastViewController: UIViewController?
     let engine: AppEngine = AppEngine.shared
     var selectedPurchaseType: PurchaseType = .oneMonth
     var purchasedType: PurchaseType = .none
+    var loadingFailed: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +76,10 @@ class PurchaseViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         middleScrollView.flashScrollIndicators()
+        if self.loadingFailed {
+            SystemAlert.present("加载失败", and: "请重新尝试", from: self)
+            self.loadingFailed = false
+        }
     }
     
 //    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -107,15 +113,16 @@ class PurchaseViewController: UIViewController {
     
     @IBAction func purchaseButtonPressed(_ sender: UIButton) {
         Vibrator.vibrate(withImpactLevel: .medium)
-        LoadingAnimation.add(to: self.view, withRespondingTime: 120, proportionallyOnYPosition: 0.4)
-        
-        
-        InAppPurchaseManager.shared.purchaseApp(with: selectedPurchaseType, in: self)
+        LoadingAnimation.add(to: self.view, withRespondingTime: 60, proportionallyOnYPosition: 0.4)
+        InAppPurchaseManager.shared.add(self)
+        InAppPurchaseManager.shared.purchase(selectedPurchaseType)
     }
     
     func restoreApp() {
-        LoadingAnimation.add(to: self.view, withRespondingTime: 15, proportionallyOnYPosition: 0.4, timeOutAlertTitle: "恢复失败", timeOutAlertBody: "没有找到购买记录，或者您已经在使用高级会员")
-        InAppPurchaseManager.shared.restorePurchase(in: self)
+        LoadingAnimation.add(to: self.view, withRespondingTime: 15, proportionallyOnYPosition: 0.4, timeOutAlertTitle: "恢复失败", timeOutAlertBody: "操作超时，请稍后再试")
+        InAppPurchaseManager.shared.add(self)
+        InAppPurchaseManager.shared.restorePurchase()
+        
         
     }
     
@@ -146,8 +153,7 @@ class PurchaseViewController: UIViewController {
             self.monthSubscriptionButton.isUserInteractionEnabled = false
             self.yearSubscriptionButton.alpha = 0.5
             self.yearSubscriptionButton.isUserInteractionEnabled = false
-
-        case .none:
+        default:
             self.selectedSubscriptionButton = monthSubscriptionButton
         }
         
@@ -175,7 +181,7 @@ class PurchaseViewController: UIViewController {
             textView.linkTextAttributes = [
                 .foregroundColor: AppEngine.shared.userSetting.smartVisibleThemeColor.withAlphaComponent(0.7)
             ]
-        case .none:
+        default:
             let instructionText = NSMutableAttributedString(string: "购买须知：一月期和一年期会员属于订阅型会员，订阅到期后会自动续费，您可以随时在系统的订阅管理中取消，了解如何取消订阅")
             instructionText.addAttribute(NSAttributedString.Key.foregroundColor, value: SystemSetting.shared.smartLabelGrayColor, range: NSRange(location: 0, length: 50))
             instructionText.addAttribute(.link, value: "https://support.apple.com/zh-cn/HT202039", range: NSRange(location: 50, length: 8))
@@ -256,12 +262,31 @@ class PurchaseViewController: UIViewController {
 //        }
     }
    
-
+    func updatePrice() {
+        let locale = Locale.current
+        let currencySymbol = locale.currencySymbol ?? ""
+        let oneMonthPrice = InAppPurchaseManager.shared.getPriceOf(.oneMonth)
+        let oneYearPrice = InAppPurchaseManager.shared.getPriceOf(.oneYear)
+        let permanentPrice = InAppPurchaseManager.shared.getPriceOf(.permanent)
+        let defaultString = currencySymbol + " ?"
+        
+        self.oneMonthPrice.text = oneMonthPrice != nil ? "\(currencySymbol) \(oneMonthPrice!.round(toPlaces: 1))" : defaultString
+        self.oneYearPrice.text = oneYearPrice != nil ? "\(currencySymbol) \(oneYearPrice!.round(toPlaces: 1))" : defaultString
+        self.permanentPrice.text = permanentPrice != nil ? "\(currencySymbol) \(permanentPrice!.round(toPlaces: 1))" : defaultString
+        self.oneDayOfOneMonthPrice.text = oneMonthPrice != nil ? "\(currencySymbol)\((oneMonthPrice! / 30).round(toPlaces: 2)) / 天" : defaultString + " / 天"
+        self.oneDayOfOneYearPrice.text = oneYearPrice != nil ? "\(currencySymbol) \((oneYearPrice! / 365).round(toPlaces: 2)) / 天" : defaultString + " / 天"
+        
+        
+        if oneMonthPrice == nil && oneYearPrice == nil && permanentPrice == nil {
+            self.loadingFailed = true
+        }
+        
+    }
 }
 
 extension PurchaseViewController: UIObserver {
     func updateUI() {
-        
+        updatePrice()
         updateSubscriptionButtons()
         updatePurchaseButton()
         updateInstructionView()
@@ -279,62 +304,25 @@ extension PurchaseViewController: UITextViewDelegate {
     }
 }
 
-extension PurchaseViewController: SKPaymentTransactionObserver {
-    
-    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-        for transaction in transactions {
-            if transaction.transactionState == .purchased {
-                
-                print("Thanks for shopping")
-                
-                SKPaymentQueue.default().finishTransaction(transaction)
-                SKPaymentQueue.default().remove(self)
-                LoadingAnimation.remove()
-                InAppPurchaseManager.shared.puchaseAppSuccessed(withType: self.selectedPurchaseType)
-                
-                if let userCenterViewController = self.lastViewController as? UserCenterViewController {
-                    userCenterViewController.showVipIcon()
-                }
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { 
-                    self.dismiss(animated: true, completion: nil)
-                }
-
-            } else if transaction.transactionState == .failed {
-                print("Transaction Failed!")
-                
-                InAppPurchaseManager.shared.purchaseAppFailed()
-                SKPaymentQueue.default().finishTransaction(transaction)
-                SKPaymentQueue.default().remove(self)
-                LoadingAnimation.remove()
-                if let error = transaction.error {
-                    let errorDescription = error.localizedDescription
-                    print(errorDescription)
-                }
-            } else if transaction.transactionState == .restored {
-                print("Transaction restored")
-                SKPaymentQueue.default().finishTransaction(transaction)
-                SKPaymentQueue.default().remove(self)
-                LoadingAnimation.remove()
-                InAppPurchaseManager.shared.checkUserSubsriptionStatus()
-                
-                if let userCenterViewController = self.lastViewController as? UserCenterViewController {
-                    userCenterViewController.showVipIcon()
-                }
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    self.dismiss(animated: true, completion: nil)
-                }
-                
-            } else if transaction.transactionState == .purchasing {
-               
-            } else if transaction.transactionState == .deferred {
-               
-            }
+extension PurchaseViewController: InAppPurchaseObserver {
+    func puchaseSuccessed() {
+        
+        LoadingAnimation.remove()
+        self.dismiss(animated: true) {
+            
+            let userCenter = self.lastViewController as? UserCenterViewController
+            userCenter?.showVipIcon()
+            let currentVC = UIApplication.shared.getTopViewController()
+            currentVC != nil ? SystemAlert.present("购买成功", and: "所有内容已解锁", from: currentVC!) : ()
+            
         }
         
     }
     
+    func puchaseFailed() {
+        SystemAlert.present("购买失败", and: "请重新尝试，如有疑问请在个人中心发送反馈邮件", from: self)
+        LoadingAnimation.remove()
+    }
     
     
 }

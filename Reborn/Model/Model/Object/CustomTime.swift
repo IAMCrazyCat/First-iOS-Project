@@ -6,7 +6,18 @@
 //
 
 import Foundation
-class CustomTime: NSObject, NSCoding {
+class CustomTime: NSObject, NSCoding, Comparable {
+    static func < (lhs: CustomTime, rhs: CustomTime) -> Bool {
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH mm ss.SSSS"
+
+        let lhsDate = formatter.date(from: "\(lhs.hour) \(lhs.minute) \(lhs.second).\(lhs.oneTenthSecond * 100)")!
+        let rhsDate = formatter.date(from: "\(rhs.hour) \(rhs.minute) \(rhs.second).\(rhs.oneTenthSecond * 100)")!
+        
+        return lhsDate < rhsDate
+    }
+    
     
     var hour: Int
     var minute: Int

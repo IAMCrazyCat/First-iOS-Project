@@ -68,10 +68,12 @@ class EnergySettingViewController: UIViewController {
     
     @IBAction func purchaseButtonPressed(_ sender: Any) {
         Vibrator.vibrate(withImpactLevel: .medium)
-        LoadingAnimation.add(to: self.view, withRespondingTime: 120, proportionallyOnYPosition: 0.38)
+        LoadingAnimation.add(to: self.view, withRespondingTime: 60, proportionallyOnYPosition: 0.38)
         self.titleLabel.text = "请勿离开界面"
         self.rotationSpeed = 0.5
-        InAppPurchaseManager.shared.purchaseEnergy(in: self)
+        InAppPurchaseManager.shared.add(self)
+        InAppPurchaseManager.shared.purchase(.energy)
+        
 
     }
 
@@ -125,38 +127,19 @@ extension EnergySettingViewController: UIObserver {
     
 }
 
-extension EnergySettingViewController: SKPaymentTransactionObserver {
-    
-    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-        for transaction in transactions {
-            print(transaction)
-            if transaction.transactionState == .purchased {
-                
-                print("Thanks for shopping")
-                InAppPurchaseManager.shared.puchaseEnergySuccessed()
-                
-                
-                self.rotationSpeed = (self.vipStrategy as! EnergyStrategy).getAnimationSpeed()
-                self.titleLabel.text = "充能中"
-                SKPaymentQueue.default().finishTransaction(transaction)
-                SKPaymentQueue.default().remove(self)
-                LoadingAnimation.remove()
-                
-            } else if transaction.transactionState == .failed {
-                print("Transaction Failed!")
-                InAppPurchaseManager.shared.purchaseEnergyFailed()
-
-                self.rotationSpeed = (self.vipStrategy as! EnergyStrategy).getAnimationSpeed()
-                if let error = transaction.error {
-                    let errorDescription = error.localizedDescription
-                    print(errorDescription)
-                }
-                SKPaymentQueue.default().finishTransaction(transaction)
-                SKPaymentQueue.default().remove(self)
-                LoadingAnimation.remove()
-            }
-            
-        }
-        
+extension EnergySettingViewController: InAppPurchaseObserver {
+    func puchaseSuccessed() {
+        SystemAlert.present("购买成功", and: "您获得了3点能量，快去使用时光机器吧", from: self)
+        self.rotationSpeed = (self.vipStrategy as! EnergyStrategy).getAnimationSpeed()
+        self.titleLabel.text = "充能中"
+        LoadingAnimation.remove()
     }
+    
+    func puchaseFailed() {
+        SystemAlert.present("购买失败", and: "请重新尝试，如有问题请在 个人中心-反馈 发送邮件", from: self)
+        self.rotationSpeed = (self.vipStrategy as! EnergyStrategy).getAnimationSpeed()
+        LoadingAnimation.remove()
+    }
+    
+    
 }

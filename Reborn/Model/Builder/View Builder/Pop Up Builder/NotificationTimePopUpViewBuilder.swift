@@ -148,7 +148,7 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
         explanationLabel.numberOfLines = 2
         explanationLabel.font = AppEngine.shared.userSetting.smallFont
         explanationLabel.textColor = super.setting.grayColor
-        explanationLabel.text = "为了不打扰您的日常生活，2次通知是最科学的提醒，若想禁用通知，您可以在系统设置里关闭"
+        explanationLabel.text = "如果没有在进行当中的项目，您将不会收到通知，若想禁用通知，您可以在系统设置里关闭"
         
         super.contentView.addSubview(explanationLabel)
         explanationLabel.translatesAutoresizingMaskIntoConstraints = false

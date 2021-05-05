@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-class SetUpEngine {
+class SetUpManager {
     var progress = 1
     let pages = SetUpPageData.data
     var quittingItemName: String = ""
@@ -16,6 +16,9 @@ class SetUpEngine {
     var persistingItemDays: Int = 0
     var userName: String = ""
     var userGender: Gender = .undefined
+    
+    var quittingItemIsSkipped = false
+    var persistingItemIsSkipped = false
     func nextPage() {
         if progress < pages.count {
             progress += 1
@@ -82,8 +85,8 @@ class SetUpEngine {
             
             newUser.name = userName
             newUser.gender = userGender
-            newUser.items.append(QuittingItem(ID: 1, name: quittingItemName, days: quittingItemDays, frequency: .everyday, creationDate: CustomDate.current))
-            newUser.items.append(PersistingItem(ID: 2, name: persistingItemName, days: persistingItemDays, frequency: .everyday, creationDate: CustomDate.current))
+            !quittingItemIsSkipped ? newUser.items.append(QuittingItem(ID: 1, name: quittingItemName, days: quittingItemDays, frequency: .everyday, creationDate: CustomDate.current)) : ()
+            !persistingItemIsSkipped ? newUser.items.append(PersistingItem(ID: 2, name: persistingItemName, days: persistingItemDays, frequency: .everyday, creationDate: CustomDate.current)) : ()
             newUser.energy = 3
             
             switch newUser.gender {
@@ -91,15 +94,6 @@ class SetUpEngine {
             case .female: newUser.setAvatarImage(#imageLiteral(resourceName: "DefaultAvatar"))
             default: newUser.setAvatarImage(#imageLiteral(resourceName: "DefaultAvatar"))
             }
-            
-            if quittingItemName == "" {
-                newUser.removeItemWith(id: 1)
-            }
-            
-            if persistingItemName == "" {
-                newUser.removeItemWith(id: 2)
-            }
-            
             
         } else {
             newUser.name = "努力的人"

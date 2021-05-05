@@ -40,6 +40,7 @@ class TomatoClockViewController: UIViewController {
         tomatoView.layoutIfNeeded()
         timePicker.transform = CGAffineTransform(rotationAngle: rotationAngle)
         timePicker.frame = CGRect(x: -45, y: triangleImageView.frame.maxY, width: tomatoView.frame.width + 100, height: pickerViewHeight)
+
         updateUI()
     }
     

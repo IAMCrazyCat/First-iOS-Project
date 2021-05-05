@@ -115,7 +115,7 @@ class TimeMachineViewController: UIViewController {
 
         } else {
 
-            let attrs = [NSAttributedString.Key.foregroundColor: self.engine.currentUser.energy < self.calendarViewController.selectedDays ? UIColor.red : newItemProgress == 1 ? UIColor.green : AppEngine.shared.userSetting.smartLabelColor]
+            let attrs = [NSAttributedString.Key.foregroundColor: self.engine.currentUser.energy < self.calendarViewController.selectedDays ? UIColor.red : .label]
             
             let normalText = " × \(self.engine.currentUser.energy) → "
             let mutableText = "\(self.engine.currentUser.energy - self.calendarViewController.selectedDays)"
