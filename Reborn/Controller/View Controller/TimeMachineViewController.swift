@@ -85,7 +85,12 @@ class TimeMachineViewController: UIViewController {
             self.calendarViewController.userDidGo = .sameMonth
             self.engine.saveUser()
             self.engine.notifyAllUIObservers()
-
+            
+            if let currentVC = UIApplication.shared.getTopViewController() {
+                if self.calendarViewController.item.state == .completed {
+                    currentVC.presentItemCompletedPopUp(for: self.calendarViewController.item)
+                }
+            }
         }
         
         

@@ -139,11 +139,17 @@ extension SceneDelegate: UNUserNotificationCenterDelegate {
         
         if (application.applicationState == .active) {
             print("user tapped the notification bar when the app is in foreground")
-            response.notification.request.identifier == "TomatoClock" ? redirectToTomatoClockViewControll() : ()
+            if response.notification.request.identifier == "TomatoClock" {
+                redirectToTomatoClockViewControll()
+                CustomTimer.recoverTimer()
+            }
         }
           
         if (application.applicationState == .inactive) {
-            response.notification.request.identifier == "TomatoClock" ? redirectToTomatoClockViewControll() : ()
+            if response.notification.request.identifier == "TomatoClock" {
+                redirectToTomatoClockViewControll()
+                CustomTimer.recoverTimer()
+            }
         }
         
        // tell the app that we have finished processing the user’s action / response

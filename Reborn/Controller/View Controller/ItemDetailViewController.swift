@@ -269,11 +269,7 @@ class ItemDetailViewController: UIViewController {
         itemNameLabel.text = item.getFullName()
     }
     
-    func presentItemCompletedPopUpIfNeeded() {
-        if self.item.state == .completed {
-            self.presentItemCompletedPopUp(for: self.item)
-        }
-    }
+
     
     func updateItemData() {
         updateItemIconAndName()
@@ -286,7 +282,7 @@ class ItemDetailViewController: UIViewController {
         updateProgressView()
         updateNextPunchInDateLabel()
         updateStartDateLabel()
-        presentItemCompletedPopUpIfNeeded()
+        
     }
     
    

@@ -92,6 +92,7 @@ class CustomTimer {
         CustomTimer.shared.timer.invalidate()
         CustomTimer.shared.storedTimerState = .idle
         CustomTimer.finish?()
+        
     }
     
     public static func recoverTimer() {

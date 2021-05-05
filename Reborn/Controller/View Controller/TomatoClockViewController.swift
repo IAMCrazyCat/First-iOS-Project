@@ -11,12 +11,12 @@ import UIKit
 
 class TomatoClockViewController: UIViewController {
     
-    @IBOutlet var tomatoView: UIView!
-    @IBOutlet var triangleImageView: UIImageView!
-    @IBOutlet var startWorkingButton: UIButton!
-    @IBOutlet var timerLabel: UILabel!
-    @IBOutlet var guidingLabel: UILabel!
-    @IBOutlet var clockTypeSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var tomatoView: UIView!
+    @IBOutlet weak var triangleImageView: UIImageView!
+    @IBOutlet weak var startWorkingButton: UIButton!
+    @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var guidingLabel: UILabel!
+    @IBOutlet weak var clockTypeSegmentedControl: UISegmentedControl!
     
     var timePicker: UIPickerView!
     var times: Array<CustomData> = []
@@ -38,8 +38,15 @@ class TomatoClockViewController: UIViewController {
         
         tomatoView.addSubview(timePicker)
         tomatoView.layoutIfNeeded()
+        view.layoutIfNeeded()
         timePicker.transform = CGAffineTransform(rotationAngle: rotationAngle)
-        timePicker.frame = CGRect(x: -45, y: triangleImageView.frame.maxY, width: tomatoView.frame.width + 100, height: pickerViewHeight)
+        
+        timePicker.translatesAutoresizingMaskIntoConstraints = false
+        timePicker.centerXAnchor.constraint(equalTo: tomatoView.centerXAnchor, constant: 5).isActive = true
+        timePicker.centerYAnchor.constraint(equalTo: tomatoView.centerYAnchor, constant: 50).isActive = true
+        timePicker.widthAnchor.constraint(equalToConstant: pickerViewHeight).isActive = true
+        timePicker.heightAnchor.constraint(equalToConstant:  tomatoView.frame.width + 100 ).isActive = true
+//        timePicker.frame = CGRect(x: -50, y: triangleImageView.frame.maxY, width: tomatoView.frame.width, height: pickerViewHeight)
 
         updateUI()
     }
