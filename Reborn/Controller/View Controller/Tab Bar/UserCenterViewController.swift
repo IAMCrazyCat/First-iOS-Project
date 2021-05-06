@@ -136,14 +136,14 @@ class UserCenterViewController: UIViewController {
             
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
-            mail.setToRecipients(["liuzimingjay@vip.qq.com"])
+            mail.setToRecipients(["liuzimingjay@gmail.com"])
             mail.setSubject("User feedback of Reborn from: \(self.engine.currentUser.name)")
             mail.setMessageBody("<p>Hi CrazyCat, \n</p>", isHTML: true)
 
             present(mail, animated: true)
             
             } else {
-                SystemAlert.present("您的设备未设置邮箱", and: "您可以手动发送反馈邮件到liuzimingjay@vip.qq.com", from: self)
+                SystemAlert.present("您的设备未设置邮箱", and: "您可以手动发送反馈邮件到liuzimingjay@gmail.com", from: self)
                 
         }
     }
@@ -450,7 +450,7 @@ extension UserCenterViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         print(scrollViewTopOffset)
-        let navigationBar = self.navigationController?.navigationBar
+//        let navigationBar = self.navigationController?.navigationBar
         if scrollView.contentOffset.y < self.scrollViewTopOffset - 10 {
             
 //            UIView.animate(withDuration: 0.2, animations: {

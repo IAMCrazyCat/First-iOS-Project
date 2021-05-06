@@ -2346,7 +2346,7 @@
                                 <rect key="frame" x="0.0" y="244" width="414" height="358"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CcI-IA-Fo4" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="550"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="620"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H79-hx-hQE" userLabel="VIP Founction One">
                                                 <rect key="frame" x="15" y="20" width="384" height="50"/>
@@ -2645,6 +2645,16 @@
                                                     <constraint firstItem="Soh-2c-Zfe" firstAttribute="leading" secondItem="8rC-hy-Pjf" secondAttribute="trailing" constant="10" id="y30-5r-Zlm"/>
                                                 </constraints>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JxF-GM-2RC">
+                                                <rect key="frame" x="147" y="580" width="120" height="28"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <state key="normal" title="用户协议与隐私政策">
+                                                    <color key="titleColor" name="SmartLabelGrayColor"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="G1j-UA-bio" kind="show" id="BzB-jo-Mne"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                         <constraints>
@@ -2659,9 +2669,10 @@
                                             <constraint firstItem="1bU-a7-FrP" firstAttribute="top" secondItem="H79-hx-hQE" secondAttribute="bottom" constant="20" id="Fdg-Ch-6ib"/>
                                             <constraint firstItem="1bU-a7-FrP" firstAttribute="width" secondItem="H79-hx-hQE" secondAttribute="width" id="NeJ-0d-XDX"/>
                                             <constraint firstItem="iJs-TO-3ch" firstAttribute="width" secondItem="H79-hx-hQE" secondAttribute="width" id="PHe-Td-s4X"/>
+                                            <constraint firstItem="JxF-GM-2RC" firstAttribute="centerX" secondItem="CcI-IA-Fo4" secondAttribute="centerX" id="PgJ-4v-bXT"/>
                                             <constraint firstItem="1bU-a7-FrP" firstAttribute="height" secondItem="H79-hx-hQE" secondAttribute="height" id="UUS-Pq-Ooa"/>
                                             <constraint firstItem="iJs-TO-3ch" firstAttribute="centerX" secondItem="CcI-IA-Fo4" secondAttribute="centerX" id="UuN-hl-70g"/>
-                                            <constraint firstAttribute="height" constant="550" id="Y4h-WQ-oPk"/>
+                                            <constraint firstAttribute="height" constant="620" id="Y4h-WQ-oPk"/>
                                             <constraint firstItem="rPF-jZ-Aoe" firstAttribute="height" secondItem="H79-hx-hQE" secondAttribute="height" id="b0Y-yi-jny"/>
                                             <constraint firstItem="2gR-qV-msb" firstAttribute="width" secondItem="H79-hx-hQE" secondAttribute="width" id="bBO-oi-wNq"/>
                                             <constraint firstItem="iJs-TO-3ch" firstAttribute="height" secondItem="H79-hx-hQE" secondAttribute="height" id="cMz-9T-fVP"/>
@@ -2672,6 +2683,7 @@
                                             <constraint firstItem="lh1-pk-Ebu" firstAttribute="centerX" secondItem="CcI-IA-Fo4" secondAttribute="centerX" id="enw-IN-RtN"/>
                                             <constraint firstItem="rPF-jZ-Aoe" firstAttribute="width" secondItem="H79-hx-hQE" secondAttribute="width" id="ewl-Ti-wPe"/>
                                             <constraint firstItem="Ak4-lP-eyo" firstAttribute="width" secondItem="YhA-we-a1G" secondAttribute="width" id="f0n-MQ-Erb"/>
+                                            <constraint firstItem="JxF-GM-2RC" firstAttribute="top" secondItem="Ak4-lP-eyo" secondAttribute="bottom" constant="20" id="ka2-G5-Wgr"/>
                                             <constraint firstItem="H79-hx-hQE" firstAttribute="top" secondItem="CcI-IA-Fo4" secondAttribute="top" constant="20" id="mrI-EP-NfP"/>
                                             <constraint firstItem="YhA-we-a1G" firstAttribute="height" secondItem="H79-hx-hQE" secondAttribute="height" id="qJF-OZ-DDZ"/>
                                             <constraint firstItem="2gR-qV-msb" firstAttribute="centerX" secondItem="H79-hx-hQE" secondAttribute="centerX" id="t0p-4K-KWi"/>
@@ -3015,11 +3027,75 @@
                         <outletCollection property="subscriptionButtons" destination="zfe-83-aAJ" collectionClass="NSMutableArray" id="faA-y6-RD8"/>
                         <outletCollection property="subscriptionButtons" destination="vtR-Jf-LdT" collectionClass="NSMutableArray" id="4LU-mW-NHY"/>
                         <outletCollection property="subscriptionButtons" destination="2vu-DP-EEo" collectionClass="NSMutableArray" id="IKC-GB-nBu"/>
+                        <outletCollection property="functionNumberButtons" destination="8rC-hy-Pjf" collectionClass="NSMutableArray" id="xVs-XU-Mbp"/>
+                        <outletCollection property="functionViews" destination="lh1-pk-Ebu" collectionClass="NSMutableArray" id="rwh-o6-aNd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Crj-64-Tch" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="8731.8840579710159" y="746.65178571428567"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="PhX-vZ-ccz">
+            <objects>
+                <viewController id="G1j-UA-bio" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vrL-yk-zd8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dnb-hB-YOr">
+                                <rect key="frame" x="20" y="20" width="374" height="808"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <mutableString key="text">用户隐私政策
+
+[重生] 关注并且尊重用户隐私，我们不会以任何方式收集您的个人数据，包括您的个人信息，使用记录，使用偏好，您在本地产生的数据将储存在您的设备。如果您删除习惯项目，项目相关数据将会在本地被删除，且无法恢复。如果您卸载App，所有数据将会被删除，且无法被恢复。
+
+用户使用条款
+
+[重生] 提供多种App内购方案，当您选择购买即视为您同意本条款
+
+- 会员服务
+
+[一月期会员] 和 [一年期会员] 属于自动订阅型会员，服务到期后将自动续费。[永久会员] 属于非消费型会员，您只能购买一次，且不会被自动续费。[能量] 属于消费型内购，您可以重复购买，且不会被自动续费。当您取消订阅或者申请了退款，所有的会员服务将会被锁定，但是您的项目数据不会被删除，当您恢复会员后，您可以重新享受会员服务
+
+- 购买规则
+
+当您订阅了 [一月期会员] 您可以升级到 [一年期会员]，Apple会按差价进行扣款，并且更新订阅期限。
+
+为了防止重复扣费，如果您订阅了 [一月期会员] 或 [一年期会员]，再您取消订阅前，您将暂时无法购买 [永久会员]。如果您购买了 [永久会员]，[一月期会员] 和 [一年期会员] 将无法购买
+
+- 恢复购买
+
+如果您重新安装了App，您可以恢复[一月期会员] 或者 [一年期会员] 或者 [永久会员]，请在购买界面点击 '恢复购买'，如果您之前没有购买过会员，将会提示购买失败。您之前购买的 [能量] 无法被恢复，请妥善保管您的数据
+
+- 取消订阅
+
+如果您想取消订阅，在下次自动续费24小时之前，您可以在系统订阅管理中取消订阅，则下次不会扣费续订。如果在24小时内取消订阅，由于自动续订服务由Apple提供，我们无法保证您能成功退订
+
+- 退款
+
+如果您对我们的服务不满意，您可以尝试在Apple申请退款，退款成功后，您的高级会员服务将不会被保留，如果您在成功扣费后没有自动更新为高级会员，您可以发送邮件联系我们 liuzimingjay@gmail.com 我们会尽快协助您解决
+
+</mutableString>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="WGw-b0-rAF"/>
+                        <color key="backgroundColor" name="WhiteAndBlackBackground"/>
+                        <constraints>
+                            <constraint firstItem="dnb-hB-YOr" firstAttribute="leading" secondItem="WGw-b0-rAF" secondAttribute="leading" constant="20" id="2Xc-9Z-SX8"/>
+                            <constraint firstItem="dnb-hB-YOr" firstAttribute="top" secondItem="WGw-b0-rAF" secondAttribute="top" constant="20" id="iMx-PC-71I"/>
+                            <constraint firstItem="dnb-hB-YOr" firstAttribute="bottom" secondItem="WGw-b0-rAF" secondAttribute="bottom" constant="20" id="sPl-r8-tYO"/>
+                            <constraint firstItem="WGw-b0-rAF" firstAttribute="trailing" secondItem="dnb-hB-YOr" secondAttribute="trailing" constant="20" id="yyO-SM-5E3"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="lPu-vx-Zw5"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uIx-Vg-pQ5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9630" y="747"/>
         </scene>
         <!--自律工具-->
         <scene sceneID="8Zp-uB-Rbv">
@@ -3976,13 +4052,6 @@
                                     <constraint firstItem="SVT-M6-aN6" firstAttribute="leading" secondItem="5je-IK-yIS" secondAttribute="leading" constant="20" id="hRx-Oo-ex3"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wF-1F-akB">
-                                <rect key="frame" x="37" y="178" width="0.0" height="0.0"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的能量： " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V90-4m-ZfC">
                                 <rect key="frame" x="136.5" y="535" width="91" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -4053,10 +4122,22 @@
                                         <color key="textColor" name="GreenThemeColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SRU-lc-WDC">
+                                        <rect key="frame" x="173" y="84.5" width="68" height="26"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <state key="normal" title="如何补打卡？">
+                                            <color key="titleColor" name="BlueThemeColor"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="tx8-Nn-jW1" kind="push" id="anY-XH-dKK"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="QVc-vL-AUJ" firstAttribute="centerX" secondItem="e3o-Fw-IOK" secondAttribute="centerX" id="a7z-H0-grV"/>
+                                    <constraint firstItem="SRU-lc-WDC" firstAttribute="centerX" secondItem="e3o-Fw-IOK" secondAttribute="centerX" id="eu8-uD-xBC"/>
+                                    <constraint firstAttribute="bottom" secondItem="SRU-lc-WDC" secondAttribute="bottom" id="g55-39-hcy"/>
                                     <constraint firstItem="QVc-vL-AUJ" firstAttribute="centerY" secondItem="e3o-Fw-IOK" secondAttribute="centerY" id="gd4-N9-Ngm"/>
                                 </constraints>
                             </view>
@@ -4106,19 +4187,188 @@
             <point key="canvasLocation" x="8731.8840579710159" y="1541.5178571428571"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="3UM-Ss-dT5">
+        <scene sceneID="KqD-F5-L66">
             <objects>
-                <viewController id="6r7-1j-XtN" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="R5L-8R-djC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                <viewController id="tx8-Nn-jW1" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zc1-p9-Kgn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="ILt-N1-Ba4"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gVP-y2-gA2">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kO3-1S-E6T" userLabel="Content view">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="2600"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IGg-5p-q0N">
+                                                <rect key="frame" x="20" y="20" width="374" height="510"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. 点击日历右上角时光机器标志进入时光机器" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4q-6k-07k">
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="21"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="TimeMachine-1" translatesAutoresizingMaskIntoConstraints="NO" id="vnK-OB-lHr">
+                                                        <rect key="frame" x="0.0" y="41" width="374" height="469"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="S4q-6k-07k" firstAttribute="top" secondItem="IGg-5p-q0N" secondAttribute="top" id="1uE-3a-GLC"/>
+                                                    <constraint firstAttribute="trailing" secondItem="S4q-6k-07k" secondAttribute="trailing" id="Ag9-KC-0mo"/>
+                                                    <constraint firstItem="vnK-OB-lHr" firstAttribute="top" secondItem="S4q-6k-07k" secondAttribute="bottom" constant="20" id="IUR-BR-yzP"/>
+                                                    <constraint firstItem="vnK-OB-lHr" firstAttribute="leading" secondItem="IGg-5p-q0N" secondAttribute="leading" id="Kwt-VR-HDw"/>
+                                                    <constraint firstAttribute="bottom" secondItem="vnK-OB-lHr" secondAttribute="bottom" id="eON-5d-Dws"/>
+                                                    <constraint firstAttribute="trailing" secondItem="vnK-OB-lHr" secondAttribute="trailing" id="fhe-XG-XzW"/>
+                                                    <constraint firstAttribute="height" constant="510" id="gyv-Ez-sEz"/>
+                                                    <constraint firstItem="S4q-6k-07k" firstAttribute="leading" secondItem="IGg-5p-q0N" secondAttribute="leading" id="zgW-6I-bzf"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xox-pS-Lqp">
+                                                <rect key="frame" x="20" y="550" width="374" height="600"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2. 选择想补打卡的日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPU-DJ-WIB">
+                                                        <rect key="frame" x="0.0" y="0.0" width="175" height="21"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="TimeMachine-2" translatesAutoresizingMaskIntoConstraints="NO" id="7bp-DI-4ZX">
+                                                        <rect key="frame" x="0.0" y="41" width="374" height="559"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="600" id="8i6-h9-CFp"/>
+                                                    <constraint firstAttribute="bottom" secondItem="7bp-DI-4ZX" secondAttribute="bottom" id="ABR-7f-GJZ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="7bp-DI-4ZX" secondAttribute="trailing" id="Azg-t0-1PP"/>
+                                                    <constraint firstItem="7bp-DI-4ZX" firstAttribute="top" secondItem="MPU-DJ-WIB" secondAttribute="bottom" constant="20" id="E1n-kD-OAR"/>
+                                                    <constraint firstItem="MPU-DJ-WIB" firstAttribute="leading" secondItem="xox-pS-Lqp" secondAttribute="leading" id="Hyf-uU-jJR"/>
+                                                    <constraint firstItem="7bp-DI-4ZX" firstAttribute="leading" secondItem="xox-pS-Lqp" secondAttribute="leading" id="tbr-XX-22N"/>
+                                                    <constraint firstItem="MPU-DJ-WIB" firstAttribute="top" secondItem="xox-pS-Lqp" secondAttribute="top" id="zYA-UV-oV9"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XhS-m7-BTi">
+                                                <rect key="frame" x="20" y="1170" width="374" height="600"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3. 确定要补打卡的日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dt4-ec-PhC">
+                                                        <rect key="frame" x="0.0" y="0.0" width="175" height="21"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="TimeMachine-3" translatesAutoresizingMaskIntoConstraints="NO" id="Rew-p8-Q15">
+                                                        <rect key="frame" x="0.0" y="41" width="374" height="559"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="dt4-ec-PhC" firstAttribute="top" secondItem="XhS-m7-BTi" secondAttribute="top" id="6mO-kb-jPb"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Rew-p8-Q15" secondAttribute="trailing" id="8Lx-72-INA"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Rew-p8-Q15" secondAttribute="bottom" id="K1Y-4S-N1f"/>
+                                                    <constraint firstItem="Rew-p8-Q15" firstAttribute="leading" secondItem="XhS-m7-BTi" secondAttribute="leading" id="cZx-Lf-yYD"/>
+                                                    <constraint firstAttribute="height" constant="600" id="jwA-D3-zgp"/>
+                                                    <constraint firstItem="dt4-ec-PhC" firstAttribute="leading" secondItem="XhS-m7-BTi" secondAttribute="leading" id="mC5-zk-Fsn"/>
+                                                    <constraint firstItem="Rew-p8-Q15" firstAttribute="top" secondItem="dt4-ec-PhC" secondAttribute="bottom" constant="20" id="t6I-mC-JJ5"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ETi-3P-5gl">
+                                                <rect key="frame" x="20" y="1790" width="374" height="200"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4. 点击回到过去，相应的能量会被扣除" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16R-Nu-r0Y">
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="21"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" image="TimeMachine-4" translatesAutoresizingMaskIntoConstraints="NO" id="EQa-sO-M4k">
+                                                        <rect key="frame" x="0.0" y="41" width="374" height="159"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="EQa-sO-M4k" firstAttribute="leading" secondItem="ETi-3P-5gl" secondAttribute="leading" id="5LK-tn-Qbl"/>
+                                                    <constraint firstAttribute="trailing" secondItem="16R-Nu-r0Y" secondAttribute="trailing" id="LCq-Tu-dlA"/>
+                                                    <constraint firstItem="EQa-sO-M4k" firstAttribute="top" secondItem="16R-Nu-r0Y" secondAttribute="bottom" constant="20" id="ODP-W6-LsQ"/>
+                                                    <constraint firstItem="16R-Nu-r0Y" firstAttribute="leading" secondItem="ETi-3P-5gl" secondAttribute="leading" id="QB1-aa-qkc"/>
+                                                    <constraint firstItem="16R-Nu-r0Y" firstAttribute="top" secondItem="ETi-3P-5gl" secondAttribute="top" id="W3x-Sz-KYL"/>
+                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="200" id="X3j-Wo-WzL"/>
+                                                    <constraint firstAttribute="trailing" secondItem="EQa-sO-M4k" secondAttribute="trailing" id="Xlk-ca-bnh"/>
+                                                    <constraint firstAttribute="bottom" secondItem="EQa-sO-M4k" secondAttribute="bottom" id="pmR-ci-Qb3"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kW1-b1-VJX">
+                                                <rect key="frame" x="20" y="2010" width="374" height="520"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5. 成功恢复打卡，继续加油" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L61-wF-cGC">
+                                                        <rect key="frame" x="0.0" y="0.0" width="210" height="21"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="TimeMachine-5" translatesAutoresizingMaskIntoConstraints="NO" id="Nj1-yH-uN9">
+                                                        <rect key="frame" x="0.0" y="41" width="374" height="479"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="L61-wF-cGC" firstAttribute="leading" secondItem="kW1-b1-VJX" secondAttribute="leading" id="Ags-gG-M81"/>
+                                                    <constraint firstItem="Nj1-yH-uN9" firstAttribute="leading" secondItem="kW1-b1-VJX" secondAttribute="leading" id="Mfg-Aa-fc6"/>
+                                                    <constraint firstItem="Nj1-yH-uN9" firstAttribute="top" secondItem="L61-wF-cGC" secondAttribute="bottom" constant="20" id="U2p-fy-Oij"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Nj1-yH-uN9" secondAttribute="trailing" id="kEW-gW-le3"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Nj1-yH-uN9" secondAttribute="bottom" id="o0T-99-ITq"/>
+                                                    <constraint firstAttribute="height" constant="520" id="wCT-Ps-m46"/>
+                                                    <constraint firstItem="L61-wF-cGC" firstAttribute="top" secondItem="kW1-b1-VJX" secondAttribute="top" id="yAx-8C-wDw"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" name="WhiteAndBlackBackground"/>
+                                        <constraints>
+                                            <constraint firstItem="ETi-3P-5gl" firstAttribute="leading" secondItem="kO3-1S-E6T" secondAttribute="leading" constant="20" id="2un-fc-sdq"/>
+                                            <constraint firstAttribute="trailing" secondItem="xox-pS-Lqp" secondAttribute="trailing" constant="20" id="6PV-Gu-q4Q"/>
+                                            <constraint firstItem="IGg-5p-q0N" firstAttribute="top" secondItem="kO3-1S-E6T" secondAttribute="top" constant="20" id="7DE-gY-p1b"/>
+                                            <constraint firstItem="XhS-m7-BTi" firstAttribute="top" secondItem="xox-pS-Lqp" secondAttribute="bottom" constant="20" id="8PY-8X-5F8"/>
+                                            <constraint firstItem="kW1-b1-VJX" firstAttribute="top" secondItem="ETi-3P-5gl" secondAttribute="bottom" constant="20" id="CSe-q6-wmP"/>
+                                            <constraint firstItem="kW1-b1-VJX" firstAttribute="leading" secondItem="kO3-1S-E6T" secondAttribute="leading" constant="20" id="Dhr-dh-zeb"/>
+                                            <constraint firstItem="ETi-3P-5gl" firstAttribute="top" secondItem="XhS-m7-BTi" secondAttribute="bottom" constant="20" id="F6f-MC-fne"/>
+                                            <constraint firstAttribute="trailing" secondItem="IGg-5p-q0N" secondAttribute="trailing" constant="20" id="J96-Ib-AqY"/>
+                                            <constraint firstItem="xox-pS-Lqp" firstAttribute="leading" secondItem="kO3-1S-E6T" secondAttribute="leading" constant="20" id="P5z-Za-9iM"/>
+                                            <constraint firstAttribute="trailing" secondItem="XhS-m7-BTi" secondAttribute="trailing" constant="20" id="SXT-Fg-N2z"/>
+                                            <constraint firstItem="xox-pS-Lqp" firstAttribute="top" secondItem="IGg-5p-q0N" secondAttribute="bottom" constant="20" id="YXS-B7-rAS"/>
+                                            <constraint firstAttribute="trailing" secondItem="ETi-3P-5gl" secondAttribute="trailing" constant="20" id="ZXc-mZ-tIH"/>
+                                            <constraint firstItem="IGg-5p-q0N" firstAttribute="leading" secondItem="kO3-1S-E6T" secondAttribute="leading" constant="20" id="bJA-Ak-ndu"/>
+                                            <constraint firstAttribute="height" constant="2600" id="eDB-pX-vDW"/>
+                                            <constraint firstAttribute="trailing" secondItem="kW1-b1-VJX" secondAttribute="trailing" constant="20" id="fws-w7-Wdu"/>
+                                            <constraint firstItem="XhS-m7-BTi" firstAttribute="leading" secondItem="kO3-1S-E6T" secondAttribute="leading" constant="20" id="sgx-dc-9m0"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="kO3-1S-E6T" firstAttribute="leading" secondItem="L8M-g1-nGs" secondAttribute="leading" id="0bB-EJ-7W1"/>
+                                    <constraint firstItem="kO3-1S-E6T" firstAttribute="top" secondItem="L8M-g1-nGs" secondAttribute="top" id="9e9-SN-Wjd"/>
+                                    <constraint firstItem="kO3-1S-E6T" firstAttribute="trailing" secondItem="L8M-g1-nGs" secondAttribute="trailing" id="9m8-AO-w2X"/>
+                                    <constraint firstItem="kO3-1S-E6T" firstAttribute="width" secondItem="bd1-ah-UFe" secondAttribute="width" id="iPi-m5-jIJ"/>
+                                    <constraint firstItem="kO3-1S-E6T" firstAttribute="bottom" secondItem="L8M-g1-nGs" secondAttribute="bottom" id="t9v-v3-vfy"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="L8M-g1-nGs"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="bd1-ah-UFe"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="aGH-si-cBO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gVP-y2-gA2" firstAttribute="leading" secondItem="aGH-si-cBO" secondAttribute="leading" id="GJF-7M-v4c"/>
+                            <constraint firstItem="aGH-si-cBO" firstAttribute="bottom" secondItem="gVP-y2-gA2" secondAttribute="bottom" id="III-nc-C4I"/>
+                            <constraint firstItem="aGH-si-cBO" firstAttribute="trailing" secondItem="gVP-y2-gA2" secondAttribute="trailing" id="Y6m-M1-Ye4"/>
+                            <constraint firstItem="gVP-y2-gA2" firstAttribute="top" secondItem="aGH-si-cBO" secondAttribute="top" id="uME-Ew-5hr"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="jV9-BZ-e7o"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="O93-7v-jrc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="evz-xb-2nd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1612" y="2482"/>
+            <point key="canvasLocation" x="9850.7246376811599" y="1521.4285714285713"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
@@ -4166,6 +4416,11 @@
         <image name="Target-HD" width="512" height="512"/>
         <image name="Test" width="170.5" height="170.5"/>
         <image name="ThemeColorIcon" width="28" height="28"/>
+        <image name="TimeMachine-1" width="828" height="1038"/>
+        <image name="TimeMachine-2" width="828" height="1200"/>
+        <image name="TimeMachine-3" width="828" height="1214"/>
+        <image name="TimeMachine-4" width="828" height="350"/>
+        <image name="TimeMachine-5" width="828" height="1044"/>
         <image name="TimeMachine1" width="28" height="28"/>
         <image name="Today2-HD" width="512" height="512"/>
         <image name="Tomato3" width="504" height="512"/>

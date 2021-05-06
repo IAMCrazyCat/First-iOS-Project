@@ -1,0 +1,528 @@
+
+/* Class = "UIButton"; normalTitle = "跳过设置"; ObjectID = "07C-PA-2WH"; */
+"07C-PA-2WH.normalTitle" = "跳过设置";
+
+/* Class = "UIButton"; normalTitle = "  v1.2.1"; ObjectID = "1Rc-aS-e5C"; */
+"1Rc-aS-e5C.normalTitle" = "  v1.2.1";
+
+/* Class = "UIButton"; normalTitle = "保存到相册"; ObjectID = "1Wo-jG-FNH"; */
+"1Wo-jG-FNH.normalTitle" = "保存到相册";
+
+/* Class = "UILabel"; text = "25:00 "; ObjectID = "1yb-32-lWq"; */
+"1yb-32-lWq.text" = "25:00 ";
+
+/* Class = "UINavigationItem"; title = "自律管理"; ObjectID = "2Rv-X3-Zos"; */
+"2Rv-X3-Zos.title" = "自律管理";
+
+/* Class = "UILabel"; text = "解锁全部图标"; ObjectID = "3D5-um-DLf"; */
+"3D5-um-DLf.text" = "解锁全部图标";
+
+/* Class = "UIButton"; normalTitle = "每天"; ObjectID = "3i9-WH-Zt7"; */
+"3i9-WH-Zt7.normalTitle" = "每天";
+
+/* Class = "UISegmentedControl"; 4CU-aN-whI.segmentTitles[0] = "工作"; ObjectID = "4CU-aN-whI"; */
+"4CU-aN-whI.segmentTitles[0]" = "工作";
+
+/* Class = "UISegmentedControl"; 4CU-aN-whI.segmentTitles[1] = "休息"; ObjectID = "4CU-aN-whI"; */
+"4CU-aN-whI.segmentTitles[1]" = "休息";
+
+/* Class = "UIButton"; normalTitle = "今天"; ObjectID = "4yp-mE-jGG"; */
+"4yp-mE-jGG.normalTitle" = "今天";
+
+/* Class = "UILabel"; text = "极简自律管理App"; ObjectID = "58g-ne-Gc0"; */
+"58g-ne-Gc0.text" = "极简自律管理App";
+
+/* Class = "UITextView"; text = "[番茄工作法] 是简单易行的时间管理方法，使用番茄工作法，选择一个待完成的任务，将番茄时间设为25分钟，专注工作，中途不允许做任何与该任务无关的事，直到番茄时钟响起，然后进行短暂休息一下，重新设定新的番茄时钟"; ObjectID = "5HW-lE-qXP"; */
+"5HW-lE-qXP.text" = "[番茄工作法] 是简单易行的时间管理方法，使用番茄工作法，选择一个待完成的任务，将番茄时间设为25分钟，专注工作，中途不允许做任何与该任务无关的事，直到番茄时钟响起，然后进行短暂休息一下，重新设定新的番茄时钟";
+
+/* Class = "UITabBarItem"; title = "自律管理"; ObjectID = "5kR-Ma-zyI"; */
+"5kR-Ma-zyI.title" = "自律管理";
+
+/* Class = "UILabel"; text = "连续打卡7天免费获得1点能量 （普通用户21天）"; ObjectID = "5zc-9X-Vof"; */
+"5zc-9X-Vof.text" = "连续打卡7天免费获得1点能量 （普通用户21天）";
+
+/* Class = "UILabel"; text = "天"; ObjectID = "64d-ZX-7pC"; */
+"64d-ZX-7pC.text" = "天";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "6vo-0h-SpR"; */
+"6vo-0h-SpR.title" = "Item";
+
+/* Class = "UILabel"; text = "7 / 12天"; ObjectID = "7Gg-Tb-qx9"; */
+"7Gg-Tb-qx9.text" = "7 / 12天";
+
+/* Class = "UILabel"; text = "999天"; ObjectID = "7gg-Tq-GuY"; */
+"7gg-Tq-GuY.text" = "999天";
+
+/* Class = "UIButton"; normalTitle = "能量"; ObjectID = "7qb-Hl-aQ4"; */
+"7qb-Hl-aQ4.normalTitle" = "能量";
+
+/* Class = "UILabel"; text = "打卡记录"; ObjectID = "8bT-sp-N4j"; */
+"8bT-sp-N4j.text" = "打卡记录";
+
+/* Class = "UIButton"; normalTitle = "7"; ObjectID = "8rC-hy-Pjf"; */
+"8rC-hy-Pjf.normalTitle" = "7";
+
+/* Class = "UILabel"; text = "解锁最多2个项目创建限制"; ObjectID = "A7A-Do-hr3"; */
+"A7A-Do-hr3.text" = "解锁最多2个项目创建限制";
+
+/* Class = "UILabel"; text = "升级成为完整版"; ObjectID = "AKx-vV-LsX"; */
+"AKx-vV-LsX.text" = "升级成为完整版";
+
+/* Class = "UILabel"; text = "目标"; ObjectID = "AP0-St-wkZ"; */
+"AP0-St-wkZ.text" = "目标";
+
+/* Class = "UILabel"; text = "请完成所有的选项"; ObjectID = "ATG-Ej-lf4"; */
+"ATG-Ej-lf4.text" = "请完成所有的选项";
+
+/* Class = "UILabel"; text = "坚持健身"; ObjectID = "AVJ-m7-pFk"; */
+"AVJ-m7-pFk.text" = "坚持健身";
+
+/* Class = "UILabel"; text = "数据"; ObjectID = "Axy-dD-Kcg"; */
+"Axy-dD-Kcg.text" = "数据";
+
+/* Class = "UILabel"; text = "打卡"; ObjectID = "BU0-nc-P3S"; */
+"BU0-nc-P3S.text" = "打卡";
+
+/* Class = "UIButton"; normalTitle = "3"; ObjectID = "BvY-PM-TgD"; */
+"BvY-PM-TgD.normalTitle" = "3";
+
+/* Class = "UILabel"; text = "× 100"; ObjectID = "CRB-ID-RCF"; */
+"CRB-ID-RCF.text" = "× 100";
+
+/* Class = "UILabel"; text = "无限制项目创建"; ObjectID = "CnJ-eA-wia"; */
+"CnJ-eA-wia.text" = "无限制项目创建";
+
+/* Class = "UILabel"; text = "VIP图标持续更新中"; ObjectID = "Cww-Y8-X48"; */
+"Cww-Y8-X48.text" = "VIP图标持续更新中";
+
+/* Class = "UITextView"; text = "购买须知：一月期和一年期会员属于订阅型会员，订阅到期后会自动续费，您可以随时在系统的订阅管理中取消，\n了解如何取消订阅"; ObjectID = "DFu-fg-Hix"; */
+"DFu-fg-Hix.text" = "购买须知：一月期和一年期会员属于订阅型会员，订阅到期后会自动续费，您可以随时在系统的订阅管理中取消，\n了解如何取消订阅";
+
+/* Class = "UIButton"; normalTitle = "升级成为完整版"; ObjectID = "DNH-Rd-qdE"; */
+"DNH-Rd-qdE.normalTitle" = "升级成为完整版";
+
+/* Class = "UILabel"; text = "二"; ObjectID = "Dbm-7m-7Md"; */
+"Dbm-7m-7Md.text" = "二";
+
+/* Class = "UINavigationItem"; title = "概览"; ObjectID = "EdY-bB-4Am"; */
+"EdY-bB-4Am.title" = "概览";
+
+/* Class = "UILabel"; text = "¥0.1 / 天"; ObjectID = "Eg6-Y1-zqr"; */
+"Eg6-Y1-zqr.text" = "¥0.1 / 天";
+
+/* Class = "UILabel"; text = "添加新卡片"; ObjectID = "FTM-I4-dC0"; */
+"FTM-I4-dC0.text" = "添加新卡片";
+
+/* Class = "UILabel"; text = "重生"; ObjectID = "Fb5-0h-FNK"; */
+"Fb5-0h-FNK.text" = "重生";
+
+/* Class = "UILabel"; text = "应用升级"; ObjectID = "Fg2-3d-xoe"; */
+"Fg2-3d-xoe.text" = "应用升级";
+
+/* Class = "UIButton"; normalTitle = "× 3"; ObjectID = "FhC-Jg-bIU"; */
+"FhC-Jg-bIU.normalTitle" = "× 3";
+
+/* Class = "UIButton"; normalTitle = "2"; ObjectID = "Fzf-QM-O0Z"; */
+"Fzf-QM-O0Z.normalTitle" = "2";
+
+/* Class = "UINavigationItem"; title = "个人中心"; ObjectID = "GKH-ob-Y8R"; */
+"GKH-ob-Y8R.title" = "个人中心";
+
+/* Class = "UILabel"; text = "终身"; ObjectID = "GKp-Qu-ZtO"; */
+"GKp-Qu-ZtO.text" = "终身";
+
+/* Class = "UIButton"; normalTitle = "4"; ObjectID = "GXR-o1-0ta"; */
+"GXR-o1-0ta.normalTitle" = "4";
+
+/* Class = "UILabel"; text = "极简自律管理App"; ObjectID = "GhC-NZ-To6"; */
+"GhC-NZ-To6.text" = "极简自律管理App";
+
+/* Class = "UILabel"; text = "学习工作效率低？\n来设置一个番茄时钟"; ObjectID = "I0A-0O-IrC"; */
+"I0A-0O-IrC.text" = "学习工作效率低？\n来设置一个番茄时钟";
+
+/* Class = "UILabel"; text = "目标"; ObjectID = "I5N-Yf-LFv"; */
+"I5N-Yf-LFv.text" = "目标";
+
+/* Class = "UILabel"; text = "一月期会员"; ObjectID = "J3Q-Pd-5H5"; */
+"J3Q-Pd-5H5.text" = "一月期会员";
+
+/* Class = "UILabel"; text = "呼吸放松"; ObjectID = "JAt-Bl-84Q"; */
+"JAt-Bl-84Q.text" = "呼吸放松";
+
+/* Class = "UILabel"; text = "敬请期待"; ObjectID = "JTV-Kc-Epj"; */
+"JTV-Kc-Epj.text" = "敬请期待";
+
+/* Class = "UILabel"; text = "享受纯净无广告版，专注自律"; ObjectID = "KBN-Hf-u7I"; */
+"KBN-Hf-u7I.text" = "享受纯净无广告版，专注自律";
+
+/* Class = "UILabel"; text = "颜色"; ObjectID = "KHp-wB-cfM"; */
+"KHp-wB-cfM.text" = "颜色";
+
+/* Class = "UITabBarItem"; title = "进行中"; ObjectID = "LbD-Pb-pXy"; */
+"LbD-Pb-pXy.title" = "进行中";
+
+/* Class = "UITabBarItem"; title = "自律工具"; ObjectID = "LpL-td-6rP"; */
+"LpL-td-6rP.title" = "自律工具";
+
+/* Class = "UIButton"; normalTitle = "反馈"; ObjectID = "MMX-gO-o2H"; */
+"MMX-gO-o2H.normalTitle" = "反馈";
+
+/* Class = "UILabel"; text = "项目名"; ObjectID = "N9a-6t-lce"; */
+"N9a-6t-lce.text" = "项目名";
+
+/* Class = "UIButton"; normalTitle = "每月"; ObjectID = "NJD-UT-gB8"; */
+"NJD-UT-gB8.normalTitle" = "每月";
+
+/* Class = "UILabel"; text = "2021年1月"; ObjectID = "NdA-gx-XZ9"; */
+"NdA-gx-XZ9.text" = "2021年1月";
+
+/* Class = "UILabel"; text = "下次打卡"; ObjectID = "Nq1-zK-ims"; */
+"Nq1-zK-ims.text" = "下次打卡";
+
+/* Class = "UIButton"; normalTitle = "现在购买"; ObjectID = "Nsu-Ib-aY5"; */
+"Nsu-Ib-aY5.normalTitle" = "现在购买";
+
+/* Class = "UILabel"; text = "加速获得时光机器能量"; ObjectID = "O19-Uf-Mmr"; */
+"O19-Uf-Mmr.text" = "加速获得时光机器能量";
+
+/* Class = "UILabel"; text = "天"; ObjectID = "OIE-Ou-46M"; */
+"OIE-Ou-46M.text" = "天";
+
+/* Class = "UIButton"; normalTitle = "编辑"; ObjectID = "OeQ-hP-44X"; */
+"OeQ-hP-44X.normalTitle" = "编辑";
+
+/* Class = "UILabel"; text = "100"; ObjectID = "OsT-CP-wLK"; */
+"OsT-CP-wLK.text" = "100";
+
+/* Class = "UILabel"; text = "今日打卡: 3/7"; ObjectID = "PRS-WT-xZR"; */
+"PRS-WT-xZR.text" = "今日打卡: 3/7";
+
+/* Class = "UILabel"; text = "你获得了新能量！继续加油"; ObjectID = "QVc-vL-AUJ"; */
+"QVc-vL-AUJ.text" = "你获得了新能量！继续加油";
+
+/* Class = "UIButton"; normalTitle = "VIP"; ObjectID = "Qbp-ak-zWp"; */
+"Qbp-ak-zWp.normalTitle" = "VIP";
+
+/* Class = "UILabel"; text = "\"自由不是随心所欲，而是自我主宰\""; ObjectID = "Qd3-lH-gFA"; */
+"Qd3-lH-gFA.text" = "\"自由不是随心所欲，而是自我主宰\"";
+
+/* Class = "UIButton"; normalTitle = "恢复购买"; ObjectID = "QsF-Yz-4OV"; */
+"QsF-Yz-4OV.normalTitle" = "恢复购买";
+
+/* Class = "UIButton"; normalTitle = "100天"; ObjectID = "RFy-ys-MHv"; */
+"RFy-ys-MHv.normalTitle" = "100天";
+
+/* Class = "UILabel"; text = "¥30"; ObjectID = "SQg-88-kWN"; */
+"SQg-88-kWN.text" = "¥30";
+
+/* Class = "UILabel"; text = "12月22日星期二"; ObjectID = "SVz-AJ-JZD"; */
+"SVz-AJ-JZD.text" = "12月22日星期二";
+
+/* Class = "UIButton"; normalTitle = "分享 App 给朋友"; ObjectID = "SX5-HU-KYh"; */
+"SX5-HU-KYh.normalTitle" = "分享 App 给朋友";
+
+/* Class = "UIButton"; normalTitle = " 主题色"; ObjectID = "SZj-KF-5bx"; */
+"SZj-KF-5bx.normalTitle" = " 主题色";
+
+/* Class = "UILabel"; text = "VIP专属标签"; ObjectID = "Soh-2c-Zfe"; */
+"Soh-2c-Zfe.text" = "VIP专属标签";
+
+/* Class = "UIButton"; normalTitle = "分享"; ObjectID = "Stx-iB-4so"; */
+"Stx-iB-4so.normalTitle" = "分享";
+
+/* Class = "UILabel"; text = "学习工作累了？\n来做个深呼吸放松一下"; ObjectID = "SvP-rE-eKX"; */
+"SvP-rE-eKX.text" = "学习工作累了？\n来做个深呼吸放松一下";
+
+/* Class = "UITextView"; text = "[呼吸放松法] 是一种简单的调整工作学习状态的方法，深呼吸一分钟可以让您快速清理大脑中的垃圾，重新回到工作和学习状态中，配合番茄时钟使用效果更好，番茄时钟响了以后，闭上眼睛跟随指导深呼吸和吸气"; ObjectID = "TB5-xL-LiY"; */
+"TB5-xL-LiY.text" = "[呼吸放松法] 是一种简单的调整工作学习状态的方法，深呼吸一分钟可以让您快速清理大脑中的垃圾，重新回到工作和学习状态中，配合番茄时钟使用效果更好，番茄时钟响了以后，闭上眼睛跟随指导深呼吸和吸气";
+
+/* Class = "UILabel"; text = "时间机器"; ObjectID = "TBC-dZ-hSy"; */
+"TBC-dZ-hSy.text" = "时间机器";
+
+/* Class = "UILabel"; text = "呼吸放松"; ObjectID = "TIN-PS-a8v"; */
+"TIN-PS-a8v.text" = "呼吸放松";
+
+/* Class = "UILabel"; text = "颠猫"; ObjectID = "V5B-yH-Aki"; */
+"V5B-yH-Aki.text" = "颠猫";
+
+/* Class = "UILabel"; text = "我的能量： "; ObjectID = "V90-4m-ZfC"; */
+"V90-4m-ZfC.text" = "我的能量： ";
+
+/* Class = "UIButton"; normalTitle = "添加"; ObjectID = "VYb-iy-kVx"; */
+"VYb-iy-kVx.normalTitle" = "添加";
+
+/* Class = "UIButton"; normalTitle = "1"; ObjectID = "Vcf-Zs-cR5"; */
+"Vcf-Zs-cR5.normalTitle" = "1";
+
+/* Class = "UIButton"; normalTitle = "开始工作"; ObjectID = "W6D-qK-R5m"; */
+"W6D-qK-R5m.normalTitle" = "开始工作";
+
+/* Class = "UILabel"; text = "早上好，宝贝"; ObjectID = "WFU-9H-CGg"; */
+"WFU-9H-CGg.text" = "早上好，宝贝";
+
+/* Class = "UILabel"; text = "设定频率后，第一次打卡日将会被设定为今天"; ObjectID = "WKm-RK-W4j"; */
+"WKm-RK-W4j.text" = "设定频率后，第一次打卡日将会被设定为今天";
+
+/* Class = "UIButton"; normalTitle = "6"; ObjectID = "WOm-XI-zX8"; */
+"WOm-XI-zX8.normalTitle" = "6";
+
+/* Class = "UIButton"; normalTitle = "使用说明"; ObjectID = "WQX-Nq-SYU"; */
+"WQX-Nq-SYU.normalTitle" = "使用说明";
+
+/* Class = "UILabel"; text = "目标"; ObjectID = "WcP-hd-6gL"; */
+"WcP-hd-6gL.text" = "目标";
+
+/* Class = "UILabel"; text = "四"; ObjectID = "WpP-zt-fQ1"; */
+"WpP-zt-fQ1.text" = "四";
+
+/* Class = "UIButton"; normalTitle = "坚持"; ObjectID = "WpU-fd-JVR"; */
+"WpU-fd-JVR.normalTitle" = "坚持";
+
+/* Class = "UILabel"; text = "20天"; ObjectID = "XNe-KU-wnb"; */
+"XNe-KU-wnb.text" = "20天";
+
+/* Class = "UILabel"; text = "重生"; ObjectID = "Y9L-34-0qu"; */
+"Y9L-34-0qu.text" = "重生";
+
+/* Class = "UILabel"; text = "分享海报中展示VIP标签"; ObjectID = "ZMz-a3-j9Z"; */
+"ZMz-a3-j9Z.text" = "分享海报中展示VIP标签";
+
+/* Class = "UILabel"; text = "4"; ObjectID = "aDT-4Y-n8k"; */
+"aDT-4Y-n8k.text" = "4";
+
+/* Class = "UILabel"; text = "最佳连续"; ObjectID = "adp-HD-6cj"; */
+"adp-HD-6cj.text" = "最佳连续";
+
+/* Class = "UIButton"; normalTitle = "自定义"; ObjectID = "afP-fa-obf"; */
+"afP-fa-obf.normalTitle" = "自定义";
+
+/* Class = "UILabel"; text = "图标"; ObjectID = "bA0-L1-bEH"; */
+"bA0-L1-bEH.text" = "图标";
+
+/* Class = "UILabel"; text = "分享海报"; ObjectID = "bI6-sj-d7T"; */
+"bI6-sj-d7T.text" = "分享海报";
+
+/* Class = "UILabel"; text = "番茄时钟"; ObjectID = "cBj-jA-BhT"; */
+"cBj-jA-BhT.text" = "番茄时钟";
+
+/* Class = "UILabel"; text = "移除广告"; ObjectID = "cFA-s4-ERm"; */
+"cFA-s4-ERm.text" = "移除广告";
+
+/* Class = "UILabel"; text = "¥25"; ObjectID = "cbu-El-dxs"; */
+"cbu-El-dxs.text" = "¥25";
+
+/* Class = "UILabel"; text = "¥3"; ObjectID = "coh-Uy-Axg"; */
+"coh-Uy-Axg.text" = "¥3";
+
+/* Class = "UILabel"; text = "应用设置"; ObjectID = "csn-GS-vqO"; */
+"csn-GS-vqO.text" = "应用设置";
+
+/* Class = "UITextField"; placeholder = "  想坚持/戒除的事"; ObjectID = "dF6-S4-tMX"; */
+"dF6-S4-tMX.placeholder" = "  想坚持/戒除的事";
+
+/* Class = "UINavigationItem"; title = "项目名"; ObjectID = "dce-h9-NTD"; */
+"dce-h9-NTD.title" = "项目名";
+
+/* Class = "UIButton"; normalTitle = "开始日"; ObjectID = "djk-JB-I2X"; */
+"djk-JB-I2X.normalTitle" = "开始日";
+
+/* Class = "UILabel"; text = "打卡记录分享"; ObjectID = "doh-fb-7dN"; */
+"doh-fb-7dN.text" = "打卡记录分享";
+
+/* Class = "UIButton"; normalTitle = "自定义"; ObjectID = "eEh-sX-wyw"; */
+"eEh-sX-wyw.normalTitle" = "自定义";
+
+/* Class = "UIButton"; normalTitle = "30天"; ObjectID = "eVH-dn-gr1"; */
+"eVH-dn-gr1.normalTitle" = "30天";
+
+/* Class = "UIButton"; normalTitle = "戒除"; ObjectID = "eYH-kV-dcm"; */
+"eYH-kV-dcm.normalTitle" = "戒除";
+
+/* Class = "UIButton"; normalTitle = " ×  3"; ObjectID = "eyW-12-NFP"; */
+"eyW-12-NFP.normalTitle" = " ×  3";
+
+/* Class = "UIButton"; normalTitle = "5"; ObjectID = "fKZ-ry-kbD"; */
+"fKZ-ry-kbD.normalTitle" = "5";
+
+/* Class = "UILabel"; text = "请选择一项您现在最想戒除的瘾"; ObjectID = "fTm-iM-EaV"; */
+"fTm-iM-EaV.text" = "请选择一项您现在最想戒除的瘾";
+
+/* Class = "UILabel"; text = "三"; ObjectID = "fbt-uz-jUB"; */
+"fbt-uz-jUB.text" = "三";
+
+/* Class = "UILabel"; text = "一年期会员"; ObjectID = "fdJ-9I-Sz3"; */
+"fdJ-9I-Sz3.text" = "一年期会员";
+
+/* Class = "UILabel"; text = "能效： 连续打卡21天  获得 1点能量 (普通用户)"; ObjectID = "fkb-6A-26B"; */
+"fkb-6A-26B.text" = "能效： 连续打卡21天  获得 1点能量 (普通用户)";
+
+/* Class = "UIButton"; normalTitle = "取消"; ObjectID = "g8z-B1-4WR"; */
+"g8z-B1-4WR.normalTitle" = "取消";
+
+/* Class = "UILabel"; text = "Instruction"; ObjectID = "gHj-jk-zkc"; */
+"gHj-jk-zkc.text" = "Instruction";
+
+/* Class = "UILabel"; text = "一"; ObjectID = "gMG-ed-SxY"; */
+"gMG-ed-SxY.text" = "一";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ge1-y3-eIQ"; */
+"ge1-y3-eIQ.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "购买能量"; ObjectID = "gfL-oR-LC8"; */
+"gfL-oR-LC8.normalTitle" = "购买能量";
+
+/* Class = "UIButton"; normalTitle = "恢复购买"; ObjectID = "h4L-GB-8hZ"; */
+"h4L-GB-8hZ.normalTitle" = "恢复购买";
+
+/* Class = "UILabel"; text = "五"; ObjectID = "h9b-JB-PQS"; */
+"h9b-JB-PQS.text" = "五";
+
+/* Class = "UIButton"; normalTitle = "回到过去"; ObjectID = "hC6-oy-S3E"; */
+"hC6-oy-S3E.normalTitle" = "回到过去";
+
+/* Class = "UILabel"; text = "999天"; ObjectID = "hOS-1r-urJ"; */
+"hOS-1r-urJ.text" = "999天";
+
+/* Class = "UIButton"; normalTitle = "下一步"; ObjectID = "haM-7Y-zaB"; */
+"haM-7Y-zaB.normalTitle" = "下一步";
+
+/* Class = "UILabel"; text = "享受多款深度设计的自然主题颜色"; ObjectID = "i0e-Am-UV9"; */
+"i0e-Am-UV9.text" = "享受多款深度设计的自然主题颜色";
+
+/* Class = "UILabel"; text = "六"; ObjectID = "iVM-3e-XxM"; */
+"iVM-3e-XxM.text" = "六";
+
+/* Class = "UIButton"; normalTitle = "8"; ObjectID = "izP-IJ-2pM"; */
+"izP-IJ-2pM.normalTitle" = "8";
+
+/* Class = "UILabel"; text = "开始日期: 2020年 12月12日 (140天前)"; ObjectID = "j4B-XZ-0ft"; */
+"j4B-XZ-0ft.text" = "开始日期: 2020年 12月12日 (140天前)";
+
+/* Class = "UIButton"; normalTitle = "重启自律生活"; ObjectID = "jtR-SS-ysE"; */
+"jtR-SS-ysE.normalTitle" = "重启自律生活";
+
+/* Class = "UILabel"; text = "更多自律工具\n持续开发中.."; ObjectID = "jyW-Yl-iOQ"; */
+"jyW-Yl-iOQ.text" = "更多自律工具\n持续开发中..";
+
+/* Class = "UIButton"; normalTitle = "没有名字"; ObjectID = "kb1-p1-Yuj"; */
+"kb1-p1-Yuj.normalTitle" = "没有名字";
+
+/* Class = "UILabel"; text = "持续开发中，后续VIP功能自动解锁"; ObjectID = "lUh-I3-IGM"; */
+"lUh-I3-IGM.text" = "持续开发中，后续VIP功能自动解锁";
+
+/* Class = "UILabel"; text = "¥0.07 / 天"; ObjectID = "lbO-WY-m67"; */
+"lbO-WY-m67.text" = "¥0.07 / 天";
+
+/* Class = "UIButton"; normalTitle = "给应用评分"; ObjectID = "lhG-N7-zSU"; */
+"lhG-N7-zSU.normalTitle" = "给应用评分";
+
+/* Class = "UILabel"; text = "使用能量开启时光机器补打卡"; ObjectID = "lwU-A7-uAY"; */
+"lwU-A7-uAY.text" = "使用能量开启时光机器补打卡";
+
+/* Class = "UILabel"; text = "后续全部VIP功能"; ObjectID = "mKJ-bi-X7L"; */
+"mKJ-bi-X7L.text" = "后续全部VIP功能";
+
+/* Class = "UILabel"; text = "永久会员"; ObjectID = "mR3-cQ-fjn"; */
+"mR3-cQ-fjn.text" = "永久会员";
+
+/* Class = "UIBarButtonItem"; title = "添加"; ObjectID = "mbP-lN-Cmn"; */
+"mbP-lN-Cmn.title" = "添加";
+
+/* Class = "UILabel"; text = "能量获取"; ObjectID = "ml7-s1-2Bl"; */
+"ml7-s1-2Bl.text" = "能量获取";
+
+/* Class = "UINavigationItem"; title = "自律工具"; ObjectID = "oE6-d8-SAL"; */
+"oE6-d8-SAL.title" = "自律工具";
+
+/* Class = "UILabel"; text = "方式"; ObjectID = "p0g-iC-UgG"; */
+"p0g-iC-UgG.text" = "方式";
+
+/* Class = "UITextView"; text = "[能量] 是使用时光机器时需要消耗的物品， 当您忘记打卡，您可以使用时光机器回到过去重新打卡(点击日历右上角的时光机器图标)，每重新打卡一天需要消耗1点能量，您可以通过连续打卡免费获得能量，也可以购买能量"; ObjectID = "pxM-D2-KgB"; */
+"pxM-D2-KgB.text" = "[能量] 是使用时光机器时需要消耗的物品， 当您忘记打卡，您可以使用时光机器回到过去重新打卡(点击日历右上角的时光机器图标)，每重新打卡一天需要消耗1点能量，您可以通过连续打卡免费获得能量，也可以购买能量";
+
+/* Class = "UIButton"; normalTitle = "白天 / 黑夜模式"; ObjectID = "rRc-pT-ow4"; */
+"rRc-pT-ow4.normalTitle" = "白天 / 黑夜模式";
+
+/* Class = "UIButton"; normalTitle = "每周"; ObjectID = "rS9-xl-t7u"; */
+"rS9-xl-t7u.normalTitle" = "每周";
+
+/* Class = "UILabel"; text = "今天"; ObjectID = "rWz-H7-B9U"; */
+"rWz-H7-B9U.text" = "今天";
+
+/* Class = "UIButton"; normalTitle = "通知时间"; ObjectID = "s8i-6y-kYV"; */
+"s8i-6y-kYV.normalTitle" = "通知时间";
+
+/* Class = "UITabBarItem"; title = "今日"; ObjectID = "sU1-NQ-WFC"; */
+"sU1-NQ-WFC.title" = "今日";
+
+/* Class = "UILabel"; text = "每天一次"; ObjectID = "str-sO-Pcx"; */
+"str-sO-Pcx.text" = "每天一次";
+
+/* Class = "UILabel"; text = "频率"; ObjectID = "t8d-L0-cu3"; */
+"t8d-L0-cu3.text" = "频率";
+
+/* Class = "UILabel"; text = "解锁所有主题颜色"; ObjectID = "tpo-FZ-5XS"; */
+"tpo-FZ-5XS.text" = "解锁所有主题颜色";
+
+/* Class = "UINavigationItem"; title = "新建项目"; ObjectID = "u3g-Zr-aAE"; */
+"u3g-Zr-aAE.title" = "新建项目";
+
+/* Class = "UIButton"; normalTitle = "开始呼吸"; ObjectID = "uJh-2N-7BG"; */
+"uJh-2N-7BG.normalTitle" = "开始呼吸";
+
+/* Class = "UILabel"; text = "打卡设置"; ObjectID = "uT8-OF-XzE"; */
+"uT8-OF-XzE.text" = "打卡设置";
+
+/* Class = "UIBarButtonItem"; title = "编辑"; ObjectID = "uXu-af-sL3"; */
+"uXu-af-sL3.title" = "编辑";
+
+/* Class = "UILabel"; text = "时光机器"; ObjectID = "uf7-hm-nUE"; */
+"uf7-hm-nUE.text" = "时光机器";
+
+/* Class = "UILabel"; text = "已完成"; ObjectID = "ury-ia-OmG"; */
+"ury-ia-OmG.text" = "已完成";
+
+/* Class = "UIButton"; normalTitle = "7天"; ObjectID = "uum-ys-rdj"; */
+"uum-ys-rdj.normalTitle" = "7天";
+
+/* Class = "UILabel"; text = "天"; ObjectID = "v3T-ku-bnC"; */
+"v3T-ku-bnC.text" = "天";
+
+/* Class = "UILabel"; text = "获得5点时光机器能量"; ObjectID = "vRP-mg-Bzi"; */
+"vRP-mg-Bzi.text" = "获得5点时光机器能量";
+
+/* Class = "UITabBarItem"; title = "个人中心"; ObjectID = "vTd-If-nPN"; */
+"vTd-If-nPN.title" = "个人中心";
+
+/* Class = "UILabel"; text = "请选择您想补打卡的日子"; ObjectID = "vgh-l2-8hx"; */
+"vgh-l2-8hx.text" = "请选择您想补打卡的日子";
+
+/* Class = "UILabel"; text = "享受7项会员专属功能"; ObjectID = "vie-T5-U2n"; */
+"vie-T5-U2n.text" = "享受7项会员专属功能";
+
+/* Class = "UILabel"; text = "充能中"; ObjectID = "wGg-Wg-4W5"; */
+"wGg-Wg-4W5.text" = "充能中";
+
+/* Class = "UILabel"; text = "频率"; ObjectID = "wH2-TB-oP3"; */
+"wH2-TB-oP3.text" = "频率";
+
+/* Class = "UIButton"; normalTitle = "编辑"; ObjectID = "wc5-Hz-1bB"; */
+"wc5-Hz-1bB.normalTitle" = "编辑";
+
+/* Class = "UILabel"; text = "番茄时钟"; ObjectID = "wsF-xA-7XY"; */
+"wsF-xA-7XY.text" = "番茄时钟";
+
+/* Class = "UILabel"; text = "已打卡"; ObjectID = "x57-Zm-H2h"; */
+"x57-Zm-H2h.text" = "已打卡";
+
+/* Class = "UILabel"; text = "明天"; ObjectID = "xK7-CN-D6k"; */
+"xK7-CN-D6k.text" = "明天";
+
+/* Class = "UILabel"; text = "频率计划外为休息日，该项目不会出现在今日打卡中"; ObjectID = "xZL-a6-T5M"; */
+"xZL-a6-T5M.text" = "频率计划外为休息日，该项目不会出现在今日打卡中";
+
+/* Class = "UILabel"; text = "继续坚持，胜利就在眼前"; ObjectID = "xlY-9o-Nvi"; */
+"xlY-9o-Nvi.text" = "继续坚持，胜利就在眼前";
+
+/* Class = "UILabel"; text = "黑夜模式"; ObjectID = "y2B-Vc-bYI"; */
+"y2B-Vc-bYI.text" = "黑夜模式";
