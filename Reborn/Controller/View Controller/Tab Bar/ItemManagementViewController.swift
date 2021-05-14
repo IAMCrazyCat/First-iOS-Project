@@ -27,7 +27,7 @@ class ItemManagementViewController: UIViewController {
         
         engine.add(observer: self)
         optionBarContentView.layoutIfNeeded()
-        AdStrategy().addAd(to: self)
+        AdStrategy().addBottomBannerAd(to: self)
         
     }
     
@@ -141,7 +141,7 @@ extension ItemManagementViewController: UIObserver {
         updateNavigationBar()
         updateOptionBar()
         updateVerticalContentView(animated: false, scrollToTop: false)
-        AdStrategy().removeAd(from: self)
+        AdStrategy().removeBottomBannerAd(from: self)
     }
     
 }

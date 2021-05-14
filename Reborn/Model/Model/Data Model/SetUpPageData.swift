@@ -10,9 +10,9 @@ struct SetUpPageData {
 
     static let data = [
         SetUpPage(ID: 1,question: "请选择一项您想戒除的习惯", buttons:
-                    [CustomData(title: "拖延"), CustomData(title: "性瘾"),
-                     CustomData(title: "吸烟"), CustomData(title: "熬夜"),
-                     CustomData(title: "喝酒"), CustomData(title: "蹦迪"),
+                    [CustomData(title: "拖延"), CustomData(title: "色"),
+                     CustomData(title: "烟"), CustomData(title: "熬夜"),
+                     CustomData(title: "酒"), CustomData(title: "蹦迪"),
                      CustomData(title: "游戏"), CustomData(title: "赖床"),
                      CustomData(title: "糖"), CustomData(title: "奶茶"),
                      CustomData(title: SystemSetting.shared.customButtonTitle)

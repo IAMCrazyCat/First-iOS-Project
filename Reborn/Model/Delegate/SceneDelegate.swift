@@ -54,6 +54,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
+        UIApplication.shared.applicationIconBadgeNumber = 0 
         SettingStrategy().saveUserSetting()
         CustomTimer.recoverTimer()
         AppEngine.shared.notifyUIObservers(withIdentifier: "UserCenterViewController")

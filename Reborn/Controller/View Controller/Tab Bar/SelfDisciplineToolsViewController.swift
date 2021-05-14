@@ -21,7 +21,7 @@ class SelfDisciplineToolsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         AppEngine.shared.add(observer: self)
-        AdStrategy().addAd(to: self)
+        AdStrategy().addBottomBannerAd(to: self)
         updateUI()
     }
     
@@ -99,7 +99,7 @@ extension SelfDisciplineToolsViewController: UIObserver {
         adjustLabelSizeToFit()
         updateNavigationBar()
         updateToolButtons()
-        AdStrategy().removeAd(from: self)
+        AdStrategy().removeBottomBannerAd(from: self)
     }
     
     

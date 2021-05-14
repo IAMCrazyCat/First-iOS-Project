@@ -22,12 +22,14 @@ class WelcomViewController: UIViewController {
         view.layoutSubviews()
         initializeAppLabels()
         
-    }
-    
-    override func viewDidLayoutSubviews() {
         initializeAnimationView()
         initializeAvatarView()
         initializeStartButton()
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -93,6 +93,7 @@
 		22A7DC312605B0B100A55CE8 /* AppAppearenceMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7DC302605B0B100A55CE8 /* AppAppearenceMode.swift */; };
 		22AACA1125AD910D0098D920 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AACA1025AD910D0098D920 /* Date.swift */; };
 		22AACA3225AE98B40098D920 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AACA3025AE98B40098D920 /* CalendarViewController.swift */; };
+		22ACE502264BC0CB001D7B41 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ACE501264BC0CB001D7B41 /* App.swift */; };
 		22AE80882609EE8800F0806D /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22AE80872609EE8800F0806D /* WidgetKit.framework */; };
 		22AE808A2609EE8800F0806D /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22AE80892609EE8800F0806D /* SwiftUI.framework */; };
 		22AE808D2609EE8800F0806D /* ItemProgressWiget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AE808C2609EE8800F0806D /* ItemProgressWiget.swift */; };
@@ -310,6 +311,7 @@
 		22A7DC302605B0B100A55CE8 /* AppAppearenceMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAppearenceMode.swift; sourceTree = "<group>"; };
 		22AACA1025AD910D0098D920 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		22AACA3025AE98B40098D920 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		22ACE501264BC0CB001D7B41 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		22AE80862609EE8800F0806D /* ItemProgressWigetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ItemProgressWigetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		22AE80872609EE8800F0806D /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		22AE80892609EE8800F0806D /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -614,6 +616,7 @@
 				22A1B56E26149BEF008CBE94 /* CustomTimer.swift */,
 				22F619C826393D46007F91AF /* VipIcon.swift */,
 				22C6ACF626400ECA00FAFCC5 /* LoadingAnimation.swift */,
+				22ACE501264BC0CB001D7B41 /* App.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -1432,6 +1435,7 @@
 				221E0B7C25A9273E00386FE1 /* User.swift in Sources */,
 				22FCB1BA258D907C006A0D39 /* SystemSetting.swift in Sources */,
 				22C23A1E258DC5FB00D4BEB2 /* PersistingItem.swift in Sources */,
+				22ACE502264BC0CB001D7B41 /* App.swift in Sources */,
 				22B347022626B8D90087350C /* SharePosterTextData.swift in Sources */,
 				224E664725C6468D00B71E8A /* ForwardForManyStrategy.swift in Sources */,
 				22A2EC7925C9862A00E97787 /* TimeMachineViewPresentAnimationController.swift in Sources */,
@@ -1655,13 +1659,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Reborn/Reborn.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = Reborn/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.crazycat.Reborn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1678,13 +1683,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Reborn/Reborn.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = Reborn/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.crazycat.Reborn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1787,15 +1793,16 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ItemProgressWigetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = ItemProgressWiget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.crazycat.Reborn.ItemProgressWiget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1811,15 +1818,16 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ItemProgressWigetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = ItemProgressWiget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.crazycat.Reborn.ItemProgressWiget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

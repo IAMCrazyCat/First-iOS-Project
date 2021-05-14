@@ -196,27 +196,21 @@ class ItemDetailViewController: UIViewController {
         }
         
         var labelText = ""
-        if nextPunchInDate == CustomDate.current {
-            
-            labelText = "今天"
-            
-        } else if nextPunchInDate == DateCalculator.calculateDate(withDayDifference: 1, originalDate: CustomDate.current) {
-            
-            labelText = "明天"
-            if self.item.state == .completed {
-                labelText = "暂无计划"
-            }
-            
+        if self.item.state == .completed {
+            labelText = "暂无计划"
         } else {
-            
-            if nextPunchInDate != nil {
+            if nextPunchInDate == CustomDate.current {
+                labelText = "今天"
+            } else if nextPunchInDate == DateCalculator.calculateDate(withDayDifference: 1, originalDate: CustomDate.current) {
+                labelText = "明天"
+            } else if nextPunchInDate != nil {
                 labelText = "\(nextPunchInDate!.month)月\(nextPunchInDate!.day)日"
             } else {
-               
                 labelText = "暂无计划"
             }
-           
+               
         }
+       
         
         self.nextPunchInDateLabel.text = labelText
     }
@@ -228,7 +222,7 @@ class ItemDetailViewController: UIViewController {
             self.todayLabel.text = "已打卡"
         } else if item.state == .completed {
             self.todayLabel.textColor = ThemeColor.green.uiColor
-            self.todayLabel.text = "已完成"
+            self.todayLabel.text = "项目已完成"
         } else if item.state == .duringBreak {
             self.todayLabel.textColor = ThemeColor.green.uiColor
             self.todayLabel.text = "休息中"
@@ -239,6 +233,7 @@ class ItemDetailViewController: UIViewController {
     }
     
     func updateProgressView() {
+        self.progressView.removeAllSubviews()
         if item != nil {
             self.verticalContentView.layoutIfNeeded()
             let builder = ItemProgressViewBuilder(item: item!, frame: self.progressView.bounds)

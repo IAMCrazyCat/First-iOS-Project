@@ -57,12 +57,6 @@ class OverAllProgressViewBuilder: ViewBuilder {
     internal func createView() {
         outPutView.accessibilityIdentifier = "OverAllProgressView"
         outPutView.frame = self.outPutViewFrame
-        
-//        let text = UIImageView(frame: outPutView.bounds)
-//        let text1 = UIImage(named: "Test2")!
-//        text.image = text1
-//        text.contentMode = .scaleAspectFill
-//        outPutView.addSubview(text)
         outPutView.backgroundColor = AppEngine.shared.userSetting.themeColorAndBlackContent
 
         outPutView.layer.cornerRadius = setting.itemCardCornerRadius
@@ -84,9 +78,15 @@ class OverAllProgressViewBuilder: ViewBuilder {
         firstTextLabel.text = welcomeTextData.randomText(timeRange: TimeRange.current).firstText
         firstTextLabel.font = AppEngine.shared.userSetting.largeFont
         firstTextLabel.textColor = AppEngine.shared.userSetting.smartLabelColorAndWhite
-        firstTextLabel.frame.origin = CGPoint(x: 15, y: 0)
-        firstTextLabel.sizeToFit()
+        //firstTextLabel.frame.origin = CGPoint(x: 15, y: 0)
+        //firstTextLabel.sizeToFit()
         self.outPutView.addSubview(firstTextLabel)
+        
+        firstTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        firstTextLabel.rightAnchor.constraint(equalTo: outPutView.rightAnchor, constant: -15).isActive = true
+        firstTextLabel.leftAnchor.constraint(equalTo: outPutView.leftAnchor, constant: 15).isActive = true
+        firstTextLabel.topAnchor.constraint(equalTo: outPutView.topAnchor).isActive = true
+        
         self.outPutView.layoutIfNeeded()
         let vipButton = VipIcon.render(by: CGRect(x: firstTextLabel.frame.width + 25, y: firstTextLabel.frame.minY + 5, width: 40, height: 15), scale: 1)
         vipButton.isHidden = true//AppEngine.shared.currentUser.isVip ? false : true
@@ -186,7 +186,7 @@ class OverAllProgressViewBuilder: ViewBuilder {
     
     private func addProgressLabel() {
         let progressLabel = UILabel()
-        progressLabel.text = "已完成: \(String(format: "%.1f", progress * 100))%"
+        progressLabel.text = "已重启: \(String(format: "%.1f", progress * 100))%"
         progressLabel.font = AppEngine.shared.userSetting.smallFont
         progressLabel.textColor = AppEngine.shared.userSetting.smartLabelColorAndWhite
         progressLabel.sizeToFit()

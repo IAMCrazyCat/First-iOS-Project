@@ -62,7 +62,7 @@ struct SystemSetting{
     let homeViewVerticalScrollViewTag: Int = -1
     let homeViewHorizentalScrollViewTag: Int = -2
     let itemCardIdentifier = "ItemCard"
-    let itemCardBGImage: UIImage = #imageLiteral(resourceName: "ItemCard")
+    //let itemCardBGImage: UIImage = #imageLiteral(resourceName: "ItemCard")
     let progressBarLengthToRightEdgeOffset: CGFloat = 90
     let itemCardHeight: CGFloat = 120
     let itemCardCenterObjectsToEdgeOffset: CGFloat = 70

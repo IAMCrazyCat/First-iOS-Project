@@ -236,15 +236,18 @@ class AppEngine {
             }
             
             let itemToNotifyUser = item
-            let earlyTitle = "\(currentUser.name), 今天记得\(itemToNotifyUser.type.rawValue)\(itemToNotifyUser.name)"
-            let earlyBody = "你已经坚持了 \(itemToNotifyUser.finishedDays)天, 目标: \(itemToNotifyUser.targetDays)天, 进度: \(itemToNotifyUser.progressInPercentageString)"
-            let lateTitle = "\(currentUser.name), 今天\(itemToNotifyUser.type.rawValue)\(itemToNotifyUser.name)了吗"
-            let lateBody = SharePosterTextData.randomText
+            let earlyTitle = "\(currentUser.name), 今天记得 \(itemToNotifyUser.type.rawValue)\(itemToNotifyUser.name) "
+            let earlyBody = "你已经\(itemToNotifyUser.type.rawValue)了 \(itemToNotifyUser.finishedDays)天, 目标: \(itemToNotifyUser.targetDays)天, 不可以放弃哦！"
+            
+            let lateTitle = SharePosterTextData.randomText
+            let lateBody = "\(currentUser.name), 今天\(itemToNotifyUser.type.rawValue)\(itemToNotifyUser.name)了吗，快来打卡哦"
+           
             
             
             let content = UNMutableNotificationContent()
             content.title = time < CustomTime(hour: 18, minute: 0, second: 0, oneTenthSecond: 0) ? earlyTitle : lateTitle
             content.body = time < CustomTime(hour: 14, minute: 0, second: 0, oneTenthSecond: 0) ? earlyBody : lateBody
+            content.badge = 1
             
             var dateComponents = DateComponents()
             dateComponents.calendar = Calendar.current
@@ -289,6 +292,7 @@ class AppEngine {
         content.title = title
         content.body = body
         content.sound = UNNotificationSound(named: soundName)
+        content.badge = 1
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request) { (error) in

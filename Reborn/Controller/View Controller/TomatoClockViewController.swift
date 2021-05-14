@@ -175,7 +175,7 @@ class TomatoClockViewController: UIViewController {
         self.timePicker.selectRow(0, inComponent: 0, animated: false)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.timePicker.selectRow(self.clockTypeSegmentedControl.selectedSegmentIndex == 0 ? 2 : 1, inComponent: 0, animated: true)
+            self.timePicker.selectRow(self.clockTypeSegmentedControl.selectedSegmentIndex == 0 ? 1 : 1, inComponent: 0, animated: true)
         }
     }
     

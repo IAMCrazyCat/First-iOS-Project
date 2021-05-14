@@ -69,7 +69,7 @@ class HomeViewController: UIViewController {
         
         dateFormatter.locale = Locale(identifier: "zh")
         dateFormatter.setLocalizedDateFormatFromTemplate("dd MMMM EEEE")
-        AdStrategy().addAd(to: self)
+        AdStrategy().addBottomBannerAd(to: self)
         updateUI()
 
     }
@@ -311,7 +311,7 @@ extension HomeViewController: UIObserver {
         updateItemCardsView()
         updateVerticalContentViewHeight()
         updateOverAllProgressView(scrollView: verticalScrollView, animated: true)
-        AdStrategy().removeAd(from: self)
+        AdStrategy().removeBottomBannerAd(from: self)
         
 
     }

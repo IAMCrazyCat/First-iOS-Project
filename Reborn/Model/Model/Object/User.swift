@@ -194,6 +194,10 @@ class User: Codable {
     public func updateAllItems() {
         for item in self.items {
             item.updateState()
+            
+            if item.energy >= self.energyChargingEfficiencyDays {
+                item.energy = 0
+            }
             item.hasSanction = false
         }
         

@@ -24,9 +24,9 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8a4-y1-V4p" userLabel="Top View">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="511.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="极简自律管理App" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GhC-NZ-To6">
-                                                <rect key="frame" x="151" y="369" width="112" height="17"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="重启健康生活" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GhC-NZ-To6">
+                                                <rect key="frame" x="170" y="361" width="74" height="14.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -44,9 +44,9 @@
                                                     <constraint firstAttribute="height" constant="180" id="oYX-Ga-Agy"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="重生" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fb5-0h-FNK">
-                                                <rect key="frame" x="178.5" y="325.5" width="57" height="33.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="极简自律" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fb5-0h-FNK">
+                                                <rect key="frame" x="164.5" y="325.5" width="85.5" height="25.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -68,7 +68,7 @@
                                                 <rect key="frame" x="15" y="237" width="384" height="49.5"/>
                                                 <color key="backgroundColor" systemColor="systemGray3Color"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <state key="normal" title="重启自律生活">
+                                                <state key="normal" title="现在重启">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -841,7 +841,6 @@
                                     <constraint firstAttribute="bottom" secondItem="hC6-oy-S3E" secondAttribute="bottom" constant="10" id="oAB-sA-iUc"/>
                                     <constraint firstItem="vgh-l2-8hx" firstAttribute="centerX" secondItem="Ylm-aW-HG0" secondAttribute="centerX" id="pe5-DU-68f"/>
                                     <constraint firstAttribute="trailing" secondItem="hC6-oy-S3E" secondAttribute="trailing" constant="15" id="trt-qJ-tBl"/>
-                                    <constraint firstItem="hC6-oy-S3E" firstAttribute="centerX" secondItem="Ylm-aW-HG0" secondAttribute="centerX" id="xV4-6n-jL5"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -898,10 +897,6 @@
                                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rPK-k0-tHl" userLabel="Calendar View">
                                                         <rect key="frame" x="0.0" y="0.0" width="384" height="430"/>
                                                         <color key="backgroundColor" name="WhiteAndBlackContent"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="430" id="AF9-H6-ena"/>
-                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="400" id="G4z-Xe-LKL"/>
-                                                        </constraints>
                                                         <connections>
                                                             <segue destination="cr2-6I-Rrh" kind="embed" identifier="EmbeddedCalendarContainer" id="XZJ-WO-7s9"/>
                                                         </connections>
@@ -910,7 +905,9 @@
                                                 <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="rPK-k0-tHl" secondAttribute="trailing" id="HJP-3I-Gdv"/>
-                                                    <constraint firstAttribute="height" priority="750" constant="430" id="jjR-yB-aby"/>
+                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="430" id="bMD-xg-McZ"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="420" id="cz1-jH-bM8"/>
+                                                    <constraint firstItem="rPK-k0-tHl" firstAttribute="height" secondItem="bQ8-um-Suf" secondAttribute="height" id="nAY-iT-8Kr"/>
                                                     <constraint firstItem="rPK-k0-tHl" firstAttribute="leading" secondItem="bQ8-um-Suf" secondAttribute="leading" id="rmd-FQ-ilq"/>
                                                     <constraint firstItem="rPK-k0-tHl" firstAttribute="top" secondItem="bQ8-um-Suf" secondAttribute="top" id="uwu-x2-4mG"/>
                                                     <constraint firstItem="rPK-k0-tHl" firstAttribute="centerX" secondItem="bQ8-um-Suf" secondAttribute="centerX" id="vti-pO-mXX"/>
@@ -1158,7 +1155,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="打卡记录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8bT-sp-N4j">
-                                                <rect key="frame" x="65" y="28.5" width="77.5" height="23"/>
+                                                <rect key="frame" x="65" y="28.5" width="334" height="23"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1171,6 +1168,7 @@
                                             <constraint firstItem="Oe5-3c-bY3" firstAttribute="top" secondItem="fhM-A8-SwE" secondAttribute="top" constant="20" id="66K-TQ-K4R"/>
                                             <constraint firstItem="bQ8-um-Suf" firstAttribute="centerX" secondItem="fhM-A8-SwE" secondAttribute="centerX" id="70M-ol-Het"/>
                                             <constraint firstItem="8bT-sp-N4j" firstAttribute="leading" secondItem="Oe5-3c-bY3" secondAttribute="trailing" constant="10" id="KFx-92-H76"/>
+                                            <constraint firstAttribute="trailing" secondItem="8bT-sp-N4j" secondAttribute="trailing" constant="15" id="Kfp-fT-FWB"/>
                                             <constraint firstItem="NaE-mY-8uJ" firstAttribute="top" secondItem="bQ8-um-Suf" secondAttribute="bottom" constant="20" id="MAg-s7-9yL"/>
                                             <constraint firstAttribute="trailing" secondItem="bQ8-um-Suf" secondAttribute="trailing" constant="15" id="MH3-kO-EaG"/>
                                             <constraint firstItem="wc5-Hz-1bB" firstAttribute="top" secondItem="NaE-mY-8uJ" secondAttribute="bottom" constant="40" id="MTI-Ih-WwR"/>
@@ -1202,8 +1200,8 @@
                         <viewLayoutGuide key="safeArea" id="DQ0-N6-onb"/>
                         <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                         <constraints>
-                            <constraint firstItem="rPK-k0-tHl" firstAttribute="height" secondItem="0fl-uJ-8UA" secondAttribute="height" multiplier="0.529557" priority="750" id="1IY-X4-Xj4"/>
                             <constraint firstItem="FRC-Pg-OSb" firstAttribute="top" secondItem="DQ0-N6-onb" secondAttribute="top" id="1ac-Ni-m3U"/>
+                            <constraint firstItem="bQ8-um-Suf" firstAttribute="height" secondItem="0fl-uJ-8UA" secondAttribute="height" multiplier="0.52" priority="750" id="IN3-sA-QiY"/>
                             <constraint firstItem="FRC-Pg-OSb" firstAttribute="leading" secondItem="DQ0-N6-onb" secondAttribute="leading" id="hhz-if-grX"/>
                             <constraint firstAttribute="bottom" secondItem="FRC-Pg-OSb" secondAttribute="bottom" id="jeJ-yb-Xx3"/>
                             <constraint firstItem="FRC-Pg-OSb" firstAttribute="trailing" secondItem="DQ0-N6-onb" secondAttribute="trailing" id="llJ-fH-yul"/>
@@ -2254,6 +2252,7 @@
                                             <constraint firstItem="FzS-Z7-id6" firstAttribute="leading" secondItem="fkI-Nx-UK5" secondAttribute="leading" constant="15" id="zBs-Zi-u56"/>
                                             <constraint firstItem="1Rc-aS-e5C" firstAttribute="top" secondItem="bXE-cc-vLl" secondAttribute="bottom" constant="20" id="zLr-U2-mnG"/>
                                             <constraint firstItem="OeQ-hP-44X" firstAttribute="bottom" secondItem="KpG-66-JYl" secondAttribute="bottom" id="zWZ-Jq-HsM"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ews-TR-Tf9" secondAttribute="trailing" constant="15" id="zqC-5a-r9f"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12月22日星期二" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVz-AJ-JZD">
@@ -2401,13 +2400,13 @@
                                                         </state>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VIP图标持续更新中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cww-Y8-X48">
-                                                        <rect key="frame" x="60" y="27.5" width="105" height="15"/>
+                                                        <rect key="frame" x="60" y="27.5" width="304" height="15"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="解锁全部图标" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3D5-um-DLf">
-                                                        <rect key="frame" x="60" y="7.5" width="92" height="18"/>
+                                                        <rect key="frame" x="60" y="7.5" width="304" height="18"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2419,8 +2418,10 @@
                                                     <constraint firstItem="Cww-Y8-X48" firstAttribute="bottom" secondItem="Fzf-QM-O0Z" secondAttribute="bottom" id="Gu7-b5-9v8"/>
                                                     <constraint firstItem="Fzf-QM-O0Z" firstAttribute="leading" secondItem="1bU-a7-FrP" secondAttribute="leading" constant="15" id="Jvs-Vz-pnI"/>
                                                     <constraint firstItem="Cww-Y8-X48" firstAttribute="leading" secondItem="Fzf-QM-O0Z" secondAttribute="trailing" constant="10" id="Q1u-EI-zgR"/>
+                                                    <constraint firstAttribute="trailing" secondItem="3D5-um-DLf" secondAttribute="trailing" constant="20" id="ozz-oG-kXH"/>
                                                     <constraint firstItem="Fzf-QM-O0Z" firstAttribute="centerY" secondItem="1bU-a7-FrP" secondAttribute="centerY" id="sjr-24-NkY"/>
                                                     <constraint firstItem="3D5-um-DLf" firstAttribute="leading" secondItem="Fzf-QM-O0Z" secondAttribute="trailing" constant="10" id="wo3-1g-gxq"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Cww-Y8-X48" secondAttribute="trailing" constant="20" id="y6G-hv-v91"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YhA-we-a1G" userLabel="VIP Founction Three">
@@ -2438,13 +2439,13 @@
                                                         </state>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="享受多款深度设计的自然主题颜色" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0e-Am-UV9">
-                                                        <rect key="frame" x="60" y="27.5" width="184" height="15"/>
+                                                        <rect key="frame" x="60" y="27.5" width="304" height="15"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="解锁所有主题颜色" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tpo-FZ-5XS">
-                                                        <rect key="frame" x="60" y="7.5" width="123" height="18"/>
+                                                        <rect key="frame" x="60" y="7.5" width="304" height="18"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2453,11 +2454,13 @@
                                                 <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                                 <constraints>
                                                     <constraint firstItem="BvY-PM-TgD" firstAttribute="centerY" secondItem="YhA-we-a1G" secondAttribute="centerY" id="6R2-cO-qjH"/>
+                                                    <constraint firstAttribute="trailing" secondItem="i0e-Am-UV9" secondAttribute="trailing" constant="20" id="8w7-ak-Xn3"/>
                                                     <constraint firstItem="tpo-FZ-5XS" firstAttribute="top" secondItem="BvY-PM-TgD" secondAttribute="top" id="HUo-64-2cP"/>
                                                     <constraint firstItem="BvY-PM-TgD" firstAttribute="leading" secondItem="YhA-we-a1G" secondAttribute="leading" constant="15" id="WkU-ob-qbk"/>
                                                     <constraint firstItem="tpo-FZ-5XS" firstAttribute="leading" secondItem="BvY-PM-TgD" secondAttribute="trailing" constant="10" id="kFd-fe-lMQ"/>
                                                     <constraint firstItem="i0e-Am-UV9" firstAttribute="leading" secondItem="BvY-PM-TgD" secondAttribute="trailing" constant="10" id="pqq-E1-zfp"/>
                                                     <constraint firstItem="i0e-Am-UV9" firstAttribute="bottom" secondItem="BvY-PM-TgD" secondAttribute="bottom" id="tph-g3-wPq"/>
+                                                    <constraint firstAttribute="trailing" secondItem="tpo-FZ-5XS" secondAttribute="trailing" constant="20" id="v3c-Rv-O6K"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2gR-qV-msb" userLabel="VIP Founction Four">
@@ -2475,13 +2478,13 @@
                                                         </state>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="享受纯净无广告版，专注自律" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBN-Hf-u7I">
-                                                        <rect key="frame" x="60" y="27.5" width="160" height="15"/>
+                                                        <rect key="frame" x="60" y="27.5" width="304" height="15"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="移除广告" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFA-s4-ERm">
-                                                        <rect key="frame" x="60" y="7.5" width="62" height="18"/>
+                                                        <rect key="frame" x="60" y="7.5" width="304" height="18"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2492,9 +2495,11 @@
                                                     <constraint firstItem="KBN-Hf-u7I" firstAttribute="bottom" secondItem="GXR-o1-0ta" secondAttribute="bottom" id="5ED-rl-FrM"/>
                                                     <constraint firstItem="cFA-s4-ERm" firstAttribute="top" secondItem="GXR-o1-0ta" secondAttribute="top" id="7aC-lV-h7C"/>
                                                     <constraint firstItem="KBN-Hf-u7I" firstAttribute="leading" secondItem="GXR-o1-0ta" secondAttribute="trailing" constant="10" id="8eW-Vt-L3h"/>
+                                                    <constraint firstAttribute="trailing" secondItem="cFA-s4-ERm" secondAttribute="trailing" constant="20" id="C6e-yF-fMo"/>
                                                     <constraint firstItem="GXR-o1-0ta" firstAttribute="leading" secondItem="2gR-qV-msb" secondAttribute="leading" constant="15" id="Cn4-EM-k6p"/>
                                                     <constraint firstItem="cFA-s4-ERm" firstAttribute="leading" secondItem="GXR-o1-0ta" secondAttribute="trailing" constant="10" id="lbn-0X-eXt"/>
                                                     <constraint firstItem="GXR-o1-0ta" firstAttribute="centerY" secondItem="2gR-qV-msb" secondAttribute="centerY" id="qst-VH-YSg"/>
+                                                    <constraint firstAttribute="trailing" secondItem="KBN-Hf-u7I" secondAttribute="trailing" constant="20" id="trd-Jx-Chn"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rPF-jZ-Aoe" userLabel="VIP Founction Five">
@@ -2512,13 +2517,13 @@
                                                         </state>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用能量开启时光机器补打卡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lwU-A7-uAY">
-                                                        <rect key="frame" x="60" y="27.5" width="160" height="15"/>
+                                                        <rect key="frame" x="60" y="27.5" width="304" height="15"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="获得5点时光机器能量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRP-mg-Bzi">
-                                                        <rect key="frame" x="60" y="7.5" width="148" height="18"/>
+                                                        <rect key="frame" x="60" y="7.5" width="304" height="18"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2528,9 +2533,11 @@
                                                 <constraints>
                                                     <constraint firstItem="fKZ-ry-kbD" firstAttribute="leading" secondItem="rPF-jZ-Aoe" secondAttribute="leading" constant="15" id="5gW-xe-8nN"/>
                                                     <constraint firstItem="lwU-A7-uAY" firstAttribute="bottom" secondItem="fKZ-ry-kbD" secondAttribute="bottom" id="DcI-Tu-jZx"/>
+                                                    <constraint firstAttribute="trailing" secondItem="lwU-A7-uAY" secondAttribute="trailing" constant="20" id="Et4-9F-b5c"/>
                                                     <constraint firstItem="fKZ-ry-kbD" firstAttribute="centerY" secondItem="rPF-jZ-Aoe" secondAttribute="centerY" id="KkR-CF-zPr"/>
                                                     <constraint firstItem="vRP-mg-Bzi" firstAttribute="leading" secondItem="fKZ-ry-kbD" secondAttribute="trailing" constant="10" id="ObE-6W-6fr"/>
                                                     <constraint firstItem="lwU-A7-uAY" firstAttribute="leading" secondItem="fKZ-ry-kbD" secondAttribute="trailing" constant="10" id="OeG-59-KqZ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="vRP-mg-Bzi" secondAttribute="trailing" constant="20" id="Q1t-qt-kzW"/>
                                                     <constraint firstItem="vRP-mg-Bzi" firstAttribute="top" secondItem="fKZ-ry-kbD" secondAttribute="top" id="nbH-63-2as"/>
                                                 </constraints>
                                             </view>
@@ -2549,13 +2556,13 @@
                                                         </state>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="连续打卡7天免费获得1点能量 （普通用户21天）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5zc-9X-Vof">
-                                                        <rect key="frame" x="60" y="27.5" width="262" height="15"/>
+                                                        <rect key="frame" x="60" y="27.5" width="304" height="15"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="加速获得时光机器能量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O19-Uf-Mmr">
-                                                        <rect key="frame" x="60" y="7.5" width="153" height="18"/>
+                                                        <rect key="frame" x="60" y="7.5" width="304" height="18"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2563,8 +2570,10 @@
                                                 </subviews>
                                                 <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="5zc-9X-Vof" secondAttribute="trailing" constant="20" id="911-vS-0wJ"/>
                                                     <constraint firstItem="WOm-XI-zX8" firstAttribute="centerY" secondItem="iJs-TO-3ch" secondAttribute="centerY" id="ALq-YU-vv2"/>
                                                     <constraint firstItem="O19-Uf-Mmr" firstAttribute="top" secondItem="WOm-XI-zX8" secondAttribute="top" id="BJn-7X-mcx"/>
+                                                    <constraint firstAttribute="trailing" secondItem="O19-Uf-Mmr" secondAttribute="trailing" constant="20" id="Eh4-Uc-2Fd"/>
                                                     <constraint firstItem="WOm-XI-zX8" firstAttribute="leading" secondItem="iJs-TO-3ch" secondAttribute="leading" constant="15" id="ZH5-S4-fMs"/>
                                                     <constraint firstItem="O19-Uf-Mmr" firstAttribute="leading" secondItem="WOm-XI-zX8" secondAttribute="trailing" constant="10" id="aML-sL-CDb"/>
                                                     <constraint firstItem="5zc-9X-Vof" firstAttribute="leading" secondItem="WOm-XI-zX8" secondAttribute="trailing" constant="10" id="gio-W4-4YC"/>
@@ -2586,13 +2595,13 @@
                                                         </state>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="持续开发中，后续VIP功能自动解锁" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lUh-I3-IGM">
-                                                        <rect key="frame" x="60" y="27.5" width="191" height="15"/>
+                                                        <rect key="frame" x="60" y="27.5" width="304" height="15"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="后续全部VIP功能" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKJ-bi-X7L">
-                                                        <rect key="frame" x="60" y="7.5" width="117" height="18"/>
+                                                        <rect key="frame" x="60" y="7.5" width="304" height="18"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2600,10 +2609,12 @@
                                                 </subviews>
                                                 <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="mKJ-bi-X7L" secondAttribute="trailing" constant="20" id="GIp-7f-Ud4"/>
                                                     <constraint firstItem="izP-IJ-2pM" firstAttribute="leading" secondItem="Ak4-lP-eyo" secondAttribute="leading" constant="15" id="JHc-Yf-kx0"/>
                                                     <constraint firstItem="mKJ-bi-X7L" firstAttribute="top" secondItem="izP-IJ-2pM" secondAttribute="top" id="Ovp-YV-UKJ"/>
                                                     <constraint firstItem="izP-IJ-2pM" firstAttribute="centerY" secondItem="Ak4-lP-eyo" secondAttribute="centerY" id="PPc-8S-Jay"/>
                                                     <constraint firstItem="lUh-I3-IGM" firstAttribute="bottom" secondItem="izP-IJ-2pM" secondAttribute="bottom" id="WXm-AM-aW1"/>
+                                                    <constraint firstAttribute="trailing" secondItem="lUh-I3-IGM" secondAttribute="trailing" constant="20" id="ahI-ns-zsY"/>
                                                     <constraint firstItem="mKJ-bi-X7L" firstAttribute="leading" secondItem="izP-IJ-2pM" secondAttribute="trailing" constant="10" id="eMs-NC-ADP"/>
                                                     <constraint firstItem="lUh-I3-IGM" firstAttribute="leading" secondItem="izP-IJ-2pM" secondAttribute="trailing" constant="10" id="w7x-JX-3iD"/>
                                                 </constraints>
@@ -2623,13 +2634,13 @@
                                                         </state>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分享海报中展示VIP标签" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZMz-a3-j9Z">
-                                                        <rect key="frame" x="60" y="27.5" width="130" height="15"/>
+                                                        <rect key="frame" x="60" y="27.5" width="304" height="15"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VIP专属标签" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Soh-2c-Zfe">
-                                                        <rect key="frame" x="60" y="7.5" width="87" height="18"/>
+                                                        <rect key="frame" x="60" y="7.5" width="304" height="18"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2639,7 +2650,9 @@
                                                 <constraints>
                                                     <constraint firstItem="8rC-hy-Pjf" firstAttribute="leading" secondItem="lh1-pk-Ebu" secondAttribute="leading" constant="15" id="2Fp-d7-OHF"/>
                                                     <constraint firstItem="8rC-hy-Pjf" firstAttribute="centerY" secondItem="lh1-pk-Ebu" secondAttribute="centerY" id="RQ1-V2-Q2f"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Soh-2c-Zfe" secondAttribute="trailing" constant="20" id="TkC-WW-Hw5"/>
                                                     <constraint firstItem="ZMz-a3-j9Z" firstAttribute="bottom" secondItem="8rC-hy-Pjf" secondAttribute="bottom" id="cPf-2E-UOh"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ZMz-a3-j9Z" secondAttribute="trailing" constant="20" id="h2w-mf-WeD"/>
                                                     <constraint firstItem="Soh-2c-Zfe" firstAttribute="top" secondItem="8rC-hy-Pjf" secondAttribute="top" id="qCV-jP-fwN"/>
                                                     <constraint firstItem="ZMz-a3-j9Z" firstAttribute="leading" secondItem="8rC-hy-Pjf" secondAttribute="trailing" constant="10" id="wUn-yY-oGs"/>
                                                     <constraint firstItem="Soh-2c-Zfe" firstAttribute="leading" secondItem="8rC-hy-Pjf" secondAttribute="trailing" constant="10" id="y30-5r-Zlm"/>
@@ -2768,13 +2781,6 @@
                                         <rect key="frame" x="25" y="65" width="0.0" height="0.0"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJ3-Tv-fNC">
-                                        <rect key="frame" x="32" y="28" width="0.0" height="0.0"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -3046,13 +3052,13 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dnb-hB-YOr">
                                 <rect key="frame" x="20" y="20" width="374" height="808"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <mutableString key="text">用户隐私政策
+                                <string key="text">用户隐私政策
 
-[重生] 关注并且尊重用户隐私，我们不会以任何方式收集您的个人数据，包括您的个人信息，使用记录，使用偏好，您在本地产生的数据将储存在您的设备。如果您删除习惯项目，项目相关数据将会在本地被删除，且无法恢复。如果您卸载App，所有数据将会被删除，且无法被恢复。
+[极简自律] 关注并且尊重用户隐私，我们不会以任何方式收集您的个人数据，包括您的个人信息，使用记录，使用偏好，您在本地产生的数据将储存在您的设备。如果您删除习惯项目，项目相关数据将会在本地被删除，且无法恢复。如果您卸载App，所有数据将会被删除，且无法被恢复。
 
 用户使用条款
 
-[重生] 提供多种App内购方案，当您选择购买即视为您同意本条款
+[极简自律] 提供多种App内购方案，当您选择购买即视为您同意本条款
 
 - 会员服务
 
@@ -3076,7 +3082,7 @@
 
 如果您对我们的服务不满意，您可以尝试在Apple申请退款，退款成功后，您的高级会员服务将不会被保留，如果您在成功扣费后没有自动更新为高级会员，您可以发送邮件联系我们 liuzimingjay@gmail.com 我们会尽快协助您解决
 
-</mutableString>
+</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" textContentType="name"/>
@@ -3793,12 +3799,13 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dsj-nQ-Wth" userLabel="Preview Middle View">
                                                         <rect key="frame" x="0.0" y="73" width="284" height="284"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDT-4Y-n8k">
-                                                                <rect key="frame" x="197" y="146" width="42" height="60"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="120" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDT-4Y-n8k">
+                                                                <rect key="frame" x="149" y="166" width="90" height="40"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="60" id="DyR-Ps-oqt"/>
+                                                                    <constraint firstAttribute="height" constant="40" id="DyR-Ps-oqt"/>
+                                                                    <constraint firstAttribute="width" constant="90" id="kKt-SE-kwM"/>
                                                                 </constraints>
-                                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="70"/>
+                                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="50"/>
                                                                 <color key="textColor" name="BlackContent"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -3828,8 +3835,8 @@
                                                                 <color key="textColor" name="BlackBackground"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="坚持健身" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVJ-m7-pFk">
-                                                                <rect key="frame" x="20" y="188" width="61.5" height="18"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="坚持健身并且不看比特币" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVJ-m7-pFk">
+                                                                <rect key="frame" x="20" y="170" width="109" height="36"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="15"/>
                                                                 <color key="textColor" name="BlackContent"/>
                                                                 <nil key="highlightedColor"/>
@@ -3879,6 +3886,7 @@
                                                             <constraint firstItem="jQ2-CB-78W" firstAttribute="centerY" secondItem="Dsj-nQ-Wth" secondAttribute="centerY" constant="-99" id="QS3-bt-nZ2"/>
                                                             <constraint firstAttribute="trailing" secondItem="OIE-Ou-46M" secondAttribute="trailing" constant="20" id="SVa-6M-yjx"/>
                                                             <constraint firstItem="OIE-Ou-46M" firstAttribute="bottom" secondItem="AVJ-m7-pFk" secondAttribute="bottom" id="Xs3-Ua-flf"/>
+                                                            <constraint firstItem="aDT-4Y-n8k" firstAttribute="leading" secondItem="AVJ-m7-pFk" secondAttribute="trailing" constant="20" id="aUu-i7-zvd"/>
                                                             <constraint firstItem="OsT-CP-wLK" firstAttribute="height" secondItem="v3T-ku-bnC" secondAttribute="height" id="c2q-xI-0HC"/>
                                                             <constraint firstItem="r3E-2r-u9S" firstAttribute="leading" secondItem="V5B-yH-Aki" secondAttribute="leading" constant="-3" id="e9S-cf-hha"/>
                                                             <constraint firstAttribute="trailing" secondItem="v3T-ku-bnC" secondAttribute="trailing" constant="20" id="emS-3J-a7z"/>
@@ -3924,21 +3932,21 @@
                                                             <constraint firstAttribute="width" constant="60" id="UVO-I6-tQE"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="重生" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y9L-34-0qu">
-                                                        <rect key="frame" x="75" y="15" width="35" height="21"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="极简自律" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y9L-34-0qu">
+                                                        <rect key="frame" x="75" y="15" width="61.5" height="18"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                         <color key="textColor" name="BlackBackground"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QRCode-TestFlight" translatesAutoresizingMaskIntoConstraints="NO" id="hsL-am-3hQ">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QRCode-Real" translatesAutoresizingMaskIntoConstraints="NO" id="hsL-am-3hQ">
                                                         <rect key="frame" x="214" y="10" width="60" height="60"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="4qS-2Z-2Oa"/>
                                                             <constraint firstAttribute="width" constant="60" id="tfX-P9-raW"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="极简自律管理App" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="58g-ne-Gc0">
-                                                        <rect key="frame" x="75" y="41" width="81" height="12"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自律管理打卡App" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="58g-ne-Gc0">
+                                                        <rect key="frame" x="75" y="38" width="89" height="12"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                         <color key="textColor" name="BlackBackground"/>
                                                         <nil key="highlightedColor"/>
@@ -3955,6 +3963,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="hsL-am-3hQ" secondAttribute="trailing" constant="10" id="Rdc-Qb-p4a"/>
                                                     <constraint firstAttribute="height" constant="80" id="lPq-NN-3dd"/>
                                                     <constraint firstItem="58g-ne-Gc0" firstAttribute="top" secondItem="Y9L-34-0qu" secondAttribute="bottom" constant="5" id="tNw-DM-Xuj"/>
+                                                    <constraint firstItem="hsL-am-3hQ" firstAttribute="leading" secondItem="58g-ne-Gc0" secondAttribute="trailing" constant="50" id="zMx-Fc-V3V"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -4106,11 +4115,23 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SRU-lc-WDC">
+                                        <rect key="frame" x="325" y="20" width="74" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="如何补打卡？">
+                                            <color key="titleColor" name="BlueThemeColor"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="tx8-Nn-jW1" kind="show" id="anY-XH-dKK"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="wGg-Wg-4W5" firstAttribute="centerX" secondItem="taC-gt-WFQ" secondAttribute="centerX" id="ECp-5j-fOc"/>
+                                    <constraint firstAttribute="trailing" secondItem="SRU-lc-WDC" secondAttribute="trailing" constant="15" id="JMy-Pp-JyE"/>
                                     <constraint firstItem="wGg-Wg-4W5" firstAttribute="centerY" secondItem="taC-gt-WFQ" secondAttribute="centerY" id="KnV-Y0-9gn"/>
+                                    <constraint firstItem="SRU-lc-WDC" firstAttribute="top" secondItem="taC-gt-WFQ" secondAttribute="top" constant="20" id="cVt-vw-Edu"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e3o-Fw-IOK" userLabel="Middle view">
@@ -4122,22 +4143,10 @@
                                         <color key="textColor" name="GreenThemeColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SRU-lc-WDC">
-                                        <rect key="frame" x="173" y="84.5" width="68" height="26"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                        <state key="normal" title="如何补打卡？">
-                                            <color key="titleColor" name="BlueThemeColor"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="tx8-Nn-jW1" kind="push" id="anY-XH-dKK"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="QVc-vL-AUJ" firstAttribute="centerX" secondItem="e3o-Fw-IOK" secondAttribute="centerX" id="a7z-H0-grV"/>
-                                    <constraint firstItem="SRU-lc-WDC" firstAttribute="centerX" secondItem="e3o-Fw-IOK" secondAttribute="centerX" id="eu8-uD-xBC"/>
-                                    <constraint firstAttribute="bottom" secondItem="SRU-lc-WDC" secondAttribute="bottom" id="g55-39-hcy"/>
                                     <constraint firstItem="QVc-vL-AUJ" firstAttribute="centerY" secondItem="e3o-Fw-IOK" secondAttribute="centerY" id="gd4-N9-Ngm"/>
                                 </constraints>
                             </view>
@@ -4177,6 +4186,7 @@
                         <outlet property="efficiencyLabel" destination="fkb-6A-26B" id="5gK-pG-Hte"/>
                         <outlet property="energyButton" destination="FhC-Jg-bIU" id="D2f-hG-nEH"/>
                         <outlet property="hollowEnergyImageView" destination="SVT-M6-aN6" id="eFq-VU-Jgs"/>
+                        <outlet property="howToRecheckButton" destination="SRU-lc-WDC" id="umN-Yy-IvO"/>
                         <outlet property="newEnergyPromptLabel" destination="QVc-vL-AUJ" id="Fvg-Sk-VhO"/>
                         <outlet property="purchaseButton" destination="gfL-oR-LC8" id="BhN-bg-Myy"/>
                         <outlet property="titleLabel" destination="wGg-Wg-4W5" id="Dbr-9E-0Oe"/>
@@ -4203,14 +4213,14 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IGg-5p-q0N">
                                                 <rect key="frame" x="20" y="20" width="374" height="510"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. 点击日历右上角时光机器标志进入时光机器" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4q-6k-07k">
-                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="21"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. 点击日历右上角时光机器标志进入时光机器" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4q-6k-07k">
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="TimeMachine-1" translatesAutoresizingMaskIntoConstraints="NO" id="vnK-OB-lHr">
-                                                        <rect key="frame" x="0.0" y="41" width="374" height="469"/>
+                                                        <rect key="frame" x="0.0" y="40.5" width="374" height="469.5"/>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -4229,7 +4239,7 @@
                                                 <rect key="frame" x="20" y="550" width="374" height="600"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2. 选择想补打卡的日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPU-DJ-WIB">
-                                                        <rect key="frame" x="0.0" y="0.0" width="175" height="21"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -4245,6 +4255,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="7bp-DI-4ZX" secondAttribute="trailing" id="Azg-t0-1PP"/>
                                                     <constraint firstItem="7bp-DI-4ZX" firstAttribute="top" secondItem="MPU-DJ-WIB" secondAttribute="bottom" constant="20" id="E1n-kD-OAR"/>
                                                     <constraint firstItem="MPU-DJ-WIB" firstAttribute="leading" secondItem="xox-pS-Lqp" secondAttribute="leading" id="Hyf-uU-jJR"/>
+                                                    <constraint firstAttribute="trailing" secondItem="MPU-DJ-WIB" secondAttribute="trailing" id="gRL-kf-MWg"/>
                                                     <constraint firstItem="7bp-DI-4ZX" firstAttribute="leading" secondItem="xox-pS-Lqp" secondAttribute="leading" id="tbr-XX-22N"/>
                                                     <constraint firstItem="MPU-DJ-WIB" firstAttribute="top" secondItem="xox-pS-Lqp" secondAttribute="top" id="zYA-UV-oV9"/>
                                                 </constraints>
@@ -4253,7 +4264,7 @@
                                                 <rect key="frame" x="20" y="1170" width="374" height="600"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3. 确定要补打卡的日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dt4-ec-PhC">
-                                                        <rect key="frame" x="0.0" y="0.0" width="175" height="21"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -4268,6 +4279,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="Rew-p8-Q15" secondAttribute="trailing" id="8Lx-72-INA"/>
                                                     <constraint firstAttribute="bottom" secondItem="Rew-p8-Q15" secondAttribute="bottom" id="K1Y-4S-N1f"/>
                                                     <constraint firstItem="Rew-p8-Q15" firstAttribute="leading" secondItem="XhS-m7-BTi" secondAttribute="leading" id="cZx-Lf-yYD"/>
+                                                    <constraint firstAttribute="trailing" secondItem="dt4-ec-PhC" secondAttribute="trailing" id="e0F-hn-f1u"/>
                                                     <constraint firstAttribute="height" constant="600" id="jwA-D3-zgp"/>
                                                     <constraint firstItem="dt4-ec-PhC" firstAttribute="leading" secondItem="XhS-m7-BTi" secondAttribute="leading" id="mC5-zk-Fsn"/>
                                                     <constraint firstItem="Rew-p8-Q15" firstAttribute="top" secondItem="dt4-ec-PhC" secondAttribute="bottom" constant="20" id="t6I-mC-JJ5"/>
@@ -4276,14 +4288,14 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ETi-3P-5gl">
                                                 <rect key="frame" x="20" y="1790" width="374" height="200"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4. 点击回到过去，相应的能量会被扣除" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16R-Nu-r0Y">
-                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="21"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4. 点击回到过去，相应的能量会被扣除" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16R-Nu-r0Y">
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" image="TimeMachine-4" translatesAutoresizingMaskIntoConstraints="NO" id="EQa-sO-M4k">
-                                                        <rect key="frame" x="0.0" y="41" width="374" height="159"/>
+                                                        <rect key="frame" x="0.0" y="40.5" width="374" height="159.5"/>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -4302,7 +4314,7 @@
                                                 <rect key="frame" x="20" y="2010" width="374" height="520"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5. 成功恢复打卡，继续加油" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L61-wF-cGC">
-                                                        <rect key="frame" x="0.0" y="0.0" width="210" height="21"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -4318,6 +4330,7 @@
                                                     <constraint firstItem="Nj1-yH-uN9" firstAttribute="top" secondItem="L61-wF-cGC" secondAttribute="bottom" constant="20" id="U2p-fy-Oij"/>
                                                     <constraint firstAttribute="trailing" secondItem="Nj1-yH-uN9" secondAttribute="trailing" id="kEW-gW-le3"/>
                                                     <constraint firstAttribute="bottom" secondItem="Nj1-yH-uN9" secondAttribute="bottom" id="o0T-99-ITq"/>
+                                                    <constraint firstAttribute="trailing" secondItem="L61-wF-cGC" secondAttribute="trailing" id="q6j-lV-i1w"/>
                                                     <constraint firstAttribute="height" constant="520" id="wCT-Ps-m46"/>
                                                     <constraint firstItem="L61-wF-cGC" firstAttribute="top" secondItem="kW1-b1-VJX" secondAttribute="top" id="yAx-8C-wDw"/>
                                                 </constraints>
@@ -4404,7 +4417,7 @@
         <image name="Pencil" width="28" height="28"/>
         <image name="ProgressIcon" width="28" height="28"/>
         <image name="Purchase" width="28" height="28"/>
-        <image name="QRCode-TestFlight" width="392" height="380"/>
+        <image name="QRCode-Real" width="369" height="368"/>
         <image name="Recovery" width="28" height="28"/>
         <image name="Review2" width="28" height="28"/>
         <image name="Rewards2" width="512" height="512"/>
@@ -4414,7 +4427,7 @@
         <image name="StyleMode" width="31.5" height="31.5"/>
         <image name="Target" width="512" height="512"/>
         <image name="Target-HD" width="512" height="512"/>
-        <image name="Test" width="170.5" height="170.5"/>
+        <image name="Test" width="195" height="196"/>
         <image name="ThemeColorIcon" width="28" height="28"/>
         <image name="TimeMachine-1" width="828" height="1038"/>
         <image name="TimeMachine-2" width="828" height="1200"/>

@@ -77,7 +77,7 @@ class UserCenterViewController: UIViewController {
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(avatarViewTapped))
         self.avaterView.addGestureRecognizer(gesture)
-        AdStrategy().addAd(to: self)
+        AdStrategy().addBottomBannerAd(to: self)
         updateUI()
 
     }
@@ -154,7 +154,7 @@ class UserCenterViewController: UIViewController {
         }
     }
     @IBAction func shareButtonPressed(_ sender: UIButton) {
-        if let name = URL(string: "https://testflight.apple.com/join/0mAd8SqV"), !name.absoluteString.isEmpty {
+        if let name = URL(string: "https://apps.apple.com/app/id1555988168"), !name.absoluteString.isEmpty {
           let objectsToShare = [name]
           let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
           self.present(activityVC, animated: true, completion: nil)
@@ -315,7 +315,7 @@ class UserCenterViewController: UIViewController {
     
     func updatePurchaseButton() {
         if engine.currentUser.isVip {
-            purchaseButton.setTitle("您正在使用重生-高级版", for: .normal)
+            purchaseButton.setTitle("您正在使用\(App.name)-高级版", for: .normal)
             //purchaseButton.isUserInteractionEnabled = false
             purchaseRightButton.isHidden = true
         } else {
@@ -346,7 +346,7 @@ extension UserCenterViewController: UIObserver {
         updateVipButton()
         updateGenderImageView()
         updatePurchaseButton()
-        AdStrategy().removeAd(from: self)
+        AdStrategy().removeBottomBannerAd(from: self)
 
     }
 }

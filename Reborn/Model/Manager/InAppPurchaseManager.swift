@@ -70,6 +70,34 @@ class InAppPurchaseManager {
         }
     }
     
+    func getLocalCurrencySymbolOf(_ purchaseType: PurchaseType) -> String? {
+        var pakageForFetch: Purchases.Package?
+        for pakage in self.packages {
+            print(pakage.product.productIdentifier)
+            if pakage.product.productIdentifier == purchaseType.productID{
+                pakageForFetch = pakage
+            }
+        }
+        
+        if let price = pakageForFetch?.localizedPriceString {
+            var symbol = ""
+            var foundSymbol = false
+            for i in price {
+                if foundSymbol {
+                    symbol += i.description
+                }
+                
+                if i == " " {
+                    foundSymbol = true
+                }
+                
+            }
+            return symbol
+        } else {
+            return nil
+        }
+    }
+    
     
     func add(_ observer: InAppPurchaseObserver) {
         self.observers.append(observer)

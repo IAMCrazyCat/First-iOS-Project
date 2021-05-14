@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>重生</string>
+	<string>极简自律</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>GADApplicationIdentifier</key>
@@ -28,6 +28,10 @@
 	<true/>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>分享图片将会保存在您的相册</string>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>IntentIntent</string>
+	</array>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>
@@ -58,7 +62,6 @@
 	<true/>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>audio</string>
 		<string>fetch</string>
 		<string>remote-notification</string>
 	</array>

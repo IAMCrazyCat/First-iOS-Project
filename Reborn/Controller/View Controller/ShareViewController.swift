@@ -73,7 +73,7 @@ class ShareViewController: UIViewController {
     
     @objc func imageSavedToLibrary(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
         if error != nil {
-            SystemAlert.present("没有权限", and: "请在系统设置 隐私-照片-重生 中打开权限", from: self)
+            SystemAlert.present("没有权限", and: "请在系统设置 隐私-照片-\(App.name) 中打开权限", from: self)
         } else {
             SystemAlert.present("保存成功", and: "您可以在系统相册里查看并分享", from: self)
         }

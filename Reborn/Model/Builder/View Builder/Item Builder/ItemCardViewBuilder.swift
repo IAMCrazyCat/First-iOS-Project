@@ -15,7 +15,6 @@ class ItemCardViewBuilder: ViewBuilder {
     var cordinateY: CGFloat
     var width: CGFloat
     var height: CGFloat
-    let cardBGImage: UIImage = SystemSetting.shared.itemCardBGImage
     let setting: SystemSetting = SystemSetting.shared
     let outPutView: UIView = UIView()
     var isInteractable: Bool
@@ -114,7 +113,7 @@ class ItemCardViewBuilder: ViewBuilder {
         nameLabel.leftAnchor.constraint(equalTo: icon.rightAnchor, constant: 10).isActive = true
         nameLabel.centerYAnchor.constraint(equalTo: icon.centerYAnchor).isActive = true
         nameLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
-        
+        nameLabel.widthAnchor.constraint(lessThanOrEqualToConstant: outPutView.frame.width - 220).isActive = true
        
     }
     

@@ -57,7 +57,7 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
         instructionLabel.numberOfLines = 3
         instructionLabel.font = AppEngine.shared.userSetting.smallFont
         instructionLabel.textAlignment = .center
-        instructionLabel.text = "系统通知已关闭，若想启用提醒\n请在 设置-通知-重生 中打开允许通知"
+        instructionLabel.text = "系统通知已关闭，若想启用提醒\n请在 设置-通知-\(App.name) 中打开允许通知"
         instructionLabel.sizeToFit()
         
         super.contentView.addSubview(instructionLabel)

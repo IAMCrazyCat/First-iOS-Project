@@ -23,16 +23,16 @@ struct PickerViewData {
         return data
     }
     
-    public static var tomatoClockTimes: Array<CustomData> = [CustomData(title: "1分钟", data: 1),
-                                                             CustomData(title: "20分钟", data: 20),
-                                                             CustomData(title: "25分钟", data: 25),
-                                                             CustomData(title: "30分钟", data: 30),
-                                                             CustomData(title: "35分钟", data: 35),
-                                                             CustomData(title: "40分钟", data: 40),
-                                                             CustomData(title: "45分钟", data: 45),
-                                                             CustomData(title: "50分钟", data: 50),
-                                                             CustomData(title: "55分钟", data: 55),
-                                                             CustomData(title: "60分钟", data: 60)]
+    public static var tomatoClockTimes: Array<CustomData> = [
+        CustomData(title: "20分钟", data: 20),
+        CustomData(title: "25分钟", data: 25),
+        CustomData(title: "30分钟", data: 30),
+        CustomData(title: "35分钟", data: 35),
+        CustomData(title: "40分钟", data: 40),
+        CustomData(title: "45分钟", data: 45),
+        CustomData(title: "50分钟", data: 50),
+        CustomData(title: "55分钟", data: 55),
+        CustomData(title: "60分钟", data: 60)]
     
     public static var tomatoClockBreakTimes: Array<CustomData> = [CustomData(title: "5分钟", data: 5),
                                                                   CustomData(title: "10分钟", data: 10),

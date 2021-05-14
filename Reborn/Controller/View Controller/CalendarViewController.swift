@@ -557,9 +557,6 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
             }
             
             
-            
-            
-        
             if self.currentCalendarPage.year == CustomDate.current.year && self.currentCalendarPage.month == CustomDate.current.month && dayNumber == CustomDate.current.day {
                 // today dot
                 cell.addDotToBottom(withColor: UIColor.label.withAlphaComponent(1))

@@ -17,7 +17,6 @@ final class TimeMachineTransitioningDelegate: NSObject, UIViewControllerTransiti
     }
     
     public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        print("AAA")
         return TimeMachineViewPresentAnimationController()
     }
         

@@ -77,7 +77,7 @@ class PurchaseViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         middleScrollView.flashScrollIndicators()
         if self.loadingFailed {
-            SystemAlert.present("加载失败", and: "请重新尝试", from: self)
+            SystemAlert.present("加载商品失败", and: "请重新尝试", from: self, action1: UIAlertAction(title: "取消", style: .cancel, handler: nil), action2: UIAlertAction(title: "重新加载", style: .default, handler: { _ in self.updateUI() }), completion: nil)
             self.loadingFailed = false
         }
     }
@@ -263,25 +263,26 @@ class PurchaseViewController: UIViewController {
     }
    
     func updatePrice() {
-        let locale = Locale.current
-        let currencySymbol = locale.currencySymbol ?? ""
+        //let locale = Locale.current
+        let currencySymbol = InAppPurchaseManager.shared.getLocalCurrencySymbolOf(.permanent) ?? ""
         let oneMonthPrice = InAppPurchaseManager.shared.getPriceOf(.oneMonth)
         let oneYearPrice = InAppPurchaseManager.shared.getPriceOf(.oneYear)
         let permanentPrice = InAppPurchaseManager.shared.getPriceOf(.permanent)
         let defaultString = currencySymbol + " ?"
-        
+
         self.oneMonthPrice.text = oneMonthPrice != nil ? "\(currencySymbol) \(oneMonthPrice!.round(toPlaces: 1))" : defaultString
         self.oneYearPrice.text = oneYearPrice != nil ? "\(currencySymbol) \(oneYearPrice!.round(toPlaces: 1))" : defaultString
         self.permanentPrice.text = permanentPrice != nil ? "\(currencySymbol) \(permanentPrice!.round(toPlaces: 1))" : defaultString
         self.oneDayOfOneMonthPrice.text = oneMonthPrice != nil ? "\(currencySymbol)\((oneMonthPrice! / 30).round(toPlaces: 2)) / 天" : defaultString + " / 天"
         self.oneDayOfOneYearPrice.text = oneYearPrice != nil ? "\(currencySymbol) \((oneYearPrice! / 365).round(toPlaces: 2)) / 天" : defaultString + " / 天"
-        
-        
+
+
         if oneMonthPrice == nil && oneYearPrice == nil && permanentPrice == nil {
             self.loadingFailed = true
         }
-        
+
     }
+
 }
 
 extension PurchaseViewController: UIObserver {

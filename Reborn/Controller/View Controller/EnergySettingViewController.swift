@@ -9,6 +9,7 @@ import UIKit
 import StoreKit
 class EnergySettingViewController: UIViewController {
 
+    @IBOutlet weak var howToRecheckButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dynamicEnergyIconView: UIView!
     @IBOutlet weak var hollowEnergyImageView: UIImageView!
@@ -23,6 +24,7 @@ class EnergySettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        howToRecheckButton.setTitleColor(engine.userSetting.smartVisibleThemeColor, for: .normal)
         newEnergyPromptLabel.textColor = ThemeColor.green.uiColor
         vipStrategy = EnergyStrategy(energySettingViewController: self)
         engine.add(observer: self)
