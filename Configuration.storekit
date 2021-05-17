@@ -1,4 +1,8 @@
 {
+  "identifier" : "E5D3CF0C",
+  "nonRenewingSubscriptions" : [
+
+  ],
   "products" : [
     {
       "displayPrice" : "18",
@@ -24,6 +28,6 @@
   ],
   "version" : {
     "major" : 1,
-    "minor" : 0
+    "minor" : 1
   }
 }
