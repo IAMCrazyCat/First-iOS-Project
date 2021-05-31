@@ -2,6 +2,9 @@
 /* Class = "UIButton"; normalTitle = "跳过设置"; ObjectID = "07C-PA-2WH"; */
 "07C-PA-2WH.normalTitle" = "跳过设置";
 
+/* Class = "UILabel"; text = "4. 点击回到过去，相应的能量会被扣除"; ObjectID = "16R-Nu-r0Y"; */
+"16R-Nu-r0Y.text" = "4. 点击回到过去，相应的能量会被扣除";
+
 /* Class = "UIButton"; normalTitle = "  v1.2.1"; ObjectID = "1Rc-aS-e5C"; */
 "1Rc-aS-e5C.normalTitle" = "  v1.2.1";
 
@@ -29,8 +32,8 @@
 /* Class = "UIButton"; normalTitle = "今天"; ObjectID = "4yp-mE-jGG"; */
 "4yp-mE-jGG.normalTitle" = "今天";
 
-/* Class = "UILabel"; text = "极简自律管理App"; ObjectID = "58g-ne-Gc0"; */
-"58g-ne-Gc0.text" = "极简自律管理App";
+/* Class = "UILabel"; text = "自律管理打卡App"; ObjectID = "58g-ne-Gc0"; */
+"58g-ne-Gc0.text" = "自律管理打卡App";
 
 /* Class = "UITextView"; text = "[番茄工作法] 是简单易行的时间管理方法，使用番茄工作法，选择一个待完成的任务，将番茄时间设为25分钟，专注工作，中途不允许做任何与该任务无关的事，直到番茄时钟响起，然后进行短暂休息一下，重新设定新的番茄时钟"; ObjectID = "5HW-lE-qXP"; */
 "5HW-lE-qXP.text" = "[番茄工作法] 是简单易行的时间管理方法，使用番茄工作法，选择一个待完成的任务，将番茄时间设为25分钟，专注工作，中途不允许做任何与该任务无关的事，直到番茄时钟响起，然后进行短暂休息一下，重新设定新的番茄时钟";
@@ -74,8 +77,8 @@
 /* Class = "UILabel"; text = "请完成所有的选项"; ObjectID = "ATG-Ej-lf4"; */
 "ATG-Ej-lf4.text" = "请完成所有的选项";
 
-/* Class = "UILabel"; text = "坚持健身"; ObjectID = "AVJ-m7-pFk"; */
-"AVJ-m7-pFk.text" = "坚持健身";
+/* Class = "UILabel"; text = "坚持健身并且不看比特币"; ObjectID = "AVJ-m7-pFk"; */
+"AVJ-m7-pFk.text" = "坚持健身并且不看比特币";
 
 /* Class = "UILabel"; text = "数据"; ObjectID = "Axy-dD-Kcg"; */
 "Axy-dD-Kcg.text" = "数据";
@@ -113,8 +116,8 @@
 /* Class = "UILabel"; text = "添加新卡片"; ObjectID = "FTM-I4-dC0"; */
 "FTM-I4-dC0.text" = "添加新卡片";
 
-/* Class = "UILabel"; text = "重生"; ObjectID = "Fb5-0h-FNK"; */
-"Fb5-0h-FNK.text" = "重生";
+/* Class = "UILabel"; text = "极简自律"; ObjectID = "Fb5-0h-FNK"; */
+"Fb5-0h-FNK.text" = "极简自律";
 
 /* Class = "UILabel"; text = "应用升级"; ObjectID = "Fg2-3d-xoe"; */
 "Fg2-3d-xoe.text" = "应用升级";
@@ -134,8 +137,8 @@
 /* Class = "UIButton"; normalTitle = "4"; ObjectID = "GXR-o1-0ta"; */
 "GXR-o1-0ta.normalTitle" = "4";
 
-/* Class = "UILabel"; text = "极简自律管理App"; ObjectID = "GhC-NZ-To6"; */
-"GhC-NZ-To6.text" = "极简自律管理App";
+/* Class = "UILabel"; text = "重启健康生活"; ObjectID = "GhC-NZ-To6"; */
+"GhC-NZ-To6.text" = "重启健康生活";
 
 /* Class = "UILabel"; text = "学习工作效率低？\n来设置一个番茄时钟"; ObjectID = "I0A-0O-IrC"; */
 "I0A-0O-IrC.text" = "学习工作效率低？\n来设置一个番茄时钟";
@@ -152,11 +155,17 @@
 /* Class = "UILabel"; text = "敬请期待"; ObjectID = "JTV-Kc-Epj"; */
 "JTV-Kc-Epj.text" = "敬请期待";
 
+/* Class = "UIButton"; normalTitle = "用户协议与隐私政策"; ObjectID = "JxF-GM-2RC"; */
+"JxF-GM-2RC.normalTitle" = "用户协议与隐私政策";
+
 /* Class = "UILabel"; text = "享受纯净无广告版，专注自律"; ObjectID = "KBN-Hf-u7I"; */
 "KBN-Hf-u7I.text" = "享受纯净无广告版，专注自律";
 
 /* Class = "UILabel"; text = "颜色"; ObjectID = "KHp-wB-cfM"; */
 "KHp-wB-cfM.text" = "颜色";
+
+/* Class = "UILabel"; text = "5. 成功恢复打卡，继续加油"; ObjectID = "L61-wF-cGC"; */
+"L61-wF-cGC.text" = "5. 成功恢复打卡，继续加油";
 
 /* Class = "UITabBarItem"; title = "进行中"; ObjectID = "LbD-Pb-pXy"; */
 "LbD-Pb-pXy.title" = "进行中";
@@ -166,6 +175,9 @@
 
 /* Class = "UIButton"; normalTitle = "反馈"; ObjectID = "MMX-gO-o2H"; */
 "MMX-gO-o2H.normalTitle" = "反馈";
+
+/* Class = "UILabel"; text = "2. 选择想补打卡的日期"; ObjectID = "MPU-DJ-WIB"; */
+"MPU-DJ-WIB.text" = "2. 选择想补打卡的日期";
 
 /* Class = "UILabel"; text = "项目名"; ObjectID = "N9a-6t-lce"; */
 "N9a-6t-lce.text" = "项目名";
@@ -212,8 +224,14 @@
 /* Class = "UIButton"; normalTitle = "100天"; ObjectID = "RFy-ys-MHv"; */
 "RFy-ys-MHv.normalTitle" = "100天";
 
+/* Class = "UILabel"; text = "1. 点击日历右上角时光机器标志进入时光机器"; ObjectID = "S4q-6k-07k"; */
+"S4q-6k-07k.text" = "1. 点击日历右上角时光机器标志进入时光机器";
+
 /* Class = "UILabel"; text = "¥30"; ObjectID = "SQg-88-kWN"; */
 "SQg-88-kWN.text" = "¥30";
+
+/* Class = "UIButton"; normalTitle = "如何补打卡？"; ObjectID = "SRU-lc-WDC"; */
+"SRU-lc-WDC.normalTitle" = "如何补打卡？";
 
 /* Class = "UILabel"; text = "12月22日星期二"; ObjectID = "SVz-AJ-JZD"; */
 "SVz-AJ-JZD.text" = "12月22日星期二";
@@ -281,14 +299,14 @@
 /* Class = "UILabel"; text = "20天"; ObjectID = "XNe-KU-wnb"; */
 "XNe-KU-wnb.text" = "20天";
 
-/* Class = "UILabel"; text = "重生"; ObjectID = "Y9L-34-0qu"; */
-"Y9L-34-0qu.text" = "重生";
+/* Class = "UILabel"; text = "极简自律"; ObjectID = "Y9L-34-0qu"; */
+"Y9L-34-0qu.text" = "极简自律";
 
 /* Class = "UILabel"; text = "分享海报中展示VIP标签"; ObjectID = "ZMz-a3-j9Z"; */
 "ZMz-a3-j9Z.text" = "分享海报中展示VIP标签";
 
-/* Class = "UILabel"; text = "4"; ObjectID = "aDT-4Y-n8k"; */
-"aDT-4Y-n8k.text" = "4";
+/* Class = "UILabel"; text = "120"; ObjectID = "aDT-4Y-n8k"; */
+"aDT-4Y-n8k.text" = "120";
 
 /* Class = "UILabel"; text = "最佳连续"; ObjectID = "adp-HD-6cj"; */
 "adp-HD-6cj.text" = "最佳连续";
@@ -326,8 +344,14 @@
 /* Class = "UIButton"; normalTitle = "开始日"; ObjectID = "djk-JB-I2X"; */
 "djk-JB-I2X.normalTitle" = "开始日";
 
+/* Class = "UITextView"; text = "用户隐私政策\n\n[极简自律] 关注并且尊重用户隐私，我们不会以任何方式收集您的个人数据，包括您的个人信息，使用记录，使用偏好，您在本地产生的数据将储存在您的设备。如果您删除习惯项目，项目相关数据将会在本地被删除，且无法恢复。如果您卸载App，所有数据将会被删除，且无法被恢复。\n\n用户使用条款\n\n[极简自律] 提供多种App内购方案，当您选择购买即视为您同意本条款\n\n- 会员服务\n\n[一月期会员] 和 [一年期会员] 属于自动订阅型会员，服务到期后将自动续费。[永久会员] 属于非消费型会员，您只能购买一次，且不会被自动续费。[能量] 属于消费型内购，您可以重复购买，且不会被自动续费。当您取消订阅或者申请了退款，所有的会员服务将会被锁定，但是您的项目数据不会被删除，当您恢复会员后，您可以重新享受会员服务\n\n- 购买规则\n\n当您订阅了 [一月期会员] 您可以升级到 [一年期会员]，Apple会按差价进行扣款，并且更新订阅期限。\n\n为了防止重复扣费，如果您订阅了 [一月期会员] 或 [一年期会员]，再您取消订阅前，您将暂时无法购买 [永久会员]。如果您购买了 [永久会员]，[一月期会员] 和 [一年期会员] 将无法购买\n\n- 恢复购买\n\n如果您重新安装了App，您可以恢复[一月期会员] 或者 [一年期会员] 或者 [永久会员]，请在购买界面点击 '恢复购买'，如果您之前没有购买过会员，将会提示购买失败。您之前购买的 [能量] 无法被恢复，请妥善保管您的数据\n\n- 取消订阅\n\n如果您想取消订阅，在下次自动续费24小时之前，您可以在系统订阅管理中取消订阅，则下次不会扣费续订。如果在24小时内取消订阅，由于自动续订服务由Apple提供，我们无法保证您能成功退订\n\n- 退款\n\n如果您对我们的服务不满意，您可以尝试在Apple申请退款，退款成功后，您的高级会员服务将不会被保留，如果您在成功扣费后没有自动更新为高级会员，您可以发送邮件联系我们 liuzimingjay@gmail.com 我们会尽快协助您解决\n\n"; ObjectID = "dnb-hB-YOr"; */
+"dnb-hB-YOr.text" = "用户隐私政策\n\n[极简自律] 关注并且尊重用户隐私，我们不会以任何方式收集您的个人数据，包括您的个人信息，使用记录，使用偏好，您在本地产生的数据将储存在您的设备。如果您删除习惯项目，项目相关数据将会在本地被删除，且无法恢复。如果您卸载App，所有数据将会被删除，且无法被恢复。\n\n用户使用条款\n\n[极简自律] 提供多种App内购方案，当您选择购买即视为您同意本条款\n\n- 会员服务\n\n[一月期会员] 和 [一年期会员] 属于自动订阅型会员，服务到期后将自动续费。[永久会员] 属于非消费型会员，您只能购买一次，且不会被自动续费。[能量] 属于消费型内购，您可以重复购买，且不会被自动续费。当您取消订阅或者申请了退款，所有的会员服务将会被锁定，但是您的项目数据不会被删除，当您恢复会员后，您可以重新享受会员服务\n\n- 购买规则\n\n当您订阅了 [一月期会员] 您可以升级到 [一年期会员]，Apple会按差价进行扣款，并且更新订阅期限。\n\n为了防止重复扣费，如果您订阅了 [一月期会员] 或 [一年期会员]，再您取消订阅前，您将暂时无法购买 [永久会员]。如果您购买了 [永久会员]，[一月期会员] 和 [一年期会员] 将无法购买\n\n- 恢复购买\n\n如果您重新安装了App，您可以恢复[一月期会员] 或者 [一年期会员] 或者 [永久会员]，请在购买界面点击 '恢复购买'，如果您之前没有购买过会员，将会提示购买失败。您之前购买的 [能量] 无法被恢复，请妥善保管您的数据\n\n- 取消订阅\n\n如果您想取消订阅，在下次自动续费24小时之前，您可以在系统订阅管理中取消订阅，则下次不会扣费续订。如果在24小时内取消订阅，由于自动续订服务由Apple提供，我们无法保证您能成功退订\n\n- 退款\n\n如果您对我们的服务不满意，您可以尝试在Apple申请退款，退款成功后，您的高级会员服务将不会被保留，如果您在成功扣费后没有自动更新为高级会员，您可以发送邮件联系我们 liuzimingjay@gmail.com 我们会尽快协助您解决\n\n";
+
 /* Class = "UILabel"; text = "打卡记录分享"; ObjectID = "doh-fb-7dN"; */
 "doh-fb-7dN.text" = "打卡记录分享";
+
+/* Class = "UILabel"; text = "3. 确定要补打卡的日期"; ObjectID = "dt4-ec-PhC"; */
+"dt4-ec-PhC.text" = "3. 确定要补打卡的日期";
 
 /* Class = "UIButton"; normalTitle = "自定义"; ObjectID = "eEh-sX-wyw"; */
 "eEh-sX-wyw.normalTitle" = "自定义";
@@ -398,8 +422,8 @@
 /* Class = "UILabel"; text = "开始日期: 2020年 12月12日 (140天前)"; ObjectID = "j4B-XZ-0ft"; */
 "j4B-XZ-0ft.text" = "开始日期: 2020年 12月12日 (140天前)";
 
-/* Class = "UIButton"; normalTitle = "重启自律生活"; ObjectID = "jtR-SS-ysE"; */
-"jtR-SS-ysE.normalTitle" = "重启自律生活";
+/* Class = "UIButton"; normalTitle = "现在重启"; ObjectID = "jtR-SS-ysE"; */
+"jtR-SS-ysE.normalTitle" = "现在重启";
 
 /* Class = "UILabel"; text = "更多自律工具\n持续开发中.."; ObjectID = "jyW-Yl-iOQ"; */
 "jyW-Yl-iOQ.text" = "更多自律工具\n持续开发中..";

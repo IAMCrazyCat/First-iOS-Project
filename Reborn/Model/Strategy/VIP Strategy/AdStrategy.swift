@@ -20,7 +20,7 @@ class AdStrategy: VIPStrategyImpl {
                 var bannerView: GADBannerView!
                 bannerView = GADBannerView(adSize: kGADAdSizeBanner)
                 bannerView.accessibilityIdentifier = "BottomBannerAd"
-                bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+                bannerView.adUnitID = "ca-app-pub-5203301078678220/8156734536"
                 bannerView.rootViewController = tabBarController
                 bannerView.load(GADRequest())
                 bannerView.translatesAutoresizingMaskIntoConstraints = false
@@ -36,7 +36,7 @@ class AdStrategy: VIPStrategyImpl {
                 var bannerView: GADBannerView!
                 bannerView = GADBannerView(adSize: kGADAdSizeBanner)
                 bannerView.accessibilityIdentifier = "BottomBannerAd"
-                bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+                bannerView.adUnitID = "ca-app-pub-5203301078678220/8156734536"
                 bannerView.rootViewController = viewController
                 bannerView.load(GADRequest())
                 bannerView.translatesAutoresizingMaskIntoConstraints = false

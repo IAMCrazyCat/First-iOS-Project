@@ -109,8 +109,9 @@ class ItemDetailViewController: UIViewController {
   
         } else if segue.identifier == "GoToEditItemView", let destinationViewController = segue.destination as? NewItemViewController {
             
-            destinationViewController.originalItemForRecovery = Item(ID: self.item!.ID, name: self.item!.name, days: self.item!.targetDays, frequency: self.item!.frequency, creationDate: self.item!.creationDate, type: self.item!.type, icon: self.item!.icon)
-            destinationViewController.item = self.item!
+            
+            //destinationViewController.originalItemForRecovery = 
+            destinationViewController.item = self.item
             destinationViewController.lastViewController = self
             destinationViewController.strategy = EditingItemStrategy(newItemViewController: destinationViewController)
             

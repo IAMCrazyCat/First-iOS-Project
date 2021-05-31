@@ -48,7 +48,7 @@ class NewItemViewController: UIViewController {
     @IBOutlet var promptTextView: UIView!
     @IBOutlet var promptLabel: UILabel!
     
-    var originalItemForRecovery: Item?
+    var originalItemForRecovery: Item!
     
     let engine: AppEngine = AppEngine.shared
     let setting: SystemSetting = SystemSetting.shared
@@ -76,6 +76,12 @@ class NewItemViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        originalItemForRecovery = Item(ID: item.ID, name: item.name, days: item.targetDays, frequency: item.frequency, creationDate: item.creationDate, type: item.type, icon: self.item.icon)
+        originalItemForRecovery.scheduleDates = item.scheduleDates
+        originalItemForRecovery.energy = item.energy
+        originalItemForRecovery.state = item.state
+        
         engine.add(observer: self)
         persistingTypeButton.setTitle(ItemType.persisting.rawValue, for: .normal)
         quittingTypeButton.setTitle(ItemType.quitting.rawValue, for: .normal)
@@ -122,6 +128,8 @@ class NewItemViewController: UIViewController {
                 self.item.frequency = originalItem.frequency
                 self.item.scheduleDates = originalItem.scheduleDates
                 self.item.type = originalItem.type
+                self.item.energy = originalItem.energy
+                self.item.state = originalItem.state
             }
             
         }
@@ -192,7 +200,7 @@ class NewItemViewController: UIViewController {
     
     @IBAction func cancelButtonPressed(_ sender: UIButton) {
         userDidSaveChange = false
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true)
         
        
     }
@@ -221,8 +229,7 @@ class NewItemViewController: UIViewController {
         let layout = iconCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
         layout?.scrollDirection  = self.unfolded ? .vertical : .horizontal
         self.iconCollectionViewHeightConstraint.constant = unfolded ? 200 : originalCollectionViewHeight
-        
-        //self.iconCollectionView.layoutIfNeeded()
+        self.iconCollectionView.scrollToTop(animated: false)
        
         UIView.animate(withDuration: 0.5, animations: {
             self.unfoldButton.transform = CGAffineTransform(rotationAngle: self.unfolded ? .pi : 0)
@@ -421,7 +428,6 @@ class NewItemViewController: UIViewController {
 
 extension NewItemViewController: UIObserver {
     func updateUI() {
-        
         updateFrequencyButtons()
         updateInstructionLabels()
         removeOldPreviewItemCard()
