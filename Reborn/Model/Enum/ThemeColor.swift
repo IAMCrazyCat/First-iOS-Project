@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 enum ThemeColor: String, Codable, CaseIterable {
-
     
     static let `default` = ThemeColor.blue
     case blue = "BlueThemeColor"
@@ -50,7 +49,7 @@ enum ThemeColor: String, Codable, CaseIterable {
         case .green: return "猕猴桃"
         case .green2: return "挪威森林"
         case .green3: return "原谅色"
-        case .red: return "罗曼尼康帝"
+        case .red: return "西瓜"
         case .orange: return "橘猫"
         case .purple: return "紫罗兰"
 

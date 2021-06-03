@@ -53,9 +53,8 @@ class ShareViewController: UIViewController {
         
         let scale: CGFloat = (self.view.frame.height / self.preview.frame.height) * (1 / 1.58)// 0.65 is the ideal ratio
         print(self.view.frame.height / self.preview.frame.height)
-        
         preview.transform = CGAffineTransform(scaleX: scale, y: scale)
-        
+        preview.layoutIfNeeded()
         setGradientPreviewContentViewBackgroundColor()
         addProgressView()
     }
@@ -91,11 +90,30 @@ class ShareViewController: UIViewController {
 
         gradient.colors = [AppEngine.shared.userSetting.themeColor.uiColor.cgColor, AppEngine.shared.userSetting.themeColor.uiColor.withAlphaComponent(0.2).cgColor]
         gradient.locations = [0.0 , 1.0]
-        gradient.startPoint = CGPoint(x: Double.random(in: 0.3 ... 0.7), y: 0.0)
-        gradient.endPoint = CGPoint(x: Double.random(in: 0.3 ... 0.7), y: 1.0)
+        gradient.startPoint = CGPoint(x: Double.random(in: 0.3 ... 0.7), y: 0.3)
+        gradient.endPoint = CGPoint(x: Double.random(in: 0.3 ... 0.7), y: 1)
         gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.previewContentView.frame.width, height: self.previewContentView.frame.height)
 
         self.previewContentView.layer.insertSublayer(gradient, at: 0)
+
+//        let gradientStartPointAnimation = CABasicAnimation(keyPath: "colors")
+//        gradientStartPointAnimation.duration = 5.0
+//        gradientStartPointAnimation.toValue = CGPoint(x: Double.random(in: 0.3 ... 0.7), y: 0.0)
+//        gradientStartPointAnimation.fillMode = CAMediaTimingFillMode.forwards
+//        gradientStartPointAnimation.isRemovedOnCompletion = false
+//        gradientStartPointAnimation.repeatDuration = .infinity
+//
+//        let gradientEndPointAnimation = CABasicAnimation(keyPath: "colors")
+//        gradientEndPointAnimation.duration = 5.0
+//        gradientEndPointAnimation.toValue = CGPoint(x: Double.random(in: 0.3 ... 0.7), y: 0.8)
+//        gradientEndPointAnimation.fillMode = CAMediaTimingFillMode.forwards
+//        gradientEndPointAnimation.isRemovedOnCompletion = false
+//        gradientEndPointAnimation.repeatDuration = .infinity
+//
+//
+//        let animationGroup = CAAnimationGroup()
+//        animationGroup.animations = [gradientStartPointAnimation, gradientEndPointAnimation]
+//        gradient.add(animationGroup, forKey: nil)
     }
     
     func updateSaveToLibraryButton() {

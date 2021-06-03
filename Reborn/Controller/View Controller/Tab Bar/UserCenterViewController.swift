@@ -149,9 +149,7 @@ class UserCenterViewController: UIViewController {
     }
     
     @IBAction func reviewButtonPressed(_ sender: UIButton) {
-        if let windowScene = UIApplication.shared.windows.first?.windowScene {
-            SKStoreReviewController.requestReview(in: windowScene)
-        }
+        engine.requestReview()
     }
     @IBAction func shareButtonPressed(_ sender: UIButton) {
         if let name = URL(string: "https://apps.apple.com/app/id1555988168"), !name.absoluteString.isEmpty {
@@ -206,9 +204,6 @@ class UserCenterViewController: UIViewController {
     }
     
     func updateNavigationBar() {
-//        navigationController?.navigationBar.removeBorder()
-//        navigationController?.navigationBar.barTintColor = engine.userSetting.themeColorAndBlackContent
-//        navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.foregroundColor: engine.userSetting.smartLabelColorAndWhiteAndThemeColor]
         self.setNavigationBarAppearance()
     }
     
@@ -412,8 +407,11 @@ extension UserCenterViewController: PopUpViewDelegate {
         }
         
         self.engine.saveSetting()
-        self.engine.notifyAllUIObservers()
         Vibrator.vibrate(withNotificationType: .success)
+        
+        DispatchQueue.main.async {
+            self.engine.notifyAllUIObservers()
+        }
     }
 }
 
@@ -449,25 +447,7 @@ extension UserCenterViewController: UIScrollViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(scrollViewTopOffset)
-//        let navigationBar = self.navigationController?.navigationBar
-        if scrollView.contentOffset.y < self.scrollViewTopOffset - 10 {
-            
-//            UIView.animate(withDuration: 0.2, animations: {
-//                navigationBar!.barTintColor = self.view.backgroundColor
-//                navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: self.engine.userSetting.smartLabelColorAndWhiteAndThemeColor.withAlphaComponent(0)]
-//                navigationBar!.layoutIfNeeded()
-//            })
-            
-        } else {
-            
-//            UIView.animate(withDuration: 0.2, animations: {
-//                navigationBar!.barTintColor = self.engine.userSetting.themeColorAndBlackContent
-//                navigationBar!.titleTextAttributes = [NSAttributedString.Key.foregroundColor: self.engine.userSetting.smartLabelColorAndWhiteAndThemeColor.withAlphaComponent(1)]
-//                navigationBar!.layoutIfNeeded()
-//            })
-            
-        }
+
     }
     
 }

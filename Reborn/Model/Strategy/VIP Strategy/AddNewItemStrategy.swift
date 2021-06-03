@@ -34,5 +34,8 @@ class AddNewItemStrategy: VIPStrategyImpl {
         newItemViewController.dismiss(animated: true) {
             self.newItemViewController.engine.notifyAllUIObservers()
         }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            AppEngine.shared.requestReview()
+        }
     }
 }

@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import WidgetKit
 import TPInAppReceipt
+import StoreKit
 protocol PopUpViewDelegate {
     func didDismissPopUpViewWithoutSave(_ type: PopUpType)
     func didSaveAndDismiss(_ type: PopUpType)
@@ -69,7 +70,15 @@ class AppEngine {
 
     
     
-    
+    public func requestReview() {
+        if let windowScene = UIApplication.shared.windows.first?.windowScene {
+            if #available(iOS 14.0, *) {
+                SKStoreReviewController.requestReview(in: windowScene)
+            } else {
+                SKStoreReviewController.requestReview()
+            }
+        }
+    }
    
     
     
@@ -381,7 +390,10 @@ class AppEngine {
         UserDefaults(suiteName: AppGroup.identifier.rawValue)!.set(self.currentUser.getOverAllProgress(), forKey: "OverAllProgress")
         UserDefaults(suiteName: AppGroup.identifier.rawValue)!.set(self.userSetting.themeColor.uiColor, forKey: "ThemeColor")
         UserDefaults(suiteName: AppGroup.identifier.rawValue)!.set(self.currentUser.getAvatarImage(), forKey: "AvatarImage")
-        WidgetCenter.shared.reloadAllTimelines()
+        if #available(iOS 14, *) {
+            WidgetCenter.shared.reloadAllTimelines()
+        } 
+       
     }
 
     public func add(observer: UIObserver) {
