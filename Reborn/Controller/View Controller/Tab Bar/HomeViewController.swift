@@ -171,7 +171,7 @@ class HomeViewController: UIViewController {
 
     func updateItemCardsView() {
 
-        self.itemCardsView.removeAllSubviews()
+        
        
         self.view.layoutIfNeeded()
         self.itemCardsView.renderItemCards(withCondition: .inProgress, animated: false)

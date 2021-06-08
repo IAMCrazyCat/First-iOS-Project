@@ -127,7 +127,7 @@ extension UIView {
     }
     
     func renderItemCard(by item: Item) {
-        
+        self.removeAllSubviews()
         let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: 0, y: 0, width: self.frame.width - 2 * SystemSetting.shared.mainPadding, height: SystemSetting.shared.itemCardHeight), isInteractable: false)
         let itemCard = builder.buildView()
         itemCard.center = self.center
@@ -135,6 +135,7 @@ extension UIView {
     }
     
     func renderItemCards(withCondition condition: ItemState?, animated: Bool) {
+        self.removeAllSubviews()
         AppEngine.shared.currentUser.sortItems()
         let isRenderingAll = condition == nil ? true : false
         let items = AppEngine.shared.currentUser.items

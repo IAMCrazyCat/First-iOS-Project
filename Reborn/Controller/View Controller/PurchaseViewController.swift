@@ -89,6 +89,7 @@ class PurchaseViewController: UIViewController {
    
     @IBAction func restorePurchaseButtonPressed(_ sender: UIButton) {
         restoreApp()
+        
     }
     
     @IBAction func subscriptionButtonSelected(_ sender: UIButton) {
@@ -119,9 +120,15 @@ class PurchaseViewController: UIViewController {
     }
     
     func restoreApp() {
-        LoadingAnimation.add(to: self.view, withRespondingTime: 15, proportionallyOnYPosition: 0.4, timeOutAlertTitle: "恢复失败", timeOutAlertBody: "操作超时，请稍后再试")
-        InAppPurchaseManager.shared.add(self)
-        InAppPurchaseManager.shared.restorePurchase()
+        
+        if engine.currentUser.isVip {
+            SystemAlert.present("恢复失败", and: "您已经在使用高级版，无需恢复", from: self)
+        } else {
+            LoadingAnimation.add(to: self.view, withRespondingTime: 15, proportionallyOnYPosition: 0.4, timeOutAlertTitle: "恢复失败", timeOutAlertBody: "操作超时，请稍后再试")
+            InAppPurchaseManager.shared.add(self)
+            InAppPurchaseManager.shared.restorePurchase()
+        }
+       
         
         
     }

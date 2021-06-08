@@ -59,6 +59,13 @@ class ShareViewController: UIViewController {
         addProgressView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if self.item.state == .completed {
+            self.preview.showConfettiAnimationInFront()
+        }
+        
+    }
+    
 //    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
 //        super.traitCollectionDidChange(previousTraitCollection)
 //        self.updateUI()
@@ -148,7 +155,7 @@ class ShareViewController: UIViewController {
     }
     
     func updateSharePosterText() {
-        sharePosterText.text = "\"\(SharePosterTextData.randomText)\""
+        sharePosterText.text = "\(SharePosterTextData.randomText)"
     }
     
     

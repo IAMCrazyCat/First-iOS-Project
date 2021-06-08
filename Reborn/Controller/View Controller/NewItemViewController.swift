@@ -230,8 +230,9 @@ class NewItemViewController: UIViewController {
         let layout = iconCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
         layout?.scrollDirection  = self.unfolded ? .vertical : .horizontal
         self.iconCollectionViewHeightConstraint.constant = unfolded ? 200 : originalCollectionViewHeight
-        self.iconCollectionView.scrollToTop(animated: false)
-       
+        
+        self.selectedIconIndex?.row ?? IndexPath(row: 0, section: 0).row > 5 ? self.iconCollectionView.scrollToTop(animated: false) : self.iconCollectionView.scrollToTop(animated: true)
+        
         UIView.animate(withDuration: 0.5, animations: {
             self.unfoldButton.transform = CGAffineTransform(rotationAngle: self.unfolded ? .pi : 0)
             self.verticalContentView.layoutIfNeeded()
@@ -285,11 +286,12 @@ class NewItemViewController: UIViewController {
     func updateInstructionLabels() {
         
         if self.item.type == .quitting {
-            self.firstInstructionLabel.text = "戒除项目需要您坚持每天打卡"
-            self.secondInstructionLabel.isHidden = true
+            self.firstInstructionLabel.isHidden = true
+            self.secondInstructionLabel.text = "戒除项目需要您坚持每天打卡"
         } else {
             self.firstInstructionLabel.text = "频率计划外为休息日，项目不会出现在今日打卡中"
-            self.secondInstructionLabel.isHidden = false
+            self.secondInstructionLabel.text = "设定频率后，第一次打卡日将会被设定为今天"
+            self.firstInstructionLabel.isHidden = false
         }
     }
     

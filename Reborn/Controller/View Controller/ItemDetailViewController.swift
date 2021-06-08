@@ -223,7 +223,7 @@ class ItemDetailViewController: UIViewController {
             self.todayLabel.text = "已打卡"
         } else if item.state == .completed {
             self.todayLabel.textColor = ThemeColor.green.uiColor
-            self.todayLabel.text = "项目已完成"
+            self.todayLabel.text = "目标已达成"
         } else if item.state == .duringBreak {
             self.todayLabel.textColor = ThemeColor.green.uiColor
             self.todayLabel.text = "休息中"

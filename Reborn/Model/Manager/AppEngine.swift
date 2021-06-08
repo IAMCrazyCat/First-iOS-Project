@@ -225,16 +225,14 @@ class AppEngine {
     
     func addNotification(at time: CustomTime) {
         
-        let userHasItemsInProgress = { () -> Bool in
-            for item in self.currentUser.items {
-                if item.state == .inProgress {
-                    return true
-                }
+        var numberOfInprogressItems = 0
+        for item in self.currentUser.items {
+            if item.state == .inProgress {
+                numberOfInprogressItems += 1
             }
-            return false
         }
 
-        if self.currentUser.items.count != 0, userHasItemsInProgress() == true {
+        if self.currentUser.items.count != 0, numberOfInprogressItems > 0 {
             
             var item: Item {
                 var outputItem = self.currentUser.items.random!
@@ -243,13 +241,24 @@ class AppEngine {
                 }
                 return outputItem
             }
-            
             let itemToNotifyUser = item
-            let earlyTitle = "\(currentUser.name), 今天记得 \(itemToNotifyUser.type.rawValue)\(itemToNotifyUser.name) "
-            let earlyBody = "你已经\(itemToNotifyUser.type.rawValue)了 \(itemToNotifyUser.finishedDays)天, 目标: \(itemToNotifyUser.targetDays)天, 不可以放弃哦！"
             
+            let earlyBodys = ["今天是第\(itemToNotifyUser.finishedDays + 1)天\(itemToNotifyUser.type.rawValue)\(itemToNotifyUser.name)，距离你的目标越来越进了",
+                               "今天你有\(numberOfInprogressItems)个计划，来看看吧",
+                               "今天记得\(itemToNotifyUser.type.rawValue)\(itemToNotifyUser.name)，你已经完成了\(itemToNotifyUser.progressInPercentageString)"
+            ]
+            
+            let lateBodys =  ["\(currentUser.name), 今天\(itemToNotifyUser.type.rawValue)\(itemToNotifyUser.name)了吗，快来打卡吧",
+                              "花30秒来打个卡，检查您今天的进度💯",
+                              "打卡时间到😘",
+                              "今天打卡了吗？对了别忘了您可以随时使用时间机器补打卡",
+                              "今天\(numberOfInprogressItems)项任务完成的如何？不要忘记打卡哦"
+            ]
+            
+            let earlyTitle = WelcomeText(timeRange: time.timeRange).firstText
+            let earlyBody = earlyBodys.random!
             let lateTitle = SharePosterTextData.randomText
-            let lateBody = "\(currentUser.name), 今天\(itemToNotifyUser.type.rawValue)\(itemToNotifyUser.name)了吗，快来打卡哦"
+            let lateBody = lateBodys.random!
            
             
             

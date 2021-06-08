@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -23,13 +24,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="428" height="530"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="极简自律" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMY-G1-WgY">
-                                                <rect key="frame" x="177.33333333333334" y="325" width="73.666666666666657" height="21.666666666666686"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <rect key="frame" x="181.33333333333334" y="325" width="65.333333333333343" height="19.333333333333314"/>
+                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="重启健康生活" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3a-lw-6aZ">
-                                                <rect key="frame" x="183.33333333333334" y="356.66666666666669" width="61.333333333333343" height="12"/>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="重启健康生活" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3a-lw-6aZ">
+                                                <rect key="frame" x="183.33333333333334" y="349.33333333333331" width="61.333333333333343" height="12"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -50,7 +51,7 @@
                                             <constraint firstItem="dlO-SR-m6m" firstAttribute="centerY" secondItem="PVr-nf-xuY" secondAttribute="centerY" id="bVi-Ng-cXy"/>
                                             <constraint firstItem="T3a-lw-6aZ" firstAttribute="centerX" secondItem="PVr-nf-xuY" secondAttribute="centerX" id="gZy-CC-980"/>
                                             <constraint firstItem="wMY-G1-WgY" firstAttribute="centerX" secondItem="PVr-nf-xuY" secondAttribute="centerX" id="ui8-Re-ZPC"/>
-                                            <constraint firstItem="T3a-lw-6aZ" firstAttribute="top" secondItem="wMY-G1-WgY" secondAttribute="bottom" constant="10" id="yjx-nr-m6E"/>
+                                            <constraint firstItem="T3a-lw-6aZ" firstAttribute="top" secondItem="wMY-G1-WgY" secondAttribute="bottom" constant="5" id="yjx-nr-m6E"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EYp-zO-iY7" userLabel="Bottom View">

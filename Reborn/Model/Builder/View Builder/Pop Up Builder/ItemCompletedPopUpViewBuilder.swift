@@ -40,7 +40,7 @@ class ItemCompletedPopUpViewBuilder: PopUpViewBuilder {
         let promptLabel = UILabel()
         promptLabel.accessibilityIdentifier = "PromptLabel"
         promptLabel.textColor = super.setting.grayColor
-        promptLabel.text = "已完成的项目可以在 自律管理 中操作 "
+        promptLabel.text = "您可以增加目标天数来继续坚持该项目"
         promptLabel.font = AppEngine.shared.userSetting.smallFont.withSize(12)
         promptLabel.sizeToFit()
         super.contentView.addSubview(promptLabel)

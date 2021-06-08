@@ -127,7 +127,7 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
             let label = UILabel()
             label.textColor = .label
             label.font = AppEngine.shared.userSetting.smallFont
-            label.text = "第\(number)次通知"
+            label.text = "第\(number)次提醒"
             label.sizeToFit()
             self.contentView.addSubview(label)
             label.translatesAutoresizingMaskIntoConstraints = false
@@ -148,7 +148,7 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
         explanationLabel.numberOfLines = 2
         explanationLabel.font = AppEngine.shared.userSetting.smallFont
         explanationLabel.textColor = super.setting.grayColor
-        explanationLabel.text = "如果没有在进行当中的项目，您将不会收到通知，若想禁用通知，您可以在系统设置里关闭"
+        explanationLabel.text = "如果当天没有在进行中的项目，您将不会收到通知。若想禁用通知，您可以在系统设置里关闭"
         
         super.contentView.addSubview(explanationLabel)
         explanationLabel.translatesAutoresizingMaskIntoConstraints = false

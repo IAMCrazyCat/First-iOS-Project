@@ -41,4 +41,5 @@ enum TimeRange: Int, CaseIterable {
         
         }
     }
+    
 }

@@ -40,7 +40,8 @@ class ItemCardViewBuilder: ViewBuilder {
         addTargetDaysLabel(labelFrame: nil, withTypeLabel: false)
         addPunInButton()
         addItemCardFreqencyLabel()
-      
+        
+        
         
         return outPutView
     
@@ -56,13 +57,8 @@ class ItemCardViewBuilder: ViewBuilder {
         outPutView.layer.cornerRadius = setting.itemCardCornerRadius
         outPutView.setShadow()
         outPutView.frame = CGRect(x: cordinateX, y: cordinateY, width: width, height: height)
-        
-        outPutView.alpha = self.item.hasSanction ? 0.5 : 1
-        outPutView.isUserInteractionEnabled = self.item.hasSanction ? false : true
-   
-        if item.finishedDays == item.targetDays {
-            addConfettiTopView()
-        }
+        item.hasSanction ? lockItemCard() : ()
+        item.finishedDays == item.targetDays ? addConfettiTopView() : ()
 
     }
     
@@ -137,7 +133,7 @@ class ItemCardViewBuilder: ViewBuilder {
         
         let stateLabel = UILabel()
         stateLabel.accessibilityIdentifier = "StateLabel"
-        stateLabel.text = item.state == .duringBreak ? "（休息中）" : ""
+        stateLabel.text = item.state == .duringBreak ? "（休息中）" : item.state == .completed ? "（已完成）" : ""
         stateLabel.textColor = AppEngine.shared.userSetting.properThemeColor
         stateLabel.font = AppEngine.shared.userSetting.smallFont
         stateLabel.sizeToFit()
@@ -400,6 +396,39 @@ class ItemCardViewBuilder: ViewBuilder {
         gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
         confettiTopView.layer.addSublayer(gradientLayer)
         outPutView.addSubview(confettiTopView)
+    }
+    
+    private func lockItemCard() {
+        
+        outPutView.isUserInteractionEnabled = false
+        outPutView.alpha = 0.4
+
+//        let lockView = UIView()
+//        lockView.frame = outPutView.bounds
+//        lockView.layer.cornerRadius = outPutView.layer.cornerRadius
+//        outPutView.addSubview(lockView)
+//
+//        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
+//        let blurView = UIVisualEffectView(effect: blurEffect)
+//        blurView.frame = lockView.bounds
+//        blurView.layer.cornerRadius = lockView.layer.cornerRadius
+//        lockView.addSubview(blurView)
+//
+//
+//
+//        lockView.addSubview(blurView)
+//
+//        let lockImageView = UIImageView()
+//        lockImageView.image = #imageLiteral(resourceName: "Lock")
+//        lockView.addSubview(lockImageView)
+//
+//
+//        lockImageView.translatesAutoresizingMaskIntoConstraints = false
+//        lockImageView.centerYAnchor.constraint(equalTo: lockView.centerYAnchor).isActive = true
+//        lockImageView.centerXAnchor.constraint(equalTo: lockView.centerXAnchor).isActive = true
+//        lockImageView.topAnchor.constraint(equalTo: lockView.topAnchor, constant: 20).isActive = true
+//        lockImageView.bottomAnchor.constraint(equalTo: lockView.bottomAnchor, constant: -20).isActive = true
+//        lockImageView.widthAnchor.constraint(equalTo: lockImageView.heightAnchor).isActive = true
     }
     
     

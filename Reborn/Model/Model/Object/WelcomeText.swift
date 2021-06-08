@@ -33,7 +33,7 @@ struct WelcomeText {
     
     var secondText: String
     
-    init(timeRange: TimeRange, secondText: String) {
+    init(timeRange: TimeRange, secondText: String = "") {
         self.timeRange = timeRange
         self.secondText = secondText
     }

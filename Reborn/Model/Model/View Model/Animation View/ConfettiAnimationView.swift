@@ -129,19 +129,6 @@ class ConfettiAnimationView: UIView {
             self.skScene?.physicsWorld.gravity = CGVector(dx: 0, dy: -1.62 * self.animationSpeed)
         }
         
-
-      
-//        self.animator = UIDynamicAnimator(referenceView: self)
-//        self.gravity = UIGravityBehavior(items: self.confettiCells)
-//        self.vector = CGVector(dx: 0.0, dy: 1.0)
-//        self.gravity?.gravityDirection = self.vector!
-//        self.gravity?.magnitude = 1
-//        self.animator?.addBehavior(self.gravity!)
-        
-        
-        
-        
-        
     }
     
 }

@@ -19,10 +19,24 @@ class CustomTime: NSObject, NSCoding, Comparable {
     }
     
     
+    
+    
     var hour: Int
     var minute: Int
     var second: Int
     var oneTenthSecond: Int
+    
+    var timeRange: TimeRange {
+        
+        switch self.hour {
+        case 0 ..< 6: return .midnight
+        case 6 ..< 12: return .morning
+        case 12 ..< 15: return .noon
+        case 15 ..< 18: return .afternoon
+        case 18 ..< 24: return .night
+        default: return .morning
+        }
+    }
 
     public static var current: CustomTime {
         let date = Date()
@@ -54,6 +68,8 @@ class CustomTime: NSObject, NSCoding, Comparable {
         let oneTenthSecond = coder.decodeInteger(forKey: "OneTenthSecond")
         self.init(hour: hour, minute: minute, second: second, oneTenthSecond: oneTenthSecond)
     }
+    
+    
     
 
    

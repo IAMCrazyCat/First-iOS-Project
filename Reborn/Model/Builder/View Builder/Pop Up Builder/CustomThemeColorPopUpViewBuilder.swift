@@ -131,9 +131,9 @@ class CustomThemeColorPopUpViewBuilder: PopUpViewBuilder {
     func addVipThemeColorPromptLabel() {
         let vipThemeColorPromptLabel = UILabel()
         vipThemeColorPromptLabel.accessibilityIdentifier = "VipThemeColorPromptLabel"
-        vipThemeColorPromptLabel.text = "您选择了vip主题颜色，您还不是vip，您可以试用颜色，但配色不会被保存"
+        vipThemeColorPromptLabel.text = "您正在试用高级主题颜色，升级为完整版以避免配色自动还原"
         vipThemeColorPromptLabel.font = AppEngine.shared.userSetting.smallFont
-        vipThemeColorPromptLabel.textColor = .red
+        vipThemeColorPromptLabel.textColor = .label//.red.withAlphaComponent(0.5)
         vipThemeColorPromptLabel.alpha = 0.7
         vipThemeColorPromptLabel.lineBreakMode = .byWordWrapping
         vipThemeColorPromptLabel.numberOfLines = 2
