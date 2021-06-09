@@ -42,7 +42,6 @@ class Item: Codable {
     }
     
     var hasSanction: Bool = false
-    
     var progress: Double {
         return Double(self.finishedDays) / Double(self.targetDays)
     }
@@ -76,8 +75,9 @@ class Item: Codable {
             return false
         }
     }
-    
     var icon: Icon
+    
+    var newFrequency: NewFrequency? = nil
     
     init(ID: Int, name: String, days: Int, frequency: Frequency, creationDate: CustomDate, type: ItemType, icon: Icon) {
         self.ID = ID
@@ -90,6 +90,22 @@ class Item: Codable {
         updateScheduleDates()
         updateState()
     }
+    
+    init(ID: Int, name: String, days: Int, frequency: NewFrequency, creationDate: CustomDate, type: ItemType, icon: Icon) {
+        self.ID = ID
+        self.name = name
+        self.targetDays = days
+        self.creationDate = creationDate
+        self.type = type
+        self.newFrequency = frequency
+        self.icon = icon
+        
+        self.frequency = .everyday
+        updateScheduleDates()
+        updateState()
+    }
+    
+    
     
     public func punchIn(on date: CustomDate = CustomDate.current) {
         self.punchInDates.append(date)
@@ -231,6 +247,7 @@ class Item: Codable {
     }
     
     public func getFullName() -> String {
+
         return "\(self.type.rawValue)\(self.name)"
     }
     

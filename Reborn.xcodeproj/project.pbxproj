@@ -26,6 +26,7 @@
 		223132CF263D188F0020BA70 /* CalendarCellStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223132CE263D188F0020BA70 /* CalendarCellStrategy.swift */; };
 		223132D1263D2F570020BA70 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223132D0263D2F570020BA70 /* Double.swift */; };
 		223132D3263E694D0020BA70 /* UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223132D2263E694D0020BA70 /* UIScrollView.swift */; };
+		22332991266F6BED0058672C /* NewFrequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22332990266F6BED0058672C /* NewFrequency.swift */; };
 		223A777B25A41184004B3324 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223A777A25A41184004B3324 /* UIView.swift */; };
 		2246D2E625CA68230001EFB7 /* DismissStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246D2E525CA68230001EFB7 /* DismissStrategy.swift */; };
 		2246D2EE25CAD5110001EFB7 /* EnlargeStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246D2ED25CAD5110001EFB7 /* EnlargeStrategy.swift */; };
@@ -147,7 +148,6 @@
 		22CE4ED925D00AE3007EBD5B /* NewItemViewStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE4ED825D00AE3007EBD5B /* NewItemViewStrategy.swift */; };
 		22CE4EF025D00C65007EBD5B /* AddingItemStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE4EEF25D00C65007EBD5B /* AddingItemStrategy.swift */; };
 		22CE4EF525D00C73007EBD5B /* EditingItemStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE4EF425D00C73007EBD5B /* EditingItemStrategy.swift */; };
-		22D00DD725FDE17500DB3F1D /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 22D00DD525FDE17500DB3F1D /* DataModel.xcdatamodeld */; };
 		22D00DE425FE297D00DB3F1D /* NotificationTimePopUpViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D00DE325FE297D00DB3F1D /* NotificationTimePopUpViewBuilder.swift */; };
 		22D00DEC25FE2A5900DB3F1D /* NotificationTimePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D00DEB25FE2A5900DB3F1D /* NotificationTimePopUp.swift */; };
 		22D00DFA25FE2F5700DB3F1D /* CustomTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D00DF925FE2F5700DB3F1D /* CustomTime.swift */; };
@@ -245,6 +245,7 @@
 		223132CE263D188F0020BA70 /* CalendarCellStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellStrategy.swift; sourceTree = "<group>"; };
 		223132D0263D2F570020BA70 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		223132D2263E694D0020BA70 /* UIScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollView.swift; sourceTree = "<group>"; };
+		22332990266F6BED0058672C /* NewFrequency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFrequency.swift; sourceTree = "<group>"; };
 		223A777A25A41184004B3324 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		2246D2E525CA68230001EFB7 /* DismissStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissStrategy.swift; sourceTree = "<group>"; };
 		2246D2ED25CAD5110001EFB7 /* EnlargeStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnlargeStrategy.swift; sourceTree = "<group>"; };
@@ -366,7 +367,6 @@
 		22CE4ED825D00AE3007EBD5B /* NewItemViewStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemViewStrategy.swift; sourceTree = "<group>"; };
 		22CE4EEF25D00C65007EBD5B /* AddingItemStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingItemStrategy.swift; sourceTree = "<group>"; };
 		22CE4EF425D00C73007EBD5B /* EditingItemStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingItemStrategy.swift; sourceTree = "<group>"; };
-		22D00DD625FDE17500DB3F1D /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		22D00DDE25FE21D600DB3F1D /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		22D00DE325FE297D00DB3F1D /* NotificationTimePopUpViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTimePopUpViewBuilder.swift; sourceTree = "<group>"; };
 		22D00DEB25FE2A5900DB3F1D /* NotificationTimePopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTimePopUp.swift; sourceTree = "<group>"; };
@@ -553,10 +553,11 @@
 		221E0B7A25A9273300386FE1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				22BC4C7725D6A490009E905C /* Data Model */,
+				22332992267046830058672C /* Database */,
 				229C5EE525F4EC2000C94B61 /* Event Action */,
 				22BC4C7825D6A4A4009E905C /* Object */,
 				225A78D325E0EB39009EE149 /* View Model */,
-				22BC4C7725D6A490009E905C /* Data Model */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -579,6 +580,13 @@
 				22569F83264036F8001459C3 /* PurchaseType.swift */,
 			);
 			path = Enum;
+			sourceTree = "<group>";
+		};
+		22332992267046830058672C /* Database */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 		223A777325A30645004B3324 /* Transition */ = {
@@ -793,7 +801,6 @@
 		22BC4C7725D6A490009E905C /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
-				22D00DD525FDE17500DB3F1D /* DataModel.xcdatamodeld */,
 				22E9A854259ED1B40073D432 /* PikerViewData.swift */,
 				22D7FBA525A190E9006B1F28 /* SetUpPageData.swift */,
 				22BC4C6725D6A3DB009E905C /* WelcomeTextData.swift */,
@@ -815,6 +822,7 @@
 				221E0BA325A9D38100386FE1 /* Image.swift */,
 				22D00DF925FE2F5700DB3F1D /* CustomTime.swift */,
 				22F619BC26392EBF007F91AF /* Icon.swift */,
+				22332990266F6BED0058672C /* NewFrequency.swift */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -1415,8 +1423,8 @@
 				228A1CFA2600173100023CCF /* PillSegmentedControlImageFactory.swift in Sources */,
 				22C4BFC325D21F2400528A1C /* ItemProgressViewBuilder.swift in Sources */,
 				22D00DE425FE297D00DB3F1D /* NotificationTimePopUpViewBuilder.swift in Sources */,
-				22D00DD725FDE17500DB3F1D /* DataModel.xcdatamodeld in Sources */,
 				22945D3525F5A43D0065B511 /* PopUp.swift in Sources */,
+				22332991266F6BED0058672C /* NewFrequency.swift in Sources */,
 				22945D6625F5ADED0065B511 /* CustomFrequencyPopUp.swift in Sources */,
 				22BC454525B04ED000516F75 /* CalendarPage.swift in Sources */,
 				22A7DC272605957D00A55CE8 /* LightAndDarkModePopUp.swift in Sources */,
@@ -1924,19 +1932,6 @@
 			productName = TPInAppReceipt;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		22D00DD525FDE17500DB3F1D /* DataModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				22D00DD625FDE17500DB3F1D /* DataModel.xcdatamodel */,
-			);
-			currentVersion = 22D00DD625FDE17500DB3F1D /* DataModel.xcdatamodel */;
-			path = DataModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 220B7276258A288000E4BEDC /* Project object */;
 }

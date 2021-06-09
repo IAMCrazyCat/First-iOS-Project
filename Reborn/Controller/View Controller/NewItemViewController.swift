@@ -58,7 +58,7 @@ class NewItemViewController: UIViewController {
     var selectedTargetDaysButton: UIButton? = nil
     var selectedFrequencyButton: UIButton? = nil
     var lastSelectedButton: UIButton? = nil
-    var item: Item = Item(ID: AppEngine.shared.currentUser.getLargestItemID() + 1, name: "一件事", days: 1, frequency: .everyday, creationDate: CustomDate.current, type: .undefined, icon: Icon.defaultIcon1)
+    var item: Item = Item(ID: AppEngine.shared.currentUser.getLargestItemID() + 1, name: "一件事", days: 1, frequency: EveryDay(), creationDate: CustomDate.current, type: .undefined, icon: Icon.defaultIcon1)
     var preViewItemCard: UIView = UIView()
     var strategy: NewItemViewStrategy? = nil
     var lastViewController: UIViewController? = nil
