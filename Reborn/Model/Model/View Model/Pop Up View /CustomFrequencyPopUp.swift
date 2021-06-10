@@ -11,8 +11,8 @@ import UIKit
 class CustomFrequencyPopUp: PopUpImpl {
     
     var dataStartIntex: Int = 0
-    var pickerView: UIPickerView {
-        return super.contentView?.getSubviewBy(idenifier: "PickerView") as! UIPickerView
+    var pickerView: UIPickerView? {
+        return super.contentView?.getSubviewBy(idenifier: "PickerView") as? UIPickerView
     }
     
     var pikerViewData: Array<Any> = []
@@ -29,13 +29,18 @@ class CustomFrequencyPopUp: PopUpImpl {
         return CustomFrequencyPopUpViewBuilder(dataStartIndex: self.dataStartIntex, popUpViewController: super.popUpViewController, frame: super.frame).buildView()
     }
     
-    override func getStoredData() -> Any {
-        return self.pikerViewData[pickerView.selectedRow(inComponent: 0)]
+    override func getStoredData() -> Any? {
+        if pickerView != nil {
+            return self.pikerViewData[pickerView!.selectedRow(inComponent: 0)]
+        } else {
+            return nil
+        }
+        
     }
     
     func setPickerViewData() {
-        pickerView.delegate = popUpViewController
-        pickerView.dataSource = popUpViewController
+        pickerView?.delegate = popUpViewController
+        pickerView?.dataSource = popUpViewController
         
         var dataArray = PickerViewData.customFrequency
         if dataStartIntex > 0 {

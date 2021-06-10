@@ -55,6 +55,11 @@
 		226C958525FCC8310029C2E6 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C958425FCC8310029C2E6 /* UITextField.swift */; };
 		2278907625EBA65400613281 /* Frequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278907525EBA65400613281 /* Frequency.swift */; };
 		2279C17E2592ED2F00566CD7 /* UserSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2279C17D2592ED2F00566CD7 /* UserSetting.swift */; };
+		22862C1B2670977200993895 /* FrequencyPopUpViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22862C1A2670977200993895 /* FrequencyPopUpViewBuilder.swift */; };
+		22862C1D26709F0100993895 /* EveryWeekFrequencyPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22862C1C26709F0100993895 /* EveryWeekFrequencyPopUp.swift */; };
+		22862C1F2670C81900993895 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22862C1E2670C81900993895 /* CustomButton.swift */; };
+		22862C2126719CC500993895 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22862C2026719CC500993895 /* NotificationManager.swift */; };
+		22862C232671C19200993895 /* EveryMonthFrequencyPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22862C222671C19200993895 /* EveryMonthFrequencyPopUp.swift */; };
 		228A1CFA2600173100023CCF /* PillSegmentedControlImageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A1CF92600173100023CCF /* PillSegmentedControlImageFactory.swift */; };
 		228ED3E625B94D630054591F /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228ED3E525B94D630054591F /* CalendarCell.swift */; };
 		22916DA925BFE34C004A3EC4 /* TimeMachineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22916DA825BFE34C004A3EC4 /* TimeMachineViewController.swift */; };
@@ -275,6 +280,11 @@
 		226C958425FCC8310029C2E6 /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		2278907525EBA65400613281 /* Frequency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frequency.swift; sourceTree = "<group>"; };
 		2279C17D2592ED2F00566CD7 /* UserSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSetting.swift; sourceTree = "<group>"; };
+		22862C1A2670977200993895 /* FrequencyPopUpViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequencyPopUpViewBuilder.swift; sourceTree = "<group>"; };
+		22862C1C26709F0100993895 /* EveryWeekFrequencyPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EveryWeekFrequencyPopUp.swift; sourceTree = "<group>"; };
+		22862C1E2670C81900993895 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		22862C2026719CC500993895 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		22862C222671C19200993895 /* EveryMonthFrequencyPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EveryMonthFrequencyPopUp.swift; sourceTree = "<group>"; };
 		228A1CF92600173100023CCF /* PillSegmentedControlImageFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillSegmentedControlImageFactory.swift; sourceTree = "<group>"; };
 		228ED3E525B94D630054591F /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		22916DA825BFE34C004A3EC4 /* TimeMachineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineViewController.swift; sourceTree = "<group>"; };
@@ -718,6 +728,8 @@
 				225EC25E25FA41BC00F2C69F /* CustomUserInformationPopUp.swift */,
 				22D00DEB25FE2A5900DB3F1D /* NotificationTimePopUp.swift */,
 				22A7DC262605957D00A55CE8 /* LightAndDarkModePopUp.swift */,
+				22862C1C26709F0100993895 /* EveryWeekFrequencyPopUp.swift */,
+				22862C222671C19200993895 /* EveryMonthFrequencyPopUp.swift */,
 			);
 			path = "Pop Up View ";
 			sourceTree = "<group>";
@@ -766,6 +778,7 @@
 				22C23A0E258DC4FA00D4BEB2 /* AppEngine.swift */,
 				22C5D966258F3E4400131964 /* SetUpManager.swift */,
 				22C6ACF4263FC81500FAFCC5 /* InAppPurchaseManager.swift */,
+				22862C2026719CC500993895 /* NotificationManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -813,6 +826,7 @@
 			isa = PBXGroup;
 			children = (
 				221E0B7B25A9273E00386FE1 /* User.swift */,
+				22862C1E2670C81900993895 /* CustomButton.swift */,
 				22BC454F25B1C92100516F75 /* CustomDate.swift */,
 				22D7FBA025A18FE5006B1F28 /* CustomData.swift */,
 				22C23A13258DC58F00D4BEB2 /* Item.swift */,
@@ -936,6 +950,7 @@
 				225EC26B25FA427B00F2C69F /* CustomUserInformationPopUpViewBuilder.swift */,
 				22D00DE325FE297D00DB3F1D /* NotificationTimePopUpViewBuilder.swift */,
 				22A7DC2B260595B400A55CE8 /* LightAndDarkModePopUpViewBuilder.swift */,
+				22862C1A2670977200993895 /* FrequencyPopUpViewBuilder.swift */,
 			);
 			path = "Pop Up Builder";
 			sourceTree = "<group>";
@@ -1402,6 +1417,7 @@
 				22C6ACF726400ECA00FAFCC5 /* LoadingAnimation.swift in Sources */,
 				22CE4EF025D00C65007EBD5B /* AddingItemStrategy.swift in Sources */,
 				224E664225C6467100B71E8A /* BackwardForManyStrategy.swift in Sources */,
+				22862C1D26709F0100993895 /* EveryWeekFrequencyPopUp.swift in Sources */,
 				22E9A875259F33F50073D432 /* PopUpViewController.swift in Sources */,
 				220B7286258A288000E4BEDC /* WelcomeViewController.swift in Sources */,
 				22945D4425F5A7700065B511 /* CustomItemNamePopUp.swift in Sources */,
@@ -1410,6 +1426,7 @@
 				22A1B56F26149BEF008CBE94 /* CustomTimer.swift in Sources */,
 				224E663525C6457900B71E8A /* TimeMachineAnimationStrategy.swift in Sources */,
 				22569F862640F013001459C3 /* ItemsStrategy.swift in Sources */,
+				22862C2126719CC500993895 /* NotificationManager.swift in Sources */,
 				22C5D975258F40E800131964 /* SetUpPage.swift in Sources */,
 				22945D8525F70FD30065B511 /* ConfettiSize.swift in Sources */,
 				220B7282258A288000E4BEDC /* AppDelegate.swift in Sources */,
@@ -1429,6 +1446,7 @@
 				22BC454525B04ED000516F75 /* CalendarPage.swift in Sources */,
 				22A7DC272605957D00A55CE8 /* LightAndDarkModePopUp.swift in Sources */,
 				22C23A14258DC58F00D4BEB2 /* Item.swift in Sources */,
+				22862C1B2670977200993895 /* FrequencyPopUpViewBuilder.swift in Sources */,
 				22A584C92611FBE9001B83E1 /* SettingStrategy.swift in Sources */,
 				22945D5E25F5AB2B0065B511 /* PopUpImpl.swift in Sources */,
 				22945D6F25F70AAD0065B511 /* ConfettiAnimationView.swift in Sources */,
@@ -1459,11 +1477,13 @@
 				22945D3A25F5A6EC0065B511 /* CustomThemeColorPopUp.swift in Sources */,
 				22D7FBA625A190E9006B1F28 /* SetUpPageData.swift in Sources */,
 				22A597EC2598091B008E2A06 /* UIButton.swift in Sources */,
+				22862C232671C19200993895 /* EveryMonthFrequencyPopUp.swift in Sources */,
 				22A584C32611F7D0001B83E1 /* SystemAlert.swift in Sources */,
 				22A59811259AA31A008E2A06 /* PopUpViewBuilder.swift in Sources */,
 				22A7DC2C260595B400A55CE8 /* LightAndDarkModePopUpViewBuilder.swift in Sources */,
 				221E0B8825A9A22800386FE1 /* Gender.swift in Sources */,
 				22C5D967258F3E4400131964 /* SetUpManager.swift in Sources */,
+				22862C1F2670C81900993895 /* CustomButton.swift in Sources */,
 				229C5EEA25F4F1FD00C94B61 /* UIWindow.swift in Sources */,
 				223132CF263D188F0020BA70 /* CalendarCellStrategy.swift in Sources */,
 				22D7FBA125A18FE5006B1F28 /* CustomData.swift in Sources */,

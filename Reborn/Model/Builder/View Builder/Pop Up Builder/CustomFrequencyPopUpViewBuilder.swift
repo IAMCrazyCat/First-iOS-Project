@@ -21,7 +21,7 @@ class CustomFrequencyPopUpViewBuilder: PopUpViewBuilder {
 
     
     override func buildView() -> UIView {
-        _ = super.buildView()
+        super.buildView()
         self.setUpUI()
         self.addFrequencyPicker()
         return super.outPutView

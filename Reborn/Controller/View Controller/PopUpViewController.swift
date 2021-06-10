@@ -123,34 +123,51 @@ extension PopUpViewController: UITextFieldDelegate {
 extension PopUpViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        if let pickerViewPopUp = self.popUp as? PickerViewPopUp {
+            return  pickerViewPopUp.numberOfComponents()
+        } else {
+            return 0
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
-        if let popUp = self.popUp as? CustomFrequencyPopUp {
-            return popUp.pikerViewData.count
-        } else if let popUp = self.popUp as? CustomTargetDaysPopUp {
-            return popUp.pikerViewData.count
+        if let pickerViewPopUp = self.popUp as? PickerViewPopUp {
+            return  pickerViewPopUp.numberOfRowsInComponents()
+        } else {
+            return 0
         }
-        
-        return 0
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        if let popUp = self.popUp as? CustomFrequencyPopUp {
-            let pickerviewData = popUp.pikerViewData as! Array<Frequency>
-
-            return pickerviewData[row].dataModel.title
-        } else if let popUp = self.popUp as? CustomTargetDaysPopUp {
-            let pickerviewData = popUp.pikerViewData as! Array<CustomData>
-            return pickerviewData[row].title
+        if let pickerViewPopUp = self.popUp as? PickerViewPopUp {
+            return  pickerViewPopUp.titles()[row]
+        } else {
+            return "Failed to load data"
         }
-        
-        return "Error Picker view dsta"
 
     }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if let pickerViewPopUp = self.popUp as? PickerViewPopUp {
+            pickerViewPopUp.didSelectRow()
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        
+        if let pickerViewPopUp = self.popUp as? PickerViewPopUp {
+            let pickerLabel = UILabel()
+            pickerLabel.textAlignment = .center
+            pickerLabel.text = pickerViewPopUp.titles()[row]
+            return pickerLabel
+        } else {
+            return UIView()
+        }
+      
+    }
+    
     
    
     

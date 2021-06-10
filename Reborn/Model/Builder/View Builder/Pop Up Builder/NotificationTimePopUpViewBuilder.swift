@@ -19,9 +19,9 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
     
     
     override func buildView() -> UIView {
-        _ = super.buildView()
-        setUpUI()
-        addTimePicker()
+        super.buildView()
+        self.setUpUI()
+        self.addTimePicker()
         
         if notificationIsEnabled {
             addExplanationLabel()

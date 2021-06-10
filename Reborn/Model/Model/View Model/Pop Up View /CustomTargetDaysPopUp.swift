@@ -15,7 +15,7 @@ class CustomTargetDaysPopUp: PopUpImpl {
     }
     
     public var dataStartIndex: Int
-    public var pikerViewData: Array<Any> = []
+    public var pickerViewData: [CustomData] = []
     
     init(presentAnimationType: PopUpAnimationType, size: PopUpSize = .small, dataStartIndex: Int, popUpViewController: PopUpViewController) {
         
@@ -30,7 +30,7 @@ class CustomTargetDaysPopUp: PopUpImpl {
     }
     
     override func getStoredData() -> Any {
-        return self.pikerViewData[pickerView.selectedRow(inComponent: 0)]
+        return self.pickerViewData[pickerView.selectedRow(inComponent: 0)]
     }
     
     override func updateUI() {
@@ -52,8 +52,34 @@ class CustomTargetDaysPopUp: PopUpImpl {
             }
         }
         
-        self.pikerViewData = dataArray
+        self.pickerViewData = dataArray
        
     }
+    
+}
+
+extension CustomTargetDaysPopUp: PickerViewPopUp {
+   
+    func numberOfComponents() -> Int {
+        return 1
+    }
+    
+    func numberOfRowsInComponents() -> Int {
+        return self.pickerViewData.count
+    }
+    
+    func titles() -> Array<String> {
+        var titles: [String] = []
+        for customData in pickerViewData {
+            titles.append(customData.title)
+        }
+        return titles
+    }
+    
+    func didSelectRow() {
+        
+    }
+    
+    
     
 }

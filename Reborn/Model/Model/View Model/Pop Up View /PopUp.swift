@@ -13,3 +13,10 @@ protocol PopUp {
     func getStoredData() -> Any?
     func updateUI()
 }
+
+protocol PickerViewPopUp {
+    func numberOfComponents() -> Int
+    func numberOfRowsInComponents() -> Int
+    func titles() -> Array<String>
+    func didSelectRow()
+}

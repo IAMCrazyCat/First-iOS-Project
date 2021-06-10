@@ -180,13 +180,14 @@ class TomatoClockViewController: UIViewController {
     }
     
     func updateSegmentedControl() {
+        self.clockTypeSegmentedControl.setSmartAppearance(withBackgroundStyle: .darkMode)
 
-        self.clockTypeSegmentedControl.selectedSegmentTintColor = AppEngine.shared.userSetting.themeColor.uiColor
-        
-        let whiteText = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        let selectedText = [NSAttributedString.Key.foregroundColor: AppEngine.shared.userSetting.smartLabelColor]
-        self.clockTypeSegmentedControl.setTitleTextAttributes(whiteText, for: .normal)
-        self.clockTypeSegmentedControl.setTitleTextAttributes(selectedText, for: .selected)
+//        self.clockTypeSegmentedControl.selectedSegmentTintColor = AppEngine.shared.userSetting.themeColor.uiColor
+//
+//        let whiteText = [NSAttributedString.Key.foregroundColor: UIColor.white]
+//        let selectedText = [NSAttributedString.Key.foregroundColor: AppEngine.shared.userSetting.smartLabelColor]
+//        self.clockTypeSegmentedControl.setTitleTextAttributes(whiteText, for: .normal)
+//        self.clockTypeSegmentedControl.setTitleTextAttributes(selectedText, for: .selected)
         
 
     }

@@ -18,9 +18,9 @@ class LightAndDarkModePopUpViewBuilder: PopUpViewBuilder {
     }
     
     override func buildView() -> UIView {
-        _ = super.buildView()
-        setUpUI()
-        addOptionButtons()
+        super.buildView()
+        self.setUpUI()
+        self.addOptionButtons()
         return super.outPutView
     }
     

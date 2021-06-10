@@ -42,7 +42,6 @@ extension UIView {
     func setCornerRadius(rounded: Bool = false, corderRadius: CGFloat? = nil) {
         self.layoutIfNeeded()
         self.layer.masksToBounds = true
-
         self.layer.cornerRadius = corderRadius != nil ? corderRadius! : (rounded ? (self.frame.height / 2).rounded(toPlaces: 0) : self.frame.height / 2)
 
     }

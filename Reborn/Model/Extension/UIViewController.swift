@@ -84,10 +84,15 @@ extension UIViewController: UIViewControllerTransitioningDelegate  {
                 print("Use 'showItemCompletedPopUp(for: Item)' instead")
             case .lightAndDarkModePopUp:
                 popUpViewController.popUp = LightAndDarkModePopUp(presentAnimationType: animationType, size: size, popUpViewController: popUpViewController)
+            case .everyWeekFreqencyPopUp:
+                popUpViewController.popUp = EveryWeekFrequencyPopUp(presentAnimationType: animationType, popUpViewController: popUpViewController)
+            case .everyMonthFreqencyPopUp:
+                popUpViewController.popUp = EveryMonthFrequencyPopUp(presentAnimationType: animationType, popUpViewController: popUpViewController)
             }
             
             self.present(to: popUpViewController)
         }
+        
        
        
         

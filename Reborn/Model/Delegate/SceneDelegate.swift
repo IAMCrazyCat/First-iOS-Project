@@ -58,7 +58,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         SettingStrategy().saveUserSetting()
         CustomTimer.recoverTimer()
         AppEngine.shared.notifyUIObservers(withIdentifier: "UserCenterViewController")
-        AppEngine.shared.notifyUIObservers(withIdentifier: "PopUpViewController")
+        //AppEngine.shared.notifyUIObservers(withIdentifier: "PopUpViewController")
 
     }
 

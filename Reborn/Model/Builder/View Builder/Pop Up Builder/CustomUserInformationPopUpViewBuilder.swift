@@ -19,7 +19,7 @@ class CustomUserInformationPopUpViewBuilder: PopUpViewBuilder {
     
     
     override func buildView() -> UIView {
-        _ = super.buildView()
+        super.buildView()
         self.setUpUI()
         self.addTextField()
         self.addPromptLabel()

@@ -16,8 +16,8 @@ class PopUpImpl: PopUp {
     var contentView: UIView? {
         return self.window.getSubviewBy(idenifier: "ContentView")
     }
-    var titleLabel: UIView? {
-        return self.window.getSubviewBy(idenifier: "TitleLabel")
+    var titleLabel: UILabel? {
+        return self.window.getSubviewBy(idenifier: "TitleLabel") as? UILabel
     }
     var cancelButton: UIButton? {
         return self.window.getSubviewBy(idenifier: "CancelButton") as? UIButton

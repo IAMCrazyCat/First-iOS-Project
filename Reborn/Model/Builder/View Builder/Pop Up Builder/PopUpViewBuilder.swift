@@ -27,6 +27,11 @@ class PopUpViewBuilder: ViewBuilder {
     }
     
     public func buildView() -> UIView {
+        addDefaultComponents()
+        return outPutView
+    }
+    
+    internal func addDefaultComponents() {
         createView()
         addCancelButton()
         addDoneButton()
@@ -34,9 +39,7 @@ class PopUpViewBuilder: ViewBuilder {
         addContentView()
         addPopUpWindowToBgView()
         outPutView.layoutIfNeeded()
-        return outPutView
     }
-
     
     
     // Building common fetures
@@ -120,7 +123,6 @@ class PopUpViewBuilder: ViewBuilder {
     private func addPopUpWindowToBgView() {
         popUpViewController.view.addSubview(outPutView)
     }
-    
     
    
 }

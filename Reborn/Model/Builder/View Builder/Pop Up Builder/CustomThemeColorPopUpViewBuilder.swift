@@ -13,7 +13,7 @@ class CustomThemeColorPopUpViewBuilder: PopUpViewBuilder {
     
     
     override func buildView() -> UIView {
-        _ = super.buildView()
+        super.buildView()
         self.setUpUI()
         self.addThemeColorView()
         self.addThemeColorNameLabel()

@@ -29,5 +29,22 @@ extension UISegmentedControl {
         self.layer.masksToBounds = true
     }
     
+    func setSmartAppearance(withBackgroundStyle backgroundStyle: AppAppearanceMode) {
+        let normalText: [NSAttributedString.Key : UIColor]
+        
+        if backgroundStyle == .darkMode {
+            normalText = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        } else if backgroundStyle == .lightMode {
+            normalText = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        } else {
+            normalText = [NSAttributedString.Key.foregroundColor: UIColor.label]
+        }
+        
+        let selectedText = [NSAttributedString.Key.foregroundColor: AppEngine.shared.userSetting.smartLabelColor]
+        self.selectedSegmentTintColor = AppEngine.shared.userSetting.themeColor.uiColor
+        self.setTitleTextAttributes(normalText, for: .normal)
+        self.setTitleTextAttributes(selectedText, for: .selected)
+    }
+    
 
 }

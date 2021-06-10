@@ -35,9 +35,25 @@ struct PickerViewData {
         CustomData(title: "60分钟", data: 60)]
     
     public static var tomatoClockBreakTimes: Array<CustomData> = [CustomData(title: "5分钟", data: 5),
-                                                                  CustomData(title: "10分钟", data: 10),
-                                                                  CustomData(title: "15分钟", data: 15),
-                                                                  CustomData(title: "20分钟", data: 20),
-                                                                  CustomData(title: "25分钟", data: 25),
-                                                                  CustomData(title: "30分钟", data: 30)]
+          CustomData(title: "10分钟", data: 10),
+          CustomData(title: "15分钟", data: 15),
+          CustomData(title: "20分钟", data: 20),
+          CustomData(title: "25分钟", data: 25),
+          CustomData(title: "30分钟", data: 30)]
+    
+    public static var weekDays: Array<CustomData> {
+        var array = [CustomData]()
+        for day in 1...7 {
+            array.append(CustomData(data: day))
+        }
+        return array
+    }
+    
+    public static var monthDays: Array<CustomData> {
+        var array = [CustomData]()
+        for day in 1...30 {
+            array.append(CustomData(data: day))
+        }
+        return array
+    }
 }

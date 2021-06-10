@@ -19,7 +19,7 @@ class CustomTargetDaysPopUpViewBuilder: PopUpViewBuilder {
     }
     
     override func buildView() -> UIView {
-        _ = super.buildView()
+        super.buildView()
         self.setUpUI()
         self.addTargetDaysPiker()
         return super.outPutView

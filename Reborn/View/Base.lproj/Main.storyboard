@@ -376,7 +376,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3i9-WH-Zt7">
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3i9-WH-Zt7">
                                                 <rect key="frame" x="40" y="600" width="31" height="30"/>
                                                 <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -384,19 +384,16 @@
                                                     <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="frequencyButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="rhT-XC-q7N"/>
+                                                    <action selector="frequencyButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="3uw-Uy-V8D"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEh-sX-wyw">
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEh-sX-wyw">
                                                 <rect key="frame" x="328" y="650" width="46" height="30"/>
                                                 <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="自定义">
                                                     <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
-                                                <connections>
-                                                    <action selector="frequencyButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="hbi-Gi-Qtc"/>
-                                                </connections>
                                             </button>
                                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Target-HD" translatesAutoresizingMaskIntoConstraints="NO" id="a3D-ld-P7d">
                                                 <rect key="frame" x="15" y="384.5" width="28" height="28"/>
@@ -416,7 +413,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJD-UT-gB8">
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJD-UT-gB8">
                                                 <rect key="frame" x="40" y="650" width="31" height="30"/>
                                                 <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -424,7 +421,7 @@
                                                     <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="frequencyButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="Nbk-Oo-doz"/>
+                                                    <action selector="frequencyButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="fcc-lX-mLd"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="频率计划外为休息日，该项目不会出现在今日打卡中" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZL-a6-T5M">
@@ -517,7 +514,7 @@
                                                     <action selector="targetDaysButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="vpi-Yg-Di9"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rS9-xl-t7u">
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rS9-xl-t7u">
                                                 <rect key="frame" x="343" y="600" width="31" height="30"/>
                                                 <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -525,7 +522,7 @@
                                                     <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="frequencyButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="6OK-oY-CJr"/>
+                                                    <action selector="frequencyButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="8sH-nb-CI6"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4fa-gf-3ju">
@@ -743,6 +740,15 @@
                         <outletCollection property="optionButtons" destination="rS9-xl-t7u" collectionClass="NSMutableArray" id="C6a-C1-fhQ"/>
                         <outletCollection property="optionButtons" destination="NJD-UT-gB8" collectionClass="NSMutableArray" id="b92-xA-ZIE"/>
                         <outletCollection property="optionButtons" destination="eEh-sX-wyw" collectionClass="NSMutableArray" id="V7O-ol-aFi"/>
+                        <outletCollection property="typeButtons" destination="WpU-fd-JVR" collectionClass="NSMutableArray" id="Opx-9W-PYy"/>
+                        <outletCollection property="typeButtons" destination="eYH-kV-dcm" collectionClass="NSMutableArray" id="JYQ-5h-Vfz"/>
+                        <outletCollection property="targetButtons" destination="uum-ys-rdj" collectionClass="NSMutableArray" id="CLg-xZ-BuB"/>
+                        <outletCollection property="targetButtons" destination="eVH-dn-gr1" collectionClass="NSMutableArray" id="UhU-Pz-00j"/>
+                        <outletCollection property="targetButtons" destination="RFy-ys-MHv" collectionClass="NSMutableArray" id="Qrv-lc-cHc"/>
+                        <outletCollection property="targetButtons" destination="afP-fa-obf" collectionClass="NSMutableArray" id="xlv-eG-yF2"/>
+                        <outletCollection property="frequencyButtons" destination="3i9-WH-Zt7" collectionClass="NSMutableArray" id="ifq-6p-1Oh"/>
+                        <outletCollection property="frequencyButtons" destination="rS9-xl-t7u" collectionClass="NSMutableArray" id="RG7-JO-Vag"/>
+                        <outletCollection property="frequencyButtons" destination="NJD-UT-gB8" collectionClass="NSMutableArray" id="r17-dH-rGU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zsl-RN-1KK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1266,7 +1272,7 @@
             <objects>
                 <viewController storyboardIdentifier="HomeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5eW-DY-fpx" customClass="HomeViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uAb-zv-xSl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDY-Xd-Ccc">
@@ -1492,7 +1498,7 @@
             <objects>
                 <viewController restorationIdentifier="ItemManagementViewController" storyboardIdentifier="ItemManagementViewController" id="7qU-RC-e4u" customClass="ItemManagementViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XJ8-ec-9K0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lt5-gF-RX7" userLabel="Option Bar">
@@ -1574,7 +1580,7 @@
             <objects>
                 <viewController restorationIdentifier="SelfDisciplineToolsViewController" storyboardIdentifier="SelfDisciplineToolsViewController" id="bem-id-UUc" customClass="SelfDisciplineToolsViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1LM-le-iSu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HxE-xH-ay6">
@@ -1783,7 +1789,7 @@
             <objects>
                 <viewController storyboardIdentifier="UserCenterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xEm-ah-agE" customClass="UserCenterViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Trs-NW-7D2">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gY-P1-gbC">

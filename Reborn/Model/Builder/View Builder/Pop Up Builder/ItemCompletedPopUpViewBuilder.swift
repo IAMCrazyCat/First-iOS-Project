@@ -18,7 +18,7 @@ class ItemCompletedPopUpViewBuilder: PopUpViewBuilder {
     }
     
     override func buildView() -> UIView {
-        _ = super.buildView()
+        super.buildView()
         self.addItemCard()
         self.addPromptLabel()
         self.setUpUI()

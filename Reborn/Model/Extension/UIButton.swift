@@ -89,4 +89,12 @@ extension UIButton {
         self.setTitleColor(AppEngine.shared.userSetting.smartLabelColor, for: .normal)
         
     }
+    
+    func setSmartSelectionColor() {
+        self.setBackgroundColor(AppEngine.shared.userSetting.themeColor.uiColor, for: .selected)
+        self.setBackgroundColor(AppEngine.shared.userSetting.themeColor.uiColor.withAlphaComponent(0.7), for: .highlighted)
+        self.setBackgroundColor(AppEngine.shared.userSetting.themeColor.uiColor.withAlphaComponent(0.3), for: .normal)
+        self.setTitleColor(AppEngine.shared.userSetting.smartLabelColor, for: .selected)
+        self.setTitleColor(.label, for: .normal)
+    }
 }
