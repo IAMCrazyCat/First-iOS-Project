@@ -15,15 +15,27 @@ enum WeekDay: Int, CaseIterable, Codable {
     case Saturday = 6
     case Sunday = 7
     
-     var str: String {
+     var name: String {
         switch self {
-        case .Monday: return "星期一"
-        case .Tuesday: return "星期二"
-        case .Wednesday: return "星期三"
-        case .Thursday: return "星期四"
-        case .Friday: return "星期五"
-        case .Saturday: return "星期六"
-        case .Sunday: return "星期天"
+        case .Monday: return "周一"
+        case .Tuesday: return "周二"
+        case .Wednesday: return "周三"
+        case .Thursday: return "周四"
+        case .Friday: return "周五"
+        case .Saturday: return "周六"
+        case .Sunday: return "周日"
+        }
+    }
+    
+    var lastCharacter: String{
+        switch self {
+        case .Monday: return "一"
+        case .Tuesday: return "二"
+        case .Wednesday: return "三"
+        case .Thursday: return "四"
+        case .Friday: return "五"
+        case .Saturday: return "六"
+        case .Sunday: return "日"
         }
     }
     

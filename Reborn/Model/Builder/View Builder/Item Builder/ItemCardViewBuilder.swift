@@ -117,7 +117,13 @@ class ItemCardViewBuilder: ViewBuilder {
         let freqencyLabel = UILabel()
         freqencyLabel.accessibilityIdentifier = "FreqencyLabel"
         
-        freqencyLabel.text = item.frequency.dataModel.title
+        if let newFreqency = item.newFrequency{
+            freqencyLabel.text = newFreqency.getFreqencyString()
+        } else {
+            freqencyLabel.text = "?"
+        }
+        
+        
         freqencyLabel.textColor = AppEngine.shared.userSetting.properThemeColor
         freqencyLabel.font = AppEngine.shared.userSetting.smallFont
         freqencyLabel.sizeToFit()

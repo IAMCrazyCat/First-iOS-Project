@@ -63,7 +63,7 @@ class NewItemViewController: UIViewController {
     var selectedTypeButton: UIButton? = nil
     var selectedTargetDaysButton: UIButton? = nil
     var selectedFrequencyButton: UIButton? = nil
-    var lastSelectedButton: UIButton? = nil
+    //var lastSelectedButton: UIButton? = nil
     var item: Item = Item(ID: AppEngine.shared.currentUser.getLargestItemID() + 1, name: "一件事", days: 1, frequency: EveryDay(), creationDate: CustomDate.current, type: .undefined, icon: Icon.defaultIcon1)
     var preViewItemCard: UIView = UIView()
     var strategy: NewItemViewStrategy? = nil
@@ -152,8 +152,8 @@ class NewItemViewController: UIViewController {
     }
     
     @IBAction func typeButtonPressed(_ sender: UIButton) {
-        self.deSelectButton()
         
+        self.selectedTypeButton = sender
         for type in ItemType.allCases {
             if type.rawValue == sender.currentTitle {
                 self.item.type = type
@@ -162,18 +162,12 @@ class NewItemViewController: UIViewController {
         
         self.selectedFrequencyButton = nil
         self.item.frequency = .everyday
-        self.selectedTypeButton = sender
-        self.lastSelectedButton = sender
-        self.selectButton()
         self.updateUI()
     }
     
     
     @IBAction func targetDaysButtonPressed(_ sender: UIButton) {
-        self.deSelectButton()
         self.selectedTargetDaysButton = sender
-        self.lastSelectedButton = sender
-        self.selectButton()
         if sender.tag == self.setting.customTargetDaysButtonTag {
             
             self.strategy?.show(.customTargetDaysPopUp)
@@ -186,10 +180,7 @@ class NewItemViewController: UIViewController {
     }
     
     @IBAction func frequencyButtonPressed(_ sender: UIButton) {
-        self.deSelectButton()
         self.selectedFrequencyButton = sender
-        self.lastSelectedButton = sender
-        self.selectButton()
         
         switch sender.tag {
         case 1: self.item.newFrequency = EveryDay()
@@ -318,14 +309,11 @@ class NewItemViewController: UIViewController {
                 
                 self.everyWeekFreqencyButton.alpha = 0
                 self.everyMonthFrequencyButton.alpha = 0
-                //self.customFrequencyButton.alpha = 0
                 
             }) { _ in
 
                 self.everyWeekFreqencyButton.isHidden = true
-
                 self.everyMonthFrequencyButton.isHidden = true
-                //self.customFrequencyButton.isHidden = true
             }
             
         } else {
@@ -334,28 +322,12 @@ class NewItemViewController: UIViewController {
 
                 self.everyWeekFreqencyButton.isHidden = false
                 self.everyMonthFrequencyButton.isHidden = false
-                //self.customFrequencyButton.isHidden = false
-                
                 self.everyWeekFreqencyButton.alpha = 1
                 self.everyMonthFrequencyButton.alpha = 1
-                //self.customFrequencyButton.alpha = 1
-                
                
             })
         }
    
-    }
-    
-    func selectButton() {
-        self.selectedTypeButton?.isSelected = true
-        self.selectedTargetDaysButton?.isSelected = true
-        self.selectedFrequencyButton?.isSelected = true
-    }
-    
-    func deSelectButton() {
-        self.selectedTypeButton?.isSelected = false
-        self.selectedTargetDaysButton?.isSelected = false
-        self.selectedFrequencyButton?.isSelected = false
     }
     
     func removeOldPreviewItemCard() {
@@ -450,10 +422,6 @@ class NewItemViewController: UIViewController {
         selectedFrequencyButton?.isSelected = true
     }
     
-    func unselect(_ button: UIButton) {
-        button.isSelected = false
-    }
-    
 }
 
 extension NewItemViewController: UIObserver {
@@ -473,19 +441,23 @@ extension NewItemViewController: UIObserver {
 extension NewItemViewController: PopUpViewDelegate { // Delegate extension
  
     func didDismissPopUpViewWithoutSave(_ type: PopUpType) {
-   
-        if type == .customFrequencyPopUp {
-
+        
+        switch type {
+        case .everyWeekFreqencyPopUp, .everyMonthFreqencyPopUp:
+            
             self.selectedFrequencyButton = nil
             self.customFrequencyButton.setTitle("自定义", for: .normal)
             self.customFrequencyButton.isSelected = false
             
-        } else if type == .customTargetDaysPopUp {
-
+        case .customTargetDaysPopUp:
+            
             self.selectedTargetDaysButton = nil
             self.customTargetDaysButton.setTitle("自定义", for: .normal)
             self.customTargetDaysButton.isSelected = false
+            
+        default: break
         }
+
         
         updateUI()
     }
@@ -500,20 +472,37 @@ extension NewItemViewController: PopUpViewDelegate { // Delegate extension
             self.item.targetDays = selectedData.data ?? 1
             
         case .everyWeekFreqencyPopUp:
+            
             if let weekdays = (self.engine.getStoredDataFromPopUpView() as? Array<WeekDay>) {
-                if weekdays.count > 0 {
-                    self.item.newFrequency = EveryWeekdays(weekDays: weekdays)
-                } else {
+                
+                switch weekdays.count {
+                case 0:
                     self.selectedFrequencyButton = nil
+                case 1 ... 6:
+                    self.item.newFrequency = EveryWeekdays(weekDays: weekdays)
+                case 7:
+                    self.selectedFrequencyButton = everydayFrequencyButton
+                    self.item.newFrequency = EveryDay()
+                default: break
                 }
+
             } else if let days = (self.engine.getStoredDataFromPopUpView() as? Int) {
-                print("Days")
+                
+                switch days {
+                case 1 ... 6:
+                    self.item.newFrequency = EveryWeek(days: days)
+                case 7:
+                    self.selectedFrequencyButton = everydayFrequencyButton
+                    self.item.newFrequency = EveryDay()
+                default: break
+                }
             }
             
         case .everyMonthFreqencyPopUp:
-            print("Month")
-        default:
-            break
+            if let days = (self.engine.getStoredDataFromPopUpView() as? Int) {
+                self.item.newFrequency = EveryMonth(days: days)
+            }
+        default: break
         }
         self.updateUI()
     }

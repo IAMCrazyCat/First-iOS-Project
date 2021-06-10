@@ -15,6 +15,7 @@ class EveryMonthFrequencyPopUp: EveryWeekFrequencyPopUp {
     
     override init(presentAnimationType: PopUpAnimationType, size: PopUpSize = .small, popUpViewController: PopUpViewController) {
         super.init(presentAnimationType: presentAnimationType, popUpViewController: popUpViewController)
+        super.type = .everyMonthFreqencyPopUp
         self.setUpUI()
     }
     

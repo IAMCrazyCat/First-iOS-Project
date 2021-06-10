@@ -97,8 +97,15 @@ class Item: Codable {
         self.targetDays = days
         self.creationDate = creationDate
         self.type = type
-        self.newFrequency = frequency
         self.icon = icon
+        
+        switch frequency.type {
+        case .everyDay: self.newFrequency = newFrequency as? EveryDay
+        case .everyWeek: self.newFrequency = newFrequency as? EveryWeek
+        case .everyMonth: self.newFrequency = newFrequency as? EveryMonth
+        case .everyWeekdays: self.newFrequency = newFrequency as? EveryWeekdays
+        }
+        
         
         self.frequency = .everyday
         updateScheduleDates()

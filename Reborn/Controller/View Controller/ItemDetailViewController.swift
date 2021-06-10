@@ -168,7 +168,9 @@ class ItemDetailViewController: UIViewController {
     }
     
     func updateFrequencyLabel() {
-        self.frequencyLabel.text = "\(String(self.item.frequency.dataModel.title))"
+        self.frequencyLabel.text = "\(self.item.newFrequency?.getSpecificFreqencyString() ?? "?")"
+        print("WTF??")
+        print(self.item.newFrequency as! EveryWeekdays)
     }
     
     func updateNextPunchInDateLabel() {

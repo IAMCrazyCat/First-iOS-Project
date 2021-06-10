@@ -111,7 +111,7 @@ class FrequencyPopUpViewBuilder: PopUpViewBuilder {
             weekdayButton.value = weekday
             weekdayButton.setCornerRadius(corderRadius: 7)
             weekdayButton.setSmartSelectionColor()
-            weekdayButton.setTitle(weekday.str, for: .normal)
+            weekdayButton.setTitle(weekday.name, for: .normal)
             weekdayButton.titleLabel?.font = AppEngine.shared.userSetting.smallFont
             weekdayButton.isSelected = false
             accrodingToWeekDaysView.addSubview(weekdayButton)
