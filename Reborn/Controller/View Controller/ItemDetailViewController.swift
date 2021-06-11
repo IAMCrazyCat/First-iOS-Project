@@ -169,54 +169,51 @@ class ItemDetailViewController: UIViewController {
     
     func updateFrequencyLabel() {
         self.frequencyLabel.text = "\(self.item.newFrequency?.getSpecificFreqencyString() ?? "?")"
-        print("WTF??")
-        print(self.item.newFrequency?.type)
-        print(self.item.newFrequency)
     }
     
     func updateNextPunchInDateLabel() {
-        let scheduleDate = self.item.scheduleDates
-        var nextPunchInDate: CustomDate?
-        var index = 0
-        print(scheduleDate)
-        for date in scheduleDate {
-            
+//        let scheduleDate = self.item.scheduleDates
+//        var nextPunchInDate: CustomDate?
+//        var index = 0
+//        print(scheduleDate)
+//        for date in scheduleDate {
+//            
+//        
+//            if date >= CustomDate.current {
+//                
+//                if self.item.isPunchedIn {
+//                    if index + 1 <= self.item.scheduleDates.count - 1 {
+//                        nextPunchInDate = self.item.scheduleDates[index + 1]
+//                    }
+//                    
+//                } else {
+//                    nextPunchInDate = date
+//                }
+//                
+//                break
+//            }
+//            
+//            index += 1
+//        }
         
-            if date >= CustomDate.current {
-                
-                if self.item.isPunchedIn {
-                    if index + 1 <= self.item.scheduleDates.count - 1 {
-                        nextPunchInDate = self.item.scheduleDates[index + 1]
-                    }
-                    
-                } else {
-                    nextPunchInDate = date
-                }
-                
-                break
-            }
-            
-            index += 1
-        }
-        
-        var labelText = ""
-        if self.item.state == .completed {
-            labelText = "暂无计划"
-        } else {
-            if nextPunchInDate == CustomDate.current {
-                labelText = "今天"
-            } else if nextPunchInDate == DateCalculator.calculateDate(withDayDifference: 1, originalDate: CustomDate.current) {
-                labelText = "明天"
-            } else if nextPunchInDate != nil {
-                labelText = "\(nextPunchInDate!.month)月\(nextPunchInDate!.day)日"
-            } else {
-                labelText = "暂无计划"
-            }
-               
-        }
+//        var labelText = ""
+//        if self.item.state == .completed {
+//            labelText = "暂无计划"
+//        } else {
+//            if nextPunchInDate == CustomDate.current {
+//                labelText = "今天"
+//            } else if nextPunchInDate == DateCalculator.calculateDate(withDayDifference: 1, originalDate: CustomDate.current) {
+//                labelText = "明天"
+//            } else if nextPunchInDate != nil {
+//                labelText = "\(nextPunchInDate!.month)月\(nextPunchInDate!.day)日"
+//            } else {
+//                labelText = "暂无计划"
+//            }
+//
+//        }
        
         
-        self.nextPunchInDateLabel.text = labelText
+//        self.nextPunchInDateLabel.text = labelText
     }
     
     func updateTodayLabel() {

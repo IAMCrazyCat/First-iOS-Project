@@ -148,11 +148,12 @@ class EveryWeekdays: NewFrequency {
             
         }
         
-        if weekdays.count > 1 && weekdays.count <= 3{
+        if weekdays.count > 1 && weekdays.count < 3{
             var str = ""
             for weekday in weekdays {
-                str += "\(weekday.name)、"
+                str += "\(weekday.name), "
             }
+            return String(str.dropLast().dropLast())
         }
         
         
@@ -161,13 +162,18 @@ class EveryWeekdays: NewFrequency {
     }
     
     override func getSpecificFreqencyString() -> String {
-        var str = ""
-        for weekday in weekdays {
-            str += "\(weekday.name), "
+        
+        if self.getFreqencyString() == "每周自定" {
+            var str = ""
+            for weekday in weekdays {
+                str += "\(weekday.name), "
+            }
+
+            return String(str.dropLast().dropLast())
+        } else {
+            return self.getFreqencyString()
         }
         
-        str.removeLast()
-        return str
     }
 }
 

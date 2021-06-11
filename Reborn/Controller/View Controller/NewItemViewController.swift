@@ -84,7 +84,6 @@ class NewItemViewController: UIViewController {
         super.viewDidLoad()
         
         originalItemForRecovery = Item(ID: item.ID, name: item.name, days: item.targetDays, frequency: item.frequency, creationDate: item.creationDate, type: item.type, icon: self.item.icon)
-        originalItemForRecovery.scheduleDates = item.scheduleDates
         originalItemForRecovery.energy = item.energy
         originalItemForRecovery.state = item.state
         
@@ -134,7 +133,6 @@ class NewItemViewController: UIViewController {
                 self.item.name = originalItem.name
                 self.item.targetDays = originalItem.targetDays
                 self.item.frequency = originalItem.frequency
-                self.item.scheduleDates = originalItem.scheduleDates
                 self.item.type = originalItem.type
                 self.item.energy = originalItem.energy
                 self.item.state = originalItem.state

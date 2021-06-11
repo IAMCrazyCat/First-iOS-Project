@@ -12,23 +12,14 @@ import UIKit
 class Item: Codable {
     var ID: Int
     var name: String
-    var targetDays: Int {
-        didSet {
-            self.updateScheduleDates()
-        }
-    }
+    var targetDays: Int
     var energy: Int = 0
     var creationDate: CustomDate
     var type: ItemType
-    var scheduleDates: Array<CustomDate> = []
     var punchInDates: Array<CustomDate> = []
     var energyRedeemDates: Array<CustomDate> = []
     var state: ItemState = .inProgress
-    var frequency: Frequency {
-        didSet{
-            self.updateScheduleDates()
-        }
-    }
+    var frequency: Frequency
     var hasSanction: Bool = false
     var icon: Icon
     var newFrequency: NewFrequency? = nil
@@ -86,7 +77,6 @@ class Item: Codable {
         self.type = type
         self.frequency = frequency
         self.icon = icon
-        updateScheduleDates()
         updateState()
     }
     
@@ -100,7 +90,6 @@ class Item: Codable {
         self.newFrequency = frequency
         
         self.frequency = .everyday
-        updateScheduleDates()
         updateState()
     }
     
@@ -131,7 +120,6 @@ class Item: Codable {
         self.energy = try container.decode(Int.self, forKey: .energy)
         self.creationDate = try container.decode(CustomDate.self, forKey: .creationDate)
         self.type = try container.decode(ItemType.self, forKey: .type)
-        //self.scheduleDates = try container.decode([CustomDate].self, forKey: .scheduleDates)
         self.punchInDates = try container.decode([CustomDate].self, forKey: .punchInDates)
         self.state = try container.decode(ItemState.self, forKey: .state)
         self.frequency = try container.decode(Frequency.self, forKey: .frequency)
@@ -163,7 +151,6 @@ class Item: Codable {
         try container.encode(energy, forKey: .energy)
         try container.encode(creationDate, forKey: .creationDate)
         try container.encode(type, forKey: .type)
-        try container.encode(scheduleDates, forKey: .scheduleDates)
         try container.encode(punchInDates, forKey: .punchInDates)
         try container.encode(state, forKey: .state)
         try container.encode(frequency, forKey: .frequency)
@@ -255,29 +242,37 @@ class Item: Codable {
         }
         
         func checkEveryWeekdaysState(with newFrequency: EveryWeekdays) {
+            
+            if newFrequency.weekdays.contains(CustomDate.current.weekday) {
+                self.state = .inProgress
+            } else {
+                self.state = .duringBreak
+            }
+        }
+        
+        func checkEveryWeekdaysCompletion(with newFrequency: EveryWeekdays) {
             var currentWeekShouldPunchInDates: Array<CustomDate> = []
             var currentWeekPunchInDates: Array<CustomDate> = []
-            
-            
+
             for currentWeekDate in CustomDate.current.week {
-                if newFrequency.weekdays.contains(currentWeekDate.weekday!) {
+                if newFrequency.weekdays.contains(currentWeekDate.weekday) {
                     currentWeekShouldPunchInDates.append(currentWeekDate)
                 }
             }
-            
+
             for punchInDate in self.punchInDates {
                 if CustomDate.current.week.contains(punchInDate) {
                     currentWeekPunchInDates.append(punchInDate)
                 }
             }
-            
+
             var allDatesPunchedIn = true
             for shouldPunchInDate in currentWeekShouldPunchInDates {
                 if !currentWeekPunchInDates.contains(shouldPunchInDate) {
                     allDatesPunchedIn = false
                 }
             }
-            
+
             if allDatesPunchedIn {
                 self.state = .duringBreak
             } else {
@@ -293,7 +288,7 @@ class Item: Codable {
         } else {
             
             if let newFrequency = newFrequency as? EveryDay {
-                
+                self.state = .inProgress
             } else if let newFrequency = newFrequency as? EveryMonth {
                 checkEveryMonthState(with: newFrequency)
             } else if let newFrequency = newFrequency as? EveryWeek {
@@ -306,37 +301,11 @@ class Item: Codable {
 
     }
     
-    private func updateScheduleDates() {
-        self.scheduleDates.removeAll()
-        var cycle = self.frequency.dataModel.data ?? 1
-        var difference = 0
-        
-        while self.scheduleDates.count < self.targetDays - self.finishedDays + (self.isPunchedIn ? 1 : 0)  {
-            
-            if cycle < (self.frequency.dataModel.data ?? 1) - 1 {
-                
-                cycle += 1
-                
-            } else {
-                
-                let customDate = DateCalculator.calculateDate(withDayDifference: difference, originalDate: CustomDate.current)
-                self.scheduleDates.append(customDate)
-                cycle = 0
-            }
-            difference += 1
-        }
-        
-        self.updateState()
-        self.sortDateArray()
-    }
     
     private func sortDateArray() {
         
         DispatchQueue.main.async {
             self.punchInDates.sort {
-                DateCalculator.calculateDayDifferenceBetween($0, to: $1) > 0
-            }
-            self.scheduleDates.sort {
                 DateCalculator.calculateDayDifferenceBetween($0, to: $1) > 0
             }
         }
