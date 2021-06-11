@@ -40,4 +40,3 @@ enum WeekDay: Int, CaseIterable, Codable {
     }
     
 }
-

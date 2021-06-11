@@ -41,4 +41,15 @@ struct CustomDate: Codable, Equatable, Comparable {
        
         return nil
     }
+    
+    var week: Array<CustomDate> {
+        var currentWeek: Array<CustomDate> = []
+        if let currentWeekdayNumber = CustomDate.current.weekday?.rawValue {
+            for i in 1 ... 7 {
+                let currentWeekday = DateCalculator.calculateDate(withDayDifference: i - currentWeekdayNumber + 1, originalDate: self)
+                currentWeek.append(currentWeekday)
+            }
+        }
+        return currentWeek
+    }
 }

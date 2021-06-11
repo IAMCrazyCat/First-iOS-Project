@@ -353,11 +353,13 @@ class AppEngine {
            let decoder = JSONDecoder() //PropertyListDecoder()
 
            do {
-                self.currentUser = try decoder.decode(User.self, from: data) // .self 可以提取数据类型
+            self.currentUser = try decoder.decode(User.self, from: data) // .self 可以提取数据类型
            } catch {
                print(error)
            }
         }
+        
+        
         
         if self.currentUser.isVip {
             print("Welcome back VIP!")

@@ -14,7 +14,7 @@ enum NewFrequencyType: String, Codable {
 }
 
 
-class NewFrequency: Serializable {
+class NewFrequency: Codable {
     var type: NewFrequencyType
     
     init(type: NewFrequencyType) {
@@ -28,16 +28,23 @@ class NewFrequency: Serializable {
     func getSpecificFreqencyString() -> String {
         return getFreqencyString()
     }
+    
+    func isCompletedInPeriod() -> Bool {
+        return false
+    }
 }
 
 class EveryDay: NewFrequency {
+    private enum Key: String, CodingKey {
+        case type
+    }
     
     init() {
         super.init(type: .everyDay)
     }
     
     required init(from decoder: Decoder) throws {
-        fatalError("init(from:) has not been implemented")
+        try super.init(from: decoder)
     }
     
     override func getFreqencyString() -> String {
@@ -48,6 +55,10 @@ class EveryDay: NewFrequency {
 class EveryWeek: NewFrequency {
     var days: Int
     
+    private enum Key: String, CodingKey {
+        case days
+    }
+    
     init(days: Int) {
         self.days = days
         super.init(type: .everyWeek)
@@ -55,16 +66,31 @@ class EveryWeek: NewFrequency {
     }
     
     required init(from decoder: Decoder) throws {
-        fatalError("init(from:) has not been implemented")
+        let container = try decoder.container(keyedBy: Key.self)
+        self.days = try container.decode(Int.self, forKey: .days)
+        try super.init(from: decoder)
+    }
+    
+    override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: Key.self)
+        try container.encode(days, forKey: Key.days)
+        try super.encode(to: encoder)
     }
     
     override func getFreqencyString() -> String {
         return "每周\(self.days)次"
     }
+    
+    
 }
 
 class EveryWeekdays: NewFrequency {
     var weekdays: Array<WeekDay>
+    
+    private enum Key: String, CodingKey {
+        case weekdays
+    }
+    
     init(weekDays: Array<WeekDay>) {
         self.weekdays = weekDays
         super.init(type: .everyWeekdays)
@@ -73,7 +99,16 @@ class EveryWeekdays: NewFrequency {
     
     
     required init(from decoder: Decoder) throws {
-        fatalError("init(from:) has not been implemented")
+        
+        let container = try decoder.container(keyedBy: Key.self)
+        self.weekdays = try container.decode(Array<WeekDay>.self, forKey: .weekdays)
+        try super.init(from: decoder)
+    }
+    
+    override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: Key.self)
+        try container.encode(weekdays, forKey: .weekdays)
+        try super.encode(to: encoder)
     }
     
     private func sortWeekdays() {
@@ -138,13 +173,24 @@ class EveryWeekdays: NewFrequency {
 
 class EveryMonth: NewFrequency {
     var days: Int
+    private enum Key: String, CodingKey {
+        case days
+    }
     init(days: Int) {
         self.days = days
         super.init(type: .everyMonth)
     }
     
     required init(from decoder: Decoder) throws {
-        fatalError("init(from:) has not been implemented")
+        let container = try decoder.container(keyedBy: Key.self)
+        self.days = try container.decode(Int.self, forKey: .days)
+        try super.init(from: decoder)
+    }
+    
+    override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: Key.self)
+        try container.encode(days, forKey: Key.days)
+        try super.encode(to: encoder)
     }
     
     override func getFreqencyString() -> String {
