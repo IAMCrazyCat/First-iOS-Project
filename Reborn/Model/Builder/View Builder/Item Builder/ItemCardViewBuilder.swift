@@ -120,7 +120,7 @@ class ItemCardViewBuilder: ViewBuilder {
         if let newFreqency = item.newFrequency{
             freqencyLabel.text = newFreqency.getFreqencyString()
         } else {
-            freqencyLabel.text = "?"
+            freqencyLabel.text = "(请更新频率)"
         }
         
         

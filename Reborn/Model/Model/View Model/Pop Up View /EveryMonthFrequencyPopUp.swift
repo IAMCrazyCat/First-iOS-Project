@@ -29,13 +29,19 @@ class EveryMonthFrequencyPopUp: EveryWeekFrequencyPopUp {
         self.pickerViewData = PickerViewData.monthDays
     }
     
-    override func setUpPreSettings() {
-
-        if let everyMonthFrequency = super.newFrequency as? EveryMonth {
-            super.pickerView?.selectRow(everyMonthFrequency.days - 1, inComponent: 0, animated: true)
+    override func presetDays() {
+        guard let everyMonthFrequency = super.newFrequency as? EveryMonth,
+              let pickerView = super.pickerView
+        else {
+            return
         }
+       
+        if pickerView.numberOfComponents >= 1 && pickerView.numberOfRows(inComponent: 0) >= everyMonthFrequency.days{
+            pickerView.selectRow(everyMonthFrequency.days - 1, inComponent: 0, animated: true)
+        }
+        self.updateUI()
     }
-    
+
     
     override func updateLabels() {
         self.instructionLabel?.text = "一月内完成\(super.selectedDays)次打卡后项目将不会出现在今日打卡中"

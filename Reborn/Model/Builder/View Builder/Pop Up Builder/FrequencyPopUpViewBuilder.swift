@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 class FrequencyPopUpViewBuilder: PopUpViewBuilder {
 
-    
+    let buttonSize: CGSize = CGSize(width: 70, height: 30)
     override func buildView() -> UIView {
         super.buildView()
         self.setUpTitle()
@@ -27,12 +27,14 @@ class FrequencyPopUpViewBuilder: PopUpViewBuilder {
     private func addSegmentedControl() {
         let items = ["按日", "按天数"]
         let segmentedControl = UISegmentedControl(items: items)
+        
         segmentedControl.accessibilityIdentifier = "SegmentedControl"
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.setSmartAppearance(withBackgroundStyle: .followSystem)
         super.contentView.addSubview(segmentedControl)
         
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        segmentedControl.heightAnchor.constraint(equalToConstant: buttonSize.height).isActive = true
         segmentedControl.topAnchor.constraint(equalTo: super.contentView.topAnchor, constant: 0).isActive = true
         segmentedControl.rightAnchor.constraint(equalTo: super.contentView.rightAnchor, constant: -20).isActive = true
     }
@@ -77,7 +79,7 @@ class FrequencyPopUpViewBuilder: PopUpViewBuilder {
         
         super.contentView.layoutIfNeeded()
         
-        let buttonSize: CGSize = CGSize(width: 70, height: 30)
+        
         var maxmumNumberOfButtonInOneRow: Int {
             let width = accrodingToWeekDaysView.frame.width
             return Int(width / buttonSize.width)
