@@ -69,6 +69,14 @@ class Item: Codable {
         return String(format: "%.1f", progress * 100) + " %"
     }
     
+    var nextPunchInDate: CustomDate? {
+        return getNextPunchInDate()
+    }
+    
+    var nextPunchInDateInString: String {
+        return getNextPunchInDateInString()
+    }
+    
     init(ID: Int, name: String, days: Int, frequency: Frequency, creationDate: CustomDate, type: ItemType, icon: Icon) {
         self.ID = ID
         self.name = name
@@ -173,7 +181,11 @@ class Item: Codable {
     public func punchIn(on date: CustomDate = CustomDate.current) {
         self.punchInDates.append(date)
         updateState()
-        updateEnergyConsecutiveDays(withDaysToAdd: 1)
+        if isConsecutivePunchIn() {
+            self.lastEnergyConsecutiveDays += 1
+        } else {
+            self.lastEnergyConsecutiveDays = 1
+        }
     }
     
     
@@ -190,7 +202,7 @@ class Item: Codable {
 
         }
         updateState()
-        updateEnergyConsecutiveDays(withDaysToAdd: -1)
+        self.lastEnergyConsecutiveDays -= 1
 
     }
   
@@ -201,6 +213,76 @@ class Item: Codable {
         sortDateArray()
         
     }
+    
+    func checkEveryWeekdaysCompletion(with newFrequency: EveryWeekdays) -> Bool {
+        var currentWeekShouldPunchInDates: Array<CustomDate> = []
+        var currentWeekPunchInDates: Array<CustomDate> = []
+
+        for currentWeekDate in CustomDate.current.week {
+            if newFrequency.weekdays.contains(currentWeekDate.weekday) {
+                currentWeekShouldPunchInDates.append(currentWeekDate)
+            }
+        }
+
+        for punchInDate in self.punchInDates {
+            if CustomDate.current.week.contains(punchInDate) {
+                currentWeekPunchInDates.append(punchInDate)
+            }
+        }
+
+        var allDatesPunchedIn = true
+        for shouldPunchInDate in currentWeekShouldPunchInDates {
+            if !currentWeekPunchInDates.contains(shouldPunchInDate) {
+                allDatesPunchedIn = false
+            }
+        }
+
+        if allDatesPunchedIn {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func checkEveryWeekCompletion(with newFrequency: EveryWeek) -> Bool {
+        var punchedDays = 0
+        for punchInDate in self.punchInDates {
+            if CustomDate.current.week.contains(punchInDate) {
+                punchedDays += 1
+            }
+            
+            if punchedDays >= newFrequency.days {
+                return true
+            }
+        }
+        
+        if punchedDays < newFrequency.days {
+            return false
+        }
+        
+        return false
+        
+    }
+    
+    func checkEveryMonthCompletion(with newFrequency: EveryMonth) -> Bool {
+        var punchedDays = 0
+        for punchInDate in self.punchInDates {
+            if punchInDate.month == CustomDate.current.month {
+                punchedDays += 1
+            }
+            
+            if punchedDays >= newFrequency.days {
+                return true
+            }
+        }
+        
+        if punchedDays < newFrequency.days {
+            return false
+        }
+        
+        return false
+    }
+    
     
     public func updateState() {
         
@@ -249,38 +331,7 @@ class Item: Codable {
                 self.state = .duringBreak
             }
         }
-        
-        func checkEveryWeekdaysCompletion(with newFrequency: EveryWeekdays) {
-            var currentWeekShouldPunchInDates: Array<CustomDate> = []
-            var currentWeekPunchInDates: Array<CustomDate> = []
 
-            for currentWeekDate in CustomDate.current.week {
-                if newFrequency.weekdays.contains(currentWeekDate.weekday) {
-                    currentWeekShouldPunchInDates.append(currentWeekDate)
-                }
-            }
-
-            for punchInDate in self.punchInDates {
-                if CustomDate.current.week.contains(punchInDate) {
-                    currentWeekPunchInDates.append(punchInDate)
-                }
-            }
-
-            var allDatesPunchedIn = true
-            for shouldPunchInDate in currentWeekShouldPunchInDates {
-                if !currentWeekPunchInDates.contains(shouldPunchInDate) {
-                    allDatesPunchedIn = false
-                }
-            }
-
-            if allDatesPunchedIn {
-                self.state = .duringBreak
-            } else {
-                self.state = .inProgress
-            }
-        }
-        
-        
         
         if self.finishedDays == self.targetDays {
             self.state = .completed
@@ -313,13 +364,7 @@ class Item: Codable {
     }
 
     
-    private func updateEnergyConsecutiveDays(withDaysToAdd days: Int) {
 
-        if isConsecutivePunchIn() {
-            self.lastEnergyConsecutiveDays += days
-        }
-        
-    }
     
     private func getConsecutiveDaysArray() -> Array<Int> {
         
@@ -337,7 +382,7 @@ class Item: Codable {
             let date1 = self.punchInDates[index]
             let date2 = self.punchInDates[index + 1]
             
-            if DateCalculator.calculateDayDifferenceBetween(date1, to: date2) == self.frequency.dataModel.data {
+            if DateCalculator.calculateDayDifferenceBetween(date1, to: date2) == 1 {
                 consecutiveDays += 1
             } else {
                 consecutiveDaysArray.append(consecutiveDays)
@@ -357,17 +402,148 @@ class Item: Codable {
     }
     
     private func isConsecutivePunchIn() -> Bool {
-        
         if punchInDates.count - 2 >= 0 {
             let yesterday = self.punchInDates[punchInDates.count - 2]
             let today = self.punchInDates[punchInDates.count - 1]
-            if DateCalculator.calculateDayDifferenceBetween(yesterday, to: today) == self.frequency.dataModel.data {
+            if DateCalculator.calculateDayDifferenceBetween(yesterday, to: today) == 1 {
                 return true
             } else {
                 return false
             }
         } else {
            return true
+        }
+    }
+    
+    private func getNextPunchInDate() -> CustomDate? {
+        
+        let tomorrow = DateCalculator.calculateDate(withDayDifference: 1, originalDate: CustomDate.current)
+        let today = CustomDate.current
+        let currentWeekSunday = CustomDate.current.week.last!
+        let nextMonday = DateCalculator.calculateDate(withDayDifference: 1, originalDate: currentWeekSunday)
+        let nextYear = DateCalculator.calculateDate(withMonthDifference: 1, originalDate: CustomDate.current).year
+        let nextMonth = DateCalculator.calculateDate(withMonthDifference: 1, originalDate: CustomDate.current).month
+       
+        
+        func getItBy(_ newFrequency: EveryDay) -> CustomDate? {
+            
+            if self.isPunchedIn {
+                return tomorrow
+            } else {
+                return today
+            }
+        }
+        
+        func getItBy(_ newFrequency: EveryWeek) -> CustomDate? {
+            if checkEveryWeekCompletion(with: newFrequency) {
+                return nextMonday
+            } else {
+                if self.isPunchedIn {
+                    return tomorrow
+                } else {
+                    return today
+                }
+            }
+        }
+        
+        func getItBy(_ newFrequency: EveryWeekdays) -> CustomDate? {
+            
+            let todayShouldPunchIn = newFrequency.weekdays.contains(CustomDate.current.weekday)
+            let isCompletedInCurrentWeek = checkEveryWeekdaysCompletion(with: newFrequency)
+            let todayDidPunchIn = self.isPunchedIn
+            var nextWeekFirstPunchInDate: CustomDate? {
+                print("WTF???")
+                for dayDifference in 0 ... 6 {
+                    let nextWeekDate = DateCalculator.calculateDate(withDayDifference: dayDifference, originalDate: nextMonday)
+                    if nextWeekDate.weekday.rawValue == newFrequency.weekdays.first?.rawValue { // first punch in date
+                        return nextWeekDate
+                    }
+                }
+                return nil
+            }
+
+            func nextPunchInDate() -> CustomDate? {
+                print("WTF1")
+                var nextWeekday: WeekDay? = nil
+                for weekday in newFrequency.weekdays {
+                    if weekday.rawValue > CustomDate.current.weekday.rawValue { // next weekday should punchIn in current week
+                        nextWeekday = weekday
+                        break
+                    }
+                }
+                
+                if nextWeekday != nil {
+                    for date in CustomDate.current.week {
+                        if date.weekday.rawValue == nextWeekday!.rawValue {
+                            return date
+                        }
+                    }
+                }
+                return nextWeekFirstPunchInDate
+            }
+            
+            
+            if isCompletedInCurrentWeek {
+                return nextPunchInDate()
+            } else {
+                if todayShouldPunchIn && todayDidPunchIn {
+                    return nextPunchInDate()
+                } else if todayShouldPunchIn && !todayDidPunchIn {
+                    return today
+                } else {
+                    return nextPunchInDate()
+                }
+            }
+
+        }
+        
+        func getItBy(_ newFrequency: EveryMonth) -> CustomDate {
+            
+            if checkEveryMonthCompletion(with: newFrequency) {
+                return CustomDate(year: nextYear, month: nextMonth, day: 1)
+            } else {
+                return tomorrow
+            }
+        }
+        
+        
+        
+        
+        if self.state == .completed {
+            return nil
+        } else {
+            
+            if let newFrequency = newFrequency as? EveryDay {
+               return getItBy(newFrequency)
+            } else if let newFrequency = newFrequency as? EveryMonth {
+                return getItBy(newFrequency)
+            } else if let newFrequency = newFrequency as? EveryWeek {
+                return getItBy(newFrequency)
+            } else if let newFrequency = newFrequency as? EveryWeekdays {
+                return getItBy(newFrequency)
+            } else {
+                return nil
+            }
+
+        }
+    }
+    
+    private func getNextPunchInDateInString() -> String {
+        
+        
+        if let nextPunchInDate = self.nextPunchInDate {
+           
+            let daysDifference = DateCalculator.calculateDayDifferenceBetween(CustomDate.current, to: nextPunchInDate)
+            
+            switch daysDifference {
+            case 0: return "今天"
+            case 1: return "明天"
+            case 2: return "后天"
+            default: return "\(nextPunchInDate.month)月\(nextPunchInDate.day)日"
+            }
+
+        } else {
+            return "暂无计划"
         }
     }
     

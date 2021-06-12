@@ -41,6 +41,21 @@ class PopUpImpl: PopUp {
         self.updateUI()
     }
     
+    func viewDidLoad() {
+        
+    }
+    func viewDidLayoutSubviews() {
+        
+    }
+    
+    func viewWillAppear() {
+        
+    }
+    
+    func viewDidAppear() {
+        
+    }
+    
     
     func isReadyToDismiss() -> Bool {
         return true

@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 class EveryWeekFrequencyPopUp: PopUpImpl, PickerViewPopUp {
+    
+    var newFrequency: NewFrequency?
+    var weekdays: Array<WeekDay> = []
+    
     var segmentedControl: UISegmentedControl? {
         return super.contentView?.getSubviewBy(idenifier: "SegmentedControl") as? UISegmentedControl
     }
@@ -45,19 +49,53 @@ class EveryWeekFrequencyPopUp: PopUpImpl, PickerViewPopUp {
     }
     
     
-    var selectedWeekdays: Array<WeekDay> = []
-    var selectedDays: Int = 0
+    var selectedWeekdays: Array<WeekDay> {
+        var selectedWeekdays: Array<WeekDay> = []
+        guard let customButtonView =  self.accordingToWeekDaysView else { return selectedWeekdays }
+        for subview in customButtonView.subviews {
+            if let customButton = subview as? CustomButton, let weekday = customButton.value as? WeekDay {
+                customButton.isSelected == true ? selectedWeekdays.append(weekday) : ()
+            }
+        }
+        return selectedWeekdays
+    }
+    var selectedDays: Int {
+        if let pickerViewSelectedRow = pickerView?.selectedRow(inComponent: 0) {
+            return pickerViewSelectedRow + 1
+        } else {
+            return 1
+        }
+        
+        
+    }
     var pickerViewData: [CustomData] = []
     
-    init(presentAnimationType: PopUpAnimationType, size: PopUpSize = .small, popUpViewController: PopUpViewController) {
+    init(presentAnimationType: PopUpAnimationType, size: PopUpSize = .small, popUpViewController: PopUpViewController, newFrequency: NewFrequency?) {
+        
+        self.newFrequency = newFrequency
         super.init(presentAnimationType: presentAnimationType, type: .everyWeekFreqencyPopUp, size: size, popUpViewController: popUpViewController)
         addTargetToWeekdayButtons()
         addTargetToSegmentedControl()
         setPickerViewData()
     }
     
-   
+    override func viewDidLoad() {
+        print("WTF!!!!!!")
+        
+    }
     
+    override func viewDidLayoutSubviews() {
+        
+    }
+    
+    override func viewWillAppear() {
+        
+    }
+    
+    override func viewDidAppear() {
+        self.setUpPreSettings()
+    }
+
 
     override func createWindow() -> UIView {
         return FrequencyPopUpViewBuilder(popUpViewController: super.popUpViewController, frame: super.frame).buildView()
@@ -72,6 +110,23 @@ class EveryWeekFrequencyPopUp: PopUpImpl, PickerViewPopUp {
         }
        
         return nil
+    }
+    
+    override func isReadyToDismiss() -> Bool {
+        
+        if segmentedControl?.selectedSegmentIndex == 0 {
+            
+            if selectedWeekdays.count > 0 {
+                return true
+            } else {
+                self.instructionLabel?.text = "请选择至少一天打卡日"
+                self.instructionLabel?.textColor = .systemRed
+                return false
+            }
+            
+        } else {
+            return true
+        }
     }
     
     private func addTargetToSegmentedControl() {
@@ -96,21 +151,6 @@ class EveryWeekFrequencyPopUp: PopUpImpl, PickerViewPopUp {
     private func weekdayButtonPressed(_ sender: CustomButton!) {
         Vibrator.vibrate(withImpactLevel: .light)
         sender.isSelected = !sender.isSelected
-        if let weekday = sender.value as? WeekDay {
-            
-            if sender.isSelected {
-                self.selectedWeekdays.append(weekday)
-            } else {
-                var index = 0
-                for selectedWeekday in selectedWeekdays {
-                    if weekday.rawValue == selectedWeekday.rawValue {
-                        selectedWeekdays.remove(at: index)
-                    }
-                    index += 1
-                }
-                
-            }
-        }
         self.updateUI()
         print(selectedWeekdays)
     }
@@ -121,7 +161,8 @@ class EveryWeekFrequencyPopUp: PopUpImpl, PickerViewPopUp {
         self.updateUI()
     }
     
-    private func updateLabels() {
+    internal func updateLabels() {
+        self.instructionLabel?.textColor = super.setting.smartLabelGrayColor
         if self.segmentedControl?.selectedSegmentIndex == 0 {
             super.titleLabel?.text = "设置每周打卡日"
             self.accordingToWeekDaysView?.isHidden = false
@@ -138,25 +179,45 @@ class EveryWeekFrequencyPopUp: PopUpImpl, PickerViewPopUp {
             self.accordingToDaysView?.isHidden = false
             self.instructionView?.isHidden = false
             
-            if let pickerView = self.pickerView {
-                self.selectedDays = pickerView.selectedRow(inComponent: 0) + 1
-                
-                if pickerView.selectedRow(inComponent: 0) + 1 < 7 {
-                    self.instructionLabel?.text = "一周内完成\(pickerView.selectedRow(inComponent: 0) + 1)次打卡后项目将不会出现在今日打卡中"
-                } else {
-                    self.instructionLabel?.text = "项目频率已设置为每天打卡"
-                }
-
+            if selectedDays < 7 {
+                self.instructionLabel?.text = "一周内完成\(self.selectedDays)次打卡后项目将不会出现在今日打卡中"
+            } else {
+                self.instructionLabel?.text = "项目频率已设置为每天打卡"
             }
         }
     }
     
-    
-    override func updateUI() {
-        updateLabels()
+    internal func setUpPreSettings() {
+
+        switch self.newFrequency {
+        case is EveryWeek:
+            self.segmentedControl?.selectedSegmentIndex = 1
+            self.pickerView?.selectRow((newFrequency as! EveryWeek).days - 1, inComponent: 0, animated: true)
+        case is EveryWeekdays:
+            self.segmentedControl?.selectedSegmentIndex = 0
+            self.weekdays = (newFrequency as! EveryWeekdays).weekdays
+            for weekdayButton in self.weekdayButtons {
+                if let weekday = weekdayButton.value as? WeekDay, self.weekdays.contains(weekday) {
+                    weekdayButton.isSelected = true
+                } else {
+                    weekdayButton.isSelected = false
+                }
+               
+            }
+        default:
+            break
+        }
+        
+        
     }
     
-    // PickerViewMethods
+    
+    override func updateUI() {
+        
+        updateLabels()
+
+    }
+    
     
     func numberOfComponents() -> Int {
         return 1

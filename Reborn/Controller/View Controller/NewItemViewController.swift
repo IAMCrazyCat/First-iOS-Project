@@ -182,8 +182,8 @@ class NewItemViewController: UIViewController {
         
         switch sender.tag {
         case 1: self.item.newFrequency = EveryDay()
-        case 2: self.present(.everyWeekFreqencyPopUp)
-        case 3: self.present(.everyMonthFreqencyPopUp)
+        case 2: self.present(.everyWeekFreqencyPopUp, newFrequency: self.item.newFrequency)
+        case 3: self.present(.everyMonthFreqencyPopUp, newFrequency: self.item.newFrequency)
         default: break
         }
         

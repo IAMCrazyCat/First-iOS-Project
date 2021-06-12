@@ -148,4 +148,20 @@ class DateCalculator {
         return oneTenthSecondDifference
     }
     
+//    static func calculateDate(withMonthDifference monthDifference: Int, originalDate: CustomDate) -> CustomDate {
+//        var newMonth = originalDate.month + (monthDifference % 12)
+//        var newYear = originalDate.year + (monthDifference / 12)
+//        if newMonth > 12 {
+//            newMonth = 1
+//        } else if newMonth == 0 {
+//            newMonth = 12
+//        } else if newMonth < 0 {
+//            newMonth = 12 - newMonth
+//        }
+//        
+//        
+//        
+//        return CustomDate(year: newYear, month: newMonth, day: <#T##Int#>)
+//    }
+    
 }

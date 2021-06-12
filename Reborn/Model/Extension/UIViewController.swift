@@ -78,25 +78,51 @@ extension UIViewController: UIViewControllerTransitioningDelegate  {
                 } else {
                     popUpViewController.popUp = NotificationTimePopUp(presentAnimationType: animationType, size: size, popUpViewController: popUpViewController)
                 }
-                
             case .itemCompletedPopUp:
                 print("You should not use this function")
                 print("Use 'showItemCompletedPopUp(for: Item)' instead")
             case .lightAndDarkModePopUp:
                 popUpViewController.popUp = LightAndDarkModePopUp(presentAnimationType: animationType, size: size, popUpViewController: popUpViewController)
             case .everyWeekFreqencyPopUp:
-                popUpViewController.popUp = EveryWeekFrequencyPopUp(presentAnimationType: animationType, popUpViewController: popUpViewController)
+                print("You should not use this function")
+                print("Use 'present(_ popUpType: PopUpType, size: PopUpSize = .small, animation animationType: PopUpAnimationType = .slideInToBottom, newFrequency: NewFrequency)' instead")
             case .everyMonthFreqencyPopUp:
-                popUpViewController.popUp = EveryMonthFrequencyPopUp(presentAnimationType: animationType, popUpViewController: popUpViewController)
+                print("You should not use this function")
+                print("Use 'present(_ popUpType: PopUpType, size: PopUpSize = .small, animation animationType: PopUpAnimationType = .slideInToBottom, newFrequency: NewFrequency)' instead")
             }
             
             self.present(to: popUpViewController)
         }
-        
-       
-       
-        
+
     }
+    
+    func present(_ popUpType: PopUpType, size: PopUpSize = .small, animation animationType: PopUpAnimationType = .slideInToBottom, newFrequency: NewFrequency?) {
+        
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let popUpViewController = storyboard.instantiateViewController(withIdentifier: "PopUpViewController") as? PopUpViewController {
+            
+            AppEngine.shared.delegate = self as? PopUpViewDelegate
+            
+            switch popUpType {
+            case .everyWeekFreqencyPopUp:
+                popUpViewController.popUp = EveryWeekFrequencyPopUp(presentAnimationType: animationType, popUpViewController: popUpViewController, newFrequency: newFrequency)
+            case .everyMonthFreqencyPopUp:
+                popUpViewController.popUp = EveryMonthFrequencyPopUp(presentAnimationType: animationType, popUpViewController: popUpViewController, newFrequency: newFrequency)
+            case .itemCompletedPopUp:
+                print("You should not use this function")
+                print("Use 'showItemCompletedPopUp(for: Item)' instead")
+            default:
+                print("You should not use this function")
+                print("present(_ popUpType: PopUpType, size: PopUpSize = .small, animation animationType: PopUpAnimationType = .slideInToBottom, dataStartIndex: Int = 0)")
+            }
+            
+            self.present(to: popUpViewController)
+        }
+
+    }
+    
+    
     
     func presentItemCompletedPopUp(for item: Item) {
         

@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 class FrequencyPopUpViewBuilder: PopUpViewBuilder {
+
     
     override func buildView() -> UIView {
         super.buildView()
@@ -113,7 +114,6 @@ class FrequencyPopUpViewBuilder: PopUpViewBuilder {
             weekdayButton.setSmartSelectionColor()
             weekdayButton.setTitle(weekday.name, for: .normal)
             weekdayButton.titleLabel?.font = AppEngine.shared.userSetting.smallFont
-            weekdayButton.isSelected = false
             accrodingToWeekDaysView.addSubview(weekdayButton)
             
             numberOfButtonsAddedToCurrentRow += 1
