@@ -94,6 +94,31 @@ extension UserDefaults {
         }
     }
     
+    func set(_ value: CustomData?, forKey key: String) {
+        if value != nil {
+            self.set(true, forKey: "CustomDataIsNotNil")
+            self.set(value!.title, forKey: "CustomDataTitle")
+            self.set(value!.body, forKey: "CustomDataBody")
+            self.set(value!.status, forKey: "CustomDataStatus")
+            self.set(value!.data, forKey: "CustomDataData")
+            
+            if value!.status != nil {
+                self.set(true, forKey: "CustomDataStatusIsNotNil")
+            } else {
+                self.set(false, forKey: "CustomDataStatusIsNotNil")
+            }
+            
+            if value!.data != nil {
+                self.set(true, forKey: "CustomDataDataIsNotNil")
+            } else {
+                self.set(false, forKey: "CustomDataDataIsNotNil")
+            }
+            
+        } else {
+            self.set(false, forKey: "CustomDataIsNotNil")
+        }
+    }
+    
     
     func color(forKey key: String) -> UIColor? {
 
@@ -188,6 +213,39 @@ extension UserDefaults {
         
         if let imageData = data(forKey: key) {
             return UIImage(data: imageData)
+        }
+        
+        return nil
+        
+    }
+    
+    func customData(forKey key: String) -> CustomData? {
+        let isNotNil = bool(forKey: "CustomDataIsNotNil")
+        
+        if isNotNil {
+            let title = string(forKey: "CustomDataTitle")
+            let body = string(forKey: "CustomDataBody")
+            let status = bool(forKey: "CustomDataStatus")
+            let data = integer(forKey: "CustomDataData")
+            
+            let statusIsNil = !bool(forKey: "CustomDataStatusIsNotNil")
+            let dataIsNil = !bool(forKey: "CustomDataDataIsNotNil")
+            
+
+            if title == nil {
+                return nil
+            } else {
+                
+                if statusIsNil && dataIsNil {
+                    return CustomData(title: title!, body: body, data: nil, status: nil)
+                } else if statusIsNil && !dataIsNil {
+                    return CustomData(title: title!, body: body, data: data, status: nil)
+                } else if !statusIsNil && dataIsNil {
+                    return CustomData(title: title!, body: body, data: nil, status: status)
+                }
+                
+            }
+            
         }
         
         return nil

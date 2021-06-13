@@ -86,7 +86,7 @@ class TimeMachineViewController: UIViewController {
             self.engine.saveUser()
             self.engine.notifyAllUIObservers()
             
-            if let currentVC = UIApplication.shared.getTopViewController() {
+            if let currentVC = UIApplication.shared.getCurrentViewController() {
                 if self.calendarViewController.item.state == .completed {
                     currentVC.presentItemCompletedPopUp(for: self.calendarViewController.item)
                 }

@@ -293,7 +293,7 @@ class Item: Codable {
                     punchedDays += 1
                 }
                 
-                if punchedDays >= newFrequency.days {
+                if punchedDays >= newFrequency.days && !isPunchedIn {
                     self.state = .duringBreak
                     break
                 }
@@ -311,7 +311,7 @@ class Item: Codable {
                     punchedDays += 1
                 }
                 
-                if punchedDays >= newFrequency.days {
+                if punchedDays >= newFrequency.days && !isPunchedIn {
                     self.state = .duringBreak
                     break
                 }
@@ -452,7 +452,7 @@ class Item: Codable {
             let isCompletedInCurrentWeek = checkEveryWeekdaysCompletion(with: newFrequency)
             let todayDidPunchIn = self.isPunchedIn
             var nextWeekFirstPunchInDate: CustomDate? {
-                print("WTF???")
+                
                 for dayDifference in 0 ... 6 {
                     let nextWeekDate = DateCalculator.calculateDate(withDayDifference: dayDifference, originalDate: nextMonday)
                     if nextWeekDate.weekday.rawValue == newFrequency.weekdays.first?.rawValue { // first punch in date

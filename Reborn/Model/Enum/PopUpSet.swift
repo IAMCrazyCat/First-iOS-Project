@@ -24,6 +24,7 @@ enum PopUpType {
     case lightAndDarkModePopUp
     case everyWeekFreqencyPopUp
     case everyMonthFreqencyPopUp
+    case newFeaturesPopUp
 }
 
 enum PopUpSize {

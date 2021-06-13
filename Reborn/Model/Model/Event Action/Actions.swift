@@ -32,7 +32,7 @@ class Actions {
         AppEngine.shared.notifyUIObservers(withIdentifier: "ItemManagementViewController")
  
         if let item = AppEngine.shared.currentUser.getItemBy(ID), item.state == .completed {
-            UIApplication.shared.getTopViewController()?.presentItemCompletedPopUp(for: item)
+            UIApplication.shared.getCurrentViewController()?.presentItemCompletedPopUp(for: item)
         }
         
     

@@ -85,8 +85,8 @@ class SetUpManager {
             
             newUser.name = userName
             newUser.gender = userGender
-            !quittingItemIsSkipped ? newUser.items.append(QuittingItem(ID: 1, name: quittingItemName, days: quittingItemDays, frequency: .everyday, creationDate: CustomDate.current)) : ()
-            !persistingItemIsSkipped ? newUser.items.append(PersistingItem(ID: 2, name: persistingItemName, days: persistingItemDays, frequency: .everyday, creationDate: CustomDate.current)) : ()
+            !quittingItemIsSkipped ? newUser.items.append(QuittingItem(ID: 1, name: quittingItemName, days: quittingItemDays, frequency: EveryDay(), creationDate: CustomDate.current)) : ()
+            !persistingItemIsSkipped ? newUser.items.append(PersistingItem(ID: 2, name: persistingItemName, days: persistingItemDays, frequency: EveryDay(), creationDate: CustomDate.current)) : ()
             newUser.energy = 3
             
             switch newUser.gender {

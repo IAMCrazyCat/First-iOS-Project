@@ -7,8 +7,10 @@
 
 import Foundation
 struct CustomData: Codable {
-    var data: Int?
     var title: String
+    var body: String? = nil
+    var data: Int? = nil
+    var status: Bool? = nil
     
     init(data: Int) {
         self.data = data
@@ -16,7 +18,6 @@ struct CustomData: Codable {
     }
     
     init(title: String) {
-        self.data = nil
         self.title = title
     }
     
@@ -24,4 +25,23 @@ struct CustomData: Codable {
         self.data = data
         self.title = title
     }
+    
+    init(title: String, body: String) {
+        self.title = title
+        self.body = body
+    }
+    
+    init(title: String, status: Bool) {
+        self.title = title
+        self.status = status
+    }
+    
+    init(title: String, body: String?, data: Int?, status: Bool?) {
+        self.title = title
+        self.body = body
+        self.data = data
+        self.status = status
+    }
+    
+    
 }

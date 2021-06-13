@@ -321,7 +321,7 @@ extension PurchaseViewController: InAppPurchaseObserver {
             
             let userCenter = self.lastViewController as? UserCenterViewController
             userCenter?.showVipIcon()
-            let currentVC = UIApplication.shared.getTopViewController()
+            let currentVC = UIApplication.shared.getCurrentViewController()
             currentVC != nil ? SystemAlert.present("购买成功", and: "所有内容已解锁", from: currentVC!) : ()
             
         }

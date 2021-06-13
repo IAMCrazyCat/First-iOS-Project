@@ -34,7 +34,7 @@ class AppEngine {
     public var storedDataFromPopUpView: Any? = nil
     public var delegate: PopUpViewDelegate?
     public var currentViewController: UIViewController? {
-        return UIApplication.shared.getTopViewController()
+        return UIApplication.shared.getCurrentViewController()
     }
 
    
@@ -67,9 +67,8 @@ class AppEngine {
         updateWidgetData()
         loadtItemCardIcons()
     }
+    
 
-    
-    
     public func requestReview() {
         if let windowScene = UIApplication.shared.windows.first?.windowScene {
             if #available(iOS 14.0, *) {
@@ -480,11 +479,7 @@ class AppEngine {
     
     // ------------------------------------ pop up ------------------------------------------------------
     
-    public func getAppVersion() -> String {
-        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
-        let versionBuild = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "0"
-        return "\(appVersion).\(versionBuild)"
-    }
+  
     
     public func saveTemproraryUserDefaults(value: Any?, forKey key: String) {
         

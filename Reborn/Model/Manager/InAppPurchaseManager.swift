@@ -277,7 +277,7 @@ class InAppPurchaseManager {
         
         if AppEngine.shared.currentUser.isVip {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                let currentVC = UIApplication.shared.getTopViewController()
+                let currentVC = UIApplication.shared.getCurrentViewController()
                 currentVC != nil ? SystemAlert.present("订阅验证失败", and: "请检查您的订阅", from: currentVC!) : ()
             })
             
@@ -297,7 +297,7 @@ class InAppPurchaseManager {
     }
     
     public func userIsNotAbleToPurchase() {
-        if let currentVC = UIApplication.shared.getTopViewController() {
+        if let currentVC = UIApplication.shared.getCurrentViewController() {
             SystemAlert.present("您暂时无法购买", and: "请检查您的账户设置", from: currentVC)
         }
         print("Can't make payments")

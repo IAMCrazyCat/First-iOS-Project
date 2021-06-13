@@ -73,7 +73,7 @@ class UserCenterViewController: UIViewController {
         verticalScrollView.delegate = self
         scrollViewTopOffset = avaterView.frame.origin.y - 10
         
-        self.appVersionLabelButton.setTitle("  v\(self.engine.getAppVersion())", for: .normal)
+        self.appVersionLabelButton.setTitle("  v\(App.version)", for: .normal)
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(avatarViewTapped))
         self.avaterView.addGestureRecognizer(gesture)
@@ -168,7 +168,7 @@ class UserCenterViewController: UIViewController {
             self.presentViewController(withIentifier: "PurchaseViewController")
         })
         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-            if let purchaseViewController = UIApplication.shared.getTopViewController() as? PurchaseViewController {
+            if let purchaseViewController = UIApplication.shared.getCurrentViewController() as? PurchaseViewController {
                 purchaseViewController.restoreApp()
             }
         })

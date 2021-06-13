@@ -42,6 +42,9 @@ class HomeViewController: UIViewController {
         
         
         if engine.appLaunchedBefore() {
+            DispatchQueue.main.async {
+                NewFeaturesManager.shared.presentNewFeaturePopUpIfNeeded()
+            }
             
         } else {
             UserDefaults.standard.set(true, forKey: "LaunchedBefore")
@@ -84,6 +87,8 @@ class HomeViewController: UIViewController {
         // make sure that the overall progress is not coverd by custom navigation bar
         let statusBarHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
         self.spaceViewHeightConstraint.constant = self.customNavigationBar.frame.height - statusBarHeight
+        
+        
 
     }
     

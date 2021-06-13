@@ -60,7 +60,7 @@ class LoadingAnimation {
 
         self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
             if seconds > Int(respondingTime) {
-                if let currentVC = UIApplication.shared.getTopViewController() {
+                if let currentVC = UIApplication.shared.getCurrentViewController() {
                     SystemAlert.present(timeOutAlertTitle, and: timeOutAlertBody, from: currentVC)
                 }
                 

@@ -33,7 +33,9 @@ class PopUpViewFadeInFromCenterPresentAnimationController: NSObject, UIViewContr
             popUpWindow?.transform = CGAffineTransform(scaleX: 1, y: 1)
             
         }) { _ in
+            
             transitionContext.completeTransition(true)
+            
         }
     }
     

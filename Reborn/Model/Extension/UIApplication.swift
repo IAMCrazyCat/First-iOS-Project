@@ -33,7 +33,7 @@ extension UIApplication {
 
     
 
-    func getTopViewController() -> UIViewController? {
+    func getCurrentViewController() -> UIViewController? {
 
         let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
         

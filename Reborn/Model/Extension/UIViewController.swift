@@ -89,6 +89,9 @@ extension UIViewController: UIViewControllerTransitioningDelegate  {
             case .everyMonthFreqencyPopUp:
                 print("You should not use this function")
                 print("Use 'present(_ popUpType: PopUpType, size: PopUpSize = .small, animation animationType: PopUpAnimationType = .slideInToBottom, newFrequency: NewFrequency)' instead")
+            case .newFeaturesPopUp:
+                print("You should not use this function")
+                print("Use present(size: PopUpSize = .small, animation animationType: PopUpAnimationType = .slideInToBottom, newFeatures: Array<CustomData>)")
             }
             
             self.present(to: popUpViewController)
@@ -112,11 +115,27 @@ extension UIViewController: UIViewControllerTransitioningDelegate  {
             case .itemCompletedPopUp:
                 print("You should not use this function")
                 print("Use 'showItemCompletedPopUp(for: Item)' instead")
+            case .newFeaturesPopUp:
+                print("You should not use this function")
+                print("Use present(size: PopUpSize = .small, animation animationType: PopUpAnimationType = .slideInToBottom, newFeatures: Array<CustomData>)")
             default:
                 print("You should not use this function")
                 print("present(_ popUpType: PopUpType, size: PopUpSize = .small, animation animationType: PopUpAnimationType = .slideInToBottom, dataStartIndex: Int = 0)")
             }
             
+            self.present(to: popUpViewController)
+        }
+
+    }
+    
+    func present(size: PopUpSize = .small, animation animationType: PopUpAnimationType = .slideInToBottom, newFeatures: Array<CustomData>) {
+        
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let popUpViewController = storyboard.instantiateViewController(withIdentifier: "PopUpViewController") as? PopUpViewController {
+            
+            AppEngine.shared.delegate = self as? PopUpViewDelegate
+            popUpViewController.popUp = NewFeaturesPopUp(presentAnimationType: animationType, size: size, popUpViewController: popUpViewController, newFeatures: newFeatures)
             self.present(to: popUpViewController)
         }
 

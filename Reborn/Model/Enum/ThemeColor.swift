@@ -48,7 +48,7 @@ enum ThemeColor: String, Codable, CaseIterable {
         case .cyan2: return "蒂芙尼"
         case .green: return "猕猴桃"
         case .green2: return "挪威森林"
-        case .green3: return "要想生活过得去，哪能不来一点绿"
+        case .green3: return "健康绿"
         case .red: return "西瓜"
         case .orange: return "橘猫"
         case .purple: return "紫罗兰"
