@@ -16,6 +16,7 @@
 		220B728E258A288300E4BEDC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 220B728C258A288300E4BEDC /* LaunchScreen.storyboard */; };
 		220B7299258A288300E4BEDC /* RebornTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B7298258A288300E4BEDC /* RebornTests.swift */; };
 		220B72A4258A288300E4BEDC /* RebornUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B72A3258A288300E4BEDC /* RebornUITests.swift */; };
+		2217529426759F0F002F42E7 /* NewFeaturePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2217529326759F0F002F42E7 /* NewFeaturePopUp.swift */; };
 		2219961C26156269001038FF /* DigitalAlarmTwice.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2219961B26156269001038FF /* DigitalAlarmTwice.m4a */; };
 		2219961D26156269001038FF /* DigitalAlarmTwice.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2219961B26156269001038FF /* DigitalAlarmTwice.m4a */; };
 		2219961E26156269001038FF /* DigitalAlarmTwice.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2219961B26156269001038FF /* DigitalAlarmTwice.m4a */; };
@@ -242,6 +243,7 @@
 		220B729F258A288300E4BEDC /* RebornUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RebornUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		220B72A3258A288300E4BEDC /* RebornUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebornUITests.swift; sourceTree = "<group>"; };
 		220B72A5258A288300E4BEDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2217529326759F0F002F42E7 /* NewFeaturePopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFeaturePopUp.swift; sourceTree = "<group>"; };
 		2219961B26156269001038FF /* DigitalAlarmTwice.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = DigitalAlarmTwice.m4a; path = ../../../../../../Downloads/DigitalAlarmTwice.m4a; sourceTree = "<group>"; };
 		221E0B7B25A9273E00386FE1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		221E0B8725A9A22800386FE1 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
@@ -730,6 +732,7 @@
 				22A7DC262605957D00A55CE8 /* LightAndDarkModePopUp.swift */,
 				22862C1C26709F0100993895 /* EveryWeekFrequencyPopUp.swift */,
 				22862C222671C19200993895 /* EveryMonthFrequencyPopUp.swift */,
+				2217529326759F0F002F42E7 /* NewFeaturePopUp.swift */,
 			);
 			path = "Pop Up View ";
 			sourceTree = "<group>";
@@ -1394,6 +1397,7 @@
 				223072A825E3A99D00AE6ECB /* UINavigationBar.swift in Sources */,
 				22BDC90A25F260E1008E9C46 /* VIPStrategy.swift in Sources */,
 				22A2EC6E25C9488A00E97787 /* TimeMachineTransitioningDelegate.swift in Sources */,
+				2217529426759F0F002F42E7 /* NewFeaturePopUp.swift in Sources */,
 				22A584DD2612048E001B83E1 /* AdStrategy.swift in Sources */,
 				2293F39C25DC00CE009B4753 /* UIImage.swift in Sources */,
 				22AE80E5260A119E00F0806D /* UserDefaults.swift in Sources */,
@@ -1700,7 +1704,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.crazycat.Reborn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1725,7 +1729,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.crazycat.Reborn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1837,7 +1841,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.crazycat.Reborn.ItemProgressWiget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1862,7 +1866,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.crazycat.Reborn.ItemProgressWiget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

@@ -158,8 +158,13 @@ class NewItemViewController: UIViewController {
             }
         }
         
-        self.selectedFrequencyButton = nil
-        self.item.frequency = .everyday
+        if sender.tag == 2 {
+            self.selectedFrequencyButton = everydayFrequencyButton
+            self.item.newFrequency = EveryDay()
+        }
+        
+        
+        
         self.updateUI()
     }
     
@@ -293,8 +298,8 @@ class NewItemViewController: UIViewController {
             self.firstInstructionLabel.isHidden = true
             self.secondInstructionLabel.text = "戒除项目需要您坚持每天打卡"
         } else {
-            self.firstInstructionLabel.text = "频率计划外为休息日，项目不会出现在今日打卡中"
-            self.secondInstructionLabel.text = "设定频率后，第一次打卡日将会被设定为今天"
+            self.firstInstructionLabel.text = "您设置频率后，如果今天不是打卡日"
+            self.secondInstructionLabel.text = "新添加的习惯需要在自律管理中查看"
             self.firstInstructionLabel.isHidden = false
         }
     }
@@ -444,14 +449,11 @@ extension NewItemViewController: PopUpViewDelegate { // Delegate extension
         case .everyWeekFreqencyPopUp, .everyMonthFreqencyPopUp:
             
             self.selectedFrequencyButton = nil
-            self.customFrequencyButton.setTitle("自定义", for: .normal)
-            self.customFrequencyButton.isSelected = false
             
         case .customTargetDaysPopUp:
             
             self.selectedTargetDaysButton = nil
             self.customTargetDaysButton.setTitle("自定义", for: .normal)
-            self.customTargetDaysButton.isSelected = false
             
         default: break
         }

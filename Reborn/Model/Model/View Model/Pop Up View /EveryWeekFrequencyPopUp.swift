@@ -155,6 +155,7 @@ class EveryWeekFrequencyPopUp: PopUpImpl, PickerViewPopUp {
         print(selectedWeekdays)
     }
     
+    
     @objc
     private func segmentedControlValueChanged(_ sender: UISegmentedControl!) {
         Vibrator.vibrate(withImpactLevel: .light)
@@ -273,7 +274,6 @@ class EveryWeekFrequencyPopUp: PopUpImpl, PickerViewPopUp {
     internal func updateLabels() {
         self.instructionLabel?.textColor = super.setting.smartLabelGrayColor
         if self.segmentedControl?.selectedSegmentIndex == 0 {
-            
             super.titleLabel?.text = "设置每周打卡日"
             
             
@@ -284,7 +284,7 @@ class EveryWeekFrequencyPopUp: PopUpImpl, PickerViewPopUp {
             }
             
         } else if self.segmentedControl?.selectedSegmentIndex == 1 {
-            
+
             super.titleLabel?.text = "设置每周打卡次数"
             if selectedDays < 7 {
                 self.instructionLabel?.text = "一周内完成\(self.selectedDays)次打卡后项目将不会出现在今日打卡中"
@@ -320,8 +320,13 @@ class EveryWeekFrequencyPopUp: PopUpImpl, PickerViewPopUp {
        
         self.segmentedControl?.selectedSegmentIndex = 1
         if pickerView.numberOfComponents >= 1 && pickerView.numberOfRows(inComponent: 0) >= everyMonthFrequency.days{
-            pickerView.selectRow(everyMonthFrequency.days - 1, inComponent: 0, animated: true)
+            self.excuteViewAnimation(withSegmentedIndex: 1)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
+                pickerView.selectRow(everyMonthFrequency.days - 1, inComponent: 0, animated: true)
+            })
+            
         }
+        
         self.updateUI()
     }
     

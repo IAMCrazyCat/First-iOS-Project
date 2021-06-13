@@ -314,7 +314,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYH-kV-dcm">
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYH-kV-dcm">
                                                 <rect key="frame" x="343" y="328" width="31" height="30"/>
                                                 <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -337,7 +337,7 @@
                                                     <action selector="targetDaysButtonPressed:" destination="yhk-VJ-4nb" eventType="touchUpInside" id="Idp-Ne-BIc"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WpU-fd-JVR">
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WpU-fd-JVR">
                                                 <rect key="frame" x="40" y="328" width="31" height="30"/>
                                                 <color key="backgroundColor" name="WhiteAndBlackContent"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -432,7 +432,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设定频率后，第一次打卡日将会被设定为今天" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WKm-RK-W4j">
-                                                <rect key="frame" x="40" y="746" width="334" height="16"/>
+                                                <rect key="frame" x="40" y="741" width="334" height="16"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="SecondInstructionLabel"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="textColor" name="ThemeColorInvert"/>
@@ -596,7 +596,7 @@
                                             <constraint firstItem="4fa-gf-3ju" firstAttribute="top" secondItem="yXF-rH-r1e" secondAttribute="bottom" id="r3m-jZ-7vc"/>
                                             <constraint firstItem="9hT-r7-gOk" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="15" id="s3N-a4-o4f"/>
                                             <constraint firstItem="NJD-UT-gB8" firstAttribute="leading" secondItem="zHw-xi-vrL" secondAttribute="leading" constant="40" id="sg7-U7-aC6"/>
-                                            <constraint firstItem="WKm-RK-W4j" firstAttribute="top" secondItem="xZL-a6-T5M" secondAttribute="bottom" constant="10" id="u7d-O8-Rgh"/>
+                                            <constraint firstItem="WKm-RK-W4j" firstAttribute="top" secondItem="xZL-a6-T5M" secondAttribute="bottom" constant="5" id="u7d-O8-Rgh"/>
                                             <constraint firstItem="9hT-r7-gOk" firstAttribute="width" secondItem="aAy-4f-o1J" secondAttribute="width" id="urU-be-Mpf"/>
                                             <constraint firstAttribute="trailing" secondItem="eVH-dn-gr1" secondAttribute="trailing" constant="40" id="w0T-7p-4Rq"/>
                                             <constraint firstItem="eVH-dn-gr1" firstAttribute="centerY" secondItem="uum-ys-rdj" secondAttribute="centerY" id="w6R-1C-lTW"/>
