@@ -242,16 +242,27 @@ class AppEngine {
             }
             let itemToNotifyUser = item
             
-            let earlyBodys = ["今天是第\(itemToNotifyUser.finishedDays + 1)天\(itemToNotifyUser.type.rawValue)\(itemToNotifyUser.name)，距离你的目标越来越进了",
-                               "今天你有\(numberOfInprogressItems)个计划，来看看吧",
-                               "今天记得\(itemToNotifyUser.type.rawValue)\(itemToNotifyUser.name)，你已经完成了\(itemToNotifyUser.progressInPercentageString)"
+//            let earlyBodys = ["今天是第\(itemToNotifyUser.finishedDays + 1)天\(itemToNotifyUser.type.rawValue)\(itemToNotifyUser.name)，距离你的目标越来越进了",
+//                               "今天你有\(numberOfInprogressItems)个计划，来看看吧",
+//                               "今天记得\(itemToNotifyUser.type.rawValue)\(itemToNotifyUser.name)，你已经完成了\(itemToNotifyUser.progressInPercentageString)"
+//            ]
+//
+//            let lateBodys =  ["\(currentUser.name), 今天\(itemToNotifyUser.type.rawValue)\(itemToNotifyUser.name)了吗，快来打卡吧",
+//                              "花30秒来打个卡，检查您今天的进度💯",
+//                              "打卡时间到😘",
+//                              "今天打卡了吗？对了别忘了您可以随时使用时间机器补打卡",
+//                              "今天\(numberOfInprogressItems)项任务完成的如何？不要忘记打卡哦"
+//            ]
+            
+            let earlyBodys = ["新的一天开始了，来看看今天有几项习惯需要完成",
+                               "今天一定要更自律，来看看今日任务",
+                               "我在记录你的改变，来看看你这几天的习惯完成度"
             ]
             
-            let lateBodys =  ["\(currentUser.name), 今天\(itemToNotifyUser.type.rawValue)\(itemToNotifyUser.name)了吗，快来打卡吧",
-                              "花30秒来打个卡，检查您今天的进度💯",
+            let lateBodys =  ["花30秒来打个卡，检查您今天的进度💯",
                               "打卡时间到😘",
-                              "今天打卡了吗？对了别忘了您可以随时使用时间机器补打卡",
-                              "今天\(numberOfInprogressItems)项任务完成的如何？不要忘记打卡哦"
+                              "今天打卡了吗？别忘了您还可以使用时间机器补打卡",
+                              "今天任务完成的如何？不要忘记打卡哦"
             ]
             
             let earlyTitle = WelcomeText(timeRange: time.timeRange).firstText

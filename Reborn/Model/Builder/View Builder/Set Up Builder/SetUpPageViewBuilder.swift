@@ -116,7 +116,8 @@ class SetUpPageViewBuilder {
         textField.layer.cornerRadius = self.setting.textFieldCornerRadius
         textField.placeholder = "您的名称"
         textField.tag = self.setting.popUpWindowTextFieldTag
-        textField.addTarget(Actions.shared, action: Actions.setUpTextFieldChangedAction, for: .touchDown)
+        textField.addTarget(Actions.shared, action: Actions.setUpTextFieldChangedAction, for: .editingChanged)
+
         textField.returnKeyType = .done
        
         self.pageView.addSubview(textField)

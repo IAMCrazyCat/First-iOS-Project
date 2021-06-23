@@ -274,11 +274,11 @@ class SetUpViewController: UIViewController{
 extension SetUpViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-   
         self.nextStepButton.isEnabled = textField.text == "" ? false : true
         self.updateUI()
         return true
     }
+    
 }
 
 

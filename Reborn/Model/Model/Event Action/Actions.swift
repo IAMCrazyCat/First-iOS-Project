@@ -19,7 +19,7 @@ class Actions {
     static var punchInAction: Selector = #selector(Actions.shared.itemPunchInButtonPressed)
     static var detailsViewAction: Selector = #selector(Actions.shared.itemDetailsButtonPressed(_:))
     static var themeColorChangedAction: Selector = #selector(Actions.shared.themeColorButtonPressed(_:))
-    static var setUpTextFieldChangedAction: Selector = #selector(Actions.shared.setUpTextFieldTapped(_:))
+    static var setUpTextFieldChangedAction: Selector = #selector(Actions.shared.setUpTextFieldValueChanged(_:))
     static var appApperenceModeChangedAction: Selector = #selector(Actions.shared.appAppearanceOptionButtonPressed(_:))
     static var goToSystemSettingAction: Selector = #selector(Actions.shared.goToSystemSettingButtonPressed(_:))
 
@@ -57,7 +57,6 @@ class Actions {
     }
     
     @objc func themeColorButtonPressed(_ sender: UIButton!) {
-        print("Pressed")
         let selectedThemeColor = sender.accessibilityValue
         var newThemeColor: ThemeColor? = nil
         for themeColor in ThemeColor.allCases {
@@ -94,12 +93,13 @@ class Actions {
         
     }
     
-    @objc func setUpTextFieldTapped(_ sender: UITextField!) {
-
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+    @objc func setUpTextFieldValueChanged(_ sender: UITextField!) {
         
-        if let setUpViewController = storyBoard.instantiateViewController(withIdentifier: "SetUpViewController") as? SetUpViewController {
-    
+        //let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if let setUpViewController = UIApplication.shared.getCurrentViewController() as? SetUpViewController {
+            setUpViewController.nextStepButton.isEnabled = sender.text == "" ? false : true
+            setUpViewController.updateUI()
         }
 
     }

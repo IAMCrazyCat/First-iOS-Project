@@ -93,8 +93,6 @@ class User: Codable {
             }
             index += 1
         }
-
-        
     }
     
     public func updateItem(with ID: Int) {
@@ -148,7 +146,6 @@ class User: Codable {
         for makingUpDate in punchInDates {
             item.add(punchInDate: makingUpDate)
         }
-        
     }
     
     public func getItemBy(_ ID: Int) -> Item? {

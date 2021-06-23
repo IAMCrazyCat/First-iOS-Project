@@ -12,10 +12,8 @@ class NewFeaturesManager {
     public static let shared = NewFeaturesManager()
     private let defaults = UserDefaults.standard
     let newFeature: Array<CustomData> = [
-        CustomData(title: "新的习惯频率模式！", body: "重要: 请重新设置您的习惯频率！我们添加了新的习惯重复模式，您可以设置固定打卡日或者打卡天数，请在在习惯详情中点击编辑来更新您的频率"),
-        CustomData(title: "新图标", body: "新增了10款习惯图标"),
-        CustomData(title: "新主题颜色", body: "删除了原谅绿主题颜色，重新调整了新的主题色"),
-        CustomData(title: "新的打卡通知", body: "新的打卡通知内容更加智能，让您更好坚持自己的目标")
+        CustomData(title: "修复了习惯能量不累积的问题", body: "您之前打卡累积的能量进度已经返还，继续加油"),
+        CustomData(title: "修复了通知内容不准确的问题", body: "暂时使用标准化通知内容，正在更新智能通知"),
     ]
     
     private init() {

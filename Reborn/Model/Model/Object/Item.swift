@@ -106,6 +106,7 @@ class Item: Codable {
         case name
         case targetDays
         case energy
+        case lastEnergyConsecutiveDays
         case creationDate
         case type
         case scheduleDates
@@ -134,6 +135,8 @@ class Item: Codable {
         self.energyRedeemDates = try container.decode([CustomDate].self, forKey: .energyRedeemDates)
         self.icon = try container.decode(Icon.self, forKey: .icon)
 
+        do { self.lastEnergyConsecutiveDays = try container.decode(Int.self, forKey: .lastEnergyConsecutiveDays) } catch { self.lastEnergyConsecutiveDays = self.bestConsecutiveDays }
+        
         do {
             if let newFrequencyType = try container.decode(NewFrequencyType?.self, forKey: .newFrequencyType) {
                 switch newFrequencyType {
@@ -167,6 +170,8 @@ class Item: Codable {
         try container.encode(icon, forKey: .icon)
         try container.encode(newFrequency?.type, forKey: .newFrequencyType)
 
+        try container.encode(lastEnergyConsecutiveDays, forKey: .lastEnergyConsecutiveDays)
+        
         switch newFrequency?.type {
         case .everyDay: try container.encode(newFrequency as? EveryDay, forKey: .newFrequency)
         case .everyMonth: try container.encode(newFrequency as? EveryMonth, forKey: .newFrequency)
@@ -463,7 +468,6 @@ class Item: Codable {
             }
 
             func nextPunchInDate() -> CustomDate? {
-                print("WTF1")
                 var nextWeekday: WeekDay? = nil
                 for weekday in newFrequency.weekdays {
                     if weekday.rawValue > CustomDate.current.weekday.rawValue { // next weekday should punchIn in current week
