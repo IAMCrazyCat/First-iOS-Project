@@ -51,11 +51,6 @@ class TomatoClockViewController: UIViewController {
         updateUI()
     }
     
-//    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-//        super.traitCollectionDidChange(previousTraitCollection)
-//        self.updateUI()
-//    }
-    
     override func viewDidLayoutSubviews() {
         updateStartWorkingButton()
     }
@@ -114,6 +109,7 @@ class TomatoClockViewController: UIViewController {
     
     func updateStartWorkingButton() {
        
+        self.startWorkingButton.setCornerRadius()
         self.startWorkingButton.setSmartColor()
         if self.clockTypeSegmentedControl.selectedSegmentIndex == 0 {
             

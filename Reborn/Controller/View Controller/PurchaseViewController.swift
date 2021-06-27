@@ -81,11 +81,6 @@ class PurchaseViewController: UIViewController {
             self.loadingFailed = false
         }
     }
-    
-//    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-//        super.traitCollectionDidChange(previousTraitCollection)
-//        self.updateUI()
-//    }
    
     @IBAction func restorePurchaseButtonPressed(_ sender: UIButton) {
         restoreApp()

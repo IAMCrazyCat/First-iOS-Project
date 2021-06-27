@@ -61,11 +61,6 @@ class TimeMachineViewController: UIViewController {
         
     }
     
-//    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-//        super.traitCollectionDidChange(previousTraitCollection)
-//        self.updateUI()
-//    }
-    
     @IBAction func cancelButtonPressed(_ sender: Any) {
         calendarViewController.punchInMakingUpDates.removeAll()
         self.dismiss(animated: true, completion: nil)

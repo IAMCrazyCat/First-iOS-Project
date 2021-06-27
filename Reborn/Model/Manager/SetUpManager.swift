@@ -68,6 +68,7 @@ class SetUpManager {
             } else {
                 userGender = .secret
             }
+            print(userGender)
             
         default:
             print("Switching progress Error")
@@ -87,7 +88,7 @@ class SetUpManager {
             newUser.gender = userGender
             !quittingItemIsSkipped ? newUser.items.append(QuittingItem(ID: 1, name: quittingItemName, days: quittingItemDays, frequency: EveryDay(), creationDate: CustomDate.current)) : ()
             !persistingItemIsSkipped ? newUser.items.append(PersistingItem(ID: 2, name: persistingItemName, days: persistingItemDays, frequency: EveryDay(), creationDate: CustomDate.current)) : ()
-            newUser.energy = 3
+            newUser.energy = 1
             
             switch newUser.gender {
             case .male: newUser.setAvatarImage(#imageLiteral(resourceName: "DefaultAvatarMale"))
@@ -99,7 +100,7 @@ class SetUpManager {
             newUser.name = "努力的人"
             newUser.gender = .undefined
             newUser.setAvatarImage(#imageLiteral(resourceName: "DefaultAvatar"))
-            newUser.energy = 3
+            newUser.energy = 1
             newUser.items.removeAll()
         }
 

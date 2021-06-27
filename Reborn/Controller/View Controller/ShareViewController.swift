@@ -65,11 +65,7 @@ class ShareViewController: UIViewController {
         }
         
     }
-    
-//    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-//        super.traitCollectionDidChange(previousTraitCollection)
-//        self.updateUI()
-//    }
+
     
     @IBAction func saveToLibraryButtonPressed(_ sender: Any) {
         let image = self.preview.asImage()

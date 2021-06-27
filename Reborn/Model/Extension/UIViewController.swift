@@ -12,9 +12,6 @@ import MessageUI
 
 extension UIViewController: UIViewControllerTransitioningDelegate  {
     
-    
-    
-    
     private func present(to presenting: PopUpViewController) {
   
         let detailsTransitioningDelegate = PopUpViewTransitioningDelegate(from: self, to: presenting)
@@ -165,10 +162,10 @@ extension UIViewController: UIViewControllerTransitioningDelegate  {
         }
     }
     
-    func setNavigationBarAppearance() {
-        navigationController?.navigationBar.removeBorder()
-        navigationController?.navigationBar.barTintColor = AppEngine.shared.userSetting.themeColorAndBlackContent
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: AppEngine.shared.userSetting.smartLabelColorAndWhiteAndThemeColor.brightColor]
+    func setNavigationBarAppearance(withBorder: Bool = false, backgroundColor: UIColor = AppEngine.shared.userSetting.themeColorAndBlackContent, textColor: UIColor = AppEngine.shared.userSetting.smartLabelColorAndWhiteAndThemeColor.brightColor) {
+        withBorder ? () : navigationController?.navigationBar.removeBorder()
+        navigationController?.navigationBar.barTintColor = backgroundColor
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: textColor]
         navigationItem.rightBarButtonItem?.tintColor = AppEngine.shared.userSetting.smartLabelColorAndWhite.brightColor
         navigationItem.leftBarButtonItem?.tintColor = AppEngine.shared.userSetting.smartLabelColorAndWhiteAndThemeColor
     }

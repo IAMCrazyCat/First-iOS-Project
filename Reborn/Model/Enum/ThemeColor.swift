@@ -24,6 +24,7 @@ enum ThemeColor: String, Codable, CaseIterable {
     case red = "RedThemeColor"
     case orange = "OrangeThemeColor"
     case purple = "PurpleThemeColor"
+    case purple2 = "PurpleThemeColor2"
     
     var uiColor: UIColor {
         return UIColor(named: self.rawValue) ?? UIColor.clear
@@ -52,7 +53,7 @@ enum ThemeColor: String, Codable, CaseIterable {
         case .red: return "西瓜"
         case .orange: return "橘猫"
         case .purple: return "紫罗兰"
-
+        case .purple2: return "薰衣草"
         }
     }
     
@@ -71,7 +72,7 @@ enum ThemeColor: String, Codable, CaseIterable {
         case .red: return true
         case .orange: return false
         case .purple: return true
-
+        case .purple2: return true
         }
     }
 }

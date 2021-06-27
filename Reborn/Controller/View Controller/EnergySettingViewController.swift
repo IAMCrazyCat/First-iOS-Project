@@ -29,7 +29,7 @@ class EnergySettingViewController: UIViewController {
         vipStrategy = EnergyStrategy(energySettingViewController: self)
         engine.add(observer: self)
   
-        excuteEnergyChargingAnimation()
+        //excuteEnergyChargingAnimation()
         updateUI()
         
         if !engine.userSetting.hasViewedEnergyUpdate {
@@ -46,15 +46,10 @@ class EnergySettingViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        purchaseButton.setCornerRadius()
-        
+        updatePurchaseButton()
     }
     
-//    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-//        super.traitCollectionDidChange(previousTraitCollection)
-//        self.updateUI()
-//    }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         
         if !engine.userSetting.hasViewedEnergyUpdate {
@@ -63,7 +58,7 @@ class EnergySettingViewController: UIViewController {
         
         engine.userSetting.hasViewedEnergyUpdate = true
         engine.saveSetting()
-        engine.notifyAllUIObservers()
+        //engine.notifyAllUIObservers()
         
         
     }
@@ -97,12 +92,19 @@ class EnergySettingViewController: UIViewController {
     }
     
     private func rotateView(targetView: UIView, duration: Double) {
-        UIView.animate(withDuration: duration, delay: 0.0, options: .curveLinear, animations: {
-            targetView.transform = targetView.transform.rotated(by: -1/2 * CGFloat.pi)
-        }) { finished in
-            
-            self.rotateView(targetView: targetView, duration: self.rotationSpeed)
-        }
+        
+        let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        rotationAnimation.fromValue = 0.0
+        rotationAnimation.toValue = -CGFloat.pi * 2
+        rotationAnimation.duration = duration * 3
+        rotationAnimation.repeatCount = .infinity
+        targetView.layer.add(rotationAnimation, forKey: nil)
+//        UIView.animate(withDuration: duration, delay: 0.0, options: .curveLinear, animations: {
+//            targetView.transform = targetView.transform.rotated(by: -1/2 * CGFloat.pi)
+//        }) { finished in
+//
+//            self.rotateView(targetView: targetView, duration: self.rotationSpeed)
+//        }
     }
     
     func updateLabels() {
@@ -114,7 +116,12 @@ class EnergySettingViewController: UIViewController {
     }
     
     func updateNavigationBar() {
-        navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.foregroundColor: engine.userSetting.smartLabelColorAndWhiteAndThemeColor]
+        self.setNavigationBarAppearance()
+    }
+    
+    func updatePurchaseButton() {
+        self.purchaseButton.setCornerRadius()
+        self.purchaseButton.setSmartColor()
     }
 }
 
@@ -123,7 +130,8 @@ extension EnergySettingViewController: UIObserver {
         updateNavigationBar()
         updateButtons()
         updateLabels()
-        
+        updatePurchaseButton()
+        excuteEnergyChargingAnimation()
     }
     
     

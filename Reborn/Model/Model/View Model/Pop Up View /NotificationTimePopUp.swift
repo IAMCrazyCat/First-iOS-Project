@@ -8,9 +8,18 @@
 import Foundation
 import UIKit
 class NotificationTimePopUp: PopUpImpl {
-    public var firstDatePicker: UIDatePicker {
-        return super.contentView?.getSubviewBy(idenifier: "DatePicker") as! UIDatePicker
+    private var firstDatePicker: UIDatePicker {
+        return super.contentView?.getSubviewBy(idenifier: "DatePicker1") as! UIDatePicker
         
+    }
+    
+    private var secondDatePicker: UIDatePicker {
+        return super.contentView?.getSubviewBy(idenifier: "DatePicker2") as! UIDatePicker
+        
+    }
+    
+    private var segmentedControl: UISegmentedControl? {
+        return super.contentView?.getSubviewBy(idenifier: "SegmentedControl") as? UISegmentedControl
     }
     
     public var pikerViewData: Array<Any> = []
@@ -18,7 +27,9 @@ class NotificationTimePopUp: PopUpImpl {
     init(presentAnimationType: PopUpAnimationType, size: PopUpSize = .large, popUpViewController: PopUpViewController) {
 
         super.init(presentAnimationType: presentAnimationType, type: .notificationTimePopUp, size: size, popUpViewController: popUpViewController)
-        setPickerViewData()
+        super.cancelButton?.isHidden = true
+        segmentedControl?.addTarget(self, action: #selector(self.segmentedControlValueChanged(_:)), for: .valueChanged)
+        secondDatePicker.isHidden = true
     }
     
     override func createWindow() -> UIView {
@@ -41,17 +52,39 @@ class NotificationTimePopUp: PopUpImpl {
                 notificationTime.append(CustomTime(hour: components.hour!, minute: components.minute!, second: 0, oneTenthSecond: 0))
             }
         }
+        for test in notificationTime {
+            print("\(test.hour):\(test.minute)")
+        }
         
         return notificationTime
     }
     
-    override func updateUI() {
-        super.cancelButton?.removeFromSuperview()
-
+    private func updatePickerView() {
+        if self.segmentedControl?.selectedSegmentIndex == 0 {
+            firstDatePicker.isHidden = false
+            secondDatePicker.isHidden = true
+            firstDatePicker.alpha = 0
+            UIView.animate(withDuration: 0.3, animations: {
+                self.firstDatePicker.alpha = 1
+            })
+        } else if self.segmentedControl?.selectedSegmentIndex == 1 {
+            firstDatePicker.isHidden = true
+            secondDatePicker.isHidden = false
+            secondDatePicker.alpha = 0
+            UIView.animate(withDuration: 0.3, animations: {
+                self.secondDatePicker.alpha = 1
+            })
+        }
     }
     
-    func setPickerViewData() {
-        
+    override func updateUI() {
+        updatePickerView()
+    }
+    
+    @objc
+    private func segmentedControlValueChanged(_ sender: UISegmentedControl!) {
+        Vibrator.vibrate(withImpactLevel: .light)
+        updateUI()
     }
     
 }

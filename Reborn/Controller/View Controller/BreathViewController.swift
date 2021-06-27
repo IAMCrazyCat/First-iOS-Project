@@ -39,15 +39,10 @@ class BreathViewController: UIViewController {
         //excuteHeartThrobingAnimation()
     }
     
-//    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-//        super.traitCollectionDidChange(previousTraitCollection)
-//        self.updateUI()
-//    }
     
     @IBAction func startBreathingButtonPressed(_ sender: Any) {
         Vibrator.vibrate(withImpactLevel: .medium)
         startBreathing()
-        
         updateUI()
     }
     

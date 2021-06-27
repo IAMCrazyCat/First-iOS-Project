@@ -27,7 +27,9 @@ class SelfDisciplineToolsViewController: UIViewController {
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        self.updateUI()
+        if #available(iOS 14.0, *) {
+            self.updateUI()
+        }
     }
     
     override func viewDidLayoutSubviews() {

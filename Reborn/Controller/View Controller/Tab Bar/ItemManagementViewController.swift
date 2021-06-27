@@ -48,7 +48,9 @@ class ItemManagementViewController: UIViewController {
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        self.updateUI()
+        if #available(iOS 14.0, *) {
+            self.updateUI()
+        }
     }
     
 
@@ -108,6 +110,7 @@ class ItemManagementViewController: UIViewController {
         
         self.segmentedControl = BetterSegmentedControl(frame: optionBarContentView.bounds, segments: segments, options: [])
         self.segmentedControl.cornerRadius = self.segmentedControl.frame.height / 2
+        self.segmentedControl.indicatorViewInset = 1
         self.segmentedControl.backgroundColor = .clear
         self.segmentedControl.indicatorViewBackgroundColor = self.engine.userSetting.whiteAndThemColor
         self.segmentedControl.addTarget(self, action: #selector(self.optionButtonPressed(_:)), for: .valueChanged)

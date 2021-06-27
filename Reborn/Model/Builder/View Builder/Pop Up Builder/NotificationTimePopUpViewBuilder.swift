@@ -10,6 +10,8 @@ import UIKit
 class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
     var notificationTime: Array<CustomTime>
     var notificationIsEnabled: Bool
+    let explanationLabel = UILabel()
+    
     init(popUpViewController: PopUpViewController, frame: CGRect, notificationTime: Array<CustomTime>, notificationIsEnabled: Bool){
         self.notificationTime = notificationTime
         self.notificationIsEnabled = notificationIsEnabled
@@ -21,13 +23,15 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
     override func buildView() -> UIView {
         super.buildView()
         self.setUpUI()
-        self.addTimePicker()
+        addSegmentedControl()
         
         if notificationIsEnabled {
             addExplanationLabel()
         } else {
             addInstruction()
         }
+        
+        self.addTimePicker()
         
         return super.outPutView
     }
@@ -85,8 +89,30 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
         
     }
     
+    private func addSegmentedControl() {
+        
+        var timeNumber = 1
+        var items : [String] = []
+        for _ in self.notificationTime {
+            items.append("提醒\(timeNumber)")
+            timeNumber += 1
+        }
+            
+        let segmentedControl = UISegmentedControl(items: items)
+        segmentedControl.accessibilityIdentifier = "SegmentedControl"
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.setSmartAppearance(withBackgroundStyle: .followSystem)
+        super.contentView.addSubview(segmentedControl)
+        
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        segmentedControl.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        segmentedControl.topAnchor.constraint(equalTo: super.contentView.topAnchor, constant: 0).isActive = true
+        segmentedControl.rightAnchor.constraint(equalTo: super.contentView.rightAnchor, constant: -15).isActive = true
+    }
+    
     private func addTimePicker() {
         
+        let segmentedControl = super.contentView.getSubviewBy(idenifier: "SegmentedControl")!
         var lastPicker: UIDatePicker? = nil
         var number = 1
         for time in notificationTime {
@@ -96,11 +122,12 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
             dateFormatter.dateFormat =  "H m"
             let date = dateFormatter.date(from: "\(time.hour) \(time.minute)")
 
-            picker.accessibilityIdentifier = "DatePicker"
-            picker.backgroundColor = AppEngine.shared.userSetting.themeColor.uiColor
-            picker.tintColor = AppEngine.shared.userSetting.smartLabelColor
+            picker.accessibilityIdentifier = "DatePicker\(number)"
             picker.date = date!
             picker.datePickerMode = .time
+            if #available(iOS 13.4, *) {
+                picker.preferredDatePickerStyle = .wheels
+            }
             
             if notificationIsEnabled {
                 picker.alpha = 1
@@ -113,28 +140,23 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
             picker.translatesAutoresizingMaskIntoConstraints = false
             
             super.contentView.layoutIfNeeded()
-            let leftConstant: CGFloat = ((super.contentView.frame.width) - (picker.frame.width * 2 + 80)) / 2 // Only works for two notifications, should be changed in future
-            print("???\(leftConstant)")
-            if lastPicker != nil {
+            picker.leftAnchor.constraint(equalTo: super.contentView.leftAnchor).isActive = true
+            picker.rightAnchor.constraint(equalTo: super.contentView.rightAnchor).isActive = true
+            picker.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 10).isActive = true
+            picker.bottomAnchor.constraint(equalTo: self.explanationLabel.topAnchor).isActive = true
             
-                picker.leftAnchor.constraint(equalTo: lastPicker!.rightAnchor, constant: 80).isActive = true
-                picker.centerYAnchor.constraint(equalTo: lastPicker!.centerYAnchor).isActive = true
-            } else {
-                picker.leftAnchor.constraint(equalTo: super.contentView.leftAnchor, constant: leftConstant).isActive = true
-                picker.centerYAnchor.constraint(equalTo: super.contentView.centerYAnchor, constant: -20).isActive = true
-            }
-            
-            let label = UILabel()
-            label.textColor = .label
-            label.font = AppEngine.shared.userSetting.smallFont
-            label.text = "第\(number)次提醒"
-            label.sizeToFit()
-            self.contentView.addSubview(label)
-            label.translatesAutoresizingMaskIntoConstraints = false
-            label.leftAnchor.constraint(equalTo: picker.leftAnchor).isActive = true
-            label.bottomAnchor.constraint(equalTo: picker.topAnchor, constant: -10).isActive = true
-            
-            lastPicker = picker
+//
+//            let label = UILabel()
+//            label.textColor = .label
+//            label.font = AppEngine.shared.userSetting.smallFont
+//            label.text = "第\(number)次提醒"
+//            label.sizeToFit()
+//            self.contentView.addSubview(label)
+//            label.translatesAutoresizingMaskIntoConstraints = false
+//            label.leftAnchor.constraint(equalTo: picker.leftAnchor).isActive = true
+//            label.bottomAnchor.constraint(equalTo: picker.topAnchor, constant: -10).isActive = true
+//
+//            lastPicker = picker
             number += 1
         }
 
@@ -143,7 +165,7 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
  
     
     private func addExplanationLabel() {
-        let explanationLabel = UILabel()
+       
         explanationLabel.lineBreakMode = .byWordWrapping
         explanationLabel.numberOfLines = 2
         explanationLabel.font = AppEngine.shared.userSetting.smallFont

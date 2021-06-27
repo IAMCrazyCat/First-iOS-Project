@@ -53,11 +53,7 @@ class SetUpViewController: UIViewController{
         
         textField?.delegate = self
     }
-    
-//    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-//        super.traitCollectionDidChange(previousTraitCollection)
-//        self.updateUI()
-//    }
+
     
     override func viewDidLayoutSubviews() {
         

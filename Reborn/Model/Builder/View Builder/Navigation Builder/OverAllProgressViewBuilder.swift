@@ -88,9 +88,9 @@ class OverAllProgressViewBuilder: ViewBuilder {
         firstTextLabel.topAnchor.constraint(equalTo: outPutView.topAnchor).isActive = true
         
         self.outPutView.layoutIfNeeded()
-        let vipButton = VipIcon.render(by: CGRect(x: firstTextLabel.frame.width + 25, y: firstTextLabel.frame.minY + 5, width: 40, height: 15), scale: 1)
-        vipButton.isHidden = true//AppEngine.shared.currentUser.isVip ? false : true
-        self.outPutView.addSubview(vipButton)
+//        let vipButton = VipIcon.render(by: CGRect(x: firstTextLabel.frame.width + 25, y: firstTextLabel.frame.minY + 5, width: 40, height: 15), scale: 1)
+//        vipButton.isHidden = true//AppEngine.shared.currentUser.isVip ? false : true
+//        self.outPutView.addSubview(vipButton)
         
         
         let secondTextLabel = UILabel()

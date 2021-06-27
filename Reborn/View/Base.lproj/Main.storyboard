@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -1579,10 +1580,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lt5-gF-RX7" userLabel="Option Bar">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LSc-aq-7eV" userLabel="Option Bar Content View">
-                                        <rect key="frame" x="15" y="10" width="384" height="30"/>
+                                        <rect key="frame" x="15" y="7.5" width="384" height="30"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="cdO-RD-nuu"/>
@@ -1593,12 +1594,12 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="LSc-aq-7eV" secondAttribute="trailing" constant="15" id="6me-1q-baj"/>
                                     <constraint firstItem="LSc-aq-7eV" firstAttribute="leading" secondItem="Lt5-gF-RX7" secondAttribute="leading" constant="15" id="AyP-z0-lEK"/>
-                                    <constraint firstAttribute="height" constant="50" id="Skc-cN-Iws"/>
+                                    <constraint firstAttribute="height" constant="45" id="Skc-cN-Iws"/>
                                     <constraint firstItem="LSc-aq-7eV" firstAttribute="centerY" secondItem="Lt5-gF-RX7" secondAttribute="centerY" id="ZmB-xb-743"/>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVc-FF-Wj4" userLabel="Vertical Scroll View">
-                                <rect key="frame" x="0.0" y="50" width="414" height="675"/>
+                                <rect key="frame" x="0.0" y="45" width="414" height="680"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RlR-Ck-CHb" userLabel="Vertical Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
@@ -2026,7 +2027,7 @@
                                                         <color key="tintColor" red="0.40788567069999998" green="0.55731946229999996" blue="0.99905794859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                        <state key="normal" title="反馈" image="Feedback2">
+                                                        <state key="normal" title="反馈 / 客户服务" image="Feedback2">
                                                             <color key="titleColor" systemColor="labelColor"/>
                                                         </state>
                                                         <connections>
@@ -3663,7 +3664,7 @@
                                                     <action selector="startBreathingButtonPressed:" destination="v2s-l8-7fg" eventType="touchUpInside" id="bwE-dO-dF2"/>
                                                 </connections>
                                             </button>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="[呼吸放松法] 是一种简单的调整工作学习状态的方法，深呼吸一分钟可以让您快速清理大脑中的垃圾，重新回到工作和学习状态中，配合番茄时钟使用效果更好，番茄时钟响了以后，闭上眼睛跟随指导深呼吸和吸气" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TB5-xL-LiY">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="[呼吸放松法] 是一种简单的调整工作学习状态的方法，深呼吸一分钟可以让您快速清理大脑中的垃圾，重新回到工作和学习状态中。点击“开始呼吸”，可以闭上眼睛跟随震动指导进行呼吸。" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TB5-xL-LiY">
                                                 <rect key="frame" x="20" y="653.5" width="374" height="75"/>
                                                 <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                                 <constraints>
