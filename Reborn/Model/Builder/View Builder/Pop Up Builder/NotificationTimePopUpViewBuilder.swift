@@ -9,12 +9,15 @@ import Foundation
 import UIKit
 class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
     var notificationTime: Array<CustomTime>
-    var notificationIsEnabled: Bool
+    let notificationTimePopUp: NotificationTimePopUp
     let explanationLabel = UILabel()
+    let instructionView = UIView()
+    let timePickerView = UIView()
     
-    init(popUpViewController: PopUpViewController, frame: CGRect, notificationTime: Array<CustomTime>, notificationIsEnabled: Bool){
+    
+    init(popUpViewController: PopUpViewController, frame: CGRect, notificationTime: Array<CustomTime>, notificationTimePopUp: NotificationTimePopUp){
         self.notificationTime = notificationTime
-        self.notificationIsEnabled = notificationIsEnabled
+        self.notificationTimePopUp = notificationTimePopUp
         super.init(popUpViewController: popUpViewController, frame: frame)
     }
     
@@ -22,37 +25,47 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
     
     override func buildView() -> UIView {
         super.buildView()
-        self.setUpUI()
-        addSegmentedControl()
-        
-        if notificationIsEnabled {
-            addExplanationLabel()
-        } else {
-            addInstruction()
-        }
-        
-        self.addTimePicker()
-        
+        setUpUI()
+        addTimePickerView()
+        addInstructionView()
         return super.outPutView
+    }
+    
+    private func addTimePickerView() {
+
+        timePickerView.accessibilityIdentifier = "TimePickerView"
+        timePickerView.frame = super.contentView.bounds
+        super.contentView.layoutIfNeeded()
+        super.contentView.addSubview(timePickerView)
+        
+        addSegmentedControl()
+        addExplanationLabel()
+        addTimePicker()
     }
     
     private func setUpUI() {
         super.titleLabel.text = "打卡提醒时间"
     }
     
-    private func addInstruction() {
+    private func addInstructionView() {
+      
+        instructionView.accessibilityIdentifier = "InstructionView"
+        instructionView.frame = super.contentView.bounds
+        super.contentView.layoutIfNeeded()
+        super.contentView.addSubview(instructionView)
         
+            
         let goToSettingButton = UIButton()
         goToSettingButton.setTitle("前往设置", for: .normal)
         goToSettingButton.setTitleColor(AppEngine.shared.userSetting.smartVisibleThemeColor, for: .normal)
         goToSettingButton.titleLabel?.font = AppEngine.shared.userSetting.smallFont
         goToSettingButton.addTarget(Actions.shared, action: Actions.goToSystemSettingAction, for: .touchUpInside)
        
-        super.contentView.addSubview(goToSettingButton)
+        instructionView.addSubview(goToSettingButton)
         
         goToSettingButton.translatesAutoresizingMaskIntoConstraints = false
-        goToSettingButton.bottomAnchor.constraint(equalTo: super.contentView.bottomAnchor, constant: -super.setting.mainPadding).isActive = true
-        goToSettingButton.centerXAnchor.constraint(equalTo: super.contentView.centerXAnchor).isActive = true
+        goToSettingButton.bottomAnchor.constraint(equalTo: instructionView.bottomAnchor, constant: -super.setting.mainPadding).isActive = true
+        goToSettingButton.centerXAnchor.constraint(equalTo: instructionView.centerXAnchor).isActive = true
         goToSettingButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         goToSettingButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
         
@@ -64,10 +77,10 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
         instructionLabel.text = "系统通知已关闭，若想启用提醒\n请在 设置-通知-\(App.name) 中打开允许通知"
         instructionLabel.sizeToFit()
         
-        super.contentView.addSubview(instructionLabel)
+        instructionView.addSubview(instructionLabel)
         instructionLabel.translatesAutoresizingMaskIntoConstraints = false
         instructionLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        instructionLabel.centerXAnchor.constraint(equalTo: super.contentView.centerXAnchor).isActive = true
+        instructionLabel.centerXAnchor.constraint(equalTo: instructionView.centerXAnchor).isActive = true
         instructionLabel.bottomAnchor.constraint(equalTo: goToSettingButton.topAnchor, constant: -super.setting.mainGap).isActive = true
         
         
@@ -77,12 +90,12 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
         instructionImageView.clipsToBounds = true
         instructionImageView.contentMode = .scaleAspectFill
 
-        super.contentView.addSubview(instructionImageView)
+        instructionView.addSubview(instructionImageView)
         
         instructionImageView.translatesAutoresizingMaskIntoConstraints = false
-        instructionImageView.leftAnchor.constraint(equalTo: super.contentView.leftAnchor, constant: super.setting.mainPadding * 2).isActive = true
-        instructionImageView.rightAnchor.constraint(equalTo: super.contentView.rightAnchor, constant: -super.setting.mainPadding * 2).isActive = true
-        instructionImageView.topAnchor.constraint(equalTo: super.contentView.topAnchor, constant: 0).isActive = true
+        instructionImageView.leftAnchor.constraint(equalTo: instructionView.leftAnchor, constant: super.setting.mainPadding * 2).isActive = true
+        instructionImageView.rightAnchor.constraint(equalTo: instructionView.rightAnchor, constant: -super.setting.mainPadding * 2).isActive = true
+        instructionImageView.topAnchor.constraint(equalTo: instructionView.topAnchor, constant: 0).isActive = true
         instructionImageView.bottomAnchor.constraint(equalTo: instructionLabel.topAnchor, constant: -super.setting.mainGap).isActive = true
         
         
@@ -102,18 +115,18 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
         segmentedControl.accessibilityIdentifier = "SegmentedControl"
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.setSmartAppearance(withBackgroundStyle: .followSystem)
-        super.contentView.addSubview(segmentedControl)
+        segmentedControl.addTarget(notificationTimePopUp, action: #selector(notificationTimePopUp.segmentedControlValueChanged(_:)), for: .valueChanged)
+        self.timePickerView.addSubview(segmentedControl)
         
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         segmentedControl.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        segmentedControl.topAnchor.constraint(equalTo: super.contentView.topAnchor, constant: 0).isActive = true
-        segmentedControl.rightAnchor.constraint(equalTo: super.contentView.rightAnchor, constant: -15).isActive = true
+        segmentedControl.topAnchor.constraint(equalTo: self.timePickerView.topAnchor, constant: 0).isActive = true
+        segmentedControl.rightAnchor.constraint(equalTo: self.timePickerView.rightAnchor, constant: -15).isActive = true
     }
     
     private func addTimePicker() {
         
-        let segmentedControl = super.contentView.getSubviewBy(idenifier: "SegmentedControl")!
-        var lastPicker: UIDatePicker? = nil
+        let segmentedControl = timePickerView.getSubviewBy(idenifier: "SegmentedControl")!
         var number = 1
         for time in notificationTime {
         
@@ -129,34 +142,14 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
                 picker.preferredDatePickerStyle = .wheels
             }
             
-            if notificationIsEnabled {
-                picker.alpha = 1
-            } else {
-                picker.alpha = 0
-            }
-            self.contentView.addSubview(picker)
-            
-            
-            picker.translatesAutoresizingMaskIntoConstraints = false
-            
+            self.timePickerView.addSubview(picker)
             super.contentView.layoutIfNeeded()
-            picker.leftAnchor.constraint(equalTo: super.contentView.leftAnchor).isActive = true
-            picker.rightAnchor.constraint(equalTo: super.contentView.rightAnchor).isActive = true
+            picker.translatesAutoresizingMaskIntoConstraints = false
+            picker.leftAnchor.constraint(equalTo: self.timePickerView.leftAnchor).isActive = true
+            picker.rightAnchor.constraint(equalTo: self.timePickerView.rightAnchor).isActive = true
             picker.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 10).isActive = true
             picker.bottomAnchor.constraint(equalTo: self.explanationLabel.topAnchor).isActive = true
-            
-//
-//            let label = UILabel()
-//            label.textColor = .label
-//            label.font = AppEngine.shared.userSetting.smallFont
-//            label.text = "第\(number)次提醒"
-//            label.sizeToFit()
-//            self.contentView.addSubview(label)
-//            label.translatesAutoresizingMaskIntoConstraints = false
-//            label.leftAnchor.constraint(equalTo: picker.leftAnchor).isActive = true
-//            label.bottomAnchor.constraint(equalTo: picker.topAnchor, constant: -10).isActive = true
-//
-//            lastPicker = picker
+
             number += 1
         }
 
@@ -170,13 +163,13 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
         explanationLabel.numberOfLines = 2
         explanationLabel.font = AppEngine.shared.userSetting.smallFont
         explanationLabel.textColor = super.setting.grayColor
-        explanationLabel.text = "如果当天没有在进行中的项目，您将不会收到通知。若想禁用通知，您可以在系统设置里关闭"
+        explanationLabel.text = "此提醒属于固定提醒，每天会定时提醒您检查习惯和打卡，关闭此提醒不影响项目的通知提醒"
         
-        super.contentView.addSubview(explanationLabel)
+        self.timePickerView.addSubview(explanationLabel)
         explanationLabel.translatesAutoresizingMaskIntoConstraints = false
-        explanationLabel.leftAnchor.constraint(equalTo: super.contentView.leftAnchor, constant: 5).isActive = true
-        explanationLabel.rightAnchor.constraint(equalTo: super.contentView.rightAnchor, constant: 5).isActive = true
-        explanationLabel.bottomAnchor.constraint(equalTo: super.contentView.bottomAnchor).isActive = true
+        explanationLabel.leftAnchor.constraint(equalTo: self.timePickerView.leftAnchor, constant: 5).isActive = true
+        explanationLabel.rightAnchor.constraint(equalTo: self.timePickerView.rightAnchor, constant: 5).isActive = true
+        explanationLabel.bottomAnchor.constraint(equalTo: self.timePickerView.bottomAnchor).isActive = true
         explanationLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
 }

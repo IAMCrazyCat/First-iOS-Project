@@ -102,9 +102,9 @@ extension PopUpViewController: UIObserver {
         if popUp != nil {
             
             self.view.removeAllSubviews()
-            self.view.addSubview(self.popUp!.createWindow())
+            self.popUp!.window = self.popUp!.createWindow()
+            self.view.addSubview(self.popUp!.window)
             self.popUp!.updateUI()
-            
         }
         
         

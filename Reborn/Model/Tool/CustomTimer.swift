@@ -88,7 +88,7 @@ class CustomTimer {
     
     public static func killTimer() {
         print("Timer Killed")
-        AppEngine.shared.removeTemporaryNotification(withIdenifier: "TomatoClock")
+        NotificationManager.shared.removeTemporaryNotification(withIdenifier: "TomatoClock")
         CustomTimer.shared.timer.invalidate()
         CustomTimer.shared.storedTimerState = .idle
         CustomTimer.finish?()

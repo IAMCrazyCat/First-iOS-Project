@@ -33,7 +33,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window = UIWindow(windowScene: windowScene)
             window?.rootViewController = viewController
             window?.makeKeyAndVisible()
-            AppEngine.shared.requestNotificationPermission()
+            NotificationManager.shared.requestNotificationPermission()
         }
         
         window?.overrideUserInterfaceStyle = AppEngine.shared.userSetting.uiUserInterfaceStyle
@@ -58,13 +58,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         SettingStrategy().saveUserSetting()
         CustomTimer.recoverTimer()
         AppEngine.shared.notifyUIObservers(withIdentifier: "UserCenterViewController")
-        //AppEngine.shared.notifyUIObservers(withIdentifier: "PopUpViewController")
+        if NotificationManager.shared.isNotificationStatusChanged() {
+            AppEngine.shared.notifyUIObservers(withIdentifier: "PopUpViewController")
+        }
 
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
         CustomTimer.saveTimer()
-        
+        NotificationManager.shared.saveLastNotificationStatus()
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
     }

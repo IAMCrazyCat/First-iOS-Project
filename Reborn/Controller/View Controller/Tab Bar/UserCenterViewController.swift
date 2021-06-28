@@ -139,8 +139,8 @@ class UserCenterViewController: UIViewController {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             mail.setToRecipients(["liuzimingjay@gmail.com"])
-            mail.setSubject("User feedback of Reborn from: \(self.engine.currentUser.name)")
-            mail.setMessageBody("<p>Hi CrazyCat, \n</p>", isHTML: true)
+            mail.setSubject("User feedback of \(App.name) from: \(self.engine.currentUser.name)")
+            mail.setMessageBody("<p>Hi, \n</p><p>(请描述您遇到的问题或者您的建议)</p>", isHTML: true)
 
             present(mail, animated: true)
             
@@ -228,7 +228,7 @@ class UserCenterViewController: UIViewController {
     
     func updateNotificationTimeLabel() {
         
-        if self.engine.isNotificationEnabled() {
+        if NotificationManager.shared.isNotificationEnabled() {
             self.notificationTimeLabel.text = "\(self.engine.userSetting.notificationTime.count)次提醒"
             print(self.engine.userSetting.notificationTime)
         } else {
@@ -402,7 +402,7 @@ extension UserCenterViewController: PopUpViewDelegate {
             if let notificationTime = self.engine.storedDataFromPopUpView as? Array<CustomTime> {
                 self.engine.userSetting.notificationTime = notificationTime
                 self.engine.saveSetting()
-                self.engine.scheduleNotification()
+                NotificationManager.shared.scheduleItemsNotification(at: self.engine.userSetting.notificationTime)
             }
         default:
             break

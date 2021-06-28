@@ -70,7 +70,7 @@ extension UIViewController: UIViewControllerTransitioningDelegate  {
                 popUpViewController.popUp = CustomUserInformationPopUp(presentAnimationType: animationType, size: size, popUpViewController: popUpViewController)
             case .notificationTimePopUp:
                 
-                if AppEngine.shared.isNotificationEnabled() {
+                if NotificationManager.shared.isNotificationEnabled() {
                     popUpViewController.popUp = NotificationTimePopUp(presentAnimationType: animationType, size: size, popUpViewController: popUpViewController)
                 } else {
                     popUpViewController.popUp = NotificationTimePopUp(presentAnimationType: animationType, size: size, popUpViewController: popUpViewController)

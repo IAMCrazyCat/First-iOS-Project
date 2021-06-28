@@ -88,9 +88,9 @@ class TomatoClockViewController: UIViewController {
         }
         
         if clockTypeSegmentedControl.selectedSegmentIndex == 0 {
-            AppEngine.shared.scheduleTemporaryNotification(title: "\(Int(miniuts))分钟的番茄时钟结束", body: "现在休息一下, 来设置一个休息时钟", after: seconds, identifier: "TomatoClock")
+            NotificationManager.shared.scheduleTemporaryNotification(title: "\(Int(miniuts))分钟的番茄时钟结束", body: "现在休息一下, 来设置一个休息时钟", after: seconds, identifier: "TomatoClock")
         } else {
-            AppEngine.shared.scheduleTemporaryNotification(title: "\(Int(miniuts))分钟休息时间到", body: "现在来设置一个番茄时钟继续工作", after: seconds, identifier: "TomatoClock")
+            NotificationManager.shared.scheduleTemporaryNotification(title: "\(Int(miniuts))分钟休息时间到", body: "现在来设置一个番茄时钟继续工作", after: seconds, identifier: "TomatoClock")
         }
         
         updateUI()
@@ -99,7 +99,7 @@ class TomatoClockViewController: UIViewController {
     
     func stopTimer() {
         CustomTimer.killTimer()
-        AppEngine.shared.removeTemporaryNotification(withIdenifier: "TomatoClock")
+        NotificationManager.shared.removeTemporaryNotification(withIdenifier: "TomatoClock")
         updateUI()
     }
     
