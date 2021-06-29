@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class CustomTime: NSObject, NSCoding, Comparable {
+class CustomTime: NSObject, NSCoding, Comparable, Codable {
     static func < (lhs: CustomTime, rhs: CustomTime) -> Bool {
         
         let formatter = DateFormatter()
@@ -70,7 +70,23 @@ class CustomTime: NSObject, NSCoding, Comparable {
     }
     
     
-    
+    func getTimeString() -> String {
+        var str = ""
+        if hour < 10 {
+            str += "0\(hour)"
+        } else {
+            str += "\(hour)"
+        }
+        
+        str += ":"
+        
+        if minute < 10 {
+            str += "0\(minute)"
+        } else {
+            str += "\(minute)"
+        }
+        return str
+    }
 
    
     

@@ -82,6 +82,7 @@
 		22945D7D25F70E4D0065B511 /* ConfettiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22945D7C25F70E4D0065B511 /* ConfettiCell.swift */; };
 		22945D8525F70FD30065B511 /* ConfettiSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22945D8425F70FD30065B511 /* ConfettiSize.swift */; };
 		229C5EEA25F4F1FD00C94B61 /* UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229C5EE925F4F1FD00C94B61 /* UIWindow.swift */; };
+		22A18F92268AB47800FAAED1 /* ItemNotificationTimePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A18F91268AB47800FAAED1 /* ItemNotificationTimePopUp.swift */; };
 		22A1B5632614206E008CBE94 /* TomatoClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A1B5622614206E008CBE94 /* TomatoClockViewController.swift */; };
 		22A1B5692614207E008CBE94 /* BreathViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A1B5682614207E008CBE94 /* BreathViewController.swift */; };
 		22A1B56F26149BEF008CBE94 /* CustomTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A1B56E26149BEF008CBE94 /* CustomTimer.swift */; };
@@ -311,6 +312,7 @@
 		22945D7C25F70E4D0065B511 /* ConfettiCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiCell.swift; sourceTree = "<group>"; };
 		22945D8425F70FD30065B511 /* ConfettiSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiSize.swift; sourceTree = "<group>"; };
 		229C5EE925F4F1FD00C94B61 /* UIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindow.swift; sourceTree = "<group>"; };
+		22A18F91268AB47800FAAED1 /* ItemNotificationTimePopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemNotificationTimePopUp.swift; sourceTree = "<group>"; };
 		22A1B5622614206E008CBE94 /* TomatoClockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TomatoClockViewController.swift; sourceTree = "<group>"; };
 		22A1B5682614207E008CBE94 /* BreathViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathViewController.swift; sourceTree = "<group>"; };
 		22A1B56E26149BEF008CBE94 /* CustomTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTimer.swift; sourceTree = "<group>"; };
@@ -735,6 +737,7 @@
 				22945D5525F5A8150065B511 /* ItemCompletedPopUp.swift */,
 				225EC25E25FA41BC00F2C69F /* CustomUserInformationPopUp.swift */,
 				22D00DEB25FE2A5900DB3F1D /* NotificationTimePopUp.swift */,
+				22A18F91268AB47800FAAED1 /* ItemNotificationTimePopUp.swift */,
 				22A7DC262605957D00A55CE8 /* LightAndDarkModePopUp.swift */,
 				22862C1C26709F0100993895 /* EveryWeekFrequencyPopUp.swift */,
 				22862C222671C19200993895 /* EveryMonthFrequencyPopUp.swift */,
@@ -1379,6 +1382,7 @@
 				22916DA925BFE34C004A3EC4 /* TimeMachineViewController.swift in Sources */,
 				2293F38625DB7C18009B4753 /* ItemManagementViewController.swift in Sources */,
 				2246D2E625CA68230001EFB7 /* DismissStrategy.swift in Sources */,
+				22A18F92268AB47800FAAED1 /* ItemNotificationTimePopUp.swift in Sources */,
 				22D7FBB125A1E065006B1F28 /* SetUpPageViewBuilder.swift in Sources */,
 				22E5A13625F33F76001AC3ED /* PurchaseViewController.swift in Sources */,
 				22BC38F725E738E900AEFE44 /* CustomThemeColorPopUpViewBuilder.swift in Sources */,
@@ -1716,7 +1720,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.3;
+				MARKETING_VERSION = 1.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.crazycat.Reborn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1741,7 +1745,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.3;
+				MARKETING_VERSION = 1.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.crazycat.Reborn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1853,7 +1857,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.3.3;
+				MARKETING_VERSION = 1.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.crazycat.Reborn.ItemProgressWiget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1878,7 +1882,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.3.3;
+				MARKETING_VERSION = 1.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.crazycat.Reborn.ItemProgressWiget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

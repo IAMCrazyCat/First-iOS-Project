@@ -42,22 +42,22 @@ class ItemProgressViewBuilder: ViewBuilder {
         outPutView.frame = CGRect(x: cordinateX, y: cordinateY, width: width, height: height)
     }
     
-    private func addItemDetailsFreqencyLabel() {
-        let freqencyLabel = UILabel()
-
-        freqencyLabel.accessibilityIdentifier = "freqencyLabel"
-        freqencyLabel.text = "频率: \(item.frequency.dataModel.title)"
-        freqencyLabel.textColor = .black
-        freqencyLabel.font = AppEngine.shared.userSetting.mediumFont
-        freqencyLabel.sizeToFit()
-        
-        outPutView.addSubview(freqencyLabel)
-        freqencyLabel.translatesAutoresizingMaskIntoConstraints = false
-        freqencyLabel.topAnchor.constraint(equalTo: outPutView.topAnchor, constant: 20).isActive = true
-        freqencyLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
-        freqencyLabel.rightAnchor.constraint(equalTo: outPutView.rightAnchor, constant: -self.setting.mainPadding).isActive = true
-        
-    }
+//    private func addItemDetailsFreqencyLabel() {
+//        let freqencyLabel = UILabel()
+//
+//        freqencyLabel.accessibilityIdentifier = "freqencyLabel"
+//        freqencyLabel.text = "频率: \(item.frequency.dataModel.title)"
+//        freqencyLabel.textColor = .black
+//        freqencyLabel.font = AppEngine.shared.userSetting.mediumFont
+//        freqencyLabel.sizeToFit()
+//        
+//        outPutView.addSubview(freqencyLabel)
+//        freqencyLabel.translatesAutoresizingMaskIntoConstraints = false
+//        freqencyLabel.topAnchor.constraint(equalTo: outPutView.topAnchor, constant: 20).isActive = true
+//        freqencyLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
+//        freqencyLabel.rightAnchor.constraint(equalTo: outPutView.rightAnchor, constant: -self.setting.mainPadding).isActive = true
+//        
+//    }
     
     private  func addProgressBar(barFrame: CGRect, withProgressLabel: Bool) {
         let barTrackPath = UIBezierPath(roundedRect: barFrame, cornerRadius: 10)

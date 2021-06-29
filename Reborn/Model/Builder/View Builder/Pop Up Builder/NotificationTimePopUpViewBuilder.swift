@@ -155,11 +155,12 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
     
     private func addExplanationLabel() {
        
+        explanationLabel.accessibilityIdentifier = "ExplanationLabel"
         explanationLabel.lineBreakMode = .byWordWrapping
         explanationLabel.numberOfLines = 2
         explanationLabel.font = AppEngine.shared.userSetting.smallFont
         explanationLabel.textColor = super.setting.grayColor
-        explanationLabel.text = "此提醒属于固定提醒，每天会定时提醒您检查习惯和打卡，关闭此提醒不影响项目的通知提醒"
+        explanationLabel.text = "此提醒属于固定提醒，每天会定时提醒您查看习惯和打卡，关闭此提醒不影响项目的任务提醒"
         
         self.timePickerView.addSubview(explanationLabel)
         explanationLabel.translatesAutoresizingMaskIntoConstraints = false

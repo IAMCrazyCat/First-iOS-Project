@@ -41,10 +41,7 @@ class CustomUserInformationPopUp: PopUpImpl {
    
     
     override func createWindow() -> UIView {
-        
         return CustomUserInformationPopUpViewBuilder(userName: AppEngine.shared.currentUser.name, userGender: AppEngine.shared.currentUser.gender, popUpViewController: super.popUpViewController, frame: super.frame).buildView()
-        
-        
     }
     
     override func getStoredData() -> Any {

@@ -174,7 +174,7 @@
 "LpL-td-6rP.title" = "自律工具";
 
 /* Class = "UIButton"; normalTitle = "反馈"; ObjectID = "MMX-gO-o2H"; */
-"MMX-gO-o2H.normalTitle" = "反馈";
+"MMX-gO-o2H.normalTitle" = "反馈 / 客户服务";
 
 /* Class = "UILabel"; text = "2. 选择想补打卡的日期"; ObjectID = "MPU-DJ-WIB"; */
 "MPU-DJ-WIB.text" = "2. 选择想补打卡的日期";
@@ -285,7 +285,7 @@
 "WOm-XI-zX8.normalTitle" = "6";
 
 /* Class = "UIButton"; normalTitle = "使用说明"; ObjectID = "WQX-Nq-SYU"; */
-"WQX-Nq-SYU.normalTitle" = "使用说明";
+"WQX-Nq-SYU.normalTitle" = "新功能";
 
 /* Class = "UILabel"; text = "目标"; ObjectID = "WcP-hd-6gL"; */
 "WcP-hd-6gL.text" = "目标";
@@ -474,7 +474,7 @@
 "rWz-H7-B9U.text" = "今天";
 
 /* Class = "UIButton"; normalTitle = "通知时间"; ObjectID = "s8i-6y-kYV"; */
-"s8i-6y-kYV.normalTitle" = "通知时间";
+"s8i-6y-kYV.normalTitle" = "固定提醒时间";
 
 /* Class = "UITabBarItem"; title = "今日"; ObjectID = "sU1-NQ-WFC"; */
 "sU1-NQ-WFC.title" = "今日";
@@ -495,7 +495,7 @@
 "uJh-2N-7BG.normalTitle" = "开始呼吸";
 
 /* Class = "UILabel"; text = "打卡设置"; ObjectID = "uT8-OF-XzE"; */
-"uT8-OF-XzE.text" = "打卡设置";
+"uT8-OF-XzE.text" = "通知设置";
 
 /* Class = "UIBarButtonItem"; title = "编辑"; ObjectID = "uXu-af-sL3"; */
 "uXu-af-sL3.title" = "编辑";

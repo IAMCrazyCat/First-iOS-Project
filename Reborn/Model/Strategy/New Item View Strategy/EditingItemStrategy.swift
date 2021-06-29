@@ -35,20 +35,20 @@ class EditingItemStrategy: NewItemViewStrategy {
         }
             
         switch newItemViewController.item.targetDays {
-            case 7:
-                newItemViewController.sevenDaysButton.isSelected = true
-                newItemViewController.selectedTargetDaysButton = newItemViewController.sevenDaysButton
-            case 30:
-                newItemViewController.thirtyDaysButton.isSelected = true
-                newItemViewController.selectedTargetDaysButton = newItemViewController.thirtyDaysButton
-            case 100:
-                newItemViewController.oneHundredDaysButton.isSelected = true
-                newItemViewController.selectedTargetDaysButton = newItemViewController.oneHundredDaysButton
-            default:
-                newItemViewController.customTargetDaysButton.isSelected = true
-                newItemViewController.selectedTargetDaysButton = newItemViewController.customTargetDaysButton
-                
-            }
+        case 7:
+            newItemViewController.sevenDaysButton.isSelected = true
+            newItemViewController.selectedTargetDaysButton = newItemViewController.sevenDaysButton
+        case 30:
+            newItemViewController.thirtyDaysButton.isSelected = true
+            newItemViewController.selectedTargetDaysButton = newItemViewController.thirtyDaysButton
+        case 100:
+            newItemViewController.oneHundredDaysButton.isSelected = true
+            newItemViewController.selectedTargetDaysButton = newItemViewController.oneHundredDaysButton
+        default:
+            newItemViewController.customTargetDaysButton.isSelected = true
+            newItemViewController.selectedTargetDaysButton = newItemViewController.customTargetDaysButton
+            
+        }
         
         switch newItemViewController.item.finishedDays {
         case 8 ... 30:
@@ -63,24 +63,9 @@ class EditingItemStrategy: NewItemViewStrategy {
         default: break
             
         }
+    
         
-            
-//        switch newItemViewController.item.frequency.dataModel.title {
-//        case "每天":
-//            newItemViewController.everydayFrequencyButton.isSelected = true
-//            newItemViewController.selectedFrequencyButton = newItemViewController.everydayFrequencyButton
-//        case "每周":
-//            newItemViewController.everyWeekFreqencyButton.isSelected = true
-//            newItemViewController.selectedFrequencyButton = newItemViewController.everyWeekFreqencyButton
-//        case "每月":
-//            newItemViewController.everyMonthFrequencyButton.isSelected = true
-//            newItemViewController.selectedFrequencyButton = newItemViewController.everyMonthFrequencyButton
-//        default:
-//            newItemViewController.customFrequencyButton.isSelected = true
-//            newItemViewController.selectedFrequencyButton = newItemViewController.customFrequencyButton
-//        }
-        
-        switch newItemViewController.item.newFrequency?.type {
+        switch newItemViewController.item.newFrequency.type {
         case .everyDay:
             newItemViewController.everydayFrequencyButton.isSelected = true
             newItemViewController.selectedFrequencyButton = newItemViewController.everydayFrequencyButton
@@ -93,6 +78,14 @@ class EditingItemStrategy: NewItemViewStrategy {
         default:
             break
         }
+        
+        if let notificationTime = newItemViewController.item.notificationTimes.first {
+            newItemViewController.selectedNotificationButton = newItemViewController.customNotificationButton
+            newItemViewController.customNotificationButton.setTitle(notificationTime.getTimeString(), for: .normal)
+        } else {
+            newItemViewController.selectedNotificationButton = newItemViewController.turnOffNotificationButton
+        }
+        
         
         
         let secondInstructionLabel = newItemViewController.verticalScrollView.getSubviewBy(idenifier: "SecondInstructionLabel")
@@ -159,6 +152,7 @@ class EditingItemStrategy: NewItemViewStrategy {
     func doneButtonPressed(_ sender: UIButton) {
         
         if isRedyToDismiss() {
+            NotificationManager.shared.scheduleNotification(for: newItemViewController.item)
             newItemViewController.engine.saveUser(newItemViewController.engine.currentUser)
             newItemViewController.dismiss(animated: true) {
                 self.newItemViewController.engine.notifyAllUIObservers()

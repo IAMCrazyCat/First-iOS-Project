@@ -22,6 +22,7 @@ class ItemDetailViewController: UIViewController {
     @IBOutlet weak var bottomEditButton: UIButton!
     @IBOutlet weak var bottomShareButton: UIButton!
     
+    @IBOutlet weak var notificationTimeLabel: UILabel!
     @IBOutlet weak var finishedDaysLabel: UILabel!
     @IBOutlet weak var targetDaysLabel: UILabel!
     @IBOutlet weak var bestConsecutiveDaysLabel: UILabel!
@@ -57,14 +58,9 @@ class ItemDetailViewController: UIViewController {
         mediumView.setShadow()
 
         calendarView.layer.cornerRadius = setting.itemCardCornerRadius
-        
-//        bottomShareButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 30, bottom: 10, right: 40)
         bottomShareButton.proportionallySetSizeWithScreen()
         bottomShareButton.setCornerRadius()
         bottomShareButton.setShadow()
-        
-        
-//        bottomEditButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 30, bottom: 12, right: 40)
         bottomEditButton.proportionallySetSizeWithScreen()
         bottomEditButton.setCornerRadius()
         bottomEditButton.setShadow()
@@ -170,7 +166,7 @@ class ItemDetailViewController: UIViewController {
     }
     
     func updateFrequencyLabel() {
-        self.frequencyLabel.text = "\(self.item.newFrequency?.getSpecificFreqencyString() ?? "?")"
+        self.frequencyLabel.text = "\(self.item.newFrequency.getSpecificFreqencyString() ?? "?")"
     }
     
     func updateNextPunchInDateLabel() {
@@ -221,6 +217,15 @@ class ItemDetailViewController: UIViewController {
         }
     }
     
+    func updateNotificationLabel() {
+        if let notificationTime = self.item.notificationTimes.first {
+            notificationTimeLabel.text = "\(notificationTime.getTimeString())"
+        } else {
+            notificationTimeLabel.text = "关"
+        }
+        
+    }
+    
     func updateItemIconAndName() {
         iconImageView.image = item.icon.image
         itemNameLabel.text = item.getFullName()
@@ -239,6 +244,7 @@ class ItemDetailViewController: UIViewController {
         updateProgressView()
         updateNextPunchInDateLabel()
         updateStartDateLabel()
+        updateNotificationLabel()
         
     }
     

@@ -116,12 +116,13 @@ class ItemCardViewBuilder: ViewBuilder {
     private func addItemCardFreqencyLabel() {
         let freqencyLabel = UILabel()
         freqencyLabel.accessibilityIdentifier = "FreqencyLabel"
+        freqencyLabel.text = item.newFrequency.getFreqencyString()
         
-        if let newFreqency = item.newFrequency{
-            freqencyLabel.text = newFreqency.getFreqencyString()
-        } else {
-            freqencyLabel.text = "(请更新频率)"
-        }
+//        if let newFreqency = item.newFrequency{
+//            freqencyLabel.text = newFreqency.getFreqencyString()
+//        } else {
+//            freqencyLabel.text = "(请更新频率)"
+//        }
         
         
         freqencyLabel.textColor = AppEngine.shared.userSetting.properThemeColor

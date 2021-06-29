@@ -21,6 +21,7 @@ enum PopUpType {
     case customUserInformationPopUp
     case itemCompletedPopUp
     case notificationTimePopUp
+    case itemNotificationTimePopUp
     case lightAndDarkModePopUp
     case everyWeekFreqencyPopUp
     case everyMonthFreqencyPopUp

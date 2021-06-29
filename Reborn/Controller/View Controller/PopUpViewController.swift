@@ -104,6 +104,7 @@ extension PopUpViewController: UIObserver {
             self.view.removeAllSubviews()
             self.popUp!.window = self.popUp!.createWindow()
             self.view.addSubview(self.popUp!.window)
+            self.popUp!.setUpUI()
             self.popUp!.updateUI()
         }
         

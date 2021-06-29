@@ -176,6 +176,11 @@ class UserCenterViewController: UIViewController {
         })
         
     }
+    
+    @IBAction func newFeaturesButtonPressed(_ sender: UIButton) {
+        NewFeaturesManager.shared.presentNewFeaturePopUp()
+    }
+    
     @objc func settingButtonTouchedDown(_ sender: UIButton!) {
         sender.isSelected = true
         Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { timer in
@@ -229,8 +234,12 @@ class UserCenterViewController: UIViewController {
     func updateNotificationTimeLabel() {
         
         if NotificationManager.shared.isNotificationEnabled() {
-            self.notificationTimeLabel.text = "\(self.engine.userSetting.notificationTime.count)次提醒"
-            print(self.engine.userSetting.notificationTime)
+            switch self.engine.userSetting.notificationTime.count {
+            case 0: self.notificationTimeLabel.text = "已关闭"
+            case 1: self.notificationTimeLabel.text = "\(self.engine.userSetting.notificationTime.first?.getTimeString() ?? "?")"
+            default: self.notificationTimeLabel.text = "\(self.engine.userSetting.notificationTime.count)次提醒"
+                
+            }
         } else {
             self.notificationTimeLabel.text = "已禁用"
         }
@@ -402,7 +411,7 @@ extension UserCenterViewController: PopUpViewDelegate {
             if let notificationTime = self.engine.storedDataFromPopUpView as? Array<CustomTime> {
                 self.engine.userSetting.notificationTime = notificationTime
                 self.engine.saveSetting()
-                NotificationManager.shared.scheduleItemsNotification(at: self.engine.userSetting.notificationTime)
+                NotificationManager.shared.scheduleFixedNotification(at: self.engine.userSetting.notificationTime)
             }
         default:
             break

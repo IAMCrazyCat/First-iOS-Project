@@ -22,7 +22,7 @@ class CustomFrequencyPopUp: PopUpImpl {
         self.dataStartIntex = dataStartIndex
         super.init(presentAnimationType: presentAnimationType, type: .customFrequencyPopUp, size: size, popUpViewController: popUpViewController)
        
-        setPickerViewData()
+        
     }
     
     override func createWindow() -> UIView {
@@ -38,6 +38,9 @@ class CustomFrequencyPopUp: PopUpImpl {
         
     }
     
+    override func setUpUI() {
+        setPickerViewData()
+    }
     func setPickerViewData() {
         pickerView?.delegate = popUpViewController
         pickerView?.dataSource = popUpViewController

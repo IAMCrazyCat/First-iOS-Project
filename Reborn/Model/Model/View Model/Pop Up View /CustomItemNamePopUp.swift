@@ -18,8 +18,6 @@ class CustomItemNamePopUpView: PopUpImpl {
     
     init(presentAnimationType: PopUpAnimationType, size: PopUpSize = .small, popUpViewController: PopUpViewController) {
         super.init(presentAnimationType: presentAnimationType, type: .customItemNamePopUp, size: size, popUpViewController: popUpViewController)
-        
-
     }
     
     override func isReadyToDismiss() -> Bool {

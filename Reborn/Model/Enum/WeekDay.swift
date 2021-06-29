@@ -39,4 +39,13 @@ enum WeekDay: Int, CaseIterable, Codable {
         }
     }
     
+    var originalWeekday: Int {
+        let weekday = self.rawValue
+        var originalWeekday = weekday + 1
+        if originalWeekday > 7 {
+            originalWeekday = 1
+        }
+        return originalWeekday
+    }
+    
 }

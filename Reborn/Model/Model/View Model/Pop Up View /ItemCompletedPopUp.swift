@@ -25,10 +25,9 @@ class ItemCompletedPopUp: PopUpImpl {
     init(item: Item, presentAnimationType: PopUpAnimationType, size: PopUpSize = .small, popUpViewController: PopUpViewController) {
         self.item = item
         super.init(presentAnimationType: presentAnimationType, type: .itemCompletedPopUp, size: size, popUpViewController: popUpViewController)
-        setUpUI()
     }
     
-    func setUpUI() {
+    override func setUpUI() {
         
         self.topConfettiView?.alpha = 0
         self.promptLabel?.alpha = 0

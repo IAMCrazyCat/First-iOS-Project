@@ -31,6 +31,7 @@ class AddNewItemStrategy: VIPStrategyImpl {
     func addItem() {
         AppEngine.shared.currentUser.add(newItem: newItemViewController.item)
         AppEngine.shared.saveUser()
+        NotificationManager.shared.scheduleNotification(for: newItemViewController.item)
         newItemViewController.dismiss(animated: true) {
             self.newItemViewController.engine.notifyAllUIObservers()
         }

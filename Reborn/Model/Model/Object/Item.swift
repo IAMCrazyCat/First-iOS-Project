@@ -19,11 +19,11 @@ class Item: Codable {
     var punchInDates: Array<CustomDate> = []
     var energyRedeemDates: Array<CustomDate> = []
     var state: ItemState = .inProgress
-    var frequency: Frequency
+
     var hasSanction: Bool = false
     var icon: Icon
-    var newFrequency: NewFrequency? = nil
-    
+    var newFrequency: NewFrequency
+    var notificationTimes: Array<CustomTime> = []
     
     
     
@@ -77,18 +77,7 @@ class Item: Codable {
         return getNextPunchInDateInString()
     }
     
-    init(ID: Int, name: String, days: Int, frequency: Frequency, creationDate: CustomDate, type: ItemType, icon: Icon) {
-        self.ID = ID
-        self.name = name
-        self.targetDays = days
-        self.creationDate = creationDate
-        self.type = type
-        self.frequency = frequency
-        self.icon = icon
-        updateState()
-    }
-    
-    init(ID: Int, name: String, days: Int, frequency: NewFrequency, creationDate: CustomDate, type: ItemType, icon: Icon) {
+    init(ID: Int, name: String, days: Int, frequency: NewFrequency, creationDate: CustomDate, type: ItemType, icon: Icon, notificationTimes: Array<CustomTime>) {
         self.ID = ID
         self.name = name
         self.targetDays = days
@@ -96,8 +85,7 @@ class Item: Codable {
         self.type = type
         self.icon = icon
         self.newFrequency = frequency
-        
-        self.frequency = .everyday
+        self.notificationTimes = notificationTimes
         updateState()
     }
     
@@ -118,7 +106,7 @@ class Item: Codable {
         case icon
         case newFrequency
         case newFrequencyType
-        
+        case notificationTimes
     }
     
     required init(from decoder: Decoder) throws {
@@ -131,11 +119,14 @@ class Item: Codable {
         self.type = try container.decode(ItemType.self, forKey: .type)
         self.punchInDates = try container.decode([CustomDate].self, forKey: .punchInDates)
         self.state = try container.decode(ItemState.self, forKey: .state)
-        self.frequency = try container.decode(Frequency.self, forKey: .frequency)
         self.energyRedeemDates = try container.decode([CustomDate].self, forKey: .energyRedeemDates)
         self.icon = try container.decode(Icon.self, forKey: .icon)
 
-        do { self.lastEnergyConsecutiveDays = try container.decode(Int.self, forKey: .lastEnergyConsecutiveDays) } catch { self.lastEnergyConsecutiveDays = self.bestConsecutiveDays }
+        do {
+            self.notificationTimes = try container.decode(Array<CustomTime>.self, forKey: .notificationTimes)
+        } catch {
+            self.notificationTimes = [CustomTime]()
+        }
         
         do {
             if let newFrequencyType = try container.decode(NewFrequencyType?.self, forKey: .newFrequencyType) {
@@ -145,13 +136,18 @@ class Item: Codable {
                 case .everyWeek: self.newFrequency = try container.decode(EveryWeek.self, forKey: .newFrequency)
                 case .everyWeekdays: self.newFrequency = try container.decode(EveryWeekdays.self, forKey: .newFrequency)
                 }
+            } else {
+                self.newFrequency = EveryDay()
             }
         } catch {
-            print(error)
+            self.newFrequency = EveryDay()
         }
-
-
-
+        
+        do {
+            self.lastEnergyConsecutiveDays = try container.decode(Int.self, forKey: .lastEnergyConsecutiveDays)
+        } catch {
+            self.lastEnergyConsecutiveDays = self.bestConsecutiveDays
+        }
     }
 
     func encode(to encoder: Encoder) throws {
@@ -164,20 +160,18 @@ class Item: Codable {
         try container.encode(type, forKey: .type)
         try container.encode(punchInDates, forKey: .punchInDates)
         try container.encode(state, forKey: .state)
-        try container.encode(frequency, forKey: .frequency)
         try container.encode(hasSanction, forKey: .hasSanction)
         try container.encode(energyRedeemDates, forKey: .energyRedeemDates)
         try container.encode(icon, forKey: .icon)
-        try container.encode(newFrequency?.type, forKey: .newFrequencyType)
-
+        try container.encode(newFrequency.type, forKey: .newFrequencyType)
         try container.encode(lastEnergyConsecutiveDays, forKey: .lastEnergyConsecutiveDays)
+        try container.encode(notificationTimes, forKey: .notificationTimes)
         
-        switch newFrequency?.type {
+        switch newFrequency.type {
         case .everyDay: try container.encode(newFrequency as? EveryDay, forKey: .newFrequency)
         case .everyMonth: try container.encode(newFrequency as? EveryMonth, forKey: .newFrequency)
         case .everyWeek: try container.encode(newFrequency as? EveryWeek, forKey: .newFrequency)
         case .everyWeekdays: try container.encode(newFrequency as? EveryWeekdays, forKey: .newFrequency)
-        case .none: break
         }
 
     }
@@ -190,6 +184,9 @@ class Item: Codable {
             self.lastEnergyConsecutiveDays += 1
         } else {
             self.lastEnergyConsecutiveDays = 1
+        }
+        DispatchQueue.main.async {
+            NotificationManager.shared.scheduleNotification(for: self)
         }
     }
     
@@ -208,7 +205,9 @@ class Item: Codable {
         }
         updateState()
         self.lastEnergyConsecutiveDays -= 1
-
+        DispatchQueue.main.async {
+            NotificationManager.shared.scheduleNotification(for: self)
+        }
     }
   
     public func add(punchInDate: CustomDate) {
@@ -353,6 +352,10 @@ class Item: Codable {
                 checkEveryWeekdaysState(with: newFrequency)
             }
 
+        }
+        
+        DispatchQueue.main.async {
+            NotificationManager.shared.scheduleNotification(for: self)
         }
 
     }

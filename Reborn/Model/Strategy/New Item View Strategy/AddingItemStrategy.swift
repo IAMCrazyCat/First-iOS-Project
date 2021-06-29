@@ -53,7 +53,6 @@ class AddingItemStrategy: NewItemViewStrategy {
     
     func doneButtonPressed(_ sender: UIButton) {
         if isRedyToDismiss() {
-
             let VIPStrategy: VIPStrategy = AddNewItemStrategy(newItemViewController: newItemViewController)
             VIPStrategy.performStrategy()
         }

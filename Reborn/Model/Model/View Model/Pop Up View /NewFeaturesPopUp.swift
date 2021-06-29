@@ -13,15 +13,15 @@ class NewFeaturesPopUp: PopUpImpl {
         self.newFeatures = newFeatures
         super.init(presentAnimationType: presentAnimationType, type: .newFeaturesPopUp, size: size, popUpViewController: popUpViewController)
     }
-    
-    
-    
+
     override func createWindow() -> UIView {
         return NewFeaturesPopUpViewBuilder(popUpViewController: super.popUpViewController, frame: super.frame, newFeatures: self.newFeatures).buildView()
     }
     
-    override func updateUI() {
+    override func setUpUI() {
+        super.doneButton?.setTitle("知道了", for: .normal)
         super.titleLabel?.text = "新特性(v\(App.simpleVersion))"
     }
+    
     
 }

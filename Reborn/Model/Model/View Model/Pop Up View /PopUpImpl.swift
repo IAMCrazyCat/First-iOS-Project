@@ -38,6 +38,7 @@ class PopUpImpl: PopUp {
         self.type = type
         self.size = size
         self.window = self.createWindow()
+        self.setUpUI()
         self.updateUI()
     }
     
@@ -104,6 +105,10 @@ class PopUpImpl: PopUp {
     
     func createWindow() -> UIView {
         return UIView()
+    }
+    
+    func setUpUI() {
+        
     }
     
     func updateUI() {

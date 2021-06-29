@@ -36,6 +36,8 @@ class NewItemViewController: UIViewController {
     @IBOutlet weak var everyWeekFreqencyButton: UIButton!
     @IBOutlet weak var everyMonthFrequencyButton: UIButton!
     @IBOutlet weak var customFrequencyButton: UIButton!
+    @IBOutlet weak var turnOffNotificationButton: UIButton!
+    @IBOutlet weak var customNotificationButton: UIButton!
     
     @IBOutlet weak var firstInstructionLabel: UILabel!
     @IBOutlet weak var secondInstructionLabel: UILabel!
@@ -64,7 +66,7 @@ class NewItemViewController: UIViewController {
     var selectedFrequencyButton: UIButton? = nil
     var selectedNotificationButton: UIButton? = nil
     //var lastSelectedButton: UIButton? = nil
-    var item: Item = Item(ID: AppEngine.shared.currentUser.getLargestItemID() + 1, name: "一件事", days: 1, frequency: EveryDay(), creationDate: CustomDate.current, type: .undefined, icon: Icon.defaultIcon1)
+    var item: Item = Item(ID: AppEngine.shared.currentUser.getLargestItemID() + 1, name: "一件事", days: 1, frequency: EveryDay(), creationDate: CustomDate.current, type: .undefined, icon: Icon.defaultIcon1, notificationTimes: [CustomTime]())
     var preViewItemCard: UIView = UIView()
     var strategy: NewItemViewStrategy? = nil
     var lastViewController: UIViewController? = nil
@@ -83,7 +85,7 @@ class NewItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        originalItemForRecovery = Item(ID: item.ID, name: item.name, days: item.targetDays, frequency: item.frequency, creationDate: item.creationDate, type: item.type, icon: self.item.icon)
+        originalItemForRecovery = Item(ID: item.ID, name: item.name, days: item.targetDays, frequency: item.newFrequency, creationDate: item.creationDate, type: item.type, icon: self.item.icon, notificationTimes: item.notificationTimes)
         originalItemForRecovery.newFrequency = item.newFrequency
         originalItemForRecovery.energy = item.energy
         originalItemForRecovery.state = item.state
@@ -107,7 +109,7 @@ class NewItemViewController: UIViewController {
         customTargetDaysButton.tag = setting.customTargetDaysButtonTag
         customFrequencyButton.tag = setting.customFrequencyButtonTag
         customFrequencyButton.isHidden = true // Hide
-        
+        selectedNotificationButton = turnOffNotificationButton
         itemNameTextfield.setPadding()
         itemNameTextfield.tintColor = engine.userSetting.themeColor.uiColor
         itemNameTextfield.addTarget(self, action: #selector(textfieldTextChanged(_:)), for: .editingChanged)
@@ -135,11 +137,12 @@ class NewItemViewController: UIViewController {
                 self.item.icon = originalItem.icon
                 self.item.name = originalItem.name
                 self.item.targetDays = originalItem.targetDays
-                self.item.frequency = originalItem.frequency
+//                self.item.frequency = originalItem.frequency
                 self.item.newFrequency = originalItem.newFrequency
                 self.item.type = originalItem.type
                 self.item.energy = originalItem.energy
                 self.item.state = originalItem.state
+                self.item.notificationTimes = originalItem.notificationTimes
             }
             
         }
@@ -200,7 +203,7 @@ class NewItemViewController: UIViewController {
         self.selectedNotificationButton = sender
         
         switch sender.tag {
-        case 2: self.present(.newFeaturesPopUp)
+        case 2: self.present(.itemNotificationTimePopUp, item: self.item)
         default: break
         }
         self.updateUI()
@@ -213,6 +216,10 @@ class NewItemViewController: UIViewController {
     }
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
+        if self.selectedNotificationButton == self.turnOffNotificationButton {
+            self.item.notificationTimes.removeAll()
+            self.customNotificationButton.setTitle("自定义", for: .normal)
+        }
         userDidSaveChange = true
         self.strategy?.doneButtonPressed(sender)
     }
@@ -294,7 +301,7 @@ class NewItemViewController: UIViewController {
             self.firstInstructionLabel.isHidden = true
             self.secondInstructionLabel.text = "戒除项目需要您坚持每天打卡"
         } else {
-            self.firstInstructionLabel.text = "提醒默认为关闭，但不影响固定提醒的通知推送"
+            self.firstInstructionLabel.text = "提醒默认设为关闭，但不影响固定提醒的通知推送"
             self.secondInstructionLabel.text = "您可以在个人中心设置固定提醒的时间"
             self.firstInstructionLabel.isHidden = false
         }
@@ -498,6 +505,12 @@ extension NewItemViewController: PopUpViewDelegate { // Delegate extension
         case .everyMonthFreqencyPopUp:
             if let days = (self.engine.getStoredDataFromPopUpView() as? Int) {
                 self.item.newFrequency = EveryMonth(days: days)
+            }
+        case .itemNotificationTimePopUp:
+            if let notificationTime = (self.engine.getStoredDataFromPopUpView() as? [CustomTime])?.first {
+                self.customNotificationButton.setTitle("\(notificationTime.getTimeString())", for: .normal)
+                self.item.notificationTimes.removeAll()
+                self.item.notificationTimes.append(notificationTime)
             }
         default: break
         }

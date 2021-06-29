@@ -41,8 +41,6 @@ class EnergySettingViewController: UIViewController {
             newEnergyPromptLabel.alpha = 0
         }
         
-    
-        
     }
     
     override func viewDidLayoutSubviews() {
@@ -59,8 +57,10 @@ class EnergySettingViewController: UIViewController {
         engine.userSetting.hasViewedEnergyUpdate = true
         engine.saveSetting()
         //engine.notifyAllUIObservers()
-        
-        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        engine.notifyUIObservers(withIdentifier: "UserCenterViewController")
     }
     
     @IBAction func purchaseButtonPressed(_ sender: Any) {

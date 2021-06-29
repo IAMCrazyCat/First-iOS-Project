@@ -32,7 +32,7 @@ class NewFeaturesPopUpViewBuilder: PopUpViewBuilder {
         scrollView.leftAnchor.constraint(equalTo: super.contentView.leftAnchor).isActive = true
         scrollView.rightAnchor.constraint(equalTo: super.contentView.rightAnchor).isActive = true
         scrollView.topAnchor.constraint(equalTo: super.contentView.topAnchor).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: super.contentView.bottomAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: super.contentView.bottomAnchor, constant: -10).isActive = true
         
         scrollView.layoutIfNeeded()
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()

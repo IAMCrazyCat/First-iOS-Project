@@ -107,6 +107,8 @@ class HomeViewController: UIViewController {
         super.traitCollectionDidChange(previousTraitCollection)
         if #available(iOS 14.0, *) {
             self.updateUI()
+        } else {
+            self.updateOverAllProgressView(scrollView: verticalScrollView, animated: false)
         }
     }
     

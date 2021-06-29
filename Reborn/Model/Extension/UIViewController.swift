@@ -69,17 +69,15 @@ extension UIViewController: UIViewControllerTransitioningDelegate  {
             case .customUserInformationPopUp:
                 popUpViewController.popUp = CustomUserInformationPopUp(presentAnimationType: animationType, size: size, popUpViewController: popUpViewController)
             case .notificationTimePopUp:
-                
-                if NotificationManager.shared.isNotificationEnabled() {
-                    popUpViewController.popUp = NotificationTimePopUp(presentAnimationType: animationType, size: size, popUpViewController: popUpViewController)
-                } else {
-                    popUpViewController.popUp = NotificationTimePopUp(presentAnimationType: animationType, size: size, popUpViewController: popUpViewController)
-                }
+                popUpViewController.popUp = NotificationTimePopUp(presentAnimationType: animationType, size: size, popUpViewController: popUpViewController)
+            case .lightAndDarkModePopUp:
+                popUpViewController.popUp = LightAndDarkModePopUp(presentAnimationType: animationType, size: size, popUpViewController: popUpViewController)
+            case .itemNotificationTimePopUp:
+                print("You should not use this function")
+                print("Use present(_ popUpType: PopUpType, size: PopUpSize = .small, animation animationType: PopUpAnimationType = .slideInToBottom, item: Item)")
             case .itemCompletedPopUp:
                 print("You should not use this function")
                 print("Use 'showItemCompletedPopUp(for: Item)' instead")
-            case .lightAndDarkModePopUp:
-                popUpViewController.popUp = LightAndDarkModePopUp(presentAnimationType: animationType, size: size, popUpViewController: popUpViewController)
             case .everyWeekFreqencyPopUp:
                 print("You should not use this function")
                 print("Use 'present(_ popUpType: PopUpType, size: PopUpSize = .small, animation animationType: PopUpAnimationType = .slideInToBottom, newFrequency: NewFrequency)' instead")
@@ -89,6 +87,39 @@ extension UIViewController: UIViewControllerTransitioningDelegate  {
             case .newFeaturesPopUp:
                 print("You should not use this function")
                 print("Use present(size: PopUpSize = .small, animation animationType: PopUpAnimationType = .slideInToBottom, newFeatures: Array<CustomData>)")
+            }
+            
+            self.present(to: popUpViewController)
+        }
+
+    }
+    
+    func present(_ popUpType: PopUpType, size: PopUpSize = .small, animation animationType: PopUpAnimationType = .slideInToBottom, item: Item) {
+        
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let popUpViewController = storyboard.instantiateViewController(withIdentifier: "PopUpViewController") as? PopUpViewController {
+            
+            AppEngine.shared.delegate = self as? PopUpViewDelegate
+            
+            switch popUpType {
+            case .itemNotificationTimePopUp:
+                popUpViewController.popUp = ItemNotificationTimePopUp(presentAnimationType: animationType, size: size, popUpViewController: popUpViewController, item: item)
+            case .itemCompletedPopUp:
+                print("You should not use this function")
+                print("Use 'showItemCompletedPopUp(for: Item)' instead")
+            case .everyWeekFreqencyPopUp:
+                print("You should not use this function")
+                print("Use 'present(_ popUpType: PopUpType, size: PopUpSize = .small, animation animationType: PopUpAnimationType = .slideInToBottom, newFrequency: NewFrequency)' instead")
+            case .everyMonthFreqencyPopUp:
+                print("You should not use this function")
+                print("Use 'present(_ popUpType: PopUpType, size: PopUpSize = .small, animation animationType: PopUpAnimationType = .slideInToBottom, newFrequency: NewFrequency)' instead")
+            case .newFeaturesPopUp:
+                print("You should not use this function")
+                print("Use present(size: PopUpSize = .small, animation animationType: PopUpAnimationType = .slideInToBottom, newFeatures: Array<CustomData>)")
+            default:
+                print("You should not use this function")
+                print("present(_ popUpType: PopUpType, size: PopUpSize = .small, animation animationType: PopUpAnimationType = .slideInToBottom, dataStartIndex: Int = 0)")
             }
             
             self.present(to: popUpViewController)

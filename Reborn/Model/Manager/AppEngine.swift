@@ -80,7 +80,7 @@ class AppEngine {
     }
     
     private func schduleNotification() {
-        NotificationManager.shared.scheduleItemsNotification(at: self.userSetting.notificationTime)
+        NotificationManager.shared.scheduleFixedNotification(at: self.userSetting.notificationTime)
     }
    
     

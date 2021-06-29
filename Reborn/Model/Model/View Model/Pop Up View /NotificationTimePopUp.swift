@@ -9,44 +9,38 @@ import Foundation
 import UIKit
 class NotificationTimePopUp: PopUpImpl {
     
-    private var timePickerView: UIView? {
+    internal var timePickerView: UIView? {
         return super.contentView?.getSubviewBy(idenifier: "TimePickerView")
     }
     
-    private var instructionView: UIView? {
+    internal var instructionView: UIView? {
         return super.contentView?.getSubviewBy(idenifier: "InstructionView")
     }
     
-    private var firstDatePicker: UIDatePicker? {
+    internal var firstDatePicker: UIDatePicker? {
         return timePickerView?.getSubviewBy(idenifier: "DatePicker1") as? UIDatePicker
         
     }
     
-    private var secondDatePicker: UIDatePicker? {
+    internal var secondDatePicker: UIDatePicker? {
         return timePickerView?.getSubviewBy(idenifier: "DatePicker2") as? UIDatePicker
         
     }
     
-    private var segmentedControl: UISegmentedControl? {
+    internal var segmentedControl: UISegmentedControl? {
         return timePickerView?.getSubviewBy(idenifier: "SegmentedControl") as? UISegmentedControl
     }
     
+    internal var explanationLabel: UILabel? {
+        return timePickerView?.getSubviewBy(idenifier: "ExplanationLabel") as? UILabel
+    }
 
-
+    private let defaultNotificationTimes: Array<CustomTime> = [CustomTime(hour: 21, minute: 0, second: 0, oneTenthSecond: 0)]
     
     public var pikerViewData: Array<Any> = []
     
     init(presentAnimationType: PopUpAnimationType, size: PopUpSize = .large, popUpViewController: PopUpViewController) {
-
         super.init(presentAnimationType: presentAnimationType, type: .notificationTimePopUp, size: size, popUpViewController: popUpViewController)
-
-        if AppEngine.shared.userSetting.notificationTime.isEmpty {
-            self.segmentedControl?.selectedSegmentIndex = 0
-        } else {
-            self.segmentedControl?.selectedSegmentIndex = 1
-        }
-        updateUI()
-        
     }
     
     override func createWindow() -> UIView {
@@ -56,7 +50,7 @@ class NotificationTimePopUp: PopUpImpl {
             super.size = .large
         }
         if AppEngine.shared.userSetting.notificationTime.isEmpty {
-            return NotificationTimePopUpViewBuilder(popUpViewController: super.popUpViewController, frame: super.frame, notificationTime: [CustomTime(hour: 21, minute: 0, second: 0, oneTenthSecond: 0)], notificationTimePopUp: self).buildView()
+            return NotificationTimePopUpViewBuilder(popUpViewController: super.popUpViewController, frame: super.frame, notificationTime: defaultNotificationTimes, notificationTimePopUp: self).buildView()
            
         } else {
             return NotificationTimePopUpViewBuilder(popUpViewController: super.popUpViewController, frame: super.frame, notificationTime: AppEngine.shared.userSetting.notificationTime, notificationTimePopUp: self).buildView()
@@ -92,12 +86,22 @@ class NotificationTimePopUp: PopUpImpl {
         }
     }
     
-    private func updateContent() {
+    internal func updateContent() {
    
-        super.cancelButton?.isHidden = true
-        self.secondDatePicker?.isHidden = true
+        
         self.timePickerView?.isHidden = !NotificationManager.shared.isNotificationEnabled()
         self.instructionView?.isHidden = NotificationManager.shared.isNotificationEnabled()
+    }
+    
+    override func setUpUI() {
+        
+        if AppEngine.shared.userSetting.notificationTime.isEmpty {
+            self.segmentedControl?.selectedSegmentIndex = 0
+        } else {
+            self.segmentedControl?.selectedSegmentIndex = 1
+        }
+        super.cancelButton?.isHidden = true
+        self.secondDatePicker?.isHidden = true
     }
     
     override func updateUI() {

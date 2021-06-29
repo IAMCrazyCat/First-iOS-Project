@@ -83,11 +83,18 @@ class SetUpManager {
         let newUser = AppEngine.shared.currentUser
         
         if !setUpIsSkipped {
-            
+
             newUser.name = userName
             newUser.gender = userGender
-            !quittingItemIsSkipped ? newUser.items.append(QuittingItem(ID: 1, name: quittingItemName, days: quittingItemDays, frequency: EveryDay(), creationDate: CustomDate.current)) : ()
-            !persistingItemIsSkipped ? newUser.items.append(PersistingItem(ID: 2, name: persistingItemName, days: persistingItemDays, frequency: EveryDay(), creationDate: CustomDate.current)) : ()
+            if !persistingItemIsSkipped {
+                let item = Item(ID: 1, name: persistingItemName, days: persistingItemDays, frequency: EveryDay(), creationDate: CustomDate.current, type: .persisting, icon: Icon.defaultIcon1, notificationTimes: [CustomTime]())
+                newUser.items.append(item)
+            }
+            
+            if !quittingItemIsSkipped {
+                let item = Item(ID: 2, name: quittingItemName, days: quittingItemDays, frequency: EveryDay(), creationDate: CustomDate.current, type: .quitting, icon: Icon.defaultIcon2, notificationTimes: [CustomTime]())
+                newUser.items.append(item)
+            }
             newUser.energy = 1
             
             switch newUser.gender {

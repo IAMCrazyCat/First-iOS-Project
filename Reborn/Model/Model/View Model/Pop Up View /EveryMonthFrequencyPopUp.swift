@@ -16,7 +16,7 @@ class EveryMonthFrequencyPopUp: EveryWeekFrequencyPopUp {
     override init(presentAnimationType: PopUpAnimationType, size: PopUpSize = .small, popUpViewController: PopUpViewController, newFrequency: NewFrequency?) {
         super.init(presentAnimationType: presentAnimationType, popUpViewController: popUpViewController, newFrequency: newFrequency)
         super.type = .everyMonthFreqencyPopUp
-        self.setUpUI()
+
     }
     
     override func getStoredData() -> Any? {
@@ -47,7 +47,7 @@ class EveryMonthFrequencyPopUp: EveryWeekFrequencyPopUp {
         self.instructionLabel?.text = "一月内完成\(super.selectedDays)次打卡后项目将不会出现在今日打卡中"
     }
     
-    private func setUpUI() {
+    override func setUpUI() {
         super.segmentedControl?.selectedSegmentIndex = 1
         super.accordingToWeekDaysView?.isHidden = true
         super.accordingToDaysView?.isHidden = false

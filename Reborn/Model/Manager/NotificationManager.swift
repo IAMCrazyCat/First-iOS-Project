@@ -73,28 +73,101 @@ class NotificationManager {
        
     }
     
-    func scheduleItemsNotification(at times: [CustomTime]) {
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+    func scheduleFixedNotification(at times: [CustomTime]) {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["FixedNotification"])
+       
         
         for time in times {
             DispatchQueue.main.async {
-                self.addNotification(at: time)
-            }
+                let earlyTitle = WelcomeText(timeRange: time.timeRange).firstText
+                let earlyBody = self.earlyBodys.random!
+                let lateTitle = SharePosterTextData.randomText
+                let lateBody = self.lateBodys.random!
             
+                let titile = time < CustomTime(hour: 18, minute: 0, second: 0, oneTenthSecond: 0) ? earlyTitle : lateTitle
+                let body = time < CustomTime(hour: 14, minute: 0, second: 0, oneTenthSecond: 0) ? earlyBody : lateBody
+                self.addNotification(at: time, title: titile, body: body, identifier: "FixedNotification")
+            }
         }
             
     }
     
-    
-    func addNotification(at time: CustomTime) {
+    func scheduleNotification(for item: Item) {
+        let tommorow = DateCalculator.calculateDate(withDayDifference: 1, originalDate: CustomDate.current)
+        let identifier = "Item\(item.ID)Notification"
+       
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
         
-        let earlyTitle = WelcomeText(timeRange: time.timeRange).firstText
-        let earlyBody = earlyBodys.random!
-        let lateTitle = SharePosterTextData.randomText
-        let lateBody = lateBodys.random!
+        if let notificationTime = item.notificationTimes.first {
+            let titile = WelcomeText(timeRange: notificationTime.timeRange).firstText
+            let body = "今天记得\(item.getFullName()), 您已经\(item.type.rawValue)了\(item.finishedDays)天, 距离目标又进了一步"
+            
+            switch item.newFrequency {
+            case is EveryDay:
+                self.addNotification(at: notificationTime, title: titile, body: body, identifier: identifier)
+                if item.state != .inProgress {
+                    UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
+                }
+            case is EveryWeekdays:
+                let weekdays = (item.newFrequency as! EveryWeekdays).weekdays
+                for weekday in weekdays {
+                    self.addNotification(on: weekday, at: notificationTime, title: titile, body: body, identifier: identifier)
+                }
+                if item.state == .completed {
+                    UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
+                }
+            case is EveryWeek:
+                self.addNotification(at: notificationTime, title: titile, body: body, identifier: identifier)
+                if item.state != .inProgress || (item.isPunchedIn && item.nextPunchInDate != tommorow) {
+                    UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
+                }
+            case is EveryMonth:
+                self.addNotification(at: notificationTime, title: titile, body: body, identifier: identifier)
+                if item.state != .inProgress || (item.isPunchedIn && item.nextPunchInDate != tommorow) {
+                    UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
+                }
+            default: break
+            }
+        }
+    }
+    
+    func addNotification(on weekday: WeekDay, at time: CustomTime, title: String, body: String, identifier: String) {
         let content = UNMutableNotificationContent()
-        content.title = time < CustomTime(hour: 18, minute: 0, second: 0, oneTenthSecond: 0) ? earlyTitle : lateTitle
-        content.body = time < CustomTime(hour: 14, minute: 0, second: 0, oneTenthSecond: 0) ? earlyBody : lateBody
+        content.title = title
+        content.body = body
+        content.badge = 1
+        
+        var dateComponents = DateComponents()
+        dateComponents.calendar = Calendar.current
+        dateComponents.hour = time.hour
+        dateComponents.minute = time.minute
+        dateComponents.weekday = weekday.originalWeekday
+        
+        // Create the trigger as a repeating event.
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        // Create the request
+        let request = UNNotificationRequest(identifier: identifier,
+                    content: content, trigger: trigger)
+
+        // Schedule the request with the system.
+        let notificationCenter = UNUserNotificationCenter.current()
+        
+        notificationCenter.add(request) { (error) in
+           if error != nil {
+              print("Notification schedule failed, No user permission")
+           } else {
+              print("Notification schedule successfully, Weekday:\(weekday) time: \(time) identifier: \(identifier)")
+           }
+        }
+    }
+    
+    
+    
+    func addNotification(at time: CustomTime, title: String, body: String, identifier: String) {
+        
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = body
         content.badge = 1
         
         var dateComponents = DateComponents()
@@ -106,7 +179,7 @@ class NotificationManager {
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         // Create the request
         let uuidString = UUID().uuidString
-        let request = UNNotificationRequest(identifier: uuidString,
+        let request = UNNotificationRequest(identifier: identifier,
                     content: content, trigger: trigger)
 
         // Schedule the request with the system.
