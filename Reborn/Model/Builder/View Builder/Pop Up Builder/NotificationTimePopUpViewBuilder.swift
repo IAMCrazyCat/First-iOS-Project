@@ -44,7 +44,7 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
     }
     
     private func setUpUI() {
-        super.titleLabel.text = "打卡提醒时间"
+        super.titleLabel.text = "固定提醒时间"
     }
     
     private func addInstructionView() {
@@ -103,13 +103,8 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
     }
     
     private func addSegmentedControl() {
-        
-        var timeNumber = 1
-        var items : [String] = []
-        for _ in self.notificationTime {
-            items.append("提醒\(timeNumber)")
-            timeNumber += 1
-        }
+
+        let items : [String] = ["关", "启用"]
             
         let segmentedControl = UISegmentedControl(items: items)
         segmentedControl.accessibilityIdentifier = "SegmentedControl"
@@ -128,6 +123,7 @@ class NotificationTimePopUpViewBuilder: PopUpViewBuilder {
         
         let segmentedControl = timePickerView.getSubviewBy(idenifier: "SegmentedControl")!
         var number = 1
+
         for time in notificationTime {
         
             let picker = UIDatePicker()

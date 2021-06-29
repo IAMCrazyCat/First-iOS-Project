@@ -12,8 +12,9 @@ class NewFeaturesManager {
     public static let shared = NewFeaturesManager()
     private let defaults = UserDefaults.standard
     let newFeature: Array<CustomData> = [
-        CustomData(title: "修复了习惯能量不累积的问题", body: "您之前打卡累积的能量进度已经返还，继续加油"),
-        CustomData(title: "修复了通知内容不准确的问题", body: "暂时使用标准化通知内容，正在更新智能通知"),
+        CustomData(title: "永久会员限时7折购买", body: "活动截止时间: 2021年7月15日"),
+        CustomData(title: "新增了'薰衣草'主题色", body: "您可以在设置中试用/使用"),
+        CustomData(title: "新增了8款图标", body: ""),
     ]
     
     private init() {

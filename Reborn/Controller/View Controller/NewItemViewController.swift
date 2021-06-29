@@ -39,7 +39,6 @@ class NewItemViewController: UIViewController {
     
     @IBOutlet weak var firstInstructionLabel: UILabel!
     @IBOutlet weak var secondInstructionLabel: UILabel!
-    @IBOutlet weak var typeIcon: UIImageView!
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var verticalScrollViewContentViewHeightConstraint: NSLayoutConstraint!
@@ -52,7 +51,7 @@ class NewItemViewController: UIViewController {
     @IBOutlet var typeButtons: [UIButton]!
     @IBOutlet var targetButtons: [UIButton]!
     @IBOutlet var frequencyButtons: [UIButton]!
-    
+    @IBOutlet var notificationButtons: [UIButton]!
     
     var originalItemForRecovery: Item!
     
@@ -63,6 +62,7 @@ class NewItemViewController: UIViewController {
     var selectedTypeButton: UIButton? = nil
     var selectedTargetDaysButton: UIButton? = nil
     var selectedFrequencyButton: UIButton? = nil
+    var selectedNotificationButton: UIButton? = nil
     //var lastSelectedButton: UIButton? = nil
     var item: Item = Item(ID: AppEngine.shared.currentUser.getLargestItemID() + 1, name: "一件事", days: 1, frequency: EveryDay(), creationDate: CustomDate.current, type: .undefined, icon: Icon.defaultIcon1)
     var preViewItemCard: UIView = UIView()
@@ -167,8 +167,6 @@ class NewItemViewController: UIViewController {
             self.item.newFrequency = EveryDay()
         }
         
-        
-        
         self.updateUI()
     }
     
@@ -195,33 +193,28 @@ class NewItemViewController: UIViewController {
         case 3: self.present(.everyMonthFreqencyPopUp, newFrequency: self.item.newFrequency)
         default: break
         }
-        
-        
-//        for frequency in Frequency.allCases {
-//            if sender.currentTitle == frequency.dataModel.title {
-//                self.item.frequency = frequency
-//            }
-//        }
-//
         self.updateUI()
+    }
+    
+    @IBAction func notificationButtonPressed(_ sender: UIButton) {
+        self.selectedNotificationButton = sender
         
-//        if sender.tag == self.setting.customFrequencyButtonTag {
-//            self.strategy?.show(.customFrequencyPopUp)
-//        }
+        switch sender.tag {
+        case 2: self.present(.newFeaturesPopUp)
+        default: break
+        }
+        self.updateUI()
     }
     
     
     @IBAction func cancelButtonPressed(_ sender: UIButton) {
         userDidSaveChange = false
         self.dismiss(animated: true)
-        
-       
     }
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
         userDidSaveChange = true
         self.strategy?.doneButtonPressed(sender)
-        
     }
     
     
@@ -235,7 +228,6 @@ class NewItemViewController: UIViewController {
     }
     
     @objc func deleteItemButtonPressed(_ sender: UIButton) {
-        //self.preViewItemCard.addSubview(EraserViewBuilder(frame: self.preViewItemCard.bounds, item: self.item).buildView())
         showAlert()
     }
     
@@ -302,8 +294,8 @@ class NewItemViewController: UIViewController {
             self.firstInstructionLabel.isHidden = true
             self.secondInstructionLabel.text = "戒除项目需要您坚持每天打卡"
         } else {
-            self.firstInstructionLabel.text = "您设置频率后，如果今天不是打卡日"
-            self.secondInstructionLabel.text = "新添加的习惯需要在自律管理中查看"
+            self.firstInstructionLabel.text = "提醒默认为关闭，但不影响固定提醒的通知推送"
+            self.secondInstructionLabel.text = "您可以在个人中心设置固定提醒的时间"
             self.firstInstructionLabel.isHidden = false
         }
     }
@@ -427,6 +419,7 @@ class NewItemViewController: UIViewController {
         selectedTypeButton?.isSelected = true
         selectedTargetDaysButton?.isSelected = true
         selectedFrequencyButton?.isSelected = true
+        selectedNotificationButton?.isSelected = true
     }
     
 }
