@@ -266,6 +266,7 @@ class NewItemViewController: UIViewController {
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
         let deleteAction = UIAlertAction(title: "删除", style: .destructive) { _ in
             self.deleteItemWithAnimation()
+            NotificationManager.shared.removeAllNotification(of: self.item)
         }
         alert.addAction(cancelAction)
         alert.addAction(deleteAction)
@@ -301,8 +302,8 @@ class NewItemViewController: UIViewController {
             self.firstInstructionLabel.isHidden = true
             self.secondInstructionLabel.text = "戒除项目需要您坚持每天打卡"
         } else {
-            self.firstInstructionLabel.text = "提醒默认设为关闭，但不影响固定提醒的通知推送"
-            self.secondInstructionLabel.text = "您可以在个人中心设置固定提醒的时间"
+            self.firstInstructionLabel.text = "提醒会在您设置的频率内和时间向您发送通知"
+            self.secondInstructionLabel.text = "默认设为关闭，但不会影响固定提醒的通知推送"
             self.firstInstructionLabel.isHidden = false
         }
     }
@@ -451,13 +452,25 @@ extension NewItemViewController: PopUpViewDelegate { // Delegate extension
         
         switch type {
         case .everyWeekFreqencyPopUp, .everyMonthFreqencyPopUp:
-            
-            self.selectedFrequencyButton = nil
+            switch self.item.newFrequency.type {
+            case .everyDay: self.selectedFrequencyButton = self.everydayFrequencyButton
+            case .everyWeek, .everyWeekdays: self.selectedFrequencyButton = self.everyWeekFreqencyButton
+            case .everyMonth: self.selectedFrequencyButton = self.everyMonthFrequencyButton
+            }
             
         case .customTargetDaysPopUp:
-            
             self.selectedTargetDaysButton = nil
             self.customTargetDaysButton.setTitle("自定义", for: .normal)
+        case .itemNotificationTimePopUp:
+            
+            if let notificationTime = self.item.notificationTimes.first {
+                self.selectedNotificationButton = self.customNotificationButton
+                self.customNotificationButton.setTitle("\(notificationTime.getTimeString())", for: .normal)
+            } else {
+                self.selectedNotificationButton = self.turnOffNotificationButton
+                self.customNotificationButton.setTitle("自定义", for: .normal)
+            }
+       
             
         default: break
         }

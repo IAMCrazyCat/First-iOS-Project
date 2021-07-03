@@ -42,8 +42,8 @@ struct SetUpPageData {
                       CustomData(title: SystemSetting.shared.customButtonTitle)
                       ]),
         SetUpPage(ID: 5, question: "请设置您的名称", buttons: []),
-        SetUpPage(ID: 6, question: "请设置您的性别", buttons: [CustomData(title: "男"),
-                                                         CustomData(title: "女"),
+        SetUpPage(ID: 6, question: "请设置您的性别", buttons: [CustomData(title: Gender.male.rawValue),
+                                                         CustomData(title: Gender.female.rawValue),
                                                          CustomData(title: "其他"),
                                                          CustomData(title: "保密")
         ])

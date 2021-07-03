@@ -12,7 +12,7 @@ class UserSetting {
     var largeFont = UIFont.systemFont(ofSize: 30)
     var mediumFont = UIFont.systemFont(ofSize: 17)
     var smallFont = UIFont.systemFont(ofSize: 14)
-    var notificationTime: Array<CustomTime> = [CustomTime(hour: 9, minute: 0, second: 0, oneTenthSecond: 0), CustomTime(hour: 21, minute: 0, second: 0, oneTenthSecond: 0)]
+    var notificationTime: Array<CustomTime> = [CustomTime(hour: 21, minute: 0, second: 0, oneTenthSecond: 0)]
     var appAppearanceMode: AppAppearanceMode = .followSystem
     var hasViewedEnergyUpdate: Bool = false
     var uiUserInterfaceStyle : UIUserInterfaceStyle {

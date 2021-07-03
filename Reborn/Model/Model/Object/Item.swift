@@ -70,7 +70,7 @@ class Item: Codable {
     }
     
     var nextPunchInDate: CustomDate? {
-        return getNextPunchInDate()
+        return getNextPunchInDate(isPunchedIn: self.isPunchedIn)
     }
     
     var nextPunchInDateInString: String {
@@ -110,7 +110,9 @@ class Item: Codable {
     }
     
     required init(from decoder: Decoder) throws {
+
         let container = try decoder.container(keyedBy: Key.self)
+        print(container)
         self.ID = try container.decode(Int.self, forKey: .ID)
         self.name = try container.decode(String.self, forKey: .name)
         self.targetDays = try container.decode(Int.self, forKey: .targetDays)
@@ -122,30 +124,59 @@ class Item: Codable {
         self.energyRedeemDates = try container.decode([CustomDate].self, forKey: .energyRedeemDates)
         self.icon = try container.decode(Icon.self, forKey: .icon)
 
+        
+        
+        
         do {
             self.notificationTimes = try container.decode(Array<CustomTime>.self, forKey: .notificationTimes)
         } catch {
             self.notificationTimes = [CustomTime]()
+            print("notificationTimes failed to decode")
         }
         
+        var newFrequencyType: NewFrequencyType
         do {
-            if let newFrequencyType = try container.decode(NewFrequencyType?.self, forKey: .newFrequencyType) {
-                switch newFrequencyType {
-                case .everyDay: self.newFrequency = try container.decode(EveryDay.self, forKey: .newFrequency)
-                case .everyMonth: self.newFrequency = try container.decode(EveryMonth.self, forKey: .newFrequency)
-                case .everyWeek: self.newFrequency = try container.decode(EveryWeek.self, forKey: .newFrequency)
-                case .everyWeekdays: self.newFrequency = try container.decode(EveryWeekdays.self, forKey: .newFrequency)
-                }
-            } else {
-                self.newFrequency = EveryDay()
-            }
+            newFrequencyType = try container.decode(NewFrequencyType.self, forKey: .newFrequencyType)
         } catch {
-            self.newFrequency = EveryDay()
+            print("newFrequencyType failed to decode")
+            newFrequencyType = .everyDay
+        }
+        
+        switch newFrequencyType {
+        case .everyDay:
+            do {
+                self.newFrequency = try container.decode(EveryDay.self, forKey: .newFrequency)
+            } catch {
+                self.newFrequency = EveryDay()
+                print("EveryDay.self failed to decode")
+            }
+        case .everyMonth:
+            do {
+                self.newFrequency = try container.decode(EveryMonth.self, forKey: .newFrequency)
+            } catch {
+                self.newFrequency = EveryDay()
+                print("EveryMonth.self failed to decode")
+            }
+        case .everyWeek:
+            do {
+                self.newFrequency = try container.decode(EveryWeek.self, forKey: .newFrequency)
+            } catch {
+                self.newFrequency = EveryDay()
+                print("EveryWeek.self failed to decode")
+            }
+        case .everyWeekdays:
+            do {
+                self.newFrequency = try container.decode(EveryWeekdays.self, forKey: .newFrequency)
+            } catch {
+                self.newFrequency = EveryDay()
+                print("EveryWeekdays.self failed to decode")
+            }
         }
         
         do {
             self.lastEnergyConsecutiveDays = try container.decode(Int.self, forKey: .lastEnergyConsecutiveDays)
         } catch {
+            print("lastEnergyConsecutiveDays failed to decode")
             self.lastEnergyConsecutiveDays = self.bestConsecutiveDays
         }
     }
@@ -423,7 +454,7 @@ class Item: Codable {
         }
     }
     
-    private func getNextPunchInDate() -> CustomDate? {
+    public func getNextPunchInDate(isPunchedIn: Bool) -> CustomDate? {
         
         let tomorrow = DateCalculator.calculateDate(withDayDifference: 1, originalDate: CustomDate.current)
         let today = CustomDate.current
@@ -435,7 +466,7 @@ class Item: Codable {
         
         func getItBy(_ newFrequency: EveryDay) -> CustomDate? {
             
-            if self.isPunchedIn {
+            if isPunchedIn {
                 return tomorrow
             } else {
                 return today
@@ -446,7 +477,7 @@ class Item: Codable {
             if checkEveryWeekCompletion(with: newFrequency) {
                 return nextMonday
             } else {
-                if self.isPunchedIn {
+                if isPunchedIn {
                     return tomorrow
                 } else {
                     return today
@@ -458,7 +489,7 @@ class Item: Codable {
             
             let todayShouldPunchIn = newFrequency.weekdays.contains(CustomDate.current.weekday)
             let isCompletedInCurrentWeek = checkEveryWeekdaysCompletion(with: newFrequency)
-            let todayDidPunchIn = self.isPunchedIn
+            let todayDidPunchIn = isPunchedIn
             var nextWeekFirstPunchInDate: CustomDate? {
                 
                 for dayDifference in 0 ... 6 {
@@ -509,7 +540,12 @@ class Item: Codable {
             if checkEveryMonthCompletion(with: newFrequency) {
                 return CustomDate(year: nextYear, month: nextMonth, day: 1)
             } else {
-                return tomorrow
+                if isPunchedIn {
+                    return tomorrow
+                } else {
+                    return today
+                }
+                
             }
         }
         
