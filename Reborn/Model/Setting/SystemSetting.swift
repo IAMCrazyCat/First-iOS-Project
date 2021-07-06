@@ -22,15 +22,15 @@ struct SystemSetting{
     let itemCardCornerRadius: CGFloat = 15
     let customNavigationBarCornerRadius: CGFloat = 25
     
-    let UIViewShadowRadius: CGFloat = 12
+    let UIViewShadowRadius: CGFloat = 10
     let UIViewShadowColor: CGColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
     let UIViewShadowOffset: CGSize = CGSize(width: 0.0, height: 0)
-    let UIViewShadowOpacity: Float = 1.0
+    let UIViewShadowOpacity: Float = 0.85
     
-    let UIButtonShadowRadius: CGFloat = 5
+    let UIButtonShadowRadius: CGFloat = 3
     let UIButtonShadowColor: CGColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.15).cgColor
     let UIButtonShadowOffset: CGSize = CGSize(width: 0.0, height: 1.5)
-    let UIButtonShadowOpacity: Float = 1.0
+    let UIButtonShadowOpacity: Float = 0.75
     
     let grayColor: UIColor = UIColor(named: "GreyColor")!
     let smartLabelGrayColor: UIColor = UIColor(named: "SmartLabelGrayColor")!

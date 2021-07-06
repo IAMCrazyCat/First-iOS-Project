@@ -30,16 +30,16 @@ class TimeMachineAnimationStrategyImpl: TimeMachineAnimationStrategy {
     
     internal func updateCalendarPagesColor() {
 
-        if var lastCalendarPageColorValue = self.timeMachineViewController.calendarPages.first?.subviews.first?.backgroundColor?.value, AppEngine.shared.userSetting.uiUserInterfaceStyle != .dark
-        {
-            
-            for calendarPage in self.timeMachineViewController.calendarPages {
-                calendarPage.subviews.first?.backgroundColor = UIColor(red: lastCalendarPageColorValue.red - self.setting.calendarPageColorDifference, green: lastCalendarPageColorValue.green - self.setting.calendarPageColorDifference, blue: lastCalendarPageColorValue.blue - self.setting.calendarPageColorDifference, alpha: 1)
-                
-                lastCalendarPageColorValue = (calendarPage.subviews.first?.backgroundColor?.value)!
-               
-            }
-        }
+//        if var lastCalendarPageColorValue = self.timeMachineViewController.calendarPages.first?.subviews.first?.backgroundColor?.value, AppEngine.shared.userSetting.uiUserInterfaceStyle != .dark
+//        {
+//
+//            for calendarPage in self.timeMachineViewController.calendarPages {
+//                calendarPage.subviews.first?.backgroundColor = UIColor(red: lastCalendarPageColorValue.red - self.setting.calendarPageColorDifference, green: lastCalendarPageColorValue.green - self.setting.calendarPageColorDifference, blue: lastCalendarPageColorValue.blue - self.setting.calendarPageColorDifference, alpha: 1)
+//
+//                lastCalendarPageColorValue = (calendarPage.subviews.first?.backgroundColor?.value)!
+//
+//            }
+//        }
        
 
     }

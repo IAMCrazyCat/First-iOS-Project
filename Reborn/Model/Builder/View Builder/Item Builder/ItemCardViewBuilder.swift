@@ -55,7 +55,7 @@ class ItemCardViewBuilder: ViewBuilder {
         outPutView.accessibilityIdentifier = setting.itemCardIdentifier
         outPutView.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackContent
         outPutView.layer.cornerRadius = setting.itemCardCornerRadius
-        outPutView.setShadow()
+        outPutView.setShadow(style: .view)
         outPutView.frame = CGRect(x: cordinateX, y: cordinateY, width: width, height: height)
         item.hasSanction ? lockItemCard() : ()
         item.finishedDays == item.targetDays ? addConfettiTopView() : ()

@@ -145,7 +145,7 @@ class TimeMachineViewController: UIViewController {
     func updateGoBackToThePastButton() {
         
         goBackToThePastButton?.setCornerRadius()
-        goBackToThePastButton?.setShadow()
+        goBackToThePastButton?.setShadow(style: .button)
         goBackToThePastButton?.setSmartColor()
         goBackToThePastButton?.setBackgroundColor(.systemGray3, for: .disabled)
         goBackToThePastButton?.isEnabled = userSlectedDate() ? true : false

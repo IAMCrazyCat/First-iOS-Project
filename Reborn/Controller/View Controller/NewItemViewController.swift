@@ -381,7 +381,7 @@ class NewItemViewController: UIViewController {
         for button in self.optionButtons {
             button.proportionallySetSizeWithScreen()
             button.setCornerRadius()
-            button.setShadow()
+            button.setShadow(style: .button)
             button.setBackgroundColor(self.engine.userSetting.themeColor.uiColor, for: .selected)
             button.setTitleColor(self.engine.userSetting.smartLabelColor, for: .selected)
         }

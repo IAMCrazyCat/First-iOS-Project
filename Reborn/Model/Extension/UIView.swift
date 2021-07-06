@@ -31,15 +31,26 @@ extension UIView {
             deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
     }
     
-    func setShadow() {
-//        
-//        layer.shadowColor = SystemSetting.shared.UIViewShadowColor
-//        layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+    enum ShadowStyle {
+        case button
+        case view
+    }
+    func setShadow(style: ShadowStyle) {
+        
+        switch style {
+        case .button:
+            self.layer.shadowColor = SystemSetting.shared.UIButtonShadowColor
+            self.layer.shadowOffset =  SystemSetting.shared.UIButtonShadowOffset
+            self.layer.shadowRadius = SystemSetting.shared.UIButtonShadowRadius
+            self.layer.shadowOpacity = SystemSetting.shared.UIButtonShadowOpacity
+        case .view:
+            self.layer.shadowColor = SystemSetting.shared.UIViewShadowColor
+            self.layer.shadowOffset =  SystemSetting.shared.UIViewShadowOffset
+            self.layer.shadowRadius = SystemSetting.shared.UIViewShadowRadius
+            self.layer.shadowOpacity = SystemSetting.shared.UIViewShadowOpacity
+        }
 
-        self.layer.shadowColor = SystemSetting.shared.UIViewShadowColor
-        self.layer.shadowOffset =  SystemSetting.shared.UIViewShadowOffset
-        self.layer.shadowRadius = SystemSetting.shared.UIViewShadowRadius
-        self.layer.shadowOpacity = SystemSetting.shared.UIViewShadowOpacity
+      
         self.layer.masksToBounds = false
     }
     

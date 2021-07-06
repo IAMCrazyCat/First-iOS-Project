@@ -20,7 +20,7 @@ class BackwardForOneStrategy: TimeMachineAnimationStrategyImpl {
         
         newCalendarPage.alpha = 0
         newCalendarPage.layer.cornerRadius = self.setting.itemCardCornerRadius
-        newCalendarPage.setShadow()
+        newCalendarPage.setShadow(style: .view)
         
         self.timeMachineViewController.middleView.insertSubview(newCalendarPage, aboveSubview: self.timeMachineViewController.calendarPages.first!)
         self.timeMachineViewController.calendarPages.insert(newCalendarPage, at: 0)

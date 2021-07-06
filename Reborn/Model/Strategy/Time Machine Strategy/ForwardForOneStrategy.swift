@@ -24,7 +24,7 @@ class ForwardForOneStrategy: TimeMachineAnimationStrategyImpl {
         newCalendarPage.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackBackground
         newCalendarPage.alpha = 0
         newCalendarPage.layer.cornerRadius = self.setting.itemCardCornerRadius
-        newCalendarPage.setShadow()
+        newCalendarPage.setShadow(style: .view)
 
         self.timeMachineViewController.middleView.insertSubview(newCalendarPage, belowSubview: self.timeMachineViewController.calendarPages.last!)
         self.timeMachineViewController.calendarPages.append(newCalendarPage)

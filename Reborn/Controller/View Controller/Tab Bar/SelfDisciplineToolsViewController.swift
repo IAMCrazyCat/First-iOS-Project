@@ -55,7 +55,7 @@ class SelfDisciplineToolsViewController: UIViewController {
         for button in toolButtons {
             button.layoutIfNeeded()
             button.layer.cornerRadius = button.frame.height / 8
-            button.setShadow()
+            button.setShadow(style: .view)
         }
     }
    

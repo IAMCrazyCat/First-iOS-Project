@@ -13,24 +13,17 @@ class NewFeaturesManager {
     public static let shared = NewFeaturesManager()
     private let defaults = UserDefaults.standard
     let newFeatureForNonVipUsers: Array<CustomData> = [
-        CustomData(title: "永久会员限时8折购买🎉🎉", body: "活动截止时间: 2021年7月15日"),
-        CustomData(title: "新增项目提醒！⏰", body: "您现在可以为您的习惯添加提醒时间"),
-        CustomData(title: "新增了'薰衣草'主题色", body: "您可以在设置中试用"),
-        CustomData(title: "新增了8款会员图标", body: "习惯图标持续更新中"),
-        CustomData(title: "修改了固定通知提醒的方法", body: "您现在每天最多只会收到一次固定提醒推送，您可以在 个人中心-通知设置 中重新设置"),
-        CustomData(title: "修复了iOS15 / iOS13的兼容性问题", body: "用于iOS15属于开发者测试版，如果您在使用过程中遇到了问题，请在 个人中心-反馈 / 客户服务 中反馈您遇到的问题"),
-        CustomData(title: "修复了一些布局问题", body: "修改了自律管理中顶部Indicator大小，修改了项目详情中数据的间隔"),
-        CustomData(title: "项目处于持续开发阶段", body: "欢迎您提供想法，请在 个人中心-反馈 / 客户服务 中反馈建议，您的建议有机会被采纳并在新版本中发布")
+        CustomData(title: "新增 激励语！添加您自己的激励语，动力加倍", body: "高级用户现在可以在自律工具中自定义激励语，激励语将会在主页显示，用您自己的方式提醒自己时刻自律，完成自己的目标，当前版本您最多可以设置8个激励语"),
+        CustomData(title: "优化了阴影效果", body: "新的阴影效果更加真实，给您带来更好的用户体验"),
+        CustomData(title: "修复了固定通知设置界面闪退问题", body: "我们向之前受到此问题影响的用户表示抱歉"),
+        CustomData(title: "重新布局了一些元素", body: "删除了番茄时钟，呼吸，能量界面的大标题")
     ]
     
     let newFeatureForVipUsers: Array<CustomData> = [
-        CustomData(title: "新增项目提醒！⏰", body: "您现在可以为您的习惯添加提醒时间"),
-        CustomData(title: "新增了'薰衣草'主题色", body: "您可以在设置中使用"),
-        CustomData(title: "新增了8款会员图标", body: "习惯图标持续更新中"),
-        CustomData(title: "修改了固定通知提醒的方法", body: "您现在每天最多只会收到一次固定提醒推送，您可以在 个人中心-通知设置 中重新设置"),
-        CustomData(title: "修复了iOS15 / iOS13的兼容性问题", body: "用于iOS15属于开发者测试版，如果您在使用过程中遇到了问题，请在 个人中心-反馈 / 客户服务 中反馈您遇到的问题"),
-        CustomData(title: "修复了一些布局问题", body: "修改了自律管理中顶部Indicator大小，修改了项目详情中数据的间隔"),
-        CustomData(title: "项目处于持续开发阶段", body: "欢迎您提供想法，请在 个人中心-反馈 / 客户服务 中反馈建议，您的建议有机会被采纳并在新版本中发布")
+        CustomData(title: "新增 激励语！添加您自己的激励语！动力加倍", body: "高级用户现在可以在自律工具中自定义激励语，激励语将会在主页显示，用您自己的方式提醒自己时刻自律，完成自己的目标，当前版本您最多可以设置8个激励语"),
+        CustomData(title: "优化了阴影效果", body: "新的阴影效果更加真实，给您带来更好的用户体验"),
+        CustomData(title: "修复了固定通知设置界面闪退问题", body: "我们向之前受到此问题影响的用户表示抱歉"),
+        CustomData(title: "重新布局了一些元素", body: "删除了番茄时钟，呼吸，能量界面的大标题")
     ]
     
     var newFeature: Array<CustomData> {

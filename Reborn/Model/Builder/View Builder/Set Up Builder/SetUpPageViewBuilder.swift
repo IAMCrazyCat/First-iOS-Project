@@ -68,7 +68,7 @@ class SetUpPageViewBuilder {
 
             
             button.setCornerRadius(rounded: true)
-            button.setShadow()
+            button.setShadow(style: .button)
             button.setTitle(buttonTitle, for: .normal)
             button.setTitleColor(self.setting.optionButtonTitleColor, for: .normal)
             button.setTitleColor(.label, for: .normal)

@@ -9,10 +9,9 @@ import UIKit
 
 class EncourageTextViewController: UIViewController {
     
-    private enum State {
+    public enum State {
         case normal
         case editing
-        
     }
     
     @IBOutlet weak var floatingFiledView: UIView!
@@ -23,14 +22,15 @@ class EncourageTextViewController: UIViewController {
     @IBOutlet weak var contentViewBottomConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var eiditingButton: UIBarButtonItem!
-    private var state: State = .normal
+    public var state: State = .normal
     let offset: CGFloat = 20
     let engine: AppEngine = AppEngine.shared
     var textViews: [EncourageTextView] = []
     var keyboardFrame: CGRect? = nil
-    
+    var strategy: VIPStrategy!
     override func viewDidLoad() {
         super.viewDidLoad()
+        strategy = EncourageTextStrategy(encourageTextViewController: self)
         scrollView.delegate = self
         title = "激励语"
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(keyboardShowNotification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -39,6 +39,12 @@ class EncourageTextViewController: UIViewController {
         engine.add(observer: self)
         addEncorageTextViews()
         updateUI()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        for textView in textViews {
+            textView.stopAnimation = true
+        }
     }
     
     @objc
@@ -77,7 +83,7 @@ class EncourageTextViewController: UIViewController {
         
         for text in engine.userSetting.encourageText {
            
-            let textView = EncourageTextView(text: text, frame: CGRect(x: cordinateX, y: cordinateY, width: textViewSize.width, height: textViewSize.height), movingField: self.floatingFiledView.frame.size, delegate: self)
+            let textView = EncourageTextView(text: text, frame: CGRect(x: cordinateX, y: cordinateY, width: textViewSize.width, height: textViewSize.height), movingField: CGSize(width: self.floatingFiledView.frame.size.width, height: self.floatingFiledView.frame.size.height - 100), delegate: self)
             self.contentView.addSubview(textView)
             self.textViews.append(textView)
             
@@ -101,8 +107,7 @@ class EncourageTextViewController: UIViewController {
     
     @IBAction func editButtonPressed(_ sender: UIBarButtonItem) {
         Vibrator.vibrate(withImpactLevel: .light)
-        self.state = self.state == .normal ? .editing : .normal
-        self.updateUI()
+        self.strategy.performStrategy()
     }
     
     private func excuteMovingBackAnimation() {

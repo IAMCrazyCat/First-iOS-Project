@@ -15,7 +15,13 @@ class EncourageTextView: UIView {
     private var originalPosition: CGPoint = .zero
     private var randomDuration: TimeInterval = TimeInterval.random(in: 10 ... 20)
     private var randomPosition: CGPoint {
-        return CGPoint(x: CGFloat.random(in: 0 ... movingField.width - self.frame.width), y: CGFloat.random(in: 0 ... movingField.height - self.frame.height))
+        var randomPosition: CGPoint
+        if 0 < movingField.width && 0 < movingField.height {
+            randomPosition = CGPoint(x: CGFloat.random(in: 0 ... movingField.width), y: CGFloat.random(in: 0 ... movingField.height))
+        } else {
+            randomPosition = CGPoint(x: CGFloat.random(in: 0 ... 300), y: CGFloat.random(in: 0 ... 500))
+        }
+        return randomPosition
     }
     private var temporaryPosition: CGPoint = .zero
    
@@ -27,14 +33,17 @@ class EncourageTextView: UIView {
         super.init(frame: frame)
         
         self.originalPosition = self.layer.position
-        self.backgroundColor = .white.withAlphaComponent(0.3)
-        self.setShadow()
+        self.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackContent
+        self.alpha = 0.7
         self.setCornerRadius(corderRadius: 20)
+        self.setShadow(style: .view)
+        
         
         textView.delegate = delegate
         textView.text = text
         textView.backgroundColor = .clear
         textView.returnKeyType = .done
+        textView.font = AppEngine.shared.userSetting.smallFont
         self.addSubview(textView)
         
         let constant: CGFloat = 10
@@ -73,7 +82,7 @@ class EncourageTextView: UIView {
     }
     
     var movingBack: Bool = false
-    
+    var stopAnimation: Bool = false
     public func moveBack() {
         self.movingBack = true
         self.layer.removeAllAnimations()
@@ -85,7 +94,7 @@ class EncourageTextView: UIView {
         movingBackAnimation.toValue = self.originalPosition
         movingBackAnimation.duration = 1
         movingBackAnimation.fillMode = CAMediaTimingFillMode.forwards
-        movingBackAnimation.timingFunction = CAMediaTimingFunction(controlPoints: 0.29, 0.34, 0.02, 1)
+        movingBackAnimation.timingFunction = CAMediaTimingFunction(controlPoints: 0.29, 0.34, 0.1, 1)
         movingBackAnimation.isRemovedOnCompletion = false
         self.layer.add(movingBackAnimation, forKey: "MovingBackAnimation")
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
@@ -98,9 +107,7 @@ class EncourageTextView: UIView {
 
 extension EncourageTextView: CAAnimationDelegate {
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        if !movingBack {
-            //self.layer.removeAllAnimations()
-            //self.layer.position = self.temporaryPosition
+        if !movingBack && !stopAnimation {
             self.move()
         }
        

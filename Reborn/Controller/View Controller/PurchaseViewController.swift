@@ -218,15 +218,22 @@ class PurchaseViewController: UIViewController {
     }
     
     func updateVIPFouctionViews() {
+        self.functionViews.sort {
+            $0.frame.origin.y < $1.frame.origin.y
+        }
         
+        var number = 1
         for view in functionViews {
             for subview in view.subviews {
                 if let button = subview as? UIButton {
+                    button.setTitle("\(number)", for: .normal)
+                    button.setSmartColor()
                     button.proportionallySetSizeWithScreen()
                     button.setCornerRadius()
                 }
             
             }
+            number += 1
         }
     }
 
@@ -234,13 +241,6 @@ class PurchaseViewController: UIViewController {
         avatarView.image = engine.currentUser.getAvatarImage()
     }
     
-    func updateAllButtons() {
-        for button in functionNumberButtons {
-            button.setSmartColor()
-        }
-        
-        
-    }
     
     func updatePurchaseButton() {
         purchaseButton.setSmartColor()
@@ -291,7 +291,7 @@ extension PurchaseViewController: UIObserver {
         updateInstructionView()
         updateVIPFouctionViews()
         updateUserAvatar()
-        updateAllButtons()
+
         
     }
 }

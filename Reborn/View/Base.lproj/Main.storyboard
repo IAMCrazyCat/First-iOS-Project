@@ -1961,6 +1961,7 @@
                         <outletCollection property="toolLabels" destination="jyW-Yl-iOQ" collectionClass="NSMutableArray" id="188-F7-QtR"/>
                         <outletCollection property="toolButtons" destination="Klh-xx-dus" collectionClass="NSMutableArray" id="euw-oh-z9U"/>
                         <outletCollection property="vipButtons" destination="sf6-ea-hlD" collectionClass="NSMutableArray" id="ury-lt-vc5"/>
+                        <outletCollection property="toolLabels" destination="yle-BJ-cpB" collectionClass="NSMutableArray" id="mhi-W2-vin"/>
                         <segue destination="lek-2K-fR3" kind="show" id="pAC-K1-UC3"/>
                         <segue destination="BaV-8j-OVv" kind="show" id="PDg-q7-Ca8"/>
                         <segue destination="v2s-l8-7fg" kind="show" id="Vcu-ke-8qI"/>
@@ -2632,7 +2633,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H79-hx-hQE" userLabel="VIP Founction">
                                                         <rect key="frame" x="0.0" y="0.0" width="384" height="50"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vcf-Zs-cR5">
+                                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vcf-Zs-cR5">
                                                                 <rect key="frame" x="15" y="7.5" width="35" height="35"/>
                                                                 <color key="backgroundColor" name="BlueThemeColor"/>
                                                                 <constraints>
@@ -2670,7 +2671,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i4I-qz-SDA" userLabel="VIP Founction">
                                                         <rect key="frame" x="0.0" y="70" width="384" height="50"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZS4-n1-2qk">
+                                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZS4-n1-2qk">
                                                                 <rect key="frame" x="15" y="7.5" width="35" height="35"/>
                                                                 <color key="backgroundColor" name="BlueThemeColor"/>
                                                                 <constraints>
@@ -2708,7 +2709,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1bU-a7-FrP" userLabel="VIP Founction">
                                                         <rect key="frame" x="0.0" y="140" width="384" height="50"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fzf-QM-O0Z">
+                                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fzf-QM-O0Z">
                                                                 <rect key="frame" x="15" y="7.5" width="35" height="35"/>
                                                                 <color key="backgroundColor" name="BlueThemeColor"/>
                                                                 <constraints>
@@ -2747,7 +2748,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YhA-we-a1G" userLabel="VIP Founction">
                                                         <rect key="frame" x="0.0" y="210" width="384" height="50"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BvY-PM-TgD">
+                                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BvY-PM-TgD">
                                                                 <rect key="frame" x="15" y="7.5" width="35" height="35"/>
                                                                 <color key="backgroundColor" name="BlueThemeColor"/>
                                                                 <constraints>
@@ -2786,7 +2787,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2gR-qV-msb" userLabel="VIP Founction">
                                                         <rect key="frame" x="0.0" y="280" width="384" height="50"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GXR-o1-0ta">
+                                                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GXR-o1-0ta">
                                                                 <rect key="frame" x="15" y="7.5" width="35" height="35"/>
                                                                 <color key="backgroundColor" name="BlueThemeColor"/>
                                                                 <constraints>
@@ -2825,7 +2826,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rPF-jZ-Aoe" userLabel="VIP Founction">
                                                         <rect key="frame" x="0.0" y="350" width="384" height="50"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fKZ-ry-kbD">
+                                                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fKZ-ry-kbD">
                                                                 <rect key="frame" x="15" y="7.5" width="35" height="35"/>
                                                                 <color key="backgroundColor" name="BlueThemeColor"/>
                                                                 <constraints>
@@ -2864,7 +2865,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iJs-TO-3ch" userLabel="VIP Founction">
                                                         <rect key="frame" x="0.0" y="420" width="384" height="50"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WOm-XI-zX8">
+                                                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WOm-XI-zX8">
                                                                 <rect key="frame" x="15" y="7.5" width="35" height="35"/>
                                                                 <color key="backgroundColor" name="BlueThemeColor"/>
                                                                 <constraints>
@@ -2903,7 +2904,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lh1-pk-Ebu" userLabel="VIP Founction">
                                                         <rect key="frame" x="0.0" y="490" width="384" height="50"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8rC-hy-Pjf">
+                                                            <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8rC-hy-Pjf">
                                                                 <rect key="frame" x="15" y="7.5" width="35" height="35"/>
                                                                 <color key="backgroundColor" name="BlueThemeColor"/>
                                                                 <constraints>
@@ -2942,7 +2943,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ak4-lP-eyo" userLabel="VIP Founction">
                                                         <rect key="frame" x="0.0" y="560" width="384" height="50"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izP-IJ-2pM">
+                                                            <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izP-IJ-2pM">
                                                                 <rect key="frame" x="15" y="7.5" width="35" height="35"/>
                                                                 <color key="backgroundColor" name="BlueThemeColor"/>
                                                                 <constraints>

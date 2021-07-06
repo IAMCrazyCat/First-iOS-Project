@@ -45,7 +45,7 @@ class PresentStrategy: TimeMachineAnimationStrategyImpl {
             newCalendarPage.frame.size = calendarView.frame.size
             newCalendarPage.frame.origin = self.timeMachineViewController.calendarViewOriginalPosition ?? .zero
             newCalendarPage.layer.cornerRadius = self.setting.itemCardCornerRadius
-            newCalendarPage.setShadow()
+            newCalendarPage.setShadow(style: .view)
             newCalendarPage.addSubview(calendarView)
             self.timeMachineViewController.middleView.addSubview(newCalendarPage)
             self.timeMachineViewController.calendarPages.append(newCalendarPage)
@@ -77,7 +77,7 @@ class PresentStrategy: TimeMachineAnimationStrategyImpl {
             newCalendarPage.frame = self.timeMachineViewController.calendarPages.first!.frame
             newCalendarPage.transform = CGAffineTransform(scaleX: scale, y: scale)
             newCalendarPage.layer.cornerRadius = self.setting.itemCardCornerRadius
-            newCalendarPage.setShadow()
+            newCalendarPage.setShadow(style: .view)
             
             
             self.timeMachineViewController.middleView.insertSubview(newCalendarPage, belowSubview: self.timeMachineViewController.calendarPages[index])

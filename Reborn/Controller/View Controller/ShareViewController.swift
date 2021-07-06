@@ -37,7 +37,7 @@ class ShareViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         AppEngine.shared.add(observer: self)
-        preview.setShadow()
+        preview.setShadow(style: .view)
         avatarImageView.setCornerRadius()
         updateUI()
         

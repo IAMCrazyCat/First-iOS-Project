@@ -32,6 +32,7 @@
 		223132D1263D2F570020BA70 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223132D0263D2F570020BA70 /* Double.swift */; };
 		223132D3263E694D0020BA70 /* UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223132D2263E694D0020BA70 /* UIScrollView.swift */; };
 		2232A59D2692ACC50020017B /* EncourageTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2232A59C2692ACC50020017B /* EncourageTextView.swift */; };
+		2232A59F269428F10020017B /* EncourageTextStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2232A59E269428F00020017B /* EncourageTextStrategy.swift */; };
 		22332991266F6BED0058672C /* NewFrequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22332990266F6BED0058672C /* NewFrequency.swift */; };
 		223A777B25A41184004B3324 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223A777A25A41184004B3324 /* UIView.swift */; };
 		2246D2E625CA68230001EFB7 /* DismissStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246D2E525CA68230001EFB7 /* DismissStrategy.swift */; };
@@ -263,6 +264,7 @@
 		223132D0263D2F570020BA70 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		223132D2263E694D0020BA70 /* UIScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollView.swift; sourceTree = "<group>"; };
 		2232A59C2692ACC50020017B /* EncourageTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncourageTextView.swift; sourceTree = "<group>"; };
+		2232A59E269428F00020017B /* EncourageTextStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncourageTextStrategy.swift; sourceTree = "<group>"; };
 		22332990266F6BED0058672C /* NewFrequency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFrequency.swift; sourceTree = "<group>"; };
 		223A777A25A41184004B3324 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		2246D2E525CA68230001EFB7 /* DismissStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissStrategy.swift; sourceTree = "<group>"; };
@@ -876,6 +878,7 @@
 				22A584DC2612048E001B83E1 /* AdStrategy.swift */,
 				22F619C326393A75007F91AF /* IconStrategy.swift */,
 				22569F852640F013001459C3 /* ItemsStrategy.swift */,
+				2232A59E269428F00020017B /* EncourageTextStrategy.swift */,
 			);
 			path = "VIP Strategy";
 			sourceTree = "<group>";
@@ -1429,6 +1432,7 @@
 				2293F39C25DC00CE009B4753 /* UIImage.swift in Sources */,
 				22AE80E5260A119E00F0806D /* UserDefaults.swift in Sources */,
 				225EC25F25FA41BC00F2C69F /* CustomUserInformationPopUp.swift in Sources */,
+				2232A59F269428F10020017B /* EncourageTextStrategy.swift in Sources */,
 				22A2EC9525CA2AAB00E97787 /* Array.swift in Sources */,
 				22BDC91E25F262F4008E9C46 /* AddNewItemStrategy.swift in Sources */,
 				22AACA1125AD910D0098D920 /* Date.swift in Sources */,
@@ -1723,7 +1727,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Reborn/Reborn.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 45;
+				CURRENT_PROJECT_VERSION = 46;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = Reborn/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1731,7 +1735,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.crazycat.Reborn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1748,7 +1752,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Reborn/Reborn.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 45;
+				CURRENT_PROJECT_VERSION = 46;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = Reborn/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1756,7 +1760,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.crazycat.Reborn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1859,7 +1863,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ItemProgressWigetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 45;
+				CURRENT_PROJECT_VERSION = 46;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = ItemProgressWiget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -1868,7 +1872,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.crazycat.Reborn.ItemProgressWiget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1884,7 +1888,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ItemProgressWigetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 45;
+				CURRENT_PROJECT_VERSION = 46;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = ItemProgressWiget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -1893,7 +1897,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.crazycat.Reborn.ItemProgressWiget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

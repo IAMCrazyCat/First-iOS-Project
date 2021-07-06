@@ -67,7 +67,7 @@ extension UIButton {
         self.titleLabel?.font = AppEngine.shared.userSetting.smallFont
         self.proportionallySetSizeWithScreen()
         self.setCornerRadius()
-        self.setShadow()
+        self.setShadow(style: .button)
         self.setBackgroundColor(AppEngine.shared.userSetting.whiteAndBlackContent, for: .normal)
         self.setBackgroundColor(AppEngine.shared.userSetting.themeColor.uiColor, for: .selected)
         self.setTitleColor(.label, for: .normal)

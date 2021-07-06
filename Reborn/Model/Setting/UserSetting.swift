@@ -243,10 +243,11 @@ class UserSetting {
     }
    
     let whiteAndBlackBackground: UIColor = UIColor { system in
-        
+       
         switch AppEngine.shared.userSetting.appAppearanceMode {
+       
         case .lightMode:
-            return .white
+            return UIColor.white
         case .darkMode:
             return AppEngine.shared.userSetting.blackBackground
         case .followSystem:

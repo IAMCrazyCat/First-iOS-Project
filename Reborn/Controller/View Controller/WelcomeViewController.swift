@@ -57,7 +57,7 @@ class WelcomViewController: UIViewController {
         animationView.layoutIfNeeded()
         
         animationView.setCornerRadius(corderRadius: 40)
-        animationView.setShadow()
+        animationView.setShadow(style: .button)
         animationView.layer.shadowOpacity = 0
     }
     

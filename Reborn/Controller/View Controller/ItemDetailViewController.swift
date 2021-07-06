@@ -50,20 +50,20 @@ class ItemDetailViewController: UIViewController {
         
         engine.add(observer: self)
         //topView.layer.cornerRadius = setting.itemCardCornerRadius
-        topView.setShadow()
+        topView.setShadow(style: .view)
         
         title = "项目详情"
         
         //mediumView.layer.cornerRadius = setting.itemCardCornerRadius
-        mediumView.setShadow()
+        mediumView.setShadow(style: .view)
 
         calendarView.layer.cornerRadius = setting.itemCardCornerRadius
         bottomShareButton.proportionallySetSizeWithScreen()
         bottomShareButton.setCornerRadius()
-        bottomShareButton.setShadow()
+        bottomShareButton.setShadow(style: .button)
         bottomEditButton.proportionallySetSizeWithScreen()
         bottomEditButton.setCornerRadius()
-        bottomEditButton.setShadow()
+        bottomEditButton.setShadow(style: .button)
         
         updateUI()
     }

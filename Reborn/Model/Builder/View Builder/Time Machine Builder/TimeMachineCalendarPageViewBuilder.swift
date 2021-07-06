@@ -35,18 +35,21 @@ class TimeMachineCalendarPageViewBuilder: ViewBuilder {
     func createView() {
         self.outputView.accessibilityIdentifier = "TempCalendarPageView"
         self.outputView.frame = calendarView.frame
+        
         self.outputView.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackContent
         self.outputView.layer.cornerRadius = calendarView.layer.cornerRadius
+        
+
     }
     
     
     private func addTopView() {
         let topView = UIView()
-        
+        topView.backgroundColor = .clear
         if let referenceView = self.calendarView.getSubviewBy(idenifier: "TopView") {
             
             topView.frame = referenceView.frame
-            
+           
             
             if let referenceLabel = referenceView.getSubviewBy(idenifier: "MonthLabel") as? UILabel {
                 
@@ -88,7 +91,7 @@ class TimeMachineCalendarPageViewBuilder: ViewBuilder {
     
     private func addMiddleView() {
         let middleView = UIView()
-        
+        middleView.backgroundColor = .clear
         if let referenceView = self.calendarView.getSubviewBy(idenifier: "MiddleView") {
             middleView.frame = referenceView.frame
             
