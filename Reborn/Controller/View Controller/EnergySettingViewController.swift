@@ -23,7 +23,7 @@ class EnergySettingViewController: UIViewController {
     var vipStrategy: VIPStrategy!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        title = "能量"
         howToRecheckButton.setTitleColor(engine.userSetting.smartVisibleThemeColor, for: .normal)
         newEnergyPromptLabel.textColor = ThemeColor.green.uiColor
         vipStrategy = EnergyStrategy(energySettingViewController: self)

@@ -27,7 +27,7 @@ class TomatoClockViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        title = "番茄时钟"
         timerLabel.isHidden = true
         startWorkingButton.setCornerRadius()
         triangleImageView.layoutIfNeeded()

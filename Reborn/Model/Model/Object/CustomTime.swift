@@ -12,10 +12,84 @@ class CustomTime: NSObject, NSCoding, Comparable, Codable {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH mm ss.SSSS"
 
-        let lhsDate = formatter.date(from: "\(lhs.hour) \(lhs.minute) \(lhs.second).\(lhs.oneTenthSecond * 100)")!
-        let rhsDate = formatter.date(from: "\(rhs.hour) \(rhs.minute) \(rhs.second).\(rhs.oneTenthSecond * 100)")!
-        
+        guard let lhsDate = formatter.date(from: "\(lhs.hour) \(lhs.minute) \(lhs.second).\(lhs.oneTenthSecond * 100)"),
+              let rhsDate = formatter.date(from: "\(rhs.hour) \(rhs.minute) \(rhs.second).\(rhs.oneTenthSecond * 100)")
+        else {
+            if lhs.hour < rhs.hour {
+                return true
+            } else if lhs.hour == rhs.hour {
+                if lhs.minute < rhs.minute {
+                    return true
+                } else if lhs.minute == rhs.minute {
+                    if lhs.second < rhs.second {
+                        return true
+                    } else if lhs.second == rhs.second {
+                        if lhs.oneTenthSecond < rhs.oneTenthSecond {
+                            return true
+                        } else {
+                            return false
+                        }
+                    } else {
+                        return false
+                    }
+                } else {
+                    return false
+                }
+            } else {
+                return false
+            }
+        }
         return lhsDate < rhsDate
+    }
+    
+    static func == (lhs: CustomTime, rhs: CustomTime) -> Bool {
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH mm ss.SSSS"
+
+        guard let lhsDate = formatter.date(from: "\(lhs.hour) \(lhs.minute) \(lhs.second).\(lhs.oneTenthSecond * 100)"),
+              let rhsDate = formatter.date(from: "\(rhs.hour) \(rhs.minute) \(rhs.second).\(rhs.oneTenthSecond * 100)")
+        else {
+            return lhs.hour == rhs.hour && lhs.minute == rhs.minute && lhs.second == rhs.second && lhs.oneTenthSecond == rhs.oneTenthSecond
+        }
+        
+        return lhsDate == rhsDate
+    }
+    
+    static func > (lhs: CustomTime, rhs: CustomTime) -> Bool {
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH mm ss.SSSS"
+
+        guard let lhsDate = formatter.date(from: "\(lhs.hour) \(lhs.minute) \(lhs.second).\(lhs.oneTenthSecond * 100)"),
+              let rhsDate = formatter.date(from: "\(rhs.hour) \(rhs.minute) \(rhs.second).\(rhs.oneTenthSecond * 100)")
+        else {
+            if lhs.hour > rhs.hour {
+                return true
+            } else if lhs.hour == rhs.hour {
+                if lhs.minute > rhs.minute {
+                    return true
+                } else if lhs.minute == rhs.minute {
+                    if lhs.second > rhs.second {
+                        return true
+                    } else if lhs.second == rhs.second {
+                        if lhs.oneTenthSecond > rhs.oneTenthSecond {
+                            return true
+                        } else {
+                            return false
+                        }
+                    } else {
+                        return false
+                    }
+                } else {
+                    return false
+                }
+            } else {
+                return false
+            }
+        }
+        
+        return lhsDate > rhsDate
     }
     
     

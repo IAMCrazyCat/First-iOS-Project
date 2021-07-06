@@ -80,19 +80,15 @@ class InAppPurchaseManager {
         }
         
         if let price = pakageForFetch?.localizedPriceString {
-            var symbol = ""
-            var foundSymbol = false
-            for i in price {
-                if foundSymbol {
-                    symbol += i.description
-                }
-                
-                if i == " " {
-                    foundSymbol = true
-                }
-                
-            }
-            return symbol
+            print("Good Price")
+            print(price)
+            let str = price
+            let strWithoutNumbers = (str.components(separatedBy: CharacterSet.decimalDigits)).joined(separator: "")
+            let strWithoutComma = strWithoutNumbers.replacingOccurrences(of: ",", with: "", options: .literal, range: nil)
+            let strWithoutDot = strWithoutComma.replacingOccurrences(of: ".", with: "", options: .literal, range: nil)
+            let strWithoutSpace = strWithoutDot.replacingOccurrences(of: " ", with: "", options: .literal, range: nil)
+            
+            return strWithoutSpace
         } else {
             return nil
         }

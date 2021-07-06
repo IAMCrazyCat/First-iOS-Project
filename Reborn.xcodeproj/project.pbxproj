@@ -26,10 +26,12 @@
 		221E0B7C25A9273E00386FE1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E0B7B25A9273E00386FE1 /* User.swift */; };
 		221E0B8825A9A22800386FE1 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E0B8725A9A22800386FE1 /* Gender.swift */; };
 		221E0BA425A9D38100386FE1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E0BA325A9D38100386FE1 /* Image.swift */; };
+		222B4E2C2691F4D400CC12A0 /* EncourageTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222B4E2B2691F4D400CC12A0 /* EncourageTextViewController.swift */; };
 		223072A825E3A99D00AE6ECB /* UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223072A725E3A99D00AE6ECB /* UINavigationBar.swift */; };
 		223132CF263D188F0020BA70 /* CalendarCellStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223132CE263D188F0020BA70 /* CalendarCellStrategy.swift */; };
 		223132D1263D2F570020BA70 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223132D0263D2F570020BA70 /* Double.swift */; };
 		223132D3263E694D0020BA70 /* UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223132D2263E694D0020BA70 /* UIScrollView.swift */; };
+		2232A59D2692ACC50020017B /* EncourageTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2232A59C2692ACC50020017B /* EncourageTextView.swift */; };
 		22332991266F6BED0058672C /* NewFrequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22332990266F6BED0058672C /* NewFrequency.swift */; };
 		223A777B25A41184004B3324 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223A777A25A41184004B3324 /* UIView.swift */; };
 		2246D2E625CA68230001EFB7 /* DismissStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246D2E525CA68230001EFB7 /* DismissStrategy.swift */; };
@@ -255,10 +257,12 @@
 		221E0B7B25A9273E00386FE1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		221E0B8725A9A22800386FE1 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		221E0BA325A9D38100386FE1 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		222B4E2B2691F4D400CC12A0 /* EncourageTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncourageTextViewController.swift; sourceTree = "<group>"; };
 		223072A725E3A99D00AE6ECB /* UINavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBar.swift; sourceTree = "<group>"; };
 		223132CE263D188F0020BA70 /* CalendarCellStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellStrategy.swift; sourceTree = "<group>"; };
 		223132D0263D2F570020BA70 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		223132D2263E694D0020BA70 /* UIScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollView.swift; sourceTree = "<group>"; };
+		2232A59C2692ACC50020017B /* EncourageTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncourageTextView.swift; sourceTree = "<group>"; };
 		22332990266F6BED0058672C /* NewFrequency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFrequency.swift; sourceTree = "<group>"; };
 		223A777A25A41184004B3324 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		2246D2E525CA68230001EFB7 /* DismissStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissStrategy.swift; sourceTree = "<group>"; };
@@ -273,8 +277,6 @@
 		224E665025C6483E00B71E8A /* TimeMachineAnimationStrategyImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineAnimationStrategyImpl.swift; sourceTree = "<group>"; };
 		224E665825C64F5F00B71E8A /* PresentStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentStrategy.swift; sourceTree = "<group>"; };
 		224E668925C6A76600B71E8A /* DateCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCalculator.swift; sourceTree = "<group>"; };
-		22524A88265275700036FB1C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
-		22524A89265275710036FB1C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		22569F83264036F8001459C3 /* PurchaseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseType.swift; sourceTree = "<group>"; };
 		22569F852640F013001459C3 /* ItemsStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsStrategy.swift; sourceTree = "<group>"; };
 		225AD11525A6C8620040E356 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
@@ -602,6 +604,14 @@
 			path = Enum;
 			sourceTree = "<group>";
 		};
+		2232A59B2692ABE30020017B /* Encourage Text View */ = {
+			isa = PBXGroup;
+			children = (
+				2232A59C2692ACC50020017B /* EncourageTextView.swift */,
+			);
+			path = "Encourage Text View";
+			sourceTree = "<group>";
+		};
 		22332992267046830058672C /* Database */ = {
 			isa = PBXGroup;
 			children = (
@@ -654,6 +664,7 @@
 		225A78D325E0EB39009EE149 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
+				2232A59B2692ABE30020017B /* Encourage Text View */,
 				226C958025FC60390029C2E6 /* Calendar View */,
 				226C957F25FC60200029C2E6 /* Set Up view */,
 				22945D6D25F70A9A0065B511 /* Animation View */,
@@ -842,12 +853,12 @@
 				22862C1E2670C81900993895 /* CustomButton.swift */,
 				22BC454F25B1C92100516F75 /* CustomDate.swift */,
 				22D7FBA025A18FE5006B1F28 /* CustomData.swift */,
+				22D00DF925FE2F5700DB3F1D /* CustomTime.swift */,
 				22C23A13258DC58F00D4BEB2 /* Item.swift */,
 				22C23A1D258DC5FB00D4BEB2 /* PersistingItem.swift */,
 				22C23A18258DC5D700D4BEB2 /* QuittingItem.swift */,
 				22BC4C7D25D6A517009E905C /* WelcomeText.swift */,
 				221E0BA325A9D38100386FE1 /* Image.swift */,
-				22D00DF925FE2F5700DB3F1D /* CustomTime.swift */,
 				22F619BC26392EBF007F91AF /* Icon.swift */,
 				22332990266F6BED0058672C /* NewFrequency.swift */,
 			);
@@ -938,6 +949,7 @@
 				22A1B5682614207E008CBE94 /* BreathViewController.swift */,
 				22DBC3DB2619FAC40016C6F3 /* ShareViewController.swift */,
 				22F619BA263919B5007F91AF /* IconCell.swift */,
+				222B4E2B2691F4D400CC12A0 /* EncourageTextViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -1187,7 +1199,6 @@
 			knownRegions = (
 				en,
 				Base,
-				"zh-Hans",
 			);
 			mainGroup = 220B7275258A288000E4BEDC;
 			packageReferences = (
@@ -1389,6 +1400,7 @@
 				22B1E8E425DCE3A5003ABF6C /* Actions.swift in Sources */,
 				22BC4C6825D6A3DB009E905C /* WelcomeTextData.swift in Sources */,
 				22D8A05725CCE21C00A605D6 /* NewCalendarPage.swift in Sources */,
+				222B4E2C2691F4D400CC12A0 /* EncourageTextViewController.swift in Sources */,
 				2246D2EE25CAD5110001EFB7 /* EnlargeStrategy.swift in Sources */,
 				22D6195C25A0290600EC9396 /* UIViewController.swift in Sources */,
 				226C958525FCC8310029C2E6 /* UITextField.swift in Sources */,
@@ -1449,6 +1461,7 @@
 				22862C2126719CC500993895 /* NotificationManager.swift in Sources */,
 				22C5D975258F40E800131964 /* SetUpPage.swift in Sources */,
 				22945D8525F70FD30065B511 /* ConfettiSize.swift in Sources */,
+				2232A59D2692ACC50020017B /* EncourageTextView.swift in Sources */,
 				220B7282258A288000E4BEDC /* AppDelegate.swift in Sources */,
 				22A1E95D260315CA00AD2E7C /* EnergySettingViewController.swift in Sources */,
 				225AD11625A6C8620040E356 /* UIColor.swift in Sources */,
@@ -1568,7 +1581,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				220B7288258A288000E4BEDC /* Base */,
-				22524A88265275700036FB1C /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1577,7 +1589,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				220B728D258A288300E4BEDC /* Base */,
-				22524A89265275710036FB1C /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

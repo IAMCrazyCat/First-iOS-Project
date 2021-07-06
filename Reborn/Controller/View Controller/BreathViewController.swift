@@ -26,7 +26,7 @@ class BreathViewController: UIViewController {
     var state: BreathingState = .normal
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        title = "呼吸"
         
     }
     

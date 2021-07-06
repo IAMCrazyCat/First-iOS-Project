@@ -32,9 +32,13 @@ extension UIView {
     }
     
     func setShadow() {
+//        
+//        layer.shadowColor = SystemSetting.shared.UIViewShadowColor
+//        layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
 
         self.layer.shadowColor = SystemSetting.shared.UIViewShadowColor
         self.layer.shadowOffset =  SystemSetting.shared.UIViewShadowOffset
+        self.layer.shadowRadius = SystemSetting.shared.UIViewShadowRadius
         self.layer.shadowOpacity = SystemSetting.shared.UIViewShadowOpacity
         self.layer.masksToBounds = false
     }
@@ -191,7 +195,6 @@ extension UIView {
         }
        
         if userHasNoItem {
-            print("HHHHHH")
             promptButton.setTitle("点击右上角添加你的第一个目标", for: .normal)
         } else if noConditionedItemFound {
             

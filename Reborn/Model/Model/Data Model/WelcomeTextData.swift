@@ -8,14 +8,7 @@
 import Foundation
 struct WelcomeTextData {
     
-    private var secondTextArray: Array<String> = ["坚持就是胜利，继续加油",
-                                                  "我依然还爱着你，继续加油",
-                                                  "生活不是随心所欲, 而是自我主宰, \n继续坚持!",
-                                                  "你又来了，感觉你今天更好了",
-                                                  "成功源于自律",
-                                                  "自律，就是一场旅行，\n沿途都是风景",
-                                                  "坚持路上你不孤独，有我陪你，\n辛苦了！",
-                                                  "如果你还爱着我，请不要放弃"]
+    public var secondTextArray: Array<String> = AppEngine.shared.userSetting.encourageText
     private var defultSecondText: String {
         return secondTextArray.first ?? ""
     }

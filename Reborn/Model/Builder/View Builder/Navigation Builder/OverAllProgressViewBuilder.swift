@@ -98,13 +98,16 @@ class OverAllProgressViewBuilder: ViewBuilder {
         secondTextLabel.text = welcomeTextData.randomText(timeRange: TimeRange.current).secondText
         secondTextLabel.textColor = AppEngine.shared.userSetting.smartLabelColorAndWhite
         secondTextLabel.lineBreakMode = .byWordWrapping
-        secondTextLabel.numberOfLines = 3
+        secondTextLabel.numberOfLines = 2
         secondTextLabel.sizeToFit()
         
         self.outPutView.addSubview(secondTextLabel)
+        
+
         secondTextLabel.translatesAutoresizingMaskIntoConstraints = false
         secondTextLabel.topAnchor.constraint(equalTo: firstTextLabel.bottomAnchor, constant: 10).isActive = true
         secondTextLabel.leftAnchor.constraint(equalTo: self.outPutView.leftAnchor, constant: 15).isActive = true
+        secondTextLabel.rightAnchor.constraint(equalTo: self.outPutView.centerXAnchor).isActive = true
         
         secondTextLabel.alpha = 0
         UIView.animate(withDuration: 0.3, animations: {

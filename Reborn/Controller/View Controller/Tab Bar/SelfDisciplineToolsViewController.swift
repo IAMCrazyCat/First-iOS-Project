@@ -17,11 +17,13 @@ class SelfDisciplineToolsViewController: UIViewController {
     @IBOutlet var tomatoClockButton: UIButton!
     
     @IBOutlet var toolButtons: [UIButton]!
+    @IBOutlet var vipButtons: [UIButton]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         AppEngine.shared.add(observer: self)
         AdStrategy().addBottomBannerAd(to: self)
+        setUpVipButtons()
         updateUI()
     }
     
@@ -34,6 +36,12 @@ class SelfDisciplineToolsViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         
+    }
+    
+    func setUpVipButtons() {
+        for vipButton in self.vipButtons {
+            vipButton.layer.cornerRadius = 5
+        }
     }
     
     func adjustLabelSizeToFit() {
@@ -72,7 +80,7 @@ class SelfDisciplineToolsViewController: UIViewController {
             switch sender.tag {
             case 1: self.pushViewController(withIentifier: "TomatoClockViewController")
             case 2: self.pushViewController(withIentifier: "BreathViewController")
-            case 3: break
+            case 3: self.pushViewController(withIentifier: "EncourageTextViewController")
             default: break
             }
             

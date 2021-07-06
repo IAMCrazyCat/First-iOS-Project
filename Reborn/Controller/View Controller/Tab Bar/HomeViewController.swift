@@ -110,35 +110,6 @@ class HomeViewController: UIViewController {
         }
     }
     
-   
-    
-    func sendNotification() {
-        let userNotificationCenter = UNUserNotificationCenter.current()
-        let notificationContent = UNMutableNotificationContent()
-        // Add the content to the notification content
-        notificationContent.title = "我爱你"
-        notificationContent.body = "快回来吧"
-        notificationContent.badge = NSNumber(value: 3)
-
-        // Add an attachment to the notification content
-        if let url = Bundle.main.url(forResource: "dune",
-                                        withExtension: "png") {
-            if let attachment = try? UNNotificationAttachment(identifier: "dune",
-                                                                url: url,
-                                                                options: nil) {
-                notificationContent.attachments = [attachment]
-            }
-        }
-        
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-        let request = UNNotificationRequest(identifier: "testNotification", content: notificationContent, trigger: trigger)
-        userNotificationCenter.add(request) { (error) in
-            if let error = error {
-                print("Notification Error: ", error)
-            }
-        }
-    }
-    
     
    
     var timer: Timer?

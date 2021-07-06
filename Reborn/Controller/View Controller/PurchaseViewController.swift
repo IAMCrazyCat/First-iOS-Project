@@ -36,6 +36,7 @@ class PurchaseViewController: UIViewController {
     @IBOutlet weak var oneYearPrice: UILabel!
     @IBOutlet weak var oneDayOfOneYearPrice: UILabel!
     @IBOutlet weak var permanentPrice: UILabel!
+    @IBOutlet weak var numberOfVipFunctionsLabel: UILabel!
     
     var selectedSubscriptionButton: UIButton!
     
@@ -47,6 +48,7 @@ class PurchaseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        numberOfVipFunctionsLabel.text = "享受\(functionViews.count)项高级功能"
         avatarView.contentMode = .scaleAspectFill
         itemLimitLabel.text = "解锁最多\(SystemSetting.shared.nonVipUserMaxItems)个习惯创建的限制"
         inilializeSubscriptionButtons()
@@ -136,25 +138,25 @@ class PurchaseViewController: UIViewController {
         case .oneMonth:
             self.selectedPurchaseType = userPurchasedType
             self.selectedSubscriptionButton = self.monthSubscriptionButton
-//            self.yearSubscriptionButton.alpha = 0.5
-//            self.yearSubscriptionButton.isUserInteractionEnabled = false
-            self.permanentSubscriptionButton.alpha = 0.5
-            self.permanentSubscriptionButton.isUserInteractionEnabled = false
+////            self.yearSubscriptionButton.alpha = 0.5
+////            self.yearSubscriptionButton.isUserInteractionEnabled = false
+//            self.permanentSubscriptionButton.alpha = 0.5
+//            self.permanentSubscriptionButton.isUserInteractionEnabled = false
             
         case .oneYear:
             self.selectedPurchaseType = userPurchasedType
             self.selectedSubscriptionButton = self.yearSubscriptionButton
-            self.monthSubscriptionButton.alpha = 0.5
-            self.monthSubscriptionButton.isUserInteractionEnabled = false
-            self.permanentSubscriptionButton.alpha = 0.5
-            self.permanentSubscriptionButton.isUserInteractionEnabled = false
+//            self.monthSubscriptionButton.alpha = 0.5
+//            self.monthSubscriptionButton.isUserInteractionEnabled = false
+//            self.permanentSubscriptionButton.alpha = 0.5
+//            self.permanentSubscriptionButton.isUserInteractionEnabled = false
         case .permanent:
             self.selectedPurchaseType = userPurchasedType
             self.selectedSubscriptionButton = self.permanentSubscriptionButton
-            self.monthSubscriptionButton.alpha = 0.5
-            self.monthSubscriptionButton.isUserInteractionEnabled = false
-            self.yearSubscriptionButton.alpha = 0.5
-            self.yearSubscriptionButton.isUserInteractionEnabled = false
+//            self.monthSubscriptionButton.alpha = 0.5
+//            self.monthSubscriptionButton.isUserInteractionEnabled = false
+//            self.yearSubscriptionButton.alpha = 0.5
+//            self.yearSubscriptionButton.isUserInteractionEnabled = false
         default:
             self.selectedSubscriptionButton = monthSubscriptionButton
         }
@@ -165,28 +167,20 @@ class PurchaseViewController: UIViewController {
         
         
         switch self.purchasedType {
-        case .oneMonth, .oneYear:
-            let instructionText = NSMutableAttributedString(string: "购买须知：您已经订阅，如想购买永久方案，请先在系统的订阅管理中取消现在订阅，了解如何取消订阅")
-            instructionText.addAttribute(NSAttributedString.Key.foregroundColor, value: SystemSetting.shared.smartLabelGrayColor, range: NSRange(location: 0, length: 38))
-            instructionText.addAttribute(.link, value: "https://support.apple.com/zh-cn/HT202039", range: NSRange(location: 38, length: 8))
-            
-            textView.attributedText = instructionText
-            textView.linkTextAttributes = [
-                .foregroundColor: AppEngine.shared.userSetting.smartVisibleThemeColor.withAlphaComponent(0.7)
-            ]
-            
+        case .oneMonth:
+            let instructionText = "购买须知：您正在按月订阅，如想升级订阅方案，您可以直接升级。如想升级永久方案，请在升级后取消现在订阅"
+            textView.text = instructionText
+        case .oneYear:
+            let instructionText = "购买须知：您正在按年订阅，如想升级永久方案，请在升级方案后取消现在订阅"
+            textView.text = instructionText
         case .permanent:
-            let instructionText = NSMutableAttributedString(string: "购买须知：您是已经是永久会员")
-            instructionText.addAttribute(NSAttributedString.Key.foregroundColor, value: SystemSetting.shared.smartLabelGrayColor, range: NSRange(location: 0, length: 14))
+            let instructionText = "购买须知：您正在使用永久方案，请勿重复订阅"
+            textView.text = instructionText
             
-            textView.attributedText = instructionText
-            textView.linkTextAttributes = [
-                .foregroundColor: AppEngine.shared.userSetting.smartVisibleThemeColor.withAlphaComponent(0.7)
-            ]
         default:
-            let instructionText = NSMutableAttributedString(string: "购买须知：一月期和一年期会员属于订阅型会员，订阅到期后会自动续费，您可以随时在系统的订阅管理中取消，了解如何取消订阅")
-            instructionText.addAttribute(NSAttributedString.Key.foregroundColor, value: SystemSetting.shared.smartLabelGrayColor, range: NSRange(location: 0, length: 50))
-            instructionText.addAttribute(.link, value: "https://support.apple.com/zh-cn/HT202039", range: NSRange(location: 50, length: 8))
+            let instructionText = NSMutableAttributedString(string: "购买须知：一月期和一年期属于订阅型方案，订阅到期后会自动续费，您可以随时在系统的订阅管理中取消，了解如何取消订阅")
+            instructionText.addAttribute(NSAttributedString.Key.foregroundColor, value: SystemSetting.shared.smartLabelGrayColor, range: NSRange(location: 0, length: 48))
+            instructionText.addAttribute(.link, value: "https://support.apple.com/zh-cn/HT202039", range: NSRange(location: 48, length: 8))
             
             textView.attributedText = instructionText
             textView.linkTextAttributes = [
@@ -266,8 +260,8 @@ class PurchaseViewController: UIViewController {
    
     func updatePrice() {
         let locale = Locale.current
-        let currencySymbol = locale.currencySymbol ?? ""
-        //let currencySymbol = InAppPurchaseManager.shared.getLocalCurrencySymbolOf(.permanent) ?? locale.currencySymbol ?? ""
+        //let currencySymbol = locale.currencySymbol ?? ""
+        let currencySymbol = InAppPurchaseManager.shared.getLocalCurrencySymbolOf(self.purchasedType) ?? locale.currencySymbol ?? "¥"
         let oneMonthPrice = InAppPurchaseManager.shared.getPriceOf(.oneMonth)
         let oneYearPrice = InAppPurchaseManager.shared.getPriceOf(.oneYear)
         let permanentPrice = InAppPurchaseManager.shared.getPriceOf(.permanent)
@@ -276,9 +270,10 @@ class PurchaseViewController: UIViewController {
         self.oneMonthPrice.text = oneMonthPrice != nil ? "\(currencySymbol) \(oneMonthPrice!.round(toPlaces: 1))" : defaultString
         self.oneYearPrice.text = oneYearPrice != nil ? "\(currencySymbol) \(oneYearPrice!.round(toPlaces: 1))" : defaultString
         self.permanentPrice.text = permanentPrice != nil ? "\(currencySymbol) \(permanentPrice!.round(toPlaces: 1))" : defaultString
+        
+        
         self.oneDayOfOneMonthPrice.text = oneMonthPrice != nil ? "\(currencySymbol)\((oneMonthPrice! / 30).round(toPlaces: 2)) / 天" : defaultString + " / 天"
         self.oneDayOfOneYearPrice.text = oneYearPrice != nil ? "\(currencySymbol) \((oneYearPrice! / 365).round(toPlaces: 2)) / 天" : defaultString + " / 天"
-
 
         if oneMonthPrice == nil && oneYearPrice == nil && permanentPrice == nil {
             self.loadingFailed = true

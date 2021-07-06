@@ -231,6 +231,7 @@ class AppEngine {
         defaults.set(userSetting.notificationTime, forKey: "NotificationTime")
         defaults.set(userSetting.appAppearanceMode, forKey: "AppAppearanceMode")
         defaults.set(userSetting.hasViewedEnergyUpdate, forKey: "HasViewedEnergyUpdate")
+        defaults.set(userSetting.encourageText, forKey: "EncourageText")
         if appLaunchedBefore() {
             AppEngine.shared.updateWidgetData()
         }
@@ -249,6 +250,9 @@ class AppEngine {
         }
         if let appAppearanceMode = defaults.appAppearanceMode(for: "AppAppearanceMode") {
             userSetting.appAppearanceMode = appAppearanceMode
+        }
+        if let encourageText = defaults.stringArray(forKey: "EncourageText") {
+            userSetting.encourageText = encourageText
         }
         
         let hasViewedEnergyUpdate = defaults.bool(forKey: "HasViewedEnergyUpdate")
