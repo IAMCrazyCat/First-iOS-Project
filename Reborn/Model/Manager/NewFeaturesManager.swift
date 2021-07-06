@@ -13,14 +13,14 @@ class NewFeaturesManager {
     public static let shared = NewFeaturesManager()
     private let defaults = UserDefaults.standard
     let newFeatureForNonVipUsers: Array<CustomData> = [
-        CustomData(title: "新增 激励语！添加您自己的激励语，动力加倍", body: "高级用户现在可以在自律工具中自定义激励语，激励语将会在主页显示，用您自己的方式提醒自己时刻自律，完成自己的目标，当前版本您最多可以设置8个激励语"),
+        CustomData(title: "新增 自律工具-激励语", body: "高级用户现在可以在自律工具中自定义激励语，激励语将会在主页显示，用您自己的方式提醒自己时刻自律，完成自己的目标！当前版本您最多可以设置8个激励语"),
         CustomData(title: "优化了阴影效果", body: "新的阴影效果更加真实，给您带来更好的用户体验"),
         CustomData(title: "修复了固定通知设置界面闪退问题", body: "我们向之前受到此问题影响的用户表示抱歉"),
         CustomData(title: "重新布局了一些元素", body: "删除了番茄时钟，呼吸，能量界面的大标题")
     ]
     
     let newFeatureForVipUsers: Array<CustomData> = [
-        CustomData(title: "新增 激励语！添加您自己的激励语！动力加倍", body: "高级用户现在可以在自律工具中自定义激励语，激励语将会在主页显示，用您自己的方式提醒自己时刻自律，完成自己的目标，当前版本您最多可以设置8个激励语"),
+        CustomData(title: "新增 自律工具-激励语", body: "高级用户现在可以在自律工具中自定义激励语，激励语将会在主页显示，用您自己的方式提醒自己时刻自律，完成自己的目标！当前版本您最多可以设置8个激励语"),
         CustomData(title: "优化了阴影效果", body: "新的阴影效果更加真实，给您带来更好的用户体验"),
         CustomData(title: "修复了固定通知设置界面闪退问题", body: "我们向之前受到此问题影响的用户表示抱歉"),
         CustomData(title: "重新布局了一些元素", body: "删除了番茄时钟，呼吸，能量界面的大标题")

@@ -228,7 +228,6 @@ class PurchaseViewController: UIViewController {
                 if let button = subview as? UIButton {
                     button.setTitle("\(number)", for: .normal)
                     button.setSmartColor()
-                    button.proportionallySetSizeWithScreen()
                     button.setCornerRadius()
                 }
             
@@ -244,24 +243,13 @@ class PurchaseViewController: UIViewController {
     
     func updatePurchaseButton() {
         purchaseButton.setSmartColor()
-//        
-//        if purchasedType != .none {
-//            purchaseButton.isUserInteractionEnabled = false
-//            UIView.animate(withDuration: 0.3, animations: {
-//                self.purchaseButton.alpha = 0
-//            })
-//        } else {
-//            purchaseButton.isUserInteractionEnabled = true
-//            UIView.animate(withDuration: 0.3, animations: {
-//                self.purchaseButton.alpha = 1
-//            })
-//        }
+        //purchaseButton.proportionallySetSizeWithScreen()
     }
    
     func updatePrice() {
         let locale = Locale.current
         //let currencySymbol = locale.currencySymbol ?? ""
-        let currencySymbol = InAppPurchaseManager.shared.getLocalCurrencySymbolOf(self.purchasedType) ?? locale.currencySymbol ?? "¥"
+        let currencySymbol = InAppPurchaseManager.shared.getLocalCurrencySymbol() ?? locale.currencySymbol ?? "¥"
         let oneMonthPrice = InAppPurchaseManager.shared.getPriceOf(.oneMonth)
         let oneYearPrice = InAppPurchaseManager.shared.getPriceOf(.oneYear)
         let permanentPrice = InAppPurchaseManager.shared.getPriceOf(.permanent)

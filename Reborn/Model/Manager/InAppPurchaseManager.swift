@@ -21,7 +21,7 @@ protocol InAppPurchaseObserver {
 class InAppPurchaseManager {
     static var shared = InAppPurchaseManager()
     private var observers = [InAppPurchaseObserver]()
-    let sharedSecret = "2add70b904c74e33bf3bdc9681d34b67"
+   
     
     var packages: Array<Purchases.Package> = []
 //    var oneMonthPackage: Purchases.Package? = nil
@@ -70,28 +70,31 @@ class InAppPurchaseManager {
         }
     }
     
-    func getLocalCurrencySymbolOf(_ purchaseType: PurchaseType) -> String? {
-        var pakageForFetch: Purchases.Package?
-        for pakage in self.packages {
-            print(pakage.product.productIdentifier)
-            if pakage.product.productIdentifier == purchaseType.productID{
-                pakageForFetch = pakage
-            }
-        }
-        
-        if let price = pakageForFetch?.localizedPriceString {
-            print("Good Price")
-            print(price)
-            let str = price
-            let strWithoutNumbers = (str.components(separatedBy: CharacterSet.decimalDigits)).joined(separator: "")
-            let strWithoutComma = strWithoutNumbers.replacingOccurrences(of: ",", with: "", options: .literal, range: nil)
-            let strWithoutDot = strWithoutComma.replacingOccurrences(of: ".", with: "", options: .literal, range: nil)
-            let strWithoutSpace = strWithoutDot.replacingOccurrences(of: " ", with: "", options: .literal, range: nil)
-            
-            return strWithoutSpace
-        } else {
-            return nil
-        }
+    func getLocalCurrencySymbol() -> String? {
+//        var pakageForFetch: Purchases.Package?
+//        for pakage in self.packages {
+//            if pakage.product.productIdentifier == purchaseType.productID{
+//                print("Found symbol")
+//                pakageForFetch = pakage
+//            }
+//        }
+        let symbol = self.packages.first?.product.priceLocale.currencySymbol
+        print("Currency Symbol")
+        print(symbol)
+        return symbol
+//        print("Good Price")
+//        print(pakageForFetch?.localizedPriceString)
+//        if let price = pakageForFetch?.product.priceLocale.currencySymbol {
+//            let str = price
+//            let strWithoutNumbers = (str.components(separatedBy: CharacterSet.decimalDigits)).joined(separator: "")
+//            let strWithoutComma = strWithoutNumbers.replacingOccurrences(of: ",", with: "", options: .literal, range: nil)
+//            let strWithoutDot = strWithoutComma.replacingOccurrences(of: ".", with: "", options: .literal, range: nil)
+//            let strWithoutSpace = strWithoutDot.replacingOccurrences(of: " ", with: "", options: .literal, range: nil)
+//
+//            return strWithoutSpace
+//        } else {
+//            return nil
+//        }
     }
     
     
