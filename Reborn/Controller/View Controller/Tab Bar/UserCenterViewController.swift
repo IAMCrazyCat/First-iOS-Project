@@ -151,7 +151,9 @@ class UserCenterViewController: UIViewController {
     }
     
     @IBAction func reviewButtonPressed(_ sender: UIButton) {
-        engine.requestReview()
+        if let url = URL(string: "itms-apps://apple.com/app/id839686104") {
+            UIApplication.shared.open(url)
+        }
     }
     @IBAction func shareButtonPressed(_ sender: UIButton) {
         if let name = URL(string: "https://apps.apple.com/app/id1555988168"), !name.absoluteString.isEmpty {

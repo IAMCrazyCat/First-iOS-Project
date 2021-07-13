@@ -159,13 +159,12 @@ class NewItemViewController: UIViewController {
     @IBAction func typeButtonPressed(_ sender: UIButton) {
         
         self.selectedTypeButton = sender
-        for type in ItemType.allCases {
-            if type.rawValue == sender.currentTitle {
-                self.item.type = type
-            }
+        if sender.tag == 1 {
+            self.item.type = .persisting
         }
         
         if sender.tag == 2 {
+            self.item.type = .quitting
             self.selectedFrequencyButton = everydayFrequencyButton
             self.item.newFrequency = EveryDay()
         }

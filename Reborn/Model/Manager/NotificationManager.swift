@@ -77,8 +77,7 @@ class NotificationManager {
     
     func scheduleFixedNotification(at times: [CustomTime]) {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["FixedNotification"])
-       
-        
+
         for time in times {
             DispatchQueue.main.async {
                 let earlyTitle = WelcomeText(timeRange: time.timeRange).firstText

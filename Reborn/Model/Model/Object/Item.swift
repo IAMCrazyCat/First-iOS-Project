@@ -19,18 +19,17 @@ class Item: Codable {
     var punchInDates: Array<CustomDate> = []
     var energyRedeemDates: Array<CustomDate> = []
     var state: ItemState = .inProgress
-
     var hasSanction: Bool = false
     var icon: Icon
     var newFrequency: NewFrequency
     var notificationTimes: Array<CustomTime> = []
-    
+    var missedPunchInDates: Array<CustomDate> = []
     
     
     var finishedDays: Int {
         return punchInDates.count
     }
-    var isPunchedIn: Bool{
+    var isPunchedIn: Bool {
         if punchInDates.contains(CustomDate.current) {
             return true
         } else {

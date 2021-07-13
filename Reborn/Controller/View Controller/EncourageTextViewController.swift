@@ -41,10 +41,14 @@ class EncourageTextViewController: UIViewController {
         updateUI()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         for textView in textViews {
             textView.stopAnimation = true
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
     }
     
     @objc

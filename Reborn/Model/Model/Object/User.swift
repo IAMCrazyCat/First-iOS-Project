@@ -20,8 +20,6 @@ class User: Codable {
     var isVip: Bool {
         return purchasedType != .none
     }
-    
-    
     var energyChargingEfficiencyDays: Int {
         if self.isVip {
             return 7
@@ -198,7 +196,7 @@ class User: Codable {
             item.hasSanction = false
         }
         
-        self.disableItems()
+        self.blockItems()
     }
     
     public func removeItemWith(id: Int) {
@@ -211,7 +209,7 @@ class User: Codable {
         }
     }
     
-    func disableItems() {
+    func blockItems() {
         
         if !self.isVip && self.items.count > SystemSetting.shared.nonVipUserMaxItems {
             var items = [Item]()

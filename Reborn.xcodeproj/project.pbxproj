@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1F58F0E83E3F8EDE21CC6EB0 /* Pods_RebornTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E6CCCA1322DA999E425BE3 /* Pods_RebornTests.framework */; };
+		220743D9269B1F1900E2859A /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220743D8269B1F1900E2859A /* NetworkingManager.swift */; };
 		220B7282258A288000E4BEDC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B7281258A288000E4BEDC /* AppDelegate.swift */; };
 		220B7284258A288000E4BEDC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B7283258A288000E4BEDC /* SceneDelegate.swift */; };
 		220B7286258A288000E4BEDC /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B7285258A288000E4BEDC /* WelcomeViewController.swift */; };
@@ -60,6 +61,7 @@
 		2264C59325F4B041009CE917 /* PopUpSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2264C59225F4B041009CE917 /* PopUpSet.swift */; };
 		2264C59E25F4B399009CE917 /* ItemCompletedPopUpViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2264C59D25F4B399009CE917 /* ItemCompletedPopUpViewBuilder.swift */; };
 		226C958525FCC8310029C2E6 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226C958425FCC8310029C2E6 /* UITextField.swift */; };
+		226ED1E82699A06A00E106A3 /* UserConsumptionGuiderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226ED1E72699A06A00E106A3 /* UserConsumptionGuiderManager.swift */; };
 		2278907625EBA65400613281 /* Frequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278907525EBA65400613281 /* Frequency.swift */; };
 		2279C17E2592ED2F00566CD7 /* UserSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2279C17D2592ED2F00566CD7 /* UserSetting.swift */; };
 		22862C1B2670977200993895 /* FrequencyPopUpViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22862C1A2670977200993895 /* FrequencyPopUpViewBuilder.swift */; };
@@ -236,6 +238,7 @@
 /* Begin PBXFileReference section */
 		077AEB837FD3306A6B1AAE85 /* Pods-Reborn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reborn.release.xcconfig"; path = "Target Support Files/Pods-Reborn/Pods-Reborn.release.xcconfig"; sourceTree = "<group>"; };
 		0C4533996E1B3FEF9192966A /* Pods_Reborn_RebornUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reborn_RebornUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		220743D8269B1F1900E2859A /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		220B727E258A288000E4BEDC /* Reborn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reborn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		220B7281258A288000E4BEDC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		220B7283258A288000E4BEDC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -291,6 +294,7 @@
 		2264C59225F4B041009CE917 /* PopUpSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpSet.swift; sourceTree = "<group>"; };
 		2264C59D25F4B399009CE917 /* ItemCompletedPopUpViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCompletedPopUpViewBuilder.swift; sourceTree = "<group>"; };
 		226C958425FCC8310029C2E6 /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
+		226ED1E72699A06A00E106A3 /* UserConsumptionGuiderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserConsumptionGuiderManager.swift; sourceTree = "<group>"; };
 		2278907525EBA65400613281 /* Frequency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frequency.swift; sourceTree = "<group>"; };
 		2279C17D2592ED2F00566CD7 /* UserSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSetting.swift; sourceTree = "<group>"; };
 		22862C1A2670977200993895 /* FrequencyPopUpViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequencyPopUpViewBuilder.swift; sourceTree = "<group>"; };
@@ -805,6 +809,8 @@
 				22C6ACF4263FC81500FAFCC5 /* InAppPurchaseManager.swift */,
 				22862C2026719CC500993895 /* NotificationManager.swift */,
 				221752972675C2B6002F42E7 /* NewFeaturesManager.swift */,
+				226ED1E72699A06A00E106A3 /* UserConsumptionGuiderManager.swift */,
+				220743D8269B1F1900E2859A /* NetworkingManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1416,6 +1422,7 @@
 				22BC4C7E25D6A517009E905C /* WelcomeText.swift in Sources */,
 				22CBB97E25EA42C500994D33 /* ThemeColor.swift in Sources */,
 				22D6195725A0277B00EC9396 /* PopUpViewSlideInFromBottomPresentAnimationController.swift in Sources */,
+				220743D9269B1F1900E2859A /* NetworkingManager.swift in Sources */,
 				221752962675AB6C002F42E7 /* NewFeaturesPopUpViewBuilder.swift in Sources */,
 				224A919225971E9000A896BE /* ItemCardViewBuilder.swift in Sources */,
 				22AACA3225AE98B40098D920 /* CalendarViewController.swift in Sources */,
@@ -1495,6 +1502,7 @@
 				22BABF2925C42ABB00168AE1 /* CGAffineTransform.swift in Sources */,
 				223132D3263E694D0020BA70 /* UIScrollView.swift in Sources */,
 				224E665125C6483E00B71E8A /* TimeMachineAnimationStrategyImpl.swift in Sources */,
+				226ED1E82699A06A00E106A3 /* UserConsumptionGuiderManager.swift in Sources */,
 				225EC26C25FA427B00F2C69F /* CustomUserInformationPopUpViewBuilder.swift in Sources */,
 				22BC38F225E738CD00AEFE44 /* CustomFrequencyPopUpViewBuilder.swift in Sources */,
 				22569F84264036F8001459C3 /* PurchaseType.swift in Sources */,

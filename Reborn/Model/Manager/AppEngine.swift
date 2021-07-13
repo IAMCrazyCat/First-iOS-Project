@@ -206,11 +206,16 @@ class AppEngine {
        
     }
     
+    public func generateRandomUUID() -> String {
+        let uuid = UUID().uuidString
+        return uuid
+    }
     
     private func loadUser() {
-        
+    
         if let data = try? Data(contentsOf: dataFilePath!) {
            let decoder = JSONDecoder() //PropertyListDecoder()
+            let JSONString = String(data: data, encoding: String.Encoding.utf8)
 
            do {
             self.currentUser = try decoder.decode(User.self, from: data) // .self 可以提取数据类型
@@ -218,8 +223,6 @@ class AppEngine {
                print(error)
            }
         }
-        
-        
         
         if self.currentUser.isVip {
             print("Welcome back VIP!")
@@ -235,8 +238,6 @@ class AppEngine {
         if appLaunchedBefore() {
             AppEngine.shared.updateWidgetData()
         }
-
-        
     }
     
     public func loadSetting() {
