@@ -56,6 +56,8 @@
 		225AD12A25A848A30040E356 /* Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AD12925A848A30040E356 /* Selector.swift */; };
 		225AD12F25A868F50040E356 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AD12E25A868F50040E356 /* ItemDetailViewController.swift */; };
 		225AD13425A86ED80040E356 /* FadeInSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AD13325A86ED80040E356 /* FadeInSegue.swift */; };
+		225CDED4269D82B000C28AC2 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225CDED3269D82B000C28AC2 /* DeviceManager.swift */; };
+		225CDED6269D842000C28AC2 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225CDED5269D842000C28AC2 /* UIDevice.swift */; };
 		225EC25F25FA41BC00F2C69F /* CustomUserInformationPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225EC25E25FA41BC00F2C69F /* CustomUserInformationPopUp.swift */; };
 		225EC26C25FA427B00F2C69F /* CustomUserInformationPopUpViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225EC26B25FA427B00F2C69F /* CustomUserInformationPopUpViewBuilder.swift */; };
 		2264C59325F4B041009CE917 /* PopUpSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2264C59225F4B041009CE917 /* PopUpSet.swift */; };
@@ -289,6 +291,8 @@
 		225AD12925A848A30040E356 /* Selector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selector.swift; sourceTree = "<group>"; };
 		225AD12E25A868F50040E356 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		225AD13325A86ED80040E356 /* FadeInSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeInSegue.swift; sourceTree = "<group>"; };
+		225CDED3269D82B000C28AC2 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
+		225CDED5269D842000C28AC2 /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		225EC25E25FA41BC00F2C69F /* CustomUserInformationPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUserInformationPopUp.swift; sourceTree = "<group>"; };
 		225EC26B25FA427B00F2C69F /* CustomUserInformationPopUpViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUserInformationPopUpViewBuilder.swift; sourceTree = "<group>"; };
 		2264C59225F4B041009CE917 /* PopUpSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpSet.swift; sourceTree = "<group>"; };
@@ -811,6 +815,7 @@
 				221752972675C2B6002F42E7 /* NewFeaturesManager.swift */,
 				226ED1E72699A06A00E106A3 /* UserConsumptionGuiderManager.swift */,
 				220743D8269B1F1900E2859A /* NetworkingManager.swift */,
+				225CDED3269D82B000C28AC2 /* DeviceManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1059,6 +1064,7 @@
 				223132D0263D2F570020BA70 /* Double.swift */,
 				223132D2263E694D0020BA70 /* UIScrollView.swift */,
 				22175299267607E1002F42E7 /* UIFont.swift */,
+				225CDED5269D842000C28AC2 /* UIDevice.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1525,6 +1531,7 @@
 				22862C232671C19200993895 /* EveryMonthFrequencyPopUp.swift in Sources */,
 				22A584C32611F7D0001B83E1 /* SystemAlert.swift in Sources */,
 				22A59811259AA31A008E2A06 /* PopUpViewBuilder.swift in Sources */,
+				225CDED6269D842000C28AC2 /* UIDevice.swift in Sources */,
 				22A7DC2C260595B400A55CE8 /* LightAndDarkModePopUpViewBuilder.swift in Sources */,
 				221E0B8825A9A22800386FE1 /* Gender.swift in Sources */,
 				22C5D967258F3E4400131964 /* SetUpManager.swift in Sources */,
@@ -1532,6 +1539,7 @@
 				229C5EEA25F4F1FD00C94B61 /* UIWindow.swift in Sources */,
 				223132CF263D188F0020BA70 /* CalendarCellStrategy.swift in Sources */,
 				22D7FBA125A18FE5006B1F28 /* CustomData.swift in Sources */,
+				225CDED4269D82B000C28AC2 /* DeviceManager.swift in Sources */,
 				2246D2F325CAD9F70001EFB7 /* GoBackToThePastStrategy.swift in Sources */,
 				22F619C426393A75007F91AF /* IconStrategy.swift in Sources */,
 				2264C59E25F4B399009CE917 /* ItemCompletedPopUpViewBuilder.swift in Sources */,

@@ -29,7 +29,7 @@ class AppEngine {
     private var itemCardIcons: Array<Icon> = []
     
     public static let shared = AppEngine()
-    public var currentUser: User = User(name: "努力的人", gender: .undefined, avatar: #imageLiteral(resourceName: "DefaultAvatar"), energy: 3, items: [Item]())
+    public var currentUser: User = User(ID: SystemSetting.shared.defaultUserID, name: SystemSetting.shared.defaultUserName, gender: SystemSetting.shared.defaultUserGender, avatar: SystemSetting.shared.defaultUserAvatar, energy: SystemSetting.shared.defaultUserEnergy, items: SystemSetting.shared.defaultUserItems, creationDate: SystemSetting.shared.defaultCreationDate)
     public let userSetting: UserSetting = UserSetting()
     public var storedDataFromPopUpView: Any? = nil
     public var delegate: PopUpViewDelegate?
@@ -37,7 +37,6 @@ class AppEngine {
         return UIApplication.shared.getCurrentViewController()
     }
 
-   
     
     private init() {
         
@@ -206,16 +205,12 @@ class AppEngine {
        
     }
     
-    public func generateRandomUUID() -> String {
-        let uuid = UUID().uuidString
-        return uuid
-    }
+   
     
     private func loadUser() {
     
         if let data = try? Data(contentsOf: dataFilePath!) {
            let decoder = JSONDecoder() //PropertyListDecoder()
-            let JSONString = String(data: data, encoding: String.Encoding.utf8)
 
            do {
             self.currentUser = try decoder.decode(User.self, from: data) // .self 可以提取数据类型

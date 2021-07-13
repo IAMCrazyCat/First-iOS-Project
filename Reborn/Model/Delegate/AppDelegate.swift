@@ -14,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
         if !AppEngine.shared.currentUser.isVip {
             GADMobileAds.sharedInstance().start(completionHandler: nil)
         }
@@ -22,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Purchases.debugLogsEnabled = true
         Purchases.configure(withAPIKey: "bSAXvlaUIFweatIwfeZryIrUUYJhnRMZ")
         InAppPurchaseManager.shared.fetchOfferingFromRevenueCat()
-        //InAppPurchaseManager.shared.finishPendingTransactions()
         InAppPurchaseManager.shared.checkUserSubsriptionStatus()
         return true
     }

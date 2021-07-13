@@ -17,6 +17,24 @@ struct CustomDate: Codable, Equatable, Comparable {
         }
     }
     
+    static func > (lhs: CustomDate, rhs: CustomDate) -> Bool {
+        let dayDifference = DateCalculator.calculateDayDifferenceBetween(lhs, to: rhs)
+        if dayDifference > 0 {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    static func == (lhs: CustomDate, rhs: CustomDate) -> Bool {
+        let dayDifference = DateCalculator.calculateDayDifferenceBetween(lhs, to: rhs)
+        if dayDifference == 0 {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     
     public static var current: CustomDate {
         let date = Date()
@@ -56,5 +74,25 @@ struct CustomDate: Codable, Equatable, Comparable {
         return currentWeek.sorted(by: {
             $0.weekday.rawValue < $1.weekday.rawValue
         })
+    }
+    
+    public func getDateString() -> String {
+        let yearStr: String = "\(self.year)"
+        let monthStr: String
+        let dayStr: String
+        
+        if self.month < 10 {
+            monthStr = "0\(self.month)"
+        } else {
+            monthStr = "\(self.month)"
+        }
+        
+        if self.day < 10 {
+            dayStr = "0\(self.day)"
+        } else {
+            dayStr = "\(self.day)"
+        }
+        
+        return yearStr + " " + monthStr + " " + dayStr
     }
 }

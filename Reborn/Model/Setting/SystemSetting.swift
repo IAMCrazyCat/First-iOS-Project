@@ -8,10 +8,20 @@
 import Foundation
 import UIKit
 
-struct SystemSetting{
+struct SystemSetting {
     
     static let shared = SystemSetting()
-    
+    let defaultUserID: String = DeviceManager.shared.getRandomUUID()
+    let defaultUserName: String = "努力的人"
+    let defaultUserGender: Gender = .undefined
+    let defaultUserAvatar: UIImage = #imageLiteral(resourceName: "DefaultAvatar")
+    let defaultUserAvatarData: Data = #imageLiteral(resourceName: "DefaultAvatar").pngData() ?? Data()
+    let defaultUserEnergy: Int = 1
+    let defaultUserItems: Array<Item> = []
+    let defaultUserPurchasedType: PurchaseType = .none
+    let defaultNonVipEnergyChargingEfficiencyDays: Int = 21
+    let defaultVipEnergyChargingEfficiencyDays: Int = 7
+    let defaultCreationDate: CustomDate = CustomDate.current
 
     let nonVipUserMaxItems: Int = 3
     // for all use

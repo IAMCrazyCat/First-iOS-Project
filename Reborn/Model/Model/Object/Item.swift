@@ -111,7 +111,6 @@ class Item: Codable {
     required init(from decoder: Decoder) throws {
 
         let container = try decoder.container(keyedBy: Key.self)
-        print(container)
         self.ID = try container.decode(Int.self, forKey: .ID)
         self.name = try container.decode(String.self, forKey: .name)
         self.targetDays = try container.decode(Int.self, forKey: .targetDays)
