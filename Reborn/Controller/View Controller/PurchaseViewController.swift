@@ -47,7 +47,10 @@ class PurchaseViewController: UIViewController {
     var loadingFailed: Bool = false
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        print("TEST")
+        print(InAppPurchaseManager.shared.getUserAppleIDRegion())
         numberOfVipFunctionsLabel.text = "享受\(functionViews.count)项高级功能"
         avatarView.contentMode = .scaleAspectFill
         itemLimitLabel.text = "解锁最多\(SystemSetting.shared.nonVipUserMaxItems)个习惯创建的限制"

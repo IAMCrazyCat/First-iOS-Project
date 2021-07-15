@@ -180,8 +180,8 @@ class NewItemViewController: UIViewController {
             self.strategy?.show(.customTargetDaysPopUp)
             
         } else {
+            self.customTargetDaysButton.setTitle("自定义", for: .normal)
             self.item.targetDays = sender.getData() ?? 1
-            
         }
         self.updateUI()
     }
@@ -202,6 +202,9 @@ class NewItemViewController: UIViewController {
         self.selectedNotificationButton = sender
         
         switch sender.tag {
+        case 1:
+            self.item.notificationTimes.removeAll()
+            self.customNotificationButton.setTitle("自定义", for: .normal)
         case 2: self.present(.itemNotificationTimePopUp, item: self.item)
         default: break
         }
@@ -460,6 +463,21 @@ extension NewItemViewController: PopUpViewDelegate { // Delegate extension
         case .customTargetDaysPopUp:
             self.selectedTargetDaysButton = nil
             self.customTargetDaysButton.setTitle("自定义", for: .normal)
+            switch self.item.targetDays {
+            case 7:
+                self.sevenDaysButton.isSelected = true
+                self.selectedTargetDaysButton = self.sevenDaysButton
+            case 30:
+                self.thirtyDaysButton.isSelected = true
+                self.selectedTargetDaysButton = self.thirtyDaysButton
+            case 100:
+                self.oneHundredDaysButton.isSelected = true
+                self.selectedTargetDaysButton = self.oneHundredDaysButton
+            default:
+                self.customTargetDaysButton.isSelected = true
+                self.selectedTargetDaysButton = self.customTargetDaysButton
+                
+            }
         case .itemNotificationTimePopUp:
             
             if let notificationTime = self.item.notificationTimes.first {
@@ -469,7 +487,6 @@ extension NewItemViewController: PopUpViewDelegate { // Delegate extension
                 self.selectedNotificationButton = self.turnOffNotificationButton
                 self.customNotificationButton.setTitle("自定义", for: .normal)
             }
-       
             
         default: break
         }

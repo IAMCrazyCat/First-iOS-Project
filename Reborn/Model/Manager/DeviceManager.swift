@@ -8,20 +8,23 @@
 import Foundation
 import UIKit
 
+struct DeviceInfomation {
+    let deviceModel: String
+    let systemVersion: String
+}
+
 class DeviceManager {
-    public static let shared: DeviceManager = DeviceManager()
-    private init() {}
-    
-    public func getRandomUUID() -> String {
+   
+    public static func getRandomUUID() -> String {
         let uuid = UUID().uuidString
         return uuid
     }
     
-    public func getDeviceModel() -> String {
+    public static func getDeviceModel() -> String {
         return UIDevice.modelName
     }
     
-    public func getSystemVersion() -> String {
+    public static func getSystemVersion() -> String {
         return UIDevice.current.systemVersion
     }
     

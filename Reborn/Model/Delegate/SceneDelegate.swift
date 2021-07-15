@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window = UIWindow(windowScene: windowScene)
             window?.rootViewController = viewController
             window?.makeKeyAndVisible()
-            ServerManager.shared.update()
+            APIManager.shared.postUserDataToServer()
         } else {
             
             let viewController = storyboard.instantiateViewController (withIdentifier: "WelcomeViewController") as? WelcomViewController

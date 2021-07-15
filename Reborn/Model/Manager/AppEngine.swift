@@ -191,20 +191,43 @@ class AppEngine {
     }
 
     public func saveUser(_ newUser: User = AppEngine.shared.currentUser) {
-
-        let encoder = JSONEncoder()//PropertyListEncoder()
-
-        do {
-            let data = try encoder.encode(self.currentUser)
-            try data.write(to: self.dataFilePath!)
-        } catch {
-            print("Error encoding item array, \(error)")
-        }
-        
-        AppEngine.shared.updateWidgetData()
+//
+//        let encoder = JSONEncoder()//PropertyListEncoder()
+//
+//        do {
+//            let data = try encoder.encode(self.currentUser)
+//            try data.write(to: self.dataFilePath!)
+//        } catch {
+//            print("Error encoding item array, \(error)")
+//        }
+//        
+//        AppEngine.shared.updateWidgetData()
        
     }
     
+    public func getUserJsonDic() -> [String: Any]? {
+
+        let encoder = JSONEncoder()//PropertyListEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        do {
+            let data = try encoder.encode(self.currentUser)
+            do {
+                // make sure this JSON is in the format we expect
+                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                    // try to read out a string array
+                    return json
+                }
+            } catch let error as NSError {
+                print("Failed to load: \(error.localizedDescription)")
+            }
+            
+        } catch {
+            print("Error encoding item array, \(error)")
+            
+        }
+        
+        return nil
+    }
    
     
     private func loadUser() {

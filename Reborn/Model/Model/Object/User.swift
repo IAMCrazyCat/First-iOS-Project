@@ -58,6 +58,7 @@ class User: Codable {
         case avatar
         case energy
         case items
+        case purchasedType
         case creationDate
     }
     
@@ -92,6 +93,7 @@ class User: Codable {
         }
         
         do {
+            
             self.energy = try container.decode(Int.self, forKey: .energy)
         } catch {
             print("User Energy Decoding failed, default value assigned")
@@ -103,6 +105,13 @@ class User: Codable {
         } catch {
             print("User Items Decoding failed, default value assigned")
             self.items = SystemSetting.shared.defaultUserItems
+        }
+        
+        do {
+            self.purchasedType = try container.decode(PurchaseType.self, forKey: .purchasedType)
+        } catch {
+            print("User PurchasedType Decoding failed, default value assigned")
+            self.purchasedType = .none
         }
         
         do {
@@ -123,7 +132,6 @@ class User: Codable {
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: Key.self)
-        
         do {
             try container.encode(ID, forKey: .ID)
             try container.encode(name, forKey: .name)
@@ -131,6 +139,7 @@ class User: Codable {
             try container.encode(avatar, forKey: .avatar)
             try container.encode(energy, forKey: .energy)
             try container.encode(items, forKey: .items)
+            try container.encode(purchasedType, forKey: .purchasedType)
             try container.encode(creationDate, forKey: .creationDate)
         } catch {
             print("Encoding User failed")
@@ -224,11 +233,14 @@ class User: Codable {
     public func updateEnergy(by item: Item) {
 
         if item.lastEnergyConsecutiveDays >= self.energyChargingEfficiencyDays && !item.todayIsAddedEnergy {
+            print("User has new eneger redeemed")
             self.energy += 1
             item.lastEnergyConsecutiveDays = 0
             item.energyRedeemDates.append(CustomDate.current)
             AppEngine.shared.userSetting.hasViewedEnergyUpdate = false
             AppEngine.shared.saveSetting()
+        } else {
+            print("User has not achived new energy yet")
         }
     }
     

@@ -16,7 +16,7 @@ class EnergyStrategy: VIPStrategyImpl {
     
     func updateLabels() {
         energySettingViewController.energyButton.setTitle("× \(AppEngine.shared.currentUser.energy)", for: .normal)
-        
+
         if AppEngine.shared.currentUser.isVip {
             energySettingViewController.efficiencyLabel.text = "能效：连续打卡\(AppEngine.shared.currentUser.energyChargingEfficiencyDays)天 获得1点能量 (高级用户)"
         } else {

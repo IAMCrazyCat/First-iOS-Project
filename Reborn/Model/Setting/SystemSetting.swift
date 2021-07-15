@@ -11,7 +11,7 @@ import UIKit
 struct SystemSetting {
     
     static let shared = SystemSetting()
-    let defaultUserID: String = DeviceManager.shared.getRandomUUID()
+    let defaultUserID: String = DeviceManager.getRandomUUID()
     let defaultUserName: String = "努力的人"
     let defaultUserGender: Gender = .undefined
     let defaultUserAvatar: UIImage = #imageLiteral(resourceName: "DefaultAvatar")

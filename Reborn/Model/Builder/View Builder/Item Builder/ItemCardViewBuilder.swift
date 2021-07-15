@@ -99,7 +99,7 @@ class ItemCardViewBuilder: ViewBuilder {
         
         let nameLabel = UILabel()
         nameLabel.accessibilityIdentifier = "NameLabel"
-        nameLabel.text = item.type.rawValue + item.name
+        nameLabel.text = item.getFullName()
 
         nameLabel.textColor = .label
         nameLabel.font = AppEngine.shared.userSetting.smallFont
@@ -111,20 +111,13 @@ class ItemCardViewBuilder: ViewBuilder {
         nameLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
         nameLabel.widthAnchor.constraint(lessThanOrEqualToConstant: outPutView.frame.width - 240).isActive = true
        
+       
     }
     
     private func addItemCardFreqencyLabel() {
         let freqencyLabel = UILabel()
         freqencyLabel.accessibilityIdentifier = "FreqencyLabel"
         freqencyLabel.text = item.newFrequency.getFreqencyString()
-        
-//        if let newFreqency = item.newFrequency{
-//            freqencyLabel.text = newFreqency.getFreqencyString()
-//        } else {
-//            freqencyLabel.text = "(请更新频率)"
-//        }
-        
-        
         freqencyLabel.textColor = AppEngine.shared.userSetting.properThemeColor
         freqencyLabel.font = AppEngine.shared.userSetting.smallFont
         freqencyLabel.sizeToFit()
@@ -140,7 +133,7 @@ class ItemCardViewBuilder: ViewBuilder {
         
         let stateLabel = UILabel()
         stateLabel.accessibilityIdentifier = "StateLabel"
-        stateLabel.text = item.state == .duringBreak ? "（休息中）" : item.state == .completed ? "（已完成）" : ""
+        stateLabel.text = item.state == .duringBreak ? "(休息中)" : item.state == .completed ? "(已完成)" : ""
         stateLabel.textColor = AppEngine.shared.userSetting.properThemeColor
         stateLabel.font = AppEngine.shared.userSetting.smallFont
         stateLabel.sizeToFit()
@@ -148,9 +141,23 @@ class ItemCardViewBuilder: ViewBuilder {
         outPutView.addSubview(stateLabel)
         
         stateLabel.translatesAutoresizingMaskIntoConstraints = false
-        stateLabel.leftAnchor.constraint(equalTo: freqencyLabel.rightAnchor, constant: 0).isActive = true
+        stateLabel.leftAnchor.constraint(equalTo: freqencyLabel.rightAnchor, constant: 5).isActive = true
         stateLabel.centerYAnchor.constraint(equalTo: freqencyLabel.centerYAnchor).isActive = true
         stateLabel.heightAnchor.constraint(equalTo: freqencyLabel.heightAnchor).isActive = true
+        
+        if self.item.notificationTimes.count > 0 {
+            let notificationIcon = UIImageView()
+            notificationIcon.accessibilityIdentifier = "NotificationIcon"
+            notificationIcon.image = UIImage(named: "Notification6-Templete") ?? UIImage()
+            notificationIcon.tintColor = AppEngine.shared.userSetting.themeColor.uiColor
+            outPutView.addSubview(notificationIcon)
+            notificationIcon.translatesAutoresizingMaskIntoConstraints = false
+            notificationIcon.topAnchor.constraint(equalTo: stateLabel.topAnchor).isActive = true
+            notificationIcon.bottomAnchor.constraint(equalTo: stateLabel.bottomAnchor).isActive = true
+            notificationIcon.leftAnchor.constraint(equalTo: stateLabel.rightAnchor, constant: 5).isActive = true
+            notificationIcon.widthAnchor.constraint(equalTo: stateLabel.heightAnchor).isActive = true
+        }
+        
 
     }
     

@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if !AppEngine.shared.currentUser.isVip {
             GADMobileAds.sharedInstance().start(completionHandler: nil)
         }
+
         
         Purchases.debugLogsEnabled = true
         Purchases.configure(withAPIKey: "bSAXvlaUIFweatIwfeZryIrUUYJhnRMZ")

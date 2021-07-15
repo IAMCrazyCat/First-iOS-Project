@@ -258,7 +258,7 @@
             <objects>
                 <viewController id="yhk-VJ-4nb" customClass="NewItemViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5tU-dT-BVc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eis-9Y-9bk" userLabel="Horizental Scroll View">
@@ -955,50 +955,21 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="AHp-5s-DbW" userLabel="Item Data Stack View">
                                                         <rect key="frame" x="0.0" y="50" width="384" height="422"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iq0-uT-zhu" userLabel="Frequency View">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TlR-dQ-Hj7" userLabel="Notification View">
                                                                 <rect key="frame" x="0.0" y="0.0" width="384" height="53"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Freqency" translatesAutoresizingMaskIntoConstraints="NO" id="HMa-gx-7eI">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Notification3-HD" translatesAutoresizingMaskIntoConstraints="NO" id="vNH-xi-0Y7">
                                                                         <rect key="frame" x="20" y="11.5" width="30" height="30"/>
                                                                         <color key="tintColor" red="0.51872617009999999" green="0.78829997780000005" blue="0.9804186225" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                     </imageView>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="频率" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2qq-qk-Wpz">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提醒" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d5C-4A-9dC">
                                                                         <rect key="frame" x="60" y="17.5" width="31" height="18"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="每天一次" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZQ-3G-tzB">
-                                                                        <rect key="frame" x="302.5" y="17.5" width="61.5" height="18"/>
-                                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                                        <nil key="textColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                </subviews>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <constraints>
-                                                                    <constraint firstItem="HMa-gx-7eI" firstAttribute="centerY" secondItem="Iq0-uT-zhu" secondAttribute="centerY" id="BrN-lE-v4K"/>
-                                                                    <constraint firstItem="eZQ-3G-tzB" firstAttribute="centerY" secondItem="HMa-gx-7eI" secondAttribute="centerY" id="D1r-Rh-FVI"/>
-                                                                    <constraint firstItem="2qq-qk-Wpz" firstAttribute="centerY" secondItem="HMa-gx-7eI" secondAttribute="centerY" id="HxZ-OL-gkn"/>
-                                                                    <constraint firstItem="eZQ-3G-tzB" firstAttribute="centerY" secondItem="Iq0-uT-zhu" secondAttribute="centerY" id="P3D-Ia-kFw"/>
-                                                                    <constraint firstItem="2qq-qk-Wpz" firstAttribute="centerY" secondItem="Iq0-uT-zhu" secondAttribute="centerY" id="yUZ-EY-1Oi"/>
-                                                                </constraints>
-                                                            </view>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TlR-dQ-Hj7" userLabel="Frequency View">
-                                                                <rect key="frame" x="0.0" y="53" width="384" height="52.5"/>
-                                                                <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Notification" translatesAutoresizingMaskIntoConstraints="NO" id="vNH-xi-0Y7">
-                                                                        <rect key="frame" x="20" y="11" width="30" height="30"/>
-                                                                        <color key="tintColor" red="0.51872617009999999" green="0.78829997780000005" blue="0.9804186225" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                    </imageView>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提醒" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d5C-4A-9dC">
-                                                                        <rect key="frame" x="60" y="17" width="31" height="18"/>
-                                                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="15"/>
-                                                                        <nil key="textColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:21" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="slq-Ri-G4k">
-                                                                        <rect key="frame" x="324.5" y="17" width="39.5" height="18"/>
+                                                                        <rect key="frame" x="324.5" y="17.5" width="39.5" height="18"/>
                                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -1011,6 +982,35 @@
                                                                     <constraint firstItem="slq-Ri-G4k" firstAttribute="centerY" secondItem="TlR-dQ-Hj7" secondAttribute="centerY" id="Pa4-U3-q1r"/>
                                                                     <constraint firstItem="d5C-4A-9dC" firstAttribute="centerY" secondItem="TlR-dQ-Hj7" secondAttribute="centerY" id="gPp-OL-BPg"/>
                                                                     <constraint firstItem="slq-Ri-G4k" firstAttribute="centerY" secondItem="vNH-xi-0Y7" secondAttribute="centerY" id="pjZ-te-oha"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iq0-uT-zhu" userLabel="Frequency View">
+                                                                <rect key="frame" x="0.0" y="53" width="384" height="52.5"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Freqency" translatesAutoresizingMaskIntoConstraints="NO" id="HMa-gx-7eI">
+                                                                        <rect key="frame" x="20" y="11" width="30" height="30"/>
+                                                                        <color key="tintColor" red="0.51872617009999999" green="0.78829997780000005" blue="0.9804186225" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                    </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="频率" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2qq-qk-Wpz">
+                                                                        <rect key="frame" x="60" y="17" width="31" height="18"/>
+                                                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="15"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="每天一次" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZQ-3G-tzB">
+                                                                        <rect key="frame" x="302.5" y="17" width="61.5" height="18"/>
+                                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="HMa-gx-7eI" firstAttribute="centerY" secondItem="Iq0-uT-zhu" secondAttribute="centerY" id="BrN-lE-v4K"/>
+                                                                    <constraint firstItem="eZQ-3G-tzB" firstAttribute="centerY" secondItem="HMa-gx-7eI" secondAttribute="centerY" id="D1r-Rh-FVI"/>
+                                                                    <constraint firstItem="2qq-qk-Wpz" firstAttribute="centerY" secondItem="HMa-gx-7eI" secondAttribute="centerY" id="HxZ-OL-gkn"/>
+                                                                    <constraint firstItem="eZQ-3G-tzB" firstAttribute="centerY" secondItem="Iq0-uT-zhu" secondAttribute="centerY" id="P3D-Ia-kFw"/>
+                                                                    <constraint firstItem="2qq-qk-Wpz" firstAttribute="centerY" secondItem="Iq0-uT-zhu" secondAttribute="centerY" id="yUZ-EY-1Oi"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m9F-5s-G51" userLabel="Finished days View">
@@ -1056,7 +1056,7 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Target" translatesAutoresizingMaskIntoConstraints="NO" id="YRh-Sx-pwm">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Target2-HD" translatesAutoresizingMaskIntoConstraints="NO" id="YRh-Sx-pwm">
                                                                         <rect key="frame" x="20" y="11" width="30" height="30"/>
                                                                         <color key="tintColor" systemColor="systemYellowColor"/>
                                                                     </imageView>
@@ -1164,7 +1164,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aGc-VR-lh5" userLabel="Next View">
                                                                 <rect key="frame" x="0.0" y="369.5" width="384" height="52.5"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NextDay-HD" translatesAutoresizingMaskIntoConstraints="NO" id="XmQ-ln-d0H">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NextDay3-HD" translatesAutoresizingMaskIntoConstraints="NO" id="XmQ-ln-d0H">
                                                                         <rect key="frame" x="20" y="11" width="30" height="30"/>
                                                                         <color key="tintColor" red="0.69427692890000003" green="0.4852283597" blue="0.7176702023" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                     </imageView>
@@ -3759,7 +3759,7 @@
                                                     <action selector="startWorkingButtonPressed:" destination="BaV-8j-OVv" eventType="touchUpInside" id="UD1-sM-sI9"/>
                                                 </connections>
                                             </button>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="[番茄工作法] 是简单易行的时间管理方法，使用番茄工作法，选择一个待完成的任务，将番茄时间设为25分钟，专注工作，中途不允许做任何与该任务无关的事，直到番茄时钟响起，然后进行短暂休息一下，重新设定新的番茄时钟" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5HW-lE-qXP">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="番茄工作法是简单易行的时间管理方法，使用番茄工作法，选择一个待完成的任务，将番茄时间设为25分钟，专注工作，中途不允许做任何与该任务无关的事，直到番茄时钟响起，然后进行短暂休息一下，重新设定新的番茄时钟" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5HW-lE-qXP">
                                                 <rect key="frame" x="20" y="614.5" width="374" height="75"/>
                                                 <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                                 <constraints>
@@ -3881,7 +3881,7 @@
                                                     <action selector="startBreathingButtonPressed:" destination="v2s-l8-7fg" eventType="touchUpInside" id="bwE-dO-dF2"/>
                                                 </connections>
                                             </button>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="[呼吸放松法] 是一种简单的调整工作学习状态的方法，深呼吸一分钟可以让您快速清理大脑中的垃圾，重新回到工作和学习状态中。点击“开始呼吸”，可以闭上眼睛跟随震动指导进行呼吸。" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TB5-xL-LiY">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="呼吸放松法是一种简单的调整工作学习状态的方法，深呼吸一分钟可以让您快速清理大脑中的垃圾，重新回到工作和学习状态中。点击“开始呼吸”，可以闭上眼睛跟随震动指导进行呼吸。" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TB5-xL-LiY">
                                                 <rect key="frame" x="20" y="614.5" width="374" height="75"/>
                                                 <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                                 <constraints>
@@ -4140,7 +4140,7 @@
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="坚持健身并且不看比特币" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVJ-m7-pFk">
                                                                 <rect key="frame" x="20" y="170" width="109" height="36"/>
-                                                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="15"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                 <color key="textColor" name="BlackContent"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -4383,7 +4383,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="[能量] 是使用时光机器时需要消耗的物品， 当您忘记打卡，您可以使用时光机器回到过去重新打卡(点击日历右上角的时光机器图标)，每重新打卡一天需要消耗1点能量，您可以通过连续打卡免费获得能量，也可以购买能量" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pxM-D2-KgB">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="能量是使用时光机器时需要消耗的物品， 当您忘记打卡，您可以使用时光机器回到过去重新打卡，每重新打卡一天需要消耗1点能量，您可以通过连续打卡免费获得能量，也可以购买能量" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pxM-D2-KgB">
                                 <rect key="frame" x="20" y="702.5" width="374" height="70"/>
                                 <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                 <constraints>
@@ -4689,7 +4689,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="xf4-Re-kmQ"/>
-        <segue reference="dzd-Jo-rYE"/>
+        <segue reference="HdV-Uf-p4p"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
@@ -4716,8 +4716,9 @@
         <image name="LeftButton" width="28" height="28"/>
         <image name="MyIcon" width="28" height="28"/>
         <image name="Name" width="512" height="512"/>
-        <image name="NextDay-HD" width="512" height="512"/>
+        <image name="NextDay3-HD" width="512" height="512"/>
         <image name="Notification" width="28" height="28"/>
+        <image name="Notification3-HD" width="512" height="512"/>
         <image name="Pencil" width="28" height="28"/>
         <image name="ProgressIcon" width="28" height="28"/>
         <image name="Purchase" width="28" height="28"/>
@@ -4728,7 +4729,7 @@
         <image name="SelfDisciplineIcon" width="28" height="28"/>
         <image name="Share" width="28" height="28"/>
         <image name="StyleMode" width="31.5" height="31.5"/>
-        <image name="Target" width="512" height="512"/>
+        <image name="Target2-HD" width="512" height="512"/>
         <image name="Test" width="195" height="196"/>
         <image name="ThemeColorIcon" width="28" height="28"/>
         <image name="TimeMachine-1" width="828" height="1038"/>

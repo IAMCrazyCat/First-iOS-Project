@@ -31,6 +31,9 @@ class InAppPurchaseManager {
     init() {
     }
     
+    public func getUserAppleIDRegion() -> String? {
+        return self.packages.first?.product.priceLocale.languageCode
+    }
 
     public func getUserPurchaseType() -> PurchaseType {
         if let receipt = try? InAppReceipt.localReceipt() {
@@ -71,30 +74,8 @@ class InAppPurchaseManager {
     }
     
     func getLocalCurrencySymbol() -> String? {
-//        var pakageForFetch: Purchases.Package?
-//        for pakage in self.packages {
-//            if pakage.product.productIdentifier == purchaseType.productID{
-//                print("Found symbol")
-//                pakageForFetch = pakage
-//            }
-//        }
         let symbol = self.packages.first?.product.priceLocale.currencySymbol
-        print("Currency Symbol")
-        print(symbol)
         return symbol
-//        print("Good Price")
-//        print(pakageForFetch?.localizedPriceString)
-//        if let price = pakageForFetch?.product.priceLocale.currencySymbol {
-//            let str = price
-//            let strWithoutNumbers = (str.components(separatedBy: CharacterSet.decimalDigits)).joined(separator: "")
-//            let strWithoutComma = strWithoutNumbers.replacingOccurrences(of: ",", with: "", options: .literal, range: nil)
-//            let strWithoutDot = strWithoutComma.replacingOccurrences(of: ".", with: "", options: .literal, range: nil)
-//            let strWithoutSpace = strWithoutDot.replacingOccurrences(of: " ", with: "", options: .literal, range: nil)
-//
-//            return strWithoutSpace
-//        } else {
-//            return nil
-//        }
     }
     
     
@@ -116,11 +97,6 @@ class InAppPurchaseManager {
                 for index in 0 ... pacakges!.count - 1 {
                     let pakage = pacakges![index]
                     let product = pakage.product
-//                    let title = product.localizedTitle
-//                    let price = product.price
-//                    var duration = ""
-//                    let subscriptionPeriod = product.subscriptionPeriod
-                    
                     self.packages.append(pakage)
 
                 }
@@ -217,7 +193,7 @@ class InAppPurchaseManager {
     }
     
     private func updateAfterAppPurchased(withType purchaseType: PurchaseType) {
-        self.notifyAllObservers(withState: .purchased)
+        //self.notifyAllObservers(withState: .purchased)
         AppEngine.shared.currentUser.purchasedType = purchaseType
         AppEngine.shared.currentUser.energy += 5
         AppEngine.shared.userSetting.hasViewedEnergyUpdate = false
@@ -258,7 +234,6 @@ class InAppPurchaseManager {
               }
             }
         case .energy:
-
             Purchases.shared.purchasePackage(pakageForPurchase!) { (transaction, purchaserInfo, error, userCancelled) in
               if purchaserInfo?.entitlements["consumable"]?.isActive == true {
                 self.updateAfterEnergyPurchased()
@@ -287,11 +262,16 @@ class InAppPurchaseManager {
         }
        
     }
+
     
     private func subsrptionCheckSuccessed(withPurchasedType purchasedType: PurchaseType) {
 
         if !AppEngine.shared.currentUser.isVip {
-            self.updateAfterAppPurchased(withType: purchasedType)
+            print("VIP recovered")
+            AppEngine.shared.currentUser.purchasedType = purchasedType
+            AppEngine.shared.saveUser()
+            self.notifyAllObservers(withState: .purchased)
+            AppEngine.shared.notifyAllUIObservers()
         }
     }
     
