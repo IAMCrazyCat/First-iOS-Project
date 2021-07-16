@@ -1908,6 +1908,13 @@
                                                     <constraint firstItem="yle-BJ-cpB" firstAttribute="top" secondItem="YGf-5M-9JL" secondAttribute="bottom" constant="10" id="n5Q-eR-s9s"/>
                                                 </constraints>
                                             </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0b3-8B-hfh">
+                                                <rect key="frame" x="30" y="21" width="42" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                         <constraints>
@@ -2474,7 +2481,7 @@
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ews-TR-Tf9">
-                                                <rect key="frame" x="239" y="93" width="15" height="15"/>
+                                                <rect key="frame" x="244" y="93" width="15" height="15"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="15" id="B7j-m1-8Sn"/>
                                                     <constraint firstAttribute="width" constant="15" id="UJd-Ht-Olr"/>
@@ -2493,7 +2500,7 @@
                                             <constraint firstItem="uT8-OF-XzE" firstAttribute="top" secondItem="FzS-Z7-id6" secondAttribute="bottom" constant="20" id="5F6-8m-5Ph"/>
                                             <constraint firstItem="7Xs-CO-yhs" firstAttribute="bottom" secondItem="kb1-p1-Yuj" secondAttribute="bottom" id="67p-MF-sgD"/>
                                             <constraint firstItem="OaW-i9-p1v" firstAttribute="centerX" secondItem="fkI-Nx-UK5" secondAttribute="centerX" id="7lJ-rq-QB5"/>
-                                            <constraint firstItem="Ews-TR-Tf9" firstAttribute="leading" secondItem="7Xs-CO-yhs" secondAttribute="trailing" id="8Bp-c6-eYu"/>
+                                            <constraint firstItem="Ews-TR-Tf9" firstAttribute="leading" secondItem="7Xs-CO-yhs" secondAttribute="trailing" constant="5" id="8Bp-c6-eYu"/>
                                             <constraint firstItem="Fg2-3d-xoe" firstAttribute="leading" secondItem="fkI-Nx-UK5" secondAttribute="leading" constant="15" id="A9K-39-tq3"/>
                                             <constraint firstItem="0sp-V1-vxG" firstAttribute="height" secondItem="FzS-Z7-id6" secondAttribute="height" id="CGq-fT-DLr"/>
                                             <constraint firstItem="Ews-TR-Tf9" firstAttribute="centerY" secondItem="7Xs-CO-yhs" secondAttribute="centerY" constant="3" id="D3w-QY-qcO"/>
@@ -3579,7 +3586,7 @@
                                     <stackView opaque="NO" tag="7" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Vlj-yU-YBI" userLabel="Week Stack View">
                                         <rect key="frame" x="25" y="11" width="334" height="18"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="天" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64d-ZX-7pC">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64d-ZX-7pC">
                                                 <rect key="frame" x="0.0" y="0.0" width="47.5" height="18"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <nil key="textColor"/>
@@ -4030,7 +4037,7 @@
                                 <rect key="frame" x="0.0" y="728" width="414" height="80"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Wo-jG-FNH">
-                                        <rect key="frame" x="15" y="13.5" width="384" height="46.5"/>
+                                        <rect key="frame" x="50" y="13.5" width="314" height="46.5"/>
                                         <color key="backgroundColor" systemColor="systemGray3Color"/>
                                         <state key="normal" title="保存到相册">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -4043,8 +4050,8 @@
                                 </subviews>
                                 <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                 <constraints>
-                                    <constraint firstItem="1Wo-jG-FNH" firstAttribute="leading" secondItem="Gda-Fr-171" secondAttribute="leading" constant="15" id="46d-Ii-TBK"/>
-                                    <constraint firstAttribute="trailing" secondItem="1Wo-jG-FNH" secondAttribute="trailing" constant="15" id="Ay8-DW-XPN"/>
+                                    <constraint firstItem="1Wo-jG-FNH" firstAttribute="leading" secondItem="Gda-Fr-171" secondAttribute="leading" constant="50" id="46d-Ii-TBK"/>
+                                    <constraint firstAttribute="trailing" secondItem="1Wo-jG-FNH" secondAttribute="trailing" constant="50" id="Ay8-DW-XPN"/>
                                     <constraint firstAttribute="height" constant="80" id="JSi-sS-zh9"/>
                                     <constraint firstAttribute="bottom" secondItem="1Wo-jG-FNH" secondAttribute="bottom" constant="20" id="kud-0A-TCm"/>
                                 </constraints>
@@ -4383,7 +4390,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="能量是使用时光机器时需要消耗的物品， 当您忘记打卡，您可以使用时光机器回到过去重新打卡，每重新打卡一天需要消耗1点能量，您可以通过连续打卡免费获得能量，也可以购买能量" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pxM-D2-KgB">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="能量是使用时光机器时需要消耗的物品， 当您忘记打卡，您可以使用时光机器回到过去重新打卡，每重新打卡一天需要消耗1点能量，您可以通过连续打卡免费获得能量，也可以购买能量" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pxM-D2-KgB">
                                 <rect key="frame" x="20" y="702.5" width="374" height="70"/>
                                 <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                 <constraints>

@@ -404,10 +404,17 @@ extension UserCenterViewController: PopUpViewDelegate {
         switch type {
         case .customUserInformationPopUp:
             
-            let dataFromPopUp = (AppEngine.shared.storedDataFromPopUpView as? [String]) ?? ["没有名字", Gender.secret.rawValue]
-            self.engine.currentUser.name = dataFromPopUp.first!
-            self.engine.currentUser.gender = Gender(rawValue: dataFromPopUp.last!) ?? Gender.secret
-            self.engine.saveUser()
+            if let name = (AppEngine.shared.storedDataFromPopUpView as? [String])?.first, let genderName =  (AppEngine.shared.storedDataFromPopUpView as? [String])?.last {
+                
+                self.engine.currentUser.name = name
+                for gender in Gender.allCases {
+                    if genderName == gender.name {
+                        self.engine.currentUser.gender = gender
+                    }
+                }
+                self.engine.saveUser()
+            }
+            
         case .notificationTimePopUp:
             
             if let notificationTime = self.engine.storedDataFromPopUpView as? Array<CustomTime> {

@@ -60,13 +60,11 @@ class SetUpManager {
         case 5:
             userName = data
         case 6:
-
-            if data == Gender.male.rawValue {
-                userGender = .male
-            } else if data == Gender.female.rawValue {
-                userGender = .female
-            } else {
-                userGender = .secret
+            
+            for gender in Gender.allCases {
+                if data == gender.name {
+                    userGender = gender
+                }
             }
             print(userGender)
             
@@ -80,7 +78,7 @@ class SetUpManager {
     
     func createUser(setUpIsSkipped: Bool) {
 
-        let newUser = AppEngine.shared.currentUser
+        var newUser = User(ID: SystemSetting.shared.defaultUserID, name: SystemSetting.shared.defaultUserName, gender: SystemSetting.shared.defaultUserGender, avatar: SystemSetting.shared.defaultUserAvatar, energy: SystemSetting.shared.defaultUserEnergy, items: SystemSetting.shared.defaultUserItems, creationDate: SystemSetting.shared.defaultCreationDate)
         
         if !setUpIsSkipped {
 
@@ -104,11 +102,7 @@ class SetUpManager {
             }
             
         } else {
-            newUser.name = "努力的人"
-            newUser.gender = .undefined
-            newUser.setAvatarImage(#imageLiteral(resourceName: "DefaultAvatar"))
-            newUser.energy = 1
-            newUser.items.removeAll()
+            newUser = User(ID: SystemSetting.shared.defaultUserID, name: SystemSetting.shared.defaultUserName, gender: SystemSetting.shared.defaultUserGender, avatar: SystemSetting.shared.defaultUserAvatar, energy: SystemSetting.shared.defaultUserEnergy, items: SystemSetting.shared.defaultUserItems, creationDate: SystemSetting.shared.defaultCreationDate)
         }
 
         AppEngine.shared.currentUser = newUser

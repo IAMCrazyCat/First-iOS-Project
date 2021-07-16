@@ -86,13 +86,13 @@ class NewItemViewController: UIViewController {
         super.viewDidLoad()
         
         originalItemForRecovery = Item(ID: item.ID, name: item.name, days: item.targetDays, frequency: item.newFrequency, creationDate: item.creationDate, type: item.type, icon: self.item.icon, notificationTimes: item.notificationTimes)
-        originalItemForRecovery.newFrequency = item.newFrequency
+
         originalItemForRecovery.energy = item.energy
         originalItemForRecovery.state = item.state
         
         engine.add(observer: self)
-        persistingTypeButton.setTitle(ItemType.persisting.rawValue, for: .normal)
-        quittingTypeButton.setTitle(ItemType.quitting.rawValue, for: .normal)
+        persistingTypeButton.setTitle("坚持", for: .normal)
+        quittingTypeButton.setTitle("戒除", for: .normal)
         
         itemNameTextfield.delegate = self
         verticalScrollView.delegate = self
@@ -131,13 +131,12 @@ class NewItemViewController: UIViewController {
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         if !userDidSaveChange {
             if let originalItem = self.originalItemForRecovery {
                 self.item.icon = originalItem.icon
                 self.item.name = originalItem.name
                 self.item.targetDays = originalItem.targetDays
-//                self.item.frequency = originalItem.frequency
                 self.item.newFrequency = originalItem.newFrequency
                 self.item.type = originalItem.type
                 self.item.energy = originalItem.energy

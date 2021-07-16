@@ -590,10 +590,70 @@ class Item: Codable {
     
     public func getFullName() -> String {
 
-        return "\(self.type.rawValue)\(self.name)"
+        return self.name//"\(self.type.rawValue)\(self.name)"
     }
     
+    public func getPeriodicalCompletionTitile() -> String {
+        switch self.newFrequency.type {
+        case .everyDay: return "今天"
+        case .everyWeek, .everyWeekdays: return "本周"
+        case .everyMonth: return "本月"
+        }
+    }
     
+    public func getPeriodicalCompletionInAttributedString(font: UIFont, normalColor: UIColor, redColor: UIColor, greenColor: UIColor, grayColor: UIColor) -> NSMutableAttributedString {
+        var attributedString: NSMutableAttributedString
+        
+        switch self.newFrequency.type {
+        case .everyDay:
+            
+            if self.isPunchedIn {
+                let attribute = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: greenColor]
+                attributedString = NSMutableAttributedString(string: "已打卡", attributes: attribute)
+            } else {
+                let attribute = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: redColor]
+                attributedString = NSMutableAttributedString(string: "未打卡", attributes: attribute)
+            }
+            return attributedString
+        case .everyWeek:
+            let everyWeek: EveryWeek = self.newFrequency as! EveryWeek
+            let currentWeekdaysDates: Array<CustomDate> = CustomDate.current.week
+            var punchedInDaysInCurrentWeek: Int = 0
+            for punchInDate in self.punchInDates {
+                if currentWeekdaysDates.contains(punchInDate) {
+                    punchedInDaysInCurrentWeek += 1
+                }
+            }
+            let attribute = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: normalColor]
+            attributedString = NSMutableAttributedString(string: "\(punchedInDaysInCurrentWeek)/\(everyWeek.days)", attributes: attribute)
+            
+        case .everyWeekdays:
+            let everyWeekdays: EveryWeekdays = self.newFrequency as! EveryWeekdays
+            let currentWeekdaysDates: Array<CustomDate> = CustomDate.current.week
+            var punchedInDaysInCurrentWeek: Int = 0
+            for punchInDate in self.punchInDates {
+                if currentWeekdaysDates.contains(punchInDate) {
+                    punchedInDaysInCurrentWeek += 1
+                }
+            }
+            let attribute = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: normalColor]
+            attributedString = NSMutableAttributedString(string: "\(punchedInDaysInCurrentWeek)/\(everyWeek.days)", attributes: attribute)
+        case .everyMonth:
+            let everyMonth: EveryMonth = self.newFrequency as! EveryMonth
+            let currentWeekdaysDates: Array<CustomDate> = CustomDate.current.week
+            var punchedInDaysInCurrentMonth: Int = 0
+            for punchInDate in self.punchInDates {
+                if currentWeekdaysDates.contains(punchInDate) {
+                    punchedInDaysInCurrentMonth += 1
+                }
+            }
+            let attribute = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: normalColor]
+            attributedString = NSMutableAttributedString(string: "\(punchedInDaysInCurrentMonth)/\(everyMonth.days)", attributes: attribute)
+            
+            
+        return attributedString
+        }
+    }
     
     
     

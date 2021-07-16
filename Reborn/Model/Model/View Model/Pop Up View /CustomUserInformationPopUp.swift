@@ -25,9 +25,15 @@ class CustomUserInformationPopUp: PopUpImpl {
         return super.contentView?.getSubviewBy(idenifier: "FemaleButton") as? UIButton
     }
     
+    var otherButton: UIButton? {
+        return super.contentView?.getSubviewBy(idenifier: "OtherButton") as? UIButton
+    }
+    
     var secretButton: UIButton? {
         return super.contentView?.getSubviewBy(idenifier: "SecretButton") as? UIButton
     }
+    
+    
     
     var selectedGender: Gender = AppEngine.shared.currentUser.gender
     
@@ -36,6 +42,7 @@ class CustomUserInformationPopUp: PopUpImpl {
         super.init(presentAnimationType: presentAnimationType, type: .customUserInformationPopUp, size: size, popUpViewController: popUpViewController)
         maleButton?.addTarget(self, action: #selector(self.genderButtonPressed(_:)), for: .touchUpInside)
         femaleButton?.addTarget(self, action: #selector(self.genderButtonPressed(_:)), for: .touchUpInside)
+        otherButton?.addTarget(self, action: #selector(self.genderButtonPressed(_:)), for: .touchUpInside)
         secretButton?.addTarget(self, action: #selector(self.genderButtonPressed(_:)), for: .touchUpInside)
     }
    
@@ -45,7 +52,7 @@ class CustomUserInformationPopUp: PopUpImpl {
     }
     
     override func getStoredData() -> Any {
-        return [self.textField?.text ?? "没有名字", self.selectedGender.rawValue]
+        return [self.textField?.text ?? "没有名字", self.selectedGender.name]
     }
     
     override func updateUI() {
@@ -70,11 +77,12 @@ class CustomUserInformationPopUp: PopUpImpl {
     @objc func genderButtonPressed(_ sender: UIButton!) {
         maleButton?.isSelected = false
         femaleButton?.isSelected = false
+        otherButton?.isSelected = false
         secretButton?.isSelected = false
         sender.isSelected = true
         
         for gender in Gender.allCases {
-            if gender.rawValue == sender.currentTitle {
+            if gender.name == sender.currentTitle {
                 self.selectedGender = gender
             }
         }

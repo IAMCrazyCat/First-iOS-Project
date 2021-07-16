@@ -13,7 +13,6 @@ struct CalendarPage {
     var month: Int
     var punchedInDays: Array<Int> = []
     var days: Int {
-
         let dateComponents = DateComponents(year: year, month: month)
         let date = calendar.date(from: dateComponents)!
         let range = calendar.range(of: .day, in: .month, for: date)!

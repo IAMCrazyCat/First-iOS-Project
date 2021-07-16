@@ -191,17 +191,17 @@ class AppEngine {
     }
 
     public func saveUser(_ newUser: User = AppEngine.shared.currentUser) {
-//
-//        let encoder = JSONEncoder()//PropertyListEncoder()
-//
-//        do {
-//            let data = try encoder.encode(self.currentUser)
-//            try data.write(to: self.dataFilePath!)
-//        } catch {
-//            print("Error encoding item array, \(error)")
-//        }
-//        
-//        AppEngine.shared.updateWidgetData()
+
+        let encoder = JSONEncoder()//PropertyListEncoder()
+
+        do {
+            let data = try encoder.encode(self.currentUser)
+            try data.write(to: self.dataFilePath!)
+        } catch {
+            print("Error encoding item array, \(error)")
+        }
+        
+        AppEngine.shared.updateWidgetData()
        
     }
     

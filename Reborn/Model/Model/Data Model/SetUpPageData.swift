@@ -10,11 +10,11 @@ struct SetUpPageData {
 
     static let data = [
         SetUpPage(ID: 1,question: "请选择一项您想戒除的习惯", buttons:
-                    [CustomData(title: "拖延"), CustomData(title: "色"),
-                     CustomData(title: "烟"), CustomData(title: "熬夜"),
-                     CustomData(title: "酒"), CustomData(title: "暴饮暴食"),
-                     CustomData(title: "游戏"), CustomData(title: "赖床"),
-                     CustomData(title: "糖"), CustomData(title: "奶茶"),
+                    [CustomData(title: "戒掉拖延"), CustomData(title: "戒色"),
+                     CustomData(title: "戒烟"), CustomData(title: "不再熬夜"),
+                     CustomData(title: "戒酒"), CustomData(title: "戒掉爱情"),
+                     CustomData(title: "少打游戏"), CustomData(title: "不再赖床"),
+                     CustomData(title: "戒糖"), CustomData(title: "少喝奶茶"),
                      CustomData(title: SystemSetting.shared.customButtonTitle)
                      , CustomData(title: SystemSetting.shared.skipButtonTitle)
                     ]),
@@ -42,10 +42,10 @@ struct SetUpPageData {
                       CustomData(title: SystemSetting.shared.customButtonTitle)
                       ]),
         SetUpPage(ID: 5, question: "请设置您的名称", buttons: []),
-        SetUpPage(ID: 6, question: "请设置您的性别", buttons: [CustomData(title: Gender.male.rawValue),
-                                                         CustomData(title: Gender.female.rawValue),
-                                                         CustomData(title: "其他"),
-                                                         CustomData(title: "保密")
+        SetUpPage(ID: 6, question: "请设置您的性别", buttons: [CustomData(title: Gender.male.name),
+                                                         CustomData(title: Gender.female.name),
+                                                         CustomData(title: Gender.undefined.name),
+                                                         CustomData(title: Gender.secret.name)
         ])
     ]
 }

@@ -76,6 +76,23 @@ struct CustomDate: Codable, Equatable, Comparable {
         })
     }
     
+    var currentMonth: Array<CustomDate> {
+        var currentMonth: Array<CustomDate> = []
+        var daysInCurrentMonth: Int {
+            let calendar = Calendar.current
+            let dateComponents = DateComponents(year: self.year, month: self.month)
+            let date = calendar.date(from: dateComponents)!
+            let range = calendar.range(of: .day, in: .month, for: date)!
+            return range.count
+        }
+       
+        for day in 1 ... daysInCurrentMonth {
+            let customDate = CustomDate(year: self.year, month: self.month, day: day)
+            currentMonth.append(customDate)
+        }
+        return currentMonth
+    }
+    
     public func getDateString() -> String {
         let yearStr: String = "\(self.year)"
         let monthStr: String

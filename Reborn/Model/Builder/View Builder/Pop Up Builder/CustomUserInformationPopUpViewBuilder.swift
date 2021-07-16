@@ -96,7 +96,7 @@ class CustomUserInformationPopUpViewBuilder: PopUpViewBuilder {
 
         let maleButton = UIButton()
         maleButton.accessibilityIdentifier = "MaleButton"
-        maleButton.setTitle("\(Gender.male.rawValue)", for: .normal)
+        maleButton.setTitle("\(Gender.male.name)", for: .normal)
        
         
         super.contentView.addSubview(maleButton)
@@ -109,7 +109,7 @@ class CustomUserInformationPopUpViewBuilder: PopUpViewBuilder {
         
         let femaleButton = UIButton()
         femaleButton.accessibilityIdentifier = "FemaleButton"
-        femaleButton.setTitle("\(Gender.female.rawValue)", for: .normal)
+        femaleButton.setTitle("\(Gender.female.name)", for: .normal)
         
         super.contentView.addSubview(femaleButton)
         femaleButton.translatesAutoresizingMaskIntoConstraints = false
@@ -118,16 +118,28 @@ class CustomUserInformationPopUpViewBuilder: PopUpViewBuilder {
         femaleButton.setOptionButtonAppearance()
         
         
+        let otherButton = UIButton()
+        otherButton.accessibilityIdentifier = "OtherButton"
+        otherButton.setTitle("\(Gender.undefined.name)", for: .normal)
+        
+        super.contentView.addSubview(otherButton)
+        otherButton.translatesAutoresizingMaskIntoConstraints = false
+        otherButton.leftAnchor.constraint(equalTo: super.contentView.leftAnchor, constant: 0).isActive = true
+        otherButton.topAnchor.constraint(equalTo: maleButton.bottomAnchor, constant: SystemSetting.shared.mainGap).isActive = true
+        otherButton.setOptionButtonAppearance()
+        
         
         let secretButton = UIButton()
         secretButton.accessibilityIdentifier = "SecretButton"
-        secretButton.setTitle("\(Gender.secret.rawValue)", for: .normal)
-        
+        secretButton.setTitle("\(Gender.secret.name)", for: .normal)
+
         super.contentView.addSubview(secretButton)
         secretButton.translatesAutoresizingMaskIntoConstraints = false
-        secretButton.leftAnchor.constraint(equalTo: super.contentView.leftAnchor, constant: 0).isActive = true
-        secretButton.topAnchor.constraint(equalTo: maleButton.bottomAnchor, constant: SystemSetting.shared.mainGap).isActive = true
+        secretButton.rightAnchor.constraint(equalTo: super.contentView.rightAnchor, constant: 0).isActive = true
+        secretButton.topAnchor.constraint(equalTo: femaleButton.bottomAnchor, constant: SystemSetting.shared.mainGap).isActive = true
         secretButton.setOptionButtonAppearance()
+        
+        
         
         
         switch self.userGender {
@@ -135,8 +147,11 @@ class CustomUserInformationPopUpViewBuilder: PopUpViewBuilder {
             maleButton.isSelected = true
         case .female:
             femaleButton.isSelected = true
-        default:
+        case .undefined:
+            otherButton.isSelected = true
+        case .secret:
             secretButton.isSelected = true
+        
         }
         
        
