@@ -27,7 +27,7 @@ enum WeekDay: Int, CaseIterable, Codable {
         }
     }
     
-    var lastCharacter: String{
+    var shortName: String{
         switch self {
         case .Monday: return "一"
         case .Tuesday: return "二"

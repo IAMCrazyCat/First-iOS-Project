@@ -25,7 +25,7 @@ class FrequencyPopUpViewBuilder: PopUpViewBuilder {
     }
     
     private func addSegmentedControl() {
-        let items = ["按日", "按天数"]
+        let items = ["按日", "按次数"]
         let segmentedControl = UISegmentedControl(items: items)
         
         segmentedControl.accessibilityIdentifier = "SegmentedControl"

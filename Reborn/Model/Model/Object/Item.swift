@@ -23,7 +23,13 @@ class Item: Codable {
     var icon: Icon
     var newFrequency: NewFrequency
     var notificationTimes: Array<CustomTime> = []
-    var missedPunchInDates: Array<CustomDate> = []
+    var lastEnergyConsecutiveDays: Int = 0 {
+        didSet {
+            if lastEnergyConsecutiveDays < 0 {
+                lastEnergyConsecutiveDays = 0
+            }
+        }
+    }
     
     
     var finishedDays: Int {
@@ -47,15 +53,7 @@ class Item: Codable {
     var progress: Double {
         return Double(self.finishedDays) / Double(self.targetDays)
     }
-    
-    var lastEnergyConsecutiveDays: Int = 0 {
-        didSet {
-            if lastEnergyConsecutiveDays < 0 {
-                lastEnergyConsecutiveDays = 0
-            }
-        }
-    }
-    
+
     var currentEnergyConsecutiveDays: Int {
         return self.getConsecutiveDaysArray().last ?? 0
     }
@@ -251,14 +249,14 @@ class Item: Codable {
         var currentWeekShouldPunchInDates: Array<CustomDate> = []
         var currentWeekPunchInDates: Array<CustomDate> = []
 
-        for currentWeekDate in CustomDate.current.week {
+        for currentWeekDate in CustomDate.current.weekDates {
             if newFrequency.weekdays.contains(currentWeekDate.weekday) {
                 currentWeekShouldPunchInDates.append(currentWeekDate)
             }
         }
 
         for punchInDate in self.punchInDates {
-            if CustomDate.current.week.contains(punchInDate) {
+            if CustomDate.current.weekDates.contains(punchInDate) {
                 currentWeekPunchInDates.append(punchInDate)
             }
         }
@@ -280,7 +278,7 @@ class Item: Codable {
     func checkEveryWeekCompletion(with newFrequency: EveryWeek) -> Bool {
         var punchedDays = 0
         for punchInDate in self.punchInDates {
-            if CustomDate.current.week.contains(punchInDate) {
+            if CustomDate.current.weekDates.contains(punchInDate) {
                 punchedDays += 1
             }
             
@@ -340,7 +338,7 @@ class Item: Codable {
         func checkEveryWeekState(with newFrequency: EveryWeek) {
             var punchedDays = 0
             for punchInDate in self.punchInDates {
-                if CustomDate.current.week.contains(punchInDate) {
+                if CustomDate.current.weekDates.contains(punchInDate) {
                     punchedDays += 1
                 }
                 
@@ -456,7 +454,7 @@ class Item: Codable {
         
         let tomorrow = DateCalculator.calculateDate(withDayDifference: 1, originalDate: CustomDate.current)
         let today = CustomDate.current
-        let currentWeekSunday = CustomDate.current.week.last!
+        let currentWeekSunday = CustomDate.current.weekDates.last!
         let nextMonday = DateCalculator.calculateDate(withDayDifference: 1, originalDate: currentWeekSunday)
         let nextYear = DateCalculator.calculateDate(withMonthDifference: 1, originalDate: CustomDate.current).year
         let nextMonth = DateCalculator.calculateDate(withMonthDifference: 1, originalDate: CustomDate.current).month
@@ -509,7 +507,7 @@ class Item: Codable {
                 }
                 
                 if nextWeekday != nil {
-                    for date in CustomDate.current.week {
+                    for date in CustomDate.current.weekDates {
                         if date.weekday.rawValue == nextWeekday!.rawValue {
                             return date
                         }
@@ -617,10 +615,10 @@ class Item: Codable {
             return attributedString
         case .everyWeek:
             let everyWeek: EveryWeek = self.newFrequency as! EveryWeek
-            let currentWeekdaysDates: Array<CustomDate> = CustomDate.current.week
+            let currentWeekDates: Array<CustomDate> = CustomDate.current.weekDates
             var punchedInDaysInCurrentWeek: Int = 0
             for punchInDate in self.punchInDates {
-                if currentWeekdaysDates.contains(punchInDate) {
+                if currentWeekDates.contains(punchInDate) {
                     punchedInDaysInCurrentWeek += 1
                 }
             }
@@ -628,31 +626,49 @@ class Item: Codable {
             attributedString = NSMutableAttributedString(string: "\(punchedInDaysInCurrentWeek)/\(everyWeek.days)", attributes: attribute)
             
         case .everyWeekdays:
+
             let everyWeekdays: EveryWeekdays = self.newFrequency as! EveryWeekdays
-            let currentWeekdaysDates: Array<CustomDate> = CustomDate.current.week
-            var punchedInDaysInCurrentWeek: Int = 0
+            let currentWeekDates: Array<CustomDate> = CustomDate.current.weekDates
+            var currentWeekPunchedInDates: Array<CustomDate> = []
             for punchInDate in self.punchInDates {
-                if currentWeekdaysDates.contains(punchInDate) {
-                    punchedInDaysInCurrentWeek += 1
+                if currentWeekDates.contains(punchInDate)  {
+                    currentWeekPunchedInDates.append(punchInDate)
                 }
             }
-            let attribute = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: normalColor]
-            attributedString = NSMutableAttributedString(string: "\(punchedInDaysInCurrentWeek)/\(everyWeek.days)", attributes: attribute)
+            
+            var lastAttributedString: NSMutableAttributedString? = nil
+            for weekday in everyWeekdays.weekdays {
+                
+                let attribute1 = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: grayColor]
+                let attribute2 = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: greenColor]
+                for currentWeekPunchedInDate in currentWeekPunchedInDates {
+                    if currentWeekPunchedInDate.weekday == weekday { // schduled weekday has punched in
+                        attributedString = NSMutableAttributedString(string: "\(weekday.shortName) ", attributes: attribute2)
+                    } else {
+                        attributedString = NSMutableAttributedString(string: "\(weekday.shortName) ", attributes: attribute1)
+                    }
+                    if lastAttributedString != nil { attributedString.append(lastAttributedString!) }
+                    lastAttributedString = attributedString
+                }
+                
+                
+            }
+            
+            
         case .everyMonth:
             let everyMonth: EveryMonth = self.newFrequency as! EveryMonth
-            let currentWeekdaysDates: Array<CustomDate> = CustomDate.current.week
+            let currentMonthDates: Array<CustomDate> = CustomDate.current.monthDates
             var punchedInDaysInCurrentMonth: Int = 0
             for punchInDate in self.punchInDates {
-                if currentWeekdaysDates.contains(punchInDate) {
+                if currentMonthDates.contains(punchInDate) {
                     punchedInDaysInCurrentMonth += 1
                 }
             }
             let attribute = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: normalColor]
             attributedString = NSMutableAttributedString(string: "\(punchedInDaysInCurrentMonth)/\(everyMonth.days)", attributes: attribute)
-            
-            
-        return attributedString
+
         }
+        return attributedString
     }
     
     

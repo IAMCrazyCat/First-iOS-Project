@@ -63,7 +63,7 @@ struct CustomDate: Codable, Equatable, Comparable {
         return weekDay!
     }
     
-    var week: Array<CustomDate> {
+    var weekDates: Array<CustomDate> {
         var currentWeek: Array<CustomDate> = []
         let currentWeekdayNumber = CustomDate.current.weekday.rawValue
         for i in 1 ... 7 {
@@ -76,7 +76,7 @@ struct CustomDate: Codable, Equatable, Comparable {
         })
     }
     
-    var currentMonth: Array<CustomDate> {
+    var monthDates: Array<CustomDate> {
         var currentMonth: Array<CustomDate> = []
         var daysInCurrentMonth: Int {
             let calendar = Calendar.current
