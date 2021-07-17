@@ -30,6 +30,7 @@ class ItemDetailViewController: UIViewController {
     @IBOutlet weak var frequencyLabel: UILabel!
     @IBOutlet weak var nextPunchInDateLabel: UILabel!
     @IBOutlet weak var todayLabel: UILabel!
+    @IBOutlet weak var todayTitleLabel: UILabel!
     @IBOutlet weak var goBackButton: UINavigationItem!
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var startDateLabel: UILabel!
@@ -135,9 +136,6 @@ class ItemDetailViewController: UIViewController {
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         
         navigationItem.rightBarButtonItem?.tintColor = engine.userSetting.smartLabelColorAndWhite
-        
-       
-        
        
     }
     
@@ -158,7 +156,7 @@ class ItemDetailViewController: UIViewController {
     func updateEnergyProgressLabel() {
         if item.todayIsAddedEnergy {
             self.energyProgressLabel.textColor = ThemeColor.green.uiColor
-            self.energyProgressLabel.text = "新能量+1"
+            self.energyProgressLabel.text = "新能量 +1"
         } else {
             self.energyProgressLabel.text = "\(item.lastEnergyConsecutiveDays) / \(self.engine.currentUser.energyChargingEfficiencyDays)"
         }
@@ -166,7 +164,7 @@ class ItemDetailViewController: UIViewController {
     }
     
     func updateFrequencyLabel() {
-        self.frequencyLabel.text = "\(self.item.newFrequency.getSpecificFreqencyString() ?? "?")"
+        self.frequencyLabel.text = "\(self.item.newFrequency.getSpecificFreqencyString())"
     }
     
     func updateNextPunchInDateLabel() {
@@ -174,20 +172,9 @@ class ItemDetailViewController: UIViewController {
     }
     
     func updateTodayLabel() {
-        
-        if self.item.punchInDates.contains(CustomDate.current) && self.item.state != .completed  {
-            self.todayLabel.textColor = ThemeColor.green.uiColor
-            self.todayLabel.text = "已打卡"
-        } else if item.state == .completed {
-            self.todayLabel.textColor = ThemeColor.green.uiColor
-            self.todayLabel.text = "目标已达成"
-        } else if item.state == .duringBreak {
-            self.todayLabel.textColor = ThemeColor.green.uiColor
-            self.todayLabel.text = "休息中"
-        } else {
-            self.todayLabel.textColor = ThemeColor.red.uiColor
-            self.todayLabel.text = "未打卡"
-        }
+
+        self.todayTitleLabel.text = self.item.getPeriodicalCompletionTitile()
+        self.todayLabel.attributedText = self.item.getPeriodicalCompletionInAttributedString(font: todayLabel.font, normalColor: .label, redColor: ThemeColor.red.uiColor, greenColor: ThemeColor.green.uiColor, grayColor: self.setting.grayColor.withAlphaComponent(0.5))
     }
     
     func updateProgressView() {

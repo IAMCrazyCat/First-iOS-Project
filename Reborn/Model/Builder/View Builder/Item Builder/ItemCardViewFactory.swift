@@ -7,7 +7,7 @@
 import Foundation
 import UIKit
 
-class ItemCardViewBuilder: ViewBuilder {
+class ItemCardViewFactory: ViewBuilder {
 
     let item: Item
     let punchInButtonTag: Int
@@ -16,7 +16,7 @@ class ItemCardViewBuilder: ViewBuilder {
     var width: CGFloat
     var height: CGFloat
     let setting: SystemSetting = SystemSetting.shared
-    let outPutView: UIView = UIView()
+    let outPutView: UIView
     var isInteractable: Bool
     init(item: Item, frame: CGRect, punchInButtonTag: Int = 11607, isInteractable: Bool){ // for home page
 
@@ -51,7 +51,7 @@ class ItemCardViewBuilder: ViewBuilder {
     
     internal func createView() {
         
-        
+        outPutView = ItemCardView(frame: <#T##CGRect#>, item: <#T##Item#>, icon: <#T##UIImage#>, titileLabel: <#T##UILabel#>, frequencyLabel: <#T##UILabel#>, notificationIcon: <#T##UIImage#>, progressBar: <#T##UIView#>, punchInButton: <#T##UIButton#>, detatilsButton: <#T##UIButton#>, rightButton: <#T##UIButton#>)
         outPutView.accessibilityIdentifier = setting.itemCardIdentifier
         outPutView.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackContent
         outPutView.layer.cornerRadius = setting.itemCardCornerRadius

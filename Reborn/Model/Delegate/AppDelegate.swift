@@ -18,6 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             GADMobileAds.sharedInstance().start(completionHandler: nil)
         }
 
+//        let testItem = Item(ID: 101, name: "测试", days: 2000, frequency: EveryDay(), creationDate: CustomDate.current, type: .persisting, icon: Icon.defaultIcon1, notificationTimes: [CustomTime]())
+//        for i in -1000 ... 0 {
+//
+//            let customDate = DateCalculator.calculateDate(withDayDifference: i, originalDate: CustomDate.current)
+//            testItem.add(punchInDate: customDate)
+//        }
+//        AppEngine.shared.currentUser.add(newItem: testItem)
+        
         
         Purchases.debugLogsEnabled = true
         Purchases.configure(withAPIKey: "bSAXvlaUIFweatIwfeZryIrUUYJhnRMZ")

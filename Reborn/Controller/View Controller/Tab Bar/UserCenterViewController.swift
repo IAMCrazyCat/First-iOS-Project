@@ -140,12 +140,13 @@ class UserCenterViewController: UIViewController {
             mail.mailComposeDelegate = self
             mail.setToRecipients(["liuzimingjay@gmail.com"])
             mail.setSubject("User feedback of \(App.name) from: \(self.engine.currentUser.name)")
-            mail.setMessageBody("<p>Hi, \n</p><p>(请描述您遇到的问题或者您的建议)</p>", isHTML: true)
+            mail.setMessageBody("<p>Hi, \n</p><p>(请描述您遇到的问题或者您的建议)</p><br><br><br><br><br><br><br><p>AppVersion: \(App.version)</p><p>Device: \(DeviceManager.getDeviceModel())</p><p>System: \(DeviceManager.getSystemVersion())</p>", isHTML: true)
+            
 
             present(mail, animated: true)
             
             } else {
-                SystemAlert.present("您的设备未设置邮箱", and: "您可以手动发送反馈邮件到liuzimingjay@gmail.com", from: self)
+                SystemAlert.present("您的设备未设置邮箱", and: "您可以发送反馈邮件到liuzimingjay@gmail.com", from: self)
                 
         }
     }

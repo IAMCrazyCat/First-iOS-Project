@@ -30,7 +30,7 @@ class ItemCompletedPopUpViewBuilder: PopUpViewBuilder {
     }
     
     func addItemCard() {
-        itemCardView = ItemCardViewBuilder(item: item, frame: CGRect(x: 0, y: super.contentView.frame.height / 2 - SystemSetting.shared.itemCardHeight / 2 - 40, width: super.contentView.frame.width, height: SystemSetting.shared.itemCardHeight), isInteractable: false).buildView()
+        itemCardView = ItemCardViewFactory(item: item, frame: CGRect(x: 0, y: super.contentView.frame.height / 2 - SystemSetting.shared.itemCardHeight / 2 - 40, width: super.contentView.frame.width, height: SystemSetting.shared.itemCardHeight), isInteractable: false).buildView()
         itemCardView.accessibilityIdentifier = "ItemCardView"
         super.contentView.addSubview(itemCardView)
         

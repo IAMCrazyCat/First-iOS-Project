@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1F58F0E83E3F8EDE21CC6EB0 /* Pods_RebornTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E6CCCA1322DA999E425BE3 /* Pods_RebornTests.framework */; };
+		2205C8B126A29D230033E800 /* ItemCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2205C8B026A29D230033E800 /* ItemCardView.swift */; };
 		220743D9269B1F1900E2859A /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220743D8269B1F1900E2859A /* APIManager.swift */; };
 		220B7282258A288000E4BEDC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B7281258A288000E4BEDC /* AppDelegate.swift */; };
 		220B7284258A288000E4BEDC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220B7283258A288000E4BEDC /* SceneDelegate.swift */; };
@@ -39,7 +40,7 @@
 		2246D2E625CA68230001EFB7 /* DismissStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246D2E525CA68230001EFB7 /* DismissStrategy.swift */; };
 		2246D2EE25CAD5110001EFB7 /* EnlargeStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246D2ED25CAD5110001EFB7 /* EnlargeStrategy.swift */; };
 		2246D2F325CAD9F70001EFB7 /* GoBackToThePastStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246D2F225CAD9F70001EFB7 /* GoBackToThePastStrategy.swift */; };
-		224A919225971E9000A896BE /* ItemCardViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224A919125971E9000A896BE /* ItemCardViewBuilder.swift */; };
+		224A919225971E9000A896BE /* ItemCardViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224A919125971E9000A896BE /* ItemCardViewFactory.swift */; };
 		224E663525C6457900B71E8A /* TimeMachineAnimationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E663425C6457900B71E8A /* TimeMachineAnimationStrategy.swift */; };
 		224E663D25C6465D00B71E8A /* ForwardForOneStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E663C25C6465D00B71E8A /* ForwardForOneStrategy.swift */; };
 		224E664225C6467100B71E8A /* BackwardForManyStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E664125C6467100B71E8A /* BackwardForManyStrategy.swift */; };
@@ -240,6 +241,7 @@
 /* Begin PBXFileReference section */
 		077AEB837FD3306A6B1AAE85 /* Pods-Reborn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reborn.release.xcconfig"; path = "Target Support Files/Pods-Reborn/Pods-Reborn.release.xcconfig"; sourceTree = "<group>"; };
 		0C4533996E1B3FEF9192966A /* Pods_Reborn_RebornUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reborn_RebornUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2205C8B026A29D230033E800 /* ItemCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCardView.swift; sourceTree = "<group>"; };
 		220743D8269B1F1900E2859A /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		220B727E258A288000E4BEDC /* Reborn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reborn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		220B7281258A288000E4BEDC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -275,7 +277,7 @@
 		2246D2E525CA68230001EFB7 /* DismissStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissStrategy.swift; sourceTree = "<group>"; };
 		2246D2ED25CAD5110001EFB7 /* EnlargeStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnlargeStrategy.swift; sourceTree = "<group>"; };
 		2246D2F225CAD9F70001EFB7 /* GoBackToThePastStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoBackToThePastStrategy.swift; sourceTree = "<group>"; };
-		224A919125971E9000A896BE /* ItemCardViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCardViewBuilder.swift; sourceTree = "<group>"; };
+		224A919125971E9000A896BE /* ItemCardViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCardViewFactory.swift; sourceTree = "<group>"; };
 		224E663425C6457900B71E8A /* TimeMachineAnimationStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineAnimationStrategy.swift; sourceTree = "<group>"; };
 		224E663C25C6465D00B71E8A /* ForwardForOneStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForwardForOneStrategy.swift; sourceTree = "<group>"; };
 		224E664125C6467100B71E8A /* BackwardForManyStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackwardForManyStrategy.swift; sourceTree = "<group>"; };
@@ -476,6 +478,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2205C8AF26A29D120033E800 /* ItemCard */ = {
+			isa = PBXGroup;
+			children = (
+				2205C8B026A29D230033E800 /* ItemCardView.swift */,
+			);
+			path = ItemCard;
+			sourceTree = "<group>";
+		};
 		220B7275258A288000E4BEDC = {
 			isa = PBXGroup;
 			children = (
@@ -674,6 +684,7 @@
 		225A78D325E0EB39009EE149 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
+				2205C8AF26A29D120033E800 /* ItemCard */,
 				2232A59B2692ABE30020017B /* Encourage Text View */,
 				226C958025FC60390029C2E6 /* Calendar View */,
 				226C957F25FC60200029C2E6 /* Set Up view */,
@@ -1011,7 +1022,7 @@
 		22E5A12325F33459001AC3ED /* Item Builder */ = {
 			isa = PBXGroup;
 			children = (
-				224A919125971E9000A896BE /* ItemCardViewBuilder.swift */,
+				224A919125971E9000A896BE /* ItemCardViewFactory.swift */,
 				22C4BFC225D21F2400528A1C /* ItemProgressViewBuilder.swift */,
 				22BA665E263AA5B7003193E9 /* EraserViewBuilder.swift */,
 			);
@@ -1400,6 +1411,7 @@
 				22D00DFA25FE2F5700DB3F1D /* CustomTime.swift in Sources */,
 				224E665925C64F5F00B71E8A /* PresentStrategy.swift in Sources */,
 				228ED3E625B94D630054591F /* CalendarCell.swift in Sources */,
+				2205C8B126A29D230033E800 /* ItemCardView.swift in Sources */,
 				22F619BB263919B5007F91AF /* IconCell.swift in Sources */,
 				22CE4EF525D00C73007EBD5B /* EditingItemStrategy.swift in Sources */,
 				2279C17E2592ED2F00566CD7 /* UserSetting.swift in Sources */,
@@ -1430,7 +1442,7 @@
 				22D6195725A0277B00EC9396 /* PopUpViewSlideInFromBottomPresentAnimationController.swift in Sources */,
 				220743D9269B1F1900E2859A /* APIManager.swift in Sources */,
 				221752962675AB6C002F42E7 /* NewFeaturesPopUpViewBuilder.swift in Sources */,
-				224A919225971E9000A896BE /* ItemCardViewBuilder.swift in Sources */,
+				224A919225971E9000A896BE /* ItemCardViewFactory.swift in Sources */,
 				22AACA3225AE98B40098D920 /* CalendarViewController.swift in Sources */,
 				22C4BFB825D21E7A00528A1C /* ViewBuilder.swift in Sources */,
 				22D6196725A02FE100EC9396 /* PopUpViewFadeInFromCenterPresentAnimationController.swift in Sources */,

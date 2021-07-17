@@ -38,7 +38,7 @@ class APIManager {
     public func postUserDataToServer() {
         
         let userData = self.prepareDataForPosting()
-        let url = "http://f5879a5ca91e.ngrok.io/test/userdata"
+        let url = "http://cfdfad490c0f.ngrok.io/test/userdata"
         print("Posting user data to \(url)")
         guard let url = URL(string: url)
         else {

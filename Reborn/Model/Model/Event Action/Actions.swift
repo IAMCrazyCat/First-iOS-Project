@@ -24,37 +24,7 @@ class Actions {
     static var goToSystemSettingAction: Selector = #selector(Actions.shared.goToSystemSettingButtonPressed(_:))
 
     
-    @objc func itemPunchInButtonPressed(_ sender: UIButton!) {
-        let ID = Int(sender.accessibilityValue ?? "-1")!
-        AppEngine.shared.currentUser.updateItem(with: ID)
-        AppEngine.shared.saveUser()
-        AppEngine.shared.notifyUIObservers(withIdentifier: "HomeViewController")
-        AppEngine.shared.notifyUIObservers(withIdentifier: "ItemManagementViewController")
- 
-        if let item = AppEngine.shared.currentUser.getItemBy(ID), item.state == .completed {
-            UIApplication.shared.getCurrentViewController()?.presentItemCompletedPopUp(for: item)
-        }
-        
     
-    }
-    
-    @objc func itemDetailsButtonPressed(_ sender: UIButton!) {
-        Vibrator.vibrate(withImpactLevel: .medium)
-        
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        guard let senderViewController = sender.findViewController(),
-              let navigationController = senderViewController.navigationController,
-              let itemDetailViewController = storyBoard.instantiateViewController(withIdentifier: "ItemDetailView") as? ItemDetailViewController
-        else {
-            return
-        }
-        
-        itemDetailViewController.item = AppEngine.shared.currentUser.items[sender.tag]
-        itemDetailViewController.lastViewController = senderViewController
-        navigationController.pushViewController(itemDetailViewController, animated: true)
-
-    }
     
     @objc func themeColorButtonPressed(_ sender: UIButton!) {
         let selectedThemeColor = sender.accessibilityValue

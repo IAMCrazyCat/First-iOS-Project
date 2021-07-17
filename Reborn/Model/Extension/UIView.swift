@@ -142,7 +142,7 @@ extension UIView {
     
     func renderItemCard(by item: Item) {
         self.removeAllSubviews()
-        let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: 0, y: 0, width: self.frame.width - 2 * SystemSetting.shared.mainPadding, height: SystemSetting.shared.itemCardHeight), isInteractable: false)
+        let builder = ItemCardViewFactory(item: item, frame: CGRect(x: 0, y: 0, width: self.frame.width - 2 * SystemSetting.shared.mainPadding, height: SystemSetting.shared.itemCardHeight), isInteractable: false)
         let itemCard = builder.buildView()
         itemCard.center = self.center
         self.addSubview(itemCard)
@@ -174,7 +174,7 @@ extension UIView {
             while tag >= 0 {
                 let item = items[tag]
                 if item.state == condition || isRenderingAll {
-                    let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: SystemSetting.shared.mainPadding, y: cordinateY, width: self.frame.width - 2 * SystemSetting.shared.mainPadding, height: SystemSetting.shared.itemCardHeight), punchInButtonTag: tag, isInteractable: true)
+                    let builder = ItemCardViewFactory(item: item, frame: CGRect(x: SystemSetting.shared.mainPadding, y: cordinateY, width: self.frame.width - 2 * SystemSetting.shared.mainPadding, height: SystemSetting.shared.itemCardHeight), punchInButtonTag: tag, isInteractable: true)
                     let itemCard = builder.buildView()
                     cordinateY += SystemSetting.shared.itemCardHeight + SystemSetting.shared.itemCardGap
                     self.frame.size.height = itemCard.frame.maxY

@@ -406,7 +406,7 @@ class Item: Codable {
         var consecutiveDaysArray: Array<Int> = []
         var index: Int = 0
         var consecutiveDays: Int = 1
-        self.sortDateArray()
+        //self.sortDateArray()
         
         
         if self.punchInDates.count > 0 {
@@ -594,13 +594,14 @@ class Item: Codable {
     public func getPeriodicalCompletionTitile() -> String {
         switch self.newFrequency.type {
         case .everyDay: return "今天"
-        case .everyWeek, .everyWeekdays: return "本周"
-        case .everyMonth: return "本月"
+        case .everyWeek: return "本周打卡"
+        case .everyWeekdays: return "本周打卡"
+        case .everyMonth: return "本月打卡"
         }
     }
     
     public func getPeriodicalCompletionInAttributedString(font: UIFont, normalColor: UIColor, redColor: UIColor, greenColor: UIColor, grayColor: UIColor) -> NSMutableAttributedString {
-        var attributedString: NSMutableAttributedString
+        var attributedString: NSMutableAttributedString = NSMutableAttributedString()
         
         switch self.newFrequency.type {
         case .everyDay:
@@ -623,35 +624,31 @@ class Item: Codable {
                 }
             }
             let attribute = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: normalColor]
-            attributedString = NSMutableAttributedString(string: "\(punchedInDaysInCurrentWeek)/\(everyWeek.days)", attributes: attribute)
+            attributedString = NSMutableAttributedString(string: "\(punchedInDaysInCurrentWeek) / \(everyWeek.days)", attributes: attribute)
             
         case .everyWeekdays:
 
             let everyWeekdays: EveryWeekdays = self.newFrequency as! EveryWeekdays
             let currentWeekDates: Array<CustomDate> = CustomDate.current.weekDates
-            var currentWeekPunchedInDates: Array<CustomDate> = []
+            var currentWeekPunchedInWeekdays: Array<WeekDay> = []
             for punchInDate in self.punchInDates {
                 if currentWeekDates.contains(punchInDate)  {
-                    currentWeekPunchedInDates.append(punchInDate)
+                    currentWeekPunchedInWeekdays.append(punchInDate.weekday)
                 }
             }
-            
-            var lastAttributedString: NSMutableAttributedString? = nil
+
+            var newAttributedString: NSMutableAttributedString = NSMutableAttributedString() // This is the way to show compeletion in each day
             for weekday in everyWeekdays.weekdays {
-                
+
                 let attribute1 = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: grayColor]
                 let attribute2 = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: greenColor]
-                for currentWeekPunchedInDate in currentWeekPunchedInDates {
-                    if currentWeekPunchedInDate.weekday == weekday { // schduled weekday has punched in
-                        attributedString = NSMutableAttributedString(string: "\(weekday.shortName) ", attributes: attribute2)
-                    } else {
-                        attributedString = NSMutableAttributedString(string: "\(weekday.shortName) ", attributes: attribute1)
-                    }
-                    if lastAttributedString != nil { attributedString.append(lastAttributedString!) }
-                    lastAttributedString = attributedString
+
+                if currentWeekPunchedInWeekdays.contains(weekday) {
+                    newAttributedString = NSMutableAttributedString(string: "\(weekday.name)" + (weekday == everyWeekdays.weekdays.last ? "" : ", "), attributes: attribute2)
+                } else {
+                    newAttributedString = NSMutableAttributedString(string: "\(weekday.name)" + (weekday == everyWeekdays.weekdays.last ? "" : ", "), attributes: attribute1)
                 }
-                
-                
+                attributedString.append(newAttributedString)
             }
             
             
@@ -665,7 +662,7 @@ class Item: Codable {
                 }
             }
             let attribute = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: normalColor]
-            attributedString = NSMutableAttributedString(string: "\(punchedInDaysInCurrentMonth)/\(everyMonth.days)", attributes: attribute)
+            attributedString = NSMutableAttributedString(string: "\(punchedInDaysInCurrentMonth) / \(everyMonth.days)", attributes: attribute)
 
         }
         return attributedString
