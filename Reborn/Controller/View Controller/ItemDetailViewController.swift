@@ -172,17 +172,15 @@ class ItemDetailViewController: UIViewController {
     }
     
     func updateTodayLabel() {
-
-        
+    
         self.todayLabel.text = ""
-        LoadingAnimation.add(to: self.todayLabel, withRespondingTime: 10, circleWidth: 2, circleRadius: 10, timeOutAlertTitle: "操作超时")
-        DispatchQueue.global().async {
-            let attributedText =  self.item.getPeriodicalCompletionInAttributedString(font: self.todayLabel.font, normalColor: .label, redColor: ThemeColor.red.uiColor, greenColor: ThemeColor.green.uiColor, grayColor: self.setting.grayColor.withAlphaComponent(0.5))
-            DispatchQueue.main.async {
-                self.todayLabel.attributedText = attributedText
-                LoadingAnimation.remove()
-            }
+        LoadingAnimation.add(to: self.todayLabel, withRespondingTime: 10, circleWidth: 0.5, circleRadius: 10, timeOutAlertTitle: "操作超时")
+        self.item.getPeriodicalCompletionInAttributedString(font: self.todayLabel.font, normalColor: .label, redColor: ThemeColor.red.uiColor, greenColor: ThemeColor.green.uiColor, grayColor: self.setting.grayColor.withAlphaComponent(0.5)) { result in
+            
+            self.todayLabel.attributedText = result
+            LoadingAnimation.remove()
         }
+        
        
     }
     
@@ -238,7 +236,7 @@ class ItemDetailViewController: UIViewController {
         updateFrequencyLabel()
         updateTodayLabel()
         updateProgressView()
-        updateNextPunchInDateLabel()
+        //updateNextPunchInDateLabel()
         updateStartDateLabel()
         updateNotificationLabel()
         

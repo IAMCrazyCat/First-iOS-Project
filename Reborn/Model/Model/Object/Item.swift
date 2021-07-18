@@ -602,7 +602,7 @@ class Item: Codable {
         }
     }
     
-    public func getPeriodicalCompletionInAttributedString(font: UIFont, normalColor: UIColor, redColor: UIColor, greenColor: UIColor, grayColor: UIColor) -> NSMutableAttributedString {
+    public func getPeriodicalCompletionInAttributedString(font: UIFont, normalColor: UIColor, redColor: UIColor, greenColor: UIColor, grayColor: UIColor, finish: @escaping (NSMutableAttributedString) -> Void) {
         var attributedString: NSMutableAttributedString = NSMutableAttributedString()
         
         switch self.newFrequency.type {
@@ -615,59 +615,83 @@ class Item: Codable {
                 let attribute = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: redColor]
                 attributedString = NSMutableAttributedString(string: "未打卡", attributes: attribute)
             }
-            return attributedString
+            finish(attributedString)
         case .everyWeek:
             let everyWeek: EveryWeek = self.newFrequency as! EveryWeek
             let currentWeekDates: Array<CustomDate> = CustomDate.current.weekDates
             var punchedInDaysInCurrentWeek: Int = 0
-            for punchInDate in self.punchInDates {
-                if currentWeekDates.contains(punchInDate) {
-                    punchedInDaysInCurrentWeek += 1
+            DispatchQueue.global(qos: .userInitiated).async {
+                for punchInDate in self.punchInDates {
+                    if currentWeekDates.contains(punchInDate) {
+                        punchedInDaysInCurrentWeek += 1
+                    }
+                }
+                DispatchQueue.main.async {
+                    let attribute = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: normalColor]
+                    attributedString = NSMutableAttributedString(string: "\(punchedInDaysInCurrentWeek) / \(everyWeek.days)", attributes: attribute)
+                    finish(attributedString)
                 }
             }
-            let attribute = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: normalColor]
-            attributedString = NSMutableAttributedString(string: "\(punchedInDaysInCurrentWeek) / \(everyWeek.days)", attributes: attribute)
+           
+            
             
         case .everyWeekdays:
 
             let everyWeekdays: EveryWeekdays = self.newFrequency as! EveryWeekdays
             let currentWeekDates: Array<CustomDate> = CustomDate.current.weekDates
             var currentWeekPunchedInWeekdays: Array<WeekDay> = []
-            for punchInDate in self.punchInDates {
-                if currentWeekDates.contains(punchInDate)  {
-                    currentWeekPunchedInWeekdays.append(punchInDate.weekday)
+            
+            DispatchQueue.global(qos: .userInitiated).async {
+                for punchInDate in self.punchInDates {
+                    if currentWeekDates.contains(punchInDate)  {
+                        currentWeekPunchedInWeekdays.append(punchInDate.weekday)
+                    }
+                }
+                DispatchQueue.main.async {
+                    var newAttributedString: NSMutableAttributedString = NSMutableAttributedString() // This is the way to show compeletion in each day
+                    for weekday in everyWeekdays.weekdays {
+
+                        let attribute1 = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: grayColor]
+                        let attribute2 = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: greenColor]
+
+                        if currentWeekPunchedInWeekdays.contains(weekday) {
+                            newAttributedString = NSMutableAttributedString(string: "\(weekday.name)" + (weekday == everyWeekdays.weekdays.last ? "" : ", "), attributes: attribute2)
+                        } else {
+                            newAttributedString = NSMutableAttributedString(string: "\(weekday.name)" + (weekday == everyWeekdays.weekdays.last ? "" : ", "), attributes: attribute1)
+                        }
+                        attributedString.append(newAttributedString)
+                    }
+                    finish(attributedString)
                 }
             }
+            
 
-            var newAttributedString: NSMutableAttributedString = NSMutableAttributedString() // This is the way to show compeletion in each day
-            for weekday in everyWeekdays.weekdays {
-
-                let attribute1 = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: grayColor]
-                let attribute2 = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: greenColor]
-
-                if currentWeekPunchedInWeekdays.contains(weekday) {
-                    newAttributedString = NSMutableAttributedString(string: "\(weekday.name)" + (weekday == everyWeekdays.weekdays.last ? "" : ", "), attributes: attribute2)
-                } else {
-                    newAttributedString = NSMutableAttributedString(string: "\(weekday.name)" + (weekday == everyWeekdays.weekdays.last ? "" : ", "), attributes: attribute1)
-                }
-                attributedString.append(newAttributedString)
-            }
+            
             
             
         case .everyMonth:
             let everyMonth: EveryMonth = self.newFrequency as! EveryMonth
             let currentMonthDates: Array<CustomDate> = CustomDate.current.monthDates
             var punchedInDaysInCurrentMonth: Int = 0
-            for punchInDate in self.punchInDates {
-                if currentMonthDates.contains(punchInDate) {
-                    punchedInDaysInCurrentMonth += 1
+            
+            DispatchQueue.global(qos: .userInitiated).async {
+                for punchInDate in self.punchInDates {
+                    if currentMonthDates.contains(punchInDate) {
+                        punchedInDaysInCurrentMonth += 1
+                    }
+                }
+                DispatchQueue.main.async {
+                    let attribute = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: normalColor]
+                    attributedString = NSMutableAttributedString(string: "\(punchedInDaysInCurrentMonth) / \(everyMonth.days)", attributes: attribute)
+                    finish(attributedString)
                 }
             }
-            let attribute = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: normalColor]
-            attributedString = NSMutableAttributedString(string: "\(punchedInDaysInCurrentMonth) / \(everyMonth.days)", attributes: attribute)
+            
+            
 
         }
-        return attributedString
+        
+       
     }
     
     
