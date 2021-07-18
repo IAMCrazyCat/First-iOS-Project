@@ -72,14 +72,18 @@ class TimeMachineViewController: UIViewController {
         Vibrator.vibrate(withNotificationType: .success)
         self.dismiss(animated: true) {
             let makingUpDates = self.calendarViewController.punchInMakingUpDates
-            let item = self.calendarViewController.item
+            let item = self.calendarViewController.item!
             
-            self.engine.currentUser.add(punchInDates: makingUpDates, to: item!)
-            self.engine.currentUser.energy -= self.calendarViewController.selectedDays
-            self.calendarViewController.punchInMakingUpDates.removeAll()
+            item.add(punchInDates: makingUpDates, finish: {
+                self.engine.currentUser.energy -= self.calendarViewController.selectedDays
+                self.calendarViewController.punchInMakingUpDates.removeAll()
+                self.engine.saveUser()
+                self.engine.notifyAllUIObservers()
+            })
+            
             self.calendarViewController.userDidGo = .sameMonth
-            self.engine.saveUser()
-            self.engine.notifyAllUIObservers()
+            
+           
             
             if let currentVC = UIApplication.shared.getCurrentViewController() {
                 if self.calendarViewController.item.state == .completed {

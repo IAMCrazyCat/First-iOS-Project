@@ -1442,19 +1442,7 @@
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2tP-ae-2FM">
                                                 <rect key="frame" x="0.0" y="348" width="414" height="452"/>
-                                                <subviews>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NI1-h8-fcS">
-                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="452"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                    </tableView>
-                                                </subviews>
                                                 <color key="backgroundColor" name="WhiteAndBlackBackground"/>
-                                                <constraints>
-                                                    <constraint firstItem="NI1-h8-fcS" firstAttribute="leading" secondItem="2tP-ae-2FM" secondAttribute="leading" id="LlA-8y-J4c"/>
-                                                    <constraint firstAttribute="bottom" secondItem="NI1-h8-fcS" secondAttribute="bottom" id="YUe-ly-sJo"/>
-                                                    <constraint firstItem="NI1-h8-fcS" firstAttribute="top" secondItem="2tP-ae-2FM" secondAttribute="top" id="d4p-Ma-ARw"/>
-                                                    <constraint firstAttribute="trailing" secondItem="NI1-h8-fcS" secondAttribute="trailing" id="dna-DK-8Rl"/>
-                                                </constraints>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" name="WhiteAndBlackBackground"/>
@@ -4709,7 +4697,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="xf4-Re-kmQ"/>
-        <segue reference="dzd-Jo-rYE"/>
+        <segue reference="LKv-l4-eYv"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>

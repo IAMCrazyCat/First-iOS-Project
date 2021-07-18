@@ -7,42 +7,47 @@
 import Foundation
 import UIKit
 
-class ItemCardViewFactory: ViewBuilder {
+class ItemCardViewBuilder: ViewBuilder {
 
     let item: Item
-    let punchInButtonTag: Int
     var cordinateX: CGFloat
     var cordinateY: CGFloat
     var width: CGFloat
     var height: CGFloat
     let setting: SystemSetting = SystemSetting.shared
-    let outPutView: UIView
+    let outPutView: ItemCardView
     var isInteractable: Bool
-    init(item: Item, frame: CGRect, punchInButtonTag: Int = 11607, isInteractable: Bool){ // for home page
+    
+    
+    
+    init(item: Item, frame: CGRect, isInteractable: Bool){ // for home page
 
         self.item = item
         self.width = frame.width
         self.height = frame.height
         self.cordinateX = frame.origin.x
         self.cordinateY = frame.origin.y
-        self.punchInButtonTag = punchInButtonTag
         self.isInteractable = isInteractable
+        self.outPutView = ItemCardView(frame: frame, item: item)
     }
 
     public func buildView() -> UIView {
       
         createView()
-        addIconAndNameLabel()
-        addGoDetailsButton()
+        addIcon()
+        addTitileLabel()
+        addRightButton()
+        addFullViewButton()
         addTypeLabel()
         addFinishedDaysLabel(labelFrame: nil, withTypeLabel: false)
         addProgressBar(barFrame: CGRect(x: self.setting.mainDistance, y: outPutView.frame.height - 30, width: outPutView.frame.width - self.setting.progressBarLengthToRightEdgeOffset, height: 10), withProgressLabel: false)
         addTargetDaysLabel(labelFrame: nil, withTypeLabel: false)
         addPunInButton()
         addItemCardFreqencyLabel()
-        
-        
-        
+        addStateLabel()
+        if self.item.notificationTimes.count > 0 {
+            addNotificationIcon()
+        }
         return outPutView
     
     }
@@ -51,12 +56,10 @@ class ItemCardViewFactory: ViewBuilder {
     
     internal func createView() {
         
-        outPutView = ItemCardView(frame: <#T##CGRect#>, item: <#T##Item#>, icon: <#T##UIImage#>, titileLabel: <#T##UILabel#>, frequencyLabel: <#T##UILabel#>, notificationIcon: <#T##UIImage#>, progressBar: <#T##UIView#>, punchInButton: <#T##UIButton#>, detatilsButton: <#T##UIButton#>, rightButton: <#T##UIButton#>)
         outPutView.accessibilityIdentifier = setting.itemCardIdentifier
         outPutView.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackContent
         outPutView.layer.cornerRadius = setting.itemCardCornerRadius
         outPutView.setShadow(style: .view)
-        outPutView.frame = CGRect(x: cordinateX, y: cordinateY, width: width, height: height)
         item.hasSanction ? lockItemCard() : ()
         item.finishedDays == item.targetDays ? addConfettiTopView() : ()
 
@@ -64,8 +67,7 @@ class ItemCardViewFactory: ViewBuilder {
     
     
     
-    private func addIconAndNameLabel() {
-        
+    private func addIcon() {
         
         let icon = UIImageView()
         icon.image = self.item.icon.image
@@ -86,51 +88,48 @@ class ItemCardViewFactory: ViewBuilder {
             forbiddenIcon.image = Icon.forbidden.image
             forbiddenIcon.frame = icon.frame
             forbiddenIcon.alpha = 0.5
-            //icon.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
             outPutView.addSubview(forbiddenIcon)
-           
-//            forbiddenIcon.translatesAutoresizingMaskIntoConstraints = false
-//            forbiddenIcon.centerXAnchor.constraint(equalTo: icon.centerXAnchor).isActive = true
-//            forbiddenIcon.centerYAnchor.constraint(equalTo: icon.centerYAnchor).isActive = true
-//            forbiddenIcon.heightAnchor.constraint(equalToConstant: icon.frame.height + 5).isActive = true
-//            forbiddenIcon.widthAnchor.constraint(equalToConstant: icon.frame.width + 5).isActive = true
             
         }
         
-        let nameLabel = UILabel()
-        nameLabel.accessibilityIdentifier = "NameLabel"
-        nameLabel.text = item.getFullName()
-
-        nameLabel.textColor = .label
-        nameLabel.font = AppEngine.shared.userSetting.smallFont
+        self.outPutView.icon = icon
+    }
+    
+    private func addTitileLabel() {
+        let titleLabel = UILabel()
+        titleLabel.accessibilityIdentifier = "TitleLabel"
+        titleLabel.text = item.getFullName()
+        titleLabel.textColor = .label
+        titleLabel.font = AppEngine.shared.userSetting.smallFont
+        outPutView.addSubview(titleLabel)
         
-        outPutView.addSubview(nameLabel)
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.leftAnchor.constraint(equalTo: icon.rightAnchor, constant: 10).isActive = true
-        nameLabel.centerYAnchor.constraint(equalTo: icon.centerYAnchor).isActive = true
-        nameLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
-        nameLabel.widthAnchor.constraint(lessThanOrEqualToConstant: outPutView.frame.width - 240).isActive = true
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.leftAnchor.constraint(equalTo: self.outPutView.icon.rightAnchor, constant: 10).isActive = true
+        titleLabel.centerYAnchor.constraint(equalTo: self.outPutView.icon.centerYAnchor).isActive = true
+        titleLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
+        titleLabel.widthAnchor.constraint(lessThanOrEqualToConstant: self.outPutView.frame.width - 240).isActive = true
        
-       
+        self.outPutView.titileLabel = titleLabel
     }
     
     private func addItemCardFreqencyLabel() {
-        let freqencyLabel = UILabel()
-        freqencyLabel.accessibilityIdentifier = "FreqencyLabel"
-        freqencyLabel.text = item.newFrequency.getFreqencyString()
-        freqencyLabel.textColor = AppEngine.shared.userSetting.properThemeColor
-        freqencyLabel.font = AppEngine.shared.userSetting.smallFont
-        freqencyLabel.sizeToFit()
+        let frequencyLabel = UILabel()
+        frequencyLabel.accessibilityIdentifier = "FreqencyLabel"
+        frequencyLabel.text = item.newFrequency.getFreqencyString()
+        frequencyLabel.textColor = AppEngine.shared.userSetting.properThemeColor
+        frequencyLabel.font = AppEngine.shared.userSetting.smallFont
+        frequencyLabel.sizeToFit()
         
-        outPutView.addSubview(freqencyLabel)
+        outPutView.addSubview(frequencyLabel)
         
-        if let nameLabel = outPutView.getSubviewBy(idenifier: "NameLabel") {
-            freqencyLabel.translatesAutoresizingMaskIntoConstraints = false
-            freqencyLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
-            freqencyLabel.topAnchor.constraint(equalTo: outPutView.topAnchor, constant: self.setting.mainDistance).isActive = true
-            freqencyLabel.leftAnchor.constraint(equalTo: nameLabel.rightAnchor, constant: 10).isActive = true
-        }
-        
+        frequencyLabel.translatesAutoresizingMaskIntoConstraints = false
+        frequencyLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
+        frequencyLabel.topAnchor.constraint(equalTo: self.outPutView.topAnchor, constant: self.setting.mainDistance).isActive = true
+        frequencyLabel.leftAnchor.constraint(equalTo: self.outPutView.titileLabel.rightAnchor, constant: 10).isActive = true
+        self.outPutView.frequencyLabel = frequencyLabel
+    }
+    
+    private func addStateLabel() {
         let stateLabel = UILabel()
         stateLabel.accessibilityIdentifier = "StateLabel"
         stateLabel.text = item.state == .duringBreak ? "(休息中)" : item.state == .completed ? "(已完成)" : ""
@@ -141,53 +140,53 @@ class ItemCardViewFactory: ViewBuilder {
         outPutView.addSubview(stateLabel)
         
         stateLabel.translatesAutoresizingMaskIntoConstraints = false
-        stateLabel.leftAnchor.constraint(equalTo: freqencyLabel.rightAnchor, constant: 5).isActive = true
-        stateLabel.centerYAnchor.constraint(equalTo: freqencyLabel.centerYAnchor).isActive = true
-        stateLabel.heightAnchor.constraint(equalTo: freqencyLabel.heightAnchor).isActive = true
+        stateLabel.leftAnchor.constraint(equalTo: self.outPutView.frequencyLabel.rightAnchor, constant: 5).isActive = true
+        stateLabel.centerYAnchor.constraint(equalTo: self.outPutView.frequencyLabel.centerYAnchor).isActive = true
+        stateLabel.heightAnchor.constraint(equalTo: self.outPutView.frequencyLabel.heightAnchor).isActive = true
         
-        if self.item.notificationTimes.count > 0 {
-            let notificationIcon = UIImageView()
-            notificationIcon.accessibilityIdentifier = "NotificationIcon"
-            notificationIcon.image = UIImage(named: "Notification6-Templete") ?? UIImage()
-            notificationIcon.tintColor = AppEngine.shared.userSetting.themeColor.uiColor
-            outPutView.addSubview(notificationIcon)
-            notificationIcon.translatesAutoresizingMaskIntoConstraints = false
-            notificationIcon.topAnchor.constraint(equalTo: stateLabel.topAnchor).isActive = true
-            notificationIcon.bottomAnchor.constraint(equalTo: stateLabel.bottomAnchor).isActive = true
-            notificationIcon.leftAnchor.constraint(equalTo: stateLabel.rightAnchor, constant: 5).isActive = true
-            notificationIcon.widthAnchor.constraint(equalTo: stateLabel.heightAnchor).isActive = true
-        }
-        
-
+        self.outPutView.stateLabel = stateLabel
     }
     
-   
+    private func addNotificationIcon() {
+        
+        let notificationIcon = UIImageView()
+        notificationIcon.accessibilityIdentifier = "NotificationIcon"
+        notificationIcon.image = UIImage(named: "Notification6-Templete") ?? UIImage()
+        notificationIcon.tintColor = AppEngine.shared.userSetting.themeColor.uiColor
+        outPutView.addSubview(notificationIcon)
+        notificationIcon.translatesAutoresizingMaskIntoConstraints = false
+        notificationIcon.topAnchor.constraint(equalTo: self.outPutView.stateLabel.topAnchor).isActive = true
+        notificationIcon.bottomAnchor.constraint(equalTo: self.outPutView.stateLabel.bottomAnchor).isActive = true
+        notificationIcon.leftAnchor.constraint(equalTo: self.outPutView.stateLabel.rightAnchor, constant: 5).isActive = true
+        notificationIcon.widthAnchor.constraint(equalTo: self.outPutView.stateLabel.heightAnchor).isActive = true
+    }
     
+    private func addRightButton() {
+        
+        let rightButton = UIButton()
+        rightButton.accessibilityIdentifier = "RightButton"
+        rightButton.setBackgroundImage(UIImage(named: "DetailsButton"), for: .normal)
+        rightButton.setTitleColor(.black, for: .normal)
+        rightButton.titleLabel!.font = AppEngine.shared.userSetting.smallFont
+        rightButton.tintColor = AppEngine.shared.userSetting.themeColor.uiColor.darkColor
+        outPutView.addSubview(rightButton)
+        
+        rightButton.translatesAutoresizingMaskIntoConstraints = false
+        rightButton.heightAnchor.constraint(equalToConstant: 15).isActive = true
+        rightButton.widthAnchor.constraint(equalToConstant: 15).isActive = true
+        rightButton.topAnchor.constraint(equalTo: outPutView.topAnchor, constant: 20).isActive = true
+        rightButton.rightAnchor.constraint(equalTo: outPutView.rightAnchor, constant: -20).isActive = true
+        
+        self.outPutView.rightButton = rightButton
+    }
     
-    private func addGoDetailsButton() {
-        
-        
-        let goDetailsButton = UIButton()
-        goDetailsButton.accessibilityIdentifier = "GoDetailsButton"
-        goDetailsButton.setBackgroundImage(UIImage(named: "DetailsButton"), for: .normal)
-        goDetailsButton.setTitleColor(.black, for: .normal)
-        goDetailsButton.titleLabel!.font = AppEngine.shared.userSetting.smallFont
-        goDetailsButton.tintColor = AppEngine.shared.userSetting.themeColor.uiColor.darkColor
-        outPutView.addSubview(goDetailsButton)
-        
-        goDetailsButton.translatesAutoresizingMaskIntoConstraints = false
-        goDetailsButton.heightAnchor.constraint(equalToConstant: 15).isActive = true
-        goDetailsButton.widthAnchor.constraint(equalToConstant: 15).isActive = true
-        goDetailsButton.topAnchor.constraint(equalTo: outPutView.topAnchor, constant: 20).isActive = true
-        goDetailsButton.rightAnchor.constraint(equalTo: outPutView.rightAnchor, constant: -20).isActive = true
-        
+    private func addFullViewButton() {
         let fullViewButton = UIButton()
         fullViewButton.frame = CGRect(x: 0, y: 0, width: self.outPutView.frame.width, height: self.outPutView.frame.height)
         fullViewButton.layer.zPosition = 2
-        fullViewButton.tag = self.punchInButtonTag
         
         if isInteractable {
-            fullViewButton.addTarget(Actions.shared, action: Actions.detailsViewAction, for: .touchUpInside)
+            fullViewButton.addTarget(self.outPutView, action: #selector(self.outPutView.itemDetailsButtonPressed(_:)), for: .touchUpInside)
         }
         
         outPutView.addSubview(fullViewButton)
@@ -213,7 +212,7 @@ class ItemCardViewFactory: ViewBuilder {
         
         let finishedDaysLabel = UILabel()
         let attrs1 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.largeFont]
-        let attrs2 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.smallFont, NSAttributedString.Key.foregroundColor: UIColor.gray]
+        let attrs2 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.smallFont, NSAttributedString.Key.foregroundColor: UIColor.label]
         finishedDaysLabel.accessibilityIdentifier = "FinishedDaysLabel"
         finishedDaysLabel.sizeToFit()
         
@@ -246,7 +245,7 @@ class ItemCardViewFactory: ViewBuilder {
             finishedDaysLabel.centerXAnchor.constraint(equalTo: outPutView.centerXAnchor).isActive = true
         }
         
-      
+        self.outPutView.finishedDaysLabel = finishedDaysLabel
     }
     
     
@@ -257,7 +256,9 @@ class ItemCardViewFactory: ViewBuilder {
         let shapeColor = AppEngine.shared.userSetting.themeColor.uiColor.cgColor
         let trackColor = AppEngine.shared.userSetting.themeColor.uiColor.withAlphaComponent(0.3).cgColor
         let progressWidth: CGFloat = 10
-
+        self.outPutView.progressPathFrame = barFrame
+        self.outPutView.progressShapeColor = shapeColor
+        
         barTrackLayer.name = "ProgressTrack"
         barTrackLayer.path = barTrackPath.cgPath
         barTrackLayer.lineWidth = progressWidth
@@ -265,7 +266,7 @@ class ItemCardViewFactory: ViewBuilder {
         barTrackLayer.lineCap = CAShapeLayerLineCap.round
         barTrackLayer.strokeEnd = 0
         outPutView.layer.addSublayer(barTrackLayer)
-        
+        outPutView.progressTrackLayer = barTrackLayer
         var barShapeWitdh: CGFloat {
             let width = CGFloat(self.item.progress) * barFrame.width
             if width > barFrame.width {
@@ -277,6 +278,7 @@ class ItemCardViewFactory: ViewBuilder {
         
         let barShapePath = UIBezierPath(roundedRect: CGRect(x: barFrame.origin.x, y: barFrame.origin.y, width: barShapeWitdh, height: barFrame.height), cornerRadius: 10)
         let barShapeLayer = CAShapeLayer()
+
         barShapeLayer.name = "ProgressBar"
         barShapeLayer.path = barShapePath.cgPath
         barShapeLayer.lineWidth = progressWidth
@@ -284,7 +286,7 @@ class ItemCardViewFactory: ViewBuilder {
         barShapeLayer.lineCap = CAShapeLayerLineCap.round
         barShapeLayer.strokeEnd = 0
         outPutView.layer.addSublayer(barShapeLayer)
-        
+        outPutView.progressShapeLayer = barShapeLayer
         if withProgressLabel {
             let progressLabel = UILabel()
             progressLabel.frame.origin = CGPoint(x: CGFloat(self.item.progress) * barFrame.width - 10, y: barFrame.origin.y - barFrame.height - 10)
@@ -318,7 +320,7 @@ class ItemCardViewFactory: ViewBuilder {
                 daysLabel.sizeToFit()
                 
                 outPutView.addSubview(daysLabel)
-    
+                self.outPutView.targetDaysLabel = daysLabel
             }
            
             
@@ -337,11 +339,14 @@ class ItemCardViewFactory: ViewBuilder {
             daysLabel.sizeToFit()
             
             outPutView.addSubview(daysLabel)
+            
             daysLabel.translatesAutoresizingMaskIntoConstraints = false
             daysLabel.rightAnchor.constraint(equalTo: outPutView.rightAnchor, constant: -20).isActive = true
             daysLabel.bottomAnchor.constraint(equalTo: outPutView.bottomAnchor, constant: -18).isActive = true
+            
+            self.outPutView.targetDaysLabel = daysLabel
         }
-      
+       
     }
     
     private func addPunInButton() {
@@ -361,24 +366,25 @@ class ItemCardViewFactory: ViewBuilder {
     
         punchInButton.isSelected = self.item.isPunchedIn ? true : false
         
-        if punchInButton.isSelected {
-            punchInButton.layer.borderWidth = 0
-            
-        } else {
-            punchInButton.layer.borderWidth = 1
-            punchInButton.layer.borderColor = AppEngine.shared.userSetting.themeColor.uiColor.cgColor
-            
-        }
+        punchInButton.layer.borderWidth = 1
+        punchInButton.layer.borderColor = AppEngine.shared.userSetting.themeColor.uiColor.cgColor
+//        if punchInButton.isSelected {
+//            punchInButton.layer.borderWidth = 0
+//
+//        } else {
+//            punchInButton.layer.borderWidth = 1
+//            punchInButton.layer.borderColor = AppEngine.shared.userSetting.themeColor.uiColor.cgColor
+//
+//        }
         
         outPutView.addSubview(punchInButton)
         punchInButton.translatesAutoresizingMaskIntoConstraints = false
         punchInButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         punchInButton.rightAnchor.constraint(equalTo: outPutView.rightAnchor, constant: -self.setting.itemCardCenterObjectsToEdgeOffset).isActive = true
         punchInButton.centerYAnchor.constraint(equalTo: outPutView.centerYAnchor).isActive = true
-        punchInButton.tag = self.punchInButtonTag
         
         if isInteractable {
-            punchInButton.addTarget(Actions.shared, action: Actions.punchInAction, for: .touchUpInside)
+            punchInButton.addTarget(self.outPutView, action: #selector(self.outPutView.itemPunchInButtonPressed(_:)), for: .touchUpInside)
         }
         
         if let lastPunchIndate = self.item.punchInDates.last {
@@ -390,7 +396,7 @@ class ItemCardViewFactory: ViewBuilder {
             }
         }
         
-        
+        self.outPutView.punchInButton = punchInButton
     }
     
     private func addConfettiTopView() {
@@ -410,6 +416,7 @@ class ItemCardViewFactory: ViewBuilder {
         gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
         confettiTopView.layer.addSublayer(gradientLayer)
         outPutView.addSubview(confettiTopView)
+        self.outPutView.confettiView = confettiTopView
     }
     
     private func lockItemCard() {

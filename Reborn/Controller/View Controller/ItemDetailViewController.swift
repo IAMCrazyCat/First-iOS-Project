@@ -173,8 +173,17 @@ class ItemDetailViewController: UIViewController {
     
     func updateTodayLabel() {
 
-        self.todayTitleLabel.text = self.item.getPeriodicalCompletionTitile()
-        self.todayLabel.attributedText = self.item.getPeriodicalCompletionInAttributedString(font: todayLabel.font, normalColor: .label, redColor: ThemeColor.red.uiColor, greenColor: ThemeColor.green.uiColor, grayColor: self.setting.grayColor.withAlphaComponent(0.5))
+        
+        self.todayLabel.text = ""
+        LoadingAnimation.add(to: self.todayLabel, withRespondingTime: 10, circleWidth: 2, circleRadius: 10, timeOutAlertTitle: "操作超时")
+        DispatchQueue.global().async {
+            let attributedText =  self.item.getPeriodicalCompletionInAttributedString(font: self.todayLabel.font, normalColor: .label, redColor: ThemeColor.red.uiColor, greenColor: ThemeColor.green.uiColor, grayColor: self.setting.grayColor.withAlphaComponent(0.5))
+            DispatchQueue.main.async {
+                self.todayLabel.attributedText = attributedText
+                LoadingAnimation.remove()
+            }
+        }
+       
     }
     
     func updateProgressView() {

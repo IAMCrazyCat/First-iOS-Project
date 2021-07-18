@@ -16,8 +16,6 @@ class Actions {
        
     }
     
-    static var punchInAction: Selector = #selector(Actions.shared.itemPunchInButtonPressed)
-    static var detailsViewAction: Selector = #selector(Actions.shared.itemDetailsButtonPressed(_:))
     static var themeColorChangedAction: Selector = #selector(Actions.shared.themeColorButtonPressed(_:))
     static var setUpTextFieldChangedAction: Selector = #selector(Actions.shared.setUpTextFieldValueChanged(_:))
     static var appApperenceModeChangedAction: Selector = #selector(Actions.shared.appAppearanceOptionButtonPressed(_:))

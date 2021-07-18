@@ -81,7 +81,7 @@ extension UIView {
         confettiView.startConfetti()
     }
     
-    func showConfettiAnimationAtBack() {
+    func showConfettiAnimationAtBack(isRemovedOnCompletion: Bool = false) {
        
         let confettiAnimationView = ConfettiAnimationView(frame: self.bounds)
         confettiAnimationView.accessibilityIdentifier = "ConfettiAnimationView"
@@ -89,16 +89,33 @@ extension UIView {
         confettiAnimationView.layer.masksToBounds = true
         self.insertSubview(confettiAnimationView, at: 0)
         confettiAnimationView.excuteAnimation()
-        
+        if isRemovedOnCompletion {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                UIView.animate(withDuration: 0.5, animations: {
+                    confettiAnimationView.alpha = 0
+                }) { _ in
+                    confettiAnimationView.removeFromSuperview()
+                }
+            }
+        }
     }
     
-    func showConfettiAnimationInFront() {
+    func showConfettiAnimationInFront(isRemovedOnCompletion: Bool = false) {
         let confettiAnimationView = ConfettiAnimationView(frame: self.bounds)
         confettiAnimationView.accessibilityIdentifier = "ConfettiAnimationView"
         confettiAnimationView.layer.cornerRadius = self.layer.cornerRadius
         confettiAnimationView.layer.masksToBounds = true
         self.addSubview(confettiAnimationView)
         confettiAnimationView.excuteAnimation()
+        if isRemovedOnCompletion {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                UIView.animate(withDuration: 0.5, animations: {
+                    confettiAnimationView.alpha = 0
+                }) { _ in
+                    confettiAnimationView.removeFromSuperview()
+                }
+            }
+        }
     }
     
     func getSubviewBy(idenifier: String) -> UIView? {
@@ -142,7 +159,7 @@ extension UIView {
     
     func renderItemCard(by item: Item) {
         self.removeAllSubviews()
-        let builder = ItemCardViewFactory(item: item, frame: CGRect(x: 0, y: 0, width: self.frame.width - 2 * SystemSetting.shared.mainPadding, height: SystemSetting.shared.itemCardHeight), isInteractable: false)
+        let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: 0, y: 0, width: self.frame.width - 2 * SystemSetting.shared.mainPadding, height: SystemSetting.shared.itemCardHeight), isInteractable: false)
         let itemCard = builder.buildView()
         itemCard.center = self.center
         self.addSubview(itemCard)
@@ -174,7 +191,7 @@ extension UIView {
             while tag >= 0 {
                 let item = items[tag]
                 if item.state == condition || isRenderingAll {
-                    let builder = ItemCardViewFactory(item: item, frame: CGRect(x: SystemSetting.shared.mainPadding, y: cordinateY, width: self.frame.width - 2 * SystemSetting.shared.mainPadding, height: SystemSetting.shared.itemCardHeight), punchInButtonTag: tag, isInteractable: true)
+                    let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: SystemSetting.shared.mainPadding, y: cordinateY, width: self.frame.width - 2 * SystemSetting.shared.mainPadding, height: SystemSetting.shared.itemCardHeight), isInteractable: true)
                     let itemCard = builder.buildView()
                     cordinateY += SystemSetting.shared.itemCardHeight + SystemSetting.shared.itemCardGap
                     self.frame.size.height = itemCard.frame.maxY

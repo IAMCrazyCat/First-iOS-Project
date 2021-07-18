@@ -128,7 +128,6 @@ class ConfettiAnimationView: UIView {
             self.addSecondBurst()
             self.skScene?.physicsWorld.gravity = CGVector(dx: 0, dy: -1.62 * self.animationSpeed)
         }
-        
     }
     
 }

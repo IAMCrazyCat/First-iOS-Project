@@ -212,9 +212,7 @@ class Item: Codable {
         } else {
             self.lastEnergyConsecutiveDays = 1
         }
-        DispatchQueue.main.async {
-            NotificationManager.shared.scheduleNotification(for: self)
-        }
+
     }
     
     
@@ -232,16 +230,16 @@ class Item: Codable {
         }
         updateState()
         self.lastEnergyConsecutiveDays -= 1
-        DispatchQueue.main.async {
-            NotificationManager.shared.scheduleNotification(for: self)
-        }
+
     }
   
-    public func add(punchInDate: CustomDate) {
-        self.punchInDates.append(punchInDate)
-        
+    public func add(punchInDates: Array<CustomDate>, finish: (() -> Void)?) {
+        for punchInDate in punchInDates {
+            self.punchInDates.append(punchInDate)
+        }
+       
         updateState()
-        sortDateArray()
+        sortDateArray(finish: finish)
         
     }
     
@@ -381,18 +379,24 @@ class Item: Codable {
 
         }
         
-        DispatchQueue.main.async {
+        DispatchQueue.global().async {
             NotificationManager.shared.scheduleNotification(for: self)
         }
 
     }
     
     
-    private func sortDateArray() {
+    private func sortDateArray(finish: (() -> Void)? = nil) {
         
-        DispatchQueue.main.async {
-            self.punchInDates.sort {
+        DispatchQueue.global().async {
+            print("Sorting punch in dates for item: \(self.name)")
+            let newPunchInDates = self.punchInDates.sorted {
                 DateCalculator.calculateDayDifferenceBetween($0, to: $1) > 0
+            }
+            DispatchQueue.main.async {
+                self.punchInDates = newPunchInDates
+                finish?()
+                print("Finished sorting punch in dates for item: \(self.name)")
             }
         }
 
@@ -406,8 +410,6 @@ class Item: Codable {
         var consecutiveDaysArray: Array<Int> = []
         var index: Int = 0
         var consecutiveDays: Int = 1
-        //self.sortDateArray()
-        
         
         if self.punchInDates.count > 0 {
             consecutiveDaysArray.append(1) // if item has at leat one punch in date

@@ -194,35 +194,7 @@ class User: Codable {
         }
     }
     
-    public func updateItem(with ID: Int) {
-        
-        var cathedItem: Item?
-        
-        for item in self.items {
-            if item.ID == ID {
-                cathedItem = item
-            }
-        }
-        
-        if let item = cathedItem {
-            
-            if !item.isPunchedIn {
-                item.punchIn()
-                
-                Vibrator.vibrate(withNotificationType: .success)
-            } else {
-                item.revokePunchIn()
-
-                Vibrator.vibrate(withImpactLevel: .light)
-            }
-            
-            updateEnergy(by: item)
-        }
-        
-       
-        
-        
-    }
+    
     
     public func sortItems() {
         self.items.sort {
@@ -244,11 +216,9 @@ class User: Codable {
         }
     }
     
-    public func add(punchInDates: Array<CustomDate>, to item: Item) {
-        for makingUpDate in punchInDates {
-            item.add(punchInDate: makingUpDate)
-        }
-    }
+//    public func add(punchInDates: Array<CustomDate>, to item: Item, finish: (() -> Void)?) {
+//        item.add(punchInDates: punchInDates, finish: finish)
+//    }
     
     public func getItemBy(_ ID: Int) -> Item? {
         for item in self.items {

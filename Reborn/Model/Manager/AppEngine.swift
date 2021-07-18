@@ -247,6 +247,10 @@ class AppEngine {
         }
     }
     
+    private func loadItemCardViews() {
+        
+    }
+    
     public func saveSetting() {
         defaults.set(userSetting.themeColor, forKey: "ThemeColor")
         defaults.set(userSetting.notificationTime, forKey: "NotificationTime")
@@ -317,6 +321,18 @@ class AppEngine {
             
         }
         
+    }
+    
+    public func getUIObserver(withIdentifier identifier: String) -> UIObserver? {
+        for observer in self.observers {
+       
+            if let viewController = observer as? UIViewController, viewController.restorationIdentifier == identifier {
+                
+                return viewController as? UIObserver
+            }
+            
+        }
+        return nil
     }
 
     

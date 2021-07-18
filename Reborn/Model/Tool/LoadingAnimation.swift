@@ -19,7 +19,7 @@ class LoadingAnimation {
     }
     
     
-    static func add(to view: UIView, withRespondingTime respondingTime: TimeInterval, proportionallyOnYPosition proportion: Double = 0.5, timeOutAlertTitle: String = "操作超时", timeOutAlertBody: String = "请稍后再试") {
+    static func add(to view: UIView, withRespondingTime respondingTime: TimeInterval, circleWidth: CGFloat = 5, circleRadius: CGFloat = 50, proportionallyOnYPosition proportion: Double = 0.5, timeOutAlertTitle: String = "操作超时", timeOutAlertBody: String = "请稍后再试") {
 
         let loadingAnimation = shared
         loadingAnimation.yProportion = proportion
@@ -27,7 +27,7 @@ class LoadingAnimation {
         //loadingAnimation.animationView.backgroundColor = .black.withAlphaComponent(0.3)
         loadingAnimation.animationView.accessibilityIdentifier = "AnimationView"
         loadingAnimation.fadeInBackground()
-        loadingAnimation.addProgressCircleView()
+        loadingAnimation.addProgressCircleView(circleWidth: circleWidth, circleRadius: circleRadius)
         loadingAnimation.showBorderAndCircle()
         view.addSubview(loadingAnimation.animationView)
         
@@ -75,10 +75,10 @@ class LoadingAnimation {
     }
     
     
-    private func addProgressCircleView() { // Circle progress bar
+    private func addProgressCircleView(circleWidth: CGFloat, circleRadius: CGFloat) { // Circle progress bar
        
-        let progressWidth: CGFloat = 5
-        let circleRadius: CGFloat = 50
+        let progressWidth: CGFloat = circleWidth
+        let circleRadius: CGFloat = circleRadius
         let circleViewCenter = CGPoint(x: self.animationView.frame.width / 2 , y: self.animationView.frame.height * CGFloat(self.yProportion))
         
         

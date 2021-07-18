@@ -25,7 +25,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var spaceView: UIView!
     @IBOutlet weak var spaceViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var todayProgressLabel: UILabel!
-
+    
     
     var setting = SystemSetting.shared
     
@@ -148,9 +148,7 @@ class HomeViewController: UIViewController {
     
 
     func updateItemCardsView() {
-
         
-       
         self.view.layoutIfNeeded()
         self.itemCardsView.renderItemCards(withCondition: .inProgress, animated: false)
     }
@@ -343,9 +341,5 @@ extension HomeViewController: UIScrollViewDelegate {
 
       
     }
-    
-
-   
-    
     
 }
