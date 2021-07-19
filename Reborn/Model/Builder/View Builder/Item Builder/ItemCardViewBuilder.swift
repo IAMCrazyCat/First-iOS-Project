@@ -61,7 +61,7 @@ class ItemCardViewBuilder: ViewBuilder {
         outPutView.layer.cornerRadius = setting.itemCardCornerRadius
         outPutView.setShadow(style: .view)
         item.hasSanction ? lockItemCard() : ()
-        item.finishedDays == item.targetDays ? addConfettiTopView() : ()
+        item.getFinishedDays() == item.targetDays ? addConfettiTopView() : ()
 
     }
     
@@ -216,7 +216,7 @@ class ItemCardViewBuilder: ViewBuilder {
         finishedDaysLabel.accessibilityIdentifier = "FinishedDaysLabel"
         finishedDaysLabel.sizeToFit()
         
-        let finishedDaysString = NSMutableAttributedString(string: "\(self.item.finishedDays)", attributes: attrs1)
+        let finishedDaysString = NSMutableAttributedString(string: "\(self.item.getFinishedDays())", attributes: attrs1)
         let unit = NSMutableAttributedString(string: "  天", attributes: attrs2)
         
         if withTypeLabel {
@@ -268,7 +268,7 @@ class ItemCardViewBuilder: ViewBuilder {
         outPutView.layer.addSublayer(barTrackLayer)
         outPutView.progressTrackLayer = barTrackLayer
         var barShapeWitdh: CGFloat {
-            let width = CGFloat(self.item.progress) * barFrame.width
+            let width = CGFloat(self.item.getProgress()) * barFrame.width
             if width > barFrame.width {
                 return barFrame.width
             } else {
@@ -289,9 +289,9 @@ class ItemCardViewBuilder: ViewBuilder {
         outPutView.progressShapeLayer = barShapeLayer
         if withProgressLabel {
             let progressLabel = UILabel()
-            progressLabel.frame.origin = CGPoint(x: CGFloat(self.item.progress) * barFrame.width - 10, y: barFrame.origin.y - barFrame.height - 10)
+            progressLabel.frame.origin = CGPoint(x: CGFloat(self.item.getProgress()) * barFrame.width - 10, y: barFrame.origin.y - barFrame.height - 10)
             progressLabel.font = AppEngine.shared.userSetting.smallFont
-            progressLabel.text = self.item.progressInPercentageString
+            progressLabel.text = self.item.getProgressInPercentageString()
             progressLabel.sizeToFit()
             outPutView.addSubview(progressLabel)
         }
@@ -364,7 +364,7 @@ class ItemCardViewBuilder: ViewBuilder {
         punchInButton.setBackgroundColor(.clear, for: .normal)
         punchInButton.setBackgroundColor(AppEngine.shared.userSetting.themeColor.uiColor, for: .selected)
     
-        punchInButton.isSelected = self.item.isPunchedIn ? true : false
+        punchInButton.isSelected = self.item.isPunchedIn() ? true : false
         
         punchInButton.layer.borderWidth = 1
         punchInButton.layer.borderColor = AppEngine.shared.userSetting.themeColor.uiColor.cgColor

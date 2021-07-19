@@ -146,7 +146,7 @@ class ShareViewController: UIViewController {
         userNameLabel.textColor = AppEngine.shared.userSetting.smartLabelColor
         punchInTextLabel.textColor = AppEngine.shared.userSetting.smartLabelColor
         itemNameLabel.text = "\(item.type.rawValue)\(item.name)"
-        itemFinishedDaysLabel.text = "\(item.finishedDays)"
+        itemFinishedDaysLabel.text = "\(item.getFinishedDays())"
         itemTargetDaysLabel.text = "\(item.targetDays)"
     }
     

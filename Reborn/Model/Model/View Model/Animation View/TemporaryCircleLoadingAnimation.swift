@@ -7,9 +7,9 @@
 
 import Foundation
 import UIKit
-class LoadingAnimation {
+class TemporaryCircleLoadingAnimation {
     
-    private static var shared = LoadingAnimation()
+    private static var shared = TemporaryCircleLoadingAnimation()
     private var storedView: UIView? = nil
     private let circleShapeLayer = CAShapeLayer()
     private var timer: Timer? = nil
@@ -38,11 +38,11 @@ class LoadingAnimation {
     }
     
     static func remove() {
-        LoadingAnimation.shared.timer?.invalidate()
+        TemporaryCircleLoadingAnimation.shared.timer?.invalidate()
         UIView.animate(withDuration: 0.8, animations: {
-            LoadingAnimation.shared.animationView.alpha = 0
+            TemporaryCircleLoadingAnimation.shared.animationView.alpha = 0
         }) { _ in
-            LoadingAnimation.shared.animationView.removeFromSuperview()
+            TemporaryCircleLoadingAnimation.shared.animationView.removeFromSuperview()
         }
         
     }
@@ -64,7 +64,7 @@ class LoadingAnimation {
                     SystemAlert.present(timeOutAlertTitle, and: timeOutAlertBody, from: currentVC)
                 }
                 
-                LoadingAnimation.remove()
+                TemporaryCircleLoadingAnimation.remove()
                 
                 seconds = -1000
                 

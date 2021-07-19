@@ -20,10 +20,10 @@ class TimeMachineViewController: UIViewController {
     var strategy: TimeMachineAnimationStrategy? = nil
     
     var currentItemProgress: Double {
-        return calendarViewController.item.progress
+        return calendarViewController.item.getProgress()
     }
     var newItemProgress: Double {
-        return (Double(calendarViewController.item.finishedDays) + Double(calendarViewController.selectedDays)) / Double(calendarViewController.item.targetDays)
+        return (Double(calendarViewController.item.getFinishedDays()) + Double(calendarViewController.selectedDays)) / Double(calendarViewController.item.targetDays)
     }
 
     var currentProgressInString: String {

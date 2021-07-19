@@ -28,6 +28,8 @@
 		221E0B7C25A9273E00386FE1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E0B7B25A9273E00386FE1 /* User.swift */; };
 		221E0B8825A9A22800386FE1 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E0B8725A9A22800386FE1 /* Gender.swift */; };
 		221E0BA425A9D38100386FE1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E0BA325A9D38100386FE1 /* Image.swift */; };
+		222718C726A4289700F7D82C /* LoadingAnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222718C626A4289700F7D82C /* LoadingAnimationManager.swift */; };
+		222718C926A5137200F7D82C /* ThreadsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222718C826A5137200F7D82C /* ThreadsManager.swift */; };
 		222B4E2C2691F4D400CC12A0 /* EncourageTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222B4E2B2691F4D400CC12A0 /* EncourageTextViewController.swift */; };
 		223072A825E3A99D00AE6ECB /* UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223072A725E3A99D00AE6ECB /* UINavigationBar.swift */; };
 		223132CF263D188F0020BA70 /* CalendarCellStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223132CE263D188F0020BA70 /* CalendarCellStrategy.swift */; };
@@ -161,7 +163,7 @@
 		22C5D975258F40E800131964 /* SetUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5D974258F40E800131964 /* SetUpPage.swift */; };
 		22C6ACF3263FBA5900FAFCC5 /* TPInAppReceipt in Frameworks */ = {isa = PBXBuildFile; productRef = 22C6ACF2263FBA5900FAFCC5 /* TPInAppReceipt */; };
 		22C6ACF5263FC81500FAFCC5 /* InAppPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C6ACF4263FC81500FAFCC5 /* InAppPurchaseManager.swift */; };
-		22C6ACF726400ECA00FAFCC5 /* LoadingAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C6ACF626400ECA00FAFCC5 /* LoadingAnimation.swift */; };
+		22C6ACF726400ECA00FAFCC5 /* TemporaryCircleLoadingAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C6ACF626400ECA00FAFCC5 /* TemporaryCircleLoadingAnimation.swift */; };
 		22CBB97E25EA42C500994D33 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CBB97D25EA42C500994D33 /* ThemeColor.swift */; };
 		22CE4ED925D00AE3007EBD5B /* NewItemViewStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE4ED825D00AE3007EBD5B /* NewItemViewStrategy.swift */; };
 		22CE4EF025D00C65007EBD5B /* AddingItemStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CE4EEF25D00C65007EBD5B /* AddingItemStrategy.swift */; };
@@ -265,6 +267,8 @@
 		221E0B7B25A9273E00386FE1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		221E0B8725A9A22800386FE1 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		221E0BA325A9D38100386FE1 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		222718C626A4289700F7D82C /* LoadingAnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingAnimationManager.swift; sourceTree = "<group>"; };
+		222718C826A5137200F7D82C /* ThreadsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsManager.swift; sourceTree = "<group>"; };
 		222B4E2B2691F4D400CC12A0 /* EncourageTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncourageTextViewController.swift; sourceTree = "<group>"; };
 		223072A725E3A99D00AE6ECB /* UINavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBar.swift; sourceTree = "<group>"; };
 		223132CE263D188F0020BA70 /* CalendarCellStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellStrategy.swift; sourceTree = "<group>"; };
@@ -396,7 +400,7 @@
 		22C5D966258F3E4400131964 /* SetUpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpManager.swift; sourceTree = "<group>"; };
 		22C5D974258F40E800131964 /* SetUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpPage.swift; sourceTree = "<group>"; };
 		22C6ACF4263FC81500FAFCC5 /* InAppPurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseManager.swift; sourceTree = "<group>"; };
-		22C6ACF626400ECA00FAFCC5 /* LoadingAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingAnimation.swift; sourceTree = "<group>"; };
+		22C6ACF626400ECA00FAFCC5 /* TemporaryCircleLoadingAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryCircleLoadingAnimation.swift; sourceTree = "<group>"; };
 		22CBB97D25EA42C500994D33 /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
 		22CE4ED825D00AE3007EBD5B /* NewItemViewStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemViewStrategy.swift; sourceTree = "<group>"; };
 		22CE4EEF25D00C65007EBD5B /* AddingItemStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingItemStrategy.swift; sourceTree = "<group>"; };
@@ -675,7 +679,6 @@
 				22A584C22611F7D0001B83E1 /* SystemAlert.swift */,
 				22A1B56E26149BEF008CBE94 /* CustomTimer.swift */,
 				22F619C826393D46007F91AF /* VipIcon.swift */,
-				22C6ACF626400ECA00FAFCC5 /* LoadingAnimation.swift */,
 				22ACE501264BC0CB001D7B41 /* App.swift */,
 			);
 			path = Tool;
@@ -781,6 +784,7 @@
 		22945D6D25F70A9A0065B511 /* Animation View */ = {
 			isa = PBXGroup;
 			children = (
+				22C6ACF626400ECA00FAFCC5 /* TemporaryCircleLoadingAnimation.swift */,
 				22945D6E25F70AAD0065B511 /* ConfettiAnimationView.swift */,
 				22945D7C25F70E4D0065B511 /* ConfettiCell.swift */,
 			);
@@ -827,6 +831,8 @@
 				226ED1E72699A06A00E106A3 /* UserConsumptionGuiderManager.swift */,
 				220743D8269B1F1900E2859A /* APIManager.swift */,
 				225CDED3269D82B000C28AC2 /* DeviceManager.swift */,
+				222718C626A4289700F7D82C /* LoadingAnimationManager.swift */,
+				222718C826A5137200F7D82C /* ThreadsManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1474,7 +1480,7 @@
 				22C2C75B26023CEF0007249A /* TabBarViewController.swift in Sources */,
 				22A597F925986685008E2A06 /* NewItemViewController.swift in Sources */,
 				22C23A19258DC5D700D4BEB2 /* QuittingItem.swift in Sources */,
-				22C6ACF726400ECA00FAFCC5 /* LoadingAnimation.swift in Sources */,
+				22C6ACF726400ECA00FAFCC5 /* TemporaryCircleLoadingAnimation.swift in Sources */,
 				22CE4EF025D00C65007EBD5B /* AddingItemStrategy.swift in Sources */,
 				224E664225C6467100B71E8A /* BackwardForManyStrategy.swift in Sources */,
 				22862C1D26709F0100993895 /* EveryWeekFrequencyPopUp.swift in Sources */,
@@ -1493,6 +1499,7 @@
 				2232A59D2692ACC50020017B /* EncourageTextView.swift in Sources */,
 				220B7282258A288000E4BEDC /* AppDelegate.swift in Sources */,
 				22A1E95D260315CA00AD2E7C /* EnergySettingViewController.swift in Sources */,
+				222718C926A5137200F7D82C /* ThreadsManager.swift in Sources */,
 				225AD11625A6C8620040E356 /* UIColor.swift in Sources */,
 				22F004892613EC240080A5DD /* SelfDisciplineToolsViewController.swift in Sources */,
 				22BDC91225F26131008E9C46 /* VIPStrategyImpl.swift in Sources */,
@@ -1554,6 +1561,7 @@
 				225CDED4269D82B000C28AC2 /* DeviceManager.swift in Sources */,
 				2246D2F325CAD9F70001EFB7 /* GoBackToThePastStrategy.swift in Sources */,
 				22F619C426393A75007F91AF /* IconStrategy.swift in Sources */,
+				222718C726A4289700F7D82C /* LoadingAnimationManager.swift in Sources */,
 				2264C59E25F4B399009CE917 /* ItemCompletedPopUpViewBuilder.swift in Sources */,
 				22D6197725A06B7F00EC9396 /* PopUpViewTransitioningDelegate.swift in Sources */,
 				2293F39725DC004E009B4753 /* UISegmentedControl.swift in Sources */,

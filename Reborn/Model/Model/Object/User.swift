@@ -39,7 +39,6 @@ class User: Codable {
     }
     
     var creationDate: CustomDate
-
     
     public init(ID: String, name: String, gender: Gender, avatar: UIImage, energy: Int, items: Array<Item>, creationDate: CustomDate) {
         self.ID = ID
@@ -51,7 +50,7 @@ class User: Codable {
         self.creationDate = creationDate
     }
     
-    private enum Key: String, CodingKey {
+    public enum Key: String, CodingKey {
         case ID
         case name
         case gender
@@ -63,6 +62,7 @@ class User: Codable {
     }
     
     required init(from decoder: Decoder) throws {
+        ThreadsManager.shared.userIsLoading = true
         let container = try decoder.container(keyedBy: Key.self)
         do {
             self.ID = try container.decode(String.self, forKey: .ID)
@@ -100,12 +100,6 @@ class User: Codable {
             self.energy = SystemSetting.shared.defaultUserEnergy
         }
         
-        do {
-            self.items = try container.decode(Array<Item>.self, forKey: .items)
-        } catch {
-            print("User Items Decoding failed, default value assigned")
-            self.items = SystemSetting.shared.defaultUserItems
-        }
         
         do {
             self.purchasedType = try container.decode(PurchaseType.self, forKey: .purchasedType)
@@ -114,18 +108,42 @@ class User: Codable {
             self.purchasedType = .none
         }
         
-        do {
-            self.creationDate = try container.decode(CustomDate.self, forKey: .creationDate)
-        } catch {
-            print("User CreationDate Decoding failed, default value assigned")
-            var creationDate: CustomDate = SystemSetting.shared.defaultCreationDate
-            for item in items {
-                if item.creationDate < creationDate {
-                    creationDate = item.creationDate
+        
+        self.items = [Item]()
+        self.creationDate = CustomDate.current
+        decodeInBackgroundThread(from: decoder, container: container)
+    }
+    
+    func decodeInBackgroundThread(from decoder: Decoder, container:  KeyedDecodingContainer<User.Key>) {
+        
+        DispatchQueue.global().async {
+            do {
+                self.items = try container.decode(Array<Item>.self, forKey: .items)
+            } catch {
+                print("User Items Decoding failed, default value assigned")
+                self.items = SystemSetting.shared.defaultUserItems
+            }
+            
+            do {
+                self.creationDate = try container.decode(CustomDate.self, forKey: .creationDate)
+            } catch {
+                print("User CreationDate Decoding failed, default value assigned")
+                var creationDate: CustomDate = SystemSetting.shared.defaultCreationDate
+                for item in self.items {
+                    if item.creationDate < creationDate {
+                        creationDate = item.creationDate
+                    }
+                }
+                self.creationDate = creationDate
+                print("User CreationDate \(creationDate.getDateString()) assigned")
+            }
+            
+            DispatchQueue.main.async {
+                self.updateAllItems() {
+                    ThreadsManager.shared.userIsLoading = false
+                    ThreadsManager.shared.userDidLoad()
                 }
             }
-            self.creationDate = creationDate
-            print("User CreationDate \(creationDate.getDateString()) assigned")
         }
         
     }
@@ -167,7 +185,7 @@ class User: Codable {
         for item in self.items {
             
             allItemsTargetDays += item.targetDays
-            allItemsFinishedDays += item.finishedDays
+            allItemsFinishedDays += item.getFinishedDays()
         }
         
         if allItemsTargetDays != 0 {
@@ -204,7 +222,7 @@ class User: Codable {
     
     public func updateEnergy(by item: Item) {
 
-        if item.lastEnergyConsecutiveDays >= self.energyChargingEfficiencyDays && !item.todayIsAddedEnergy {
+        if item.lastEnergyConsecutiveDays >= self.energyChargingEfficiencyDays && !item.todayIsAddedEnergy() {
             print("User has new eneger redeemed")
             self.energy += 1
             item.lastEnergyConsecutiveDays = 0
@@ -252,7 +270,7 @@ class User: Codable {
     
         var numberOfPunchedInItems: Int = 0
         for item in self.inProgressItems {
-            if item.isPunchedIn {
+            if item.isPunchedIn() {
                 numberOfPunchedInItems += 1
             }
         }
@@ -260,9 +278,18 @@ class User: Codable {
         return numberOfPunchedInItems
     }
     
-    public func updateAllItems() {
+    public func updateAllItems(finish: (() -> Void)?) {
+        
+        let numberOfItemsInQueue: Int = self.items.count
+        var numberOfItemsCompleted: Int = 0
+        
         for item in self.items {
-            item.updateState()
+            item.updateState() {
+                numberOfItemsCompleted += 1
+                if numberOfItemsCompleted == numberOfItemsInQueue {
+                    finish?()
+                }
+            }
             
             if item.energy >= self.energyChargingEfficiencyDays {
                 item.energy = 0
@@ -270,7 +297,9 @@ class User: Codable {
             item.hasSanction = false
         }
         
-        self.blockItems()
+        
+        
+        self.blockItemsIfNeeded()
     }
     
     public func removeItemWith(id: Int) {
@@ -283,7 +312,7 @@ class User: Codable {
         }
     }
     
-    func blockItems() {
+    func blockItemsIfNeeded() {
         
         if !self.isVip && self.items.count > SystemSetting.shared.nonVipUserMaxItems {
             var items = [Item]()

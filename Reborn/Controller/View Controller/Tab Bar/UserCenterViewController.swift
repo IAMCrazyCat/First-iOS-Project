@@ -192,7 +192,7 @@ class UserCenterViewController: UIViewController {
     }
     
     func presentImagePicker() {
-        LoadingAnimation.add(to: self.view, withRespondingTime: 5)
+        TemporaryCircleLoadingAnimation.add(to: self.view, withRespondingTime: 5)
         
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -200,7 +200,7 @@ class UserCenterViewController: UIViewController {
         imagePicker.allowsEditing = true
         
         self.present(imagePicker, animated: true) {
-            LoadingAnimation.remove()
+            TemporaryCircleLoadingAnimation.remove()
         }
     }
     

@@ -76,7 +76,7 @@ class ItemProgressViewBuilder: ViewBuilder {
         outPutView.layer.addSublayer(barTrackLayer)
         
         var barShapeWitdh: CGFloat {
-            let width = CGFloat(self.item.progress) * barFrame.width
+            let width = CGFloat(self.item.getProgress()) * barFrame.width
             if width > barFrame.width {
                 return barFrame.width
             } else {
@@ -96,7 +96,7 @@ class ItemProgressViewBuilder: ViewBuilder {
         
         if withProgressLabel {
             let progressLabel = UILabel()
-            var labelX = CGFloat(self.item.progress) * barFrame.width
+            var labelX = CGFloat(self.item.getProgress()) * barFrame.width
             let labelY = barFrame.origin.y - barFrame.height - 10
             
             if labelX - 10 > 0 {
@@ -105,7 +105,7 @@ class ItemProgressViewBuilder: ViewBuilder {
             
             progressLabel.frame.origin = CGPoint(x: labelX, y: labelY)
             progressLabel.font = AppEngine.shared.userSetting.smallFont
-            progressLabel.text = self.item.progressInPercentageString
+            progressLabel.text = self.item.getProgressInPercentageString()
             progressLabel.sizeToFit()
             
             progressLabel.layoutIfNeeded()

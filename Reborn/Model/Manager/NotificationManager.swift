@@ -100,7 +100,7 @@ class NotificationManager {
         
         if let notificationTime = item.notificationTimes.first {
             let titile = WelcomeText(timeRange: notificationTime.timeRange).firstText
-            let body = "今天记得\(item.getFullName()), 您已经\(item.type.rawValue)了\(item.finishedDays)天, 距离目标又进了一步"
+            let body = "今天记得\(item.getFullName()), 您已经\(item.type.rawValue)了\(item.getFinishedDays())天, 距离目标又进了一步"
             
             switch item.newFrequency {
             case is EveryDay:

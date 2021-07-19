@@ -142,19 +142,17 @@ class ItemDetailViewController: UIViewController {
     
 
     func updateFinishedDaysLabel() {
-        self.finishedDaysLabel.text = "\(String(self.item.finishedDays)) 天"
+        self.finishedDaysLabel.text = "\(String(self.item.getFinishedDays())) 天"
     }
     
     func updateTargetDaysLabel() {
         self.targetDaysLabel.text = "\(String(self.item.targetDays)) 天"
     }
     
-    func updateBestConsecutiveDaysLabel() {
-        self.bestConsecutiveDaysLabel.text = "\(String(self.item.bestConsecutiveDays)) 天"
-    }
+    
     
     func updateEnergyProgressLabel() {
-        if item.todayIsAddedEnergy {
+        if item.todayIsAddedEnergy() {
             self.energyProgressLabel.textColor = ThemeColor.green.uiColor
             self.energyProgressLabel.text = "新能量 +1"
         } else {
@@ -167,18 +165,34 @@ class ItemDetailViewController: UIViewController {
         self.frequencyLabel.text = "\(self.item.newFrequency.getSpecificFreqencyString())"
     }
     
+    func updateBestConsecutiveDaysLabel() {
+        self.bestConsecutiveDaysLabel.text = ""
+        LoadingAnimationManager.shared.add(loadingAnimation: .grayAlpha, to: self.bestConsecutiveDaysLabel, frame: self.bestConsecutiveDaysLabel.bounds, cornerRadius: self.bestConsecutiveDaysLabel.frame.height / 4, identifier: "BestConsecutiveDaysLabelAnimation")
+        
+        self.item.getBestConsecutiveDays { result in
+            self.bestConsecutiveDaysLabel.text = "\(String(result)) 天"
+            LoadingAnimationManager.shared.removeAnimationWith(identifier: "BestConsecutiveDaysLabelAnimation")
+        }
+    }
+    
     func updateNextPunchInDateLabel() {
-        self.nextPunchInDateLabel.text = self.item.nextPunchInDateInString
+        self.nextPunchInDateLabel.text = ""
+        LoadingAnimationManager.shared.add(loadingAnimation: .grayAlpha, to: self.nextPunchInDateLabel, frame: self.nextPunchInDateLabel.bounds, cornerRadius: self.nextPunchInDateLabel.frame.height / 4, identifier: "NextPunchInDateLabelAnimation")
+        self.item.getNextPunchInDateInString { result in
+            LoadingAnimationManager.shared.removeAnimationWith(identifier: "NextPunchInDateLabelAnimation")
+            self.nextPunchInDateLabel.text = result
+            
+        }
     }
     
     func updateTodayLabel() {
-    
+        self.todayTitleLabel.text = self.item.getPeriodicalCompletionTitile()
         self.todayLabel.text = ""
-        LoadingAnimation.add(to: self.todayLabel, withRespondingTime: 10, circleWidth: 0.5, circleRadius: 10, timeOutAlertTitle: "操作超时")
+        LoadingAnimationManager.shared.add(loadingAnimation: .grayAlpha, to: self.todayLabel, frame: CGRect(origin: CGPoint(x: -self.nextPunchInDateLabel.frame.size.width, y: 0), size: self.nextPunchInDateLabel.frame.size), cornerRadius: self.nextPunchInDateLabel.frame.height / 4, identifier: "TodayLabelAnimation")
         self.item.getPeriodicalCompletionInAttributedString(font: self.todayLabel.font, normalColor: .label, redColor: ThemeColor.red.uiColor, greenColor: ThemeColor.green.uiColor, grayColor: self.setting.grayColor.withAlphaComponent(0.5)) { result in
-            
+            LoadingAnimationManager.shared.removeAnimationWith(identifier: "TodayLabelAnimation")
             self.todayLabel.attributedText = result
-            LoadingAnimation.remove()
+            
         }
         
        
@@ -236,7 +250,7 @@ class ItemDetailViewController: UIViewController {
         updateFrequencyLabel()
         updateTodayLabel()
         updateProgressView()
-        //updateNextPunchInDateLabel()
+        updateNextPunchInDateLabel()
         updateStartDateLabel()
         updateNotificationLabel()
         

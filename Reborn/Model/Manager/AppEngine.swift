@@ -36,6 +36,8 @@ class AppEngine {
     public var currentViewController: UIViewController? {
         return UIApplication.shared.getCurrentViewController()
     }
+    
+    
 
     
     private init() {
@@ -162,7 +164,9 @@ class AppEngine {
     }
 
     func updateUserItems() {
-        self.currentUser.updateAllItems()
+        self.currentUser.updateAllItems() {
+            self.notifyAllUIObservers()
+        }
 
     }
     
@@ -233,19 +237,21 @@ class AppEngine {
     private func loadUser() {
     
         if let data = try? Data(contentsOf: dataFilePath!) {
-           let decoder = JSONDecoder() //PropertyListDecoder()
-
-           do {
-            self.currentUser = try decoder.decode(User.self, from: data) // .self 可以提取数据类型
-           } catch {
-               print(error)
-           }
+            let decoder = JSONDecoder() //PropertyListDecoder()
+            do {
+                self.currentUser = try decoder.decode(User.self, from: data)
+            } catch {
+                print("Failed to load user")
+                print(error)
+            }
         }
         
         if self.currentUser.isVip {
             print("Welcome back VIP!")
         }
     }
+    
+    
     
     private func loadItemCardViews() {
         

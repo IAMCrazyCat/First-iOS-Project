@@ -17,14 +17,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if !AppEngine.shared.currentUser.isVip {
             GADMobileAds.sharedInstance().start(completionHandler: nil)
         }
-
-//        let testItem = Item(ID: 101, name: "测试", days: 2000, frequency: EveryDay(), creationDate: CustomDate.current, type: .persisting, icon: Icon.defaultIcon1, notificationTimes: [CustomTime]())
+//        AppEngine.shared.currentUser.items.removeAll()
+//        let testItem = Item(ID: AppEngine.shared.currentUser.getLargestItemID(), name: "测试", days: 2000, frequency: EveryDay(), creationDate: CustomDate.current, type: .persisting, icon: Icon.defaultIcon1, notificationTimes: [CustomTime]())
+//        var test = [CustomDate]()
 //        for i in -1000 ... 0 {
 //
 //            let customDate = DateCalculator.calculateDate(withDayDifference: i, originalDate: CustomDate.current)
-//            testItem.add(punchInDate: customDate)
+//            test.append(customDate)
 //        }
-//        AppEngine.shared.currentUser.add(newItem: testItem)
+//
+//        testItem.add(punchInDates: test, finish: {
+//            print("All item added")
+//            AppEngine.shared.notifyAllUIObservers()
+//            AppEngine.shared.currentUser.add(newItem: testItem)
+//        })
+        
         
         
         Purchases.debugLogsEnabled = true

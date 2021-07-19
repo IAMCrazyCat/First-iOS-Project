@@ -34,14 +34,25 @@ class ItemCardView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func updateStateLabel() {
+        stateLabel.text = item.state == .duringBreak ? "(休息中)" : item.state == .completed ? "(已完成)" : ""
+    }
+    
     public func updateItem() {
         
-        if !item.isPunchedIn {
-            item.punchIn()
+        if !item.isPunchedIn() {
+            item.punchIn(updatingStateFinish: {
+                self.updateStateLabel()
+                if self.item.state == .completed {
+                    UIApplication.shared.getCurrentViewController()?.presentItemCompletedPopUp(for: self.item)
+                }
+            })
             
             Vibrator.vibrate(withNotificationType: .success)
         } else {
-            item.revokePunchIn()
+            item.revokePunchIn(updatingStateFinish: {
+                self.updateStateLabel()
+            })
 
             Vibrator.vibrate(withImpactLevel: .light)
         }
@@ -56,7 +67,7 @@ class ItemCardView: UIView {
         let unit = NSMutableAttributedString(string: "  天", attributes: attrs2)
         let attrs0 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.smallFont, NSAttributedString.Key.foregroundColor: UIColor.gray]
         let typeString = NSMutableAttributedString(string: "已打卡:  ", attributes: attrs0)
-        let finishedDaysString = NSMutableAttributedString(string: "\(self.item.finishedDays)", attributes: attrs1)
+        let finishedDaysString = NSMutableAttributedString(string: "\(self.item.getFinishedDays())", attributes: attrs1)
         
         finishedDaysString.append(unit)
         self.finishedDaysLabel.attributedText = finishedDaysString
@@ -64,7 +75,7 @@ class ItemCardView: UIView {
     }
     
     private func updateButton() {
-        self.punchInButton.isSelected = self.item.isPunchedIn ? true : false
+        self.punchInButton.isSelected = self.item.isPunchedIn() ? true : false
     }
     
     private func showAnimationIfNeeded() {
@@ -79,12 +90,13 @@ class ItemCardView: UIView {
         updateButton()
         updateProgressBar()
         updateFinishedDaysLabel()
+        updateStateLabel()
         showAnimationIfNeeded()
     }
     
     private func updateProgressBar() {
         var barShapeWitdh: CGFloat {
-            let width = CGFloat(self.item.progress) * progressPathFrame.width
+            let width = CGFloat(self.item.getProgress()) * progressPathFrame.width
             if width > progressPathFrame.width {
                 return progressPathFrame.width
             } else {
@@ -125,9 +137,7 @@ class ItemCardView: UIView {
 //        AppEngine.shared.notifyUIObservers(withIdentifier: "HomeViewController")
 //        AppEngine.shared.notifyUIObservers(withIdentifier: "ItemManagementViewController")
  
-        if self.item.state == .completed {
-            UIApplication.shared.getCurrentViewController()?.presentItemCompletedPopUp(for: item)
-        }
+        
     }
     
     @objc func itemDetailsButtonPressed(_ sender: UIButton!) {
@@ -137,7 +147,7 @@ class ItemCardView: UIView {
         
         guard let senderViewController = sender.findViewController(),
               let navigationController = senderViewController.navigationController,
-              let itemDetailViewController = storyBoard.instantiateViewController(withIdentifier: "ItemDetailView") as? ItemDetailViewController
+              let itemDetailViewController = storyBoard.instantiateViewController(withIdentifier: "ItemDetailViewController") as? ItemDetailViewController
         else {
             return
         }

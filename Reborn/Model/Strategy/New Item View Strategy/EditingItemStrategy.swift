@@ -50,7 +50,7 @@ class EditingItemStrategy: NewItemViewStrategy {
             
         }
         
-        switch newItemViewController.item.finishedDays {
+        switch newItemViewController.item.getFinishedDays() {
         case 8 ... 30:
             newItemViewController.sevenDaysButton.alpha = 0.5
             newItemViewController.sevenDaysButton.isUserInteractionEnabled = false
@@ -113,7 +113,7 @@ class EditingItemStrategy: NewItemViewStrategy {
     
     func show(_ popUpType: PopUpType) {
         if popUpType == .customTargetDaysPopUp {
-            newItemViewController.present(popUpType, dataStartIndex: newItemViewController.item.finishedDays)
+            newItemViewController.present(popUpType, dataStartIndex: newItemViewController.item.getFinishedDays())
         } else if popUpType == .customFrequencyPopUp {
             newItemViewController.present(popUpType)
         }
@@ -155,7 +155,8 @@ class EditingItemStrategy: NewItemViewStrategy {
             NotificationManager.shared.scheduleNotification(for: newItemViewController.item)
             newItemViewController.engine.saveUser(newItemViewController.engine.currentUser)
             newItemViewController.dismiss(animated: true) {
-                self.newItemViewController.engine.notifyAllUIObservers()
+                self.newItemViewController.engine.notifyUIObservers(withIdentifier: "ItemDetailViewController")
+                //self.newItemViewController.engine.notifyAllUIObservers()
             }
         }
     }
