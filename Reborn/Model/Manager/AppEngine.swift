@@ -165,7 +165,7 @@ class AppEngine {
 
     func updateUserItems() {
         self.currentUser.updateAllItems() {
-            self.notifyAllUIObservers()
+            //self.notifyAllUIObservers()
         }
 
     }
@@ -254,7 +254,7 @@ class AppEngine {
     
     
     private func loadItemCardViews() {
-        //let itemCardViews = 
+        //let itemCardViews =
     }
     
     public func saveSetting() {

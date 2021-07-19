@@ -149,8 +149,13 @@ class HomeViewController: UIViewController {
 
     func updateItemCardsView() {
         
-        self.view.layoutIfNeeded()
-        self.itemCardsView.renderItemCards(withCondition: .inProgress, animated: false)
+        if ThreadsManager.shared.userIsLoading {
+            TemporaryCircleLoadingAnimation.add(to: self.itemCardsView, withRespondingTime: 10)
+        } else {
+            self.view.layoutIfNeeded()
+            self.itemCardsView.renderItemCards(withCondition: .inProgress, animated: false)
+        }
+        
     }
     
     func updateNavigationView() {

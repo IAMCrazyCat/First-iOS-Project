@@ -80,7 +80,7 @@ class Item: Codable {
         self.icon = icon
         self.newFrequency = frequency
         self.notificationTimes = notificationTimes
-        updateState(finish: nil)
+        updateState()
     }
     
     private enum Key: String, CodingKey {
@@ -233,6 +233,8 @@ class Item: Codable {
             self.lastEnergyConsecutiveDays = 1
         }
         
+        self.updateState()
+        
     }
 
     func encode(to encoder: Encoder) throws {
@@ -262,7 +264,7 @@ class Item: Codable {
     }
     
     
-    public func punchIn(on date: CustomDate = CustomDate.current, updatingStateFinish: (() -> Void)?) {
+    public func punchIn(on date: CustomDate = CustomDate.current) {
         self.punchInDates.append(date)
         
         if isConsecutivePunchIn() {
@@ -270,12 +272,11 @@ class Item: Codable {
         } else {
             self.lastEnergyConsecutiveDays = 1
         }
-        
-
+        updateState()
     }
     
     
-    public func revokePunchIn(updatingStateFinish: (() -> Void)?) {
+    public func revokePunchIn() {
         
         if self.punchInDates.count > 0 {
             var index = self.punchInDates.count - 1
@@ -289,7 +290,7 @@ class Item: Codable {
         }
         
         self.lastEnergyConsecutiveDays -= 1
-
+        updateState()
     }
   
     public func add(punchInDates: Array<CustomDate>, finish: (() -> Void)?) {
@@ -297,9 +298,11 @@ class Item: Codable {
             self.punchInDates.append(punchInDate)
         }
        
-        updateState() {
-            self.sortDateArray(finish: finish)
+        self.sortDateArray {
+            self.updateState()
+            finish?()
         }
+        
         
         
     }
@@ -374,82 +377,76 @@ class Item: Codable {
     }
     
     
-    public func updateState(finish: (() -> Void)?) {
+    public func updateState() {
         
-        DispatchQueue.global().async {
-            let loadingItem = LoadingItem(item: self, description: "Updating state")
-            ThreadsManager.shared.add(loadingItem)
-            func checkEveryMonthState(with newFrequency: EveryMonth) {
-                var punchedDays = 0
-                for punchInDate in self.punchInDates {
-                    if punchInDate.month == CustomDate.current.month {
-                        punchedDays += 1
-                    }
-                    
-                    if punchedDays >= newFrequency.days && !self.isPunchedIn() {
-                        self.state = .duringBreak
-                        break
-                    }
+        
+        func checkEveryMonthState(with newFrequency: EveryMonth) {
+            var punchedDays = 0
+            for punchInDate in self.punchInDates {
+                if punchInDate.month == CustomDate.current.month {
+                    punchedDays += 1
                 }
                 
-                if punchedDays < newFrequency.days {
-                    self.state = .inProgress
-                }
-            }
-            
-            func checkEveryWeekState(with newFrequency: EveryWeek) {
-                var punchedDays = 0
-                for punchInDate in self.punchInDates {
-                    if CustomDate.current.weekDates.contains(punchInDate) {
-                        punchedDays += 1
-                    }
-                    
-                    if punchedDays >= newFrequency.days && !self.isPunchedIn() {
-                        self.state = .duringBreak
-                        break
-                    }
-                }
-                
-                if punchedDays < newFrequency.days {
-                    self.state = .inProgress
-                }
-                
-            }
-            
-            func checkEveryWeekdaysState(with newFrequency: EveryWeekdays) {
-                
-                if newFrequency.weekdays.contains(CustomDate.current.weekday) {
-                    self.state = .inProgress
-                } else {
+                if punchedDays >= newFrequency.days && !self.isPunchedIn() {
                     self.state = .duringBreak
+                    break
                 }
             }
-
             
-            if self.getFinishedDays() == self.targetDays {
-                self.state = .completed
+            if punchedDays < newFrequency.days {
+                self.state = .inProgress
+            }
+        }
+        
+        func checkEveryWeekState(with newFrequency: EveryWeek) {
+            var punchedDays = 0
+            for punchInDate in self.punchInDates {
+                if CustomDate.current.weekDates.contains(punchInDate) {
+                    punchedDays += 1
+                }
                 
+                if punchedDays >= newFrequency.days && !self.isPunchedIn() {
+                    self.state = .duringBreak
+                    break
+                }
+            }
+            
+            if punchedDays < newFrequency.days {
+                self.state = .inProgress
+            }
+            
+        }
+        
+        func checkEveryWeekdaysState(with newFrequency: EveryWeekdays) {
+            
+            if newFrequency.weekdays.contains(CustomDate.current.weekday) {
+                self.state = .inProgress
             } else {
-                
-                if let newFrequency = self.newFrequency as? EveryDay {
-                    self.state = .inProgress
-                } else if let newFrequency = self.newFrequency as? EveryMonth {
-                    checkEveryMonthState(with: newFrequency)
-                } else if let newFrequency = self.newFrequency as? EveryWeek {
-                    checkEveryWeekState(with: newFrequency)
-                } else if let newFrequency = self.newFrequency as? EveryWeekdays {
-                    checkEveryWeekdaysState(with: newFrequency)
-                }
-
+                self.state = .duringBreak
             }
+        }
+
+        
+        if self.getFinishedDays() == self.targetDays {
+            self.state = .completed
             
-            NotificationManager.shared.scheduleNotification(for: self)
-            DispatchQueue.main.async {
-                ThreadsManager.shared.remove(loadingItem)
-                finish?()
+        } else {
+            
+            if let newFrequency = self.newFrequency as? EveryDay {
+                self.state = .inProgress
+            } else if let newFrequency = self.newFrequency as? EveryMonth {
+                checkEveryMonthState(with: newFrequency)
+            } else if let newFrequency = self.newFrequency as? EveryWeek {
+                checkEveryWeekState(with: newFrequency)
+            } else if let newFrequency = self.newFrequency as? EveryWeekdays {
+                checkEveryWeekdaysState(with: newFrequency)
             }
 
         }
+        
+        
+        NotificationManager.shared.scheduleNotification(for: self)
+       
         
         
         

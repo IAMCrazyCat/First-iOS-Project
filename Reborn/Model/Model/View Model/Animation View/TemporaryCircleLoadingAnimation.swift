@@ -37,12 +37,13 @@ class TemporaryCircleLoadingAnimation {
 
     }
     
-    static func remove() {
+    static func remove(finish: (() -> Void)? = nil) {
         TemporaryCircleLoadingAnimation.shared.timer?.invalidate()
         UIView.animate(withDuration: 0.8, animations: {
             TemporaryCircleLoadingAnimation.shared.animationView.alpha = 0
         }) { _ in
             TemporaryCircleLoadingAnimation.shared.animationView.removeFromSuperview()
+            finish?()
         }
         
     }

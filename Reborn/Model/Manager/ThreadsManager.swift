@@ -36,6 +36,10 @@ class ThreadsManager {
     public func userDidLoad() {
         print("User did load all items")
         self.userIsLoading = false
+        TemporaryCircleLoadingAnimation.remove() {
+            //AppEngine.shared.notifyUIObservers(withIdentifier: "HomeViewController")
+        }
+        
     }
     
     public func add(_ loadingItem: LoadingItem) {

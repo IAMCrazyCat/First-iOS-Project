@@ -283,26 +283,23 @@ class User: Codable {
     
     public func updateAllItems(finish: (() -> Void)?) {
         
-        let numberOfItemsInQueue: Int = self.items.count
-        var numberOfItemsCompleted: Int = 0
-        
-        for item in self.items {
-            item.updateState() {
-                numberOfItemsCompleted += 1
-                if numberOfItemsCompleted == numberOfItemsInQueue {
-                    finish?()
+        DispatchQueue.global().async {
+            for item in self.items {
+                item.updateState()
+                if item.energy >= self.energyChargingEfficiencyDays {
+                    item.energy = 0
                 }
+                item.hasSanction = false
             }
+
+            self.blockItemsIfNeeded()
             
-            if item.energy >= self.energyChargingEfficiencyDays {
-                item.energy = 0
+            DispatchQueue.main.async {
+                finish?()
             }
-            item.hasSanction = false
         }
         
-        
-        
-        self.blockItemsIfNeeded()
+       
     }
     
     public func removeItemWith(id: Int) {

@@ -41,19 +41,14 @@ class ItemCardView: UIView {
     public func updateItem() {
         
         if !item.isPunchedIn() {
-            item.punchIn(updatingStateFinish: {
-                self.updateStateLabel()
-                if self.item.state == .completed {
-                    UIApplication.shared.getCurrentViewController()?.presentItemCompletedPopUp(for: self.item)
-                }
-            })
+            item.punchIn()
+            if self.item.state == .completed {
+                UIApplication.shared.getCurrentViewController()?.presentItemCompletedPopUp(for: self.item)
+            }
             
             Vibrator.vibrate(withNotificationType: .success)
         } else {
-            item.revokePunchIn(updatingStateFinish: {
-                self.updateStateLabel()
-            })
-
+            item.revokePunchIn()
             Vibrator.vibrate(withImpactLevel: .light)
         }
         
@@ -131,11 +126,11 @@ class ItemCardView: UIView {
     
     @objc func itemPunchInButtonPressed(_ sender: UIButton!) {
         
-        updateUI()
+        updateItem()
         AppEngine.shared.saveUser()
        
-//        AppEngine.shared.notifyUIObservers(withIdentifier: "HomeViewController")
-//        AppEngine.shared.notifyUIObservers(withIdentifier: "ItemManagementViewController")
+        AppEngine.shared.notifyUIObservers(withIdentifier: "HomeViewController")
+        AppEngine.shared.notifyUIObservers(withIdentifier: "ItemManagementViewController")
  
         
     }

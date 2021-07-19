@@ -94,57 +94,70 @@ class NotificationManager {
     }
     
     func scheduleNotification(for item: Item) {
-        let tommorow = DateCalculator.calculateDate(withDayDifference: 1, originalDate: CustomDate.current)
-        let identifier = "Item\(item.ID)Notification"
-        self.removeAllNotification(of: item)
         
-        if let notificationTime = item.notificationTimes.first {
-            let titile = WelcomeText(timeRange: notificationTime.timeRange).firstText
-            let body = "今天记得\(item.getFullName()), 您已经\(item.type.rawValue)了\(item.getFinishedDays())天, 距离目标又进了一步"
+        let loadingItem = LoadingItem(item: self, description: "Schduling notification for \(item)")
+        ThreadsManager.shared.add(loadingItem)
+        
+        DispatchQueue.global().async {
+            let tommorow = DateCalculator.calculateDate(withDayDifference: 1, originalDate: CustomDate.current)
+            let identifier = "Item\(item.ID)Notification"
+            self.removeAllNotification(of: item)
             
-            switch item.newFrequency {
-            case is EveryDay:
+            if let notificationTime = item.notificationTimes.first {
+                let titile = WelcomeText(timeRange: notificationTime.timeRange).firstText
+                let body = "今天记得\(item.getFullName()), 您已经\(item.type.rawValue)了\(item.getFinishedDays())天, 距离目标又进了一步"
                 
-                if item.state != .inProgress {
+                switch item.newFrequency {
+                case is EveryDay:
+                    
+                    if item.state != .inProgress {
 
-                } else {
-                    self.addNotification(at: notificationTime, title: titile, body: body, identifier: identifier)
-                }
-            case is EveryWeekdays:
-                
-                if item.state == .completed {
-                    
-                } else {
-                    let weekdays = (item.newFrequency as! EveryWeekdays).weekdays
-                    for weekday in weekdays {
-                        self.addNotification(on: weekday, at: notificationTime, title: titile, body: body, identifier: identifier + String(weekday.rawValue))
+                    } else {
+                        self.addNotification(at: notificationTime, title: titile, body: body, identifier: identifier)
                     }
-                }
-            case is EveryWeek:
-                
-                if item.state != .inProgress || item.getNextPunchInDate(isPunchedIn: true) != tommorow {
+                case is EveryWeekdays:
                     
-                    if let nextPunchInDate = item.getNextPunchInDate(isPunchedIn: true) {
-                        addNotification(on: nextPunchInDate, at: notificationTime, title: titile, body: body, identifier: identifier)
+                    if item.state == .completed {
+                        
+                    } else {
+                        let weekdays = (item.newFrequency as! EveryWeekdays).weekdays
+                        for weekday in weekdays {
+                            self.addNotification(on: weekday, at: notificationTime, title: titile, body: body, identifier: identifier + String(weekday.rawValue))
+                        }
                     }
+                case is EveryWeek:
+                    
+                    if item.state != .inProgress || item.getNextPunchInDate(isPunchedIn: true) != tommorow {
+                        
+                        if let nextPunchInDate = item.getNextPunchInDate(isPunchedIn: true) {
+                            self.addNotification(on: nextPunchInDate, at: notificationTime, title: titile, body: body, identifier: identifier)
+                        }
 
-                } else {
-                    self.addNotification(at: notificationTime, title: titile, body: body, identifier: identifier)
-                }
-            case is EveryMonth:
-               
-                if item.state != .inProgress || item.getNextPunchInDate(isPunchedIn: true) != tommorow {
-                    
-                    if let nextPunchInDate = item.getNextPunchInDate(isPunchedIn: true) {
-                        addNotification(on: nextPunchInDate, at: notificationTime, title: titile, body: body, identifier: identifier)
+                    } else {
+                        self.addNotification(at: notificationTime, title: titile, body: body, identifier: identifier)
                     }
-                    
-                } else {
-                    self.addNotification(at: notificationTime, title: titile, body: body, identifier: identifier)
+                case is EveryMonth:
+                   
+                    if item.state != .inProgress || item.getNextPunchInDate(isPunchedIn: true) != tommorow {
+                        
+                        if let nextPunchInDate = item.getNextPunchInDate(isPunchedIn: true) {
+                            self.addNotification(on: nextPunchInDate, at: notificationTime, title: titile, body: body, identifier: identifier)
+                        }
+                        
+                    } else {
+                        self.addNotification(at: notificationTime, title: titile, body: body, identifier: identifier)
+                    }
+                default: break
                 }
-            default: break
             }
+            DispatchQueue.main.async {
+                ThreadsManager.shared.remove(loadingItem)
+            }
+
         }
+        
+        
+        
     }
     
     func addNotification(on date: CustomDate, at time: CustomTime, title: String, body: String, identifier: String) {
