@@ -30,6 +30,7 @@
 		221E0BA425A9D38100386FE1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E0BA325A9D38100386FE1 /* Image.swift */; };
 		222718C726A4289700F7D82C /* LoadingAnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222718C626A4289700F7D82C /* LoadingAnimationManager.swift */; };
 		222718C926A5137200F7D82C /* ThreadsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222718C826A5137200F7D82C /* ThreadsManager.swift */; };
+		222718CB26A54E8300F7D82C /* UIUpdatingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222718CA26A54E8300F7D82C /* UIUpdatingManager.swift */; };
 		222B4E2C2691F4D400CC12A0 /* EncourageTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222B4E2B2691F4D400CC12A0 /* EncourageTextViewController.swift */; };
 		223072A825E3A99D00AE6ECB /* UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223072A725E3A99D00AE6ECB /* UINavigationBar.swift */; };
 		223132CF263D188F0020BA70 /* CalendarCellStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223132CE263D188F0020BA70 /* CalendarCellStrategy.swift */; };
@@ -269,6 +270,7 @@
 		221E0BA325A9D38100386FE1 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		222718C626A4289700F7D82C /* LoadingAnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingAnimationManager.swift; sourceTree = "<group>"; };
 		222718C826A5137200F7D82C /* ThreadsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsManager.swift; sourceTree = "<group>"; };
+		222718CA26A54E8300F7D82C /* UIUpdatingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUpdatingManager.swift; sourceTree = "<group>"; };
 		222B4E2B2691F4D400CC12A0 /* EncourageTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncourageTextViewController.swift; sourceTree = "<group>"; };
 		223072A725E3A99D00AE6ECB /* UINavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBar.swift; sourceTree = "<group>"; };
 		223132CE263D188F0020BA70 /* CalendarCellStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellStrategy.swift; sourceTree = "<group>"; };
@@ -833,6 +835,7 @@
 				225CDED3269D82B000C28AC2 /* DeviceManager.swift */,
 				222718C626A4289700F7D82C /* LoadingAnimationManager.swift */,
 				222718C826A5137200F7D82C /* ThreadsManager.swift */,
+				222718CA26A54E8300F7D82C /* UIUpdatingManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1412,6 +1415,7 @@
 				22D00DEC25FE2A5900DB3F1D /* NotificationTimePopUp.swift in Sources */,
 				22BC38E525E7388600AEFE44 /* CustomTargetDaysPopUpViewBuilder.swift in Sources */,
 				22F619BD26392EBF007F91AF /* Icon.swift in Sources */,
+				222718CB26A54E8300F7D82C /* UIUpdatingManager.swift in Sources */,
 				22C49A6125FF16AF00371E2B /* CGFloat.swift in Sources */,
 				22A1B5692614207E008CBE94 /* BreathViewController.swift in Sources */,
 				22D00DFA25FE2F5700DB3F1D /* CustomTime.swift in Sources */,

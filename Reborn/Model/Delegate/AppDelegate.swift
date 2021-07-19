@@ -18,9 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             GADMobileAds.sharedInstance().start(completionHandler: nil)
         }
 //        AppEngine.shared.currentUser.items.removeAll()
-//        let testItem = Item(ID: AppEngine.shared.currentUser.getLargestItemID(), name: "测试", days: 2000, frequency: EveryDay(), creationDate: CustomDate.current, type: .persisting, icon: Icon.defaultIcon1, notificationTimes: [CustomTime]())
+//        let testItem = Item(ID: AppEngine.shared.currentUser.getLargestItemID(), name: "测试", days: 20000, frequency: EveryDay(), creationDate: CustomDate.current, type: .persisting, icon: Icon.defaultIcon1, notificationTimes: [CustomTime]())
 //        var test = [CustomDate]()
-//        for i in -1000 ... 0 {
+//        for i in -15000 ... -5000 {
 //
 //            let customDate = DateCalculator.calculateDate(withDayDifference: i, originalDate: CustomDate.current)
 //            test.append(customDate)

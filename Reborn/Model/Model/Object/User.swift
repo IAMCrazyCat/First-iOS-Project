@@ -117,6 +117,8 @@ class User: Codable {
     func decodeInBackgroundThread(from decoder: Decoder, container:  KeyedDecodingContainer<User.Key>) {
         
         DispatchQueue.global().async {
+            let loadingItem = LoadingItem(item: self, description: "Items and creation dates are loading")
+            ThreadsManager.shared.add(loadingItem)
             do {
                 self.items = try container.decode(Array<Item>.self, forKey: .items)
             } catch {
@@ -140,6 +142,7 @@ class User: Codable {
             
             DispatchQueue.main.async {
                 self.updateAllItems() {
+                    ThreadsManager.shared.remove(loadingItem)
                     ThreadsManager.shared.userIsLoading = false
                     ThreadsManager.shared.userDidLoad()
                 }

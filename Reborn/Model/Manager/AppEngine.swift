@@ -254,7 +254,7 @@ class AppEngine {
     
     
     private func loadItemCardViews() {
-        
+        //let itemCardViews = 
     }
     
     public func saveSetting() {

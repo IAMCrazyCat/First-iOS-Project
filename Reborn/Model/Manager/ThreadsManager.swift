@@ -11,9 +11,9 @@ class LoadingItem {
     var item: Any
     var decription: String
     
-    init(item: Any, decription: String) {
+    init(item: Any, description: String) {
         self.item = item
-        self.decription = decription
+        self.decription = description
     }
 }
 
@@ -55,12 +55,11 @@ class ThreadsManager {
     
     public func indicateLoadingItems() {
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-            print("Loading items in background threads")
             for loadingItem in self.loadingItems {
-                print("Item: \(loadingItem.item) description: \(loadingItem.decription)")
+                print("\(CustomTime.current.getTimeString()) \(loadingItem.item) is loading in background thread, description: \(loadingItem.decription)")
             }
             if self.loadingItems.count == 0 {
-                print("No item is currently loading")
+                print("\(CustomTime.current.getTimeString()) No item is currently loading")
             }
         }
     }

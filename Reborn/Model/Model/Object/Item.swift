@@ -271,10 +271,6 @@ class Item: Codable {
             self.lastEnergyConsecutiveDays = 1
         }
         
-        self.updateState() {
-            updatingStateFinish?()
-        }
-        
 
     }
     
@@ -292,9 +288,6 @@ class Item: Codable {
 
         }
         
-        self.updateState() {
-            updatingStateFinish?()
-        }
         self.lastEnergyConsecutiveDays -= 1
 
     }
@@ -384,7 +377,7 @@ class Item: Codable {
     public func updateState(finish: (() -> Void)?) {
         
         DispatchQueue.global().async {
-            let loadingItem = LoadingItem(item: self, decription: "Updating state")
+            let loadingItem = LoadingItem(item: self, description: "Updating state")
             ThreadsManager.shared.add(loadingItem)
             func checkEveryMonthState(with newFrequency: EveryMonth) {
                 var punchedDays = 0
@@ -467,7 +460,7 @@ class Item: Codable {
     private func sortDateArray(finish: (() -> Void)? = nil) {
         
         DispatchQueue.global().async {
-            let loadingItem = LoadingItem(item: self, decription: "Sorting array")
+            let loadingItem = LoadingItem(item: self, description: "Sorting array")
             ThreadsManager.shared.add(loadingItem)
             print("Sorting punch in dates for item: \(self.name)")
             let newPunchInDates = self.punchInDates.sorted {
@@ -493,7 +486,7 @@ class Item: Codable {
         var consecutiveDays: Int = 1
         
         DispatchQueue.global().async {
-            let loadingItem = LoadingItem(item: self, decription: "Getting consecutive days array")
+            let loadingItem = LoadingItem(item: self, description: "Getting consecutive days array")
             ThreadsManager.shared.add(loadingItem)
             if self.punchInDates.count > 0 {
                 consecutiveDaysArray.append(1) // if item has at leat one punch in date
@@ -660,7 +653,7 @@ class Item: Codable {
     public func getNextPunchInDateInString(finish: @escaping (String) -> Void) {
         
         DispatchQueue.global().async {
-            let loadingItem = LoadingItem(item: self, decription: "Getting next punch in date in string")
+            let loadingItem = LoadingItem(item: self, description: "Getting next punch in date in string")
             ThreadsManager.shared.add(loadingItem)
             let nextPunchInDate = self.getNextPunchInDate(isPunchedIn: self.isPunchedIn())
             
