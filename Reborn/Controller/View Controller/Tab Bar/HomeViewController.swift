@@ -281,7 +281,9 @@ class HomeViewController: UIViewController {
         }
     }
     
-  
+    func updateItemCard(for item: Item) {
+        for subview in 
+    }
 
 }
 

@@ -4077,8 +4077,6 @@
                                 </subviews>
                                 <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                 <constraints>
-                                    <constraint firstItem="1Wo-jG-FNH" firstAttribute="leading" secondItem="Gda-Fr-171" secondAttribute="leading" constant="50" id="46d-Ii-TBK"/>
-                                    <constraint firstAttribute="trailing" secondItem="1Wo-jG-FNH" secondAttribute="trailing" constant="50" id="Ay8-DW-XPN"/>
                                     <constraint firstAttribute="height" constant="80" id="JSi-sS-zh9"/>
                                     <constraint firstAttribute="bottom" secondItem="1Wo-jG-FNH" secondAttribute="bottom" constant="20" id="kud-0A-TCm"/>
                                 </constraints>
@@ -4333,12 +4331,14 @@
                             <constraint firstItem="Gda-Fr-171" firstAttribute="top" secondItem="sOY-k7-p4N" secondAttribute="bottom" id="21a-6q-ASa"/>
                             <constraint firstItem="u4N-Gy-g5i" firstAttribute="leading" secondItem="bkT-rw-0eZ" secondAttribute="leading" id="7fo-lC-UYT"/>
                             <constraint firstItem="Gda-Fr-171" firstAttribute="trailing" secondItem="bkT-rw-0eZ" secondAttribute="trailing" id="9vq-qR-HiR"/>
+                            <constraint firstItem="1Wo-jG-FNH" firstAttribute="leading" secondItem="6pG-U1-91v" secondAttribute="leading" id="L0X-A6-GB6"/>
                             <constraint firstItem="sOY-k7-p4N" firstAttribute="trailing" secondItem="bkT-rw-0eZ" secondAttribute="trailing" id="NKy-wI-cHa"/>
                             <constraint firstItem="Gda-Fr-171" firstAttribute="leading" secondItem="bkT-rw-0eZ" secondAttribute="leading" id="Wxg-1b-Ms1"/>
                             <constraint firstItem="sOY-k7-p4N" firstAttribute="top" secondItem="u4N-Gy-g5i" secondAttribute="bottom" id="Y3a-1h-oP4"/>
                             <constraint firstItem="u4N-Gy-g5i" firstAttribute="trailing" secondItem="bkT-rw-0eZ" secondAttribute="trailing" id="ZrJ-mp-vBw"/>
                             <constraint firstItem="bkT-rw-0eZ" firstAttribute="bottom" secondItem="Gda-Fr-171" secondAttribute="bottom" id="ckg-fl-5bn"/>
                             <constraint firstItem="sOY-k7-p4N" firstAttribute="leading" secondItem="bkT-rw-0eZ" secondAttribute="leading" id="gv6-3g-E73"/>
+                            <constraint firstItem="1Wo-jG-FNH" firstAttribute="trailing" secondItem="6pG-U1-91v" secondAttribute="trailing" id="nLI-cg-69F"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FIM-3O-cP6"/>

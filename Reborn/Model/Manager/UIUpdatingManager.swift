@@ -10,5 +10,7 @@ class UIUpdatingManager {
     public static let shared = UIUpdatingManager()
     private init() {}
     
-    
+    public func updateItemCards() {
+        
+    }
 }

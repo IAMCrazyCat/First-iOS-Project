@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 class ItemCardView: UIView {
     var item: Item
+    var contentView: UIView = UIView()
+    
     var icon: UIImageView = UIImageView()
     var notificationIcon: UIImageView = UIImageView()
     var titileLabel: UILabel = UILabel()

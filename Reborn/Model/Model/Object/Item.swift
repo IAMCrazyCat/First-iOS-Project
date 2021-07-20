@@ -317,11 +317,26 @@ class Item: Codable {
             }
         }
 
-        for punchInDate in self.punchInDates {
+        var index = self.punchInDates.count - 1
+        
+        while index >= 0 {
+            let punchInDate = self.punchInDates[index]
             if CustomDate.current.weekDates.contains(punchInDate) {
                 currentWeekPunchInDates.append(punchInDate)
             }
+            
+            var wentOutCurrentWeek = true // Optmize
+            for currentWeekDate in CustomDate.current.weekDates {
+                if currentWeekDate.month == punchInDate.month {
+                    wentOutCurrentWeek = false
+                }
+            }
+            if wentOutCurrentWeek {
+                break
+            }
+            index -= 1
         }
+
 
         var allDatesPunchedIn = true
         for shouldPunchInDate in currentWeekShouldPunchInDates {
