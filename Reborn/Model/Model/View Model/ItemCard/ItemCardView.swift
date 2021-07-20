@@ -27,7 +27,7 @@ class ItemCardView: UIView {
     var rightButton: UIButton = UIButton()
     var confettiView: UIView = UIView()
     
-    public init(frame: CGRect, item: Item) {
+    public init(frame: CGRect, item: Item, contentView: UIView) {
         self.item = item
         super.init(frame: frame)
     }
