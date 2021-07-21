@@ -196,16 +196,21 @@ class AppEngine {
 
     public func saveUser(_ newUser: User = AppEngine.shared.currentUser) {
 
-        let encoder = JSONEncoder()//PropertyListEncoder()
+        if ThreadsManager.shared.userIsLoading {
+            
+        } else {
+            let encoder = JSONEncoder()//PropertyListEncoder()
 
-        do {
-            let data = try encoder.encode(self.currentUser)
-            try data.write(to: self.dataFilePath!)
-        } catch {
-            print("Error encoding item array, \(error)")
+            do {
+                let data = try encoder.encode(self.currentUser)
+                try data.write(to: self.dataFilePath!)
+            } catch {
+                print("Error encoding item array, \(error)")
+            }
+            
+            AppEngine.shared.updateWidgetData()
         }
-        
-        AppEngine.shared.updateWidgetData()
+       
        
     }
     
@@ -311,7 +316,6 @@ class AppEngine {
             DispatchQueue.main.async {
                 observer.updateUI()
             }
-            
         }
         print("All Observers Notified")
     }

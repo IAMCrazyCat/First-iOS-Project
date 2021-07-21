@@ -10,23 +10,7 @@ import UIKit
 class ItemCardView: UIView {
     var item: Item
     var contentView: UIView = UIView()
-    
-    var icon: UIImageView = UIImageView()
-    var notificationIcon: UIImageView = UIImageView()
-    var titileLabel: UILabel = UILabel()
-    var frequencyLabel: UILabel = UILabel()
-    var finishedDaysLabel: UILabel = UILabel()
-    var targetDaysLabel: UILabel = UILabel()
-    var stateLabel: UILabel = UILabel()
-    var progressTrackLayer: CAShapeLayer = CAShapeLayer()
-    var progressShapeLayer: CAShapeLayer = CAShapeLayer()
-    var progressShapeColor: CGColor = UIColor.red.cgColor
-    var progressPathFrame: CGRect = .zero
-    var punchInButton: UIButton = UIButton()
-    var fullViewButton: UIButton = UIButton()
-    var rightButton: UIButton = UIButton()
-    var confettiView: UIView = UIView()
-    
+  
     public init(frame: CGRect, item: Item, contentView: UIView) {
         self.item = item
         super.init(frame: frame)
@@ -36,10 +20,7 @@ class ItemCardView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func updateStateLabel() {
-        stateLabel.text = item.state == .duringBreak ? "(休息中)" : item.state == .completed ? "(已完成)" : ""
-    }
-    
+  
     public func updateItem() {
         
         if !item.isPunchedIn() {
@@ -58,82 +39,24 @@ class ItemCardView: UIView {
         
     }
     
-    private func updateFinishedDaysLabel() {
-        let attrs1 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.largeFont]
-        let attrs2 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.smallFont, NSAttributedString.Key.foregroundColor: UIColor.label]
-        let unit = NSMutableAttributedString(string: "  天", attributes: attrs2)
-        let attrs0 = [NSAttributedString.Key.font: AppEngine.shared.userSetting.smallFont, NSAttributedString.Key.foregroundColor: UIColor.gray]
-        let typeString = NSMutableAttributedString(string: "已打卡:  ", attributes: attrs0)
-        let finishedDaysString = NSMutableAttributedString(string: "\(self.item.getFinishedDays())", attributes: attrs1)
-        
-        finishedDaysString.append(unit)
-        self.finishedDaysLabel.attributedText = finishedDaysString
-
+ 
+    
+    private func updateContentView() {
+        self.removeAllSubviews()
+        self.contentView = ItemCardViewBuilder(item: self.item, frame: self.frame, isInteractable: true).buildContentView()
+        self.addSubview(self.contentView)
     }
     
-    private func updateButton() {
-        self.punchInButton.isSelected = self.item.isPunchedIn() ? true : false
-    }
-    
-    private func showAnimationIfNeeded() {
-//        if self.item.isPunchedIn {
-//            showConfettiAnimationAtBack(isRemovedOnCompletion: true)
-//        }
-        
-    }
-    
-    public func updateUI() {
-        updateItem()
-        updateButton()
-        updateProgressBar()
-        updateFinishedDaysLabel()
-        updateStateLabel()
-        showAnimationIfNeeded()
-    }
-    
-    private func updateProgressBar() {
-        var barShapeWitdh: CGFloat {
-            let width = CGFloat(self.item.getProgress()) * progressPathFrame.width
-            if width > progressPathFrame.width {
-                return progressPathFrame.width
-            } else {
-                return width
-            }
-        }
-        var newFrame = self.progressPathFrame
-        newFrame.size.width = barShapeWitdh
-        let newShapePath = UIBezierPath(roundedRect: newFrame, cornerRadius: 10)
-
-        let newShapeLayer = CAShapeLayer()
-        newShapeLayer.name = "ProgressBar"
-        newShapeLayer.path = newShapePath.cgPath
-        newShapeLayer.lineWidth = self.progressTrackLayer.lineWidth
-        newShapeLayer.fillColor = self.progressShapeColor
-        newShapeLayer.lineCap = CAShapeLayerLineCap.round
-        newShapeLayer.strokeEnd = 0
-        self.progressShapeLayer.removeFromSuperlayer()
-        self.layer.addSublayer(newShapeLayer)
-        self.progressShapeLayer = newShapeLayer
-       
-//        let progressAnimation = CABasicAnimation(keyPath: "strokeEnd")
-//        progressAnimation.toValue = 1
-//        progressAnimation.duration = 1.5
-//        progressAnimation.fillMode = CAMediaTimingFillMode.forwards
-//        progressAnimation.timingFunction = CAMediaTimingFunction(controlPoints: 0.29, 0.34, 0.02, 1)
-//        progressAnimation.isRemovedOnCompletion = false
-//        newShapeLayer.add(progressAnimation, forKey: nil)
-        //self.layoutSubviews()
-    }
-
     
     @objc func itemPunchInButtonPressed(_ sender: UIButton!) {
         
         updateItem()
+        updateContentView()
         AppEngine.shared.saveUser()
-       
-        AppEngine.shared.notifyUIObservers(withIdentifier: "HomeViewController")
-        AppEngine.shared.notifyUIObservers(withIdentifier: "ItemManagementViewController")
- 
+//
+//        AppEngine.shared.notifyUIObservers(withIdentifier: "HomeViewController")
+//        AppEngine.shared.notifyUIObservers(withIdentifier: "ItemManagementViewController")
+//
         
     }
     

@@ -149,12 +149,20 @@ class HomeViewController: UIViewController {
 
     func updateItemCardsView() {
         
-        if ThreadsManager.shared.userIsLoading {
-            TemporaryCircleLoadingAnimation.add(to: self.itemCardsView, withRespondingTime: 10)
-        } else {
-            self.view.layoutIfNeeded()
-            self.itemCardsView.renderItemCards(withCondition: .inProgress, animated: false)
+        DispatchQueue.main.async {
+            if ThreadsManager.shared.userIsLoading {
+                TemporaryCircleLoadingAnimation.add(to: self.itemCardsView, withRespondingTime: 20, proportionallyOnYPosition: 0.3, backgroundAlpha: 0.0)
+            
+            } else {
+                self.view.layoutIfNeeded()
+                self.itemCardsView.renderItemCards(withCondition: .inProgress, animated: false)
+                TemporaryCircleLoadingAnimation.remove() {
+                    
+                }
+            }
         }
+        
+        
         
     }
     

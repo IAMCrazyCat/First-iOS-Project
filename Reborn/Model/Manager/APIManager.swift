@@ -36,56 +36,66 @@ class APIManager {
     }
     
     public func postUserDataToServer() {
-        
-        let userData = self.prepareDataForPosting()
-        let url = "http://4124517202c7.ngrok.io/test/userdata"
-        print("Posting user data to \(url)")
-        guard let url = URL(string: url)
-        else {
-            print("APIManager creating URL \(url) failed")
-            return
-        }
-        let session = URLSession.shared
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: userData, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
-
-        } catch let error {
-            print(error.localizedDescription)
-        }
-
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-
-        //create dataTask using the session object to send data to the server
-        let task = session.dataTask(with: request, completionHandler: { data, response, error in
-            
-            print("Response from \(url): \(response)")
-            guard error == nil else {
-                print("APIManager creating data task failed for API \(url)")
-                print(error!)
+        DispatchQueue.global().async {
+            let loadingItem = LoadingItem(item: self, description: "Posting user data to server")
+            //ThreadsManager.shared.add(loadingItem)
+           
+            let userData = self.prepareDataForPosting()
+            let url = "http://39.101.202.69:8080/test/userdata"
+            print("Posting user data to \(url)")
+            guard let url = URL(string: url)
+            else {
+                print("APIManager creating URL \(url) failed")
                 return
             }
-
-            guard let data = data else {
-                print("APIManager created nil data for API \(url)")
-                return
-            }
-
+            let session = URLSession.shared
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
             do {
-                //create json object from data
-                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-                    print("JSON created scuccessfully")
-                    print(json)
-                    // handle json...
-                }
+                request.httpBody = try JSONSerialization.data(withJSONObject: userData, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
 
             } catch let error {
                 print(error.localizedDescription)
             }
-        })
-        task.resume()
+
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+
+            //create dataTask using the session object to send data to the server
+            let task = session.dataTask(with: request, completionHandler: { data, response, error in
+                
+                print("Response from \(url): \(response)")
+                guard error == nil else {
+                    print("APIManager creating data task failed for API \(url)")
+                    print(error!)
+                    return
+                }
+
+                guard let data = data else {
+                    print("APIManager created nil data for API \(url)")
+                    return
+                }
+
+                do {
+                    //create json object from data
+                    if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                        print("JSON created scuccessfully")
+                        print(json)
+                        // handle json...
+                    }
+
+                } catch let error {
+                    print(error.localizedDescription)
+                }
+            })
+            task.resume()
+            
+            DispatchQueue.main.async {
+                print("Posting task finish")
+                //ThreadsManager.shared.remove(loadingItem)
+            }
+        }
+       
     }
     
     private func encodeObjectToString<T: Encodable>(_ object: T) -> String? {

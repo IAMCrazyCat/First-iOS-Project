@@ -95,10 +95,11 @@ class NotificationManager {
     
     func scheduleNotification(for item: Item) {
         
-        let loadingItem = LoadingItem(item: self, description: "Schduling notification for \(item)")
-        ThreadsManager.shared.add(loadingItem)
         
-        DispatchQueue.global().async {
+        
+        DispatchQueue.global(qos: .utility).async {
+            let loadingItem = LoadingItem(item: self, description: "Schduling notification for \(item)")
+            //ThreadsManager.shared.add(loadingItem)
             let tommorow = DateCalculator.calculateDate(withDayDifference: 1, originalDate: CustomDate.current)
             let identifier = "Item\(item.ID)Notification"
             self.removeAllNotification(of: item)
@@ -151,7 +152,7 @@ class NotificationManager {
                 }
             }
             DispatchQueue.main.async {
-                ThreadsManager.shared.remove(loadingItem)
+                //ThreadsManager.shared.remove(loadingItem)
             }
 
         }

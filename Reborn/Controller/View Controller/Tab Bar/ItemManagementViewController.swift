@@ -14,6 +14,7 @@ class ItemManagementViewController: UIViewController {
     @IBOutlet weak var verticalContentView: UIView!
     @IBOutlet weak var verticalContentHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var optionBarContentView: UIView!
+    @IBOutlet weak var itemCardCollectionView: UICollectionView!
     
     var selectedSegment: ItemState? = nil
     var selectedSegmentIndex: Int = 0
@@ -28,7 +29,7 @@ class ItemManagementViewController: UIViewController {
         engine.add(observer: self)
         optionBarContentView.layoutIfNeeded()
         AdStrategy().addBottomBannerAd(to: self)
-        
+        updateUI()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -41,7 +42,7 @@ class ItemManagementViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        updateUI()
+        
         super.viewWillAppear(animated)
         //self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }

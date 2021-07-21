@@ -14,12 +14,13 @@ class TemporaryCircleLoadingAnimation {
     private let circleShapeLayer = CAShapeLayer()
     private var timer: Timer? = nil
     private var yProportion: Double = 0.5
+    private var backgroundAlpha: CGFloat = 0.5
     public var animationView = UIView()
     init() {
     }
     
     
-    static func add(to view: UIView, withRespondingTime respondingTime: TimeInterval, circleWidth: CGFloat = 5, circleRadius: CGFloat = 50, proportionallyOnYPosition proportion: Double = 0.5, timeOutAlertTitle: String = "操作超时", timeOutAlertBody: String = "请稍后再试") {
+    static func add(to view: UIView, withRespondingTime respondingTime: TimeInterval, circleWidth: CGFloat = 5, circleRadius: CGFloat = 50, proportionallyOnYPosition proportion: Double = 0.5, timeOutAlertTitle: String = "操作超时", timeOutAlertBody: String = "请稍后再试", backgroundAlpha: CGFloat = 0.5) {
 
         let loadingAnimation = shared
         loadingAnimation.yProportion = proportion
@@ -33,8 +34,7 @@ class TemporaryCircleLoadingAnimation {
         
         loadingAnimation.schedule(withRespondingTime: respondingTime, timeOutAlertTitle: timeOutAlertTitle, timeOutAlertBody: timeOutAlertBody)
         loadingAnimation.storedView = view
-        
-
+        loadingAnimation.backgroundAlpha = backgroundAlpha
     }
     
     static func remove(finish: (() -> Void)? = nil) {
@@ -49,7 +49,7 @@ class TemporaryCircleLoadingAnimation {
     }
     
     private func fadeInBackground() {
-        self.animationView.backgroundColor = .black.withAlphaComponent(0.5)
+        self.animationView.backgroundColor = .black.withAlphaComponent(self.backgroundAlpha)
         self.animationView.alpha = 0
         UIView.animate(withDuration: 0.8, animations: {
             self.animationView.alpha = 1

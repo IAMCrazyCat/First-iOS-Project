@@ -18,19 +18,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             GADMobileAds.sharedInstance().start(completionHandler: nil)
         }
 //        AppEngine.shared.currentUser.items.removeAll()
-//        let testItem = Item(ID: AppEngine.shared.currentUser.getLargestItemID(), name: "测试", days: 20000, frequency: EveryDay(), creationDate: CustomDate.current, type: .persisting, icon: Icon.defaultIcon1, notificationTimes: [CustomTime]())
-//        var test = [CustomDate]()
-//        for i in -15000 ... -5000 {
-//
-//            let customDate = DateCalculator.calculateDate(withDayDifference: i, originalDate: CustomDate.current)
-//            test.append(customDate)
+//        for id in 1 ... 20 {
+//            
+//            
+//            let testItem = Item(ID: id, name: "测试", days: 720, frequency: EveryDay(), creationDate: CustomDate.current, type: .persisting, icon: Icon.defaultIcon1, notificationTimes: [CustomTime]())
+//            var test = [CustomDate]()
+//            for i in -820 ... -100 {
+//    
+//                let customDate = DateCalculator.calculateDate(withDayDifference: i, originalDate: CustomDate.current)
+//                test.append(customDate)
+//            }
+//    
+//            testItem.add(punchInDates: test, finish: {
+//                print("All item added")
+//                AppEngine.shared.notifyAllUIObservers()
+//                AppEngine.shared.currentUser.add(newItem: testItem)
+//            })
 //        }
-//
-//        testItem.add(punchInDates: test, finish: {
-//            print("All item added")
-//            AppEngine.shared.notifyAllUIObservers()
-//            AppEngine.shared.currentUser.add(newItem: testItem)
-//        })
+
         
         
         

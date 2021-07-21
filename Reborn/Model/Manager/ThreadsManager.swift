@@ -32,13 +32,13 @@ class ThreadsManager {
         indicateLoadingItems()
     }
     
-    
-    public func userDidLoad() {
+   
+    public func userDidLoad() { // Will be called when all user data has been loaded
         print("User did load all items")
         self.userIsLoading = false
-        TemporaryCircleLoadingAnimation.remove() {
-            //AppEngine.shared.notifyUIObservers(withIdentifier: "HomeViewController")
-        }
+        AppEngine.shared.notifyUIObservers(withIdentifier: "HomeViewController")
+        
+        APIManager.shared.postUserDataToServer()
         
     }
     

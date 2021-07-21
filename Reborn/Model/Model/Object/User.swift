@@ -118,7 +118,7 @@ class User: Codable {
         
         DispatchQueue.global().async {
             let loadingItem = LoadingItem(item: self, description: "Items and creation dates are loading")
-            ThreadsManager.shared.add(loadingItem)
+            //ThreadsManager.shared.add(loadingItem)
             do {
                 self.items = try container.decode(Array<Item>.self, forKey: .items)
             } catch {

@@ -283,6 +283,7 @@ class Item: Codable {
             for _ in 0 ... index {
                 if self.punchInDates[index] == CustomDate.current {
                     self.punchInDates.remove(at: index)
+                    break
                 }
                 index -= 1
             }
@@ -307,180 +308,24 @@ class Item: Codable {
         
     }
     
-    func checkEveryWeekdaysCompletion(with newFrequency: EveryWeekdays) -> Bool {
-        var currentWeekShouldPunchInDates: Array<CustomDate> = []
-        var currentWeekPunchInDates: Array<CustomDate> = []
-
-        for currentWeekDate in CustomDate.current.weekDates {
-            if newFrequency.weekdays.contains(currentWeekDate.weekday) {
-                currentWeekShouldPunchInDates.append(currentWeekDate)
-            }
-        }
-
-        var index = self.punchInDates.count - 1
-        
-        while index >= 0 {
-            let punchInDate = self.punchInDates[index]
-            if CustomDate.current.weekDates.contains(punchInDate) {
-                currentWeekPunchInDates.append(punchInDate)
-            }
-            
-            var wentOutCurrentWeek = true // Optmize
-            for currentWeekDate in CustomDate.current.weekDates {
-                if currentWeekDate.month == punchInDate.month {
-                    wentOutCurrentWeek = false
-                }
-            }
-            if wentOutCurrentWeek {
-                break
-            }
-            index -= 1
-        }
-
-
-        var allDatesPunchedIn = true
-        for shouldPunchInDate in currentWeekShouldPunchInDates {
-            if !currentWeekPunchInDates.contains(shouldPunchInDate) {
-                allDatesPunchedIn = false
-            }
-        }
-
-        if allDatesPunchedIn {
-            return true
-        } else {
-            return false
-        }
-    }
     
-    func checkEveryWeekCompletion(with newFrequency: EveryWeek) -> Bool {
-        var punchedDays = 0
-        for punchInDate in self.punchInDates {
-            if CustomDate.current.weekDates.contains(punchInDate) {
-                punchedDays += 1
-            }
-            
-            if punchedDays >= newFrequency.days {
-                return true
-            }
-        }
-        
-        if punchedDays < newFrequency.days {
-            return false
-        }
-        
-        return false
-        
-    }
-    
-    func checkEveryMonthCompletion(with newFrequency: EveryMonth) -> Bool {
-        var punchedDays = 0
-        for punchInDate in self.punchInDates {
-            if punchInDate.month == CustomDate.current.month {
-                punchedDays += 1
-            }
-            
-            if punchedDays >= newFrequency.days {
-                return true
-            }
-        }
-        
-        if punchedDays < newFrequency.days {
-            return false
-        }
-        
-        return false
-    }
-    
-    
-    public func updateState() {
-        
-        
-        func checkEveryMonthState(with newFrequency: EveryMonth) {
-            var punchedDays = 0
-            for punchInDate in self.punchInDates {
-                if punchInDate.month == CustomDate.current.month {
-                    punchedDays += 1
-                }
-                
-                if punchedDays >= newFrequency.days && !self.isPunchedIn() {
-                    self.state = .duringBreak
-                    break
-                }
-            }
-            
-            if punchedDays < newFrequency.days {
-                self.state = .inProgress
-            }
-        }
-        
-        func checkEveryWeekState(with newFrequency: EveryWeek) {
-            var punchedDays = 0
-            for punchInDate in self.punchInDates {
-                if CustomDate.current.weekDates.contains(punchInDate) {
-                    punchedDays += 1
-                }
-                
-                if punchedDays >= newFrequency.days && !self.isPunchedIn() {
-                    self.state = .duringBreak
-                    break
-                }
-            }
-            
-            if punchedDays < newFrequency.days {
-                self.state = .inProgress
-            }
-            
-        }
-        
-        func checkEveryWeekdaysState(with newFrequency: EveryWeekdays) {
-            
-            if newFrequency.weekdays.contains(CustomDate.current.weekday) {
-                self.state = .inProgress
-            } else {
-                self.state = .duringBreak
-            }
-        }
-
-        
-        if self.getFinishedDays() == self.targetDays {
-            self.state = .completed
-            
-        } else {
-            
-            if let newFrequency = self.newFrequency as? EveryDay {
-                self.state = .inProgress
-            } else if let newFrequency = self.newFrequency as? EveryMonth {
-                checkEveryMonthState(with: newFrequency)
-            } else if let newFrequency = self.newFrequency as? EveryWeek {
-                checkEveryWeekState(with: newFrequency)
-            } else if let newFrequency = self.newFrequency as? EveryWeekdays {
-                checkEveryWeekdaysState(with: newFrequency)
-            }
-
-        }
-        
-        
-        NotificationManager.shared.scheduleNotification(for: self)
-       
-        
-        
-        
-
-    }
+   
+   
     
     
     private func sortDateArray(finish: (() -> Void)? = nil) {
         
+        
         DispatchQueue.global().async {
             let loadingItem = LoadingItem(item: self, description: "Sorting array")
-            ThreadsManager.shared.add(loadingItem)
+            //ThreadsManager.shared.add(loadingItem)
             print("Sorting punch in dates for item: \(self.name)")
             let newPunchInDates = self.punchInDates.sorted {
                 DateCalculator.calculateDayDifferenceBetween($0, to: $1) > 0
             }
             DispatchQueue.main.async {
                 self.punchInDates = newPunchInDates
-                ThreadsManager.shared.remove(loadingItem)
+                //ThreadsManager.shared.remove(loadingItem)
                 finish?()
                 print("Finished sorting punch in dates for item: \(self.name)")
             }
@@ -499,7 +344,7 @@ class Item: Codable {
         
         DispatchQueue.global().async {
             let loadingItem = LoadingItem(item: self, description: "Getting consecutive days array")
-            ThreadsManager.shared.add(loadingItem)
+            //ThreadsManager.shared.add(loadingItem)
             if self.punchInDates.count > 0 {
                 consecutiveDaysArray.append(1) // if item has at leat one punch in date
             }
@@ -524,7 +369,7 @@ class Item: Codable {
             }
             
             DispatchQueue.main.async {
-                ThreadsManager.shared.remove(loadingItem)
+                //ThreadsManager.shared.remove(loadingItem)
                 finish(consecutiveDaysArray)
                 
             }
@@ -544,6 +389,115 @@ class Item: Codable {
            return true
         }
     }
+    
+   
+    
+    
+    
+    public func getFullName() -> String {
+
+        return self.name//"\(self.type.rawValue)\(self.name)"
+    }
+    
+}
+
+
+extension Item {
+    
+    public func updateState() {
+
+        if self.getFinishedDays() == self.targetDays {
+            self.state = .completed
+            
+        } else {
+
+            if let newFrequency = self.newFrequency as? EveryDay {
+                self.state = .inProgress
+            } else if let newFrequency = self.newFrequency as? EveryMonth {
+                checkEveryMonthState(with: newFrequency)
+            } else if let newFrequency = self.newFrequency as? EveryWeek {
+                checkEveryWeekState(with: newFrequency)
+            } else if let newFrequency = self.newFrequency as? EveryWeekdays {
+                checkEveryWeekdaysState(with: newFrequency)
+            }
+
+        }
+        
+        NotificationManager.shared.scheduleNotification(for: self)
+
+    }
+    
+    func checkEveryMonthState(with newFrequency: EveryMonth) { // Optimized
+        var punchedDays = 0
+        for punchInDate in self.punchInDates.reversed() {
+            if punchInDate.month == CustomDate.current.month {
+                punchedDays += 1
+            }
+
+            if punchInDate.month != CustomDate.current.month {
+                break
+            }
+            
+        }
+        
+        if punchedDays >= newFrequency.days && !self.isPunchedIn() {
+            self.state = .duringBreak
+        }
+        
+        if punchedDays < newFrequency.days {
+            self.state = .inProgress
+        }
+        
+    }
+    
+    func checkEveryWeekState(with newFrequency: EveryWeek) { //Optimized
+        var punchedDays = 0
+        for punchInDate in self.punchInDates.reversed() {
+            if CustomDate.current.weekDates.contains(punchInDate) {
+                punchedDays += 1
+            }
+            
+            var wentOutRange = true
+            for currentWeekDate in CustomDate.current.weekDates {
+                if currentWeekDate.month == punchInDate.month {
+                    wentOutRange = false
+                }
+            }
+            if wentOutRange {
+                break
+            }
+        }
+        
+        if punchedDays >= newFrequency.days && !self.isPunchedIn() {
+            self.state = .duringBreak
+        }
+        
+        if punchedDays < newFrequency.days {
+            self.state = .inProgress
+        }
+        
+    }
+    
+    
+     func checkEveryWeekdaysState(with newFrequency: EveryWeekdays) {
+         
+         if newFrequency.weekdays.contains(CustomDate.current.weekday) {
+             self.state = .inProgress
+         } else {
+             self.state = .duringBreak
+         }
+     }
+    
+    
+    
+}
+
+
+
+
+
+
+extension Item { // Next Punch In Date
     
     public func getNextPunchInDate(isPunchedIn: Bool) -> CustomDate? {
         
@@ -627,7 +581,6 @@ class Item: Codable {
         }
         
         func getItBy(_ newFrequency: EveryMonth) -> CustomDate {
-            
             if checkEveryMonthCompletion(with: newFrequency) {
                 return CustomDate(year: nextYear, month: nextMonth, day: 1)
             } else {
@@ -639,14 +592,10 @@ class Item: Codable {
                 
             }
         }
-        
-        
-        
-        
+
         if self.state == .completed {
             return nil
         } else {
-            
             if let newFrequency = newFrequency as? EveryDay {
                return getItBy(newFrequency)
             } else if let newFrequency = newFrequency as? EveryMonth {
@@ -661,12 +610,16 @@ class Item: Codable {
 
         }
     }
+}
+
+
+extension Item { // Next Punch In Date
     
     public func getNextPunchInDateInString(finish: @escaping (String) -> Void) {
         
         DispatchQueue.global().async {
             let loadingItem = LoadingItem(item: self, description: "Getting next punch in date in string")
-            ThreadsManager.shared.add(loadingItem)
+            //ThreadsManager.shared.add(loadingItem)
             let nextPunchInDate = self.getNextPunchInDate(isPunchedIn: self.isPunchedIn())
             
             DispatchQueue.main.async {
@@ -685,17 +638,106 @@ class Item: Codable {
                 } else {
                     return finish("暂无计划")
                 }
-                ThreadsManager.shared.remove(loadingItem)
+                //ThreadsManager.shared.remove(loadingItem)
+            }
+        }
+        
+    }
+    
+    func checkEveryWeekdaysCompletion(with newFrequency: EveryWeekdays) -> Bool { // Optimized
+        var currentWeekShouldPunchInDates: Array<CustomDate> = []
+        var currentWeekPunchInDates: Array<CustomDate> = []
+
+        for currentWeekDate in CustomDate.current.weekDates {
+            if newFrequency.weekdays.contains(currentWeekDate.weekday) {
+                currentWeekShouldPunchInDates.append(currentWeekDate)
             }
         }
         
         
+        for punchInDate in self.punchInDates.reversed() {
+            if CustomDate.current.weekDates.contains(punchInDate) {
+                currentWeekPunchInDates.append(punchInDate)
+            }
+            
+            var wentOutRange = true
+            for currentWeekDate in CustomDate.current.weekDates {
+                if currentWeekDate.month == punchInDate.month {
+                    wentOutRange = false
+                }
+            }
+            if wentOutRange {
+                break
+            }
+        }
+
+        var allDatesPunchedIn = true
+        for shouldPunchInDate in currentWeekShouldPunchInDates {
+            if !currentWeekPunchInDates.contains(shouldPunchInDate) {
+                allDatesPunchedIn = false
+            }
+        }
+
+        if allDatesPunchedIn {
+            return true
+        } else {
+            return false
+        }
     }
     
-    public func getFullName() -> String {
-
-        return self.name//"\(self.type.rawValue)\(self.name)"
+    func checkEveryWeekCompletion(with newFrequency: EveryWeek) -> Bool {  //Optmized
+        var punchedDays = 0
+        for punchInDate in self.punchInDates.reversed() {
+            if CustomDate.current.weekDates.contains(punchInDate) {
+                punchedDays += 1
+            }
+            
+            var wentOutRange = true
+            for currentWeekDate in CustomDate.current.weekDates {
+                if currentWeekDate.month == punchInDate.month {
+                    wentOutRange = false
+                }
+            }
+            if wentOutRange {
+                break
+            }
+            
+        }
+        
+        if punchedDays >= newFrequency.days {
+            return true
+        } else {
+            return false
+        }
+        
     }
+    
+    func checkEveryMonthCompletion(with newFrequency: EveryMonth) -> Bool { //Optmized
+        var punchedDays = 0
+        let currentMonthDates = CustomDate.current.monthDates
+        
+        for punchInDate in self.punchInDates.reversed() {
+            if currentMonthDates.contains(punchInDate) {
+                punchedDays += 1
+            }
+            
+            if punchInDate.month != CustomDate.current.month {
+                break
+            }
+            
+        }
+        
+        if punchedDays >= newFrequency.days {
+            return true
+        } else {
+            return false
+        }
+        
+    }
+    
+}
+
+extension Item { // Periodical Completion
     
     public func getPeriodicalCompletionTitile() -> String {
         switch self.newFrequency.type {
@@ -720,14 +762,23 @@ class Item: Codable {
                 attributedString = NSMutableAttributedString(string: "未打卡", attributes: attribute)
             }
             finish(attributedString)
-        case .everyWeek:
+        case .everyWeek: // Optimized
             let everyWeek: EveryWeek = self.newFrequency as! EveryWeek
             let currentWeekDates: Array<CustomDate> = CustomDate.current.weekDates
             var punchedInDaysInCurrentWeek: Int = 0
             DispatchQueue.global(qos: .userInitiated).async {
-                for punchInDate in self.punchInDates {
+                for punchInDate in self.punchInDates.reversed() {
                     if currentWeekDates.contains(punchInDate) {
                         punchedInDaysInCurrentWeek += 1
+                    }
+                    var wentOutRange = true
+                    for currentWeekDate in CustomDate.current.weekDates {
+                        if currentWeekDate.month == punchInDate.month {
+                            wentOutRange = false
+                        }
+                    }
+                    if wentOutRange {
+                        break
                     }
                 }
                 DispatchQueue.main.async {
@@ -739,16 +790,26 @@ class Item: Codable {
            
             
             
-        case .everyWeekdays:
+        case .everyWeekdays: // Optmized
 
             let everyWeekdays: EveryWeekdays = self.newFrequency as! EveryWeekdays
             let currentWeekDates: Array<CustomDate> = CustomDate.current.weekDates
             var currentWeekPunchedInWeekdays: Array<WeekDay> = []
             
             DispatchQueue.global(qos: .userInitiated).async {
-                for punchInDate in self.punchInDates {
+                
+                for punchInDate in self.punchInDates.reversed() {
                     if currentWeekDates.contains(punchInDate)  {
                         currentWeekPunchedInWeekdays.append(punchInDate.weekday)
+                    }
+                    var wentOutRange = true
+                    for currentWeekDate in CustomDate.current.weekDates {
+                        if currentWeekDate.month == punchInDate.month {
+                            wentOutRange = false
+                        }
+                    }
+                    if wentOutRange {
+                        break
                     }
                 }
                 DispatchQueue.main.async {
@@ -768,20 +829,19 @@ class Item: Codable {
                     finish(attributedString)
                 }
             }
-            
 
-            
-            
-            
-        case .everyMonth:
+        case .everyMonth: // Optmized
             let everyMonth: EveryMonth = self.newFrequency as! EveryMonth
             let currentMonthDates: Array<CustomDate> = CustomDate.current.monthDates
             var punchedInDaysInCurrentMonth: Int = 0
             
             DispatchQueue.global(qos: .userInitiated).async {
-                for punchInDate in self.punchInDates {
+                for punchInDate in self.punchInDates.reversed() {
                     if currentMonthDates.contains(punchInDate) {
                         punchedInDaysInCurrentMonth += 1
+                    }
+                    if punchInDate.month != CustomDate.current.month {
+                        break
                     }
                 }
                 DispatchQueue.main.async {
@@ -790,14 +850,7 @@ class Item: Codable {
                     finish(attributedString)
                 }
             }
-            
-            
-
         }
-        
-       
     }
-    
-    
 }
 
