@@ -16,6 +16,7 @@ class EncourageTextStrategy: VIPStrategyImpl {
     override func performVIPStrategy() {
         encourageTextViewController.state = encourageTextViewController.state == .normal ? .editing : .normal
         encourageTextViewController.updateUI()
+        UIManager.shared.updateUIAfterEncourageTextWasEdited()
     }
     
     override func performNonVIPStrategy() {

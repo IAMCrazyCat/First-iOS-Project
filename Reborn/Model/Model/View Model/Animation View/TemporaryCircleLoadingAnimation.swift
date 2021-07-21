@@ -10,31 +10,34 @@ import UIKit
 class TemporaryCircleLoadingAnimation {
     
     private static var shared = TemporaryCircleLoadingAnimation()
-    private var storedView: UIView? = nil
+    private var storedAnimationViews: [UIView] = []
     private let circleShapeLayer = CAShapeLayer()
     private var timer: Timer? = nil
     private var yProportion: Double = 0.5
     private var backgroundAlpha: CGFloat = 0.5
+    private var showAlertAfterTimeOut: Bool = false
     public var animationView = UIView()
     init() {
     }
     
     
-    static func add(to view: UIView, withRespondingTime respondingTime: TimeInterval, circleWidth: CGFloat = 5, circleRadius: CGFloat = 50, proportionallyOnYPosition proportion: Double = 0.5, timeOutAlertTitle: String = "操作超时", timeOutAlertBody: String = "请稍后再试", backgroundAlpha: CGFloat = 0.5) {
+    static func add(to view: UIView, withRespondingTime respondingTime: TimeInterval, circleWidth: CGFloat = 5, circleRadius: CGFloat = 50, proportionallyOnYPosition proportion: Double = 0.5, showAlertAfterTimeOut: Bool, timeOutAlertTitle: String = "操作超时", timeOutAlertBody: String = "请稍后再试", backgroundAlpha: CGFloat = 0.5) {
 
         let loadingAnimation = shared
+        loadingAnimation.showAlertAfterTimeOut = showAlertAfterTimeOut
+        loadingAnimation.backgroundAlpha = backgroundAlpha
         loadingAnimation.yProportion = proportion
         loadingAnimation.animationView.frame = view.bounds
-        //loadingAnimation.animationView.backgroundColor = .black.withAlphaComponent(0.3)
         loadingAnimation.animationView.accessibilityIdentifier = "AnimationView"
         loadingAnimation.fadeInBackground()
         loadingAnimation.addProgressCircleView(circleWidth: circleWidth, circleRadius: circleRadius)
         loadingAnimation.showBorderAndCircle()
-        view.addSubview(loadingAnimation.animationView)
         
+        view.addSubview(loadingAnimation.animationView)
+    
         loadingAnimation.schedule(withRespondingTime: respondingTime, timeOutAlertTitle: timeOutAlertTitle, timeOutAlertBody: timeOutAlertBody)
-        loadingAnimation.storedView = view
-        loadingAnimation.backgroundAlpha = backgroundAlpha
+        loadingAnimation.storedAnimationViews.append(loadingAnimation.animationView)
+        
     }
     
     static func remove(finish: (() -> Void)? = nil) {
@@ -51,27 +54,30 @@ class TemporaryCircleLoadingAnimation {
     private func fadeInBackground() {
         self.animationView.backgroundColor = .black.withAlphaComponent(self.backgroundAlpha)
         self.animationView.alpha = 0
-        UIView.animate(withDuration: 0.8, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             self.animationView.alpha = 1
         })
     }
     
     private func schedule(withRespondingTime respondingTime: TimeInterval, timeOutAlertTitle: String, timeOutAlertBody: String) {
         var seconds = 0
-
+        
         self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
             if seconds > Int(respondingTime) {
                 if let currentVC = UIApplication.shared.getCurrentViewController() {
-                    SystemAlert.present(timeOutAlertTitle, and: timeOutAlertBody, from: currentVC)
+                    if self.showAlertAfterTimeOut {
+                        SystemAlert.present(timeOutAlertTitle, and: timeOutAlertBody, from: currentVC)
+                    }
                 }
-                
                 TemporaryCircleLoadingAnimation.remove()
                 
                 seconds = -1000
-                
+
             }
             seconds += 1
         }
+
+        
 
     }
     

@@ -182,6 +182,7 @@ class NewItemViewController: UIViewController {
             self.customTargetDaysButton.setTitle("自定义", for: .normal)
             self.item.targetDays = sender.getData() ?? 1
         }
+        self.item.updateState()
         self.updateUI()
     }
     
@@ -194,6 +195,7 @@ class NewItemViewController: UIViewController {
         case 3: self.present(.everyMonthFreqencyPopUp, newFrequency: self.item.newFrequency)
         default: break
         }
+        self.item.updateState()
         self.updateUI()
     }
     
@@ -286,7 +288,7 @@ class NewItemViewController: UIViewController {
             
             self.engine.currentUser.delete(item: self.item)
             self.engine.saveUser()
-            self.engine.notifyAllUIObservers()
+            UIManager.shared.updateUIAfterItemWasDeleted()
             self.dismiss(animated: true) {
   
                 if let parentViewController = self.lastViewController as? ItemDetailViewController {

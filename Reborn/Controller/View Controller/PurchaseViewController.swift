@@ -114,7 +114,7 @@ class PurchaseViewController: UIViewController {
     
     @IBAction func purchaseButtonPressed(_ sender: UIButton) {
         Vibrator.vibrate(withImpactLevel: .medium)
-        TemporaryCircleLoadingAnimation.add(to: self.view, withRespondingTime: 60, proportionallyOnYPosition: 0.4)
+        TemporaryCircleLoadingAnimation.add(to: self.view, withRespondingTime: 80, proportionallyOnYPosition: 0.4, showAlertAfterTimeOut: true)
         InAppPurchaseManager.shared.add(self)
         InAppPurchaseManager.shared.purchase(selectedPurchaseType)
     }
@@ -124,7 +124,7 @@ class PurchaseViewController: UIViewController {
         if engine.currentUser.isVip {
             SystemAlert.present("恢复失败", and: "您已经在使用高级版，无需恢复", from: self)
         } else {
-            TemporaryCircleLoadingAnimation.add(to: self.view, withRespondingTime: 15, proportionallyOnYPosition: 0.4, timeOutAlertTitle: "恢复失败", timeOutAlertBody: "操作超时，请稍后再试")
+            TemporaryCircleLoadingAnimation.add(to: self.view, withRespondingTime: 15, proportionallyOnYPosition: 0.4, showAlertAfterTimeOut: true, timeOutAlertTitle: "恢复失败", timeOutAlertBody: "操作超时，请稍后再试")
             InAppPurchaseManager.shared.add(self)
             InAppPurchaseManager.shared.restorePurchase()
         }

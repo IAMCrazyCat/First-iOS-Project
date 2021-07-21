@@ -116,9 +116,9 @@ class User: Codable {
     
     func decodeInBackgroundThread(from decoder: Decoder, container:  KeyedDecodingContainer<User.Key>) {
         
-        DispatchQueue.global().async {
+        DispatchQueue.global(qos: .userInitiated).async {
             let loadingItem = LoadingItem(item: self, description: "Items and creation dates are loading")
-            //ThreadsManager.shared.add(loadingItem)
+            ThreadsManager.shared.add(loadingItem)
             do {
                 self.items = try container.decode(Array<Item>.self, forKey: .items)
             } catch {
@@ -312,7 +312,7 @@ class User: Codable {
         }
     }
     
-    func blockItemsIfNeeded() {
+    private func blockItemsIfNeeded() {
         
         if !self.isVip && self.items.count > SystemSetting.shared.nonVipUserMaxItems {
             var items = [Item]()
@@ -337,5 +337,29 @@ class User: Codable {
        
     }
     
+    public func getItems(by condition: ItemsFilterCondition) -> Array<Item> {
+        
+        var state: ItemState? = nil
+        var items = [Item]()
+        
+        switch condition {
+        case .all: break
+        case .completed: state = .completed
+        case .duringBreak: state = .duringBreak
+        case .inProgress: state = .inProgress
+        }
+        
+        if state != nil {
+            for item in self.items {
+                if item.state == state! {
+                    items.append(item)
+                }
+            }
+        } else {
+            items = self.items
+        }
+        
+        return items
+    }
 
 }

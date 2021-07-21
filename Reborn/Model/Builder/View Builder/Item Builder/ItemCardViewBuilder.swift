@@ -85,13 +85,14 @@ class ItemCardViewBuilder: ViewBuilder {
     
     internal func createView() {
         
-        itemCardView.accessibilityIdentifier = setting.itemCardIdentifier
+        itemCardView.accessibilityIdentifier = "ItemCardView"
         itemCardView.backgroundColor = AppEngine.shared.userSetting.whiteAndBlackContent
         itemCardView.layer.cornerRadius = setting.itemCardCornerRadius
         itemCardView.setShadow(style: .view)
         
         contentView.frame = itemCardView.bounds
         contentView.backgroundColor = .clear
+        itemCardView.contentView = contentView
         itemCardView.addSubview(contentView)
         
         item.hasSanction ? lockItemCard() : ()
@@ -108,10 +109,10 @@ class ItemCardViewBuilder: ViewBuilder {
         icon.image = self.item.icon.image
         icon.contentMode = .scaleAspectFill
 
-        itemCardView.addSubview(icon)
+        contentView.addSubview(icon)
         icon.translatesAutoresizingMaskIntoConstraints = false
-        icon.leftAnchor.constraint(equalTo: itemCardView.leftAnchor, constant: self.setting.mainDistance).isActive = true
-        icon.topAnchor.constraint(equalTo: itemCardView.topAnchor, constant: self.setting.mainPadding).isActive = true
+        icon.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: self.setting.mainDistance).isActive = true
+        icon.topAnchor.constraint(equalTo: contentView.topAnchor, constant: self.setting.mainPadding).isActive = true
         icon.heightAnchor.constraint(equalToConstant: 25).isActive = true
         icon.widthAnchor.constraint(equalToConstant: 25).isActive = true
         
@@ -119,11 +120,11 @@ class ItemCardViewBuilder: ViewBuilder {
         if self.item.type == .quitting {
         
             let forbiddenIcon = UIImageView()
-            itemCardView.layoutIfNeeded()
+            contentView.layoutIfNeeded()
             forbiddenIcon.image = Icon.forbidden.image
             forbiddenIcon.frame = icon.frame
             forbiddenIcon.alpha = 0.5
-            itemCardView.addSubview(forbiddenIcon)
+            contentView.addSubview(forbiddenIcon)
             
         }
         

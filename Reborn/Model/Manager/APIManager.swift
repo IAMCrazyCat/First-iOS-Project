@@ -37,9 +37,7 @@ class APIManager {
     
     public func postUserDataToServer() {
         DispatchQueue.global().async {
-            let loadingItem = LoadingItem(item: self, description: "Posting user data to server")
-            //ThreadsManager.shared.add(loadingItem)
-           
+    
             let userData = self.prepareDataForPosting()
             let url = "http://39.101.202.69:8080/test/userdata"
             print("Posting user data to \(url)")
@@ -92,10 +90,73 @@ class APIManager {
             
             DispatchQueue.main.async {
                 print("Posting task finish")
-                //ThreadsManager.shared.remove(loadingItem)
             }
         }
        
+    }
+    
+    public func postUserAvatarToServer() {
+        DispatchQueue.global().async {
+
+            let userID = AppEngine.shared.currentUser.ID
+            let userAvatar = AppEngine.shared.currentUser.avatar.base64EncodedString()
+            let url = "http://e58773214a39.ngrok.io/test/avatar"
+            print("Posting user avatar to \(url)")
+            
+            let parameters: [String: String] = ["ID": userID,
+                                                "avatar": userAvatar]
+
+            guard let url = URL(string: url)
+            else {
+                print("APIManager creating URL \(url) failed")
+                return
+            }
+            let session = URLSession.shared
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+
+            } catch let error {
+                print(error.localizedDescription)
+            }
+
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+
+            //create dataTask using the session object to send data to the server
+            let task = session.dataTask(with: request, completionHandler: { data, response, error in
+                
+                print("Response from \(url): \(response)")
+                guard error == nil else {
+                    print("APIManager creating data task failed for API \(url)")
+                    print(error!)
+                    return
+                }
+
+                guard let data = data else {
+                    print("APIManager created nil data for API \(url)")
+                    return
+                }
+
+                do {
+                    //create json object from data
+                    if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                        print("JSON created scuccessfully")
+                        print(json)
+                        // handle json...
+                    }
+
+                } catch let error {
+                    print(error.localizedDescription)
+                }
+            })
+            task.resume()
+            
+            DispatchQueue.main.async {
+                print("Posting avatar finish")
+            }
+        }
     }
     
     private func encodeObjectToString<T: Encodable>(_ object: T) -> String? {

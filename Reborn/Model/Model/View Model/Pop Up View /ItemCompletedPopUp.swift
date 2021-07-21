@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 class ItemCompletedPopUp: PopUpImpl {
     public var item: Item
-    public var itemCard: UIView? {
-        return super.contentView?.getSubviewBy(idenifier: "ItemCardView")
+    public var itemCardView: ItemCardView? {
+        return super.contentView?.getSubviewBy(idenifier: "ItemCardView") as? ItemCardView
     }
     public var topConfettiView: UIView? {
-        return self.itemCard?.getSubviewBy(idenifier: "TopConfettiView")
+        return self.itemCardView?.contentView.getSubviewBy(idenifier: "TopConfettiView")
     }
     public var promptLabel: UILabel? {
         return super.contentView?.getSubviewBy(idenifier: "PromptLabel") as? UILabel

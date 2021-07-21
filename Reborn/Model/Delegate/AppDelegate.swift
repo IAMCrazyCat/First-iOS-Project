@@ -18,20 +18,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             GADMobileAds.sharedInstance().start(completionHandler: nil)
         }
 //        AppEngine.shared.currentUser.items.removeAll()
+//        AppEngine.shared.saveUser()
 //        for id in 1 ... 20 {
-//            
-//            
+//
+//
 //            let testItem = Item(ID: id, name: "测试", days: 720, frequency: EveryDay(), creationDate: CustomDate.current, type: .persisting, icon: Icon.defaultIcon1, notificationTimes: [CustomTime]())
 //            var test = [CustomDate]()
 //            for i in -820 ... -100 {
-//    
+//
 //                let customDate = DateCalculator.calculateDate(withDayDifference: i, originalDate: CustomDate.current)
 //                test.append(customDate)
 //            }
-//    
+//
 //            testItem.add(punchInDates: test, finish: {
 //                print("All item added")
-//                AppEngine.shared.notifyAllUIObservers()
+//                //AppEngine.shared.notifyAllUIObservers()
 //                AppEngine.shared.currentUser.add(newItem: testItem)
 //            })
 //        }
@@ -63,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillTerminate(_ application: UIApplication) {
         print("Terminated")
-        
+        APIManager.shared.postUserDataToServer()
         CustomTimer.killTimer()
         CustomTimer.saveTimer()
         SettingStrategy().saveUserSetting()

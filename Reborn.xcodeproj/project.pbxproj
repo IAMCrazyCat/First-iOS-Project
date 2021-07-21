@@ -30,7 +30,7 @@
 		221E0BA425A9D38100386FE1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E0BA325A9D38100386FE1 /* Image.swift */; };
 		222718C726A4289700F7D82C /* LoadingAnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222718C626A4289700F7D82C /* LoadingAnimationManager.swift */; };
 		222718C926A5137200F7D82C /* ThreadsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222718C826A5137200F7D82C /* ThreadsManager.swift */; };
-		222718CB26A54E8300F7D82C /* UIUpdatingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222718CA26A54E8300F7D82C /* UIUpdatingManager.swift */; };
+		222718CB26A54E8300F7D82C /* UIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222718CA26A54E8300F7D82C /* UIManager.swift */; };
 		222B4E2C2691F4D400CC12A0 /* EncourageTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222B4E2B2691F4D400CC12A0 /* EncourageTextViewController.swift */; };
 		223072A825E3A99D00AE6ECB /* UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223072A725E3A99D00AE6ECB /* UINavigationBar.swift */; };
 		223132CF263D188F0020BA70 /* CalendarCellStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223132CE263D188F0020BA70 /* CalendarCellStrategy.swift */; };
@@ -134,6 +134,7 @@
 		22B1E8E925DD47F3003ABF6C /* ItemSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B1E8E825DD47F3003ABF6C /* ItemSet.swift */; };
 		22B347022626B8D90087350C /* SharePosterTextData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B347012626B8D90087350C /* SharePosterTextData.swift */; };
 		22B4B56325D10ACD00C0CFD7 /* UIObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B4B56225D10ACD00C0CFD7 /* UIObserver.swift */; };
+		22B8006326A7E9D00003B8CE /* ItemCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B8006226A7E9D00003B8CE /* ItemCardCell.swift */; };
 		22BA665F263AA5B7003193E9 /* EraserViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA665E263AA5B7003193E9 /* EraserViewBuilder.swift */; };
 		22BABF2425C3ECBA00168AE1 /* TimeMachineCalendarPageViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BABF2325C3ECBA00168AE1 /* TimeMachineCalendarPageViewBuilder.swift */; };
 		22BABF2925C42ABB00168AE1 /* CGAffineTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BABF2825C42ABB00168AE1 /* CGAffineTransform.swift */; };
@@ -270,7 +271,7 @@
 		221E0BA325A9D38100386FE1 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		222718C626A4289700F7D82C /* LoadingAnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingAnimationManager.swift; sourceTree = "<group>"; };
 		222718C826A5137200F7D82C /* ThreadsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsManager.swift; sourceTree = "<group>"; };
-		222718CA26A54E8300F7D82C /* UIUpdatingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUpdatingManager.swift; sourceTree = "<group>"; };
+		222718CA26A54E8300F7D82C /* UIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIManager.swift; sourceTree = "<group>"; };
 		222B4E2B2691F4D400CC12A0 /* EncourageTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncourageTextViewController.swift; sourceTree = "<group>"; };
 		223072A725E3A99D00AE6ECB /* UINavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBar.swift; sourceTree = "<group>"; };
 		223132CE263D188F0020BA70 /* CalendarCellStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellStrategy.swift; sourceTree = "<group>"; };
@@ -373,6 +374,7 @@
 		22B1E8E825DD47F3003ABF6C /* ItemSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSet.swift; sourceTree = "<group>"; };
 		22B347012626B8D90087350C /* SharePosterTextData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePosterTextData.swift; sourceTree = "<group>"; };
 		22B4B56225D10ACD00C0CFD7 /* UIObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIObserver.swift; sourceTree = "<group>"; };
+		22B8006226A7E9D00003B8CE /* ItemCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCardCell.swift; sourceTree = "<group>"; };
 		22BA665E263AA5B7003193E9 /* EraserViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EraserViewBuilder.swift; sourceTree = "<group>"; };
 		22BABF2325C3ECBA00168AE1 /* TimeMachineCalendarPageViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeMachineCalendarPageViewBuilder.swift; sourceTree = "<group>"; };
 		22BABF2825C42ABB00168AE1 /* CGAffineTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGAffineTransform.swift; sourceTree = "<group>"; };
@@ -756,6 +758,7 @@
 				22C2C75A26023CEF0007249A /* TabBarViewController.swift */,
 				22C23A26258DCE4500D4BEB2 /* HomeViewController.swift */,
 				2293F38525DB7C18009B4753 /* ItemManagementViewController.swift */,
+				22B8006226A7E9D00003B8CE /* ItemCardCell.swift */,
 				22D354B325A595B7004F5667 /* UserCenterViewController.swift */,
 				22F004882613EC240080A5DD /* SelfDisciplineToolsViewController.swift */,
 			);
@@ -835,7 +838,7 @@
 				225CDED3269D82B000C28AC2 /* DeviceManager.swift */,
 				222718C626A4289700F7D82C /* LoadingAnimationManager.swift */,
 				222718C826A5137200F7D82C /* ThreadsManager.swift */,
-				222718CA26A54E8300F7D82C /* UIUpdatingManager.swift */,
+				222718CA26A54E8300F7D82C /* UIManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -970,6 +973,7 @@
 			children = (
 				228FF86126072E820067411F /* Tab Bar */,
 				22A597F825986685008E2A06 /* NewItemViewController.swift */,
+				22F619BA263919B5007F91AF /* IconCell.swift */,
 				228ED3E525B94D630054591F /* CalendarCell.swift */,
 				22AACA3025AE98B40098D920 /* CalendarViewController.swift */,
 				225AD12E25A868F50040E356 /* ItemDetailViewController.swift */,
@@ -982,7 +986,6 @@
 				22A1B5622614206E008CBE94 /* TomatoClockViewController.swift */,
 				22A1B5682614207E008CBE94 /* BreathViewController.swift */,
 				22DBC3DB2619FAC40016C6F3 /* ShareViewController.swift */,
-				22F619BA263919B5007F91AF /* IconCell.swift */,
 				222B4E2B2691F4D400CC12A0 /* EncourageTextViewController.swift */,
 			);
 			path = "View Controller";
@@ -1415,12 +1418,13 @@
 				22D00DEC25FE2A5900DB3F1D /* NotificationTimePopUp.swift in Sources */,
 				22BC38E525E7388600AEFE44 /* CustomTargetDaysPopUpViewBuilder.swift in Sources */,
 				22F619BD26392EBF007F91AF /* Icon.swift in Sources */,
-				222718CB26A54E8300F7D82C /* UIUpdatingManager.swift in Sources */,
+				222718CB26A54E8300F7D82C /* UIManager.swift in Sources */,
 				22C49A6125FF16AF00371E2B /* CGFloat.swift in Sources */,
 				22A1B5692614207E008CBE94 /* BreathViewController.swift in Sources */,
 				22D00DFA25FE2F5700DB3F1D /* CustomTime.swift in Sources */,
 				224E665925C64F5F00B71E8A /* PresentStrategy.swift in Sources */,
 				228ED3E625B94D630054591F /* CalendarCell.swift in Sources */,
+				22B8006326A7E9D00003B8CE /* ItemCardCell.swift in Sources */,
 				2205C8B126A29D230033E800 /* ItemCardView.swift in Sources */,
 				22F619BB263919B5007F91AF /* IconCell.swift in Sources */,
 				22CE4EF525D00C73007EBD5B /* EditingItemStrategy.swift in Sources */,
@@ -1767,7 +1771,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Reborn/Reborn.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 49;
+				CURRENT_PROJECT_VERSION = 51;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = Reborn/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1775,7 +1779,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.crazycat.Reborn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1792,7 +1796,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Reborn/Reborn.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 49;
+				CURRENT_PROJECT_VERSION = 51;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = Reborn/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1800,7 +1804,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.crazycat.Reborn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1903,7 +1907,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ItemProgressWigetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 49;
+				CURRENT_PROJECT_VERSION = 51;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = ItemProgressWiget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -1912,7 +1916,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.crazycat.Reborn.ItemProgressWiget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1928,7 +1932,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ItemProgressWigetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 49;
+				CURRENT_PROJECT_VERSION = 51;
 				DEVELOPMENT_TEAM = YBC7QWCEU3;
 				INFOPLIST_FILE = ItemProgressWiget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -1937,7 +1941,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.crazycat.Reborn.ItemProgressWiget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

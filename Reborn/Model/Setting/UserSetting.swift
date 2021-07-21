@@ -15,7 +15,7 @@ class UserSetting {
     var notificationTime: Array<CustomTime> = [CustomTime(hour: 21, minute: 0, second: 0, oneTenthSecond: 0)]
     var appAppearanceMode: AppAppearanceMode = .followSystem
     var hasViewedEnergyUpdate: Bool = false
-    var uiUserInterfaceStyle : UIUserInterfaceStyle {
+    var uiUserInterfaceStyle: UIUserInterfaceStyle {
         if appAppearanceMode == .darkMode {
             return .dark
         } else if appAppearanceMode == .lightMode {

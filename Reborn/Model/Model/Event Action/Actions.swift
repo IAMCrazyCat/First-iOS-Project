@@ -36,8 +36,7 @@ class Actions {
         if newThemeColor != nil {
             Vibrator.vibrate(withImpactLevel: .light)
             AppEngine.shared.userSetting.themeColor = newThemeColor ?? ThemeColor.default
-            AppEngine.shared.notifyUIObservers(withIdentifier: "PopUpViewController")
-            AppEngine.shared.notifyUIObservers(withIdentifier: "UserCenterViewController")
+            UIManager.shared.updateUIAfterThemeColorWasSelected()
         }
         
       
@@ -82,9 +81,12 @@ class Actions {
         } else if sender.accessibilityIdentifier == "DarkModeButton" {
             AppEngine.shared.userSetting.appAppearanceMode = .darkMode
         }
+        
+        
+        
         Vibrator.vibrate(withImpactLevel: .light)
         AppEngine.shared.saveSetting()
-        AppEngine.shared.notifyAllUIObservers()
+        UIManager.shared.updateUIAfterAppAppearanceWasSelected()
         
     }
     

@@ -13,7 +13,7 @@ class SettingStrategy: VIPStrategyImpl {
 
         if !AppEngine.shared.currentUser.isVip && AppEngine.shared.userSetting.themeColor.isVipColor {
             AppEngine.shared.userSetting.themeColor = ThemeColor.default
-            AppEngine.shared.notifyAllUIObservers()
+            UIManager.shared.updateUIAfterNonVipUserSelectedVipSettings()
         }
         
         AppEngine.shared.saveUser()

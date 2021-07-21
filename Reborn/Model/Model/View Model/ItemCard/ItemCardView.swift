@@ -41,7 +41,7 @@ class ItemCardView: UIView {
     
  
     
-    private func updateContentView() {
+    public func updateContentView() {
         self.removeAllSubviews()
         self.contentView = ItemCardViewBuilder(item: self.item, frame: self.frame, isInteractable: true).buildContentView()
         self.addSubview(self.contentView)
@@ -51,12 +51,9 @@ class ItemCardView: UIView {
     @objc func itemPunchInButtonPressed(_ sender: UIButton!) {
         
         updateItem()
-        updateContentView()
+        UIManager.shared.updateUIAfterPunchInButtonPressed(item)
         AppEngine.shared.saveUser()
-//
-//        AppEngine.shared.notifyUIObservers(withIdentifier: "HomeViewController")
-//        AppEngine.shared.notifyUIObservers(withIdentifier: "ItemManagementViewController")
-//
+
         
     }
     

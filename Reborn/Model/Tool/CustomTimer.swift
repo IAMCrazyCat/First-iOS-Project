@@ -135,7 +135,7 @@ class CustomTimer {
             
         }
         
-        AppEngine.shared.notifyUIObservers(withIdentifier: "PotatoClockViewController")
+        UIManager.shared.updateUIAfterTomatoTimerIsRecovered()
   
     }
     

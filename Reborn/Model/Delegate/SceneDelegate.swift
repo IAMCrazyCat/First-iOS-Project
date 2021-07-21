@@ -57,9 +57,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UIApplication.shared.applicationIconBadgeNumber = 0 
         SettingStrategy().saveUserSetting()
         CustomTimer.recoverTimer()
-        AppEngine.shared.notifyUIObservers(withIdentifier: "UserCenterViewController")
+       
         if NotificationManager.shared.isNotificationStatusChanged() {
-            AppEngine.shared.notifyUIObservers(withIdentifier: "PopUpViewController")
+            UIManager.shared.updateUIAfterNotificationStatusChanged()
         }
 
     }

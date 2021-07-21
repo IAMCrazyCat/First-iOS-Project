@@ -258,7 +258,7 @@
             <objects>
                 <viewController id="yhk-VJ-4nb" customClass="NewItemViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5tU-dT-BVc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eis-9Y-9bk" userLabel="Horizental Scroll View">
@@ -1419,7 +1419,7 @@
             <objects>
                 <viewController storyboardIdentifier="HomeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5eW-DY-fpx" customClass="HomeViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uAb-zv-xSl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDY-Xd-Ccc">
@@ -1645,7 +1645,7 @@
             <objects>
                 <viewController restorationIdentifier="ItemManagementViewController" storyboardIdentifier="ItemManagementViewController" id="7qU-RC-e4u" customClass="ItemManagementViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XJ8-ec-9K0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lt5-gF-RX7" userLabel="Option Bar">
@@ -1736,7 +1736,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="itemCardCollectionView" destination="260-RX-cRE" id="h4n-Or-YgA"/>
                         <outlet property="optionBar" destination="Lt5-gF-RX7" id="IHe-zO-fda"/>
                         <outlet property="optionBarContentView" destination="LSc-aq-7eV" id="Xh3-ZG-ys6"/>
                         <outlet property="verticalContentHeightConstraint" destination="Je9-ys-7df" id="zQK-DQ-bVv"/>
@@ -1754,7 +1753,7 @@
             <objects>
                 <viewController restorationIdentifier="SelfDisciplineToolsViewController" storyboardIdentifier="SelfDisciplineToolsViewController" id="bem-id-UUc" customClass="SelfDisciplineToolsViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1LM-le-iSu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HxE-xH-ay6">
@@ -1962,13 +1961,6 @@
                                                     <constraint firstItem="yle-BJ-cpB" firstAttribute="top" secondItem="YGf-5M-9JL" secondAttribute="bottom" constant="10" id="n5Q-eR-s9s"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0b3-8B-hfh">
-                                                <rect key="frame" x="30" y="21" width="42" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" name="WhiteAndBlackBackground"/>
                                         <constraints>
@@ -2037,7 +2029,7 @@
             <objects>
                 <viewController storyboardIdentifier="EncourageTextViewController" title="激励语" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lek-2K-fR3" customClass="EncourageTextViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="LqD-BT-qBV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Is2-kh-rWw" userLabel="Floating Filed View">
@@ -2120,7 +2112,7 @@
             <objects>
                 <viewController storyboardIdentifier="UserCenterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xEm-ah-agE" customClass="UserCenterViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Trs-NW-7D2">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gY-P1-gbC">
@@ -3760,7 +3752,7 @@
             <objects>
                 <viewController restorationIdentifier="TomatoClockViewController" storyboardIdentifier="TomatoClockViewController" hidesBottomBarWhenPushed="YES" id="BaV-8j-OVv" customClass="TomatoClockViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Dcl-qQ-CLa">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9MM-Dy-kmP">
@@ -3925,7 +3917,7 @@
             <objects>
                 <viewController restorationIdentifier="BreathViewController" storyboardIdentifier="BreathViewController" hidesBottomBarWhenPushed="YES" id="v2s-l8-7fg" customClass="BreathViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fOZ-m0-2mh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SGW-rS-Dnl">
@@ -4396,7 +4388,7 @@
         <!--Energy Setting View Controller-->
         <scene sceneID="XZ4-6t-9fw">
             <objects>
-                <viewController storyboardIdentifier="EnergySettingViewController" hidesBottomBarWhenPushed="YES" id="EJ9-KC-HJw" customClass="EnergySettingViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EnergySettingViewController" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EJ9-KC-HJw" customClass="EnergySettingViewController" customModule="Reborn" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ElJ-Nh-iTl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4750,7 +4742,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="xf4-Re-kmQ"/>
-        <segue reference="dzd-Jo-rYE"/>
+        <segue reference="LKv-l4-eYv"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>

@@ -56,16 +56,15 @@ class EnergySettingViewController: UIViewController {
         
         engine.userSetting.hasViewedEnergyUpdate = true
         engine.saveSetting()
-        //engine.notifyAllUIObservers()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        engine.notifyUIObservers(withIdentifier: "UserCenterViewController")
+        UIManager.shared.updateUIWhenEnergyViewWillDisapper()
     }
     
     @IBAction func purchaseButtonPressed(_ sender: Any) {
         Vibrator.vibrate(withImpactLevel: .medium)
-        TemporaryCircleLoadingAnimation.add(to: self.view, withRespondingTime: 60, proportionallyOnYPosition: 0.38)
+        TemporaryCircleLoadingAnimation.add(to: self.view, withRespondingTime: 80, proportionallyOnYPosition: 0.38, showAlertAfterTimeOut: true)
         self.titleLabel.text = "请勿离开界面"
         self.rotationSpeed = 0.5
         InAppPurchaseManager.shared.add(self)

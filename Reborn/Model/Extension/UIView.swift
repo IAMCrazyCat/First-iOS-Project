@@ -165,10 +165,22 @@ extension UIView {
         self.addSubview(itemCard)
     }
     
-    func renderItemCards(withCondition condition: ItemState?, animated: Bool) {
+    func renderItemCards(withCondition condition: ItemsFilterCondition, animated: Bool) {
+        
+        switch condition {
+        case .all: self.renderItemCards(withState: nil, animated: animated)
+        case .completed: self.renderItemCards(withState: .completed, animated: animated)
+        case .duringBreak: self.renderItemCards(withState: .duringBreak, animated: animated)
+        case .inProgress: self.renderItemCards(withState: .inProgress, animated: animated)
+        }
+    }
+    
+    
+    
+    private func renderItemCards(withState state: ItemState?, animated: Bool) {
         self.removeAllSubviews()
         AppEngine.shared.currentUser.sortItems()
-        let isRenderingAll = condition == nil ? true : false
+        let isRenderingAll = state == nil ? true : false
         let items = AppEngine.shared.currentUser.items
         var tag: Int = items.count - 1
         var cordinateY: CGFloat = SystemSetting.shared.mainPadding
@@ -190,7 +202,7 @@ extension UIView {
             var itemNumber = 1
             while tag >= 0 {
                 let item = items[tag]
-                if item.state == condition || isRenderingAll {
+                if item.state == state || isRenderingAll {
                     let builder = ItemCardViewBuilder(item: item, frame: CGRect(x: SystemSetting.shared.mainPadding, y: cordinateY, width: self.frame.width - 2 * SystemSetting.shared.mainPadding, height: SystemSetting.shared.itemCardHeight), isInteractable: true)
                     let itemCard = builder.buildView()
                     cordinateY += SystemSetting.shared.itemCardHeight + SystemSetting.shared.itemCardGap
@@ -226,7 +238,7 @@ extension UIView {
             promptButton.setTitle("点击右上角添加你的第一个目标", for: .normal)
         } else if noConditionedItemFound {
             
-            switch condition {
+            switch state {
             case .completed:
                 promptButton.setTitle("还没有完成的项目，继续加油", for: .normal)
             case .duringBreak:

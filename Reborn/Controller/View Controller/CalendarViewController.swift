@@ -493,7 +493,7 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
             }
 
             self.updateUI()
-            self.engine.notifyUIObservers(withIdentifier: "TimeMachineViewController")
+            UIManager.shared.updateUIWhenTimeMachineCalendarCellIsPressed()
             
             
         }

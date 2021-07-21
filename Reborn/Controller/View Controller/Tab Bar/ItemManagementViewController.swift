@@ -14,9 +14,8 @@ class ItemManagementViewController: UIViewController {
     @IBOutlet weak var verticalContentView: UIView!
     @IBOutlet weak var verticalContentHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var optionBarContentView: UIView!
-    @IBOutlet weak var itemCardCollectionView: UICollectionView!
     
-    var selectedSegment: ItemState? = nil
+    var selectedSegment: ItemsFilterCondition = .all
     var selectedSegmentIndex: Int = 0
     let setting: SystemSetting = SystemSetting.shared
     let engine: AppEngine = AppEngine.shared
@@ -61,7 +60,7 @@ class ItemManagementViewController: UIViewController {
         self.selectedSegmentIndex = sender.index
         switch sender.index {
         case 0:
-            self.selectedSegment = nil
+            self.selectedSegment = .all
         case 1:
             self.selectedSegment = .inProgress
         case 2:
@@ -73,7 +72,10 @@ class ItemManagementViewController: UIViewController {
             print("Segement Tag not found")
         }
         
-        updateVerticalContentView(animated: true, scrollToTop: true)
+        self.updateVerticalContentView(animated: true, scrollToTop: true)
+        
+        
+        
     }
     
     @IBAction func addNewItemsButtonPressed(_ sender: Any) {
@@ -121,6 +123,13 @@ class ItemManagementViewController: UIViewController {
 
     }
     
+    func updateItemCardView(by item: Item) {
+        for subview in self.verticalContentView.subviews {
+            if let itemCardView = subview as? ItemCardView, itemCardView.item === item {
+                itemCardView.updateContentView()
+            }
+        }
+    }
     
     func updateVerticalContentView(animated: Bool, scrollToTop: Bool) {
         verticalContentView.layoutIfNeeded()

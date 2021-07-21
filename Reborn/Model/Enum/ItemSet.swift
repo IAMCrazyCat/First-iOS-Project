@@ -34,3 +34,10 @@ enum ItemType: String, CaseIterable, Codable {
         }
     }
 }
+
+enum ItemsFilterCondition {
+    case all
+    case inProgress
+    case duringBreak
+    case completed
+}

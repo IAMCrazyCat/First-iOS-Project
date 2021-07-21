@@ -29,15 +29,15 @@ class ThreadsManager {
     }
     private var loadingItems: [LoadingItem] = []
     private init() {
-        indicateLoadingItems()
+        //indicateLoadingItems()
     }
     
    
     public func userDidLoad() { // Will be called when all user data has been loaded
         print("User did load all items")
         self.userIsLoading = false
-        AppEngine.shared.notifyUIObservers(withIdentifier: "HomeViewController")
         
+        UIManager.shared.updateUIAfterUserIsLoadedInBackgroundThread()
         APIManager.shared.postUserDataToServer()
         
     }

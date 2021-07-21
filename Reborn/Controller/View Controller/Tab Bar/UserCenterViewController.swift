@@ -94,12 +94,12 @@ class UserCenterViewController: UIViewController {
     }
     
     @objc func avatarViewTapped() {
-       
+        Vibrator.vibrate(withImpactLevel: .light)
         presentImagePicker()
     }
     
     @IBAction func editAvatarButtonPressed(_ sender: UIButton) {
-        Vibrator.vibrate(withImpactLevel: .medium)
+        Vibrator.vibrate(withImpactLevel: .light)
         presentImagePicker()
     }
     
@@ -192,7 +192,7 @@ class UserCenterViewController: UIViewController {
     }
     
     func presentImagePicker() {
-        TemporaryCircleLoadingAnimation.add(to: self.view, withRespondingTime: 5)
+        TemporaryCircleLoadingAnimation.add(to: self.view, withRespondingTime: 10, showAlertAfterTimeOut: false)
         
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -381,9 +381,14 @@ extension UserCenterViewController: UINavigationControllerDelegate, UIImagePicke
         }
         
         self.engine.currentUser.setAvatarImage(newImage)
-        self.engine.notifyAllUIObservers()
+        UIManager.shared.updateUIAfterUserAvatarWasChanged()
         self.engine.saveUser()
-        self.dismiss(animated: true)
+        self.dismiss(animated: true) {
+            Vibrator.vibrate(withNotificationType: .success)
+            APIManager.shared.postUserAvatarToServer()
+        }
+        
+        
     }
 }
 
@@ -394,13 +399,12 @@ extension UserCenterViewController: PopUpViewDelegate {
     }
 
     func didDismissPopUpViewWithoutSave(_ type: PopUpType) {
-        
-        self.engine.saveSetting()
-        self.engine.notifyAllUIObservers()
     
     }
     
     func didSaveAndDismiss(_ type: PopUpType) {
+        
+        
 
         switch type {
         case .customUserInformationPopUp:
@@ -415,7 +419,7 @@ extension UserCenterViewController: PopUpViewDelegate {
                 }
                 self.engine.saveUser()
             }
-            
+            UIManager.shared.updateUIAfterUserInfomationWasEdited()
         case .notificationTimePopUp:
             
             if let notificationTime = self.engine.storedDataFromPopUpView as? Array<CustomTime> {
@@ -423,16 +427,16 @@ extension UserCenterViewController: PopUpViewDelegate {
                 self.engine.saveSetting()
                 NotificationManager.shared.scheduleFixedNotification(at: self.engine.userSetting.notificationTime)
             }
+        case .customThemeColorPopUp:
+            UIManager.shared.updateUIAfterThemeColorWasChanged()
+        case .lightAndDarkModePopUp:
+            UIManager.shared.updateUIAfterAppAppearanceWasChanged()
         default:
             break
         }
         
         self.engine.saveSetting()
         Vibrator.vibrate(withNotificationType: .success)
-        
-        DispatchQueue.main.async {
-            self.engine.notifyAllUIObservers()
-        }
     }
 }
 

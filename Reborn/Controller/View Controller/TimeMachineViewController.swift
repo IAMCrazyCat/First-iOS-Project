@@ -78,7 +78,7 @@ class TimeMachineViewController: UIViewController {
                 self.engine.currentUser.energy -= self.calendarViewController.selectedDays
                 self.calendarViewController.punchInMakingUpDates.removeAll()
                 self.engine.saveUser()
-                self.engine.notifyAllUIObservers()
+                UIManager.shared.updateUIAfterTimeMachineWasUsed(item)
             })
             
             self.calendarViewController.userDidGo = .sameMonth

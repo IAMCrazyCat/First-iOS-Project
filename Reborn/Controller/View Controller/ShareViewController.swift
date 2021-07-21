@@ -52,7 +52,6 @@ class ShareViewController: UIViewController {
         bottomLineView.alpha = 0.5
         
         let scale: CGFloat = (self.view.frame.height / self.preview.frame.height) * (1 / 1.58)// 0.65 is the ideal ratio
-        print(self.view.frame.height / self.preview.frame.height)
         preview.transform = CGAffineTransform(scaleX: scale, y: scale)
         preview.layoutIfNeeded()
         setGradientPreviewContentViewBackgroundColor()

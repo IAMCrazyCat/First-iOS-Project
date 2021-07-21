@@ -150,14 +150,14 @@ class AppEngine {
     func updateUIByTime() {
         
         if storedTimeRange != TimeRange.current {
-            self.notifyAllUIObservers()
             self.updateUserItems()
+            UIManager.shared.updateUIAccordingToTimeChange()
             storedTimeRange = TimeRange.current
         }
         
         if storedDate != CustomDate.current {
-            self.notifyAllUIObservers()
             self.updateUserItems()
+            UIManager.shared.updateUIAccordingToTimeChange()
             storedDate = CustomDate.current
         }
         
@@ -309,21 +309,25 @@ class AppEngine {
         self.observers.append(observer)
     }
     
-    public func notifyAllUIObservers() {
+    public func notifyAllUIObservers(finish: (() -> Void)? = nil) {
         self.updateUserItems()
         
-        for observer in self.observers {
-            DispatchQueue.main.async {
+        DispatchQueue.main.async {
+            for observer in self.observers {
                 observer.updateUI()
+                
             }
+            finish?()
+            print("All Observers Notified")
         }
-        print("All Observers Notified")
+        
+        
     }
     
     public func notifyUIObservers(withIdentifier identifier: String) {
 
         for observer in self.observers {
-       
+            
             if let viewController = observer as? UIViewController, viewController.restorationIdentifier == identifier {
                 observer.updateUI()
                 print("ViewController: \(String(describing: viewController.restorationIdentifier)) notified")

@@ -148,22 +148,30 @@ class HomeViewController: UIViewController {
     
 
     func updateItemCardsView() {
+
+        if ThreadsManager.shared.userIsLoading {
+            LoadingAnimationManager.shared.add(to: self.itemCardsView, circleWidth: 2, circleRadius: 30, proportionallyOnYPosition: 0.4, backgroundAlpha: 0, identifier: "HomePageItemCardViewsLoadingAnimation")
         
-        DispatchQueue.main.async {
-            if ThreadsManager.shared.userIsLoading {
-                TemporaryCircleLoadingAnimation.add(to: self.itemCardsView, withRespondingTime: 20, proportionallyOnYPosition: 0.3, backgroundAlpha: 0.0)
+        
+        } else {
+            self.view.layoutIfNeeded()
+            self.itemCardsView.renderItemCards(withCondition: .inProgress, animated: false)
+            self.itemCardsView.alpha = 0
+            UIView.animate(withDuration: 0.5, animations: {
+                self.itemCardsView.alpha = 1
+            })
             
-            } else {
-                self.view.layoutIfNeeded()
-                self.itemCardsView.renderItemCards(withCondition: .inProgress, animated: false)
-                TemporaryCircleLoadingAnimation.remove() {
-                    
-                }
-            }
+            LoadingAnimationManager.shared.removeAnimationWith(identifier: "HomePageItemCardViewsLoadingAnimation")
         }
         
-        
-        
+    }
+    
+    func updateItemCardView(by item: Item) {
+        for subview in self.itemCardsView.subviews {
+            if let itemCardView = subview as? ItemCardView, itemCardView.item === item {
+                itemCardView.updateContentView()
+            }
+        }
     }
     
     func updateNavigationView() {

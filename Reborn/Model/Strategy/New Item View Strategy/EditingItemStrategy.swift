@@ -152,11 +152,12 @@ class EditingItemStrategy: NewItemViewStrategy {
     func doneButtonPressed(_ sender: UIButton) {
         
         if isRedyToDismiss() {
+           
             NotificationManager.shared.scheduleNotification(for: newItemViewController.item)
             newItemViewController.engine.saveUser(newItemViewController.engine.currentUser)
             newItemViewController.dismiss(animated: true) {
-                self.newItemViewController.engine.notifyUIObservers(withIdentifier: "ItemDetailViewController")
-                //self.newItemViewController.engine.notifyAllUIObservers()
+                Vibrator.vibrate(withNotificationType: .success)
+                UIManager.shared.updateUIAfterItemWasEdited(self.newItemViewController.item)
             }
         }
     }

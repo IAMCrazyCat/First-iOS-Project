@@ -199,14 +199,14 @@ class InAppPurchaseManager {
         AppEngine.shared.userSetting.hasViewedEnergyUpdate = false
         AppEngine.shared.saveUser()
         self.notifyAllObservers(withState: .purchased)
-        AppEngine.shared.notifyAllUIObservers()
+        UIManager.shared.updateUIAfterAppWasPurchased()
     }
     
     public func updateAfterEnergyPurchased() {
         self.notifyAllObservers(withState: .purchased)
         AppEngine.shared.currentUser.energy += 3
         AppEngine.shared.saveUser()
-        AppEngine.shared.notifyAllUIObservers()
+        UIManager.shared.updateUIAfterEnergyWasPurchased()
     }
     
     public func purchase(_ purchaseType: PurchaseType) {
@@ -254,11 +254,10 @@ class InAppPurchaseManager {
                 let currentVC = UIApplication.shared.getCurrentViewController()
                 currentVC != nil ? SystemAlert.present("订阅验证失败", and: "请检查您的订阅", from: currentVC!) : ()
             })
-            
-        
+
             AppEngine.shared.currentUser.purchasedType = .none
             AppEngine.shared.saveUser()
-            AppEngine.shared.notifyAllUIObservers()
+            UIManager.shared.updateUIAfterSubscriptionCheckFailed()
         }
        
     }
@@ -271,7 +270,7 @@ class InAppPurchaseManager {
             AppEngine.shared.currentUser.purchasedType = purchasedType
             AppEngine.shared.saveUser()
             self.notifyAllObservers(withState: .purchased)
-            AppEngine.shared.notifyAllUIObservers()
+            UIManager.shared.updateUIAfterSubscriptionCheckSuccessed()
         }
     }
     
